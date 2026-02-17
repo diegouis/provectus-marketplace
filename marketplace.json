@@ -238,7 +238,7 @@
     "total_commands": 42,
     "total_agents": 14,
     "total_hooks": 36,
-    "total_mcp_integrations": 48,
+    "total_mcp_integrations": 30,
     "practices_covered": [
       "agentic-engineering",
       "sdlc",
@@ -256,11 +256,70 @@
       "finance"
     ]
   },
+  "mcp_servers_core": [
+    {
+      "name": "slack",
+      "package": "slack-mcp-server@latest",
+      "runtime": "npx",
+      "description": "Slack workspace access — channels, messages, users, threads",
+      "plugins": "all"
+    },
+    {
+      "name": "google-drive",
+      "package": "@modelcontextprotocol/server-gdrive",
+      "runtime": "npx",
+      "description": "Google Drive files, Docs (Markdown), Sheets (CSV), Slides (text)",
+      "plugins": "all"
+    },
+    {
+      "name": "google-workspace",
+      "package": "mcp-gsuite",
+      "runtime": "uvx",
+      "description": "Gmail (list, search, send, draft) and Google Calendar (events, scheduling)",
+      "plugins": "all"
+    },
+    {
+      "name": "github",
+      "package": "@modelcontextprotocol/server-github",
+      "runtime": "npx",
+      "description": "Repositories, PRs, issues, Actions, code search",
+      "plugins": "all"
+    }
+  ],
+  "mcp_servers_additional": [
+    {
+      "name": "gitlab",
+      "package": "@modelcontextprotocol/server-gitlab",
+      "runtime": "npx",
+      "plugins": ["agentic-engineering", "sdlc", "platform", "devops", "qa", "backend", "frontend", "security"]
+    },
+    {
+      "name": "atlassian",
+      "package": "@modelcontextprotocol/server-atlassian",
+      "runtime": "npx",
+      "plugins": ["sdlc", "qa", "delivery"]
+    },
+    {
+      "name": "playwright",
+      "package": "@playwright/mcp@latest",
+      "runtime": "npx",
+      "plugins": ["agentic-engineering", "qa", "frontend"]
+    },
+    {
+      "name": "rube",
+      "url": "https://rube.app/mcp",
+      "description": "Composio SaaS gateway — 200+ apps via RUBE_SEARCH_TOOLS, RUBE_MANAGE_CONNECTIONS, RUBE_MULTI_EXECUTE_TOOL",
+      "plugins": ["agentic-engineering", "platform", "devops", "frontend", "delivery", "data", "hr", "sales", "finance"]
+    }
+  ],
   "mcp_integrations_available": [
     "GitHub",
     "GitLab",
     "Slack",
+    "Google Drive",
     "Google Docs",
+    "Google Sheets",
+    "Google Slides",
     "Gmail",
     "Google Calendar",
     "AWS",
