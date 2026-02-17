@@ -76,7 +76,7 @@ proagent-<practice>/
 │   └── <practice>-specialist.md      # Specialist subagent for the practice domain
 ├── hooks/
 │   └── hooks.json            # Lifecycle hooks: validation, formatting, notifications
-├── .mcp.json                 # MCP server connections (GitHub, Slack, Rube, etc.)
+├── .mcp.json                 # MCP servers (Slack, Google Drive, Gmail/Calendar, GitHub, and more)
 ├── CLAUDE.md                 # Context loaded into Claude sessions
 └── README.md                 # Plugin-specific docs
 ```
