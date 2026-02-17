@@ -167,7 +167,9 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 | Commands | 42 |
 | Agents | 14 |
 | Hooks | 36 |
-| MCP Integrations | 48 |
+| MCP Servers (core) | 4 (Slack, Google Drive, Google Workspace, GitHub) |
+| MCP Servers (additional) | 4 (GitLab, Atlassian, Playwright, Rube) |
+| MCP Integrations | 30 |
 | Source Assets | 843 |
 | Source Repos | 17 |
 
