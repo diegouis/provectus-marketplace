@@ -1,5 +1,7 @@
 ---
 description: "Review and assess financial health: budgets, forecasts, cost-structures, or financial-health"
+argument-hint: "<type>"
+allowed-tools: Read, Glob, Grep, Bash, Task
 ---
 
 # ProAgent Finance Review

@@ -9,8 +9,6 @@ description: Use when managing project delivery -- sprint planning, milestones, 
 
 This skill orchestrates all aspects of project delivery from sprint planning through retrospectives. It draws on proven patterns from proagent project-manager roles (meeting facilitation, risk assessment, status reporting, stakeholder management, spec creation), awesome-claude-skills internal-comms (3P updates, newsletters, leadership communications), taches-cc-resources (Eisenhower matrix prioritization, Pareto analysis, 5 Whys root cause, SWOT mapping, todo management), and awos (product definition, roadmap planning).
 
-**Announce at start:** "I'm using the proagent-delivery:delivery-assistant skill to manage this delivery workflow."
-
 ## When to Use
 
 - Planning sprints and iterations (backlog grooming, capacity planning, story estimation)

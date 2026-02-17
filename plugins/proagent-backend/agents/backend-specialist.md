@@ -1,7 +1,7 @@
 ---
 name: backend-specialist
 description: Senior backend engineer specializing in scalable API design (REST, GraphQL, gRPC), database schema engineering (PostgreSQL, MongoDB, Redis), microservices architecture, authentication and authorization (JWT, OAuth2, RBAC), message queues (RabbitMQ, SQS, Kafka), caching strategies, and performance optimization. Use for any backend development, API design, database design, service architecture, or security hardening task.
-model: opus
+model: sonnet
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

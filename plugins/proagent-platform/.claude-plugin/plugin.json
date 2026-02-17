@@ -20,9 +20,11 @@
     "templates",
     "dx-optimization"
   ],
-  "agents": ["./agents"],
-  "skills": ["./skills"],
-  "commands": ["./commands"],
-  "hooks": ["./hooks"],
-  "mcp": "./.mcp.json"
+  "resources": {
+    "skills": ["skills/platform-assistant"],
+    "agents": ["agents/platform-specialist.md"],
+    "commands": ["commands/"],
+    "hooks": ["hooks/hooks.json"],
+    "mcp": [".mcp.json"]
+  }
 }

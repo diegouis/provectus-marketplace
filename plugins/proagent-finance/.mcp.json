@@ -1,40 +1,28 @@
 {
   "mcpServers": {
-    "google-docs": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@anthropic/mcp-server-google-docs"
-      ],
-      "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "${GOOGLE_APPLICATION_CREDENTIALS}",
-        "GOOGLE_DOCS_OAUTH_TOKEN": "${GOOGLE_DOCS_OAUTH_TOKEN}"
-      },
-      "description": "Google Docs MCP server for creating and managing financial documents: budget spreadsheets, P&L statements, financial reports, and forecast documents shared with stakeholders. Used to publish and collaborate on financial deliverables."
-    },
-    "gmail": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@anthropic/mcp-server-gmail"
-      ],
-      "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "${GOOGLE_APPLICATION_CREDENTIALS}",
-        "GMAIL_OAUTH_TOKEN": "${GMAIL_OAUTH_TOKEN}"
-      },
-      "description": "Gmail MCP server for financial communication workflows: sending invoices to clients, distributing financial reports to stakeholders, sending payment reminders for overdue invoices, and delivering budget variance alerts to department heads."
-    },
     "slack": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@anthropic/mcp-server-slack"
-      ],
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
       "env": {
         "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
         "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
-      },
-      "description": "Slack MCP server for real-time financial notifications: budget threshold alerts in #finance channel, payment received confirmations, revenue milestone announcements, overdue invoice escalations, and expense approval requests."
+      }
+    },
+    "google-drive": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-drive"],
+      "env": {
+        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
+        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}",
+        "GOOGLE_REFRESH_TOKEN": "${GOOGLE_REFRESH_TOKEN}"
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
     }
   }
 }

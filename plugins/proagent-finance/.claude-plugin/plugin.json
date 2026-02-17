@@ -4,14 +4,9 @@
   "description": "Financial operations management: budgeting, invoicing, revenue forecasting, P&L analysis, cost optimization, billing, and financial reporting. Synthesized from awesome-claude-skills (invoice-organizer), agents (stripe-integration, quant-analyst), and Provectus finance practice patterns.",
   "author": {
     "name": "Provectus",
-    "email": "agentic-coding@provectus.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/provectus/proagent-marketplace"
+    "url": "https://provectus.com"
   },
   "license": "MIT",
-  "category": "finance",
   "keywords": [
     "finance",
     "budgeting",
@@ -20,14 +15,17 @@
     "revenue-tracking",
     "cost-optimization",
     "billing",
-    "financial-reporting",
-    "profit-and-loss",
-    "payment-processing",
-    "expense-management",
-    "financial-analysis"
+    "financial-reporting"
   ],
-  "agents": ["./agents"],
-  "skills": ["./skills"],
-  "commands": ["./commands"],
-  "hooks": ["./hooks"]
+  "resources": {
+    "skills": ["skills/finance-assistant/SKILL.md"],
+    "agents": ["agents/finance-specialist.md"],
+    "commands": [
+      "commands/proagent-finance-hub.md",
+      "commands/proagent-finance-run.md",
+      "commands/proagent-finance-review.md"
+    ],
+    "hooks": ["hooks/hooks.json"],
+    "mcp": [".mcp.json"]
+  }
 }

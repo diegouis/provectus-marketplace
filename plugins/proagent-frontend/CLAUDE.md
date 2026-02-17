@@ -13,8 +13,8 @@ proagent-frontend/
     proagent-frontend-run.md           - Execute: scaffold-component, build-ui, design-system, accessibility-audit, optimize-performance
     proagent-frontend-review.md        - Review: components, accessibility, performance, design consistency
   agents/frontend-specialist.md        - Frontend specialist subagent for UI engineering
-  hooks/hooks.json                     - Pre-commit validation, post-build accessibility, pre-merge UI gates
-  mcp.json                             - MCP server configs: Playwright, GitHub, GitLab
+  hooks/hooks.json                     - Pre-tool validation for builds and component writes
+  .mcp.json                            - MCP server configs: Playwright, GitHub, GitLab
 ```
 
 ## Commands

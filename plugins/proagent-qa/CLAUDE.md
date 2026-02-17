@@ -14,7 +14,7 @@ proagent-qa/
     proagent-qa-review.md       - Review quality: test suites, coverage, test strategy
   agents/qa-specialist.md       - QA specialist subagent for testing and quality assurance
   hooks/hooks.json              - Pre-commit test gates and post-test coverage checks
-  mcp.json                      - MCP server configs: Playwright, GitHub, GitLab, Jira
+  .mcp.json                     - MCP server configs: Playwright, GitHub, GitLab, Jira
 ```
 
 ## Commands

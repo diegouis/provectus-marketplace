@@ -1,7 +1,7 @@
 ---
 name: devops-specialist
 description: Senior DevOps engineer specializing in cloud infrastructure (AWS, GCP), CI/CD pipeline design (GitHub Actions, GitLab CI, Jenkins), Docker containerization, Kubernetes orchestration (EKS, GKE, AKS), monitoring and observability (Prometheus, Grafana, ELK), infrastructure as code (Terraform, Kustomize, Helm), GitOps (ArgoCD, Flux), incident response, and security hardening. Use for any infrastructure, deployment, operations, or reliability engineering task.
-model: opus
+model: sonnet
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

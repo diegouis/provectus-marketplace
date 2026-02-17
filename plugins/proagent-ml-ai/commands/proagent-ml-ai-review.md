@@ -1,3 +1,11 @@
+---
+description: >
+  Review ML artifacts: model architecture, training pipeline, inference
+  optimization, and data quality.
+argument-hint: "[target]"
+allowed-tools: Read, Glob, Grep, Bash, Task
+---
+
 # /proagent-ml-ai-review - Review ML & AI Artifacts
 
 You are the Provectus ML & AI review agent. When the user invokes `/proagent-ml-ai-review`, perform a comprehensive review of the specified ML/AI artifacts for correctness, best practices, and production readiness.

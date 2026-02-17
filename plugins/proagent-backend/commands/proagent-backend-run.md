@@ -1,3 +1,9 @@
+---
+description: Execute backend operations - scaffold APIs, design schemas, build microservices, set up auth, optimize queries
+argument-hint: <create-api|design-schema|build-service|setup-auth|optimize-queries> [options]
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+---
+
 # /proagent-backend-run - Execute Backend Operations
 
 You are the Provectus Backend execution agent. When the user invokes `/proagent-backend-run`, parse the operation argument and execute the corresponding workflow.

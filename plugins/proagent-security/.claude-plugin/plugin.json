@@ -3,76 +3,21 @@
   "version": "0.1.0",
   "description": "Provectus Security practice plugin for vulnerability scanning, compliance enforcement, secrets management, encryption, audit logging, threat modeling, OWASP Top 10 protection, and Zero Trust architecture.",
   "category": "security",
-  "author": "Provectus",
+  "author": {
+    "name": "Provectus",
+    "url": "https://provectus.com"
+  },
   "license": "MIT",
-  "skills": [
-    {
-      "name": "security-assistant",
-      "path": "skills/security-assistant/SKILL.md",
-      "description": "Securing Software & Infrastructure - vulnerability scanning, compliance, secrets management, encryption, audit, threat modeling, OWASP, Zero Trust"
-    }
-  ],
-  "agents": [
-    {
-      "name": "security-specialist",
-      "path": "agents/security-specialist.md",
-      "description": "Expert security auditor specializing in DevSecOps, OWASP compliance, threat modeling, Zero Trust architecture, vulnerability assessment, and compliance frameworks (GDPR, HIPAA, SOC2, PCI-DSS)"
-    }
-  ],
-  "commands": [
-    {
-      "name": "proagent-security-hub",
-      "path": "commands/proagent-security-hub.md",
-      "description": "Security practice hub - overview of capabilities and available operations"
-    },
-    {
-      "name": "proagent-security-run",
-      "path": "commands/proagent-security-run.md",
-      "description": "Execute security operations: scan-vulnerabilities, audit-secrets, threat-model, compliance-check, encrypt-setup"
-    },
-    {
-      "name": "proagent-security-review",
-      "path": "commands/proagent-security-review.md",
-      "description": "Review security posture, code security, dependency vulnerabilities, and access controls"
-    }
-  ],
-  "hooks": [
-    {
-      "event": "PreToolUse",
-      "path": "hooks/hooks.json",
-      "description": "Pre-commit secret scanning and dependency vulnerability audit"
-    }
-  ],
-  "mcp_integrations": [
-    "github",
-    "gitlab"
-  ],
-  "source_repos": [
-    "proagent",
-    "proagent-repo GUI",
-    "casdk-harness",
-    "Auto-Claude",
-    "awesome-claude-code",
-    "agents",
-    "tac",
-    "claude-ui",
-    "gastown",
-    "superpowers"
-  ],
-  "keywords": [
-    "security",
-    "vulnerability-scanning",
-    "owasp",
-    "compliance",
-    "secrets-management",
-    "encryption",
-    "threat-modeling",
-    "zero-trust",
-    "devsecops",
-    "audit",
-    "sast",
-    "dast",
-    "dependency-scanning",
-    "access-control"
-  ]
+  "keywords": ["security", "vulnerability-scanning", "owasp", "compliance", "secrets-management", "encryption", "threat-modeling", "zero-trust", "devsecops", "audit", "sast", "dast"],
+  "resources": {
+    "skills": ["skills/security-assistant/SKILL.md"],
+    "agents": ["agents/security-specialist.md"],
+    "commands": [
+      "commands/proagent-security-hub.md",
+      "commands/proagent-security-run.md",
+      "commands/proagent-security-review.md"
+    ],
+    "hooks": ["hooks/hooks.json"],
+    "mcp": [".mcp.json"]
+  }
 }

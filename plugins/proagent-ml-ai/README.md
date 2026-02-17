@@ -60,7 +60,7 @@ proagent-ml-ai/
     ml-ai-specialist.md         # ML/AI specialist agent definition
   hooks/
     hooks.json                  # Model validation and experiment logging hooks
-  mcp.json                     # MCP server integrations (AWS, GCP, GitHub)
+  .mcp.json                     # MCP server integrations (GitHub)
   CLAUDE.md                    # Plugin conventions and standards
   README.md                    # This file
 ```

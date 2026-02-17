@@ -2,7 +2,7 @@
 name: delivery-specialist
 description: |
   Use this agent for project delivery management across all delivery phases. Handles sprint planning, milestone tracking, status reporting, risk assessment, stakeholder communication, retrospective facilitation, resource allocation, and agile/scrum ceremony management. Examples: <example>Context: A project manager needs to prepare a weekly status update for stakeholders. user: "I need to write the weekly status report for the Customer Portal project" assistant: "Let me use the delivery-specialist agent to gather project data and generate a structured status report." <commentary>Status reporting is a core delivery function, dispatch delivery-specialist to produce a tailored report.</commentary></example> <example>Context: A team lead needs to assess risks before a major milestone. user: "We have a release milestone next week, what risks should we be worried about?" assistant: "I'll have the delivery-specialist agent run a risk assessment focused on the upcoming milestone." <commentary>Pre-milestone risk assessment is a cross-cutting delivery concern, so the delivery-specialist handles the structured analysis.</commentary></example>
-model: inherit
+model: sonnet
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

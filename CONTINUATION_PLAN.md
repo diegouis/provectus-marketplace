@@ -59,22 +59,43 @@ proagent-<practice>/
 2. **proagent-sdlc** (commit `dcbdfd7`) — Grade: B+ → A- after fixes
    - Fixed: hooks.json rewritten to valid Claude Code format (was custom schema that wouldn't execute), command files renamed with proagent-sdlc- prefix, added argument-hint and allowed-tools to all commands, added version to plugin.json, set agent model to sonnet, fixed ATLASSIAN_SITE_URL → ATLASSIAN_DOMAIN, removed non-standard "Announce" directive
 
-### Pending Reviews (12 remaining)
+3. **proagent-platform** — Grade: B → A- after fixes
+   - Fixed: hooks.json rewritten to valid Claude Code format (was custom schema with invalid matcher objects and non-existent Notification event), command files renamed with proagent-platform- prefix, added argument-hint to hub command, plugin.json restructured with resources registry (replaced flat directory keys), updated CLAUDE.md and README.md structure diagrams
 
-Review in this order (by asset count / complexity):
+4. **proagent-devops** (126 assets) — Grade: C+ → A- after fixes
+   - Fixed: hooks.json completely rewritten (was entirely custom schema with no executable hooks), added YAML frontmatter to all 3 commands (were missing entirely), plugin.json restructured from custom object-array format to standard resources registry, renamed hub from proagent-devops.md to proagent-devops-hub.md, changed agent model from opus to sonnet, removed invalid aws/gcp MCP entries (were CLIs not MCP servers), added env vars section to README, updated CLAUDE.md structure diagram
 
-3. **proagent-platform** (127 assets) — Note: CLAUDE.md and README.md were created by the orchestrator, not the generator agent. May need extra attention.
-4. **proagent-devops** (126 assets)
-5. **proagent-qa** (110 assets)
-6. **proagent-backend** (63 assets)
-7. **proagent-frontend** (60 assets)
-8. **proagent-delivery** (52 assets)
-9. **proagent-security** (51 assets)
-10. **proagent-data** (27 assets)
-11. **proagent-ml-ai** (22 assets)
-12. **proagent-hr** (22 assets)
-13. **proagent-sales** (13 assets)
-14. **proagent-finance** (4 assets)
+5. **proagent-qa** (110 assets) — Grade: C → A- after fixes
+   - Fixed: hooks.json completely rewritten (was custom schema with pre-commit/post-test/pre-merge events that don't exist in Claude Code), added YAML frontmatter to SKILL.md (was missing entirely), added YAML frontmatter to agent (was missing name/description/model/tools), added frontmatter to all 3 commands, plugin.json restructured with resources registry (removed entrypoint/dependencies/tags non-standard keys), fixed MCP env vars (GITHUB_TOKEN→GITHUB_PERSONAL_ACCESS_TOKEN, GITLAB_TOKEN→GITLAB_PERSONAL_ACCESS_TOKEN, JIRA_*→ATLASSIAN_*, server-jira→server-atlassian), fixed CLAUDE.md mcp.json→.mcp.json reference, updated README env var names
+
+6. **proagent-backend** (63 assets) — Grade: C+ → A- after fixes
+   - Fixed: hooks.json completely rewritten (was custom schema identical to devops pattern), added YAML frontmatter to all 3 commands, plugin.json restructured with resources registry, changed agent model from opus to sonnet, replaced all 4 invalid MCP entries (gh/glab/aws/gcloud CLIs with usage arrays) with valid GitHub/GitLab MCP servers, fixed mcp.json→.mcp.json references in CLAUDE.md and README.md
+
+7. **proagent-frontend** (60 assets) — Grade: C → A- after fixes
+   - Fixed: hooks.json rewritten to valid Claude Code format (was custom schema), added YAML frontmatter to all 3 commands (argument-hint, allowed-tools), plugin.json restructured with resources registry (removed source_repos, flat arrays), fixed MCP env vars (GITHUB_TOKEN→GITHUB_PERSONAL_ACCESS_TOKEN, GITLAB_TOKEN→GITLAB_PERSONAL_ACCESS_TOKEN), added -y flag to Playwright npx, fixed mcp.json→.mcp.json references in CLAUDE.md, README.md, and hub command, updated hooks description in CLAUDE.md
+
+8. **proagent-delivery** (52 assets) — Grade: C+ → A- after fixes
+   - Fixed: hooks.json completely rewritten (was custom schema with name/event/rules/action_template objects), plugin.json restructured with resources registry (was flat directory paths with repository/email non-standard keys), agent model changed from inherit to sonnet, removed "Announce at start" directive from SKILL.md, added argument-hint and allowed-tools to all 3 commands, .mcp.json consolidated Jira+Confluence into single Atlassian server (@modelcontextprotocol/server-atlassian), fixed ATLASSIAN_SITE_URL→ATLASSIAN_DOMAIN across .mcp.json/CLAUDE.md/README.md, fixed mcp.json→.mcp.json reference in CLAUDE.md
+
+9. **proagent-security** (51 assets) — Grade: C → A- after fixes
+   - Fixed: hooks.json completely rewritten (was custom schema with tool_patterns/file_patterns/command_patterns/validations arrays), plugin.json restructured with resources registry (was object-array format with source_repos/mcp_integrations non-standard keys), replaced both invalid MCP entries (gh CLI and glab CLI with usage_examples/security_operations) with valid GitHub/GitLab MCP servers, agent model changed from opus to sonnet, added YAML frontmatter to all 3 commands (were missing entirely), fixed mcp.json→.mcp.json reference in CLAUDE.md
+
+10. **proagent-data** (27 assets) — Grade: C → A- after fixes
+    - Fixed: hooks.json completely rewritten (was custom schema with tool_patterns/file_patterns/command_patterns/validations/checks arrays), plugin.json restructured with resources registry (was object-array format with source_repos/mcp_integrations), replaced all 3 invalid MCP entries (aws CLI, gcloud CLI, gh CLI with usage_examples/required_env) with valid GitHub MCP server only, agent model changed from opus to sonnet, added YAML frontmatter to all 3 commands (were missing entirely), fixed mcp.json→.mcp.json reference in CLAUDE.md
+
+11. **proagent-ml-ai** (22 assets) — Grade: C → A- after fixes
+    - Fixed: hooks.json completely rewritten (was custom schema with tool_patterns/file_patterns/command_patterns/validations/checks arrays), plugin.json restructured with resources registry (was object-array format with source_repos/mcp_integrations, author as string→object), replaced all 3 invalid MCP entries (uvx awslabs.aws-documentation-mcp-server, google-cloud-mcp-server, github-mcp-server) with valid GitHub MCP server only, agent model changed from opus to sonnet, added YAML frontmatter to all 3 commands (were missing entirely), fixed mcp.json→.mcp.json references in CLAUDE.md and README.md
+
+12. **proagent-hr** (22 assets) — Grade: C+ → A- after fixes
+    - Fixed: hooks.json completely rewritten (was custom schema with pre-commit/pre-publish events, file_patterns, required_sections, flagged_terms), plugin.json restructured with resources registry (was flat arrays of objects, author as string→object, removed entrypoint/dependencies/tags), added YAML frontmatter to SKILL.md (was missing), added YAML frontmatter to agent (was missing name/description/model/tools), added frontmatter to all 3 commands (were missing), replaced all 4 invalid MCP entries (@anthropic/mcp-server-* packages) with valid @modelcontextprotocol/server-slack, server-google-drive, server-github, fixed mcp.json→.mcp.json references in CLAUDE.md, hub command, and README.md
+
+13. **proagent-sales** (13 assets) — Grade: C → A- after fixes
+    - Fixed: hooks.json completely rewritten (was custom schema with tool_patterns/file_patterns/validations/check_rules/on_failure), plugin.json restructured with resources registry (was object-array format with mcp_integrations/source_repos, author as string→object, removed category), replaced all 4 invalid MCP entries (@anthropic/mcp-* packages with usage/description objects) with valid @modelcontextprotocol/server-slack, server-google-drive, server-github, agent model changed from opus to sonnet, removed WebSearch/WebFetch from agent tools, added frontmatter to all 3 commands (were missing), fixed mcp.json→.mcp.json in CLAUDE.md
+
+14. **proagent-finance** (4 assets) — Grade: C → A- after fixes
+    - Fixed: hooks.json completely rewritten (was custom schema with tool_name/match_pattern/rules/check/severity/fix_hint/action_template), plugin.json restructured with resources registry (was flat directory paths, author email→url, removed repository/license/category/keywords), replaced all 3 invalid MCP entries (@anthropic/mcp-server-* packages) with valid @modelcontextprotocol/server-slack, server-google-drive, server-github, agent model changed from inherit to sonnet, added argument-hint and allowed-tools to all 3 commands, fixed mcp.json→.mcp.json in CLAUDE.md
+
+### ALL 14 PLUGINS REVIEWED AND FIXED
 
 ## Common Issues Found in Reviews (check for these in every plugin)
 
@@ -93,17 +114,11 @@ Review in this order (by asset count / complexity):
 
 Slack, Google Docs, Gmail, Google Meet, Google Calendar, AWS, GCP, GitHub, GitLab, Jira, Confluence, Playwright, Pencil, Excalidraw, Eraser.io
 
-## How to Continue
+## Next Steps
 
-```
-# In a new Claude Code session:
-cd "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/provectus-marketplace"
-
-# Then ask:
-"Review the proagent-platform plugin following the review checklist in CONTINUATION_PLAN.md. Read all 10 files, assess against the common issues list, grade it, and apply fixes."
-```
-
-Repeat for each remaining plugin, then:
-- Commit and push after each fix batch
-- After all 14 are reviewed, do a final validation pass
+All 14 plugins have been reviewed and fixed. Remaining work:
+- Commit and push the final batch of fixes (hr, sales, finance)
+- Final validation pass across all plugins
+- Apply improvements from IMPROVEMENT_PLAN.md (15 items, P0: Composio integrations, Agent Teams, AWOS workflow)
+- Bump marketplace to v0.2.0
 - Optionally: create a root CLAUDE.md for the marketplace itself

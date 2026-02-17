@@ -1,3 +1,11 @@
+---
+description: >
+  Overview of all HR capabilities: job descriptions, interviews, onboarding,
+  performance reviews, compensation analysis, and employee development.
+argument-hint: ""
+allowed-tools: Read, Glob, Grep
+---
+
 # proagent-hr Hub
 
 Welcome to the Provectus HR plugin. This hub provides access to all human resources and talent management capabilities.
@@ -37,4 +45,4 @@ This plugin integrates with:
 - **Slack** for hiring pipeline updates, onboarding reminders, and team notifications
 - **Google Calendar** for interview scheduling, onboarding milestones, and review cycle deadlines
 
-See `mcp.json` for MCP server configuration and `hooks/hooks.json` for document formatting validation.
+See `.mcp.json` for MCP server configuration and `hooks/hooks.json` for document formatting validation.

@@ -1,7 +1,7 @@
 ---
 name: ml-ai-specialist
 description: Senior ML/AI engineer specializing in model training (scikit-learn, TensorFlow, PyTorch, XGBoost), feature engineering, hyperparameter optimization, experiment tracking (MLflow, W&B), model deployment (FastAPI, SageMaker, Vertex AI), MLOps pipelines, LLM application development, RAG systems, embeddings, vector stores, prompt engineering, and production model monitoring. Use for any machine learning, deep learning, or AI engineering task.
-model: opus
+model: sonnet
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

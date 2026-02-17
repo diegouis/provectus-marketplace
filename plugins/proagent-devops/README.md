@@ -120,6 +120,16 @@ Use the devops-assistant skill to create a GitHub Actions pipeline for this Pyth
 - AWS CLI (aws) for cloud infrastructure operations
 - GCP CLI (gcloud) for Google Cloud operations
 
+## Environment Variables
+
+```bash
+export GITHUB_PERSONAL_ACCESS_TOKEN="your-token"
+export GITLAB_PERSONAL_ACCESS_TOKEN="your-token"
+export GITLAB_API_URL="https://gitlab.com/api/v4"  # optional, defaults to gitlab.com
+```
+
+Note: AWS and GCP operations use their respective CLIs (`aws`, `gcloud`) which should be configured separately via `aws configure` and `gcloud auth login`.
+
 ## Source Repositories
 
 This plugin is built from production patterns across 8 Provectus repositories with 126 total assets (89 high-reuse). Key sources include:

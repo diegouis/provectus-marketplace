@@ -67,7 +67,7 @@ proagent-data/
   commands/proagent-data-review.md
   agents/data-specialist.md
   hooks/hooks.json
-  mcp.json
+  .mcp.json
   CLAUDE.md
   README.md
 ```

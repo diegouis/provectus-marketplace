@@ -1,3 +1,9 @@
+---
+description: Execute QA operations - run tests, generate test automation, measure coverage, check regressions, run E2E tests
+argument-hint: <test|automate|coverage-report|regression-check|e2e-test> [target]
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+---
+
 # proagent-qa Run
 
 Execute testing and quality assurance operations based on the specified mode.

@@ -1,158 +1,43 @@
 {
-  "hooks": [
-    {
-      "name": "pre-commit-secret-scanning",
-      "event": "PreToolUse",
-      "description": "Scans files for hardcoded secrets, API keys, private keys, and credentials before they are committed. Prevents accidental exposure of sensitive data in version control.",
-      "tool_patterns": ["Bash"],
-      "file_patterns": [
-        "*.py",
-        "*.js",
-        "*.ts",
-        "*.jsx",
-        "*.tsx",
-        "*.go",
-        "*.java",
-        "*.rb",
-        "*.yaml",
-        "*.yml",
-        "*.json",
-        "*.toml",
-        "*.cfg",
-        "*.ini",
-        "*.conf",
-        "*.env",
-        "*.env.*",
-        "docker-compose*.yml",
-        "Dockerfile",
-        ".github/workflows/*.yml",
-        ".gitlab-ci.yml",
-        "*.tf",
-        "*.tfvars"
-      ],
-      "command_patterns": [
-        "git commit",
-        "git add",
-        "git push"
-      ],
-      "validations": [
-        {
-          "name": "aws-key-scan",
-          "description": "Detect AWS access keys in staged files",
-          "check_rules": [
-            "No AWS access key IDs matching pattern AKIA[0-9A-Z]{16}",
-            "No AWS secret access keys (40-character base64 strings near AWS context)",
-            "No AWS session tokens in source code or configuration"
-          ],
-          "on_failure": "abort",
-          "message": "AWS credentials detected in staged files. Remove credentials and use environment variables or AWS Secrets Manager instead."
-        },
-        {
-          "name": "github-token-scan",
-          "description": "Detect GitHub personal access tokens and app tokens",
-          "check_rules": [
-            "No GitHub tokens matching pattern gh[pousr]_[0-9a-zA-Z]{36}",
-            "No GitHub App private keys (PEM format) in source files"
-          ],
-          "on_failure": "abort",
-          "message": "GitHub token detected in staged files. Rotate the token immediately and use repository secrets or environment variables."
-        },
-        {
-          "name": "private-key-scan",
-          "description": "Detect private keys and certificates in staged files",
-          "check_rules": [
-            "No RSA, DSA, EC, or OPENSSH private key headers (-----BEGIN * PRIVATE KEY-----)",
-            "No PKCS12 or PFX files staged for commit",
-            "No PEM certificate files with private key material"
-          ],
-          "on_failure": "abort",
-          "message": "Private key detected in staged files. Never commit private keys to version control. Use a secrets manager or encrypted storage."
-        },
-        {
-          "name": "generic-secret-scan",
-          "description": "Detect common secret patterns in staged files",
-          "check_rules": [
-            "No database connection strings with embedded passwords (postgres://, mysql://, mongodb://)",
-            "No Slack webhook URLs (https://hooks.slack.com/services/)",
-            "No JWT tokens (eyJ pattern with two dots)",
-            "No GitLab personal access tokens (glpat- prefix)",
-            "No generic variables named password, secret, api_key, or token assigned string literal values",
-            "No SendGrid, Twilio, or Stripe API keys"
-          ],
-          "on_failure": "warn",
-          "message": "Potential secret detected in staged files. Review the flagged content and confirm it is not a production credential before committing."
-        },
-        {
-          "name": "env-file-check",
-          "description": "Verify .env files are not being committed",
-          "check_rules": [
-            "No .env files staged for commit (only .env.example with placeholder values is acceptable)",
-            "Verify .gitignore includes .env, .env.local, .env.*.local, *.pem, *.key, secrets/"
-          ],
-          "on_failure": "abort",
-          "message": ".env file detected in staged files. Add .env to .gitignore and use .env.example with placeholder values instead."
-        }
-      ]
-    },
-    {
-      "name": "dependency-vulnerability-audit",
-      "event": "PreToolUse",
-      "description": "Audits project dependencies for known vulnerabilities before installation or deployment. Checks npm, pip, Go modules, and container images for CVEs with HIGH or CRITICAL severity.",
-      "tool_patterns": ["Bash"],
-      "command_patterns": [
-        "npm install",
-        "npm ci",
-        "pip install",
-        "pip install -r",
-        "poetry install",
-        "go mod download",
-        "go mod tidy",
-        "docker build",
-        "docker-compose build",
-        "docker-compose up"
-      ],
-      "validations": [
-        {
-          "name": "npm-audit",
-          "description": "Check Node.js dependencies for known vulnerabilities",
-          "check": "npm audit --audit-level=high --json",
-          "on_failure": "warn",
-          "message": "High or critical vulnerabilities found in npm dependencies. Run 'npm audit fix' to apply patches or 'npm audit' for details."
-        },
-        {
-          "name": "pip-audit",
-          "description": "Check Python dependencies for known vulnerabilities",
-          "check": "pip-audit --strict --desc",
-          "on_failure": "warn",
-          "message": "Vulnerabilities found in Python dependencies. Run 'pip-audit --fix' to apply patches or update affected packages manually."
-        },
-        {
-          "name": "go-vulncheck",
-          "description": "Check Go module dependencies for known vulnerabilities",
-          "check": "govulncheck ./...",
-          "on_failure": "warn",
-          "message": "Vulnerabilities found in Go dependencies. Run 'go get -u' on affected modules and review the govulncheck output for details."
-        },
-        {
-          "name": "container-image-scan",
-          "description": "Scan Docker images for known CVEs before deployment",
-          "check": "trivy image --severity HIGH,CRITICAL --exit-code 1",
-          "on_failure": "warn",
-          "message": "High or critical CVEs found in container image. Update the base image and rebuild, or apply package updates in the Dockerfile."
-        },
-        {
-          "name": "lockfile-integrity",
-          "description": "Verify dependency lock files are present and up to date",
-          "check_rules": [
-            "package-lock.json exists if package.json is present",
-            "Pipfile.lock exists if Pipfile is present, or requirements.txt has pinned versions",
-            "go.sum exists if go.mod is present",
-            "Lock file is not older than the manifest file"
-          ],
-          "on_failure": "warn",
-          "message": "Dependency lock file is missing or outdated. Run the appropriate install command to regenerate it for reproducible builds."
-        }
-      ]
-    }
-  ]
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit|git add|git push'; then echo '[proagent-security] Git operation detected. Verify no hardcoded secrets (AWS keys, GitHub tokens, private keys, database URLs) are included in staged files. Check .gitignore includes .env, *.pem, *.key, secrets/.'; fi; }",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'npm install|pip install|poetry install|go mod download|docker build'; then echo '[proagent-security] Dependency install detected. Consider running dependency vulnerability audit: npm audit --audit-level=high, pip-audit --strict, govulncheck, or trivy image scan.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qE '\\.(env|pem|key|p12|pfx)$'; then echo '[proagent-security] WARNING: Sensitive file written. Verify this file is in .gitignore and will not be committed to version control.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'security-specialist\\|vulnerability.scan\\|threat.model\\|compliance.check'; then echo '[proagent-security] Security assessment completed. Review findings by severity (CRITICAL > HIGH > MEDIUM > LOW) and prioritize remediation.'; fi; }",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -1,7 +1,7 @@
 ---
 name: data-specialist
 description: Senior data engineer specializing in data pipeline architecture (Airflow, dbt, Spark), SQL optimization and query tuning (PostgreSQL, Snowflake, BigQuery), data warehouse design (star schema, Data Vault), data quality frameworks (Great Expectations, dbt tests), exploratory data analysis, and analytics engineering. Use for any data engineering, analytics, schema design, or database optimization task.
-model: opus
+model: sonnet
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

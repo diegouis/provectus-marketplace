@@ -3,28 +3,12 @@
   "version": "0.1.0",
   "description": "Quality assurance and test automation plugin for Provectus projects. Provides comprehensive testing workflows including unit, integration, E2E, regression, performance, and accessibility testing with Playwright and Cypress integration.",
   "category": "qa",
-  "author": "Provectus",
-  "license": "MIT",
-  "skills": [
-    "skills/qa-assistant/SKILL.md"
-  ],
-  "commands": [
-    "commands/proagent-qa-hub.md",
-    "commands/proagent-qa-run.md",
-    "commands/proagent-qa-review.md"
-  ],
-  "agents": [
-    "agents/qa-specialist.md"
-  ],
-  "hooks": "hooks/hooks.json",
-  "mcp": "mcp.json",
-  "entrypoint": "CLAUDE.md",
-  "dependencies": {
-    "tools": ["playwright", "cypress", "pytest", "jest", "vitest"],
-    "mcp_servers": ["playwright", "github", "gitlab", "jira"],
-    "optional": ["lighthouse", "axe-core", "k6", "artillery"]
+  "author": {
+    "name": "Provectus",
+    "url": "https://provectus.com"
   },
-  "tags": [
+  "license": "MIT",
+  "keywords": [
     "testing",
     "qa",
     "automation",
@@ -35,5 +19,12 @@
     "coverage",
     "performance",
     "accessibility"
-  ]
+  ],
+  "resources": {
+    "skills": ["skills/qa-assistant"],
+    "agents": ["agents/qa-specialist.md"],
+    "commands": ["commands/"],
+    "hooks": ["hooks/hooks.json"],
+    "mcp": [".mcp.json"]
+  }
 }

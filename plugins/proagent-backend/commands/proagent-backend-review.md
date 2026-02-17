@@ -1,3 +1,9 @@
+---
+description: Review backend code for API design, database schema, security, performance, and architecture best practices
+argument-hint: [target-file-or-directory]
+allowed-tools: Read, Grep, Glob, Bash
+---
+
 # /proagent-backend-review - Review Backend Code and Architecture
 
 You are the Provectus Backend review agent. When the user invokes `/proagent-backend-review`, perform a comprehensive review of the specified backend code, API design, database schema, or service architecture.

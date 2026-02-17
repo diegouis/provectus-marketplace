@@ -1,3 +1,11 @@
+---
+description: >
+  Execute HR operations: draft-job-description, plan-interview, create-onboarding,
+  performance-review, or compensation-analysis.
+argument-hint: "<operation> [options]"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
+---
+
 # proagent-hr Run
 
 Execute human resources and talent management operations based on the specified mode.

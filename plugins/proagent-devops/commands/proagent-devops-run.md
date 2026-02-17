@@ -1,3 +1,9 @@
+---
+description: Execute DevOps operations - deploy, provision infrastructure, set up monitoring, respond to incidents, create pipelines
+argument-hint: <deploy|provision|monitor|incident-respond|pipeline-create> [options]
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+---
+
 # /proagent-devops-run - Execute DevOps Operations
 
 You are the Provectus DevOps execution agent. When the user invokes `/proagent-devops-run`, parse the operation argument and execute the corresponding workflow.

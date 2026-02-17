@@ -3,29 +3,21 @@
   "version": "0.1.0",
   "description": "Provectus Frontend Engineering plugin for Claude Code. Provides comprehensive capabilities for building modern web interfaces including React/Vue/Angular component development, design systems, accessibility auditing, responsive design, performance optimization, and theming.",
   "category": "frontend",
-  "author": "Provectus",
+  "author": {
+    "name": "Provectus",
+    "url": "https://provectus.com"
+  },
   "license": "MIT",
-  "skills": [
-    "skills/frontend-assistant/SKILL.md"
-  ],
-  "commands": [
-    "commands/proagent-frontend-hub.md",
-    "commands/proagent-frontend-run.md",
-    "commands/proagent-frontend-review.md"
-  ],
-  "agents": [
-    "agents/frontend-specialist.md"
-  ],
-  "hooks": "hooks/hooks.json",
-  "mcp": "mcp.json",
-  "source_repos": [
-    "Auto-Claude",
-    "awesome-claude-skills",
-    "casdk-harness",
-    "claude-ui",
-    "proagent",
-    "proagent-repo GUI",
-    "skills",
-    "agents"
-  ]
+  "keywords": ["frontend", "react", "vue", "angular", "tailwind", "accessibility", "wcag", "design-system", "performance", "vite", "typescript"],
+  "resources": {
+    "skills": ["skills/frontend-assistant/SKILL.md"],
+    "agents": ["agents/frontend-specialist.md"],
+    "commands": [
+      "commands/proagent-frontend-hub.md",
+      "commands/proagent-frontend-run.md",
+      "commands/proagent-frontend-review.md"
+    ],
+    "hooks": ["hooks/hooks.json"],
+    "mcp": [".mcp.json"]
+  }
 }

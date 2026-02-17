@@ -1,72 +1,38 @@
 {
-  "hooks": [
-    {
-      "name": "proagent-delivery-status-update-reminder",
-      "event": "PostToolUse",
-      "description": "After completing a significant batch of work (multiple file edits or task completions), remind the user to update project status. Checks if the last status report is more than 3 days old and suggests generating a fresh update via the status-report command.",
-      "tool_name": "Bash",
-      "match_pattern": "git commit",
-      "action": "notify",
-      "rules": [
-        {
-          "id": "status-report-freshness",
-          "description": "Check if the last status report or 3P update is older than 3 days and remind the user to generate a new one",
-          "check": "Look for status report files (status-report*.md, 3p-update*.md, weekly-status*.md) in the project. If the most recent one is older than 3 business days, or if none exists, trigger the reminder.",
-          "action_template": "Delivery Reminder: Your last status report is more than 3 days old (or none exists). Consider running `/proagent-delivery:proagent-delivery-run status-report` to keep stakeholders informed. Regular updates build trust and prevent surprises."
-        },
-        {
-          "id": "milestone-proximity-alert",
-          "description": "If a milestone is within 5 business days, remind the user to verify milestone readiness",
-          "check": "Look for milestone dates in project tracking files (roadmap.md, project-plan.md, milestones.md). If any milestone is within 5 business days of today, trigger the alert.",
-          "action_template": "Milestone Alert: [milestone_name] is due in [days_remaining] days ([milestone_date]). Consider running `/proagent-delivery:proagent-delivery-run milestone-track` to verify readiness and `/proagent-delivery:proagent-delivery-review delivery-risks` to check for last-minute risks."
-        }
-      ]
-    },
-    {
-      "name": "proagent-delivery-milestone-check",
-      "event": "PreToolUse",
-      "description": "Before executing deployment or release commands, verify that milestone acceptance criteria have been met and stakeholders have been notified. Prevents premature releases without delivery sign-off.",
-      "tool_name": "Bash",
-      "match_pattern": "deploy|release|publish",
-      "action": "validate",
-      "rules": [
-        {
-          "id": "milestone-acceptance-criteria",
-          "description": "Verify that the milestone associated with this release has all acceptance criteria met",
-          "check": "Look for milestone or release tracking documents. Verify that all acceptance criteria are marked as complete. If any are incomplete or unverified, block and report.",
-          "severity": "warning",
-          "fix_hint": "Run `/proagent-delivery:proagent-delivery-run milestone-track` to verify all deliverables are complete before releasing. Ensure product owner has signed off on acceptance criteria."
-        },
-        {
-          "id": "stakeholder-notification-check",
-          "description": "Verify that stakeholders have been notified of the upcoming release",
-          "check": "Check if a status report or release notification has been generated in the last 2 business days that mentions this release or milestone. If not, warn that stakeholders may not be aware of the release.",
-          "severity": "warning",
-          "fix_hint": "Run `/proagent-delivery:proagent-delivery-run status-report` to generate a release notification for stakeholders before proceeding with deployment."
-        }
-      ]
-    },
-    {
-      "name": "proagent-delivery-sprint-boundary-check",
-      "event": "PostToolUse",
-      "description": "After the delivery-specialist agent completes a sprint planning or retrospective session, generate a structured summary and suggest follow-up actions for the next ceremony.",
-      "tool_name": "Task",
-      "match_pattern": "delivery-specialist",
-      "action": "notify",
-      "rules": [
-        {
-          "id": "sprint-planning-follow-up",
-          "description": "After sprint planning completes, remind about the next ceremony and suggest tracking setup",
-          "check": "If the delivery-specialist output contains sprint planning content (committed stories, sprint goal, capacity)",
-          "action_template": "Sprint Planning Complete. Next steps:\n1. Create Jira sprint with committed stories\n2. Schedule daily standups for the sprint duration\n3. Set calendar reminder for sprint review on [sprint_end_date]\n4. Set calendar reminder for retrospective after sprint review\n5. Send sprint goal to stakeholders via `/proagent-delivery:proagent-delivery-run status-report`"
-        },
-        {
-          "id": "retrospective-follow-up",
-          "description": "After retrospective completes, ensure action items are tracked and experiment is defined",
-          "check": "If the delivery-specialist output contains retrospective content (Start-Stop-Continue, action items, experiment)",
-          "action_template": "Retrospective Complete. Follow up:\n1. Create tickets for each action item with assigned owners\n2. Add experiment measurement to next sprint's definition of done\n3. Share retrospective summary with stakeholders\n4. Schedule check-in on action items for mid-sprint"
-        }
-      ]
-    }
-  ]
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'deploy|release|publish'; then echo '[proagent-delivery] Release/deploy detected. Verify milestone acceptance criteria are met and stakeholders have been notified. Run /proagent-delivery-run milestone-track to check readiness.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit'; then echo '[proagent-delivery] Commit detected. If this completes a significant batch of work, consider running /proagent-delivery-run status-report to update stakeholders.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'delivery-specialist\\|sprint.planning\\|retrospective'; then echo '[proagent-delivery] Delivery session completed. Check follow-up actions: create Jira sprint, schedule ceremonies, share summary with stakeholders.'; fi; }",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
 }

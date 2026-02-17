@@ -16,11 +16,11 @@ proagent-frontend provides a complete frontend engineering toolkit that integrat
    ```
 2. Copy MCP server configuration to your project root:
    ```bash
-   cp proagent-frontend/mcp.json your-project/.mcp.json
+   cp proagent-frontend/.mcp.json your-project/.mcp.json
    ```
 3. Configure MCP credentials in your environment:
-   - Set `GITHUB_TOKEN` for GitHub integration
-   - Set `GITLAB_TOKEN` and `GITLAB_API_URL` for GitLab integration
+   - Set `GITHUB_PERSONAL_ACCESS_TOKEN` for GitHub integration
+   - Set `GITLAB_PERSONAL_ACCESS_TOKEN` and `GITLAB_API_URL` for GitLab integration
 4. Install Playwright for visual testing: `npm install -D @playwright/test`
 5. Install accessibility tooling: `npm install -D @axe-core/cli`
 
@@ -30,8 +30,8 @@ proagent-frontend provides a complete frontend engineering toolkit that integrat
 2. Add the plugin directory path pointing to `proagent-frontend/`
 3. Configure MCP servers in Claude Desktop's MCP settings:
    - Add Playwright MCP: `npx @playwright/mcp@latest --isolated`
-   - Add GitHub MCP: `npx -y @modelcontextprotocol/server-github` with `GITHUB_TOKEN`
-   - Add GitLab MCP: `npx -y @modelcontextprotocol/server-gitlab` with `GITLAB_TOKEN`
+   - Add GitHub MCP: `npx -y @modelcontextprotocol/server-github` with `GITHUB_PERSONAL_ACCESS_TOKEN`
+   - Add GitLab MCP: `npx -y @modelcontextprotocol/server-gitlab` with `GITLAB_PERSONAL_ACCESS_TOKEN`
 4. Restart Claude Desktop to load the plugin
 
 ## Commands

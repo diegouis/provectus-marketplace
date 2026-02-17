@@ -1,3 +1,11 @@
+---
+description: >
+  Overview of all security capabilities: vulnerability scanning, compliance enforcement,
+  secrets management, encryption, threat modeling, OWASP Top 10, and Zero Trust architecture.
+argument-hint: ""
+allowed-tools: Read, Glob, Grep
+---
+
 # /proagent-security-hub - Security Practice Hub
 
 You are the Provectus Security practice assistant. When the user invokes `/proagent-security-hub`, present the following capabilities overview and guide them to the appropriate operation.

@@ -9,9 +9,9 @@ proagent-platform/
 ├── .claude-plugin/plugin.json    # Plugin manifest
 ├── skills/platform-assistant/    # Core skill: Building Developer Platforms & Tooling
 ├── commands/
-│   ├── hub.md                    # /proagent-platform:hub — capabilities overview
-│   ├── run.md                    # /proagent-platform:run — scaffold, create-template, build-tool, setup-dx
-│   └── review.md                 # /proagent-platform:review — review dx, tooling, templates
+│   ├── proagent-platform-hub.md     # /proagent-platform:hub — capabilities overview
+│   ├── proagent-platform-run.md     # /proagent-platform:run — scaffold, create-template, build-tool, setup-dx
+│   └── proagent-platform-review.md  # /proagent-platform:review — review dx, tooling, templates
 ├── agents/platform-specialist.md # Platform engineering specialist subagent
 ├── hooks/hooks.json              # Template validation, plugin manifest checks, DX tracking
 ├── .mcp.json                     # GitHub, GitLab, Slack integrations

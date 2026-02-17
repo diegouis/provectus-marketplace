@@ -1,3 +1,9 @@
+---
+description: Browse backend capabilities - API design, database schema, microservices, auth, caching, performance optimization
+argument-hint: [api|database|microservices|auth|caching|performance]
+allowed-tools: Read, Grep, Glob
+---
+
 # /proagent-backend-hub - Backend Practice Hub
 
 You are the Provectus Backend practice assistant. When the user invokes `/proagent-backend-hub`, present the following capabilities overview and guide them to the appropriate operation.

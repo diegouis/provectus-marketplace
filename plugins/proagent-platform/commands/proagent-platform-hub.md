@@ -1,5 +1,6 @@
 ---
 description: Browse the platform engineering asset catalog and discover available templates, tools, skills, and integrations
+argument-hint: [skills|commands|scripts|templates|docs]
 allowed-tools: Read, Grep, Glob
 ---
 

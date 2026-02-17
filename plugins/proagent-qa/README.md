@@ -9,10 +9,10 @@ proagent-qa provides a complete testing toolkit that integrates with Claude Code
 ## Installation
 
 1. Copy the `proagent-qa/` directory into your project's `.claude/plugins/` directory
-2. Configure MCP servers in `.mcp.json` with your credentials:
-   - Set `GITHUB_TOKEN` for GitHub integration
-   - Set `GITLAB_TOKEN` and `GITLAB_API_URL` for GitLab integration
-   - Set `JIRA_BASE_URL`, `JIRA_API_TOKEN`, and `JIRA_USER_EMAIL` for Jira integration
+2. Configure MCP servers by setting environment variables:
+   - Set `GITHUB_PERSONAL_ACCESS_TOKEN` for GitHub integration
+   - Set `GITLAB_PERSONAL_ACCESS_TOKEN` and `GITLAB_API_URL` for GitLab integration
+   - Set `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, and `ATLASSIAN_DOMAIN` for Jira integration
 3. Install Playwright for E2E testing: `npm install -D @playwright/test`
 
 ## Commands

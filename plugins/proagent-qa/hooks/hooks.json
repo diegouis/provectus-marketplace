@@ -1,97 +1,38 @@
 {
-  "hooks": [
-    {
-      "id": "proagent-qa-pre-commit-test-gate",
-      "type": "pre-commit",
-      "description": "Run fast unit tests and linting before allowing commits. Catches syntax errors, type mismatches, and basic test failures early in the workflow.",
-      "trigger": "pre-commit",
-      "actions": [
-        {
-          "name": "syntax-check",
-          "description": "Validate source file syntax before commit",
-          "commands": {
-            "python": "python -m py_compile {staged_files}",
-            "typescript": "npx tsc --noEmit",
-            "go": "go vet ./..."
-          },
-          "fail_action": "block",
-          "timeout_ms": 30000
-        },
-        {
-          "name": "lint-check",
-          "description": "Run linting on staged files to enforce code quality",
-          "commands": {
-            "python": "ruff check {staged_files}",
-            "typescript": "npx eslint {staged_files}",
-            "go": "golangci-lint run {staged_files}"
-          },
-          "fail_action": "warn",
-          "timeout_ms": 60000
-        },
-        {
-          "name": "fast-unit-tests",
-          "description": "Run unit tests related to staged files for quick feedback",
-          "commands": {
-            "python": "pytest --co -q && pytest -x --timeout=30",
-            "typescript": "npx vitest run --reporter=verbose",
-            "go": "go test -short -count=1 ./..."
-          },
-          "fail_action": "block",
-          "timeout_ms": 120000
-        }
-      ]
-    },
-    {
-      "id": "proagent-qa-post-test-coverage",
-      "type": "post-test",
-      "description": "After test execution, measure coverage and enforce thresholds. Generates coverage reports and blocks merges if coverage drops below configured minimums.",
-      "trigger": "post-test",
-      "actions": [
-        {
-          "name": "coverage-measurement",
-          "description": "Collect coverage metrics after test run",
-          "commands": {
-            "python": "pytest --cov=. --cov-report=term-missing --cov-report=json:coverage.json --cov-fail-under=${COVERAGE_THRESHOLD:-80}",
-            "typescript": "npx c8 --reporter=text --reporter=json --check-coverage --lines ${COVERAGE_THRESHOLD:-80} npm test",
-            "go": "go test -coverprofile=coverage.out ./... && go tool cover -func=coverage.out"
-          },
-          "fail_action": "warn",
-          "timeout_ms": 300000
-        },
-        {
-          "name": "coverage-threshold-check",
-          "description": "Verify coverage meets project minimum thresholds",
-          "thresholds": {
-            "line_coverage_min": 80,
-            "branch_coverage_min": 70,
-            "function_coverage_min": 85
-          },
-          "fail_action": "block",
-          "on_failure_message": "Coverage has dropped below the project threshold. Run /proagent-qa-run coverage-report to identify gaps and /proagent-qa-run automate <uncovered_file> to generate missing tests."
-        }
-      ]
-    },
-    {
-      "id": "proagent-qa-pre-merge-gate",
-      "type": "pre-merge",
-      "description": "Full test suite validation before merging to the main branch. Runs all tests including E2E to prevent regressions from reaching production.",
-      "trigger": "pre-merge",
-      "actions": [
-        {
-          "name": "full-test-suite",
-          "description": "Execute the complete test suite before merge",
-          "command": "Run /proagent-qa-run test to execute all backend and frontend tests",
-          "fail_action": "block",
-          "timeout_ms": 600000
-        },
-        {
-          "name": "regression-check",
-          "description": "Run regression analysis on changes in the merge request",
-          "command": "Run /proagent-qa-run regression-check to verify no regressions were introduced",
-          "fail_action": "block",
-          "timeout_ms": 300000
-        }
-      ]
-    }
-  ]
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit'; then changed=$(git diff --cached --name-only 2>/dev/null | grep -cE '\\.(py|ts|tsx|js|jsx|go)$' || true); tests=$(git diff --cached --name-only 2>/dev/null | grep -cE '(test_|_test\\.|spec\\.|\\.test\\.)' || true); if [ \"$changed\" -gt 0 ] && [ \"$tests\" -eq 0 ]; then echo '[proagent-qa] WARNING: Committing source files without corresponding test files. Consider adding tests.'; fi; fi; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'pytest|vitest|jest|go test|cargo test'; then echo '[proagent-qa] Test execution completed. Review results for failures and coverage gaps.'; fi; }",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'qa-specialist\\|test.review\\|coverage'; then echo '[proagent-qa] QA review completed. Check findings for blocking quality issues.'; fi; }",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
 }

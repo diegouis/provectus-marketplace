@@ -1,90 +1,16 @@
 {
-  "hooks": [
-    {
-      "name": "proposal-template-validation",
-      "event": "PreToolUse",
-      "description": "Validates proposal and quote documents before they are written to disk. Ensures required sections are present, pricing is internally consistent, and no placeholder text remains in client-facing documents.",
-      "tool_patterns": ["Write"],
-      "file_patterns": [
-        "artifacts/proposals/*.md",
-        "artifacts/quotes/*.md",
-        "artifacts/rfp-responses/*.md"
-      ],
-      "validations": [
-        {
-          "name": "required-sections-check",
-          "description": "Verify that proposal documents contain all mandatory sections",
-          "check_rules": [
-            "Executive Summary section is present",
-            "Proposed Solution or Approach section is present",
-            "Timeline or Milestones section is present",
-            "Pricing or Investment section is present",
-            "Terms and Assumptions section is present"
-          ],
-          "on_failure": "warn",
-          "message": "Proposal is missing one or more required sections. Verify that Executive Summary, Proposed Solution, Timeline, Pricing, and Terms are all included."
-        },
-        {
-          "name": "placeholder-text-check",
-          "description": "Scan for unresolved placeholder text that should not appear in client-facing documents",
-          "check_rules": [
-            "No instances of '[Client Name]' or '[Company Name]' remain unresolved",
-            "No instances of '[TBD]', '[TODO]', or '[PLACEHOLDER]' are present",
-            "No instances of '[Insert', '[Add', or '[Replace' are present",
-            "No instances of 'Lorem ipsum' or sample text remain"
-          ],
-          "on_failure": "abort",
-          "message": "Client-facing document contains unresolved placeholder text. Replace all bracketed placeholders with actual content before saving."
-        },
-        {
-          "name": "pricing-consistency-check",
-          "description": "Verify that pricing line items are consistent and complete",
-          "check_rules": [
-            "All pricing tables have line items with quantities, rates, and totals",
-            "Line item totals are mathematically consistent with quantities and rates",
-            "A grand total or subtotal row is present",
-            "Payment schedule percentages sum to 100%",
-            "Quote validity period is stated"
-          ],
-          "on_failure": "warn",
-          "message": "Pricing section may have inconsistencies. Verify that line items sum correctly and payment terms are complete."
-        },
-        {
-          "name": "client-details-check",
-          "description": "Verify that client-specific details are populated",
-          "check_rules": [
-            "Client name appears in the document header",
-            "Date and validity period are specified",
-            "Project or engagement name is stated",
-            "No references to a different client name (copy-paste error detection)"
-          ],
-          "on_failure": "warn",
-          "message": "Client details may be incomplete or inconsistent. Verify client name, date, and project name are correct throughout the document."
-        }
-      ]
-    },
-    {
-      "name": "competitive-intelligence-freshness",
-      "event": "PreToolUse",
-      "description": "Checks that competitive analysis references include access dates and flags stale intelligence that may need refreshing.",
-      "tool_patterns": ["Write"],
-      "file_patterns": [
-        "artifacts/research/*-competitive.md",
-        "artifacts/research/*-battle-card.md"
-      ],
-      "validations": [
-        {
-          "name": "source-dating-check",
-          "description": "Verify that competitive research includes source dates",
-          "check_rules": [
-            "A Sources section is present at the end of the document",
-            "Each source includes a date accessed notation",
-            "No sources are older than 90 days without a staleness warning"
-          ],
-          "on_failure": "warn",
-          "message": "Competitive intelligence may be stale. Verify source dates and refresh any data older than 90 days."
-        }
-      ]
-    }
-  ]
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '(proposal|quote|rfp|pricing|battle-card).*\\.(md|docx)$'; then echo '[proagent-sales] Sales document written. Verify required sections, pricing accuracy, no placeholder text, and client details are complete.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -1,3 +1,11 @@
+---
+description: >
+  Execute sales operations: draft-proposal, research-lead, competitive-analysis,
+  generate-quote, or prepare-rfp.
+argument-hint: "<operation> [options]"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
+---
+
 # /proagent-sales-run - Execute Sales Operations
 
 You are the Provectus Sales execution agent. When the user invokes `/proagent-sales-run`, parse the operation argument and execute the corresponding workflow.

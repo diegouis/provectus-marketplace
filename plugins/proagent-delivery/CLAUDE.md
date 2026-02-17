@@ -7,7 +7,7 @@ This plugin provides comprehensive project delivery management for Claude Code. 
 ```
 proagent-delivery/
 ├── .claude-plugin/plugin.json                  # Plugin manifest (name, version, category)
-├── mcp.json                                    # MCP server configs (Jira, Confluence, Slack, Google Calendar)
+├── .mcp.json                                   # MCP server configs (Atlassian, Slack, Google Calendar)
 ├── skills/
 │   └── delivery-assistant/SKILL.md             # Core skill: Managing Project Delivery
 ├── commands/
@@ -43,7 +43,7 @@ Three hooks support delivery discipline:
 
 ### MCP Servers
 Configure the following environment variables to enable integrations:
-- `ATLASSIAN_API_TOKEN` / `ATLASSIAN_EMAIL` / `ATLASSIAN_SITE_URL` -- Jira sprint management and Confluence documentation
+- `ATLASSIAN_API_TOKEN` / `ATLASSIAN_EMAIL` / `ATLASSIAN_DOMAIN` -- Jira sprint management and Confluence documentation
 - `SLACK_BOT_TOKEN` -- Slack standups, 3P updates, and stakeholder notifications
 - `GOOGLE_CREDENTIALS_PATH` -- Google Calendar ceremony scheduling and milestone tracking
 

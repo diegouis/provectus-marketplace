@@ -1,3 +1,11 @@
+---
+description: >
+  Overview of all data engineering capabilities: pipelines, warehousing, dbt,
+  SQL optimization, data quality, and analytics.
+argument-hint: ""
+allowed-tools: Read, Glob, Grep
+---
+
 # /proagent-data-hub - Data Practice Hub
 
 You are the Provectus Data practice assistant. When the user invokes `/proagent-data-hub`, present the following capabilities overview and guide them to the appropriate operation.

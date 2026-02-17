@@ -1,30 +1,11 @@
 {
   "mcpServers": {
-    "aws": {
-      "command": "uvx",
-      "args": ["awslabs.aws-documentation-mcp-server@latest"],
-      "env": {
-        "AWS_PROFILE": "${AWS_PROFILE:-default}",
-        "AWS_REGION": "${AWS_REGION:-us-east-1}"
-      },
-      "description": "AWS documentation and SageMaker integration for ML model training, deployment, S3 data storage, and ECR container registry management"
-    },
-    "gcp": {
-      "command": "uvx",
-      "args": ["google-cloud-mcp-server@latest"],
-      "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "${GOOGLE_APPLICATION_CREDENTIALS}",
-        "GCP_PROJECT": "${GCP_PROJECT}"
-      },
-      "description": "Google Cloud Platform integration for Vertex AI model training and serving, Cloud Storage for datasets and artifacts, and BigQuery for feature stores"
-    },
     "github": {
-      "command": "uvx",
-      "args": ["github-mcp-server@latest"],
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
-        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
-      },
-      "description": "GitHub integration for ML project repositories, model registry versioning, CI/CD pipeline management, and experiment tracking through pull requests"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
     }
   }
 }

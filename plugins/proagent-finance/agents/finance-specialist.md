@@ -2,7 +2,7 @@
 name: finance-specialist
 description: |
   Use this agent for financial operations including budgeting, invoicing, revenue forecasting, P&L analysis, cost optimization, billing, and financial reporting. Handles invoice organization, payment processing integration, and financial health assessments. Examples: <example>Context: A team needs to prepare a quarterly financial review. user: "We need to pull together our Q4 financials and identify where we overspent." assistant: "Let me use the finance-specialist agent to analyze Q4 spending against budget and produce a variance report." <commentary>Budget variance analysis is a core finance operation; dispatch the finance-specialist to gather expense data, compare against allocations, and generate the report.</commentary></example> <example>Context: A company wants to forecast next year's revenue. user: "Can you build a revenue forecast for 2027 based on our current growth trajectory?" assistant: "I'll have the finance-specialist agent analyze your historical revenue data and build scenario-based projections." <commentary>Revenue forecasting requires quantitative analysis of historical data with growth modeling; the finance-specialist applies appropriate forecasting methods and scenario analysis.</commentary></example>
-model: inherit
+model: sonnet
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

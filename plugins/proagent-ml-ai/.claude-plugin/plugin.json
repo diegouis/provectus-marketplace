@@ -3,59 +3,11 @@
   "version": "0.1.0",
   "description": "Provectus ML & AI practice plugin for model training, inference optimization, MLOps pipelines, experiment tracking, prompt engineering, embeddings, vector stores, LLM application development, and RAG systems across AWS and GCP.",
   "category": "ml-ai",
-  "author": "Provectus",
+  "author": {
+    "name": "Provectus",
+    "url": "https://provectus.com"
+  },
   "license": "MIT",
-  "skills": [
-    {
-      "name": "ml-ai-assistant",
-      "path": "skills/ml-ai-assistant/SKILL.md",
-      "description": "Building ML & AI Systems - model training, inference, MLOps, experiment tracking, prompt engineering, embeddings, vector stores, LLM applications, RAG"
-    }
-  ],
-  "agents": [
-    {
-      "name": "ml-ai-specialist",
-      "path": "agents/ml-ai-specialist.md",
-      "description": "Senior ML/AI engineer specializing in model training, deployment, MLOps, LLM applications, RAG systems, embeddings, and experiment tracking"
-    }
-  ],
-  "commands": [
-    {
-      "name": "proagent-ml-ai-hub",
-      "path": "commands/proagent-ml-ai-hub.md",
-      "description": "ML & AI practice hub - overview of capabilities and available operations"
-    },
-    {
-      "name": "proagent-ml-ai-run",
-      "path": "commands/proagent-ml-ai-run.md",
-      "description": "Execute ML/AI operations: train-model, build-pipeline, setup-experiment, create-embedding, deploy-model"
-    },
-    {
-      "name": "proagent-ml-ai-review",
-      "path": "commands/proagent-ml-ai-review.md",
-      "description": "Review model architecture, training pipeline, inference optimization, and data quality"
-    }
-  ],
-  "hooks": [
-    {
-      "event": "PreToolUse",
-      "path": "hooks/hooks.json",
-      "description": "Model validation checks and experiment logging enforcement"
-    }
-  ],
-  "mcp_integrations": [
-    "aws",
-    "gcp",
-    "github"
-  ],
-  "source_repos": [
-    "proagent",
-    "awesome-claude-skills",
-    "agents",
-    "tac",
-    "proagent-repo GUI",
-    "specs"
-  ],
   "keywords": [
     "machine-learning",
     "deep-learning",
@@ -74,5 +26,16 @@
     "vertex-ai",
     "mlflow",
     "wandb"
-  ]
+  ],
+  "resources": {
+    "skills": ["skills/ml-ai-assistant/SKILL.md"],
+    "agents": ["agents/ml-ai-specialist.md"],
+    "commands": [
+      "commands/proagent-ml-ai-hub.md",
+      "commands/proagent-ml-ai-run.md",
+      "commands/proagent-ml-ai-review.md"
+    ],
+    "hooks": ["hooks/hooks.json"],
+    "mcp": [".mcp.json"]
+  }
 }

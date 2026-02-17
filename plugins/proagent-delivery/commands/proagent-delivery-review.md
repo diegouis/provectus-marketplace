@@ -1,5 +1,9 @@
 ---
-description: "Review delivery health: sprint-health, delivery-risks, timeline, or stakeholder-alignment"
+description: >
+  Review delivery health: sprint-health, delivery-risks, timeline,
+  or stakeholder-alignment assessment.
+argument-hint: "<mode> [target]"
+allowed-tools: Read, Glob, Grep, Task
 ---
 
 # ProAgent Delivery Review

@@ -1,5 +1,7 @@
 ---
 description: Finance command hub -- lists all available proagent-finance commands and their purposes
+argument-hint: ""
+allowed-tools: Read, Glob, Grep
 ---
 
 # ProAgent Finance Command Hub

@@ -14,7 +14,7 @@ proagent-hr/
     proagent-hr-review.md       - Review quality: job descriptions, interview process, onboarding plans, team composition
   agents/hr-specialist.md       - HR specialist subagent for people operations and talent management
   hooks/hooks.json              - Document formatting validation, inclusive language checks, PII protection
-  mcp.json                      - MCP server configs: Google Docs, Gmail, Slack, Google Calendar
+  .mcp.json                      - MCP server configs: Slack, Google Drive, GitHub
 ```
 
 ## Commands
@@ -41,10 +41,9 @@ The hooks configuration enforces:
 
 ## MCP Integrations
 
-- **Google Docs**: Create and collaborate on job descriptions, offer letters, performance reviews, and policy documents
-- **Gmail**: Send interview scheduling, onboarding welcome emails, and internal announcements
 - **Slack**: Post hiring pipeline updates, new hire introductions, and team notifications
-- **Google Calendar**: Schedule interviews, onboarding milestones, review deadlines, and development check-ins
+- **Google Drive**: Create and collaborate on job descriptions, offer letters, performance reviews, and policy documents
+- **GitHub**: Repository access for HR documentation and policy version control
 
 ## Conventions
 

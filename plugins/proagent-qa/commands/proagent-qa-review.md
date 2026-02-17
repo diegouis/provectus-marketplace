@@ -1,3 +1,9 @@
+---
+description: Review test quality - audit test suites, analyze coverage gaps, evaluate testing strategy and maturity
+argument-hint: <test suites|coverage|test strategy> [target]
+allowed-tools: Read, Grep, Glob, Bash
+---
+
 # proagent-qa Review
 
 Review and assess testing quality, coverage, and strategy for the project.

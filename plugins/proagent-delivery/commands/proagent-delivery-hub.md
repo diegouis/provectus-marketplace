@@ -1,5 +1,9 @@
 ---
-description: Delivery command hub -- lists all available proagent-delivery commands and their purposes
+description: >
+  Overview of all delivery management capabilities: sprint planning, status reports,
+  risk assessment, milestone tracking, retrospectives, and delivery health reviews.
+argument-hint: ""
+allowed-tools: Read, Glob, Grep
 ---
 
 # ProAgent Delivery Command Hub

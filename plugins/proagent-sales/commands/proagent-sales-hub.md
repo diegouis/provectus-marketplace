@@ -1,3 +1,11 @@
+---
+description: >
+  Overview of all Sales capabilities: proposals, RFPs, lead research,
+  competitive analysis, pricing, pipeline management, and stakeholder engagement.
+argument-hint: ""
+allowed-tools: Read, Glob, Grep
+---
+
 # /proagent-sales-hub - Sales Practice Hub
 
 You are the Provectus Sales practice assistant. When the user invokes `/proagent-sales-hub`, present the following capabilities overview and guide them to the appropriate operation.

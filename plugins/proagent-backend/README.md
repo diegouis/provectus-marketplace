@@ -46,7 +46,7 @@ proagent-backend/
     backend-specialist.md     # Senior backend engineer agent definition
   hooks/
     hooks.json                # Pre-tool validation for API and schema operations
-  mcp.json                    # MCP server configs for GitHub, GitLab, AWS, GCP
+  .mcp.json                   # MCP server configs for GitHub, GitLab
   CLAUDE.md                   # Practice conventions and standards
   README.md                   # This file
 ```

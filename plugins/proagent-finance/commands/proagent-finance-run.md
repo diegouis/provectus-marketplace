@@ -1,5 +1,7 @@
 ---
 description: "Execute a financial workflow: create-budget, forecast-revenue, analyze-costs, generate-invoice, or financial-report"
+argument-hint: "<mode>"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
 
 # ProAgent Finance Run

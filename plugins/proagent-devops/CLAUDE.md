@@ -50,7 +50,7 @@ This plugin draws patterns from: proagent, casdk-harness, agents, Auto-Claude, r
 proagent-devops/
   .claude-plugin/plugin.json
   skills/devops-assistant/SKILL.md
-  commands/proagent-devops.md
+  commands/proagent-devops-hub.md
   commands/proagent-devops-run.md
   commands/proagent-devops-review.md
   agents/devops-specialist.md

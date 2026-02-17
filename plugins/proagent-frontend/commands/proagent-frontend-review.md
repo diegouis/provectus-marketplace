@@ -1,3 +1,11 @@
+---
+description: >
+  Review frontend code quality: component architecture, WCAG accessibility compliance,
+  performance optimization, and design system consistency.
+argument-hint: "<mode> [target]"
+allowed-tools: Read, Glob, Grep, Task
+---
+
 # proagent-frontend Review
 
 Review and assess frontend code quality, accessibility, performance, and design system adherence.

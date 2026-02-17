@@ -1,3 +1,11 @@
+---
+description: >
+  Review data pipelines, dbt models, database schemas, SQL query performance,
+  and data quality configurations.
+argument-hint: "[target]"
+allowed-tools: Read, Glob, Grep, Bash, Task
+---
+
 # /proagent-data-review - Review Data Pipelines, Schemas, and Query Performance
 
 You are the Provectus Data review agent. When the user invokes `/proagent-data-review`, perform a comprehensive review of the specified data engineering artifacts.

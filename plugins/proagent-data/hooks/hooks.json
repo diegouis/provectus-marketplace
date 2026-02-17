@@ -1,179 +1,43 @@
 {
-  "hooks": [
-    {
-      "name": "schema-validation",
-      "event": "PreToolUse",
-      "description": "Validates database schema changes and SQL migrations before they are executed. Catches destructive operations, missing constraints, and naming convention violations before they reach production databases.",
-      "tool_patterns": ["Bash"],
-      "file_patterns": [
-        "migrations/*.sql",
-        "alembic/**/*.py",
-        "models/**/*.sql",
-        "*.sql",
-        "dbt_project.yml",
-        "models/**/*.yml"
-      ],
-      "command_patterns": [
-        "psql",
-        "pg_dump",
-        "pg_restore",
-        "alembic upgrade",
-        "alembic downgrade",
-        "dbt run",
-        "dbt build",
-        "dbt seed",
-        "snowsql",
-        "bq query"
-      ],
-      "validations": [
-        {
-          "name": "destructive-operation-guard",
-          "description": "Prevent accidental DROP TABLE, TRUNCATE, or DELETE without WHERE clause on production tables",
-          "check_rules": [
-            "No DROP TABLE or DROP SCHEMA statements without explicit confirmation",
-            "No TRUNCATE statements on tables matching *dim_* or *fct_* patterns",
-            "No DELETE statements without a WHERE clause",
-            "No ALTER TABLE DROP COLUMN on production schemas"
-          ],
-          "on_failure": "abort",
-          "message": "Destructive SQL operation detected. This would drop or truncate data. Confirm this is intentional and provide a rollback plan before proceeding."
-        },
-        {
-          "name": "schema-naming-convention",
-          "description": "Verify that new tables and columns follow naming conventions",
-          "check_rules": [
-            "Table names use snake_case (no camelCase or PascalCase)",
-            "dbt staging models start with stg_ prefix",
-            "dbt intermediate models start with int_ prefix",
-            "dbt dimension models start with dim_ prefix",
-            "dbt fact models start with fct_ prefix",
-            "Column names use snake_case and are descriptive (not single letters)",
-            "Primary key columns are named {table_name}_id or id",
-            "Foreign key columns match the referenced table name (customer_id references dim_customer)"
-          ],
-          "on_failure": "warn",
-          "message": "Schema naming convention violation detected. Review the naming standards and rename before merging."
-        },
-        {
-          "name": "migration-safety",
-          "description": "Validate database migrations for safety and reversibility",
-          "check_rules": [
-            "Every migration has a corresponding rollback (downgrade) script",
-            "Migrations do not combine DDL and DML in the same transaction (lock contention risk)",
-            "Adding NOT NULL columns includes a DEFAULT value or is done in multiple steps",
-            "New indexes are created with CONCURRENTLY to avoid table locks on large tables",
-            "Foreign key constraints use appropriate ON DELETE behavior (CASCADE, SET NULL, or RESTRICT)"
-          ],
-          "on_failure": "warn",
-          "message": "Migration safety check found potential issues. Review the migration plan for lock contention and rollback safety."
-        },
-        {
-          "name": "dbt-model-validation",
-          "description": "Validate dbt models before execution",
-          "check": "dbt compile --select state:modified+",
-          "on_failure": "warn",
-          "message": "dbt model compilation failed. Check for syntax errors, missing refs, or circular dependencies."
-        }
-      ]
-    },
-    {
-      "name": "sql-linting",
-      "event": "PreToolUse",
-      "description": "Lints SQL files for style consistency, potential errors, and anti-patterns before they are committed or executed. Catches common SQL mistakes and enforces team coding standards.",
-      "tool_patterns": ["Bash", "Write", "Edit"],
-      "file_patterns": [
-        "**/*.sql",
-        "models/**/*.sql",
-        "macros/**/*.sql",
-        "analyses/**/*.sql",
-        "tests/**/*.sql"
-      ],
-      "command_patterns": [
-        "sqlfluff lint",
-        "sqlfluff fix",
-        "dbt run",
-        "dbt build",
-        "dbt compile"
-      ],
-      "validations": [
-        {
-          "name": "sql-anti-patterns",
-          "description": "Detect common SQL anti-patterns that cause performance or correctness issues",
-          "check_rules": [
-            "No SELECT * in production queries or dbt models (specify columns explicitly)",
-            "No implicit joins (comma-separated FROM clause) - use explicit JOIN syntax",
-            "No UNION when UNION ALL is sufficient (UNION adds unnecessary sort for deduplication)",
-            "No ORDER BY in subqueries or CTEs unless paired with LIMIT",
-            "No functions applied to columns in WHERE clauses that prevent index usage (e.g., WHERE UPPER(email) = instead of a functional index)",
-            "No correlated subqueries that can be rewritten as JOINs",
-            "No LEFT JOIN followed by WHERE on the right table columns (converts to INNER JOIN)"
-          ],
-          "on_failure": "warn",
-          "message": "SQL anti-pattern detected. Review the flagged patterns for potential performance or correctness issues."
-        },
-        {
-          "name": "sql-style-check",
-          "description": "Enforce consistent SQL formatting and style",
-          "check_rules": [
-            "SQL keywords are lowercase (select, from, where, join) for dbt models or consistently uppercase",
-            "Each SELECT column is on its own line",
-            "JOIN conditions use ON instead of USING unless column names match exactly",
-            "CTEs are used instead of nested subqueries for readability",
-            "Trailing commas are used consistently (leading or trailing, not mixed)",
-            "Aliases use AS keyword explicitly (FROM table AS t, not FROM table t)"
-          ],
-          "on_failure": "warn",
-          "message": "SQL style inconsistency detected. Consider running sqlfluff fix to auto-format."
-        },
-        {
-          "name": "dbt-test-coverage",
-          "description": "Verify that dbt models have adequate test coverage",
-          "check_rules": [
-            "Every model has at least one unique test on its primary key",
-            "Every model has at least one not_null test on its primary key",
-            "Fact tables have relationship tests to dimension tables",
-            "Enum columns have accepted_values tests",
-            "Source tables have freshness definitions"
-          ],
-          "on_failure": "warn",
-          "message": "Insufficient dbt test coverage. Add missing tests to the schema YAML file before deploying."
-        }
-      ]
-    },
-    {
-      "name": "post-query-analysis",
-      "event": "PostToolUse",
-      "description": "Analyzes query results and execution statistics after SQL operations complete. Provides performance insights and data quality observations.",
-      "tool_patterns": ["Bash"],
-      "command_patterns": [
-        "psql",
-        "dbt run",
-        "dbt build",
-        "dbt test",
-        "snowsql",
-        "bq query"
-      ],
-      "checks": [
-        {
-          "name": "execution-time-alert",
-          "description": "Flag queries that took longer than expected",
-          "threshold": "Warn if any single query or model takes more than 5 minutes to execute",
-          "on_failure": "warn",
-          "message": "Long-running query detected. Consider adding indexes, partitioning the table, or converting to an incremental model."
-        },
-        {
-          "name": "dbt-test-results",
-          "description": "Verify dbt test results after a build",
-          "commands": [
-            "dbt test --store-failures"
-          ],
-          "on_failure": {
-            "action": "warn",
-            "message": "dbt tests detected failures. Review the test results and fix data quality issues before promoting to production.",
-            "suggest_investigation": true
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'DROP TABLE|DROP SCHEMA|TRUNCATE|DELETE FROM.*[^W][^H][^E][^R][^E]'; then echo '[proagent-data] WARNING: Destructive SQL operation detected (DROP/TRUNCATE/DELETE). Confirm this is intentional and provide a rollback plan before proceeding.'; fi; }",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'dbt run|dbt build|dbt seed|alembic upgrade|alembic downgrade'; then echo '[proagent-data] Database operation detected. Verify: (1) schema naming conventions (stg_/int_/dim_/fct_), (2) migration has rollback, (3) quality tests are included.'; fi; }",
+            "timeout": 10
           }
-        }
-      ]
-    }
-  ]
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'dbt run|dbt build|psql|snowsql|bq query'; then echo '[proagent-data] Query/model execution completed. Check for long-running operations and verify data quality with dbt test or quality checks.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qE '\\.sql$'; then echo '[proagent-data] SQL file written. Verify: (1) no SELECT *, (2) explicit JOIN syntax, (3) parameterized queries for user input, (4) CTEs for readability.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
 }

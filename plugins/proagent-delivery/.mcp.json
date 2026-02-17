@@ -1,44 +1,39 @@
 {
   "mcpServers": {
-    "jira": {
-      "type": "stdio",
+    "atlassian": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-jira"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-atlassian"
+      ],
       "env": {
         "ATLASSIAN_API_TOKEN": "${ATLASSIAN_API_TOKEN}",
         "ATLASSIAN_EMAIL": "${ATLASSIAN_EMAIL}",
-        "ATLASSIAN_SITE_URL": "${ATLASSIAN_SITE_URL}"
+        "ATLASSIAN_DOMAIN": "${ATLASSIAN_DOMAIN}"
       },
-      "description": "Jira integration for sprint management, backlog grooming, issue tracking, velocity metrics, and burndown charts. Used by plan-sprint, milestone-track, sprint-health review, and status-report workflows."
-    },
-    "confluence": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-confluence"],
-      "env": {
-        "ATLASSIAN_API_TOKEN": "${ATLASSIAN_API_TOKEN}",
-        "ATLASSIAN_EMAIL": "${ATLASSIAN_EMAIL}",
-        "ATLASSIAN_SITE_URL": "${ATLASSIAN_SITE_URL}"
-      },
-      "description": "Confluence integration for publishing meeting notes, project charters, risk registers, retrospective records, status dashboards, and stakeholder communication logs."
+      "description": "Atlassian MCP server for Jira sprint management, backlog grooming, issue tracking, velocity metrics, burndown charts, and Confluence documentation publishing (meeting notes, charters, risk registers, dashboards)."
     },
     "slack": {
-      "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-slack"],
+      "args": [
+        "-y",
+        "@anthropic/mcp-slack"
+      ],
       "env": {
         "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}"
       },
-      "description": "Slack integration for posting daily standups, 3P updates, blocker alerts, milestone notifications, and stakeholder communications. Reads team channels for progress gathering."
+      "description": "Slack MCP server for posting daily standups, 3P updates, blocker alerts, milestone notifications, and stakeholder communications."
     },
     "google-calendar": {
-      "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-google-calendar"],
+      "args": [
+        "-y",
+        "@anthropic/mcp-google-calendar"
+      ],
       "env": {
         "GOOGLE_CREDENTIALS_PATH": "${GOOGLE_CREDENTIALS_PATH}"
       },
-      "description": "Google Calendar integration for scheduling sprint ceremonies (planning, review, retro, standups), milestone due date tracking, and stakeholder review cadence management."
+      "description": "Google Calendar MCP server for scheduling sprint ceremonies (planning, review, retro, standups), milestone due date tracking, and stakeholder review cadence management."
     }
   }
 }

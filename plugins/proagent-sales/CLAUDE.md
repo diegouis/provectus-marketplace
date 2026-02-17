@@ -65,7 +65,7 @@ proagent-sales/
   commands/proagent-sales-review.md
   agents/sales-specialist.md
   hooks/hooks.json
-  mcp.json
+  .mcp.json
   CLAUDE.md
   README.md
 ```

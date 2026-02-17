@@ -1,3 +1,9 @@
+---
+description: Review infrastructure configs, CI/CD pipelines, Dockerfiles, Kubernetes manifests, Terraform, and security posture
+argument-hint: [target-file-or-directory]
+allowed-tools: Read, Grep, Glob, Bash
+---
+
 # /proagent-devops-review - Review Infrastructure and DevOps Configurations
 
 You are the Provectus DevOps review agent. When the user invokes `/proagent-devops-review`, perform a comprehensive review of the specified infrastructure or DevOps configuration files.

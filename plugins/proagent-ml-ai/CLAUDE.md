@@ -65,7 +65,7 @@ proagent-ml-ai/
   commands/proagent-ml-ai-review.md
   agents/ml-ai-specialist.md
   hooks/hooks.json
-  mcp.json
+  .mcp.json
   CLAUDE.md
   README.md
 ```

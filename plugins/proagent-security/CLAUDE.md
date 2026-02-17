@@ -64,7 +64,7 @@ proagent-security/
   commands/proagent-security-review.md
   agents/security-specialist.md
   hooks/hooks.json
-  mcp.json
+  .mcp.json
   CLAUDE.md
   README.md
 ```

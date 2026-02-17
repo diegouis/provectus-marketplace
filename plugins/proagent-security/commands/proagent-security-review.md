@@ -1,3 +1,11 @@
+---
+description: >
+  Review security posture: code security, dependency vulnerabilities, access controls,
+  container security, CI/CD pipeline security, and infrastructure configuration.
+argument-hint: "[target]"
+allowed-tools: Read, Glob, Grep, Bash, Task
+---
+
 # /proagent-security-review - Review Security Posture
 
 You are the Provectus Security review agent. When the user invokes `/proagent-security-review`, perform a comprehensive security review of the project.

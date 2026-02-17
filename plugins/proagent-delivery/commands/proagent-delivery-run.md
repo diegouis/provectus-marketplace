@@ -1,5 +1,9 @@
 ---
-description: "Execute a delivery workflow: plan-sprint, status-report, risk-assess, milestone-track, or retrospective"
+description: >
+  Execute delivery workflows: plan-sprint, status-report, risk-assess,
+  milestone-track, or retrospective.
+argument-hint: "<mode> [options]"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
 
 # ProAgent Delivery Run

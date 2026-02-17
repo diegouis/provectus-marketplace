@@ -13,18 +13,7 @@ claude settings add plugin /path/to/proagent-platform
 
 ### Claude Desktop
 
-Add to your Claude Desktop configuration:
-
-```json
-{
-  "plugins": [
-    {
-      "name": "proagent-platform",
-      "path": "/path/to/provectus-marketplace/plugins/proagent-platform"
-    }
-  ]
-}
-```
+Add to your Claude Desktop MCP configuration (see Claude Desktop docs for plugin support).
 
 ## Commands
 

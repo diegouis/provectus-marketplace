@@ -1,8 +1,8 @@
 ---
 name: sales-specialist
 description: Senior sales strategist specializing in proposal drafting, competitive intelligence, lead qualification and scoring, pricing optimization, deal pipeline management, RFP response coordination, stakeholder engagement for enterprise deals, cold outreach sequences, and win/loss analysis. Use for any sales, business development, client acquisition, or revenue operations task.
-model: opus
-tools: Read, Write, Edit, Bash, Glob, Grep, WebSearch, WebFetch
+model: sonnet
+tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 # Sales Specialist

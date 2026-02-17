@@ -1,3 +1,11 @@
+---
+description: >
+  Execute frontend engineering operations: scaffold-component, build-ui, design-system,
+  accessibility-audit, optimize-performance.
+argument-hint: "<mode> [target] [options]"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
+---
+
 # proagent-frontend Run
 
 Execute frontend engineering operations based on the specified mode.

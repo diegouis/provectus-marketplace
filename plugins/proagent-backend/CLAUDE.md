@@ -73,7 +73,7 @@ proagent-backend/
   commands/proagent-backend-review.md
   agents/backend-specialist.md
   hooks/hooks.json
-  mcp.json
+  .mcp.json
   CLAUDE.md
   README.md
 ```

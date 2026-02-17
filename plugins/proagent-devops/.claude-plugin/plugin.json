@@ -3,62 +3,11 @@
   "version": "0.1.0",
   "description": "Provectus DevOps practice plugin for CI/CD pipelines, container orchestration, infrastructure as code, monitoring, incident response, and cloud operations across AWS and GCP.",
   "category": "devops",
-  "author": "Provectus",
+  "author": {
+    "name": "Provectus",
+    "url": "https://provectus.com"
+  },
   "license": "MIT",
-  "skills": [
-    {
-      "name": "devops-assistant",
-      "path": "skills/devops-assistant/SKILL.md",
-      "description": "Managing Infrastructure & Deployments - CI/CD pipelines, Docker/K8s, Terraform/IaC, monitoring, incident response, and cloud ops"
-    }
-  ],
-  "agents": [
-    {
-      "name": "devops-specialist",
-      "path": "agents/devops-specialist.md",
-      "description": "Senior DevOps engineer specializing in cloud infrastructure, CI/CD, containerization, Kubernetes orchestration, monitoring, and incident response"
-    }
-  ],
-  "commands": [
-    {
-      "name": "proagent-devops",
-      "path": "commands/proagent-devops.md",
-      "description": "DevOps practice hub - overview of capabilities and available operations"
-    },
-    {
-      "name": "proagent-devops-run",
-      "path": "commands/proagent-devops-run.md",
-      "description": "Execute DevOps operations: deploy, provision, monitor, incident-respond, pipeline-create"
-    },
-    {
-      "name": "proagent-devops-review",
-      "path": "commands/proagent-devops-review.md",
-      "description": "Review infrastructure configs, CI/CD pipelines, Dockerfiles, Kubernetes manifests, and security posture"
-    }
-  ],
-  "hooks": [
-    {
-      "event": "PreToolUse",
-      "path": "hooks/hooks.json",
-      "description": "Pre-deploy validation and post-deploy health checks"
-    }
-  ],
-  "mcp_integrations": [
-    "github",
-    "gitlab",
-    "aws",
-    "gcp"
-  ],
-  "source_repos": [
-    "proagent",
-    "casdk-harness",
-    "agents",
-    "Auto-Claude",
-    "ralph-orchestrator",
-    "tac",
-    "proagent-repo GUI",
-    "gastown"
-  ],
   "keywords": [
     "devops",
     "ci-cd",
@@ -72,5 +21,12 @@
     "aws",
     "gcp",
     "gitops"
-  ]
+  ],
+  "resources": {
+    "skills": ["skills/devops-assistant"],
+    "agents": ["agents/devops-specialist.md"],
+    "commands": ["commands/"],
+    "hooks": ["hooks/hooks.json"],
+    "mcp": [".mcp.json"]
+  }
 }

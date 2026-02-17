@@ -1,3 +1,11 @@
+---
+description: >
+  Review HR artifacts: job descriptions, interview process, onboarding plans,
+  and team composition.
+argument-hint: "[target]"
+allowed-tools: Read, Glob, Grep, Bash, Task
+---
+
 # proagent-hr Review
 
 Review and assess HR processes, documents, and organizational health.

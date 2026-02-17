@@ -10,9 +10,10 @@ proagent-hr provides a complete HR toolkit that integrates with Claude Code to a
 
 1. Copy the `proagent-hr/` directory into your project's `.claude/plugins/` directory
 2. Configure MCP servers in `.mcp.json` with your credentials:
-   - Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `GOOGLE_REFRESH_TOKEN` for Google Docs, Gmail, and Calendar integration
    - Set `SLACK_BOT_TOKEN` and `SLACK_TEAM_ID` for Slack integration
-3. Ensure your Google OAuth credentials have scopes for Docs, Gmail, and Calendar access
+   - Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `GOOGLE_REFRESH_TOKEN` for Google Drive integration
+   - Set `GITHUB_PERSONAL_ACCESS_TOKEN` for GitHub integration
+3. Ensure your Google OAuth credentials have scopes for Drive access
 
 ## Commands
 
@@ -41,13 +42,10 @@ The plugin includes automated document validation via `hooks/hooks.json`:
 
 ## Integrations
 
-### Google Workspace
-- **Google Docs**: Publish job descriptions, offer letters, review templates, and policy documents to shared Drive folders
-- **Gmail**: Send interview scheduling, onboarding communications, and internal announcements
-- **Google Calendar**: Schedule interview panels, onboarding milestones, and review deadlines
-
-### Team Communication
-- **Slack**: Post hiring pipeline updates, new hire introductions, and team announcements
+### Configured MCP Servers
+- **Slack** (`@modelcontextprotocol/server-slack`): Post hiring pipeline updates, new hire introductions, and team announcements
+- **Google Drive** (`@modelcontextprotocol/server-google-drive`): Create and collaborate on job descriptions, offer letters, review templates, and policy documents
+- **GitHub** (`@modelcontextprotocol/server-github`): Repository access for HR documentation and policy version control
 
 ## Architecture
 
@@ -57,7 +55,7 @@ The plugin is built around these components:
 - **Commands**: Three command files (Hub, Run, Review) that provide the user-facing interface for all HR operations
 - **Agent**: An HR specialist subagent with people operations expertise for autonomous HR document creation and process management
 - **Hooks**: Document quality gates that enforce formatting standards, inclusive language, and PII protection
-- **MCP Config**: Integration with Google Docs, Gmail, Slack, and Google Calendar for end-to-end HR workflow automation
+- **MCP Config**: Integration with Slack, Google Drive, and GitHub for HR workflow automation
 
 ## Source Attribution
 

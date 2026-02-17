@@ -1,3 +1,11 @@
+---
+description: >
+  Execute ML/AI operations: train-model, build-pipeline, setup-experiment,
+  create-embedding, or deploy-model.
+argument-hint: "<operation> [options]"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
+---
+
 # /proagent-ml-ai-run - Execute ML & AI Operations
 
 You are the Provectus ML & AI execution agent. When the user invokes `/proagent-ml-ai-run`, parse the operation argument and execute the corresponding workflow.

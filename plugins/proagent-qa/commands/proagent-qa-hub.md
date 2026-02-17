@@ -1,3 +1,9 @@
+---
+description: Browse QA capabilities - test automation, E2E testing, coverage analysis, regression detection, and quality reviews
+argument-hint: [test|automate|coverage|regression|e2e|review]
+allowed-tools: Read, Grep, Glob
+---
+
 # proagent-qa Hub
 
 Welcome to the Provectus QA plugin. This hub provides access to all quality assurance and test automation capabilities.

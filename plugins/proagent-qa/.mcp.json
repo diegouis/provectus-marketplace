@@ -2,47 +2,35 @@
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": [
-        "@playwright/mcp@latest",
-        "--isolated"
-      ],
+      "args": ["-y", "@playwright/mcp@latest", "--isolated"],
       "description": "Playwright MCP server for browser automation and E2E testing. Provides tools to navigate pages, click elements, fill forms, take screenshots, and validate rendered content."
     },
     "github": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ],
+      "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
       },
-      "description": "GitHub MCP server for repository operations, pull request management, issue tracking, and CI/CD pipeline integration. Used to create test-related issues, link test results to PRs, and manage test automation workflows."
+      "description": "GitHub MCP server for repository operations, pull request management, issue tracking, and CI/CD pipeline integration."
     },
     "gitlab": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-gitlab"
-      ],
+      "args": ["-y", "@modelcontextprotocol/server-gitlab"],
       "env": {
-        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_TOKEN}",
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_PERSONAL_ACCESS_TOKEN}",
         "GITLAB_API_URL": "${GITLAB_API_URL:-https://gitlab.com/api/v4}"
       },
-      "description": "GitLab MCP server for merge request management, pipeline monitoring, and issue tracking. Used to enforce test gates on merge requests and report test results in CI/CD pipelines."
+      "description": "GitLab MCP server for merge request management, pipeline monitoring, and issue tracking."
     },
     "jira": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-jira"
-      ],
+      "args": ["-y", "@modelcontextprotocol/server-atlassian"],
       "env": {
-        "JIRA_BASE_URL": "${JIRA_BASE_URL}",
-        "JIRA_API_TOKEN": "${JIRA_API_TOKEN}",
-        "JIRA_USER_EMAIL": "${JIRA_USER_EMAIL}"
+        "ATLASSIAN_API_TOKEN": "${ATLASSIAN_API_TOKEN}",
+        "ATLASSIAN_EMAIL": "${ATLASSIAN_EMAIL}",
+        "ATLASSIAN_DOMAIN": "${ATLASSIAN_DOMAIN}"
       },
-      "description": "Jira MCP server for linking test results to user stories, creating defect tickets from test failures, and tracking QA progress across sprints."
+      "description": "Atlassian MCP server for Jira issue tracking and test-to-story linking."
     }
   }
 }

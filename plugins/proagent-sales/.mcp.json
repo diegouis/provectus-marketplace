@@ -2,87 +2,26 @@
   "mcpServers": {
     "slack": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-slack"],
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
       "env": {
         "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
         "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
-      },
-      "description": "Slack integration for deal notifications, pipeline alerts, proposal review requests, and sales team coordination. Use for sending deal updates to sales channels, requesting proposal feedback, and coordinating with delivery teams on SOW details.",
-      "usage": {
-        "channels": {
-          "sales-pipeline": "Deal stage changes, win/loss announcements, pipeline health alerts",
-          "proposals": "Proposal review requests, RFP response coordination, approval workflows",
-          "competitive-intel": "Competitor updates, battle card changes, market intelligence"
-        },
-        "automations": [
-          "Notify #sales-pipeline when a deal moves to Negotiation or Closed stage",
-          "Post proposal draft to #proposals for peer review before client submission",
-          "Share competitive intelligence updates to #competitive-intel when battle cards are refreshed"
-        ]
       }
     },
-    "google-docs": {
+    "google-drive": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-google-docs"],
+      "args": ["-y", "@modelcontextprotocol/server-google-drive"],
       "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "${GOOGLE_APPLICATION_CREDENTIALS}"
-      },
-      "description": "Google Docs integration for collaborative proposal editing, RFP response drafting, and sales playbook maintenance. Use for creating and updating proposal documents, SOWs, and competitive battle cards in shared team drives.",
-      "usage": {
-        "document_types": {
-          "proposals": "Client proposals and statements of work created in shared Proposals folder",
-          "rfp_responses": "Multi-section RFP responses with assigned owners per section",
-          "battle_cards": "Competitive battle cards maintained in the Sales Enablement folder",
-          "playbooks": "Sales process documentation and objection handling guides"
-        },
-        "workflows": [
-          "Create proposal draft in Google Docs for collaborative editing with delivery team",
-          "Generate RFP compliance matrix as a shared spreadsheet for section assignment",
-          "Update competitive battle cards with latest intelligence findings"
-        ]
+        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
+        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}",
+        "GOOGLE_REFRESH_TOKEN": "${GOOGLE_REFRESH_TOKEN}"
       }
     },
-    "gmail": {
+    "github": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-gmail"],
+      "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "${GOOGLE_APPLICATION_CREDENTIALS}"
-      },
-      "description": "Gmail integration for outreach email drafting, follow-up sequences, proposal delivery, and client communication management. Use for composing personalized cold emails, scheduling follow-ups, and sending proposals to clients.",
-      "usage": {
-        "email_types": {
-          "cold_outreach": "Personalized introductory emails to qualified leads",
-          "follow_ups": "Structured follow-up sequences (Day 1, Day 3, Day 7)",
-          "proposal_delivery": "Proposal and quote documents sent to client stakeholders",
-          "meeting_requests": "Discovery call and demo scheduling emails"
-        },
-        "templates": [
-          "Value-first introduction: Lead with client-specific research insight",
-          "Follow-up with case study: Reference a relevant success story",
-          "Breakup email: Respectful close with offer to reconnect later",
-          "Proposal transmittal: Cover letter with proposal highlights and next steps"
-        ]
-      }
-    },
-    "google-calendar": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-google-calendar"],
-      "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "${GOOGLE_APPLICATION_CREDENTIALS}"
-      },
-      "description": "Google Calendar integration for scheduling discovery calls, proposal presentations, follow-up meetings, and deal review cadences. Use for managing client meeting schedules and internal sales review rhythms.",
-      "usage": {
-        "event_types": {
-          "discovery_calls": "Initial client meetings to understand requirements and pain points",
-          "proposal_presentations": "Scheduled walkthroughs of proposals with client stakeholders",
-          "deal_reviews": "Internal pipeline review meetings and forecast sessions",
-          "follow_ups": "Scheduled follow-up touchpoints with prospects in the pipeline"
-        },
-        "cadences": [
-          "Weekly pipeline review: Monday 9 AM, review all active deals and next steps",
-          "Bi-weekly forecast: Every other Friday, update revenue projections",
-          "Monthly win/loss review: First Monday of the month, analyze closed deals"
-        ]
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
       }
     }
   }

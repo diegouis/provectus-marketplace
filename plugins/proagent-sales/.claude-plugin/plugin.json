@@ -2,60 +2,11 @@
   "name": "proagent-sales",
   "version": "0.1.0",
   "description": "Provectus Sales practice plugin for proposals, RFP responses, pricing strategies, CRM management, deal pipeline tracking, competitive analysis, lead research, and quote generation drawn from actual Provectus repositories.",
-  "category": "sales",
-  "author": "Provectus",
+  "author": {
+    "name": "Provectus",
+    "url": "https://provectus.com"
+  },
   "license": "MIT",
-  "skills": [
-    {
-      "name": "sales-assistant",
-      "path": "skills/sales-assistant/SKILL.md",
-      "description": "Driving Sales & Business Development - proposals, RFPs, pricing, CRM, deal pipeline, competitive analysis, lead research, quote generation"
-    }
-  ],
-  "agents": [
-    {
-      "name": "sales-specialist",
-      "path": "agents/sales-specialist.md",
-      "description": "Senior sales strategist specializing in proposal drafting, competitive intelligence, lead qualification, pricing optimization, deal pipeline management, and stakeholder engagement"
-    }
-  ],
-  "commands": [
-    {
-      "name": "proagent-sales-hub",
-      "path": "commands/proagent-sales-hub.md",
-      "description": "Sales practice hub - overview of capabilities and available operations"
-    },
-    {
-      "name": "proagent-sales-run",
-      "path": "commands/proagent-sales-run.md",
-      "description": "Execute sales operations: draft-proposal, research-lead, competitive-analysis, generate-quote, prepare-rfp"
-    },
-    {
-      "name": "proagent-sales-review",
-      "path": "commands/proagent-sales-review.md",
-      "description": "Review proposals, pricing strategies, pipeline health, and deal strategy"
-    }
-  ],
-  "hooks": [
-    {
-      "event": "PreToolUse",
-      "path": "hooks/hooks.json",
-      "description": "Proposal template validation and compliance checks before document generation"
-    }
-  ],
-  "mcp_integrations": [
-    "slack",
-    "google-docs",
-    "gmail",
-    "google-calendar"
-  ],
-  "source_repos": [
-    "awesome-claude-skills",
-    "proagent",
-    "skills",
-    "taches-cc-resources",
-    "agents"
-  ],
   "keywords": [
     "sales",
     "proposals",
@@ -66,8 +17,17 @@
     "competitive-analysis",
     "lead-research",
     "quote-generation",
-    "business-development",
-    "stakeholder-management",
-    "deal-strategy"
-  ]
+    "business-development"
+  ],
+  "resources": {
+    "skills": ["skills/sales-assistant/SKILL.md"],
+    "agents": ["agents/sales-specialist.md"],
+    "commands": [
+      "commands/proagent-sales-hub.md",
+      "commands/proagent-sales-run.md",
+      "commands/proagent-sales-review.md"
+    ],
+    "hooks": ["hooks/hooks.json"],
+    "mcp": [".mcp.json"]
+  }
 }

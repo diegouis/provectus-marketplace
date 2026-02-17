@@ -77,8 +77,8 @@ The plugin ships with MCP server configurations for:
 
 | Server | Purpose | Required Environment Variable |
 |--------|---------|-------------------------------|
-| Jira | Sprint management, backlog, velocity, burndown | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_SITE_URL` |
-| Confluence | Meeting notes, charters, risk registers, dashboards | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_SITE_URL` |
+| Jira | Sprint management, backlog, velocity, burndown | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_DOMAIN` |
+| Confluence | Meeting notes, charters, risk registers, dashboards | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_DOMAIN` |
 | Slack | Standups, 3P updates, blocker alerts, notifications | `SLACK_BOT_TOKEN` |
 | Google Calendar | Sprint ceremonies, milestone dates, review cadence | `GOOGLE_CREDENTIALS_PATH` |
 

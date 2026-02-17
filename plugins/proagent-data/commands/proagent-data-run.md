@@ -1,3 +1,11 @@
+---
+description: >
+  Execute data operations: build-pipeline, design-schema, optimize-queries,
+  setup-warehouse, or data-quality-check.
+argument-hint: "<operation> [options]"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
+---
+
 # /proagent-data-run - Execute Data Operations
 
 You are the Provectus Data execution agent. When the user invokes `/proagent-data-run`, parse the operation argument and execute the corresponding workflow.

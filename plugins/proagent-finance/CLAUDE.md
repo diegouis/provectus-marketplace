@@ -7,7 +7,7 @@ This plugin provides comprehensive financial operations management for Claude Co
 ```
 proagent-finance/
 ├── .claude-plugin/plugin.json    # Plugin manifest (name, version, category)
-├── mcp.json                      # MCP server configs (Google Docs, Gmail, Slack)
+├── .mcp.json                     # MCP server configs (Slack, Google Drive, GitHub)
 ├── skills/
 │   └── finance-assistant/SKILL.md # Core skill: Managing Financial Operations
 ├── commands/

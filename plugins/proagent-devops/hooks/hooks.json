@@ -1,155 +1,38 @@
 {
-  "hooks": [
-    {
-      "name": "pre-deploy-validation",
-      "event": "PreToolUse",
-      "description": "Validates infrastructure configurations before deployment commands are executed. Catches misconfigurations, security issues, and missing prerequisites before they reach production.",
-      "tool_patterns": ["Bash"],
-      "file_patterns": [
-        "docker-compose*.yml",
-        "Dockerfile",
-        "*.dockerfile",
-        ".github/workflows/*.yml",
-        ".gitlab-ci.yml",
-        "Jenkinsfile",
-        "k8s/*.yaml",
-        "kubernetes/*.yaml",
-        "*.tf",
-        "helm/**/Chart.yaml"
-      ],
-      "command_patterns": [
-        "docker-compose up",
-        "docker-compose deploy",
-        "kubectl apply",
-        "kubectl create",
-        "kubectl set image",
-        "helm install",
-        "helm upgrade",
-        "terraform apply",
-        "aws ecs update-service",
-        "gcloud run deploy"
-      ],
-      "validations": [
-        {
-          "name": "docker-compose-syntax",
-          "description": "Validate Docker Compose file syntax before deployment",
-          "check": "docker-compose config --quiet",
-          "on_failure": "abort",
-          "message": "Docker Compose configuration is invalid. Run 'docker-compose config' to see errors."
-        },
-        {
-          "name": "kubernetes-dry-run",
-          "description": "Validate Kubernetes manifests with server-side dry run",
-          "check": "kubectl apply --dry-run=client -f",
-          "on_failure": "warn",
-          "message": "Kubernetes manifest validation failed. Review the manifest for errors."
-        },
-        {
-          "name": "terraform-validate",
-          "description": "Validate Terraform configuration syntax and consistency",
-          "check": "terraform validate",
-          "on_failure": "abort",
-          "message": "Terraform configuration is invalid. Run 'terraform validate' to see errors."
-        },
-        {
-          "name": "helm-lint",
-          "description": "Lint Helm chart for best practices and errors",
-          "check": "helm lint",
-          "on_failure": "warn",
-          "message": "Helm chart has linting warnings. Review with 'helm lint --strict'."
-        },
-        {
-          "name": "dockerfile-security",
-          "description": "Check Dockerfile for security best practices",
-          "check_rules": [
-            "Verify USER directive is present (non-root execution)",
-            "Check that no secrets or credentials are hardcoded in ENV or ARG directives",
-            "Verify base images use pinned versions, not 'latest'",
-            "Check HEALTHCHECK directive is present"
-          ],
-          "on_failure": "warn",
-          "message": "Dockerfile security check found issues. Review the recommendations."
-        },
-        {
-          "name": "secrets-check",
-          "description": "Scan for accidentally committed secrets or credentials",
-          "check_rules": [
-            "No AWS access keys (AKIA pattern) in configuration files",
-            "No private keys or PEM files referenced in Dockerfiles",
-            "No plaintext passwords in docker-compose environment sections",
-            "No API tokens or webhook URLs hardcoded in pipeline configs"
-          ],
-          "on_failure": "abort",
-          "message": "Potential secret or credential detected in configuration. Remove before deploying."
-        }
-      ]
-    },
-    {
-      "name": "post-deploy-health-check",
-      "event": "PostToolUse",
-      "description": "Runs health checks and verification after deployment commands complete. Confirms services are running, healthy, and properly responding to requests.",
-      "tool_patterns": ["Bash"],
-      "command_patterns": [
-        "docker-compose up",
-        "kubectl apply",
-        "kubectl set image",
-        "helm install",
-        "helm upgrade",
-        "terraform apply",
-        "aws ecs update-service",
-        "aws ecs wait",
-        "gcloud run deploy"
-      ],
-      "checks": [
-        {
-          "name": "container-health",
-          "description": "Verify all containers are running and healthy",
-          "commands": [
-            "docker-compose ps",
-            "docker-compose ps --format json | jq '.[] | select(.Health != \"healthy\")'",
-            "docker stats --no-stream --format 'table {{.Name}}\t{{.CPUPerc}}\t{{.MemPerc}}\t{{.NetIO}}'"
-          ],
-          "timeout_seconds": 120,
-          "retry_count": 3,
-          "retry_delay_seconds": 10
-        },
-        {
-          "name": "kubernetes-rollout-status",
-          "description": "Verify Kubernetes deployment rollout completed successfully",
-          "commands": [
-            "kubectl get pods -n {namespace} -l app={app_name}",
-            "kubectl rollout status deployment/{app_name} -n {namespace} --timeout=300s",
-            "kubectl describe deployment/{app_name} -n {namespace}"
-          ],
-          "timeout_seconds": 300,
-          "retry_count": 1
-        },
-        {
-          "name": "endpoint-health",
-          "description": "Verify application health endpoints are responding",
-          "commands": [
-            "curl -sf http://localhost:{port}/health || echo 'Health check failed'",
-            "curl -sf http://localhost:{port}/ready || echo 'Readiness check failed'"
-          ],
-          "timeout_seconds": 60,
-          "retry_count": 5,
-          "retry_delay_seconds": 5
-        },
-        {
-          "name": "monitoring-verification",
-          "description": "Verify monitoring is collecting metrics from the deployed service",
-          "commands": [
-            "curl -sf http://localhost:9090/api/v1/targets | jq '.data.activeTargets[] | select(.health==\"up\")' || echo 'Prometheus target check skipped'"
-          ],
-          "timeout_seconds": 30,
-          "retry_count": 1
-        }
-      ],
-      "on_failure": {
-        "action": "warn",
-        "message": "Post-deployment health checks detected issues. Review the output above and consider rolling back if the service is degraded.",
-        "suggest_rollback": true
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'kubectl apply|helm (install|upgrade)'; then if echo \"$cmd\" | grep -qvE '\\-\\-dry-run'; then echo '[proagent-devops] WARNING: Applying K8s changes without --dry-run. Consider running with --dry-run=client first.'; fi; fi; if echo \"$cmd\" | grep -qE 'terraform apply'; then if echo \"$cmd\" | grep -qvE '\\-auto-approve'; then echo '[proagent-devops] Terraform apply detected. Ensure terraform plan was reviewed.'; fi; fi; }",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'docker-compose up|docker compose up'; then echo '[proagent-devops] Deployment detected. Verify health checks after services start.'; fi; }",
+            "timeout": 10
+          }
+        ]
       }
-    }
-  ]
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'devops-specialist\\|infrastructure.review\\|deploy'; then echo '[proagent-devops] DevOps operation completed. Verify health checks and monitoring.'; fi; }",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
 }

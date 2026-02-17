@@ -1,3 +1,11 @@
+---
+description: >
+  Overview of all frontend engineering capabilities: component scaffolding, UI building,
+  design systems, accessibility auditing, performance optimization, and code review.
+argument-hint: ""
+allowed-tools: Read, Glob, Grep
+---
+
 # proagent-frontend Hub
 
 Welcome to the Provectus Frontend Engineering plugin. This hub provides access to all frontend development, design system, and UI optimization capabilities.
@@ -37,4 +45,4 @@ This plugin integrates with:
 - **axe-core** for automated accessibility testing in CI pipelines
 - **Lighthouse** for performance auditing and Core Web Vitals monitoring
 
-See `mcp.json` for MCP server configuration and `hooks/hooks.json` for automated quality gates.
+See `.mcp.json` for MCP server configuration and `hooks/hooks.json` for automated quality gates.
