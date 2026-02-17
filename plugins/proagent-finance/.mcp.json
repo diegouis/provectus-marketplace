@@ -12,12 +12,11 @@
     },
     "google-drive": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-google-drive"],
-      "env": {
-        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
-        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}",
-        "GOOGLE_REFRESH_TOKEN": "${GOOGLE_REFRESH_TOKEN}"
-      }
+      "args": ["-y", "@modelcontextprotocol/server-gdrive"]
+    },
+    "google-workspace": {
+      "command": "uvx",
+      "args": ["mcp-gsuite"]
     },
     "github": {
       "command": "npx",

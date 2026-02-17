@@ -23,16 +23,13 @@
         "SLACK_MCP_CHANNELS_CACHE": ".channels_cache_v2.json"
       }
     },
-    "google-calendar": {
+    "google-drive": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@anthropic/mcp-google-calendar"
-      ],
-      "env": {
-        "GOOGLE_CREDENTIALS_PATH": "${GOOGLE_CREDENTIALS_PATH}"
-      },
-      "description": "Google Calendar MCP server for scheduling sprint ceremonies (planning, review, retro, standups), milestone due date tracking, and stakeholder review cadence management."
+      "args": ["-y", "@modelcontextprotocol/server-gdrive"]
+    },
+    "google-workspace": {
+      "command": "uvx",
+      "args": ["mcp-gsuite"]
     },
     "rube": {
       "url": "https://rube.app/mcp"

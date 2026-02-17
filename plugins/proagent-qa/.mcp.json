@@ -41,6 +41,14 @@
         "SLACK_MCP_USERS_CACHE": ".users_cache.json",
         "SLACK_MCP_CHANNELS_CACHE": ".channels_cache_v2.json"
       }
+    },
+    "google-drive": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-gdrive"]
+    },
+    "google-workspace": {
+      "command": "uvx",
+      "args": ["mcp-gsuite"]
     }
   }
 }
