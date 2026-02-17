@@ -31,6 +31,16 @@
         "ATLASSIAN_DOMAIN": "${ATLASSIAN_DOMAIN}"
       },
       "description": "Atlassian MCP server for Jira issue tracking and test-to-story linking."
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "slack-mcp-server@latest", "--transport", "stdio"],
+      "env": {
+        "SLACK_MCP_XOXC_TOKEN": "${SLACK_MCP_XOXC_TOKEN}",
+        "SLACK_MCP_XOXD_TOKEN": "${SLACK_MCP_XOXD_TOKEN}",
+        "SLACK_MCP_USERS_CACHE": ".users_cache.json",
+        "SLACK_MCP_CHANNELS_CACHE": ".channels_cache_v2.json"
+      }
     }
   }
 }

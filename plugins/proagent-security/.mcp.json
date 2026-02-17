@@ -22,6 +22,16 @@
         "GITLAB_API_URL": "${GITLAB_API_URL:-https://gitlab.com/api/v4}"
       },
       "description": "GitLab MCP server for project security management, vulnerability reports, SAST/DAST pipeline results, dependency scanning, and merge request security approvals."
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "slack-mcp-server@latest", "--transport", "stdio"],
+      "env": {
+        "SLACK_MCP_XOXC_TOKEN": "${SLACK_MCP_XOXC_TOKEN}",
+        "SLACK_MCP_XOXD_TOKEN": "${SLACK_MCP_XOXD_TOKEN}",
+        "SLACK_MCP_USERS_CACHE": ".users_cache.json",
+        "SLACK_MCP_CHANNELS_CACHE": ".channels_cache_v2.json"
+      }
     }
   }
 }
