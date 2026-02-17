@@ -1,0 +1,78 @@
+{
+  "name": "provectus-marketplace",
+  "owner": {
+    "name": "Provectus"
+  },
+  "plugins": [
+    {
+      "name": "proagent-hr",
+      "source": "./plugins/proagent-hr",
+      "description": "Human resources and talent management: job descriptions, interviews, onboarding, performance reviews, compensation analysis, and CV validation at scale with multi-agent orchestration and blind review."
+    },
+    {
+      "name": "proagent-sales",
+      "source": "./plugins/proagent-sales",
+      "description": "Sales operations: proposals, RFP responses, pricing strategies, CRM management, deal pipeline tracking, competitive analysis, lead research, and quote generation."
+    },
+    {
+      "name": "proagent-finance",
+      "source": "./plugins/proagent-finance",
+      "description": "Financial operations: budgeting, invoicing, revenue forecasting, P&L analysis, cost optimization, billing, and financial reporting."
+    },
+    {
+      "name": "proagent-delivery",
+      "source": "./plugins/proagent-delivery",
+      "description": "Project delivery management: sprint planning, milestone tracking, stakeholder updates, status reports, risk assessment, retrospectives, and agile workflows."
+    },
+    {
+      "name": "proagent-data",
+      "source": "./plugins/proagent-data",
+      "description": "Data engineering and analytics: data pipelines, warehousing, dbt transformations, SQL optimization, data quality, schema design, and exploratory analysis."
+    },
+    {
+      "name": "proagent-ml-ai",
+      "source": "./plugins/proagent-ml-ai",
+      "description": "ML and AI operations: model training, MLOps pipelines, experiment tracking, prompt engineering, embeddings, vector stores, LLM apps, and RAG systems."
+    },
+    {
+      "name": "proagent-agentic-engineering",
+      "source": "./plugins/proagent-agentic-engineering",
+      "description": "Agentic engineering: building and orchestrating AI agent systems, MCP servers, multi-agent workflows, plugin development, and prompt engineering."
+    },
+    {
+      "name": "proagent-sdlc",
+      "source": "./plugins/proagent-sdlc",
+      "description": "Software development lifecycle: architecture decisions, code review, testing strategy, release planning, documentation, versioning, and git workflows."
+    },
+    {
+      "name": "proagent-platform",
+      "source": "./plugins/proagent-platform",
+      "description": "Platform engineering: developer platforms, internal tooling, service catalogs, golden paths, scaffolding, DX optimization, and template libraries."
+    },
+    {
+      "name": "proagent-devops",
+      "source": "./plugins/proagent-devops",
+      "description": "DevOps operations: CI/CD pipelines, Docker/Kubernetes, Terraform/IaC, monitoring, incident response, and cloud operations across AWS and GCP."
+    },
+    {
+      "name": "proagent-qa",
+      "source": "./plugins/proagent-qa",
+      "description": "Quality assurance: test automation with Playwright and Cypress, unit/integration/E2E testing, regression, performance, and accessibility testing."
+    },
+    {
+      "name": "proagent-backend",
+      "source": "./plugins/proagent-backend",
+      "description": "Backend engineering: REST/GraphQL/gRPC APIs, database schema design, microservices, authentication, message queues, caching, and performance optimization."
+    },
+    {
+      "name": "proagent-frontend",
+      "source": "./plugins/proagent-frontend",
+      "description": "Frontend engineering: React/Vue/Angular components, design systems, accessibility auditing, responsive design, performance optimization, and theming."
+    },
+    {
+      "name": "proagent-security",
+      "source": "./plugins/proagent-security",
+      "description": "Security operations: vulnerability scanning, compliance enforcement, secrets management, encryption, threat modeling, OWASP Top 10, and Zero Trust architecture."
+    }
+  ]
+}

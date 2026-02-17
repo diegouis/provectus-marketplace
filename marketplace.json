@@ -183,18 +183,18 @@
     },
     {
       "name": "proagent-hr",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "category": "hr",
-      "description": "Managing Human Resources & Talent — hiring, interviews, onboarding, performance reviews, compensation, and employee development",
+      "description": "Managing Human Resources & Talent — hiring, interviews, onboarding, performance reviews, compensation, employee development, and CV validation at scale with multi-agent orchestration and blind review",
       "path": "plugins/proagent-hr",
       "assets_count": 22,
       "source_repos": 5,
       "components": {
-        "skills": 1,
+        "skills": 2,
         "commands": 3,
-        "agents": 1,
-        "hooks": 3,
-        "mcp_servers": 4
+        "agents": 7,
+        "hooks": 5,
+        "mcp_servers": 6
       }
     },
     {
@@ -234,11 +234,11 @@
     "total_plugins": 14,
     "total_assets_cataloged": 843,
     "total_source_repos": 17,
-    "total_skills": 14,
+    "total_skills": 15,
     "total_commands": 42,
-    "total_agents": 14,
-    "total_hooks": 36,
-    "total_mcp_integrations": 30,
+    "total_agents": 20,
+    "total_hooks": 38,
+    "total_mcp_integrations": 32,
     "practices_covered": [
       "agentic-engineering",
       "sdlc",
