@@ -10,6 +10,9 @@
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
       },
       "description": "GitHub MCP server for managing data pipeline repositories, pull requests for schema changes, and CI/CD pipeline status for dbt deployments."
+    },
+    "rube": {
+      "url": "https://rube.app/mcp"
     }
   }
 }

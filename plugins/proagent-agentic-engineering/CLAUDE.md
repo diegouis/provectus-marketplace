@@ -15,7 +15,7 @@ This plugin provides comprehensive tooling for building, orchestrating, and opti
 
 - **Hooks**: PreToolUse validation for agent artifacts, PostToolUse audit logging, and SessionStart context loading. Configured in `hooks/hooks.json`.
 
-- **MCP Servers**: Pre-configured connections to GitHub, GitLab, and Playwright for agent development and testing. Configured in `.mcp.json`.
+- **MCP Servers**: Pre-configured connections to GitHub, GitLab, Playwright, and Rube (Composio SDK for 200+ SaaS integrations with session-based isolation and automatic OAuth) for agent development and testing. Configured in `.mcp.json`.
 
 ## Key Conventions
 

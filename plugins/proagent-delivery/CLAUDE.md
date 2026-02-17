@@ -42,6 +42,9 @@ Three hooks support delivery discipline:
 3. **Sprint boundary notification:** After sprint planning or retrospective sessions, suggests follow-up actions (create Jira sprint, schedule ceremonies, share summary).
 
 ### MCP Servers
+
+- **Rube (Composio)**: SaaS automation gateway providing access to Jira, Linear, Asana, ClickUp, Monday.com, Confluence, and Trello via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
+
 Configure the following environment variables to enable integrations:
 - `ATLASSIAN_API_TOKEN` / `ATLASSIAN_EMAIL` / `ATLASSIAN_DOMAIN` -- Jira sprint management and Confluence documentation
 - `SLACK_BOT_TOKEN` -- Slack standups, 3P updates, and stakeholder notifications

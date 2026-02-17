@@ -16,6 +16,9 @@
         "GITLAB_API_URL": "${GITLAB_API_URL:-https://gitlab.com/api/v4}"
       },
       "description": "GitLab integration for CI/CD pipelines, merge requests, and container registry"
+    },
+    "rube": {
+      "url": "https://rube.app/mcp"
     }
   }
 }

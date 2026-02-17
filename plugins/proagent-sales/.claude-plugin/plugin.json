@@ -1,11 +1,12 @@
 {
   "name": "proagent-sales",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Provectus Sales practice plugin for proposals, RFP responses, pricing strategies, CRM management, deal pipeline tracking, competitive analysis, lead research, and quote generation drawn from actual Provectus repositories.",
   "author": {
     "name": "Provectus",
     "url": "https://provectus.com"
   },
+  "homepage": "https://github.com/diegouis/provectus-marketplace",
   "license": "MIT",
   "keywords": [
     "sales",

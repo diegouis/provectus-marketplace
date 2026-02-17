@@ -40,6 +40,12 @@ When performing DevOps tasks, follow these standards:
 - Tag all resources with project, environment, team, and cost-center
 - Separate configuration per environment using workspaces or overlays
 
+## MCP Integrations
+
+- **GitHub**: Repository management, Actions workflows, and PR operations
+- **GitLab**: CI/CD pipelines, merge requests, and container registry
+- **Rube (Composio)**: SaaS automation gateway providing access to GitHub, GitLab, CircleCI, Vercel, Render, Datadog, Sentry, and PagerDuty via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
+
 ## Source Repositories
 
 This plugin draws patterns from: proagent, casdk-harness, agents, Auto-Claude, ralph-orchestrator, tac, proagent-repo GUI, and gastown.

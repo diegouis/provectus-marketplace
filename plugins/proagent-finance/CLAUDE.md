@@ -42,6 +42,9 @@ Three hooks enforce financial document quality:
 3. **Post-report summary:** After the finance-specialist agent completes analysis, formats findings as a severity-coded summary with key metrics and escalates critical budget overruns
 
 ### MCP Servers
+
+- **Rube (Composio)**: SaaS automation gateway providing access to Stripe, Square, and Shopify via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
+
 Configure the following environment variables to enable integrations:
 - `GOOGLE_APPLICATION_CREDENTIALS` / `GOOGLE_DOCS_OAUTH_TOKEN` -- Google Docs for financial document collaboration (budgets, reports, P&L statements)
 - `GMAIL_OAUTH_TOKEN` -- Gmail for invoice delivery, payment reminders, and report distribution

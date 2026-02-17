@@ -52,6 +52,11 @@ When performing data engineering tasks, follow these standards:
 - Monitor source freshness and alert on stale data
 - Track volume trends and alert on anomalies beyond 2 standard deviations
 
+## MCP Integrations
+
+- **GitHub**: Data pipeline repository management, PR reviews for schema changes, CI/CD for dbt deployments
+- **Rube (Composio)**: SaaS automation for Google Sheets, Airtable, Supabase, Amplitude, Mixpanel, PostHog, and Segment via Composio-powered tools
+
 ## Source Repositories
 
 This plugin draws patterns from: proagent, casdk-harness, agents, awesome-claude-skills, specs, tac, claude-ui, and skills.

@@ -31,6 +31,13 @@ proagent-platform/
 | `/proagent-platform:review tooling` | Internal tooling quality and health |
 | `/proagent-platform:review templates` | Template library coverage and freshness |
 
+## MCP Integrations
+
+- **GitHub**: Repository management, template repos, Actions workflows
+- **GitLab**: Project templates, CI/CD pipelines
+- **Slack**: DX feedback, platform announcements
+- **Rube (Composio)**: SaaS automation for Slack, Notion, Confluence, and Google Drive via Composio-powered tools
+
 ## Key Conventions
 
 - All scaffolded projects must include a CLAUDE.md, README.md, and CI config

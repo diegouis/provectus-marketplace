@@ -254,6 +254,64 @@ EXPERIMENT FOR NEXT SPRINT:
 - [One improvement to try and measure]
 ```
 
+## AWOS Delivery Planning Patterns
+
+The AWOS framework (from `casdk-harness/src/harness/plugins/awos_workflow/`) provides structured artifact templates for delivery planning:
+
+### Project Artifacts
+- **Product Vision** (`product.md`) — Problem statement, target audience, success metrics, and project rationale
+- **Feature Roadmap** (`roadmap.md`) — Prioritized feature list with delivery phases, dependencies, and milestones
+- **Architecture Decision** (`architecture.md`) — Technology stack selection, infrastructure design, and scaling considerations
+
+### Milestone-Based Confirmation
+The AWOS pattern of mandatory confirmation gates (Approve/Edit/Redo after each step) is recommended for any delivery planning workflow where stakeholder alignment is required between phases. This prevents autonomous runaway and ensures collaborative decision-making.
+
+## Milestone-Based Confirmation Gates
+
+For delivery planning workflows where stakeholder approval is required between phases, implement the mandatory confirmation pattern:
+
+After each milestone deliverable (project charter, roadmap, architecture decision, sprint plan):
+1. Present the deliverable to stakeholders
+2. Explicitly request: **Approve** / **Request Changes** / **Redo**
+3. Only proceed to the next phase after receiving approval
+
+This ensures alignment at critical handoff points and creates a documented audit trail of planning decisions.
+
+## Composio App Automations
+
+This plugin integrates with Composio-powered SaaS automation skills via the Rube MCP server. These skills connect to real external services for end-to-end workflow automation.
+
+### Available Automations
+
+| Skill | Service | Key Capabilities |
+|-------|---------|-----------------|
+| jira-automation | Jira | Sprint management, issue creation, backlog grooming, velocity tracking, burndown charts |
+| linear-automation | Linear | Issue tracking, project management, cycle planning, team workflows |
+| asana-automation | Asana | Task management, project tracking, timeline planning, workload balancing |
+| clickup-automation | ClickUp | Task management, sprint planning, time tracking, goal setting |
+| monday-automation | Monday.com | Work management, project tracking, dashboard creation, automations |
+| confluence-automation | Confluence | Documentation publishing, meeting notes, retrospective records, knowledge base |
+| trello-automation | Trello | Board management, card creation, workflow automation, checklist tracking |
+
+### Usage Pattern
+
+All Composio automations follow a three-step workflow:
+
+1. **Discover tools**: Use `RUBE_SEARCH_TOOLS` with a use case description to find available tools and their schemas
+2. **Connect service**: Use `RUBE_MANAGE_CONNECTIONS` to activate the toolkit connection (handles OAuth automatically)
+3. **Execute actions**: Use `RUBE_MULTI_EXECUTE_TOOL` with the discovered tool slug and schema-compliant arguments
+
+### Configuration
+
+Add the Rube MCP server to your `.mcp.json`:
+```json
+"rube": {
+  "url": "https://rube.app/mcp"
+}
+```
+
+Source: `awesome-claude-skills` Composio app automation skills
+
 ## Integration Points
 
 - **Jira:** Sprint management, backlog grooming, issue tracking, velocity metrics, burndown charts

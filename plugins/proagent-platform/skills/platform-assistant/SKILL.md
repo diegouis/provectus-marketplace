@@ -147,6 +147,38 @@ Build internal command-line tools and SDKs that wrap platform capabilities.
 5. **Validate**: run template validation, DX feedback checks, and user testing
 6. **Ship and iterate**: publish to the service catalog, track adoption, refine based on feedback
 
+## Composio App Automations
+
+This plugin integrates with Composio-powered SaaS automation skills via the Rube MCP server. These skills connect to real external services for end-to-end workflow automation.
+
+### Available Automations
+
+| Skill | Service | Key Capabilities |
+|-------|---------|-----------------|
+| slack-automation | Slack | Send messages, manage channels, create workflows, user management, file sharing |
+| notion-automation | Notion | Create/update pages and databases, manage blocks, search content, template management |
+| confluence-automation | Confluence | Create/update pages, manage spaces, search content, attach files, label management |
+| google-drive-automation | Google Drive | Create/manage files and folders, sharing permissions, search, export/import formats |
+
+### Usage Pattern
+
+All Composio automations follow a three-step workflow:
+
+1. **Discover tools**: Use `RUBE_SEARCH_TOOLS` with a use case description to find available tools and their schemas
+2. **Connect service**: Use `RUBE_MANAGE_CONNECTIONS` to activate the toolkit connection (handles OAuth automatically)
+3. **Execute actions**: Use `RUBE_MULTI_EXECUTE_TOOL` with the discovered tool slug and schema-compliant arguments
+
+### Configuration
+
+Add the Rube MCP server to your `.mcp.json`:
+```json
+"rube": {
+  "url": "https://rube.app/mcp"
+}
+```
+
+Source: `awesome-claude-skills` Composio app automation skills
+
 ## Reference Assets
 
 Key Provectus platform assets for deeper guidance:

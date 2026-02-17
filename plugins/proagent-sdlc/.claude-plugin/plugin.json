@@ -6,11 +6,12 @@
     "name": "Provectus",
     "email": "agentic-coding@provectus.com"
   },
+  "homepage": "https://github.com/diegouis/provectus-marketplace",
   "repository": {
     "type": "git",
     "url": "https://github.com/provectus/proagent-marketplace"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "category": "sdlc",
   "keywords": [

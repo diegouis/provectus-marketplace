@@ -23,6 +23,9 @@
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
       }
+    },
+    "rube": {
+      "url": "https://rube.app/mcp"
     }
   }
 }

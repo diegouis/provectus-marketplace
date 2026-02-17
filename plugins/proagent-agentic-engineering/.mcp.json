@@ -18,6 +18,9 @@
     "playwright": {
       "command": "npx",
       "args": ["@playwright/mcp@latest"]
+    },
+    "rube": {
+      "url": "https://rube.app/mcp"
     }
   }
 }

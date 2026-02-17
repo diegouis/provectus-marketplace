@@ -1,13 +1,13 @@
 {
   "name": "provectus-marketplace",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "ProAgent Plugin Marketplace — practice-specific plugins for Provectus teams, built from 843 assets across 17 repositories",
   "author": "Provectus",
   "generated": "2026-02-16",
   "plugins": [
     {
       "name": "proagent-agentic-engineering",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "agentic-engineering",
       "description": "Building, orchestrating, and optimizing AI agent systems with Claude Code extensions, MCP servers, multi-agent workflows, and prompt engineering",
       "path": "plugins/proagent-agentic-engineering",
@@ -23,7 +23,7 @@
     },
     {
       "name": "proagent-sdlc",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "sdlc",
       "description": "Managing Software Development Lifecycle — architecture, code review, testing strategy, release management, documentation, and git workflows",
       "path": "plugins/proagent-sdlc",
@@ -39,7 +39,7 @@
     },
     {
       "name": "proagent-platform",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "platform",
       "description": "Building Developer Platforms & Tooling — service catalogs, golden paths, scaffolding, MCP server development, and DX optimization",
       "path": "plugins/proagent-platform",
@@ -55,7 +55,7 @@
     },
     {
       "name": "proagent-devops",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "devops",
       "description": "Managing Infrastructure & Deployments — CI/CD pipelines, Docker/Kubernetes, Terraform/IaC, monitoring, incident response, and cloud operations",
       "path": "plugins/proagent-devops",
@@ -71,7 +71,7 @@
     },
     {
       "name": "proagent-qa",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "qa",
       "description": "Ensuring Software Quality — test automation, Playwright/Cypress, regression testing, coverage analysis, E2E testing, and accessibility",
       "path": "plugins/proagent-qa",
@@ -87,7 +87,7 @@
     },
     {
       "name": "proagent-backend",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "backend",
       "description": "Building Scalable Backend Services — APIs, databases, microservices, auth, caching, queues, and performance optimization",
       "path": "plugins/proagent-backend",
@@ -103,7 +103,7 @@
     },
     {
       "name": "proagent-frontend",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "frontend",
       "description": "Building Modern Web Interfaces — React/Vue/Angular, design systems, accessibility (WCAG 2.1 AA), responsive design, and performance optimization",
       "path": "plugins/proagent-frontend",
@@ -119,7 +119,7 @@
     },
     {
       "name": "proagent-delivery",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "delivery",
       "description": "Managing Project Delivery — sprint planning, milestones, status reports, risk management, stakeholder communication, and retrospectives",
       "path": "plugins/proagent-delivery",
@@ -135,7 +135,7 @@
     },
     {
       "name": "proagent-security",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "security",
       "description": "Securing Software & Infrastructure — vulnerability scanning, compliance, secrets management, threat modeling, OWASP, and Zero Trust",
       "path": "plugins/proagent-security",
@@ -151,7 +151,7 @@
     },
     {
       "name": "proagent-data",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "data",
       "description": "Engineering Data Pipelines & Analytics — ETL/ELT, dbt, Airflow, data warehousing, SQL optimization, and data quality",
       "path": "plugins/proagent-data",
@@ -167,7 +167,7 @@
     },
     {
       "name": "proagent-ml-ai",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "ml-ai",
       "description": "Building ML & AI Systems — model training, MLOps, experiment tracking, LLM applications, RAG, embeddings, and deployment",
       "path": "plugins/proagent-ml-ai",
@@ -183,7 +183,7 @@
     },
     {
       "name": "proagent-hr",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "hr",
       "description": "Managing Human Resources & Talent — hiring, interviews, onboarding, performance reviews, compensation, and employee development",
       "path": "plugins/proagent-hr",
@@ -199,7 +199,7 @@
     },
     {
       "name": "proagent-sales",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "sales",
       "description": "Driving Sales & Business Development — proposals, RFPs, competitive analysis, lead research, pipeline management, and quote generation",
       "path": "plugins/proagent-sales",
@@ -215,7 +215,7 @@
     },
     {
       "name": "proagent-finance",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "finance",
       "description": "Managing Financial Operations — budgeting, invoicing, forecasting, P&L analysis, cost optimization, and financial reporting",
       "path": "plugins/proagent-finance",
@@ -267,6 +267,22 @@
     "GCP",
     "Jira",
     "Confluence",
-    "Playwright"
+    "Playwright",
+    "HubSpot",
+    "Salesforce",
+    "Notion",
+    "Linear",
+    "Asana",
+    "Datadog",
+    "Sentry",
+    "PagerDuty",
+    "Stripe",
+    "BambooHR",
+    "Figma",
+    "Vercel",
+    "CircleCI",
+    "Discord",
+    "Microsoft Teams",
+    "Rube"
   ]
 }

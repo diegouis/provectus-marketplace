@@ -234,6 +234,37 @@ Generate structured financial reports for stakeholders, board meetings, audits, 
 - **Stripe:** Payment processing, subscription billing, webhook-driven payment status updates
 - **Accounting software:** CSV/JSON export compatible with QuickBooks, Xero, FreshBooks
 
+## Composio App Automations
+
+This plugin integrates with Composio-powered SaaS automation skills via the Rube MCP server. These skills connect to real external services for end-to-end workflow automation.
+
+### Available Automations
+
+| Skill | Service | Key Capabilities |
+|-------|---------|-----------------|
+| stripe-automation | Stripe | Payment processing, subscription management, invoice generation, refund handling |
+| square-automation | Square | Point-of-sale transactions, inventory management, payment processing, reporting |
+| shopify-automation | Shopify | Order management, product catalog, payment tracking, storefront operations |
+
+### Usage Pattern
+
+All Composio automations follow a three-step workflow:
+
+1. **Discover tools**: Use `RUBE_SEARCH_TOOLS` with a use case description to find available tools and their schemas
+2. **Connect service**: Use `RUBE_MANAGE_CONNECTIONS` to activate the toolkit connection (handles OAuth automatically)
+3. **Execute actions**: Use `RUBE_MULTI_EXECUTE_TOOL` with the discovered tool slug and schema-compliant arguments
+
+### Configuration
+
+Add the Rube MCP server to your `.mcp.json`:
+```json
+"rube": {
+  "url": "https://rube.app/mcp"
+}
+```
+
+Source: `awesome-claude-skills` Composio app automation skills
+
 ## Workflow Summary
 
 ```

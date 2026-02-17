@@ -1076,6 +1076,41 @@ customer_metrics.write \
     .save("s3://data-warehouse/customer_metrics/")
 ```
 
+## Composio App Automations
+
+This plugin integrates with Composio-powered SaaS automation skills via the Rube MCP server. These skills connect to real external services for end-to-end workflow automation.
+
+### Available Automations
+
+| Skill | Service | Key Capabilities |
+|-------|---------|-----------------|
+| googlesheets-automation | Google Sheets | Create/read/update spreadsheets, manage worksheets, batch operations, formula support |
+| airtable-automation | Airtable | Create/update records, manage bases and tables, query with filters, field management |
+| supabase-automation | Supabase | Database operations, table management, row CRUD, SQL queries via Supabase API |
+| amplitude-automation | Amplitude | Event tracking, user analytics, cohort management, chart and dashboard queries |
+| mixpanel-automation | Mixpanel | Event ingestion, funnel analysis, user profile management, data export |
+| posthog-automation | PostHog | Feature flags, event capture, session recordings, A/B test management |
+| segment-automation | Segment | Track events, identify users, manage sources/destinations, data routing |
+
+### Usage Pattern
+
+All Composio automations follow a three-step workflow:
+
+1. **Discover tools**: Use `RUBE_SEARCH_TOOLS` with a use case description to find available tools and their schemas
+2. **Connect service**: Use `RUBE_MANAGE_CONNECTIONS` to activate the toolkit connection (handles OAuth automatically)
+3. **Execute actions**: Use `RUBE_MULTI_EXECUTE_TOOL` with the discovered tool slug and schema-compliant arguments
+
+### Configuration
+
+Add the Rube MCP server to your `.mcp.json`:
+```json
+"rube": {
+  "url": "https://rube.app/mcp"
+}
+```
+
+Source: `awesome-claude-skills` Composio app automation skills
+
 ## Reference Assets
 
 | Asset | Source | Description |

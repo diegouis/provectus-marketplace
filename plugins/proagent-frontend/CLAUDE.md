@@ -42,6 +42,7 @@ The hooks configuration enforces:
 - **Playwright**: Cross-browser UI testing, visual regression, responsive layout validation, accessibility auditing of rendered pages
 - **GitHub**: Component library PRs with visual diffs, design system versioning, frontend CI/CD
 - **GitLab**: Merge request UI gates, pipeline monitoring, component package publishing
+- **Rube (Composio)**: SaaS automation for Figma, Canva, Webflow, and Miro via Composio-powered tools
 
 ## Conventions
 

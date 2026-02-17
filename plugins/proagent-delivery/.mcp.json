@@ -34,6 +34,9 @@
         "GOOGLE_CREDENTIALS_PATH": "${GOOGLE_CREDENTIALS_PATH}"
       },
       "description": "Google Calendar MCP server for scheduling sprint ceremonies (planning, review, retro, standups), milestone due date tracking, and stakeholder review cadence management."
+    },
+    "rube": {
+      "url": "https://rube.app/mcp"
     }
   }
 }

@@ -44,6 +44,7 @@ The hooks configuration enforces:
 - **Slack**: Post hiring pipeline updates, new hire introductions, and team notifications
 - **Google Drive**: Create and collaborate on job descriptions, offer letters, performance reviews, and policy documents
 - **GitHub**: Repository access for HR documentation and policy version control
+- **Rube (Composio)**: SaaS automation gateway providing access to BambooHR, Google Calendar, Slack, and Gmail via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
 
 ## Conventions
 

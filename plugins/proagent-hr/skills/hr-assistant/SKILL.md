@@ -93,6 +93,38 @@ All HR documents follow consistent formatting:
 - **Google Calendar**: Schedule interviews, onboarding milestones, review cycles, and development check-ins
 - **Google Meet**: Coordinate virtual interviews and remote onboarding sessions
 
+## Composio App Automations
+
+This plugin integrates with Composio-powered SaaS automation skills via the Rube MCP server. These skills connect to real external services for end-to-end workflow automation.
+
+### Available Automations
+
+| Skill | Service | Key Capabilities |
+|-------|---------|-----------------|
+| bamboohr-automation | BambooHR | Employee records management, time-off requests, onboarding workflows, reporting |
+| google-calendar-automation | Google Calendar | Interview scheduling, onboarding milestone tracking, review cycle scheduling |
+| slack-automation | Slack | Team notifications, onboarding reminders, hiring pipeline updates, announcements |
+| gmail-automation | Gmail | Interview confirmations, offer letter delivery, onboarding checklists, internal comms |
+
+### Usage Pattern
+
+All Composio automations follow a three-step workflow:
+
+1. **Discover tools**: Use `RUBE_SEARCH_TOOLS` with a use case description to find available tools and their schemas
+2. **Connect service**: Use `RUBE_MANAGE_CONNECTIONS` to activate the toolkit connection (handles OAuth automatically)
+3. **Execute actions**: Use `RUBE_MULTI_EXECUTE_TOOL` with the discovered tool slug and schema-compliant arguments
+
+### Configuration
+
+Add the Rube MCP server to your `.mcp.json`:
+```json
+"rube": {
+  "url": "https://rube.app/mcp"
+}
+```
+
+Source: `awesome-claude-skills` Composio app automation skills
+
 ## Quality Gates
 
 - All job descriptions must include equal opportunity employer statements and salary transparency

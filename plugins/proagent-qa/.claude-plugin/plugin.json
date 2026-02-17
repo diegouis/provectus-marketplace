@@ -1,12 +1,13 @@
 {
   "name": "proagent-qa",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Quality assurance and test automation plugin for Provectus projects. Provides comprehensive testing workflows including unit, integration, E2E, regression, performance, and accessibility testing with Playwright and Cypress integration.",
   "category": "qa",
   "author": {
     "name": "Provectus",
     "url": "https://provectus.com"
   },
+  "homepage": "https://github.com/diegouis/provectus-marketplace",
   "license": "MIT",
   "keywords": [
     "testing",

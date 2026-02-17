@@ -458,6 +458,15 @@ Derived from `agents/plugins/kubernetes-operations/skills/helm-chart-scaffolding
 - Implement chart testing with `helm test` hooks
 - Version charts semantically and publish to a chart repository
 
+## Agent Workload Operations
+
+When running AI agent workloads in production (patterns from Auto-Claude):
+
+- **OOM prevention**: Cap input sizes, monitor memory usage, set process limits
+- **Orphaned agent cleanup**: Monitor agent processes and terminate those exceeding time or resource bounds
+- **Recovery mechanisms**: Implement checkpointing so interrupted agent tasks can resume
+- **Observability**: Integrate structured error reporting (Sentry or similar) for agent subprocess failures
+
 ## Monitoring and Observability
 
 ### Prometheus Metrics Collection
@@ -586,6 +595,42 @@ done
 - Enforce RBAC with least-privilege service accounts
 - Enable audit logging for all cluster operations
 - Sign container images with Sigstore/cosign for supply chain security
+
+## Composio App Automations
+
+This plugin integrates with Composio-powered SaaS automation skills via the Rube MCP server. These skills connect to real external services for end-to-end workflow automation.
+
+### Available Automations
+
+| Skill | Service | Key Capabilities |
+|-------|---------|-----------------|
+| github-automation | GitHub | Repository management, PR operations, Actions workflows, issue tracking |
+| gitlab-automation | GitLab | CI/CD pipelines, merge requests, container registry, project management |
+| circleci-automation | CircleCI | Pipeline management, workflow orchestration, build configuration, artifacts |
+| vercel-automation | Vercel | Deployment management, preview environments, domain configuration, serverless functions |
+| render-automation | Render | Service deployment, environment management, auto-scaling, infrastructure provisioning |
+| datadog-automation | Datadog | Monitoring dashboards, alert management, log analysis, APM configuration |
+| sentry-automation | Sentry | Error tracking, issue management, release tracking, performance monitoring |
+| pagerduty-automation | PagerDuty | Incident management, on-call scheduling, escalation policies, alert routing |
+
+### Usage Pattern
+
+All Composio automations follow a three-step workflow:
+
+1. **Discover tools**: Use `RUBE_SEARCH_TOOLS` with a use case description to find available tools and their schemas
+2. **Connect service**: Use `RUBE_MANAGE_CONNECTIONS` to activate the toolkit connection (handles OAuth automatically)
+3. **Execute actions**: Use `RUBE_MULTI_EXECUTE_TOOL` with the discovered tool slug and schema-compliant arguments
+
+### Configuration
+
+Add the Rube MCP server to your `.mcp.json`:
+```json
+"rube": {
+  "url": "https://rube.app/mcp"
+}
+```
+
+Source: `awesome-claude-skills` Composio app automation skills
 
 ## Reference Assets
 

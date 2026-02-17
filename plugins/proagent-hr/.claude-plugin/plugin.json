@@ -1,12 +1,13 @@
 {
   "name": "proagent-hr",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Human resources and talent management plugin for Provectus projects. Provides comprehensive HR workflows including job description drafting, interview planning, onboarding coordination, performance reviews, compensation analysis, and employee development tracking.",
   "category": "hr",
   "author": {
     "name": "Provectus",
     "url": "https://provectus.com"
   },
+  "homepage": "https://github.com/diegouis/provectus-marketplace",
   "license": "MIT",
   "keywords": [
     "hr",

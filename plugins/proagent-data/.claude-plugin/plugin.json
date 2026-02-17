@@ -1,12 +1,13 @@
 {
   "name": "proagent-data",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Provectus Data practice plugin for data pipeline engineering, analytics, data warehousing, dbt transformations, SQL optimization, data quality, schema design, and exploratory data analysis.",
   "category": "data",
   "author": {
     "name": "Provectus",
     "url": "https://provectus.com"
   },
+  "homepage": "https://github.com/diegouis/provectus-marketplace",
   "license": "MIT",
   "keywords": ["data-engineering", "etl", "elt", "dbt", "sql", "data-warehouse", "snowflake", "bigquery", "postgresql", "spark", "airflow", "data-quality", "analytics"],
   "resources": {

@@ -432,6 +432,40 @@ For enterprise deals, map the buying committee using a Power/Interest grid:
 | Technical Evaluator | As needed | Deep-dive sessions | Architecture, security, integration |
 | End Users | During demos | Interactive demos | Workflow improvements, ease of use |
 
+## Composio App Automations
+
+This plugin integrates with Composio-powered SaaS automation skills via the Rube MCP server. These skills connect to real external services for end-to-end workflow automation.
+
+### Available Automations
+
+| Skill | Service | Key Capabilities |
+|-------|---------|-----------------|
+| salesforce-automation | Salesforce | CRM record management, opportunity tracking, lead conversion, report generation |
+| hubspot-automation | HubSpot | Contact management, deal pipeline tracking, marketing automation, email sequences |
+| pipedrive-automation | Pipedrive | Deal management, activity tracking, pipeline visualization, sales reporting |
+| close-automation | Close | Lead management, calling workflows, email sequences, pipeline analytics |
+| linkedin-automation | LinkedIn | Profile research, connection requests, messaging, lead prospecting |
+| zoho-crm-automation | Zoho CRM | Contact management, deal tracking, workflow automation, analytics |
+
+### Usage Pattern
+
+All Composio automations follow a three-step workflow:
+
+1. **Discover tools**: Use `RUBE_SEARCH_TOOLS` with a use case description to find available tools and their schemas
+2. **Connect service**: Use `RUBE_MANAGE_CONNECTIONS` to activate the toolkit connection (handles OAuth automatically)
+3. **Execute actions**: Use `RUBE_MULTI_EXECUTE_TOOL` with the discovered tool slug and schema-compliant arguments
+
+### Configuration
+
+Add the Rube MCP server to your `.mcp.json`:
+```json
+"rube": {
+  "url": "https://rube.app/mcp"
+}
+```
+
+Source: `awesome-claude-skills` Composio app automation skills
+
 ## Reference Assets
 
 | Asset | Source | Description |

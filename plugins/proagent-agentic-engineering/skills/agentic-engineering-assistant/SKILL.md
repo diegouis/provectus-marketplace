@@ -291,6 +291,9 @@ Build Model Context Protocol servers to connect Claude to external services.
 - `tac/Code/tac-6/.mcp.json` -- Playwright MCP for E2E testing
 - `proagent-repo GUI/mcp_servers/gdrive/server.py` -- Google Drive MCP server
 
+### Autonomous Coding Loop Bootstrap
+The `setup-ralph` skill (from `taches-cc-resources`) provides a pattern for bootstrapping autonomous coding loops — configuring an agent to iteratively explore, plan, implement, and commit code changes with minimal human intervention. Reference this pattern when building agents that need sustained autonomous operation.
+
 ### 7. Multi-Agent Orchestration
 
 Design and implement multi-agent systems for complex workflows.
@@ -325,6 +328,30 @@ Design and implement multi-agent systems for complex workflows.
 - `root-claude-config/.claude/commands/implement_mul-agent.md` -- Multi-agent implementation orchestrator
 - `awos/commands/implement.md` -- Lead implementation agent
 - `ralph-orchestrator/.claude/skills/code-assist/SKILL.md` -- Explore-Plan-Code-Commit workflow
+
+## Agent Teams Orchestration
+
+The Agent Teams plugin (from `agents/plugins/agent-teams/`) provides production-ready patterns for multi-agent coordination using Claude Code's native Task tool:
+
+### Multi-Reviewer Code Review
+Assign each reviewer a specific quality dimension (security, performance, architecture, testing, accessibility) and run them in parallel. Deduplicate findings using merge rules:
+- Same file:line, same issue → merge, credit all reviewers
+- Conflicting severity → use higher rating
+- Conflicting recommendations → include both with attribution
+
+### Hypothesis-Driven Debugging
+Use the Analysis of Competing Hypotheses (ACH) methodology across failure mode categories: Logic Error, Data Issue, State Problem, Integration Failure, Resource Issue, Environment. Each investigator gathers evidence classified as Direct (strong), Correlational (medium), Testimonial (weak), or Absence (variable). Arbitrate by confidence level, then evidence count, then causal chain strength.
+
+### Parallel Feature Development
+The cardinal rule: **one owner per file**. When files must be shared, designate a single owner — other implementers request changes via messages. Use interface contract files (read-only) to define boundaries between implementers.
+
+### Agent Roles
+- **team-lead**: Orchestrator that decomposes work and synthesizes results
+- **team-reviewer**: Multi-dimensional code reviewer (assigned a specific dimension)
+- **team-debugger**: Hypothesis investigator that gathers evidence
+- **team-implementer**: Parallel builder respecting file ownership boundaries
+
+Source: `agents/plugins/agent-teams/` (v1.0.2)
 
 ### 8. Prompt Engineering and Context Engineering
 
@@ -497,6 +524,76 @@ Test and evaluate agent system effectiveness.
 - [ ] Tool annotations set correctly
 - [ ] 10 evaluation questions created
 - [ ] Character limits and truncation handled
+
+## AWOS Plugin Architecture Reference
+
+The AWOS workflow plugin (from `casdk-harness/src/harness/plugins/awos_workflow/`) demonstrates production-ready multi-agent plugin design:
+
+### Key Patterns
+- **Shared `lib/` module**: Common utilities (`session.py`, `step_detector.py`) consolidated into a reusable library used by all 8 agents
+- **Session persistence**: JSON-based state file (`awos_session.json`) with atomic writes (write to temp, then rename) for crash-safe resume
+- **File-based step detection**: Determine workflow progress by checking output file existence rather than relying on chat history
+- **Configurable confirmation gates**: `AWOS_SPEC_REFINEMENT=1,4,6` controls which steps require user approval vs. auto-advance
+
+### Session State Structure
+```json
+{
+  "started_at": "ISO-8601",
+  "spec_hash": "sha256_prefix",
+  "current_step": 4,
+  "completed_steps": [1, 2, 3],
+  "interactive_confirmations": {"step_1": "approved"},
+  "step_outputs": {"step_1": "context/product/product.md"},
+  "status": "in_progress"
+}
+```
+
+## Mandatory Confirmation Pattern
+
+For multi-step autonomous workflows, implement mandatory user confirmation gates to prevent autonomous runaway (from AWOS workflow best practices):
+
+### Pattern
+After each significant step in an autonomous workflow:
+1. **Execute** the step
+2. **Present** the output to the user
+3. **STOP** and ask for explicit approval
+4. **Process** the response before continuing
+
+### Confirmation Options
+- **[A]pprove** — Accept output, proceed to next step
+- **[E]dit** — User modifies the output, then signals readiness
+- **[R]edo** — User provides feedback, agent regenerates the step
+
+### Configuration
+Make confirmation gates configurable per step (e.g., `REFINEMENT_STEPS=1,4,6`) so teams can choose which steps need human review vs. auto-advance. Critical specification steps (product vision, functional spec, task decomposition) should always require confirmation.
+
+This pattern is essential for any workflow that produces artifacts requiring stakeholder alignment.
+
+## Composio SDK Integration
+
+The Composio SDK provides two production-ready patterns for building AI agents that connect to 200+ external services:
+
+### Tool Router Pattern (for AI Agents)
+- **Session-based isolation** per user with unique MCP URLs
+- **Dynamic toolkit configuration** per session
+- **Automatic OAuth authentication** with `manageConnections: true`
+- Framework integration with Vercel AI, LangChain, and OpenAI Agents
+
+### Direct Execution Pattern (for Traditional Apps)
+- Manual tool execution with `composio.tools.execute()`
+- CRUD operations on connected accounts and auth configs
+- Custom tool creation with authentication
+- Version pinning via `toolkitVersions`
+
+### Configuration
+Add the Rube MCP server for Composio tool access:
+```json
+"rube": {
+  "url": "https://rube.app/mcp"
+}
+```
+
+Source: `awesome-claude-skills/composio-sdk/SKILL.md` (28 detailed rule files covering session management, authentication, CRUD patterns, and multi-tenancy)
 
 ## Decision Matrix
 

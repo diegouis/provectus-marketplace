@@ -1,12 +1,13 @@
 {
   "name": "proagent-ml-ai",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Provectus ML & AI practice plugin for model training, inference optimization, MLOps pipelines, experiment tracking, prompt engineering, embeddings, vector stores, LLM application development, and RAG systems across AWS and GCP.",
   "category": "ml-ai",
   "author": {
     "name": "Provectus",
     "url": "https://provectus.com"
   },
+  "homepage": "https://github.com/diegouis/provectus-marketplace",
   "license": "MIT",
   "keywords": [
     "machine-learning",

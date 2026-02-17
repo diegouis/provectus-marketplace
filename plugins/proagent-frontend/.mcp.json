@@ -31,6 +31,9 @@
         "GITLAB_API_URL": "${GITLAB_API_URL:-https://gitlab.com/api/v4}"
       },
       "description": "GitLab MCP server for merge request management, pipeline monitoring, and design system release automation. Used to enforce accessibility and performance gates on merge requests and publish component library packages."
+    },
+    "rube": {
+      "url": "https://rube.app/mcp"
     }
   }
 }

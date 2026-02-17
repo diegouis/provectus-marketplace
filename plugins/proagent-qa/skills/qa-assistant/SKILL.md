@@ -108,6 +108,48 @@ When a test fails:
 - Include screenshot paths in test result JSON for traceability
 - Verify outcomes against acceptance criteria before marking tests as passed (derived from superpowers/verification-before-completion)
 
+## Agent Teams for Debugging
+
+For complex bugs, use hypothesis-driven debugging with Agent Teams (from `agents/plugins/agent-teams/`):
+
+### Analysis of Competing Hypotheses (ACH)
+Generate hypotheses across failure mode categories:
+1. **Logic Error** — Incorrect conditional, off-by-one, missing edge case
+2. **Data Issue** — Null/undefined, type mismatch, encoding problem
+3. **State Problem** — Race condition, stale cache, incorrect initialization
+4. **Integration Failure** — API contract violation, version incompatibility
+5. **Resource Issue** — Memory leak, connection exhaustion, timeout
+6. **Environment** — Missing dependency, wrong version, platform-specific
+
+### Evidence Classification
+- **Direct** (Strong): Code showing the exact issue
+- **Correlational** (Medium): Error rate increased after a specific commit
+- **Testimonial** (Weak): Anecdotal observation
+- **Absence** (Variable): Missing safeguard in code path
+
+### Root Cause Arbitration
+1. Categorize each hypothesis: Confirmed / Plausible / Falsified / Inconclusive
+2. Rank confirmed hypotheses by: confidence > evidence count > causal chain strength
+3. If one dominates → declare root cause; if multiple equal → investigate compound issue
+
+## Automated PR Review Patterns
+
+When automating code reviews in CI/CD pipelines (patterns from Auto-Claude):
+
+### Structured Review Output
+Format automated review findings with consistent structure:
+- **File path and line range** for each finding
+- **Severity classification** (Critical / High / Medium / Low)
+- **Category tag** (security, performance, correctness, style)
+- **Description** with specific code reference
+- **Suggested fix** with before/after code blocks
+
+### Production Hardening
+- Cap terminal paste sizes to prevent OOM in agent processes
+- Implement orphaned agent cleanup with process monitoring
+- Add recovery mechanisms for interrupted reviews
+- Use structured error reporting (e.g., Sentry integration) for Python-based review agents
+
 ## Integration Points
 
 - **Playwright MCP**: Browser automation for E2E testing via `@playwright/mcp@latest`

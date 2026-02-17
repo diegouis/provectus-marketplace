@@ -25,6 +25,9 @@
         "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
       },
       "description": "Slack integration for DX feedback and platform announcements"
+    },
+    "rube": {
+      "url": "https://rube.app/mcp"
     }
   }
 }

@@ -50,6 +50,13 @@ When performing sales tasks, follow these standards:
 - Document win/loss reasons for every closed deal
 - Forecast using stage-weighted probabilities, not gut feel
 
+## MCP Integrations
+
+- **Slack**: Post deal updates, pipeline notifications, and team communications
+- **Google Drive**: Create and collaborate on proposals, quotes, and competitive analyses
+- **GitHub**: Repository access for sales documentation and template version control
+- **Rube (Composio)**: SaaS automation gateway providing access to Salesforce, HubSpot, Pipedrive, Close, LinkedIn, and Zoho CRM via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
+
 ## Source Repositories
 
 This plugin draws patterns from: awesome-claude-skills, agents, taches-cc-resources, proagent, and skills.

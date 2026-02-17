@@ -133,6 +133,9 @@ Follows conventional commit standards (tac/commands/commit) and branch managemen
 - PRs required for all merges to main
 - CI must pass before merge
 
+### Structured Requirements Elicitation
+The `ask-me-questions` command pattern (from `taches-cc-resources`) provides structured requirement gathering by asking the user targeted questions before beginning implementation. Use this pattern at the start of any development workflow to ensure requirements are clear before writing code.
+
 ### 7. Planning and Task Breakdown
 
 Uses the superpowers writing-plans pattern to break requirements into bite-sized tasks (2-5 minutes each) with explicit file paths, complete code snippets, exact test commands, and expected outputs.
@@ -143,6 +146,66 @@ Uses the superpowers writing-plans pattern to break requirements into bite-sized
 - Each step: exact file paths, complete code, test commands with expected output
 - TDD cycle per task: write failing test, verify fail, implement, verify pass, commit
 - Execution handoff: subagent-driven (in-session) or parallel session
+
+## Agent Teams for Code Review
+
+For comprehensive code reviews, use Agent Teams parallel review patterns (from `agents/plugins/agent-teams/`):
+
+### Parallel Multi-Dimensional Review
+Spawn specialized reviewers running simultaneously:
+- **Security reviewer**: Vulnerabilities, auth bypass, input validation, SQL injection
+- **Performance reviewer**: Query efficiency, memory leaks, caching opportunities
+- **Architecture reviewer**: SOLID principles, coupling, design patterns
+- **Testing reviewer**: Coverage gaps, edge cases, test quality
+
+After all reviewers complete, consolidate findings:
+1. Same file:line with same issue → merge findings, credit all reviewers
+2. Conflicting severity → use the higher severity rating
+3. Conflicting recommendations → include both with reviewer attribution
+
+### Severity Calibration
+- **Critical**: Data loss, security breach, complete failure
+- **High**: Significant functionality impact (memory leak, missing validation)
+- **Medium**: Partial impact, workaround exists (N+1 query, missing edge case)
+- **Low**: Minimal impact, cosmetic (style, minor optimization)
+
+## AWOS Specification-to-Implementation Pipeline
+
+The AWOS (Agentic Workflow Operating System) provides an 8-step pipeline for transforming ideas into production code (from `casdk-harness/src/harness/plugins/awos_workflow/`):
+
+### Pipeline Steps
+1. **Product Vision** → `context/product/product.md` — Non-technical vision, audience, and rationale
+2. **Feature Roadmap** → `context/product/roadmap.md` — Prioritized features and delivery phases
+3. **System Architecture** → `context/product/architecture.md` — Tech stack, databases, infrastructure
+4. **Functional Spec** → `context/spec/{feature}/spec.md` — What the feature does for users
+5. **Technical Plan** → `context/spec/{feature}/tech.md` — How to build it
+6. **Task Decomposition** → `tasks.md` + `task_list.json` — Step-by-step implementation checklist
+7. **Implementation** → Code changes with progress tracking
+8. **Verification** → Validate acceptance criteria are met
+
+### Mandatory Confirmation Gates
+After each step, the workflow STOPS and presents output for user review:
+- **[A]pprove** — Accept output, continue to next step
+- **[E]dit** — User modifies the file, then continues
+- **[R]edo** — Provide feedback, regenerate the step
+
+Configurable via `AWOS_SPEC_REFINEMENT=1,4,6` to set which steps require confirmation.
+
+### Session Persistence
+The workflow persists state to `awos_session.json` with atomic writes, enabling reliable resume across sessions. Step detection uses file existence (e.g., if `architecture.md` exists, skip to step 4).
+
+For long-running development workflows, persist workflow state to a JSON file (e.g., `session.json`) using atomic writes (write to temp file, then rename). Track current step, completed steps, and user confirmations. This enables reliable resume across sessions without relying on chat history.
+
+## Mandatory Confirmation Pattern
+
+For any multi-step autonomous development workflow, implement confirmation gates between phases:
+
+1. **Execute** the current phase (e.g., requirements analysis, architecture design)
+2. **Present** output artifacts to the user
+3. **STOP** and wait for explicit approval: Approve / Edit / Redo
+4. **Only proceed** after receiving confirmation
+
+This pattern prevents autonomous runaway and ensures stakeholder alignment at critical decision points. Configure which steps require confirmation vs. auto-advance based on team trust and workflow maturity.
 
 ## Integration Points
 

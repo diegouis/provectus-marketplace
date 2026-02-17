@@ -118,6 +118,39 @@ Every component must define:
 - Use CSS custom properties for theme tokens that change at runtime
 - Avoid inline styles except for truly dynamic values (calculated positions, user-set colors)
 
+## Tailwind CSS v4
+
+When working with Tailwind CSS v4 projects, follow the new CSS-first configuration approach:
+
+### Key Changes from v3
+- **No more `tailwind.config.js`**: Configuration is now done entirely in CSS using `@theme`
+- **CSS-first configuration**: Use `@theme { --color-primary: #3b82f6; }` instead of JavaScript config
+- **CSS variables by default**: All design tokens are automatically available as CSS custom properties
+- **New `@theme` directive**: Replace `theme.extend` with `@theme` blocks in your CSS
+- **Automatic content detection**: No need to configure `content` paths manually
+
+### Migration Pattern
+```css
+/* v3: tailwind.config.js */
+/* module.exports = { theme: { extend: { colors: { primary: '#3b82f6' } } } } */
+
+/* v4: app.css */
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3b82f6;
+  --font-display: "Inter", sans-serif;
+}
+```
+
+### Best Practices
+- Use `@theme` for all custom design tokens (colors, fonts, spacing)
+- Reference tokens as CSS variables: `var(--color-primary)` or utility classes `text-primary`
+- Remove `tailwind.config.js` and migrate all configuration to CSS
+- Use the new `@variant` directive for custom variants
+
+Source: `agents/plugins/frontend-mobile-development/` (Tailwind v4 skill)
+
 ## Integration Points
 
 - **Playwright MCP**: Visual regression testing and cross-browser validation for UI components
@@ -126,6 +159,39 @@ Every component must define:
 - **Storybook**: Component documentation, visual testing, design system catalog
 - **axe-core**: Automated accessibility testing in CI pipelines
 - **Lighthouse**: Performance auditing and Core Web Vitals monitoring
+
+## Composio App Automations
+
+This plugin integrates with Composio-powered SaaS automation skills via the Rube MCP server. These skills connect to real external services for end-to-end workflow automation.
+
+### Available Automations
+
+| Skill | Service | Key Capabilities |
+|-------|---------|-----------------|
+| figma-automation | Figma | Read design files, extract components and styles, export assets, inspect design tokens |
+| canva-automation | Canva | Create designs, manage templates, export assets, brand kit management |
+| webflow-automation | Webflow | Manage sites, collections, items, publish changes, CMS operations |
+| miro-automation | Miro | Create/manage boards, add shapes and connectors, sticky notes, wireframe collaboration |
+| youtube-design-concept-extractor | YouTube | Extract design concepts and UI/UX patterns from video content for design system research |
+
+### Usage Pattern
+
+All Composio automations follow a three-step workflow:
+
+1. **Discover tools**: Use `RUBE_SEARCH_TOOLS` with a use case description to find available tools and their schemas
+2. **Connect service**: Use `RUBE_MANAGE_CONNECTIONS` to activate the toolkit connection (handles OAuth automatically)
+3. **Execute actions**: Use `RUBE_MULTI_EXECUTE_TOOL` with the discovered tool slug and schema-compliant arguments
+
+### Configuration
+
+Add the Rube MCP server to your `.mcp.json`:
+```json
+"rube": {
+  "url": "https://rube.app/mcp"
+}
+```
+
+Source: `awesome-claude-skills` Composio app automation skills
 
 ## Quality Gates
 

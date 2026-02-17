@@ -1,12 +1,13 @@
 {
   "name": "proagent-platform",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Platform engineering toolkit for building developer platforms, internal tooling, service catalogs, golden paths, scaffolding systems, MCP servers, and plugin architectures. Covers DX optimization, template libraries, CLI tools, and platform-as-product practices.",
   "category": "platform",
   "author": {
     "name": "Provectus",
     "url": "https://provectus.com"
   },
+  "homepage": "https://github.com/diegouis/provectus-marketplace",
   "license": "MIT",
   "keywords": [
     "platform-engineering",
