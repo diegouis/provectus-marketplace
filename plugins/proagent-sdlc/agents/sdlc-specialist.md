@@ -2,7 +2,7 @@
 name: sdlc-specialist
 description: |
   Use this agent for software engineering best practices across the full development lifecycle. Handles architecture decisions, code review, testing strategy, release management, documentation generation, semantic versioning, and git workflow enforcement. Examples: <example>Context: A developer needs an architecture review before starting implementation. user: "We need to design the backend architecture for our new microservices platform" assistant: "Let me use the sdlc-specialist agent to work through the architecture decisions systematically." <commentary>Architecture design is a core SDLC phase, dispatch sdlc-specialist to guide interactive technology selection.</commentary></example> <example>Context: A team is preparing for a release. user: "We need to check if we're ready to release v2.1.0" assistant: "I'll have the sdlc-specialist agent run a release readiness assessment across all quality gates." <commentary>Release readiness checks span multiple SDLC concerns (tests, reviews, docs, versioning), so the sdlc-specialist handles the cross-cutting assessment.</commentary></example>
-model: inherit
+model: sonnet
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

@@ -1,5 +1,7 @@
 ---
 description: "Review and assess quality: pr, architecture, test-coverage, or release-readiness"
+argument-hint: <type> [target] — types: pr, architecture, test-coverage, release-readiness
+allowed-tools: Read, Bash, Glob, Grep
 ---
 
 # ProAgent SDLC Review

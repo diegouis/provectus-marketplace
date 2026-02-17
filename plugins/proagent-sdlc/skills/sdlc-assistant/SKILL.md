@@ -9,8 +9,6 @@ description: Use when managing any phase of the software development lifecycle -
 
 This skill orchestrates the full software development lifecycle from architecture through release. It draws on proven patterns from AWOS (spec-driven architecture), superpowers (TDD planning with bite-sized tasks), casdk-harness (automated code review pipelines), tac (semantic commits and automated PR workflows), and ralph-orchestrator (spec-driven development with cargo-fmt quality gates).
 
-**Announce at start:** "I'm using the proagent-sdlc:sdlc-assistant skill to manage this SDLC phase."
-
 ## When to Use
 
 - Defining or updating system architecture for a project

@@ -1,5 +1,7 @@
 ---
 description: "Execute an SDLC workflow: architect, review-code, plan-release, document, or version"
+argument-hint: <mode> [options] — modes: architect, review-code, plan-release, document, version
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 # ProAgent SDLC Run

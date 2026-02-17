@@ -79,8 +79,8 @@ The plugin ships with MCP server configurations for:
 |--------|---------|-------------------------------|
 | GitHub | PR management, issues, CI/CD | `GITHUB_PERSONAL_ACCESS_TOKEN` |
 | GitLab | Merge requests, pipelines | `GITLAB_PERSONAL_ACCESS_TOKEN` |
-| Jira | Issue tracking, sprints | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_SITE_URL` |
-| Confluence | Documentation publishing | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_SITE_URL` |
+| Jira | Issue tracking, sprints | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_DOMAIN` |
+| Confluence | Documentation publishing | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_DOMAIN` |
 
 Set the environment variables for the services your team uses. Unused servers will not be started.
 

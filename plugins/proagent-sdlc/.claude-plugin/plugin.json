@@ -10,6 +10,7 @@
     "type": "git",
     "url": "https://github.com/provectus/proagent-marketplace"
   },
+  "version": "0.1.0",
   "license": "MIT",
   "category": "sdlc",
   "keywords": [
@@ -25,8 +26,11 @@
     "tdd",
     "spec-driven-development"
   ],
-  "agents": ["./agents"],
-  "skills": ["./skills"],
-  "commands": ["./commands"],
-  "hooks": ["./hooks"]
+  "resources": {
+    "skills": ["skills/sdlc-assistant"],
+    "agents": ["agents/sdlc-specialist.md"],
+    "commands": ["commands/"],
+    "hooks": ["hooks/hooks.json"],
+    "mcp": [".mcp.json"]
+  }
 }

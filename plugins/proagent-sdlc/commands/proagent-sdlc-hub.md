@@ -1,5 +1,7 @@
 ---
 description: SDLC command hub -- lists all available proagent-sdlc commands and their purposes
+argument-hint: [topic]
+allowed-tools: Read, Glob
 ---
 
 # ProAgent SDLC Command Hub

@@ -45,7 +45,7 @@ Three hooks enforce quality gates:
 Configure the following environment variables to enable integrations:
 - `GITHUB_PERSONAL_ACCESS_TOKEN` -- GitHub PR management and issue tracking
 - `GITLAB_PERSONAL_ACCESS_TOKEN` / `GITLAB_API_URL` -- GitLab merge requests and CI/CD
-- `ATLASSIAN_API_TOKEN` / `ATLASSIAN_EMAIL` / `ATLASSIAN_SITE_URL` -- Jira issues and Confluence docs
+- `ATLASSIAN_API_TOKEN` / `ATLASSIAN_EMAIL` / `ATLASSIAN_DOMAIN` -- Jira issues and Confluence docs
 
 ## Source Attribution
 
