@@ -54,8 +54,11 @@ When performing data engineering tasks, follow these standards:
 
 ## MCP Integrations
 
-- **GitHub**: Data pipeline repository management, PR reviews for schema changes, CI/CD for dbt deployments
-- **Rube (Composio)**: SaaS automation for Google Sheets, Airtable, Supabase, Amplitude, Mixpanel, PostHog, and Segment via Composio-powered tools
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **Rube (Composio)**: SaaS automation gateway providing access to Google Sheets, Airtable, Supabase, Amplitude, Mixpanel, PostHog, and Segment via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
 
 ## Source Repositories
 

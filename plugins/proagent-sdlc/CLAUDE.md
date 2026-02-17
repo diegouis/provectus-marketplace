@@ -42,10 +42,14 @@ Three hooks enforce quality gates:
 3. **Pre-push:** Prevents pushing WIP/fixup commits and warns if the branch is behind the remote
 
 ### MCP Servers
-Configure the following environment variables to enable integrations:
-- `GITHUB_PERSONAL_ACCESS_TOKEN` -- GitHub PR management and issue tracking
-- `GITLAB_PERSONAL_ACCESS_TOKEN` / `GITLAB_API_URL` -- GitLab merge requests and CI/CD
-- `ATLASSIAN_API_TOKEN` / `ATLASSIAN_EMAIL` / `ATLASSIAN_DOMAIN` -- Jira issues and Confluence docs
+
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **GitLab**: Merge requests, CI/CD pipelines, and project management via `@modelcontextprotocol/server-gitlab`
+- **Jira**: Issue tracking, sprint management, and backlog grooming via `@modelcontextprotocol/server-atlassian`
+- **Confluence**: Documentation, ADRs, and knowledge base management via `@modelcontextprotocol/server-atlassian`
 
 ## Source Attribution
 

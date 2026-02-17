@@ -58,6 +58,14 @@ When performing backend development tasks, follow these standards:
 - Document public APIs and configuration requirements
 - Provide rollback procedures for database migrations
 
+## MCP Integrations
+
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **GitLab**: Merge requests, pipeline management for backend projects via `@modelcontextprotocol/server-gitlab`
+
 ## Source Repositories
 
 This plugin draws patterns from: proagent, agents, casdk-harness, claude-ui, tac, skills, proagent-repo GUI, awesome-claude-skills, and specs.

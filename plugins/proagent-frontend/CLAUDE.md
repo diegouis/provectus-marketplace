@@ -39,10 +39,13 @@ The hooks configuration enforces:
 
 ## MCP Integrations
 
-- **Playwright**: Cross-browser UI testing, visual regression, responsive layout validation, accessibility auditing of rendered pages
-- **GitHub**: Component library PRs with visual diffs, design system versioning, frontend CI/CD
-- **GitLab**: Merge request UI gates, pipeline monitoring, component package publishing
-- **Rube (Composio)**: SaaS automation for Figma, Canva, Webflow, and Miro via Composio-powered tools
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **GitLab**: Merge request UI gates, pipeline monitoring, component package publishing via `@modelcontextprotocol/server-gitlab`
+- **Playwright**: Cross-browser UI testing, visual regression, responsive layout validation, and accessibility auditing via `@playwright/mcp@latest`
+- **Rube (Composio)**: SaaS automation for Figma, Canva, Webflow, Miro, and 200+ integrations via `https://rube.app/mcp`
 
 ## Conventions
 

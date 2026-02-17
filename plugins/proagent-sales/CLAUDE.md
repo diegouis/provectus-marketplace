@@ -52,9 +52,10 @@ When performing sales tasks, follow these standards:
 
 ## MCP Integrations
 
-- **Slack**: Post deal updates, pipeline notifications, and team communications
-- **Google Drive**: Create and collaborate on proposals, quotes, and competitive analyses
-- **GitHub**: Repository access for sales documentation and template version control
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
 - **Rube (Composio)**: SaaS automation gateway providing access to Salesforce, HubSpot, Pipedrive, Close, LinkedIn, and Zoho CRM via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
 
 ## Source Repositories

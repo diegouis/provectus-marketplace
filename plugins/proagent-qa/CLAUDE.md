@@ -38,10 +38,13 @@ The hooks configuration enforces:
 
 ## MCP Integrations
 
-- **Playwright**: Browser automation for E2E testing via `@playwright/mcp@latest`
-- **GitHub**: PR test gates, issue tracking, CI/CD integration
-- **GitLab**: Merge request test enforcement, pipeline monitoring
-- **Jira**: Test-to-story linking, defect ticket creation
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **GitLab**: Merge request test enforcement, pipeline monitoring via `@modelcontextprotocol/server-gitlab`
+- **Playwright**: Browser automation for E2E testing, visual regression, and accessibility auditing via `@playwright/mcp@latest`
+- **Jira**: Test-to-story linking, defect ticket creation, and sprint tracking via `@modelcontextprotocol/server-atlassian`
 
 ## Conventions
 

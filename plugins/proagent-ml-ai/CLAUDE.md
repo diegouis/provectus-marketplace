@@ -50,6 +50,13 @@ When performing ML & AI tasks, follow these standards:
 - Write unit tests for data loading, preprocessing, and model inference
 - Use type hints and docstrings throughout ML code
 
+## MCP Integrations
+
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+
 ## Source Repositories
 
 This plugin draws patterns from: proagent (ML engineer role, skills, commands, templates), awesome-claude-skills (LangSmith debugging), agents (LLM architect), tac (OpenAI/Anthropic utilities, NL-to-SQL), proagent-repo GUI (ML validation workflows), and specs (ML/Data role implementations).

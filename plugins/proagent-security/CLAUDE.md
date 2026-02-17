@@ -49,6 +49,14 @@ When performing security tasks, follow these standards:
 - Use the trust ladder model for agent operations: Supervised -> Approval-Gated -> Monitored -> Autonomous -> Zero-Touch
 - Classify tasks by risk (LOW, MEDIUM, HIGH, CRITICAL) using keyword analysis
 
+## MCP Integrations
+
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **GitLab**: Project management, vulnerability reports, SAST/DAST pipeline results, dependency scanning, and merge request approvals via `@modelcontextprotocol/server-gitlab`
+
 ## Source Repositories
 
 This plugin draws patterns from: proagent, proagent-repo GUI, casdk-harness, Auto-Claude, awesome-claude-code, agents, tac, claude-ui, gastown, and superpowers.

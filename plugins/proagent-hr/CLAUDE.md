@@ -41,9 +41,10 @@ The hooks configuration enforces:
 
 ## MCP Integrations
 
-- **Slack**: Post hiring pipeline updates, new hire introductions, and team notifications
-- **Google Drive**: Create and collaborate on job descriptions, offer letters, performance reviews, and policy documents
-- **GitHub**: Repository access for HR documentation and policy version control
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
 - **Rube (Composio)**: SaaS automation gateway providing access to BambooHR, Google Calendar, Slack, and Gmail via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
 
 ## Conventions

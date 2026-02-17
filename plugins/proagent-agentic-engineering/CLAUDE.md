@@ -15,7 +15,14 @@ This plugin provides comprehensive tooling for building, orchestrating, and opti
 
 - **Hooks**: PreToolUse validation for agent artifacts, PostToolUse audit logging, and SessionStart context loading. Configured in `hooks/hooks.json`.
 
-- **MCP Servers**: Pre-configured connections to GitHub, GitLab, Playwright, and Rube (Composio SDK for 200+ SaaS integrations with session-based isolation and automatic OAuth) for agent development and testing. Configured in `.mcp.json`.
+- **MCP Servers**: Pre-configured connections for agent development and testing. Configured in `.mcp.json`:
+  - **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+  - **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+  - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+  - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+  - **GitLab**: Merge requests, CI/CD pipelines, and project management via `@modelcontextprotocol/server-gitlab`
+  - **Playwright**: Browser automation for E2E testing and visual validation via `@playwright/mcp@latest`
+  - **Rube (Composio)**: SaaS automation gateway providing access to 200+ integrations with session-based isolation and automatic OAuth via `https://rube.app/mcp`
 
 ## Key Conventions
 

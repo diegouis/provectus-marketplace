@@ -43,12 +43,11 @@ Three hooks enforce financial document quality:
 
 ### MCP Servers
 
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
 - **Rube (Composio)**: SaaS automation gateway providing access to Stripe, Square, and Shopify via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
-
-Configure the following environment variables to enable integrations:
-- `GOOGLE_APPLICATION_CREDENTIALS` / `GOOGLE_DOCS_OAUTH_TOKEN` -- Google Docs for financial document collaboration (budgets, reports, P&L statements)
-- `GMAIL_OAUTH_TOKEN` -- Gmail for invoice delivery, payment reminders, and report distribution
-- `SLACK_BOT_TOKEN` / `SLACK_TEAM_ID` -- Slack for real-time financial alerts (budget thresholds, payment confirmations, overdue escalations)
 
 ## Source Attribution
 

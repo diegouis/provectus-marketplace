@@ -43,12 +43,11 @@ Three hooks support delivery discipline:
 
 ### MCP Servers
 
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **Atlassian**: Jira sprint management, backlog grooming, issue tracking, velocity metrics, burndown charts, and Confluence documentation publishing via `@modelcontextprotocol/server-atlassian`
 - **Rube (Composio)**: SaaS automation gateway providing access to Jira, Linear, Asana, ClickUp, Monday.com, Confluence, and Trello via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
-
-Configure the following environment variables to enable integrations:
-- `ATLASSIAN_API_TOKEN` / `ATLASSIAN_EMAIL` / `ATLASSIAN_DOMAIN` -- Jira sprint management and Confluence documentation
-- `SLACK_BOT_TOKEN` -- Slack standups, 3P updates, and stakeholder notifications
-- `GOOGLE_CREDENTIALS_PATH` -- Google Calendar ceremony scheduling and milestone tracking
 
 ## Source Attribution
 

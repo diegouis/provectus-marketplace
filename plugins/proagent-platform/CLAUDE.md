@@ -33,10 +33,12 @@ proagent-platform/
 
 ## MCP Integrations
 
-- **GitHub**: Repository management, template repos, Actions workflows
-- **GitLab**: Project templates, CI/CD pipelines
-- **Slack**: DX feedback, platform announcements
-- **Rube (Composio)**: SaaS automation for Slack, Notion, Confluence, and Google Drive via Composio-powered tools
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **GitLab**: Project templates, CI/CD pipelines, and merge requests via `@modelcontextprotocol/server-gitlab`
+- **Rube (Composio)**: SaaS automation gateway for Notion, Confluence, Figma, and 200+ integrations via `https://rube.app/mcp`
 
 ## Key Conventions
 

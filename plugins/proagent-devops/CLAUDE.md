@@ -42,9 +42,12 @@ When performing DevOps tasks, follow these standards:
 
 ## MCP Integrations
 
-- **GitHub**: Repository management, Actions workflows, and PR operations
-- **GitLab**: CI/CD pipelines, merge requests, and container registry
-- **Rube (Composio)**: SaaS automation gateway providing access to GitHub, GitLab, CircleCI, Vercel, Render, Datadog, Sentry, and PagerDuty via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
+- **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
+- **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
+- **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
+- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **GitLab**: CI/CD pipelines, merge requests, and container registry via `@modelcontextprotocol/server-gitlab`
+- **Rube (Composio)**: SaaS automation gateway for CircleCI, Vercel, Render, Datadog, Sentry, PagerDuty, and 200+ integrations via `https://rube.app/mcp`
 
 ## Source Repositories
 
