@@ -1,42 +1,8 @@
 {
   "name": "proagent-ml-ai",
   "version": "0.2.0",
-  "description": "Provectus ML & AI practice plugin for model training, inference optimization, MLOps pipelines, experiment tracking, prompt engineering, embeddings, vector stores, LLM application development, and RAG systems across AWS and GCP.",
-  "category": "ml-ai",
+  "description": "Provectus ML & AI practice plugin for model training, inference optimization, MLOps pipelines, experiment tracking, prompt engineering, embeddings, vector stores, LLM application development, and RAG systems.",
   "author": {
-    "name": "Provectus",
-    "url": "https://provectus.com"
-  },
-  "homepage": "https://github.com/diegouis/provectus-marketplace",
-  "license": "MIT",
-  "keywords": [
-    "machine-learning",
-    "deep-learning",
-    "mlops",
-    "model-training",
-    "model-deployment",
-    "experiment-tracking",
-    "feature-engineering",
-    "hyperparameter-tuning",
-    "llm",
-    "rag",
-    "embeddings",
-    "vector-stores",
-    "prompt-engineering",
-    "sagemaker",
-    "vertex-ai",
-    "mlflow",
-    "wandb"
-  ],
-  "resources": {
-    "skills": ["skills/ml-ai-assistant/SKILL.md"],
-    "agents": ["agents/ml-ai-specialist.md"],
-    "commands": [
-      "commands/proagent-ml-ai-hub.md",
-      "commands/proagent-ml-ai-run.md",
-      "commands/proagent-ml-ai-review.md"
-    ],
-    "hooks": ["hooks/hooks.json"],
-    "mcp": [".mcp.json"]
+    "name": "diegouis"
   }
 }

@@ -2,23 +2,7 @@
   "name": "proagent-security",
   "version": "0.2.0",
   "description": "Provectus Security practice plugin for vulnerability scanning, compliance enforcement, secrets management, encryption, audit logging, threat modeling, OWASP Top 10 protection, and Zero Trust architecture.",
-  "category": "security",
   "author": {
-    "name": "Provectus",
-    "url": "https://provectus.com"
-  },
-  "homepage": "https://github.com/diegouis/provectus-marketplace",
-  "license": "MIT",
-  "keywords": ["security", "vulnerability-scanning", "owasp", "compliance", "secrets-management", "encryption", "threat-modeling", "zero-trust", "devsecops", "audit", "sast", "dast"],
-  "resources": {
-    "skills": ["skills/security-assistant/SKILL.md"],
-    "agents": ["agents/security-specialist.md"],
-    "commands": [
-      "commands/proagent-security-hub.md",
-      "commands/proagent-security-run.md",
-      "commands/proagent-security-review.md"
-    ],
-    "hooks": ["hooks/hooks.json"],
-    "mcp": [".mcp.json"]
+    "name": "diegouis"
   }
 }

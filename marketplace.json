@@ -2,7 +2,7 @@
   "name": "provectus-marketplace",
   "version": "0.2.0",
   "description": "ProAgent Plugin Marketplace — practice-specific plugins for Provectus teams, built from 843 assets across 17 repositories",
-  "author": "Provectus",
+  "author": "diegouis",
   "generated": "2026-02-16",
   "plugins": [
     {
@@ -10,7 +10,7 @@
       "version": "0.2.0",
       "category": "agentic-engineering",
       "description": "Building, orchestrating, and optimizing AI agent systems with Claude Code extensions, MCP servers, multi-agent workflows, and prompt engineering",
-      "path": "plugins/proagent-agentic-engineering",
+      "source": "./plugins/proagent-agentic-engineering",
       "assets_count": 612,
       "source_repos": 19,
       "components": {
@@ -26,7 +26,7 @@
       "version": "0.2.0",
       "category": "sdlc",
       "description": "Managing Software Development Lifecycle — architecture, code review, testing strategy, release management, documentation, and git workflows",
-      "path": "plugins/proagent-sdlc",
+      "source": "./plugins/proagent-sdlc",
       "assets_count": 208,
       "source_repos": 12,
       "components": {
@@ -42,7 +42,7 @@
       "version": "0.2.0",
       "category": "platform",
       "description": "Building Developer Platforms & Tooling — service catalogs, golden paths, scaffolding, MCP server development, and DX optimization",
-      "path": "plugins/proagent-platform",
+      "source": "./plugins/proagent-platform",
       "assets_count": 127,
       "source_repos": 8,
       "components": {
@@ -58,7 +58,7 @@
       "version": "0.2.0",
       "category": "devops",
       "description": "Managing Infrastructure & Deployments — CI/CD pipelines, Docker/Kubernetes, Terraform/IaC, monitoring, incident response, and cloud operations",
-      "path": "plugins/proagent-devops",
+      "source": "./plugins/proagent-devops",
       "assets_count": 126,
       "source_repos": 5,
       "components": {
@@ -74,7 +74,7 @@
       "version": "0.2.0",
       "category": "qa",
       "description": "Ensuring Software Quality — test automation, Playwright/Cypress, regression testing, coverage analysis, E2E testing, and accessibility",
-      "path": "plugins/proagent-qa",
+      "source": "./plugins/proagent-qa",
       "assets_count": 110,
       "source_repos": 6,
       "components": {
@@ -90,7 +90,7 @@
       "version": "0.2.0",
       "category": "backend",
       "description": "Building Scalable Backend Services — APIs, databases, microservices, auth, caching, queues, and performance optimization",
-      "path": "plugins/proagent-backend",
+      "source": "./plugins/proagent-backend",
       "assets_count": 63,
       "source_repos": 4,
       "components": {
@@ -106,7 +106,7 @@
       "version": "0.2.0",
       "category": "frontend",
       "description": "Building Modern Web Interfaces — React/Vue/Angular, design systems, accessibility (WCAG 2.1 AA), responsive design, and performance optimization",
-      "path": "plugins/proagent-frontend",
+      "source": "./plugins/proagent-frontend",
       "assets_count": 60,
       "source_repos": 8,
       "components": {
@@ -122,7 +122,7 @@
       "version": "0.2.0",
       "category": "delivery",
       "description": "Managing Project Delivery — sprint planning, milestones, status reports, risk management, stakeholder communication, and retrospectives",
-      "path": "plugins/proagent-delivery",
+      "source": "./plugins/proagent-delivery",
       "assets_count": 52,
       "source_repos": 8,
       "components": {
@@ -138,7 +138,7 @@
       "version": "0.2.0",
       "category": "security",
       "description": "Securing Software & Infrastructure — vulnerability scanning, compliance, secrets management, threat modeling, OWASP, and Zero Trust",
-      "path": "plugins/proagent-security",
+      "source": "./plugins/proagent-security",
       "assets_count": 51,
       "source_repos": 10,
       "components": {
@@ -154,7 +154,7 @@
       "version": "0.2.0",
       "category": "data",
       "description": "Engineering Data Pipelines & Analytics — ETL/ELT, dbt, Airflow, data warehousing, SQL optimization, and data quality",
-      "path": "plugins/proagent-data",
+      "source": "./plugins/proagent-data",
       "assets_count": 27,
       "source_repos": 5,
       "components": {
@@ -170,7 +170,7 @@
       "version": "0.2.0",
       "category": "ml-ai",
       "description": "Building ML & AI Systems — model training, MLOps, experiment tracking, LLM applications, RAG, embeddings, and deployment",
-      "path": "plugins/proagent-ml-ai",
+      "source": "./plugins/proagent-ml-ai",
       "assets_count": 22,
       "source_repos": 3,
       "components": {
@@ -186,7 +186,7 @@
       "version": "0.3.0",
       "category": "hr",
       "description": "Managing Human Resources & Talent — hiring, interviews, onboarding, performance reviews, compensation, employee development, and CV validation at scale with multi-agent orchestration and blind review",
-      "path": "plugins/proagent-hr",
+      "source": "./plugins/proagent-hr",
       "assets_count": 22,
       "source_repos": 5,
       "components": {
@@ -202,7 +202,7 @@
       "version": "0.2.0",
       "category": "sales",
       "description": "Driving Sales & Business Development — proposals, RFPs, competitive analysis, lead research, pipeline management, and quote generation",
-      "path": "plugins/proagent-sales",
+      "source": "./plugins/proagent-sales",
       "assets_count": 13,
       "source_repos": 5,
       "components": {
@@ -218,7 +218,7 @@
       "version": "0.2.0",
       "category": "finance",
       "description": "Managing Financial Operations — budgeting, invoicing, forecasting, P&L analysis, cost optimization, and financial reporting",
-      "path": "plugins/proagent-finance",
+      "source": "./plugins/proagent-finance",
       "assets_count": 4,
       "source_repos": 3,
       "components": {

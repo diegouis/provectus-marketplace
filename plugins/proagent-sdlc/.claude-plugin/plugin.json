@@ -1,37 +1,8 @@
 {
   "name": "proagent-sdlc",
-  "version": "0.1.0",
-  "description": "End-to-end software development lifecycle management: architecture decisions, code review, testing strategy, release planning, documentation, versioning, and git workflows. Synthesized from 17 open-source repos including AWOS, superpowers, casdk-harness, tac, and ralph-orchestrator.",
-  "author": {
-    "name": "Provectus",
-    "email": "agentic-coding@provectus.com"
-  },
-  "homepage": "https://github.com/diegouis/provectus-marketplace",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/provectus/proagent-marketplace"
-  },
   "version": "0.2.0",
-  "license": "MIT",
-  "category": "sdlc",
-  "keywords": [
-    "sdlc",
-    "software-development-lifecycle",
-    "architecture",
-    "code-review",
-    "testing-strategy",
-    "release-management",
-    "documentation",
-    "versioning",
-    "git-workflow",
-    "tdd",
-    "spec-driven-development"
-  ],
-  "resources": {
-    "skills": ["skills/sdlc-assistant"],
-    "agents": ["agents/sdlc-specialist.md"],
-    "commands": ["commands/"],
-    "hooks": ["hooks/hooks.json"],
-    "mcp": [".mcp.json"]
+  "description": "End-to-end software development lifecycle management: architecture decisions, code review, testing strategy, release planning, documentation, versioning, and git workflows.",
+  "author": {
+    "name": "diegouis"
   }
 }

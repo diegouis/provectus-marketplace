@@ -1,34 +1,8 @@
 {
   "name": "proagent-sales",
   "version": "0.2.0",
-  "description": "Provectus Sales practice plugin for proposals, RFP responses, pricing strategies, CRM management, deal pipeline tracking, competitive analysis, lead research, and quote generation drawn from actual Provectus repositories.",
+  "description": "Provectus Sales practice plugin for proposals, RFP responses, pricing strategies, CRM management, deal pipeline tracking, competitive analysis, lead research, and quote generation.",
   "author": {
-    "name": "Provectus",
-    "url": "https://provectus.com"
-  },
-  "homepage": "https://github.com/diegouis/provectus-marketplace",
-  "license": "MIT",
-  "keywords": [
-    "sales",
-    "proposals",
-    "rfp",
-    "pricing",
-    "crm",
-    "pipeline",
-    "competitive-analysis",
-    "lead-research",
-    "quote-generation",
-    "business-development"
-  ],
-  "resources": {
-    "skills": ["skills/sales-assistant/SKILL.md"],
-    "agents": ["agents/sales-specialist.md"],
-    "commands": [
-      "commands/proagent-sales-hub.md",
-      "commands/proagent-sales-run.md",
-      "commands/proagent-sales-review.md"
-    ],
-    "hooks": ["hooks/hooks.json"],
-    "mcp": [".mcp.json"]
+    "name": "diegouis"
   }
 }

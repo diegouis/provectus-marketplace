@@ -2,36 +2,7 @@
   "name": "proagent-backend",
   "version": "0.2.0",
   "description": "Provectus Backend practice plugin for scalable API design (REST, GraphQL, gRPC), database schema engineering, microservices architecture, authentication and authorization, message queues, caching strategies, and performance optimization.",
-  "category": "backend",
   "author": {
-    "name": "Provectus",
-    "url": "https://provectus.com"
-  },
-  "homepage": "https://github.com/diegouis/provectus-marketplace",
-  "license": "MIT",
-  "keywords": [
-    "backend",
-    "api-design",
-    "rest",
-    "graphql",
-    "grpc",
-    "database",
-    "microservices",
-    "authentication",
-    "authorization",
-    "caching",
-    "message-queues",
-    "performance",
-    "security",
-    "postgresql",
-    "mongodb",
-    "redis"
-  ],
-  "resources": {
-    "skills": ["skills/backend-assistant"],
-    "agents": ["agents/backend-specialist.md"],
-    "commands": ["commands/"],
-    "hooks": ["hooks/hooks.json"],
-    "mcp": [".mcp.json"]
+    "name": "diegouis"
   }
 }

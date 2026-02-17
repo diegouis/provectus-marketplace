@@ -2,23 +2,7 @@
   "name": "proagent-frontend",
   "version": "0.2.0",
   "description": "Provectus Frontend Engineering plugin for Claude Code. Provides comprehensive capabilities for building modern web interfaces including React/Vue/Angular component development, design systems, accessibility auditing, responsive design, performance optimization, and theming.",
-  "category": "frontend",
   "author": {
-    "name": "Provectus",
-    "url": "https://provectus.com"
-  },
-  "homepage": "https://github.com/diegouis/provectus-marketplace",
-  "license": "MIT",
-  "keywords": ["frontend", "react", "vue", "angular", "tailwind", "accessibility", "wcag", "design-system", "performance", "vite", "typescript"],
-  "resources": {
-    "skills": ["skills/frontend-assistant/SKILL.md"],
-    "agents": ["agents/frontend-specialist.md"],
-    "commands": [
-      "commands/proagent-frontend-hub.md",
-      "commands/proagent-frontend-run.md",
-      "commands/proagent-frontend-review.md"
-    ],
-    "hooks": ["hooks/hooks.json"],
-    "mcp": [".mcp.json"]
+    "name": "diegouis"
   }
 }

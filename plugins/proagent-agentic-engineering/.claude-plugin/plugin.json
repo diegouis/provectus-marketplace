@@ -2,34 +2,7 @@
   "name": "proagent-agentic-engineering",
   "version": "0.2.0",
   "description": "ProAgent plugin for agentic engineering — building, orchestrating, and optimizing AI agent systems with Claude Code extensions, MCP servers, multi-agent workflows, and prompt engineering",
-  "category": "agentic-engineering",
-  "practices": ["agentic-engineering"],
-  "author": "Provectus",
-  "homepage": "https://github.com/diegouis/provectus-marketplace",
-  "license": "MIT",
-  "keywords": [
-    "agentic-engineering",
-    "claude-code",
-    "multi-agent",
-    "orchestration",
-    "skills",
-    "commands",
-    "hooks",
-    "mcp",
-    "prompt-engineering",
-    "context-engineering",
-    "subagents",
-    "plugins"
-  ],
-  "engines": {
-    "claude-code": ">=2.0.0"
-  },
-  "resources": {
-    "skills": ["skills/agentic-engineering-assistant"],
-    "agents": ["agents/agentic-engineering-specialist.md"],
-    "commands": ["commands/"],
-    "hooks": ["hooks/hooks.json"],
-    "mcp": [".mcp.json"]
-  },
-  "dependencies": []
+  "author": {
+    "name": "diegouis"
+  }
 }

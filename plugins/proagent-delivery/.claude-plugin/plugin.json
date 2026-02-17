@@ -2,23 +2,7 @@
   "name": "proagent-delivery",
   "version": "0.2.0",
   "description": "Project delivery management: sprint planning, milestone tracking, stakeholder updates, status reports, risk assessment, retrospectives, resource allocation, and agile/scrum workflows.",
-  "category": "delivery",
   "author": {
-    "name": "Provectus",
-    "url": "https://provectus.com"
-  },
-  "homepage": "https://github.com/diegouis/provectus-marketplace",
-  "license": "MIT",
-  "keywords": ["delivery", "project-management", "sprint-planning", "milestone-tracking", "status-reports", "risk-assessment", "retrospectives", "agile", "scrum"],
-  "resources": {
-    "skills": ["skills/delivery-assistant/SKILL.md"],
-    "agents": ["agents/delivery-specialist.md"],
-    "commands": [
-      "commands/proagent-delivery-hub.md",
-      "commands/proagent-delivery-run.md",
-      "commands/proagent-delivery-review.md"
-    ],
-    "hooks": ["hooks/hooks.json"],
-    "mcp": [".mcp.json"]
+    "name": "diegouis"
   }
 }
