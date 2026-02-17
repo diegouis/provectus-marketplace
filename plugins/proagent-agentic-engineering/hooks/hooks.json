@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.file_path // empty' | { read file_path; if [ -n \"$file_path\" ]; then case \"$file_path\" in */agents/*.md|*/skills/*/SKILL.md|*/commands/*.md) if echo \"$file_path\" | grep -q 'SKILL.md'; then if [ -f \"$file_path\" ] && ! head -1 \"$file_path\" | grep -q '^---'; then echo 'WARNING: SKILL.md files require YAML frontmatter with name and description fields' >&2; fi; fi ;; esac; fi; }",
+            "command": "jq -r '.tool_input.file_path // empty' | { read file_path; if [ -n \"$file_path\" ]; then case \"$file_path\" in */skills/*/SKILL.md) if [ -f \"$file_path\" ] && ! head -1 \"$file_path\" | grep -q '^---'; then echo 'BLOCKED: SKILL.md files require YAML frontmatter (---) with name and description fields' >&2; exit 2; fi ;; esac; fi; }",
             "timeout": 10
           }
         ]
@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo \"[proagent-agentic-engineering] Agentic engineering plugin loaded. Use /proagent-agentic-engineering for capabilities.\"",
+            "command": "if [ -f .claude-plugin/plugin.json ] || [ -d .claude/agents ] || [ -d .claude/skills ]; then echo '[proagent-agentic-engineering] Agentic engineering plugin loaded. Use /proagent-agentic-engineering for capabilities.'; fi",
             "timeout": 5
           }
         ]

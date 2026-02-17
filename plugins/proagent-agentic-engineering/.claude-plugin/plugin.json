@@ -23,5 +23,12 @@
   "engines": {
     "claude-code": ">=2.0.0"
   },
+  "resources": {
+    "skills": ["skills/agentic-engineering-assistant"],
+    "agents": ["agents/agentic-engineering-specialist.md"],
+    "commands": ["commands/"],
+    "hooks": ["hooks/hooks.json"],
+    "mcp": [".mcp.json"]
+  },
   "dependencies": []
 }

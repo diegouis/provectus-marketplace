@@ -1,6 +1,7 @@
 ---
 description: ProAgent Agentic Engineering hub -- show capabilities, route to sub-commands for building agent systems
 argument-hint: [sub-command or topic]
+allowed-tools: Read, Glob
 ---
 
 # ProAgent Agentic Engineering
