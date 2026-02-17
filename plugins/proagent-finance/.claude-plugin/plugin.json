@@ -1,0 +1,33 @@
+{
+  "name": "proagent-finance",
+  "version": "0.1.0",
+  "description": "Financial operations management: budgeting, invoicing, revenue forecasting, P&L analysis, cost optimization, billing, and financial reporting. Synthesized from awesome-claude-skills (invoice-organizer), agents (stripe-integration, quant-analyst), and Provectus finance practice patterns.",
+  "author": {
+    "name": "Provectus",
+    "email": "agentic-coding@provectus.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/provectus/proagent-marketplace"
+  },
+  "license": "MIT",
+  "category": "finance",
+  "keywords": [
+    "finance",
+    "budgeting",
+    "invoicing",
+    "forecasting",
+    "revenue-tracking",
+    "cost-optimization",
+    "billing",
+    "financial-reporting",
+    "profit-and-loss",
+    "payment-processing",
+    "expense-management",
+    "financial-analysis"
+  ],
+  "agents": ["./agents"],
+  "skills": ["./skills"],
+  "commands": ["./commands"],
+  "hooks": ["./hooks"]
+}

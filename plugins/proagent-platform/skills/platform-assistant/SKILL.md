@@ -1,0 +1,160 @@
+---
+name: platform-assistant
+description: >
+  Building Developer Platforms & Tooling. Comprehensive guidance for platform engineering:
+  developer experience (DX) optimization, service catalogs, golden paths, project scaffolding,
+  internal tooling, MCP server development, plugin system architecture, template libraries,
+  and CLI tool creation.
+
+  Use when the user needs to:
+  (1) Design or build an internal developer platform (IDP),
+  (2) Create service catalogs or golden path templates,
+  (3) Scaffold new projects, services, or microservices from templates,
+  (4) Build internal CLI tools, MCP servers, or plugin systems,
+  (5) Evaluate or improve developer experience (DX) across toolchains,
+  (6) Create reusable template libraries for teams,
+  (7) Design platform-as-product strategies,
+  (8) Build skill or agent plugins for Claude Code,
+  (9) Set up developer portals or self-service infrastructure.
+
+  Activate when user mentions: platform engineering, developer experience, DX, service catalog,
+  golden path, scaffolding, internal tooling, MCP server, plugin system, template library,
+  developer portal, self-service, platform team, internal developer platform, IDP, Backstage,
+  developer productivity, paved roads, starter kits, project templates, CLI tools, SDK design.
+---
+
+# Building Developer Platforms & Tooling
+
+Platform engineering creates self-service capabilities that reduce cognitive load and accelerate delivery. This skill covers the full spectrum: from designing golden paths and service catalogs to building MCP servers and plugin systems.
+
+## Core Capabilities
+
+### 1. Service Catalog & Golden Paths
+
+Design and implement service catalogs that encode organizational best practices into discoverable, self-service templates.
+
+**Key patterns from Provectus assets:**
+- Template libraries structured by domain (see `proagent/core/templates/skill-template.md`, `proagent/core/templates/command-template.md`)
+- Reusable skill and command patterns (see `skills/skill-creator/SKILL.md` for the meta-skill pattern)
+- Progressive disclosure: metadata for discovery, instructions for understanding, details for implementation
+
+**Golden path design principles:**
+- Encode best practices as defaults, not documentation
+- Make the right thing the easy thing
+- Support escape hatches for advanced users
+- Version templates independently from consuming projects
+- Include validation hooks to catch drift from the golden path
+
+### 2. Project Scaffolding & Templates
+
+Create scaffolding systems that generate production-ready project structures.
+
+**Template architecture (from `proagent/core/skills/tac/templating.md`):**
+- Prompt templates: reusable instruction patterns for common tasks
+- Code templates: standard patterns for API endpoints, models, tests, migrations
+- Workflow templates: stage-based sequences (plan, implement, validate, deploy)
+- Review templates: checklists for consistent quality assessment
+
+**Scaffolding workflow:**
+1. Identify repetition across teams and projects
+2. Extract invariants (structure, quality criteria, required sections)
+3. Parameterize variables (names, configurations, domain-specific values)
+4. Add guidance with examples of good fill-ins and common mistakes
+5. Iterate based on usage feedback and adoption metrics
+
+### 3. MCP Server Development
+
+Build Model Context Protocol servers that enable LLM-to-service integration (see `skills/mcp-builder/SKILL.md`).
+
+**Recommended stack:**
+- TypeScript with MCP SDK for broad compatibility
+- Streamable HTTP transport for remote servers, stdio for local
+- Zod schemas for input validation, structured output schemas
+
+**Implementation phases:**
+1. Deep research: study the target API, plan tool coverage
+2. Implementation: project structure, core infrastructure, tool registration
+3. Review and test: code quality, MCP Inspector verification
+4. Evaluation: create 10 complex, realistic test questions
+
+**Tool design principles:**
+- Balance comprehensive API coverage with workflow convenience tools
+- Use consistent naming prefixes (e.g., `github_create_issue`, `github_list_repos`)
+- Return focused, relevant data with pagination support
+- Provide actionable error messages that guide toward solutions
+
+### 4. Plugin System Architecture
+
+Design and implement plugin systems for extensibility (from `casdk-harness/src/harness/plugin_manager.py`).
+
+**Plugin anatomy:**
+```
+plugin-name/
+  .claude-plugin/plugin.json   # Manifest: name, version, agents, skills, commands, hooks, mcp
+  agents/*.md                   # Agent definitions with YAML frontmatter
+  skills/*/SKILL.md             # Skill definitions with progressive disclosure
+  commands/*.md                 # Slash commands with argument handling ($1, $ARGUMENTS)
+  hooks/hooks.json              # Lifecycle event handlers (PreToolUse, PostToolUse, Stop)
+  .mcp.json                     # MCP server configurations
+```
+
+**Plugin lifecycle:**
+1. Discovery: scan directories for `.claude-plugin/plugin.json` manifests
+2. Loading: parse manifest, resolve paths, load all resource types
+3. Namespacing: all resources use `plugin-name:resource-name` format
+4. Access: typed accessors for agents, skills, commands, hooks, MCP configs
+
+### 5. Developer Experience (DX) Optimization
+
+Evaluate and improve developer workflows, toolchains, and self-service capabilities.
+
+**DX assessment dimensions:**
+- Onboarding time: minutes from clone to first meaningful contribution
+- Inner loop speed: edit-build-test-debug cycle time
+- Cognitive load: number of tools, contexts, and decisions per task
+- Self-service coverage: percentage of common tasks achievable without filing tickets
+- Documentation quality: accuracy, discoverability, freshness
+
+**Improvement strategies:**
+- Automate repetitive setup with scripts (see `root-setup/setup-agentic-coding.sh`)
+- Provide CLI wrappers for complex operations
+- Create development containers with pre-configured environments
+- Build integration connectors for Slack, GitHub, GitLab, Google Drive (from `proagent/core/integrations/`)
+- Implement maturity models to track DX improvements (see `proagent/core/skills/tac/maturity-model.md`)
+
+### 6. Internal CLI & SDK Design
+
+Build internal command-line tools and SDKs that wrap platform capabilities.
+
+**CLI design patterns (from `casdk-harness/src/harness/cli.py`):**
+- Rich formatting for terminal output
+- Pydantic-based configuration with environment variable loading
+- Command registries with argument substitution
+- Plugin discovery and auto-loading
+
+**SDK design principles:**
+- Type-safe interfaces with comprehensive validation
+- Progressive complexity: simple defaults, advanced overrides
+- Consistent error handling with actionable messages
+- Auto-discovery of extensions and plugins
+
+## Workflow: Building a New Platform Component
+
+1. **Understand the need**: interview stakeholders, gather concrete usage examples
+2. **Survey existing assets**: search for similar patterns in the catalog (127 platform assets across 19 repos)
+3. **Design the component**: choose the right abstraction (template, skill, command, MCP server, plugin)
+4. **Implement**: follow the appropriate pattern from this skill
+5. **Validate**: run template validation, DX feedback checks, and user testing
+6. **Ship and iterate**: publish to the service catalog, track adoption, refine based on feedback
+
+## Reference Assets
+
+Key Provectus platform assets for deeper guidance:
+- `skills/skill-creator/SKILL.md` - Meta-skill for creating new Claude skills
+- `skills/mcp-builder/SKILL.md` - MCP server development guide with TypeScript/Python patterns
+- `proagent/core/skills/tac/templating.md` - Template strategies for reusable patterns
+- `proagent/core/skills/tac/maturity-model.md` - Agentic coding maturity model
+- `casdk-harness/src/harness/plugin_manager.py` - Plugin discovery and lifecycle management
+- `proagent/core/integrations/` - Slack, GitHub, GitLab, Google Drive connectors
+- `proagent/external/discovery.py` - Auto-discover skills from external repositories
+- `proagent/external/extractor.py` - Extract reusable patterns from repositories

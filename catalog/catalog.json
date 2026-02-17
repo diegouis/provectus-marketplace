@@ -1,0 +1,48 @@
+{
+  "generated": "2026-02-16",
+  "total_assets": 843,
+  "total_repos": 14,
+  "practices": [
+    "agentic-engineering", "delivery", "sales", "hr", "finance",
+    "devops", "frontend", "backend", "sdlc", "data", "ml-ai",
+    "security", "platform", "qa"
+  ],
+  "repos_scanned": [
+    {"name": "Auto-Claude", "assets_count": 40, "practices": ["agentic-engineering","devops","frontend","sdlc","security","qa","platform"]},
+    {"name": "awesome-claude-code", "assets_count": 20, "practices": ["agentic-engineering","devops","qa","sdlc","security","platform"]},
+    {"name": "awesome-claude-skills", "assets_count": 36, "practices": ["agentic-engineering","frontend","sdlc","platform","sales","hr","finance","data","ml-ai","backend","delivery","qa","devops"]},
+    {"name": "awos", "assets_count": 49, "practices": ["agentic-engineering","sdlc","platform","devops","qa","delivery","security"]},
+    {"name": "casdk-harness", "assets_count": 85, "practices": ["agentic-engineering","devops","platform","backend","frontend","data","sdlc","qa","security"]},
+    {"name": "claude-ui", "assets_count": 53, "practices": ["frontend","backend","security","platform","agentic-engineering","data","devops","qa"]},
+    {"name": "gastown", "assets_count": 69, "practices": ["agentic-engineering","devops","sdlc","security","platform","qa"]},
+    {"name": "planning-with-files", "assets_count": 59, "practices": ["agentic-engineering","sdlc","platform"]},
+    {"name": "proagent", "assets_count": 91, "practices": ["agentic-engineering","platform","sdlc","frontend","backend","devops","ml-ai","data","delivery","hr","qa","security","sales"]},
+    {"name": "proagent-repo GUI", "assets_count": 79, "practices": ["agentic-engineering","platform","sdlc","devops","security","qa","frontend","backend","ml-ai","data","delivery"]},
+    {"name": "ralph-orchestrator", "assets_count": 100, "practices": ["agentic-engineering","sdlc","devops","qa","platform","backend","security","delivery"]},
+    {"name": "skills", "assets_count": 72, "practices": ["agentic-engineering","platform","frontend","qa","sdlc","backend","hr","data","sales","delivery","devops"]},
+    {"name": "superpowers", "assets_count": 51, "practices": ["agentic-engineering","sdlc","qa","platform","security","devops"]},
+    {"name": "tac", "assets_count": 90, "practices": ["agentic-engineering","sdlc","qa","devops","backend","security","ml-ai","data","platform"]},
+    {"name": "taches-cc-resources", "assets_count": 55, "practices": ["agentic-engineering","sdlc","qa","delivery","platform","sales","security"]},
+    {"name": "agents", "assets_count": 31, "practices": ["agentic-engineering","platform","backend","devops","security","ml-ai","data","sdlc","qa","hr","sales","finance","frontend"]},
+    {"name": "specs", "assets_count": 11, "practices": ["agentic-engineering","platform","sdlc","backend","frontend","devops","data","ml-ai","hr","delivery"]},
+    {"name": "root-claude-config", "assets_count": 3, "practices": ["agentic-engineering","sdlc","platform"]},
+    {"name": "root-setup", "assets_count": 1, "practices": ["devops","platform"]}
+  ],
+  "asset_type_distribution": {
+    "skills": 148,
+    "commands": 97,
+    "agents": 32,
+    "hooks": 18,
+    "mcp_configs": 3,
+    "scripts": 297,
+    "docs": 142,
+    "templates": 67,
+    "configs": 139
+  },
+  "reuse_potential_distribution": {
+    "high": 573,
+    "medium": 219,
+    "low": 51
+  },
+  "note": "Full per-asset detail available in per-practice manifest files. This file provides the aggregated view. Individual assets are distributed across the 14 proagent-<practice>-manifest.json files."
+}

@@ -1,0 +1,97 @@
+{
+  "practice": "platform",
+  "plugin_name": "proagent-platform",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "connect/SKILL.md", "repo": "awesome-claude-skills", "description": "Connect Claude to 1000+ apps via Composio", "reuse_potential": "high"},
+      {"path": "connect-apps/SKILL.md", "repo": "awesome-claude-skills", "description": "Composio-powered app connections for Claude Code", "reuse_potential": "high"},
+      {"path": "file-organizer/SKILL.md", "repo": "awesome-claude-skills", "description": "Intelligent file and folder organization", "reuse_potential": "medium"},
+      {"path": "skill-creator/SKILL.md", "repo": "awesome-claude-skills", "description": "Meta-skill for creating Claude Skills", "reuse_potential": "high"},
+      {"path": "skill-share/SKILL.md", "repo": "awesome-claude-skills", "description": "Share and discover Claude Skills", "reuse_potential": "medium"},
+      {"path": "template-skill/SKILL.md", "repo": "awesome-claude-skills", "description": "Standard SKILL.md template", "reuse_potential": "high"},
+      {"path": "roles/solutions-architect/skills/system-design.md", "repo": "proagent", "description": "System design and architecture decisions", "reuse_potential": "high"},
+      {"path": "roles/solutions-architect/skills/cloud-architecture.md", "repo": "proagent", "description": "Cloud architecture patterns", "reuse_potential": "high"},
+      {"path": "roles/solutions-architect/skills/architecture-documentation.md", "repo": "proagent", "description": "Architecture documentation", "reuse_potential": "high"},
+      {"path": "roles/technical-writer/skills/information-architecture.md", "repo": "proagent", "description": "Information architecture and content org", "reuse_potential": "high"},
+      {"path": "core/skills/tac/maturity-model.md", "repo": "proagent-repo GUI", "description": "Agentic coding maturity model", "reuse_potential": "high"},
+      {"path": "core/skills/tac/templating.md", "repo": "proagent-repo GUI", "description": "Templating strategies for reusable patterns", "reuse_potential": "high"},
+      {"path": "skills/docx/SKILL.md", "repo": "skills", "description": "Word document creation/editing", "reuse_potential": "high"},
+      {"path": "skills/pdf/SKILL.md", "repo": "skills", "description": "PDF creation and manipulation", "reuse_potential": "high"},
+      {"path": "skills/pptx/SKILL.md", "repo": "skills", "description": "PowerPoint creation/editing", "reuse_potential": "high"},
+      {"path": "skills/mcp-builder/SKILL.md", "repo": "skills", "description": "MCP server creation guide", "reuse_potential": "high"},
+      {"path": "skills/skill-creator/SKILL.md", "repo": "skills", "description": "Meta-skill for new Claude skills", "reuse_potential": "high"}
+    ],
+    "commands": [
+      {"path": "core/commands/skill_create.py", "repo": "proagent", "description": "Create skills via interactive interview", "reuse_potential": "high"},
+      {"path": "core/commands/spec_extract.py", "repo": "proagent", "description": "Extract specs from Slack/Google Docs/transcripts", "reuse_potential": "high"},
+      {"path": "core/commands/skill_create.py", "repo": "proagent-repo GUI", "description": "Skill creation through interview", "reuse_potential": "high"},
+      {"path": "core/commands/spec_extract.py", "repo": "proagent-repo GUI", "description": "Spec extraction from multiple sources", "reuse_potential": "high"},
+      {"path": "commands/research/open-source.md", "repo": "taches-cc-resources", "description": "Open source project research", "reuse_potential": "high"}
+    ],
+    "agents": [],
+    "hooks": [],
+    "mcp_configs": [
+      {"path": "mcp_servers/gdrive/server.py", "repo": "proagent-repo GUI", "description": "Google Drive MCP server", "reuse_potential": "high"}
+    ],
+    "scripts": [
+      {"path": "src/harness/plugin_manager.py", "repo": "casdk-harness", "description": "Plugin discovery and manifest parsing", "reuse_potential": "high"},
+      {"path": "src/harness/config.py", "repo": "casdk-harness", "description": "Pydantic-based config with env loading", "reuse_potential": "medium"},
+      {"path": "src/harness/cli.py", "repo": "casdk-harness", "description": "Rich CLI formatting", "reuse_potential": "medium"},
+      {"path": "core/integrations/slack.py", "repo": "proagent", "description": "Slack integration connector", "reuse_potential": "high"},
+      {"path": "core/integrations/google_drive.py", "repo": "proagent", "description": "Google Drive integration", "reuse_potential": "high"},
+      {"path": "core/integrations/github (1).py", "repo": "proagent", "description": "GitHub integration", "reuse_potential": "high"},
+      {"path": "core/integrations/gitlab.py", "repo": "proagent", "description": "GitLab integration", "reuse_potential": "high"},
+      {"path": "external/discovery.py", "repo": "proagent", "description": "Auto-discover skills from external repos", "reuse_potential": "high"},
+      {"path": "external/extractor.py", "repo": "proagent", "description": "Extract reusable patterns from repos", "reuse_potential": "high"},
+      {"path": "core/mcp/client.py", "repo": "proagent-repo GUI", "description": "MCP client connector", "reuse_potential": "high"},
+      {"path": "core/mcp/manager.py", "repo": "proagent-repo GUI", "description": "MCP server lifecycle manager", "reuse_potential": "high"},
+      {"path": "core/workspace/manager.py", "repo": "proagent-repo GUI", "description": "Workspace manager for agent isolation", "reuse_potential": "medium"},
+      {"path": "lib/skills-core.js", "repo": "superpowers", "description": "Skills system core library", "reuse_potential": "high"},
+      {"path": "skills/skill-creator/scripts/init_skill.py", "repo": "skills", "description": "Skill initialization script", "reuse_potential": "high"},
+      {"path": "skills/skill-creator/scripts/package_skill.py", "repo": "skills", "description": "Skill packaging for distribution", "reuse_potential": "high"},
+      {"path": "setup-agentic-coding.sh", "repo": "root-setup", "description": "macOS dev environment setup", "reuse_potential": "high"}
+    ],
+    "docs": [
+      {"path": "README.md", "repo": "awesome-claude-code", "description": "100+ Claude Code ecosystem resources", "reuse_potential": "high"},
+      {"path": "README.md", "repo": "awesome-claude-skills", "description": "30+ Claude Skills catalog", "reuse_potential": "high"},
+      {"path": "README.md", "repo": "awos", "description": "AWOS framework documentation", "reuse_potential": "high"},
+      {"path": "README.md", "repo": "proagent", "description": "ProAgent framework docs", "reuse_potential": "high"},
+      {"path": "docs/design/plugin-system.md", "repo": "gastown", "description": "Plugin system design", "reuse_potential": "high"},
+      {"path": "docs/plugins.md", "repo": "agents", "description": "72 plugins catalog", "reuse_potential": "high"},
+      {"path": "docs/architecture.md", "repo": "agents", "description": "Architecture documentation", "reuse_potential": "high"},
+      {"path": "proagent-spec-20260120.md", "repo": "specs", "description": "Complete ProAgent specification", "reuse_potential": "high"},
+      {"path": "impl/puaf-20260120/puaf-20260120_integrations.md", "repo": "specs", "description": "Integration architecture", "reuse_potential": "high"},
+      {"path": "impl/puaf-20260120/puaf-20260120_external_repos.md", "repo": "specs", "description": "External repo discovery", "reuse_potential": "high"},
+      {"path": "mcp_servers/README.md", "repo": "proagent-repo GUI", "description": "MCP servers documentation", "reuse_potential": "high"},
+      {"path": "skills/mcp-builder/reference/mcp_best_practices.md", "repo": "skills", "description": "MCP best practices", "reuse_potential": "high"}
+    ],
+    "templates": [
+      {"path": "core/templates/skill-template.md", "repo": "proagent", "description": "Standard skill template", "reuse_potential": "high"},
+      {"path": "core/templates/command-template.md", "repo": "proagent", "description": "Standard command template", "reuse_potential": "high"},
+      {"path": "template/SKILL.md", "repo": "skills", "description": "Official skill template", "reuse_potential": "high"}
+    ],
+    "configs": [
+      {"path": ".claude-plugin/marketplace.json", "repo": "awesome-claude-skills", "description": "28-plugin marketplace manifest", "reuse_potential": "high"},
+      {"path": ".claude-plugin/marketplace.json", "repo": "planning-with-files", "description": "Plugin marketplace registration", "reuse_potential": "high"},
+      {"path": ".claude-plugin/marketplace.json", "repo": "skills", "description": "Skills marketplace manifest", "reuse_potential": "high"},
+      {"path": ".claude-plugin/marketplace.json", "repo": "agents", "description": "72-plugin marketplace manifest", "reuse_potential": "high"},
+      {"path": "external/curated/trusted-repos.json", "repo": "proagent", "description": "Trusted repos for skill discovery", "reuse_potential": "high"},
+      {"path": "acc-config.yaml", "repo": "awesome-claude-code", "description": "README generation config", "reuse_potential": "medium"},
+      {"path": ".claude/settings.local.json", "repo": "root-claude-config", "description": "Local Claude Code settings", "reuse_potential": "medium"}
+    ]
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": false,
+    "missing_agent": true,
+    "missing_hooks": true,
+    "missing_mcp": false,
+    "recommended_integrations": ["GitHub", "GitLab", "Slack", "AWS", "GCP"]
+  },
+  "statistics": {
+    "total_assets": 127,
+    "high_reuse": 80,
+    "source_repos": ["Auto-Claude", "awesome-claude-code", "awesome-claude-skills", "awos", "casdk-harness", "claude-ui", "gastown", "planning-with-files", "proagent", "proagent-repo GUI", "ralph-orchestrator", "skills", "superpowers", "tac", "taches-cc-resources", "agents", "specs", "root-claude-config", "root-setup"]
+  }
+}

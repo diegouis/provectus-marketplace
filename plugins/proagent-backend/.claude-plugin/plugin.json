@@ -1,0 +1,81 @@
+{
+  "name": "proagent-backend",
+  "version": "0.1.0",
+  "description": "Provectus Backend practice plugin for scalable API design (REST, GraphQL, gRPC), database schema engineering, microservices architecture, authentication and authorization, message queues, caching strategies, and performance optimization.",
+  "category": "backend",
+  "author": "Provectus",
+  "license": "MIT",
+  "skills": [
+    {
+      "name": "backend-assistant",
+      "path": "skills/backend-assistant/SKILL.md",
+      "description": "Building Scalable Backend Services - APIs, databases, microservices, auth, queues, caching, REST, GraphQL, gRPC"
+    }
+  ],
+  "agents": [
+    {
+      "name": "backend-specialist",
+      "path": "agents/backend-specialist.md",
+      "description": "Senior backend engineer specializing in API design, database schema engineering, microservices architecture, security hardening, and performance optimization"
+    }
+  ],
+  "commands": [
+    {
+      "name": "proagent-backend-hub",
+      "path": "commands/proagent-backend-hub.md",
+      "description": "Backend practice hub - overview of capabilities and available operations"
+    },
+    {
+      "name": "proagent-backend-run",
+      "path": "commands/proagent-backend-run.md",
+      "description": "Execute backend operations: create-api, design-schema, build-service, setup-auth, optimize-queries"
+    },
+    {
+      "name": "proagent-backend-review",
+      "path": "commands/proagent-backend-review.md",
+      "description": "Review APIs, database schemas, service architecture, and security posture"
+    }
+  ],
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "path": "hooks/hooks.json",
+      "description": "API validation, schema checks, and security scanning before backend operations"
+    }
+  ],
+  "mcp_integrations": [
+    "github",
+    "gitlab",
+    "aws",
+    "gcp"
+  ],
+  "source_repos": [
+    "proagent",
+    "casdk-harness",
+    "agents",
+    "claude-ui",
+    "tac",
+    "proagent-repo GUI",
+    "awesome-claude-skills",
+    "skills",
+    "specs"
+  ],
+  "keywords": [
+    "backend",
+    "api-design",
+    "rest",
+    "graphql",
+    "grpc",
+    "database",
+    "microservices",
+    "authentication",
+    "authorization",
+    "caching",
+    "message-queues",
+    "performance",
+    "security",
+    "postgresql",
+    "mongodb",
+    "redis"
+  ]
+}

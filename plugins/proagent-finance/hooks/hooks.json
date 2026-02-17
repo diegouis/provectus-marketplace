@@ -1,0 +1,81 @@
+{
+  "hooks": [
+    {
+      "name": "proagent-finance-document-validation",
+      "event": "PreToolUse",
+      "description": "Quality gate that validates financial documents before they are written or saved. Checks that invoices contain all required fields, budgets have complete category coverage, and financial reports include mandatory sections.",
+      "tool_name": "Write",
+      "match_pattern": "invoice|budget|financial-report|forecast|pnl",
+      "action": "validate",
+      "rules": [
+        {
+          "id": "invoice-required-fields",
+          "description": "Invoices must contain all required fields: invoice number, date, due date, client name, at least one line item with description/quantity/price, subtotal, and total",
+          "check": "If the file being written contains 'INVOICE' or matches invoice naming pattern (INV-YYYY-NNNN), verify it includes: invoice number (INV-YYYY-NNNN format), invoice date, due date, client/recipient name, at least one line item row with description, quantity, unit price, and line total, a subtotal, and a total amount",
+          "severity": "blocking",
+          "fix_hint": "Add the missing invoice fields. Required: invoice number (INV-YYYY-NNNN), date, due date, client name, line items with description/qty/price, subtotal, and total. Example: 'Invoice #: INV-2026-0042, Date: 2026-02-16, Due: 2026-03-18, Client: Acme Corp'"
+        },
+        {
+          "id": "budget-category-coverage",
+          "description": "Budget documents must include allocations for all standard expense categories and a contingency reserve",
+          "check": "If the file being written is a budget document (filename contains 'budget'), verify it includes line items or sections for: personnel, software/tools, infrastructure, professional services, and a contingency reserve. At least 5 of the 8 standard categories must be present.",
+          "severity": "warning",
+          "fix_hint": "Add the missing budget categories. Standard categories: Personnel, Software & Tools, Infrastructure, Professional Services, Marketing & Sales, Travel & Entertainment, Office & Facilities, Contingency. Include at minimum: personnel, software, infrastructure, services, and contingency."
+        },
+        {
+          "id": "financial-report-structure",
+          "description": "Financial reports must include an executive summary section and a date/period reference",
+          "check": "If the file being written is a financial report (filename contains 'report' or 'pnl' or 'financial'), verify it includes: a clear date or period reference (e.g., 'Q4 2025', 'January 2026', 'FY2025'), a summary or executive summary section, and at least one data table with numerical values",
+          "severity": "warning",
+          "fix_hint": "Add a date/period reference at the top of the report, include an executive summary section with key takeaways, and ensure financial data is presented in structured tables."
+        },
+        {
+          "id": "currency-format-consistency",
+          "description": "All monetary values in financial documents must use consistent currency formatting",
+          "check": "Verify that monetary values in the document use consistent formatting: either all with currency symbol prefix ($1,234.56) or all with currency code suffix (1,234.56 USD). Do not mix formats within a single document.",
+          "severity": "warning",
+          "fix_hint": "Standardize all monetary values to use the same format throughout the document. Recommended: $X,XXX.XX for USD documents, or amount followed by currency code for multi-currency documents."
+        }
+      ]
+    },
+    {
+      "name": "proagent-finance-invoice-naming",
+      "event": "PreToolUse",
+      "description": "Validates that invoice files follow the standardized naming convention before being saved to the filesystem.",
+      "tool_name": "Bash",
+      "match_pattern": "cp.*invoice|mv.*invoice",
+      "action": "validate",
+      "rules": [
+        {
+          "id": "invoice-filename-format",
+          "description": "Invoice files being saved or moved must follow the standardized naming convention: YYYY-MM-DD Vendor - Invoice - Description.ext",
+          "check": "If the bash command is copying or moving an invoice file, verify the destination filename matches the pattern: YYYY-MM-DD followed by a vendor name, then ' - Invoice - ', then a description, then a file extension",
+          "severity": "warning",
+          "fix_hint": "Rename the invoice file to follow the standard format: 'YYYY-MM-DD Vendor - Invoice - Description.ext'. Example: '2026-02-16 Adobe - Invoice - Creative Cloud.pdf'"
+        }
+      ]
+    },
+    {
+      "name": "proagent-finance-post-report-summary",
+      "event": "PostToolUse",
+      "description": "After the finance-specialist agent completes a financial analysis or report, formats key findings as a structured summary with severity indicators and recommended actions.",
+      "tool_name": "Task",
+      "match_pattern": "finance-specialist",
+      "action": "notify",
+      "rules": [
+        {
+          "id": "financial-findings-summary",
+          "description": "Format financial analysis results into a structured notification with severity-coded findings",
+          "check": "After analysis completes, parse the output for severity markers (CRITICAL, WARNING, NOTE) and financial metrics, then generate a summary",
+          "action_template": "## Financial Analysis Complete\n\n| Severity | Count |\n|----------|-------|\n| Critical | {critical_count} |\n| Warning | {warning_count} |\n| Note | {note_count} |\n\n**Key Metric:** {key_metric}\n**Verdict:** {verdict}\n**Next steps:** {next_steps}"
+        },
+        {
+          "id": "budget-overrun-escalation",
+          "description": "If budget overruns are detected above critical threshold, present them prominently",
+          "check": "If the analysis output contains any CRITICAL severity budget variances (>20% over budget)",
+          "action_template": "ATTENTION: {critical_count} budget category(ies) exceed the 20% critical threshold. Immediate review and approval required. See the analysis report above for details and recommended corrective actions."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1819 @@
+{
+  "batch": 4,
+  "scan_date": "2026-02-16",
+  "repos": [
+    {
+      "name": "superpowers",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/superpowers",
+      "description": "Complete software development workflow for coding agents by Jesse Vincent (obra). Provides composable skills for brainstorming, planning, TDD, debugging, subagent-driven development, code review, and git worktree management. Skills trigger automatically and enforce mandatory workflows. Claude Code plugin with marketplace support.",
+      "assets": [
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Comprehensive documentation of the Superpowers skill system, installation guide, and workflow philosophy (TDD, systematic debugging, evidence-based verification)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "RELEASE-NOTES.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Version release notes tracking changes across releases",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".claude-plugin/plugin.json",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Claude Code plugin manifest defining superpowers as a plugin (v4.3.0) with metadata for the marketplace system",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude-plugin/marketplace.json",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Claude Code marketplace registration for the superpowers plugin, enables /plugin install workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "hooks/hooks.json",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Hook configuration for SessionStart events - triggers session-start.sh on startup/resume/clear/compact",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "hooks/session-start.sh",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Shell script hook that runs on session start to initialize the superpowers environment",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "hooks/run-hook.cmd",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Windows CMD wrapper for running hooks cross-platform (polyglot hook support)",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "lib/skills-core.js",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "JavaScript core library for skills system - likely handles skill loading and routing logic",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/brainstorm.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Slash command for brainstorming workflow - activates Socratic design refinement before coding",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/write-plan.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Slash command for writing detailed implementation plans with bite-sized tasks",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/execute-plan.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Slash command for executing plans in batches with human checkpoints",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "agents/code-reviewer.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Subagent definition for code review - used by the requesting-code-review skill",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/brainstorming/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Skill for Socratic design refinement - activates before writing code, explores alternatives, validates in sections",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/writing-plans/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Skill for breaking work into 2-5 minute tasks with exact file paths, complete code, and verification steps",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/executing-plans/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Skill for batch execution of plans with human checkpoints",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/subagent-driven-development/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Core skill for dispatching subagents per task with two-stage review (spec compliance + code quality)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/subagent-driven-development/implementer-prompt.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Prompt template for the implementer subagent in the SDD workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/subagent-driven-development/spec-reviewer-prompt.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Prompt template for spec compliance review subagent",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/subagent-driven-development/code-quality-reviewer-prompt.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Prompt template for code quality review subagent",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/test-driven-development/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Enforces RED-GREEN-REFACTOR TDD cycle - write failing test, watch fail, write minimal code, watch pass, commit",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/test-driven-development/testing-anti-patterns.md",
+          "type": "doc",
+          "practices": ["qa", "sdlc"],
+          "description": "Reference document of testing anti-patterns to avoid during TDD",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/systematic-debugging/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "4-phase root cause debugging process with systematic investigation methodology",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/systematic-debugging/root-cause-tracing.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Root cause tracing techniques for systematic debugging",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/systematic-debugging/defense-in-depth.md",
+          "type": "doc",
+          "practices": ["sdlc", "security"],
+          "description": "Defense-in-depth debugging strategy documentation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/systematic-debugging/condition-based-waiting.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Condition-based waiting techniques for async debugging scenarios",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/systematic-debugging/condition-based-waiting-example.ts",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "TypeScript example of condition-based waiting pattern",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/systematic-debugging/find-polluter.sh",
+          "type": "script",
+          "practices": ["qa", "sdlc"],
+          "description": "Shell script to find test polluters (tests that affect other tests)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/verification-before-completion/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Skill ensuring actual verification before declaring success - evidence over claims",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/requesting-code-review/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Pre-review checklist skill that activates between tasks to review against plan",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/requesting-code-review/code-reviewer.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Code reviewer agent prompt used within the code review skill",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/receiving-code-review/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Skill for responding to and incorporating code review feedback",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/dispatching-parallel-agents/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for concurrent subagent workflows with parallel dispatch coordination",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/using-git-worktrees/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "Skill for parallel development via git worktrees - creates isolated workspace on new branch",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/finishing-a-development-branch/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Skill for branch completion workflow - verify tests, present options (merge/PR/keep/discard), cleanup",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/writing-skills/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Meta-skill for creating new skills following best practices with testing methodology",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/writing-skills/anthropic-best-practices.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Anthropic's official best practices for writing Claude skills",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/writing-skills/persuasion-principles.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Principles for effective prompt/skill persuasion techniques",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/writing-skills/render-graphs.js",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "JavaScript utility for rendering graphviz graphs within skills",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/writing-skills/graphviz-conventions.dot",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Graphviz DOT conventions template for skill documentation diagrams",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "skills/writing-skills/testing-skills-with-subagents.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Guide for testing skills using subagent-based validation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/using-superpowers/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Introduction skill explaining the superpowers system and how to use it",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "tests/claude-code/run-skill-tests.sh",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Shell script runner for skill-level tests in Claude Code",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "tests/claude-code/test-helpers.sh",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Helper utilities for Claude Code skill testing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "tests/claude-code/test-subagent-driven-development.sh",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Test script for the subagent-driven-development skill",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "tests/claude-code/test-subagent-driven-development-integration.sh",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Integration test for SDD skill with end-to-end validation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "tests/claude-code/analyze-token-usage.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Python script to analyze token usage during skill execution for optimization",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".codex/INSTALL.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Installation guide for Codex (OpenAI) platform integration",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".opencode/INSTALL.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Installation guide for OpenCode platform integration",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".opencode/plugins/superpowers.js",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "OpenCode plugin adapter for superpowers skill system",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/FUNDING.yml",
+          "type": "config",
+          "practices": ["sdlc"],
+          "description": "GitHub sponsorship/funding configuration",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "docs/testing.md",
+          "type": "doc",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Testing documentation for the superpowers skills system",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/windows/polyglot-hooks.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Documentation for cross-platform hook support (Windows polyglot)",
+          "reuse_potential": "medium"
+        }
+      ],
+      "statistics": {
+        "total_files": 75,
+        "assets_found": 51,
+        "practices_covered": ["agentic-engineering", "sdlc", "qa", "platform", "security", "devops"]
+      }
+    },
+    {
+      "name": "tac",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/tac",
+      "description": "TAC (The Agentic Coder) - Provectus internal agentic coding curriculum with 8 progressive lessons (tac-1 through tac-8). Each lesson builds a web application (Natural Language SQL Interface) using increasingly sophisticated agentic patterns: from basic Claude Code usage to full SDLC automation with ADW (AI Developer Workflow), hooks, MCP servers, and Claude Code SDK. Includes specs for each lesson and implementation artifacts.",
+      "assets": [
+        {
+          "path": "specs/tac-1-hello-agentic-coding-spec-20260115.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Spec for TAC Lesson 1: Introduction to agentic coding with basic Claude Code usage",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "specs/tac-2-twelve-leverage-points-spec-20260115.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Spec for TAC Lesson 2: Twelve leverage points for effective agentic coding",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "specs/tac-3-success-is-planned-spec-20260115.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Spec for TAC Lesson 3: Planning-first approach to agentic development",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "specs/tac-4-afk-agents-spec-20260115.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Spec for TAC Lesson 4: AFK (Away From Keyboard) autonomous agents",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "specs/tac-5-close-the-loops-spec-20260115.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Spec for TAC Lesson 5: Closing feedback loops in agentic workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "specs/tac-6-let-agents-focus-spec-20260115.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Spec for TAC Lesson 6: Agent focus and context management",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "specs/tac-7-enhanced-documentation-spec-20260115.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Spec for TAC Lesson 7: Enhanced documentation patterns",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "specs/impl/tac-2-twelve-leverage-points/tac-2_core-four.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Implementation artifact for TAC-2: Core four leverage points documentation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "specs/impl/tac-2-twelve-leverage-points/tac-2_through-agent.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Implementation artifact for TAC-2: Through-agent patterns",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "specs/impl/tac-5-close-loops/tac-5-close-loops_doc_main.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Main documentation for TAC-5 close-the-loops implementation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "specs/impl/tac-5-close-loops/tac-5-close-loops_doc_validation.md",
+          "type": "doc",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Validation documentation for TAC-5 feedback loop patterns",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "specs/impl/tac3-enhanced-docs-20260115/tac3_core_docs.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Core documentation for TAC-3 planning methodology",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "specs/impl/tac3-enhanced-docs-20260115/tac3_templates.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Templates for TAC-3 planning-first approach",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-1/main_tac.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "TAC Lesson 1 main Python application - basic agentic coding example",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-1/main_aic.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "TAC Lesson 1 alternative implementation with AI coding patterns",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-1/programmable/programmable.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Python programmable Claude Code usage example for TAC-1",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-1/programmable/programmable.ts",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "TypeScript programmable Claude Code usage example for TAC-1",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-1/programmable/programmable.sh",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Shell programmable Claude Code usage example for TAC-1",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-1/programmable/prompt.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Prompt template for programmable Claude Code interactions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-2/.claude/commands/install.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "Install command for TAC-2 project setup",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-2/.claude/commands/prime.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Prime command to load project context for the agent",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-2/.claude/commands/tools.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Tools command listing available development tools",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-3/.claude/commands/bug.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Bug workflow command for structured bug fixing with branch management",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-3/.claude/commands/chore.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Chore workflow command for maintenance tasks with branch management",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-3/.claude/commands/feature.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Feature workflow command for new feature development with spec and branch management",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-3/.claude/commands/implement.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Implement command for executing specs with test-first approach",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-3/.claude/commands/start.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "Start command to launch application services",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-4/.claude/commands/classify_issue.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "GitHub issue classification command - categorizes as bug/feature/chore",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-4/.claude/commands/commit.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Semantic commit command with conventional commit message generation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-4/.claude/commands/pull_request.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Pull request creation command with automated PR body generation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-4/.claude/commands/find_plan_file.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Command to locate and load plan files for implementation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-4/.claude/commands/generate_branch_name.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Automated branch name generation following naming conventions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.mcp.json",
+          "type": "mcp",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "MCP server configuration for Playwright browser automation - enables E2E testing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/hooks/pre_tool_use.py",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Python hook executing before tool use - enables pre-validation and guardrails",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/hooks/post_tool_use.py",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Python hook executing after tool use - enables post-processing and logging",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/hooks/user_prompt_submit.py",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Hook intercepting user prompt submissions for pre-processing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/hooks/notification.py",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Notification hook for agent status updates",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/hooks/stop.py",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Stop hook for graceful session termination",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/hooks/subagent_stop.py",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Hook for handling subagent stop events",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/hooks/pre_compact.py",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Hook executing before context compaction to preserve critical state",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/hooks/utils/llm/oai.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "ml-ai"],
+          "description": "OpenAI LLM utility for hooks - enables LLM-powered hook logic",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/hooks/utils/llm/anth.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "ml-ai"],
+          "description": "Anthropic LLM utility for hooks - enables Claude-powered hook logic",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/hooks/utils/constants.py",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Constants configuration for hook utilities",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/document.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Documentation generation command for auto-documenting code changes",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/review.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Code review command triggering automated review workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/test.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Test command for running project test suite",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/test_e2e.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "E2E test command using Playwright MCP for browser-based testing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/resolve_failed_test.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Command for automated resolution of failed unit tests",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/resolve_failed_e2e_test.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Command for automated resolution of failed E2E tests",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/classify_adw.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "ADW classification command for AI Developer Workflow issue processing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/patch.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Patch command for applying incremental code changes",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/conditional_docs.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Conditional documentation command that generates docs only when significant changes detected",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/prepare_app.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "Application preparation command for deployment readiness",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/e2e/test_basic_query.md",
+          "type": "command",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "E2E test command for basic query validation via Playwright",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/e2e/test_complex_query.md",
+          "type": "command",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "E2E test command for complex query validation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/e2e/test_sql_injection.md",
+          "type": "command",
+          "practices": ["qa", "security"],
+          "description": "E2E test command for SQL injection prevention validation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/.claude/commands/e2e/test_random_query_generator.md",
+          "type": "command",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "E2E test with random query generation for fuzzing",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_build.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "ADW build automation - orchestrates code generation from specs via Claude Code CLI",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_plan.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "ADW planning module - generates implementation plans from GitHub issues",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_test.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "ADW test automation - runs tests and validates implementations",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_review.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "ADW code review automation module",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_document.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "ADW documentation generation module",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_sdlc.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "ADW full SDLC pipeline - plan, build, test, review, document cycle",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_patch.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "ADW patching module for incremental changes",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_plan_build.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "ADW plan+build combined workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_plan_build_test.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc", "qa"],
+          "description": "ADW plan+build+test combined workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_plan_build_review.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "ADW plan+build+review combined workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_plan_build_test_review.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc", "qa"],
+          "description": "ADW full cycle: plan+build+test+review combined workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_plan_build_document.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "ADW plan+build+document combined workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_modules/agent.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Core agent module for ADW - wraps Claude Code CLI interactions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_modules/git_ops.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "Git operations module for ADW - branch creation, commit, PR automation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_modules/github.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "GitHub API integration module for ADW - issue reading, PR creation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_modules/workflow_ops.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Workflow operations module for ADW pipeline orchestration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_modules/state.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "State management module for ADW workflow persistence",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_modules/r2_uploader.py",
+          "type": "script",
+          "practices": ["devops"],
+          "description": "Cloudflare R2 uploader module for artifact storage",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_modules/data_types.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Data type definitions for ADW workflow entities",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_triggers/trigger_webhook.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "Webhook trigger for ADW - real-time GitHub event processing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/adws/adw_triggers/trigger_cron.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "Cron trigger for ADW - polls GitHub every 20 seconds for new issues",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/scripts/start.sh",
+          "type": "script",
+          "practices": ["devops"],
+          "description": "Application startup script launching both backend and frontend services",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/scripts/stop_apps.sh",
+          "type": "script",
+          "practices": ["devops"],
+          "description": "Application stop script for graceful shutdown",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/scripts/reset_db.sh",
+          "type": "script",
+          "practices": ["devops", "data"],
+          "description": "Database reset script for development environment",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/scripts/expose_webhook.sh",
+          "type": "script",
+          "practices": ["devops"],
+          "description": "Script to expose local webhook server via tunnel",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/scripts/copy_dot_env.sh",
+          "type": "script",
+          "practices": ["devops"],
+          "description": "Environment file copy script for setup",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Code/tac-6/app/server/core/sql_security.py",
+          "type": "script",
+          "practices": ["security", "backend"],
+          "description": "Centralized SQL injection protection module with parameterized queries and identifier validation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/app/server/core/llm_processor.py",
+          "type": "script",
+          "practices": ["ml-ai", "backend"],
+          "description": "LLM processor for natural language to SQL conversion using OpenAI/Anthropic",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-6/app/server/tests/test_sql_injection.py",
+          "type": "script",
+          "practices": ["qa", "security"],
+          "description": "Comprehensive SQL injection test suite",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-8/tac8_app1__agent_layer_primitives/adws/adw_sdk_prompt.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code SDK prompt-based agent automation for TAC-8 primitives lesson",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-8/tac8_app1__agent_layer_primitives/adws/adw_slash_command.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Slash command-based agent automation for TAC-8",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-8/tac8_app1__agent_layer_primitives/adws/adw_prompt.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Prompt-based agent automation for TAC-8",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-8/tac8_app1__agent_layer_primitives/adws/adw_chore_implement.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Chore implementation automation using agent SDK for TAC-8",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-8/tac8_app1__agent_layer_primitives/adws/adw_modules/agent_sdk.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code SDK wrapper module for programmatic agent interactions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-4/ai_docs/claude_code_cli_reference.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code CLI reference documentation for agent consumption",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-4/ai_docs/claude_code_sdk.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code SDK documentation for programmatic agent usage",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Code/tac-4/ai_docs/e2b.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "E2B sandbox documentation for isolated code execution",
+          "reuse_potential": "medium"
+        }
+      ],
+      "statistics": {
+        "total_files": 200,
+        "assets_found": 90,
+        "practices_covered": ["agentic-engineering", "sdlc", "qa", "devops", "backend", "security", "ml-ai", "data", "platform"]
+      }
+    },
+    {
+      "name": "taches-cc-resources",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/taches-cc-resources",
+      "description": "TACHES Claude Code Resources by Lex Christopherson (glittercowboy). A curated collection of 27 slash commands, 8 skills, and 3 auditor agents for Claude Code. Focused on meta-prompting, todo management, thinking models (mental frameworks), deep analysis debugging, and creating Claude Code extensions (skills, commands, hooks, subagents, MCP servers). Plugin marketplace compatible.",
+      "assets": [
+        {
+          "path": ".claude-plugin/plugin.json",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Claude Code plugin manifest for taches-cc-resources (v1.0.0)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude-plugin/marketplace.json",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Marketplace registration for taches-cc-resources plugin",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/create-prompt.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Generate optimized prompts with XML structure for meta-prompting workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/run-prompt.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Execute saved prompts in sub-agent contexts for meta-prompting",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/add-to-todos.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Capture tasks with full context mid-conversation without derailing work",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/check-todos.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Resume work on captured tasks with full context intact",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/whats-next.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Create structured handoff document for continuing work in fresh context",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/create-agent-skill.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Wrapper command to invoke the create-agent-skills skill",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/create-meta-prompt.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Create staged workflow prompts with dependency detection",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/create-slash-command.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Build custom slash commands with proper structure",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/create-subagent.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Build specialized Claude instances for isolated contexts",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/create-hook.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Build event-driven automation hooks",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/create-plan.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Hierarchical project planning optimized for solo developer + Claude workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/run-plan.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Execute PLAN.md files with intelligent segmentation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/debug.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Apply expert debugging methodology with evidence gathering and hypothesis testing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/heal-skill.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Fix skills based on execution issues - self-improvement workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/audit-skill.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Audit skill for best practices compliance via auditor subagent",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/audit-slash-command.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Audit slash command for proper structure via auditor subagent",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/audit-subagent.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Audit subagent configuration for effectiveness",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/pareto.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Apply 80/20 rule to focus on what matters",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/first-principles.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Break down to fundamentals and rebuild",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/inversion.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Solve backwards - what guarantees failure?",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/second-order.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Think through consequences of consequences",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/5-whys.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Drill to root cause",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/occams-razor.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Mental framework: Find simplest explanation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/one-thing.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Identify highest-leverage action",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/swot.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Map strengths, weaknesses, opportunities, threats",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/eisenhower-matrix.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Prioritize by urgent/important",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/10-10-10.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Evaluate decisions across time horizons (10 min, 10 months, 10 years)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/opportunity-cost.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Analyze what you give up",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/consider/via-negativa.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Mental framework: Improve by removing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/research/deep-dive.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Deep dive research command for thorough investigation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/research/competitive.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sales"],
+          "description": "Competitive analysis research command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/research/feasibility.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Feasibility study research command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/research/landscape.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Technology/market landscape research command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/research/technical.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Technical research deep dive command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/research/history.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Historical research command",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "commands/research/options.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Options analysis research command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/research/open-source.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Open source project research command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "agents/skill-auditor.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Expert skill auditor subagent for best practices compliance review",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "agents/slash-command-auditor.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Expert slash command auditor subagent for structure validation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "agents/subagent-auditor.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Expert subagent configuration auditor",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/create-agent-skills/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for building new agent skills by describing what you want - generates properly structured skill files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/create-hooks/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for building event-driven automation hooks with proper configuration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/create-agent-skills/references/core-principles.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Core principles reference for skill creation best practices",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/create-agent-skills/references/recommended-structure.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Recommended structure reference for skill file organization",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/create-agent-skills/references/common-patterns.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Common patterns reference for skill design",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/create-agent-skills/templates/simple-skill.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Simple skill template for quick skill creation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/create-agent-skills/templates/router-skill.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Router skill template for multi-workflow skills",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/create-agent-skills/workflows/create-new-skill.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Workflow for creating a brand new skill from scratch",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/create-hooks/references/hook-types.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Reference for available hook types in Claude Code",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/create-hooks/references/examples.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Hook implementation examples",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/context-handoff.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Documentation on context handoff patterns between agent sessions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/meta-prompting.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Meta-prompting methodology documentation - separate planning from execution",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/todo-management.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Todo management documentation for capture-and-resume workflow",
+          "reuse_potential": "medium"
+        }
+      ],
+      "statistics": {
+        "total_files": 95,
+        "assets_found": 55,
+        "practices_covered": ["agentic-engineering", "sdlc", "qa", "delivery", "platform", "sales", "security"]
+      }
+    },
+    {
+      "name": "agents",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/agents",
+      "description": "Claude Code Plugins by Seth Hobson (wshobson). Massive production-ready system with 72 focused plugins, 108 specialized agents, 129 agent skills, and 72 development tools. Covers 23 categories: development, documentation, workflows, testing, quality, AI/ML, data, database, operations, performance, infrastructure, security, languages (Python, JS/TS, Rust, Go, Java, etc.), blockchain, finance, payments, gaming, marketing/SEO, business, HR/legal, and accessibility. Three-tier model strategy (Opus/Sonnet/Haiku). Claude Code marketplace compatible.",
+      "assets": [
+        {
+          "path": ".claude-plugin/marketplace.json",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Massive marketplace manifest defining 72 plugins with 108 agents, 129 skills, and 72 tools across 23 categories (v1.3.7)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Comprehensive documentation of the 72-plugin architecture, three-tier model strategy, and usage patterns",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/plugins.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Complete catalog of all 72 plugins organized by category",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/agents.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "All 108 agents organized by category with model assignments",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/agent-skills.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "129 specialized skills documentation with progressive disclosure architecture",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/usage.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Usage guide with commands, workflows, and best practices",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/architecture.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Architecture documentation covering design principles and patterns",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/CONTRIBUTING.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Contributing guide for the agents repository",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/CODE_OF_CONDUCT.md",
+          "type": "doc",
+          "practices": ["hr"],
+          "description": "Community code of conduct",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "Bug report issue template for GitHub",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "Feature request issue template",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/new_subagent.yml",
+          "type": "template",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Template for proposing new subagent contributions",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "plugins/backend-development/agents/backend-architect.md",
+          "type": "agent",
+          "practices": ["backend", "agentic-engineering"],
+          "description": "Backend architecture specialist agent for API design and system architecture",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/backend-development/skills/api-design-principles/SKILL.md",
+          "type": "skill",
+          "practices": ["backend", "agentic-engineering"],
+          "description": "API design principles skill covering REST and GraphQL best practices",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/python-development/agents/python-pro.md",
+          "type": "agent",
+          "practices": ["backend", "agentic-engineering"],
+          "description": "Python expert agent for modern Python 3.12+ development",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/kubernetes-operations/agents/kubernetes-architect.md",
+          "type": "agent",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "Kubernetes architecture agent for K8s manifest generation and operations",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/security-scanning/agents/security-auditor.md",
+          "type": "agent",
+          "practices": ["security", "agentic-engineering"],
+          "description": "Security auditor agent for SAST, dependency scanning, and OWASP compliance",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/llm-application-dev/agents/llm-architect.md",
+          "type": "agent",
+          "practices": ["ml-ai", "agentic-engineering"],
+          "description": "LLM application architect for RAG systems, LangGraph, and agent architectures",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md",
+          "type": "skill",
+          "practices": ["data", "agentic-engineering"],
+          "description": "dbt transformation patterns skill for data engineering",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/cicd-automation/skills/github-actions-templates/SKILL.md",
+          "type": "skill",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "GitHub Actions templates skill for CI/CD pipeline configuration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/full-stack-orchestration/commands/full-stack-feature.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Full-stack feature orchestration command coordinating 7+ agents for end-to-end development",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/conductor/agents/conductor.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Conductor agent for context-driven development workflow orchestration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/hr-legal-compliance/agents/hr-pro.md",
+          "type": "agent",
+          "practices": ["hr", "agentic-engineering"],
+          "description": "HR professional agent for policy documentation and compliance",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/business-analytics/agents/business-analyst.md",
+          "type": "agent",
+          "practices": ["data", "agentic-engineering"],
+          "description": "Business analyst agent for metrics, KPIs, and data-driven decisions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/customer-sales-automation/agents/sales-automator.md",
+          "type": "agent",
+          "practices": ["sales", "agentic-engineering"],
+          "description": "Sales automation agent for pipeline management and CRM integration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/quantitative-trading/agents/quant-analyst.md",
+          "type": "agent",
+          "practices": ["finance", "agentic-engineering"],
+          "description": "Quantitative analyst agent for trading strategies and risk management",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "plugins/incident-response/skills/postmortem-writing/SKILL.md",
+          "type": "skill",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "Postmortem writing skill for incident response documentation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/c4-architecture/commands/c4-architecture.md",
+          "type": "command",
+          "practices": ["sdlc", "agentic-engineering"],
+          "description": "C4 architecture documentation workflow with multi-agent bottom-up analysis",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/tdd-workflows/commands/tdd-cycle.md",
+          "type": "command",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "TDD red-green-refactor cycle command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/accessibility-compliance/skills/wcag-audit-patterns/SKILL.md",
+          "type": "skill",
+          "practices": ["frontend", "qa"],
+          "description": "WCAG accessibility audit patterns skill",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "plugins/payment-processing/skills/stripe-integration/SKILL.md",
+          "type": "skill",
+          "practices": ["finance", "backend"],
+          "description": "Stripe integration skill for payment processing",
+          "reuse_potential": "high"
+        }
+      ],
+      "statistics": {
+        "total_files": 350,
+        "assets_found": 31,
+        "practices_covered": ["agentic-engineering", "platform", "backend", "devops", "security", "ml-ai", "data", "sdlc", "qa", "hr", "sales", "finance", "frontend"]
+      }
+    },
+    {
+      "name": "specs",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/specs",
+      "description": "ProAgent specification repository. Contains the comprehensive ProAgent spec (PUAF - Provectus Unified Agent Framework) for building a role-agnostic, extensible agent framework as the 'Company OS'. Includes implementation plans for 10 roles (frontend, backend, devops, data, ML, PM, HR, QA, etc.), core commands (spec-extract, interview, plan), multi-role orchestration, external repo integration, and usage analytics. Also contains gap analysis documenting what exists vs what needs to be built.",
+      "assets": [
+        {
+          "path": "proagent-spec-20260120.md",
+          "type": "api-spec",
+          "practices": ["agentic-engineering", "platform", "sdlc"],
+          "description": "Complete ProAgent specification: role-agnostic agent framework for all Provectus employees with 10 roles, core commands (spec-extract, interview, plan), multi-role orchestration, external repo discovery, and usage analytics. SQLite schema, integration architecture (Slack, Google Drive, GitHub), and phased acceptance criteria.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "impl/puaf-20260120/puaf-20260120_core_commands.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Implementation details for ProAgent core commands: spec-extract, interview, plan",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "impl/puaf-20260120/puaf-20260120_orchestration.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Multi-role orchestration layer implementation for cross-practice workflows (PM to Dev to QA)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "impl/puaf-20260120/puaf-20260120_roles_dev.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "backend", "frontend", "devops"],
+          "description": "Developer role implementations: frontend-engineer, backend-engineer, devops-engineer",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "impl/puaf-20260120/puaf-20260120_roles_business.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "hr", "delivery"],
+          "description": "Business role implementations: project-manager, human-resources, technical-writer",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "impl/puaf-20260120/puaf-20260120_roles_data.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "data", "ml-ai"],
+          "description": "Data role implementations: data-scientist, ml-engineer, qa-engineer",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "impl/puaf-20260120/puaf-20260120_integrations.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Integration architecture: Slack OAuth2, Google Drive API, GitHub/GitLab connectors",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "impl/puaf-20260120/puaf-20260120_analytics.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "data"],
+          "description": "Usage analytics implementation: command/skill tracking, error reporting, SQLite schema",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "impl/puaf-20260120/puaf-20260120_external_repos.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "External repository discovery and integration: GitHub trending, awesome-lists, community collections",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "impl/puaf-20260120/state.json",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Implementation state tracking for PUAF milestones",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "impl/gap-analysis-and-plan.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Gap analysis comparing current state (80% Slack, 70% spec enhancement, 20% code gen, 30% GitHub deploy) with needed capabilities. Documents missing LLM integration, code generation, and GitHub write operations.",
+          "reuse_potential": "high"
+        }
+      ],
+      "statistics": {
+        "total_files": 13,
+        "assets_found": 11,
+        "practices_covered": ["agentic-engineering", "platform", "sdlc", "backend", "frontend", "devops", "data", "ml-ai", "hr", "delivery"]
+      }
+    },
+    {
+      "name": "root-claude-config",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/.claude",
+      "description": "Root-level Claude Code configuration for the Agentic Coding workspace. Contains project-wide commands (interview, multi-agent implementation) and permission settings.",
+      "assets": [
+        {
+          "path": ".claude/commands/interview.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Comprehensive structured interview command for requirements gathering. 7 phases (Problem Space, UX, Technical, Edge Cases, DevOps, Business, Validation) with depth levels (quick/thorough/exhaustive). Uses AskUserQuestionTool for interactive Q&A and produces complete spec documents.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/commands/implement_mul-agent.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Multi-agent implementation orchestrator. Reads specs, detects work type (software/documents/product/HR/research/data/creative), distributes work across parallel sub-agents in waves with dependency management. Supports 7 work stream types with wave-based execution protocol and state tracking.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/settings.local.json",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Local Claude Code settings with permission allowlist for bash commands (ls, mkdir, cat, find, grep, python compilation, test scripts)",
+          "reuse_potential": "medium"
+        }
+      ],
+      "statistics": {
+        "total_files": 3,
+        "assets_found": 3,
+        "practices_covered": ["agentic-engineering", "sdlc", "platform"]
+      }
+    },
+    {
+      "name": "root-setup",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding",
+      "description": "Root-level workspace setup assets for the Agentic Coding project. Includes the macOS setup script for installing all development tools.",
+      "assets": [
+        {
+          "path": "setup-agentic-coding.sh",
+          "type": "script",
+          "practices": ["devops", "platform"],
+          "description": "macOS setup script installing: Homebrew, Git, GitHub CLI, Python 3.11, Astral uv, Node.js 20, Bun, VS Code with 12 extensions (Python, Pylance, Jupyter, GitHub Copilot, ESLint, Prettier, GitLens, Docker, Remote SSH). Includes verification and per-project setup instructions.",
+          "reuse_potential": "high"
+        }
+      ],
+      "statistics": {
+        "total_files": 2,
+        "assets_found": 1,
+        "practices_covered": ["devops", "platform"]
+      }
+    }
+  ]
+}

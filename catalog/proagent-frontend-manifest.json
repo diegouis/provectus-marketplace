@@ -1,0 +1,74 @@
+{
+  "practice": "frontend",
+  "plugin_name": "proagent-frontend",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "artifacts-builder/SKILL.md", "repo": "awesome-claude-skills", "description": "Build multi-component HTML artifacts with React/Tailwind/shadcn", "reuse_potential": "high"},
+      {"path": "brand-guidelines/SKILL.md", "repo": "awesome-claude-skills", "description": "Apply brand colors and typography", "reuse_potential": "medium"},
+      {"path": "canvas-design/SKILL.md", "repo": "awesome-claude-skills", "description": "Create visual art in PNG/PDF", "reuse_potential": "medium"},
+      {"path": "theme-factory/SKILL.md", "repo": "awesome-claude-skills", "description": "Apply professional font/color themes with 10 presets", "reuse_potential": "medium"},
+      {"path": "roles/frontend-engineer/skills/component-design.md", "repo": "proagent", "description": "Frontend component design patterns", "reuse_potential": "high"},
+      {"path": "roles/frontend-engineer/skills/state-management.md", "repo": "proagent", "description": "Frontend state management strategies", "reuse_potential": "high"},
+      {"path": "roles/frontend-engineer/skills/responsive-design.md", "repo": "proagent", "description": "Responsive design implementation", "reuse_potential": "high"},
+      {"path": "skills/algorithmic-art/SKILL.md", "repo": "skills", "description": "Algorithmic art with JavaScript canvas", "reuse_potential": "medium"},
+      {"path": "skills/canvas-design/SKILL.md", "repo": "skills", "description": "Visual designs with HTML Canvas and bundled fonts", "reuse_potential": "high"},
+      {"path": "skills/frontend-design/SKILL.md", "repo": "skills", "description": "Frontend visual designs and UI components", "reuse_potential": "high"},
+      {"path": "skills/slack-gif-creator/SKILL.md", "repo": "skills", "description": "Animated GIFs for Slack", "reuse_potential": "medium"},
+      {"path": "skills/theme-factory/SKILL.md", "repo": "skills", "description": "Themed visual designs with 10 pre-built themes", "reuse_potential": "high"},
+      {"path": "skills/web-artifacts-builder/SKILL.md", "repo": "skills", "description": "Self-contained web artifacts (HTML/CSS/JS)", "reuse_potential": "high"},
+      {"path": "plugins/accessibility-compliance/skills/wcag-audit-patterns/SKILL.md", "repo": "agents", "description": "WCAG accessibility audit patterns", "reuse_potential": "high"}
+    ],
+    "commands": [],
+    "agents": [
+      {"path": "src/harness/agents/configs/dev-typescript-expert.md", "repo": "casdk-harness", "description": "TypeScript development expert", "reuse_potential": "high"},
+      {"path": "src/harness/agents/configs/dev-react-expert.md", "repo": "casdk-harness", "description": "React development expert", "reuse_potential": "high"}
+    ],
+    "hooks": [],
+    "mcp_configs": [],
+    "scripts": [
+      {"path": "artifacts-builder/scripts/init-artifact.sh", "repo": "awesome-claude-skills", "description": "Initialize artifact project", "reuse_potential": "medium"},
+      {"path": "artifacts-builder/scripts/bundle-artifact.sh", "repo": "awesome-claude-skills", "description": "Bundle artifact for deployment", "reuse_potential": "medium"},
+      {"path": "src/App.jsx", "repo": "claude-ui", "description": "Main React application with routing and theming", "reuse_potential": "medium"},
+      {"path": "src/components/ArtifactPanel.jsx", "repo": "claude-ui", "description": "Artifact rendering panel (code/HTML/SVG/React/Mermaid)", "reuse_potential": "high"},
+      {"path": "src/components/CommandPalette.jsx", "repo": "claude-ui", "description": "Cmd+K command palette", "reuse_potential": "medium"},
+      {"path": "src/contexts/ThemeContext.jsx", "repo": "claude-ui", "description": "Theme management context (light/dark/auto)", "reuse_potential": "medium"},
+      {"path": "skills/slack-gif-creator/core/gif_builder.py", "repo": "skills", "description": "GIF builder with animation", "reuse_potential": "medium"},
+      {"path": "skills/web-artifacts-builder/scripts/init-artifact.sh", "repo": "skills", "description": "Initialize web artifact projects", "reuse_potential": "medium"}
+    ],
+    "docs": [
+      {"path": "roles/frontend-engineer/README (1).md", "repo": "proagent", "description": "Frontend engineer role documentation", "reuse_potential": "high"},
+      {"path": "README.md", "repo": "claude-ui", "description": "claude.ai clone architecture docs", "reuse_potential": "medium"}
+    ],
+    "templates": [
+      {"path": ".design-system/src/components/Avatar.tsx", "repo": "Auto-Claude", "description": "Avatar React component", "reuse_potential": "medium"},
+      {"path": ".design-system/src/components/Badge.tsx", "repo": "Auto-Claude", "description": "Badge React component", "reuse_potential": "medium"},
+      {"path": ".design-system/src/components/Button.tsx", "repo": "Auto-Claude", "description": "Button React component", "reuse_potential": "medium"},
+      {"path": ".design-system/src/components/Card.tsx", "repo": "Auto-Claude", "description": "Card React component", "reuse_potential": "medium"},
+      {"path": ".design-system/src/theme/useTheme.ts", "repo": "Auto-Claude", "description": "Theme management hook", "reuse_potential": "medium"},
+      {"path": "skills/algorithmic-art/templates/generator_template.js", "repo": "skills", "description": "Algorithmic art generator template", "reuse_potential": "medium"},
+      {"path": "skills/theme-factory/themes/modern-minimalist.md", "repo": "skills", "description": "Modern minimalist theme", "reuse_potential": "medium"},
+      {"path": "skills/theme-factory/themes/midnight-galaxy.md", "repo": "skills", "description": "Midnight galaxy theme", "reuse_potential": "medium"}
+    ],
+    "configs": [
+      {"path": ".design-system/package.json", "repo": "Auto-Claude", "description": "Design system with React 19, Vite 7, Tailwind CSS 4", "reuse_potential": "medium"},
+      {"path": ".design-system/vite.config.ts", "repo": "Auto-Claude", "description": "Vite config for design system", "reuse_potential": "medium"},
+      {"path": ".design-system/src/theme/constants.ts", "repo": "Auto-Claude", "description": "Theme constants (colors, typography)", "reuse_potential": "medium"},
+      {"path": "package.json", "repo": "claude-ui", "description": "Frontend package (React 18, Vite, Tailwind)", "reuse_potential": "medium"},
+      {"path": "core/templates/validation_workflows/frontend-engineer.yaml", "repo": "proagent-repo GUI", "description": "Frontend validation workflow", "reuse_potential": "high"}
+    ]
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": true,
+    "missing_agent": false,
+    "missing_hooks": true,
+    "missing_mcp": true,
+    "recommended_integrations": ["GitHub", "GitLab", "Playwright", "Pencil", "Excalidraw"]
+  },
+  "statistics": {
+    "total_assets": 60,
+    "high_reuse": 34,
+    "source_repos": ["Auto-Claude", "awesome-claude-skills", "casdk-harness", "claude-ui", "proagent", "proagent-repo GUI", "skills", "agents"]
+  }
+}

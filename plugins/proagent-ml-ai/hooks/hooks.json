@@ -1,0 +1,146 @@
+{
+  "hooks": [
+    {
+      "name": "proagent-ml-ai-model-validation",
+      "event": "PreToolUse",
+      "description": "Validates ML model artifacts, training configurations, and data pipeline integrity before training or deployment commands are executed. Catches data leakage, missing reproducibility seeds, improper data splits, and configuration errors.",
+      "tool_patterns": ["Bash"],
+      "file_patterns": [
+        "*.py",
+        "*.ipynb",
+        "*.yaml",
+        "*.yml",
+        "MLproject",
+        "conda.yaml",
+        "requirements.txt",
+        "Dockerfile",
+        "sagemaker_*.py",
+        "vertex_*.py"
+      ],
+      "command_patterns": [
+        "python train",
+        "python -m",
+        "mlflow run",
+        "mlflow models serve",
+        "sagemaker",
+        "aws sagemaker",
+        "gcloud ai",
+        "vertex ai",
+        "docker run",
+        "uvicorn",
+        "gunicorn"
+      ],
+      "validations": [
+        {
+          "name": "reproducibility-check",
+          "description": "Verify random seeds are set for reproducible training results",
+          "check_rules": [
+            "Training scripts must set random seeds (numpy, random, torch, tensorflow)",
+            "Data split ratios must be explicitly defined with random_state parameter",
+            "Model initialization must include random seed where applicable"
+          ],
+          "on_failure": "warn",
+          "message": "Reproducibility check: Random seeds may not be set. Add np.random.seed(), random.seed(), and framework-specific seeds (tf.random.set_seed, torch.manual_seed) to ensure reproducible results."
+        },
+        {
+          "name": "data-leakage-check",
+          "description": "Verify no data leakage between train, validation, and test sets",
+          "check_rules": [
+            "Preprocessing (scaling, encoding) must be fit only on training data",
+            "Feature engineering must not use information from validation or test sets",
+            "Time series data must use temporal splits, not random shuffling",
+            "GroupKFold must be used when samples are grouped (e.g., same patient, same user)"
+          ],
+          "on_failure": "warn",
+          "message": "Potential data leakage detected. Ensure preprocessors are fit only on training data and that train/test splits respect data groupings and temporal order."
+        },
+        {
+          "name": "model-artifact-check",
+          "description": "Verify all required model artifacts are present before deployment",
+          "check_rules": [
+            "Model weights or pickle file exists and is loadable",
+            "Preprocessing artifacts (scaler, encoder, tokenizer) are saved alongside model",
+            "Feature list or schema is documented",
+            "Model metadata (version, training date, metrics) is recorded"
+          ],
+          "on_failure": "abort",
+          "message": "Model artifact validation failed. Ensure model weights, preprocessing artifacts, feature schema, and metadata are all present before deployment."
+        },
+        {
+          "name": "training-config-check",
+          "description": "Validate training configuration parameters are reasonable",
+          "check_rules": [
+            "Learning rate is within typical range (1e-6 to 1.0)",
+            "Batch size is appropriate for available memory",
+            "Number of epochs or training steps is defined with early stopping",
+            "Validation strategy is defined (holdout, k-fold, or time-based split)"
+          ],
+          "on_failure": "warn",
+          "message": "Training configuration may have issues. Review learning rate, batch size, epoch count, and validation strategy."
+        },
+        {
+          "name": "secrets-and-credentials-check",
+          "description": "Scan for accidentally committed API keys, model registry credentials, or cloud tokens",
+          "check_rules": [
+            "No AWS access keys (AKIA pattern) in training scripts or configs",
+            "No API tokens for MLflow, W&B, or Neptune hardcoded in source files",
+            "No HuggingFace tokens or OpenAI API keys in code",
+            "Model registry credentials use environment variables or secret managers"
+          ],
+          "on_failure": "abort",
+          "message": "Potential secret or credential detected in ML code. Remove hardcoded keys and use environment variables or secret managers."
+        }
+      ]
+    },
+    {
+      "name": "proagent-ml-ai-experiment-logging",
+      "event": "PostToolUse",
+      "description": "Enforces experiment tracking discipline after training or evaluation commands complete. Verifies that parameters, metrics, and artifacts are properly logged for reproducibility and comparison.",
+      "tool_patterns": ["Bash"],
+      "command_patterns": [
+        "python train",
+        "python -m",
+        "mlflow run",
+        "python evaluate",
+        "python predict",
+        "python inference"
+      ],
+      "checks": [
+        {
+          "name": "experiment-tracking-verification",
+          "description": "Verify that experiment tracking is active and logging parameters and metrics",
+          "commands": [
+            "mlflow experiments list 2>/dev/null || echo 'MLflow not configured'",
+            "ls -la mlruns/ 2>/dev/null || ls -la wandb/ 2>/dev/null || echo 'No experiment tracking directory found'"
+          ],
+          "timeout_seconds": 30,
+          "retry_count": 1
+        },
+        {
+          "name": "model-output-verification",
+          "description": "Verify training produced expected output artifacts",
+          "commands": [
+            "ls -la models/ 2>/dev/null || echo 'No models directory found'",
+            "find . -name '*.pkl' -o -name '*.h5' -o -name '*.pt' -o -name '*.onnx' -o -name 'model.*' -mmin -30 2>/dev/null | head -10 || echo 'No recent model files found'"
+          ],
+          "timeout_seconds": 30,
+          "retry_count": 1
+        },
+        {
+          "name": "metrics-logging-verification",
+          "description": "Verify that evaluation metrics were logged and saved",
+          "commands": [
+            "find . -name 'metrics.json' -o -name 'results.json' -o -name 'evaluation_*.json' -mmin -30 2>/dev/null | head -5 || echo 'No recent metrics files found'"
+          ],
+          "timeout_seconds": 15,
+          "retry_count": 1
+        }
+      ],
+      "on_failure": {
+        "action": "warn",
+        "message": "Experiment tracking verification: Training or evaluation completed but experiment logging may be incomplete. Ensure parameters, metrics, and model artifacts are tracked with MLflow, W&B, or your chosen tracking tool.",
+        "suggest_rollback": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "practice": "ml-ai",
+  "plugin_name": "proagent-ml-ai",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "langsmith-fetch/SKILL.md", "repo": "awesome-claude-skills", "description": "Debug LangChain/LangGraph agents via LangSmith traces", "reuse_potential": "medium"},
+      {"path": "roles/ml-engineer/skills/model-training.md", "repo": "proagent", "description": "ML model training workflows", "reuse_potential": "high"},
+      {"path": "roles/ml-engineer/skills/feature-engineering.md", "repo": "proagent", "description": "ML feature engineering", "reuse_potential": "high"},
+      {"path": "roles/ml-engineer/skills/model-selection.md", "repo": "proagent", "description": "ML model selection", "reuse_potential": "high"},
+      {"path": "roles/ml-engineer/skills/hyperparameter-tuning.md", "repo": "proagent", "description": "Hyperparameter optimization", "reuse_potential": "high"},
+      {"path": "roles/ml-engineer/skills/model-evaluation.md", "repo": "proagent", "description": "Model evaluation metrics and methods", "reuse_potential": "high"},
+      {"path": "roles/ml-engineer/skills/experiment-tracking.md", "repo": "proagent", "description": "ML experiment tracking (MLflow)", "reuse_potential": "high"},
+      {"path": "roles/ml-engineer/skills/model-deployment.md", "repo": "proagent", "description": "ML model deployment and serving", "reuse_potential": "high"}
+    ],
+    "commands": [
+      {"path": "roles/ml-engineer/commands/train-model.md", "repo": "proagent", "description": "Initiate model training workflows", "reuse_potential": "high"}
+    ],
+    "agents": [
+      {"path": "plugins/llm-application-dev/agents/llm-architect.md", "repo": "agents", "description": "LLM architect for RAG systems and agent architectures", "reuse_potential": "high"}
+    ],
+    "hooks": [],
+    "mcp_configs": [],
+    "scripts": [
+      {"path": "Code/tac-6/.claude/hooks/utils/llm/oai.py", "repo": "tac", "description": "OpenAI LLM utility for hooks", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/hooks/utils/llm/anth.py", "repo": "tac", "description": "Anthropic LLM utility for hooks", "reuse_potential": "high"},
+      {"path": "Code/tac-6/app/server/core/llm_processor.py", "repo": "tac", "description": "NL-to-SQL LLM processor", "reuse_potential": "high"}
+    ],
+    "docs": [
+      {"path": "roles/ml-engineer/README (1).md", "repo": "proagent", "description": "ML engineer role documentation", "reuse_potential": "high"},
+      {"path": "impl/puaf-20260120/puaf-20260120_roles_data.md", "repo": "specs", "description": "ML/Data role implementations", "reuse_potential": "high"}
+    ],
+    "templates": [
+      {"path": "roles/ml-engineer/templates/ml-project-starter.md", "repo": "proagent", "description": "ML project starter template", "reuse_potential": "high"}
+    ],
+    "configs": [
+      {"path": "core/templates/validation_workflows/ml-engineer.yaml", "repo": "proagent-repo GUI", "description": "ML engineer validation workflow", "reuse_potential": "high"}
+    ]
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": true,
+    "missing_agent": false,
+    "missing_hooks": true,
+    "missing_mcp": true,
+    "recommended_integrations": ["AWS", "GCP", "GitHub", "Google Docs"]
+  },
+  "statistics": {
+    "total_assets": 22,
+    "high_reuse": 18,
+    "source_repos": ["awesome-claude-skills", "proagent", "proagent-repo GUI", "tac", "agents", "specs"]
+  }
+}

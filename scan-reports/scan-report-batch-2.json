@@ -1,0 +1,1944 @@
+{
+  "batch": 2,
+  "scan_date": "2026-02-16",
+  "repos": [
+    {
+      "name": "casdk-harness",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/casdk-harness",
+      "description": "A Dockerized framework for building autonomous development agents with the Claude Agent SDK. Supports interactive chat mode, autonomous spec-driven development, multi-agent orchestration via Redis, plugin system with skills/commands/hooks, MCP server integration, and Prometheus/Grafana monitoring. Written in Python.",
+      "assets": [
+        {
+          "path": "CLAUDE.md",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Comprehensive technical documentation for Claude's operational context including architecture diagrams, module descriptions, plugin system details, multi-agent architecture, and configuration reference",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/settings.json",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "security"],
+          "description": "Claude Code project settings with detailed permission allow/deny lists for Bash commands, MCP server enablement, and tool access controls",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/config/.mcp.json",
+          "type": "mcp",
+          "practices": ["agentic-engineering"],
+          "description": "MCP server configuration for Playwright and Puppeteer subprocess servers for browser automation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Makefile",
+          "type": "config",
+          "practices": ["devops", "platform"],
+          "description": "Comprehensive Makefile with 40+ targets covering build, deploy, interactive/autonomous modes, testing (unit/integration/multi-agent), code quality (lint/format/typecheck), monitoring, SSH setup, CI/CD, backup/restore, and diagnostics (doctor command)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "agents/main/Dockerfile",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Multi-stage Docker build (base, deps, dev, builder, prod) for the main agent container with Python 3.12+",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docker-compose.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Base Docker Compose configuration for main-agent, Prometheus, and Grafana services",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docker-compose.dev.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Development overlay for Docker Compose with hot-reload and development settings",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docker-compose.prod.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Production overlay for Docker Compose with production-ready settings",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "config/monitoring/prometheus.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Prometheus configuration for scraping agent metrics",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "config/monitoring/alerting.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Alerting rules for Prometheus monitoring of agent health",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "config/monitoring/dashboards/interactive-sessions.json",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Grafana dashboard for monitoring interactive agent sessions",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "config/monitoring/dashboards/overview.json",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Grafana overview dashboard (currently a stub placeholder)",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "pyproject.toml",
+          "type": "config",
+          "practices": ["sdlc", "platform"],
+          "description": "Python project configuration with dependencies, build system, and tool settings (ruff, mypy, pytest)",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".env.example",
+          "type": "config",
+          "practices": ["devops", "platform"],
+          "description": "Environment variable template with all configuration options for API keys, models, permissions, resource limits, and plugin settings",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agent.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "AgentSession wrapper with SDK lifecycle management, MCP server registration, checkpointing, metrics, and retry logic",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/autonomous.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Autonomous mode orchestration with AutonomousRunner and ProgressManager classes, workspace state detection (6 states), Tech Lead Q&A, and completion signal parsing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/interactive.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Interactive conversation loop with Rich console UI, syntax highlighting, real-time tool display, and session statistics",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/direct_agent.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Direct agent invocation module that bypasses SDK Task tool bug. Supports call_agent, call_agent_simple, and list_available_agents with CLI interface",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugin_manager.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Plugin discovery, manifest parsing, resource loading (agents, skills, commands, hooks), SDK-compatible agent conversion, and namespaced resource access",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/commands.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Slash command registry with argument substitution, namespaced lookups, and registration/execution infrastructure",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/hooks.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Lifecycle hook registry with async/sync execution, pattern matching on tool_name and file_path globs, and timeout handling",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/checkpoint.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Automatic checkpoint management with hourly auto-save, retention limits, atomic writes with file locking, and recovery from latest checkpoint",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/config.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Pydantic-based configuration with type-safe settings, environment variable loading, and validation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/harness/monitoring.py",
+          "type": "script",
+          "practices": ["devops"],
+          "description": "Prometheus metrics collector tracking requests, duration, API tokens, costs, and tool calls",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/cli.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Rich CLI formatting utilities for the interactive console",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/harness/messaging.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Redis Streams-based inter-agent communication for multi-agent container mode",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/health.py",
+          "type": "script",
+          "practices": ["devops"],
+          "description": "Health check endpoint for service monitoring",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/harness/mcp_loader.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "MCP server loader for in-process servers (docker, context7, memory)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/definitions.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Agent definition loader parsing YAML frontmatter from markdown agent config files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/dev-python-expert.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "Python/FastAPI/async development expert agent definition with YAML frontmatter specifying model, tools, and system prompt",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/dev-typescript-expert.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "frontend"],
+          "description": "TypeScript development expert agent definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/dev-react-expert.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "frontend"],
+          "description": "React development expert agent definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/dev-go-expert.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "Go development expert agent definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/dev-nodejs-expert.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "Node.js development expert agent definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/dev-code-review-expert.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Code review expert agent definition for automated code review",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/dev-refactor-agent.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Refactoring agent definition for code restructuring tasks",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/db-postgres-expert.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "data"],
+          "description": "PostgreSQL database expert agent definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/db-sql-expert.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "data"],
+          "description": "SQL expert agent definition for database queries and optimization",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/infra-docker-engineer.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "Docker infrastructure engineer agent definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/infra-k8s-engineer.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "Kubernetes infrastructure engineer agent definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/infra-gcp-architect.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "GCP cloud architect agent definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/infra-gitlab-ci-expert.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "GitLab CI expert agent definition for pipeline configuration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/agents/configs/test-sdet-expert.md",
+          "type": "agent",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "SDET (Software Dev Engineer in Test) agent definition for testing strategies",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/prompts/main-interactivedev-agent.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "System prompt for main interactive development agent mode",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/prompts/main-autodev-agent.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "System prompt for autonomous development agent mode",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/prompts/tech-lead-agent.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "System prompt for Tech Lead agent that refines requirements through Q&A in autonomous mode initializer phase",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/prompts/reviewer-agent.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "System prompt for code reviewer container agent (read-only workspace access)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/prompts/tester-agent.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "System prompt for tester container agent with full access for test execution",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/skills/api-development/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "API development skill with patterns for gateway, authentication, and error handling, plus FastAPI starter templates",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/skills/code-review/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Code review skill with automated review pipeline workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/skills/debugging/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Debugging skill with bug-fix debugging workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/skills/documentation/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Documentation generation skill with automated doc workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/skills/git-workflow/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Git workflow skill covering branching, commits, and version control best practices",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/skills/testing-strategies/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Testing strategies skill with QA orchestration workflow for unit, integration, and e2e testing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/.claude-plugin/plugin.json",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Plugin manifest for context-engineering plugin declaring agents, skills, commands, and hooks",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/agents/context-engineer.md",
+          "type": "agent",
+          "practices": ["agentic-engineering"],
+          "description": "Context engineering expert agent for creating agent definitions, skills, and plugins",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/commands/create-agent.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Slash command for creating new agent definitions interactively",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/hooks/settings.json",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Hook configuration for context-engineering plugin lifecycle events",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/skills/agent-definition-creation/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for creating new agent definitions with YAML frontmatter and system prompts",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/skills/skill-creation/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for creating new SKILL.md files following the Claude Code skill format",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/skills/plugin-development/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for developing full plugins with agents, skills, commands, and hooks",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/skills/command-creation/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for creating slash commands with argument substitution",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/skills/hook-configuration/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for configuring lifecycle hooks (PreToolUse, PostToolUse, etc.)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/patterns/multi-agent-orchestration.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Pattern documentation for multi-agent orchestration strategies",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/patterns/progressive-disclosure.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Pattern for progressive context disclosure to manage token limits",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/patterns/tool-restriction-patterns.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "security"],
+          "description": "Patterns for restricting agent tool access for safety and focus",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/templates/plugin-structure.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for plugin directory structure and manifest",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/templates/skill-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for creating new SKILL.md files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/templates/slash-command-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for creating slash command definitions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/templates/subagent-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for creating subagent definitions with YAML frontmatter",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/context-engineering/templates/hook-configuration-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for hook configuration settings.json files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/research-team/.claude-plugin/plugin.json",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Plugin manifest for research-team plugin with 3 agents, 1 skill, 1 command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/research-team/agents/lead-research-coordinator.md",
+          "type": "agent",
+          "practices": ["agentic-engineering"],
+          "description": "Lead research coordinator agent that orchestrates research specialists and report writers",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/research-team/agents/research-specialist.md",
+          "type": "agent",
+          "practices": ["agentic-engineering"],
+          "description": "Research specialist agent for deep-dive investigation tasks",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/research-team/agents/research-report-writer.md",
+          "type": "agent",
+          "practices": ["agentic-engineering"],
+          "description": "Research report writer agent for synthesizing findings into structured reports",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/research-team/commands/research.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Slash command to initiate a research workflow with the research team",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/research-team/skills/joplin-research/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for conducting research and storing notes in Joplin via MCP",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/harness/plugins/research-team/patterns/multi-agent-research.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Pattern for multi-agent research workflows with coordinator/specialist/writer roles",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/research-team/patterns/parallel-research-workflow.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Pattern for running parallel research investigations across multiple specialists",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/harness/plugins/research-team/templates/report-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for research report output format",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/harness/plugins/research-team/templates/research-note-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for individual research note entries",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/harness/plugins/research-team/templates/research-request-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for structuring research requests to the team",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/HARDENING.md",
+          "type": "doc",
+          "practices": ["security"],
+          "description": "Production security hardening guidelines for the harness deployment",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/MULTIAGENT-TODO.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Multi-agent feature roadmap and TODO list",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "docs/SPEC.example.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Example SPEC.md template for autonomous development mode with best practices for writing specifications",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/TROUBLESHOOTING.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "Detailed troubleshooting guide for common setup and runtime issues",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "QUICKSTART.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "5-minute quick start guide for new users",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "User-facing documentation covering features, setup, modes, commands, monitoring, and troubleshooting",
+          "reuse_potential": "medium"
+        }
+      ],
+      "statistics": {
+        "total_files": 163,
+        "assets_found": 85,
+        "practices_covered": ["agentic-engineering", "devops", "platform", "backend", "frontend", "data", "sdlc", "qa", "security"]
+      }
+    },
+    {
+      "name": "claude-ui",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/claude-ui",
+      "description": "A fully functional clone of claude.ai built with React 18, Vite, Node.js/Express, and SQLite. Features streaming chat, artifact rendering (code/HTML/SVG/React/Mermaid), conversation management, project organization, model selection, theming, and authentication. Designed as a self-hosted alternative to claude.ai.",
+      "assets": [
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["frontend", "backend"],
+          "description": "Comprehensive documentation covering architecture, features (chat, artifacts, projects, models), tech stack, design system, and API routes",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".claude_settings.json",
+          "type": "claude-file",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code project settings for the claude-ui development environment",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "package.json",
+          "type": "config",
+          "practices": ["frontend"],
+          "description": "Frontend package config with React 18, Vite, Tailwind CSS, react-markdown, mermaid, i18next, and syntax highlighting deps",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/package.json",
+          "type": "config",
+          "practices": ["backend"],
+          "description": "Backend package config for Express server with SQLite, Anthropic SDK, session management, and encryption utilities",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "init.sh",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Setup script that installs dependencies, creates directories, sets up database, and starts frontend/backend servers",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "restart_backend.sh",
+          "type": "script",
+          "practices": ["devops"],
+          "description": "Script to restart the backend Express server",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "restart_backend_simple.sh",
+          "type": "script",
+          "practices": ["devops"],
+          "description": "Simplified backend restart script",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "index.html",
+          "type": "config",
+          "practices": ["frontend"],
+          "description": "Main HTML entry point for the Vite-powered React SPA",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".env.example",
+          "type": "config",
+          "practices": ["platform"],
+          "description": "Environment template for API keys, server port, and database path",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/index.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Express server entry point with route mounting, middleware setup, CORS, and SSE streaming support",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/models/database.js",
+          "type": "script",
+          "practices": ["backend", "data"],
+          "description": "SQLite database model with schema for conversations, messages, artifacts, projects, users, prompts, templates, and API keys",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/conversations.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "REST API routes for CRUD operations on conversations with folder support",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/messages.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Message API routes including streaming responses via Anthropic SDK with SSE",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/artifacts.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Artifact management routes for code/HTML/SVG content extraction and versioning",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/auth.js",
+          "type": "script",
+          "practices": ["backend", "security"],
+          "description": "Authentication routes with session-based auth",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/projects.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Project management routes for grouping conversations with knowledge base",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/prompts.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Prompt library management routes",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/search.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Full-text search across conversations and messages",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/usage.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "API usage tracking and statistics routes",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/export.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Export routes for conversations in JSON, Markdown, and PDF formats",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/api-keys.js",
+          "type": "script",
+          "practices": ["backend", "security"],
+          "description": "API key management routes with encryption",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/documents.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Document upload and management for project knowledge bases",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/routes/templates.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Conversation template management routes",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "server/routes/project-templates.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Project template routes for bootstrapping new projects",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "server/routes/examples.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Example conversation routes for onboarding",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "server/routes/folders.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Folder management routes for organizing conversations",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "server/routes/users.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "User management routes",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "server/middleware/csrf.js",
+          "type": "script",
+          "practices": ["security"],
+          "description": "CSRF protection middleware",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/middleware/rateLimit.js",
+          "type": "script",
+          "practices": ["security"],
+          "description": "Rate limiting middleware for API protection",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/utils/encryption.js",
+          "type": "script",
+          "practices": ["security"],
+          "description": "Encryption utilities for API key storage",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/utils/password.js",
+          "type": "script",
+          "practices": ["security"],
+          "description": "Password hashing and verification utilities",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/utils/pricing.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Token pricing calculator for Claude API models",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/utils/session.js",
+          "type": "script",
+          "practices": ["backend", "security"],
+          "description": "Session management utilities for authenticated access",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "server/data/seed-examples.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Seed data for example conversations shown during onboarding",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "server/data/seed-project-templates.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Seed data for project templates",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "server/data/seed-prompts.js",
+          "type": "script",
+          "practices": ["backend"],
+          "description": "Seed data for prompt library",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "server/scripts/update_user_password.mjs",
+          "type": "script",
+          "practices": ["security"],
+          "description": "Admin script to update user passwords",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "src/App.jsx",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Main React application component with routing, theming, and layout",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/components/ArtifactPanel.jsx",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Side panel for rendering code, HTML, SVG, React, and Mermaid artifacts with versioning",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/components/CommandPalette.jsx",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Command palette component for keyboard-driven navigation (Cmd+K style)",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/components/ModelSelector.jsx",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Model selection dropdown for switching between Claude models",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/components/SettingsModal.jsx",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Settings modal with theme, font, temperature, and system prompt configuration",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/components/PromptLibraryModal.jsx",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Prompt library browser and selector component",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/components/ProjectAnalytics.jsx",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Project analytics dashboard showing usage statistics and conversation metrics",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/components/SearchModal.jsx",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Full-text search modal across all conversations",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/components/OnboardingTour.jsx",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Interactive onboarding tour for new users",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "src/contexts/ThemeContext.jsx",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "React context for theme management (light/dark/auto)",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/contexts/AuthContext.jsx",
+          "type": "script",
+          "practices": ["frontend", "security"],
+          "description": "React context for authentication state management",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "public/service-worker.js",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Service worker for offline support and PWA functionality",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "public/manifest.json",
+          "type": "config",
+          "practices": ["frontend"],
+          "description": "PWA manifest for installable web app",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "check_project.mjs",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "Project health check script",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "check_schema.mjs",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "Database schema validation script",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "check_real_schema.mjs",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "Real database schema comparison script",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "check_templates.mjs",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "Template validation script",
+          "reuse_potential": "low"
+        }
+      ],
+      "statistics": {
+        "total_files": 97,
+        "assets_found": 53,
+        "practices_covered": ["frontend", "backend", "security", "platform", "agentic-engineering", "data", "devops", "qa"]
+      }
+    },
+    {
+      "name": "gastown",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/gastown",
+      "description": "Multi-agent orchestration system for Claude Code with persistent work tracking. A Go-based workspace manager coordinating 20-30+ agents via git-backed hooks, convoy work tracking, beads issue system, and the Mayor AI coordinator pattern. Supports Claude Code, Codex, Gemini, Cursor, and more.",
+      "assets": [
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Comprehensive documentation covering architecture (Mayor, Rigs, Crews, Polecats, Hooks, Convoys), workflows (MEOW pattern), beads formulas, runtime configuration, and the propulsion principle",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "AGENTS.md",
+          "type": "claude-file",
+          "practices": ["agentic-engineering"],
+          "description": "Agent instructions stub pointing to CLAUDE.md for full context, with recovery instructions for gt prime",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".claude/skills/handoff/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Session handoff skill for cycling Claude sessions while preserving work context via hooks and mail. Includes implementation instructions for gt handoff command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "Makefile",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "Go build system with version ldflags, code generation, macOS code signing, install to ~/.local/bin, clean, and test targets",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "cmd/gt/main.go",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Main entry point for the gt CLI binary",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "GitHub Actions CI pipeline with .beads change checks, embedded formula verification, Go tests with coverage, golangci-lint, integration tests, and PR coverage commenting",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/release.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "GitHub Actions release workflow for automated builds and publishing",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/integration.yml",
+          "type": "config",
+          "practices": ["devops", "qa"],
+          "description": "Integration test workflow for end-to-end validation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/block-internal-prs.yml",
+          "type": "config",
+          "practices": ["devops", "security"],
+          "description": "Workflow to block PRs from internal branches to prevent accidental merges",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".goreleaser.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "GoReleaser configuration for cross-platform builds (Linux amd64/arm64, macOS amd64/arm64, Windows amd64, FreeBSD), archives, checksums, changelogs, and GitHub releases with Homebrew and npm install instructions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".golangci.yml",
+          "type": "config",
+          "practices": ["sdlc", "qa"],
+          "description": "Go linter configuration for code quality checks",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".githooks/pre-push",
+          "type": "hook",
+          "practices": ["sdlc"],
+          "description": "Git pre-push hook for pre-push validation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/PULL_REQUEST_TEMPLATE.md",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "Pull request template for consistent PR descriptions",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "Feature request issue template",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "Bug report issue template",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "SECURITY.md",
+          "type": "doc",
+          "practices": ["security"],
+          "description": "Security policy covering vulnerability reporting, agent isolation scope, and best practices for running agents safely",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Contribution guidelines for the project",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Code of conduct for contributors",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "RELEASING.md",
+          "type": "doc",
+          "practices": ["sdlc", "devops"],
+          "description": "Release process documentation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Changelog tracking all version releases",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".beads/config.yaml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Beads configuration for git-backed issue tracking system",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/PRIME.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Prime document for agent context recovery at session start",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".beads/README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Beads integration documentation explaining the git-backed issue tracking",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/code-review.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Beads formula for automated code review workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".beads/formulas/gastown-release.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Beads formula for Gas Town release process",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".beads/formulas/beads-release.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Beads formula for beads tool release process",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/design.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Beads formula for design review workflows",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/security-audit.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering", "security"],
+          "description": "Beads formula for security audit workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".beads/formulas/shiny.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Beads formula for shiny (new feature) development",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/shiny-enterprise.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Beads formula for enterprise-grade feature development",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/shiny-secure.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering", "security"],
+          "description": "Beads formula for security-focused feature development",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/rule-of-five.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Beads formula implementing the rule-of-five decision framework",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/towers-of-hanoi.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Beads formula for complex multi-step task decomposition",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-polecat-work.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for polecat (worker agent) work execution lifecycle",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".beads/formulas/mol-polecat-code-review.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Molecule formula for polecat code review process",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".beads/formulas/mol-polecat-review-pr.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Molecule formula for polecat PR review workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".beads/formulas/mol-polecat-lease.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for polecat lease management (agent lifecycle)",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-polecat-conflict-resolve.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for resolving conflicts between polecat workers",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-convoy-feed.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for feeding work into convoys",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-convoy-cleanup.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for convoy cleanup and archival",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-gastown-boot.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for Gas Town workspace initialization sequence",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".beads/formulas/mol-boot-triage.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for boot triage - determining what work to resume",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-deacon-patrol.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for deacon patrol (monitoring agent health)",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-witness-patrol.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for witness patrol (observing agent operations)",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-refinery-patrol.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for refinery patrol (code quality checks)",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-dep-propagate.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for dependency propagation between tasks",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-digest-generate.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for generating work digests/summaries",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-orphan-scan.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for scanning and reclaiming orphaned work items",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-session-gc.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for session garbage collection",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-sync-workspace.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for workspace synchronization across agents",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-shutdown-dance.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for graceful agent shutdown sequence",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".beads/formulas/mol-town-shutdown.formula.toml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Molecule formula for full town (workspace) shutdown",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/design/architecture.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "System architecture documentation for the Gas Town orchestration system",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/design/convoy-lifecycle.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Convoy lifecycle documentation covering creation, work distribution, tracking, and completion",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/design/escalation-system.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Escalation system design for handling blocked agents and human intervention",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/design/escalation.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Escalation mechanism documentation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/design/dog-pool-architecture.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Dog pool (agent pool) architecture design for managing agent resources",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/design/plugin-system.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Plugin system design for extending Gas Town capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/design/federation.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Federation design for multi-workspace coordination",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/design/watchdog-chain.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "security"],
+          "description": "Watchdog chain design for agent monitoring and safety",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/design/property-layers.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Property layers design for configuration inheritance",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/concepts/molecules.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Molecules concept documentation - reusable workflow units",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/concepts/convoy.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Convoy concept documentation - work tracking bundles",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/concepts/identity.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Identity concept documentation - agent naming and addressing",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/concepts/polecat-lifecycle.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Polecat (worker agent) lifecycle documentation from spawn to completion",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/concepts/propulsion-principle.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "The propulsion principle - using git hooks as a persistence mechanism for agent work",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/INSTALLING.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "Detailed installation guide for Gas Town",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/beads-native-messaging.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Beads native messaging protocol documentation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "LICENSE",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "MIT license file",
+          "reuse_potential": "low"
+        }
+      ],
+      "statistics": {
+        "total_files": 626,
+        "assets_found": 69,
+        "practices_covered": ["agentic-engineering", "devops", "sdlc", "security", "platform", "qa"]
+      }
+    },
+    {
+      "name": "planning-with-files",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/planning-with-files",
+      "description": "A multi-IDE plugin implementing Manus-style file-based planning for AI coding agents. Creates persistent markdown files (task_plan.md, findings.md, progress.md) as working memory on disk. Supports 14 IDEs including Claude Code, Cursor, Gemini CLI, Kiro, Continue, Codex, and more. Includes hooks for PreToolUse, PostToolUse, and Stop lifecycle events.",
+      "assets": [
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Comprehensive documentation covering the Manus-style planning pattern, 14 IDE integrations, 3-file pattern (task_plan/findings/progress), session recovery, hooks, and community forks",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude-plugin/plugin.json",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code plugin manifest with name, version, description, author, keywords, and repository metadata",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude-plugin/marketplace.json",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code marketplace registration with owner info and plugin source mapping",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Primary Claude Code skill definition with hooks (PreToolUse, PostToolUse, Stop), session recovery, 3-file pattern rules, 2-action rule, 3-strike error protocol, and anti-patterns. Version 2.10.0",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/planning-with-files/examples.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Real-world examples of the planning-with-files pattern in action",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/planning-with-files/reference.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Reference documentation for Manus principles and context engineering patterns",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/planning-with-files/templates/task_plan.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Template for task planning file with phases, progress checkboxes, and error logging",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/planning-with-files/templates/findings.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for research findings and discovery storage",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/planning-with-files/templates/progress.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for session logging and test result tracking",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/planning-with-files/scripts/init-session.sh",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Bash script to initialize all three planning files for a new session",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/planning-with-files/scripts/check-complete.sh",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Bash script for Stop hook - verifies all phases are complete before allowing session end",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/planning-with-files/scripts/init-session.ps1",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "PowerShell version of session initialization script for Windows",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/planning-with-files/scripts/check-complete.ps1",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "PowerShell version of completion check script for Windows",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/planning-with-files/scripts/session-catchup.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Python script for session recovery - finds unsynced context from previous sessions after /clear",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/plan.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Slash command /plan to start a planning session (v2.11.0+)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/start.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Original /start command to begin planning workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".cursor/hooks.json",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Cursor IDE hook configuration for PreToolUse, PostToolUse, and Stop events",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".cursor/hooks.windows.json",
+          "type": "hook",
+          "practices": ["agentic-engineering"],
+          "description": "Windows-specific Cursor hook configuration",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".cursor/hooks/pre-tool-use.sh",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Cursor PreToolUse hook script - reads plan before major decisions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".cursor/hooks/post-tool-use.sh",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Cursor PostToolUse hook script - reminds to update status after file writes",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".cursor/hooks/stop.sh",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Cursor Stop hook script - verifies completion before stopping",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".cursor/hooks/pre-tool-use.ps1",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Windows PowerShell version of PreToolUse hook",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".cursor/hooks/post-tool-use.ps1",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Windows PowerShell version of PostToolUse hook",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".cursor/hooks/stop.ps1",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Windows PowerShell version of Stop hook",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".cursor/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Cursor-specific skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".gemini/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Gemini CLI skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".continue/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Continue IDE skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".continue/prompts/planning-with-files.prompt",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Continue IDE prompt file for slash command integration",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".codex/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Codex IDE skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".kilocode/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Kilocode skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".openclaw/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "OpenClaw skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".opencode/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "OpenCode skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".factory/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "FactoryAI Droid skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".antigravity/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Antigravity IDE skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".codebuddy/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "CodeBuddy IDE skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".adal/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "AdaL CLI / Sylph AI skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".agent/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Generic agent skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".pi/skills/planning-with-files/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Pi Agent skill definition for planning-with-files",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".kiro/steering/planning-with-files.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Kiro steering file for planning-with-files integration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/installation.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "Comprehensive installation guide covering all 14 IDE platforms",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/quickstart.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "5-step quickstart guide for getting started with the planning pattern",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/workflow.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Visual workflow diagram showing how planning files and hooks interact",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/troubleshooting.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "Troubleshooting guide for common issues across IDEs",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/cursor.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Cursor IDE-specific setup and integration guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/gemini.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Gemini CLI setup and integration guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/continue.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Continue IDE setup guide with skills and slash prompts",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/codex.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Codex IDE setup guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/opencode.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "OpenCode IDE setup guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/openclaw.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "OpenClaw setup guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/kilocode.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Kilocode setup guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/kiro.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Kiro steering files setup guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/factory.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "FactoryAI Droid integration guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/antigravity.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Antigravity IDE integration guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/codebuddy.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "CodeBuddy IDE integration guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/adal.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "AdaL CLI / Sylph AI integration guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/pi-agent.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Pi Agent integration guide",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/windows.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "Windows-specific setup notes and PowerShell compatibility",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Version changelog from v1.0 through v2.15.0",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "LICENSE",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "MIT license file",
+          "reuse_potential": "low"
+        }
+      ],
+      "statistics": {
+        "total_files": 187,
+        "assets_found": 59,
+        "practices_covered": ["agentic-engineering", "sdlc", "platform"]
+      }
+    }
+  ]
+}

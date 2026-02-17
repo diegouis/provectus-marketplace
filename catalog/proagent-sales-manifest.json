@@ -1,0 +1,40 @@
+{
+  "practice": "sales",
+  "plugin_name": "proagent-sales",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "competitive-ads-extractor/SKILL.md", "repo": "awesome-claude-skills", "description": "Extract and analyze competitors' ads from ad libraries", "reuse_potential": "medium"},
+      {"path": "domain-name-brainstormer/SKILL.md", "repo": "awesome-claude-skills", "description": "Generate creative domain name ideas and check availability", "reuse_potential": "low"},
+      {"path": "lead-research-assistant/SKILL.md", "repo": "awesome-claude-skills", "description": "Identify and qualify leads with outreach strategies", "reuse_potential": "medium"},
+      {"path": "skills/brand-guidelines/SKILL.md", "repo": "skills", "description": "Create and apply brand guidelines to content", "reuse_potential": "high"},
+      {"path": "roles/project-manager/skills/stakeholder-management.md", "repo": "proagent", "description": "Stakeholder communication and management", "reuse_potential": "high"}
+    ],
+    "commands": [
+      {"path": "commands/research/competitive.md", "repo": "taches-cc-resources", "description": "Competitive analysis research", "reuse_potential": "high"},
+      {"path": "commands/research/options.md", "repo": "taches-cc-resources", "description": "Options analysis research", "reuse_potential": "high"}
+    ],
+    "agents": [
+      {"path": "plugins/customer-sales-automation/agents/sales-automator.md", "repo": "agents", "description": "Sales automation for pipeline management and CRM", "reuse_potential": "high"}
+    ],
+    "hooks": [],
+    "mcp_configs": [],
+    "scripts": [],
+    "docs": [],
+    "templates": [],
+    "configs": []
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": true,
+    "missing_agent": false,
+    "missing_hooks": true,
+    "missing_mcp": true,
+    "recommended_integrations": ["Slack", "Google Docs", "Gmail", "Google Calendar", "Jira"]
+  },
+  "statistics": {
+    "total_assets": 13,
+    "high_reuse": 8,
+    "source_repos": ["awesome-claude-skills", "proagent", "skills", "taches-cc-resources", "agents"]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "practice": "qa",
+  "plugin_name": "proagent-qa",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "webapp-testing/SKILL.md", "repo": "awesome-claude-skills", "description": "Test web apps using Playwright", "reuse_potential": "high"},
+      {"path": "src/harness/skills/testing-strategies/SKILL.md", "repo": "casdk-harness", "description": "QA orchestration for unit/integration/e2e", "reuse_potential": "high"},
+      {"path": "roles/qa-engineer/skills/automated-testing.md", "repo": "proagent", "description": "Automated test creation and management", "reuse_potential": "high"},
+      {"path": "roles/qa-engineer/skills/e2e-testing.md", "repo": "proagent", "description": "E2E testing with Cypress/Playwright", "reuse_potential": "high"},
+      {"path": "roles/qa-engineer/skills/api-testing.md", "repo": "proagent", "description": "API testing strategies", "reuse_potential": "high"},
+      {"path": "core/skills/tac/validation-pyramid.md", "repo": "proagent-repo GUI", "description": "Validation pyramid for layered QA", "reuse_potential": "high"},
+      {"path": "core/skills/tac/validation.md", "repo": "proagent-repo GUI", "description": "Validation strategies for agent outputs", "reuse_potential": "high"},
+      {"path": "skills/test-driven-development/SKILL.md", "repo": "superpowers", "description": "RED-GREEN-REFACTOR TDD enforcement", "reuse_potential": "high"},
+      {"path": "skills/verification-before-completion/SKILL.md", "repo": "superpowers", "description": "Evidence-based verification", "reuse_potential": "high"},
+      {"path": ".claude/skills/eval/SKILL.md", "repo": "ralph-orchestrator", "description": "Conversational evaluation framework", "reuse_potential": "high"},
+      {"path": ".claude/skills/evaluate-presets/SKILL.md", "repo": "ralph-orchestrator", "description": "Preset configuration validation", "reuse_potential": "high"},
+      {"path": ".claude/skills/tui-validate/SKILL.md", "repo": "ralph-orchestrator", "description": "TUI validation with screenshot capture", "reuse_potential": "high"},
+      {"path": "skills/webapp-testing/SKILL.md", "repo": "skills", "description": "Playwright-based webapp testing", "reuse_potential": "high"}
+    ],
+    "commands": [
+      {"path": "commands/verify.md", "repo": "awos", "description": "Verify implementation against acceptance criteria", "reuse_potential": "high"},
+      {"path": "cli/commands/cmd_test.py", "repo": "proagent-repo GUI", "description": "Automated testing with role-specific validators", "reuse_potential": "high"},
+      {"path": ".claude/commands/verify-behaviors.md", "repo": "ralph-orchestrator", "description": "Verify behavioral specs against implementation", "reuse_potential": "high"},
+      {"path": ".claude/commands/update-behaviors.md", "repo": "ralph-orchestrator", "description": "Update behavior catalog after changes", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/commands/test.md", "repo": "tac", "description": "Run project test suite", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/commands/test_e2e.md", "repo": "tac", "description": "E2E testing via Playwright MCP", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/commands/resolve_failed_test.md", "repo": "tac", "description": "Auto-resolve failed unit tests", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/commands/resolve_failed_e2e_test.md", "repo": "tac", "description": "Auto-resolve failed E2E tests", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/commands/e2e/test_sql_injection.md", "repo": "tac", "description": "SQL injection prevention test", "reuse_potential": "high"},
+      {"path": "plugins/tdd-workflows/commands/tdd-cycle.md", "repo": "agents", "description": "TDD red-green-refactor cycle", "reuse_potential": "high"},
+      {"path": "commands/audit-skill.md", "repo": "taches-cc-resources", "description": "Audit skill for best practices", "reuse_potential": "high"},
+      {"path": "commands/audit-slash-command.md", "repo": "taches-cc-resources", "description": "Audit slash command structure", "reuse_potential": "high"},
+      {"path": "commands/audit-subagent.md", "repo": "taches-cc-resources", "description": "Audit subagent configuration", "reuse_potential": "high"}
+    ],
+    "agents": [
+      {"path": "src/harness/agents/configs/test-sdet-expert.md", "repo": "casdk-harness", "description": "SDET agent for testing strategies", "reuse_potential": "high"},
+      {"path": "agents/skill-auditor.md", "repo": "taches-cc-resources", "description": "Skill auditor subagent", "reuse_potential": "high"},
+      {"path": "agents/slash-command-auditor.md", "repo": "taches-cc-resources", "description": "Slash command auditor", "reuse_potential": "high"},
+      {"path": "agents/subagent-auditor.md", "repo": "taches-cc-resources", "description": "Subagent auditor", "reuse_potential": "high"}
+    ],
+    "hooks": [
+      {"path": ".pre-commit-config.yaml", "repo": "Auto-Claude", "description": "Pre-commit with pytest, ESLint, TypeScript checks", "reuse_potential": "high"},
+      {"path": ".hooks/pre-commit", "repo": "ralph-orchestrator", "description": "Cargo fmt + clippy checks", "reuse_potential": "high"},
+      {"path": ".cursor/hooks.json", "repo": "planning-with-files", "description": "Cursor IDE PreToolUse/PostToolUse/Stop", "reuse_potential": "high"}
+    ],
+    "mcp_configs": [
+      {"path": "Code/tac-6/.mcp.json", "repo": "tac", "description": "Playwright MCP for E2E testing", "reuse_potential": "high"}
+    ],
+    "scripts": [
+      {"path": "Code/tac-6/adws/adw_test.py", "repo": "tac", "description": "ADW test automation", "reuse_potential": "high"},
+      {"path": "Code/tac-6/app/server/tests/test_sql_injection.py", "repo": "tac", "description": "SQL injection test suite", "reuse_potential": "high"},
+      {"path": "tests/claude-code/run-skill-tests.sh", "repo": "superpowers", "description": "Skill test runner", "reuse_potential": "high"},
+      {"path": "tests/claude-code/test-helpers.sh", "repo": "superpowers", "description": "Test helper utilities", "reuse_potential": "high"},
+      {"path": "skills/systematic-debugging/find-polluter.sh", "repo": "superpowers", "description": "Find test polluters", "reuse_potential": "high"},
+      {"path": "core/meta_prompts/quality_gate_generator.py", "repo": "proagent-repo GUI", "description": "Quality gate prompt generator", "reuse_potential": "high"},
+      {"path": "core/meta_prompts/test_generator.py", "repo": "proagent-repo GUI", "description": "Automated test generation", "reuse_potential": "high"},
+      {"path": "core/meta_prompts/validation_generator.py", "repo": "proagent-repo GUI", "description": "Validation workflow generator", "reuse_potential": "high"},
+      {"path": "core/orchestration/sdlc/tester.py", "repo": "proagent-repo GUI", "description": "SDLC testing phase orchestrator", "reuse_potential": "high"},
+      {"path": "skills/webapp-testing/scripts/with_server.py", "repo": "skills", "description": "Server lifecycle manager for tests", "reuse_potential": "high"},
+      {"path": "skills/skill-creator/scripts/quick_validate.py", "repo": "skills", "description": "Quick skill validation", "reuse_potential": "high"},
+      {"path": "crates/ralph-core/src/testing/smoke_runner.rs", "repo": "ralph-orchestrator", "description": "Smoke test runner with JSONL replay", "reuse_potential": "high"},
+      {"path": "crates/ralph-core/src/testing/replay_backend.rs", "repo": "ralph-orchestrator", "description": "Replay backend for deterministic testing", "reuse_potential": "high"},
+      {"path": "crates/ralph-core/src/testing/scenario.rs", "repo": "ralph-orchestrator", "description": "Scenario-based testing framework", "reuse_potential": "high"}
+    ],
+    "docs": [
+      {"path": "roles/qa-engineer/README (1).md", "repo": "proagent", "description": "QA engineer role documentation", "reuse_potential": "high"},
+      {"path": "docs/testing-strategies.md", "repo": "awos", "description": "Testing strategies within AWOS", "reuse_potential": "high"},
+      {"path": "skills/test-driven-development/testing-anti-patterns.md", "repo": "superpowers", "description": "Testing anti-patterns reference", "reuse_potential": "high"},
+      {"path": "skills/writing-skills/testing-skills-with-subagents.md", "repo": "superpowers", "description": "Testing skills with subagents", "reuse_potential": "high"},
+      {"path": "docs/testing.md", "repo": "superpowers", "description": "Testing documentation", "reuse_potential": "medium"},
+      {"path": "skills/mcp-builder/reference/evaluation.md", "repo": "skills", "description": "MCP server evaluation methodology", "reuse_potential": "high"},
+      {"path": "VERIFICATION_PROMPT_PRECEDENCE.md", "repo": "ralph-orchestrator", "description": "Verification prompt precedence rules", "reuse_potential": "medium"}
+    ],
+    "templates": [
+      {"path": "src/harness/prompts/tester-agent.md", "repo": "casdk-harness", "description": "Tester agent system prompt", "reuse_potential": "high"},
+      {"path": "skills/webapp-testing/examples/console_logging.py", "repo": "skills", "description": "Browser console log capture example", "reuse_potential": "medium"},
+      {"path": "skills/webapp-testing/examples/element_discovery.py", "repo": "skills", "description": "DOM element discovery example", "reuse_potential": "medium"},
+      {"path": "skills/webapp-testing/examples/static_html_automation.py", "repo": "skills", "description": "Static HTML test automation example", "reuse_potential": "medium"}
+    ],
+    "configs": [
+      {"path": ".coderabbit.yaml", "repo": "Auto-Claude", "description": "AI code review configuration", "reuse_potential": "high"},
+      {"path": ".golangci.yml", "repo": "gastown", "description": "Go linter configuration", "reuse_potential": "medium"},
+      {"path": "core/templates/validation_workflows/qa-engineer.yaml", "repo": "proagent-repo GUI", "description": "QA engineer validation workflow", "reuse_potential": "high"},
+      {"path": "crates/ralph-cli/presets/tdd-red-green.yml", "repo": "ralph-orchestrator", "description": "TDD preset configuration", "reuse_potential": "high"}
+    ]
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": false,
+    "missing_agent": false,
+    "missing_hooks": false,
+    "missing_mcp": false,
+    "recommended_integrations": ["GitHub", "GitLab", "Playwright", "Jira", "Slack"]
+  },
+  "statistics": {
+    "total_assets": 110,
+    "high_reuse": 80,
+    "source_repos": ["Auto-Claude", "awesome-claude-code", "awesome-claude-skills", "awos", "casdk-harness", "claude-ui", "gastown", "proagent", "proagent-repo GUI", "ralph-orchestrator", "skills", "superpowers", "tac", "taches-cc-resources", "agents"]
+  }
+}

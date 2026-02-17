@@ -1,0 +1,272 @@
+{
+  "name": "provectus-marketplace",
+  "version": "0.1.0",
+  "description": "ProAgent Plugin Marketplace — practice-specific plugins for Provectus teams, built from 843 assets across 17 repositories",
+  "author": "Provectus",
+  "generated": "2026-02-16",
+  "plugins": [
+    {
+      "name": "proagent-agentic-engineering",
+      "version": "0.1.0",
+      "category": "agentic-engineering",
+      "description": "Building, orchestrating, and optimizing AI agent systems with Claude Code extensions, MCP servers, multi-agent workflows, and prompt engineering",
+      "path": "plugins/proagent-agentic-engineering",
+      "assets_count": 612,
+      "source_repos": 19,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 3,
+        "mcp_servers": 3
+      }
+    },
+    {
+      "name": "proagent-sdlc",
+      "version": "0.1.0",
+      "category": "sdlc",
+      "description": "Managing Software Development Lifecycle — architecture, code review, testing strategy, release management, documentation, and git workflows",
+      "path": "plugins/proagent-sdlc",
+      "assets_count": 208,
+      "source_repos": 12,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 3,
+        "mcp_servers": 4
+      }
+    },
+    {
+      "name": "proagent-platform",
+      "version": "0.1.0",
+      "category": "platform",
+      "description": "Building Developer Platforms & Tooling — service catalogs, golden paths, scaffolding, MCP server development, and DX optimization",
+      "path": "plugins/proagent-platform",
+      "assets_count": 127,
+      "source_repos": 8,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 3,
+        "mcp_servers": 3
+      }
+    },
+    {
+      "name": "proagent-devops",
+      "version": "0.1.0",
+      "category": "devops",
+      "description": "Managing Infrastructure & Deployments — CI/CD pipelines, Docker/Kubernetes, Terraform/IaC, monitoring, incident response, and cloud operations",
+      "path": "plugins/proagent-devops",
+      "assets_count": 126,
+      "source_repos": 5,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 2,
+        "mcp_servers": 4
+      }
+    },
+    {
+      "name": "proagent-qa",
+      "version": "0.1.0",
+      "category": "qa",
+      "description": "Ensuring Software Quality — test automation, Playwright/Cypress, regression testing, coverage analysis, E2E testing, and accessibility",
+      "path": "plugins/proagent-qa",
+      "assets_count": 110,
+      "source_repos": 6,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 3,
+        "mcp_servers": 4
+      }
+    },
+    {
+      "name": "proagent-backend",
+      "version": "0.1.0",
+      "category": "backend",
+      "description": "Building Scalable Backend Services — APIs, databases, microservices, auth, caching, queues, and performance optimization",
+      "path": "plugins/proagent-backend",
+      "assets_count": 63,
+      "source_repos": 4,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 2,
+        "mcp_servers": 4
+      }
+    },
+    {
+      "name": "proagent-frontend",
+      "version": "0.1.0",
+      "category": "frontend",
+      "description": "Building Modern Web Interfaces — React/Vue/Angular, design systems, accessibility (WCAG 2.1 AA), responsive design, and performance optimization",
+      "path": "plugins/proagent-frontend",
+      "assets_count": 60,
+      "source_repos": 8,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 3,
+        "mcp_servers": 3
+      }
+    },
+    {
+      "name": "proagent-delivery",
+      "version": "0.1.0",
+      "category": "delivery",
+      "description": "Managing Project Delivery — sprint planning, milestones, status reports, risk management, stakeholder communication, and retrospectives",
+      "path": "plugins/proagent-delivery",
+      "assets_count": 52,
+      "source_repos": 8,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 3,
+        "mcp_servers": 4
+      }
+    },
+    {
+      "name": "proagent-security",
+      "version": "0.1.0",
+      "category": "security",
+      "description": "Securing Software & Infrastructure — vulnerability scanning, compliance, secrets management, threat modeling, OWASP, and Zero Trust",
+      "path": "plugins/proagent-security",
+      "assets_count": 51,
+      "source_repos": 10,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 2,
+        "mcp_servers": 2
+      }
+    },
+    {
+      "name": "proagent-data",
+      "version": "0.1.0",
+      "category": "data",
+      "description": "Engineering Data Pipelines & Analytics — ETL/ELT, dbt, Airflow, data warehousing, SQL optimization, and data quality",
+      "path": "plugins/proagent-data",
+      "assets_count": 27,
+      "source_repos": 5,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 3,
+        "mcp_servers": 3
+      }
+    },
+    {
+      "name": "proagent-ml-ai",
+      "version": "0.1.0",
+      "category": "ml-ai",
+      "description": "Building ML & AI Systems — model training, MLOps, experiment tracking, LLM applications, RAG, embeddings, and deployment",
+      "path": "plugins/proagent-ml-ai",
+      "assets_count": 22,
+      "source_repos": 3,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 2,
+        "mcp_servers": 3
+      }
+    },
+    {
+      "name": "proagent-hr",
+      "version": "0.1.0",
+      "category": "hr",
+      "description": "Managing Human Resources & Talent — hiring, interviews, onboarding, performance reviews, compensation, and employee development",
+      "path": "plugins/proagent-hr",
+      "assets_count": 22,
+      "source_repos": 5,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 3,
+        "mcp_servers": 4
+      }
+    },
+    {
+      "name": "proagent-sales",
+      "version": "0.1.0",
+      "category": "sales",
+      "description": "Driving Sales & Business Development — proposals, RFPs, competitive analysis, lead research, pipeline management, and quote generation",
+      "path": "plugins/proagent-sales",
+      "assets_count": 13,
+      "source_repos": 5,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 2,
+        "mcp_servers": 4
+      }
+    },
+    {
+      "name": "proagent-finance",
+      "version": "0.1.0",
+      "category": "finance",
+      "description": "Managing Financial Operations — budgeting, invoicing, forecasting, P&L analysis, cost optimization, and financial reporting",
+      "path": "plugins/proagent-finance",
+      "assets_count": 4,
+      "source_repos": 3,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 3,
+        "mcp_servers": 3
+      }
+    }
+  ],
+  "statistics": {
+    "total_plugins": 14,
+    "total_assets_cataloged": 843,
+    "total_source_repos": 17,
+    "total_skills": 14,
+    "total_commands": 42,
+    "total_agents": 14,
+    "total_hooks": 36,
+    "total_mcp_integrations": 48,
+    "practices_covered": [
+      "agentic-engineering",
+      "sdlc",
+      "platform",
+      "devops",
+      "qa",
+      "backend",
+      "frontend",
+      "delivery",
+      "security",
+      "data",
+      "ml-ai",
+      "hr",
+      "sales",
+      "finance"
+    ]
+  },
+  "mcp_integrations_available": [
+    "GitHub",
+    "GitLab",
+    "Slack",
+    "Google Docs",
+    "Gmail",
+    "Google Calendar",
+    "AWS",
+    "GCP",
+    "Jira",
+    "Confluence",
+    "Playwright"
+  ]
+}

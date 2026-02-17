@@ -1,0 +1,47 @@
+{
+  "practice": "hr",
+  "plugin_name": "proagent-hr",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "developer-growth-analysis/SKILL.md", "repo": "awesome-claude-skills", "description": "Analyze coding patterns and generate personalized growth reports", "reuse_potential": "medium"},
+      {"path": "meeting-insights-analyzer/SKILL.md", "repo": "awesome-claude-skills", "description": "Analyze meeting transcripts for behavioral patterns", "reuse_potential": "medium"},
+      {"path": "tailored-resume-generator/SKILL.md", "repo": "awesome-claude-skills", "description": "Generate tailored resumes from job descriptions", "reuse_potential": "medium"},
+      {"path": "roles/human-resources/skills/onboarding-coordination.md", "repo": "proagent", "description": "Employee onboarding process coordination", "reuse_potential": "high"},
+      {"path": "roles/human-resources/skills/interview-process.md", "repo": "proagent", "description": "Hiring interview workflow management", "reuse_potential": "high"},
+      {"path": "roles/human-resources/skills/performance-review.md", "repo": "proagent", "description": "Performance review facilitation", "reuse_potential": "high"},
+      {"path": "skills/internal-comms/SKILL.md", "repo": "skills", "description": "Internal communications: newsletters, FAQs, updates", "reuse_potential": "high"}
+    ],
+    "commands": [],
+    "agents": [
+      {"path": "plugins/hr-legal-compliance/agents/hr-pro.md", "repo": "agents", "description": "HR professional for policy documentation and compliance", "reuse_potential": "high"}
+    ],
+    "hooks": [],
+    "mcp_configs": [],
+    "scripts": [],
+    "docs": [
+      {"path": "roles/human-resources/README (1).md", "repo": "proagent", "description": "Human resources role documentation", "reuse_potential": "high"},
+      {"path": ".github/CODE_OF_CONDUCT.md", "repo": "agents", "description": "Community code of conduct", "reuse_potential": "low"},
+      {"path": "impl/puaf-20260120/puaf-20260120_roles_business.md", "repo": "specs", "description": "Business role implementations including HR", "reuse_potential": "high"}
+    ],
+    "templates": [
+      {"path": "skills/internal-comms/examples/company-newsletter.md", "repo": "skills", "description": "Company newsletter template", "reuse_potential": "medium"},
+      {"path": "skills/internal-comms/examples/faq-answers.md", "repo": "skills", "description": "FAQ answers template", "reuse_potential": "medium"},
+      {"path": "skills/internal-comms/examples/general-comms.md", "repo": "skills", "description": "General internal communications template", "reuse_potential": "medium"}
+    ],
+    "configs": []
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": true,
+    "missing_agent": false,
+    "missing_hooks": true,
+    "missing_mcp": true,
+    "recommended_integrations": ["Slack", "Google Docs", "Gmail", "Google Calendar", "Google Meet"]
+  },
+  "statistics": {
+    "total_assets": 22,
+    "high_reuse": 14,
+    "source_repos": ["awesome-claude-skills", "proagent", "skills", "agents", "specs"]
+  }
+}

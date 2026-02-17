@@ -1,0 +1,81 @@
+{
+  "hooks": [
+    {
+      "name": "proagent-sdlc-pre-commit-quality-gate",
+      "event": "PreToolUse",
+      "description": "Quality gate that runs before Bash tool executes git commit. Validates conventional commit message format, checks that staged files have no TODO/FIXME markers in new lines, and verifies test files exist for new source files.",
+      "tool_name": "Bash",
+      "match_pattern": "git commit",
+      "action": "validate",
+      "rules": [
+        {
+          "id": "conventional-commit-format",
+          "description": "Commit message must follow conventional commit format: type(scope): description",
+          "check": "The commit message must match the pattern: (feat|fix|docs|refactor|test|chore|perf|ci|build|style)(\\(.+\\))?!?: .+",
+          "severity": "blocking",
+          "fix_hint": "Rewrite the commit message using conventional format. Examples: 'feat(auth): add OAuth2 login flow', 'fix(api): handle null response from payment gateway', 'docs(readme): update installation instructions'"
+        },
+        {
+          "id": "no-todo-in-commits",
+          "description": "Staged changes should not contain TODO or FIXME comments in newly added lines",
+          "check": "Run 'git diff --cached' and check that no added lines (lines starting with +) contain TODO or FIXME markers",
+          "severity": "warning",
+          "fix_hint": "Either resolve the TODO/FIXME before committing, or convert it to a tracked issue and reference the issue number in the comment"
+        },
+        {
+          "id": "test-file-exists",
+          "description": "New source files should have corresponding test files",
+          "check": "For each new file in the staging area (git diff --cached --name-only --diff-filter=A) that is a source file (not a test, config, or doc), verify a corresponding test file exists in the project test directory",
+          "severity": "warning",
+          "fix_hint": "Create a test file for the new source file following the project's test naming convention (e.g., test_<name>.py, <name>.test.ts, <name>_test.go)"
+        }
+      ]
+    },
+    {
+      "name": "proagent-sdlc-post-review-notification",
+      "event": "PostToolUse",
+      "description": "After the sdlc-specialist agent completes a code review or PR review, formats the review findings as a structured summary and suggests next actions based on severity of findings.",
+      "tool_name": "Task",
+      "match_pattern": "sdlc-specialist",
+      "action": "notify",
+      "rules": [
+        {
+          "id": "review-summary-format",
+          "description": "Format review results into a structured notification",
+          "check": "After review completes, parse the output for severity markers (BLOCKING, IMPORTANT, SUGGESTION, PRAISE) and generate a summary table",
+          "action_template": "## Review Complete\n\n| Severity | Count |\n|----------|-------|\n| Blocking | {blocking_count} |\n| Important | {important_count} |\n| Suggestion | {suggestion_count} |\n| Praise | {praise_count} |\n\n**Verdict:** {verdict}\n**Next steps:** {next_steps}"
+        },
+        {
+          "id": "blocking-issue-escalation",
+          "description": "If blocking issues are found, present them prominently and prevent proceeding",
+          "check": "If the review output contains any BLOCKING severity findings",
+          "action_template": "ATTENTION: {blocking_count} blocking issue(s) must be resolved before this code can be merged or released. See the review report above for details and suggested fixes."
+        }
+      ]
+    },
+    {
+      "name": "proagent-sdlc-pre-push-validation",
+      "event": "PreToolUse",
+      "description": "Quality gate before pushing to remote. Validates that the local branch is up to date with the remote base branch and that no WIP commits are being pushed.",
+      "tool_name": "Bash",
+      "match_pattern": "git push",
+      "action": "validate",
+      "rules": [
+        {
+          "id": "no-wip-commits",
+          "description": "Commits being pushed should not contain WIP, fixup, or squash markers",
+          "check": "Run 'git log @{upstream}..HEAD --oneline' and verify no commit messages start with 'WIP', 'fixup!', or 'squash!'",
+          "severity": "blocking",
+          "fix_hint": "Squash or reword WIP/fixup commits before pushing. Use 'git rebase' to clean up commit history."
+        },
+        {
+          "id": "branch-up-to-date",
+          "description": "Local branch should be up to date with the remote base branch to avoid merge conflicts",
+          "check": "Run 'git fetch origin' and verify the current branch is not behind the base branch",
+          "severity": "warning",
+          "fix_hint": "Run 'git pull --rebase origin main' to bring your branch up to date before pushing."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "proagent-delivery",
+  "version": "0.1.0",
+  "description": "Project delivery management: sprint planning, milestone tracking, stakeholder updates, status reports, risk assessment, retrospectives, resource allocation, and agile/scrum workflows. Synthesized from proagent project-manager roles, awesome-claude-skills internal-comms, taches-cc-resources prioritization frameworks, and awos product/roadmap commands across 8 source repositories.",
+  "author": {
+    "name": "Provectus",
+    "email": "agentic-coding@provectus.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/provectus/proagent-marketplace"
+  },
+  "license": "MIT",
+  "category": "delivery",
+  "keywords": [
+    "delivery",
+    "project-management",
+    "sprint-planning",
+    "milestone-tracking",
+    "stakeholder-management",
+    "status-reports",
+    "risk-assessment",
+    "retrospectives",
+    "resource-allocation",
+    "agile",
+    "scrum",
+    "3p-updates",
+    "meeting-facilitation"
+  ],
+  "agents": ["./agents"],
+  "skills": ["./skills"],
+  "commands": ["./commands"],
+  "hooks": ["./hooks"]
+}

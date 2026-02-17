@@ -1,0 +1,1113 @@
+{
+  "batch": 1,
+  "scan_date": "2026-02-16",
+  "repos": [
+    {
+      "name": "Auto-Claude",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/Auto-Claude",
+      "description": "Autonomous multi-agent coding framework that plans, builds, and validates software through coordinated AI agent sessions. Features Electron desktop UI, Python backend with Claude Agent SDK, parallel execution with up to 12 agent terminals, isolated git worktrees, QA validation loops, memory system (Graphiti), and integrations with GitHub, GitLab, and Linear. Cross-platform (Windows, macOS, Linux).",
+      "assets": [
+        {
+          "path": "CLAUDE.md",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Comprehensive Claude Code guidance file defining project structure, agent SDK integration patterns, memory system usage, cross-platform development guidelines, E2E testing with Electron MCP, and contributing workflows. Core reference for AI agents working in this repo.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/commands/setup-statusline.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Claude Code slash command for configuring ccstatusline integration to display real-time auto-claude build progress in the Claude Code status bar. Includes widget config, output formats (compact/full/JSON), and status file schema.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".coderabbit.yaml",
+          "type": "config",
+          "practices": ["sdlc", "qa"],
+          "description": "CodeRabbit AI code review configuration with assertive review profile, path-specific review instructions for Python backend and TypeScript frontend, auto-incremental review, and path filters for generated files.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".pre-commit-config.yaml",
+          "type": "config",
+          "practices": ["sdlc", "qa", "devops"],
+          "description": "Pre-commit hooks configuration with version sync (propagates root package.json version to all files), Python linting via ruff, pytest integration, frontend ESLint/TypeScript checks, and general checks (trailing whitespace, YAML validation, large file detection).",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".husky/pre-commit",
+          "type": "hook",
+          "practices": ["sdlc", "security", "qa"],
+          "description": "Comprehensive pre-commit hook handling git worktree context, version syncing across monorepo packages, Python linting with ruff, pytest execution, frontend lint-staged, TypeScript type checking, and npm audit for vulnerability detection. Includes cross-platform worktree corruption prevention.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".husky/commit-msg",
+          "type": "hook",
+          "practices": ["sdlc"],
+          "description": "Commit message validation hook enforcing conventional commit format (type(scope)!?: description). Validates types (feat/fix/docs/etc.), allows merge and revert commits, enforces 100-char limit.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "type": "config",
+          "practices": ["devops", "qa"],
+          "description": "Cross-platform CI pipeline testing on Linux, Windows, and macOS. Runs Python backend tests with pytest across Python 3.12/3.13 matrix. Uses uv package manager and caching.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/release.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "Multi-platform release workflow triggered by version tags. Builds native packages for macOS Intel/ARM, Windows, Linux (AppImage, deb, flatpak). Includes Rust toolchain for native Python packages, npm caching, and artifact management.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/quality-security.yml",
+          "type": "config",
+          "practices": ["security", "qa"],
+          "description": "Quality and security pipeline with CodeQL analysis for Python and JavaScript/TypeScript, Bandit security scanning, scheduled weekly runs, and security-extended queries.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/beta-release.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "Beta release workflow for pre-release builds and distribution.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/build-prebuilds.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Workflow for building native prebuilt binaries across platforms.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/discord-release.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Automated Discord notification on new releases.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".github/workflows/issue-auto-label.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "Automatic issue labeling workflow for GitHub issue triage.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/lint.yml",
+          "type": "config",
+          "practices": ["qa", "devops"],
+          "description": "Dedicated linting workflow for code quality enforcement.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/pr-labeler.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "Automatic PR labeling based on file changes.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/prepare-release.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "Release preparation workflow for staging releases.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/stale.yml",
+          "type": "config",
+          "practices": ["sdlc"],
+          "description": "Stale issue/PR management automation.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/test-azure-auth.yml",
+          "type": "config",
+          "practices": ["devops", "security"],
+          "description": "Azure authentication testing workflow.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".github/workflows/virustotal-scan.yml",
+          "type": "config",
+          "practices": ["security", "devops"],
+          "description": "VirusTotal scanning workflow for release artifacts to verify security.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/welcome.yml",
+          "type": "config",
+          "practices": ["sdlc"],
+          "description": "Welcome message automation for new contributors.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".github/actions/merge-macos-manifests/action.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Custom GitHub Action for merging macOS build manifests across Intel and ARM architectures.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/release-drafter.yml",
+          "type": "config",
+          "practices": ["sdlc", "devops"],
+          "description": "Release drafter configuration for automated changelog generation from PRs.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/dependabot.yml",
+          "type": "config",
+          "practices": ["security", "devops"],
+          "description": "Dependabot configuration for automated dependency updates and vulnerability patches.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "Structured bug report issue template.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/docs.yml",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "Documentation issue template.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/question.yml",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "Question/support issue template.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/PULL_REQUEST_TEMPLATE.md",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "Pull request template for standardized PR descriptions.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/FUNDING.yml",
+          "type": "config",
+          "practices": ["sdlc"],
+          "description": "GitHub Sponsors/funding configuration.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "package.json",
+          "type": "config",
+          "practices": ["platform", "devops"],
+          "description": "Root monorepo package.json with workspace configuration (apps/*, libs/*), build/test/package scripts for multi-platform Electron distribution. Requires Node.js >=24.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".design-system/package.json",
+          "type": "config",
+          "practices": ["frontend"],
+          "description": "Design system preview app built with React 19, Vite 7, Tailwind CSS 4, Framer Motion, and Lucide icons. Component library with Avatar, Badge, Button, Card, Input, ProgressCircle, Toggle components.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".design-system/src/components/Avatar.tsx",
+          "type": "template",
+          "practices": ["frontend"],
+          "description": "Reusable Avatar React component from the design system.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".design-system/src/components/Badge.tsx",
+          "type": "template",
+          "practices": ["frontend"],
+          "description": "Reusable Badge React component from the design system.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".design-system/src/components/Button.tsx",
+          "type": "template",
+          "practices": ["frontend"],
+          "description": "Reusable Button React component from the design system.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".design-system/src/components/Card.tsx",
+          "type": "template",
+          "practices": ["frontend"],
+          "description": "Reusable Card React component from the design system.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".design-system/src/theme/constants.ts",
+          "type": "config",
+          "practices": ["frontend"],
+          "description": "Design system theme constants including color palettes and typography.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".design-system/src/theme/useTheme.ts",
+          "type": "template",
+          "practices": ["frontend"],
+          "description": "React hook for theme management in the design system.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".design-system/vite.config.ts",
+          "type": "config",
+          "practices": ["frontend", "devops"],
+          "description": "Vite configuration for the design system preview application.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".design-system/postcss.config.js",
+          "type": "config",
+          "practices": ["frontend"],
+          "description": "PostCSS configuration for Tailwind CSS processing.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".secretsignore.example",
+          "type": "template",
+          "practices": ["security"],
+          "description": "Example secrets ignore file for configuring which files to exclude from secret scanning.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Project changelog documenting version history and changes.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "CLA.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Contributor License Agreement document.",
+          "reuse_potential": "medium"
+        }
+      ],
+      "statistics": {
+        "total_files": 1525,
+        "assets_found": 40,
+        "practices_covered": [
+          "agentic-engineering",
+          "devops",
+          "frontend",
+          "sdlc",
+          "security",
+          "qa",
+          "platform"
+        ]
+      }
+    },
+    {
+      "name": "awesome-claude-code",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/awesome-claude-code",
+      "description": "A curated awesome-list of Claude Code ecosystem resources including slash-commands, CLAUDE.md files, CLI tools, skills, hooks, status lines, workflows, and alternative clients. Features a data-driven README generation pipeline from CSV, multiple README style variants, automated link validation, GitHub workflow automation for resource submissions, and a Claude Code command for evaluating repository quality.",
+      "assets": [
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Comprehensive curated list of 100+ Claude Code ecosystem resources organized by category: Agent Skills, Workflows & Knowledge Guides, Tooling, Status Lines, Hooks, Slash-Commands, CLAUDE.md files, and Alternative Clients. Primary reference for discovering agentic coding patterns and tools.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/commands/evaluate-repository.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "security", "sdlc"],
+          "description": "Thorough Claude Code slash command for performing static security and quality evaluation of repositories in the Claude Code ecosystem. Evaluates code quality, security/safety (hooks, implicit execution), documentation transparency, functionality, and repository hygiene. Includes permission analysis and red flag scanning.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "acc-config.yaml",
+          "type": "config",
+          "practices": ["platform"],
+          "description": "Configuration for README generation controlling root style selection (awesome/extra/classic/flat), style selector badges with highlight colors, and style ordering for the multi-variant README system.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Makefile",
+          "type": "config",
+          "practices": ["devops", "qa", "sdlc"],
+          "description": "Comprehensive build automation with targets for: link validation, README generation from CSV, resource sorting, category management, test coverage, mypy type checks, ruff formatting, CI checks, resource downloading from GitHub, and regeneration cycle testing.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "THE_RESOURCES_TABLE.csv",
+          "type": "config",
+          "practices": ["platform", "agentic-engineering"],
+          "description": "Master CSV data file containing all curated Claude Code resources with metadata. Source of truth for README generation pipeline.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".pre-commit-config.yaml",
+          "type": "config",
+          "practices": ["sdlc", "qa"],
+          "description": "Pre-commit hooks with file safety checks (large files, merge conflicts, private keys), ruff Python linting/formatting, pytest integration, and README regeneration verification from CSV source.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "type": "config",
+          "practices": ["devops", "qa"],
+          "description": "CI pipeline running format checks, mypy, tests, and docs tree validation using the Makefile-based CI target.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/check-repo-health.yml",
+          "type": "config",
+          "practices": ["devops", "qa"],
+          "description": "Automated repository health checking workflow for validating resource links and repository metadata.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/handle-resource-submission-commands.yml",
+          "type": "config",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "GitHub Actions workflow for handling resource submission commands via issue comments, enabling community-driven curation.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/validate-links.yml",
+          "type": "config",
+          "practices": ["qa", "devops"],
+          "description": "Automated link validation workflow to detect broken URLs in the curated resource list.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/validate-new-issue.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "Validates new issue submissions for proper formatting and required fields.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/update-repo-ticker.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Automated workflow to update the repository ticker/badges with latest stats.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".github/workflows/notify-on-merge.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Notification workflow triggered on PR merges.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".github/workflows/update-github-release-data.yml",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Automated workflow to fetch and update GitHub release metadata for tracked resources.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/recommend-resource.yml",
+          "type": "template",
+          "practices": ["sdlc", "agentic-engineering"],
+          "description": "Issue template for community resource recommendations with structured fields.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/repository-enhancement.yml",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "Issue template for repository enhancement proposals.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/PULL_REQUEST_TEMPLATE.md",
+          "type": "template",
+          "practices": ["sdlc"],
+          "description": "PR template for standardized resource submissions.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/README.md",
+          "type": "doc",
+          "practices": ["devops"],
+          "description": "Documentation for the GitHub Actions workflows used in the repository.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "README_ALTERNATIVES/README_EXTRA.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "Extra-detailed README variant with additional resource metadata.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "README_ALTERNATIVES/README_CLASSIC.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "Classic-style README variant with traditional awesome-list formatting.",
+          "reuse_potential": "low"
+        }
+      ],
+      "statistics": {
+        "total_files": 697,
+        "assets_found": 20,
+        "practices_covered": [
+          "agentic-engineering",
+          "devops",
+          "qa",
+          "sdlc",
+          "security",
+          "platform"
+        ]
+      }
+    },
+    {
+      "name": "awesome-claude-skills",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/awesome-claude-skills",
+      "description": "A curated collection of practical Claude Skills (SKILL.md files) for enhancing productivity across Claude.ai, Claude Code, and the Claude API. Includes 30+ skills spanning document processing, development, data analysis, business/marketing, creative/media, productivity, collaboration, and security. Features a marketplace manifest and a Composio-powered connect-apps plugin for integrating Claude with 500+ external services.",
+      "assets": [
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Main catalog of all Claude Skills organized by category with quickstart guide for Composio connect-apps plugin. Covers document processing, development tools, data analysis, business, communication, creative, productivity, collaboration, and security skills.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "type": "doc",
+          "practices": ["sdlc", "agentic-engineering"],
+          "description": "Contribution guidelines for adding new Claude Skills, including SKILL.md template structure, PR process, and skill requirements (real use case, well-documented, tested, safe, portable).",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude-plugin/marketplace.json",
+          "type": "config",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Claude Code marketplace manifest defining 28 plugins across categories: business-marketing, communication-writing, creative-media, development, and productivity-organization. Structured plugin registry with name, description, source path, and category.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "artifacts-builder/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "frontend"],
+          "description": "Skill for building elaborate multi-component Claude.ai HTML artifacts using React, Tailwind CSS, and shadcn/ui.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "artifacts-builder/scripts/init-artifact.sh",
+          "type": "script",
+          "practices": ["frontend", "platform"],
+          "description": "Shell script to initialize a new artifact project with required dependencies and structure.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "artifacts-builder/scripts/bundle-artifact.sh",
+          "type": "script",
+          "practices": ["frontend", "devops"],
+          "description": "Shell script to bundle an artifact project for deployment.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "brand-guidelines/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "frontend"],
+          "description": "Skill for applying Anthropic's official brand colors and typography to artifacts for consistent visual identity.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "canvas-design/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "frontend"],
+          "description": "Skill for creating beautiful visual art in PNG and PDF using design philosophy and aesthetic principles.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "changelog-generator/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Skill for automatically creating user-facing changelogs from git commits by analyzing history and transforming technical commits into customer-friendly release notes.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "competitive-ads-extractor/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sales"],
+          "description": "Skill for extracting and analyzing competitors' ads from ad libraries to understand messaging and creative approaches.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "content-research-writer/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for research-backed content writing with citations, hooks improvement, and section-by-section feedback.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "connect/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Core skill for connecting Claude to 1000+ external apps and services via Composio integration. Enables real actions like sending emails, creating issues, posting messages.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "connect-apps/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Plugin skill for Claude Code that provides Composio-powered app connections with auth handling.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "developer-growth-analysis/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "hr"],
+          "description": "Skill for analyzing Claude Code chat history to identify coding patterns, development gaps, and areas for improvement, with personalized growth reports sent to Slack.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "document-skills/docx/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for creating, editing, and analyzing Word documents with tracked changes, comments, and formatting.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "document-skills/pdf/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for extracting text, tables, metadata from PDFs, merging and annotating PDF documents.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "document-skills/pptx/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for reading, generating, and adjusting PowerPoint slides, layouts, and templates.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "document-skills/xlsx/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "data"],
+          "description": "Skill for spreadsheet manipulation including formulas, charts, and data transformations.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "domain-name-brainstormer/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sales"],
+          "description": "Skill for generating creative domain name ideas and checking availability across multiple TLDs.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "file-organizer/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Skill for intelligently organizing files and folders by understanding context, finding duplicates, and suggesting better structures.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "image-enhancer/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for improving image and screenshot quality for professional presentations and documentation.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "internal-comms/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Skill for writing internal communications including 3P updates, newsletters, FAQs, status reports, and project updates.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "invoice-organizer/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "finance"],
+          "description": "Skill for automatically organizing invoices and receipts for tax preparation by reading, extracting, and renaming consistently.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "langsmith-fetch/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "ml-ai"],
+          "description": "Skill for debugging LangChain and LangGraph agents by fetching and analyzing execution traces from LangSmith Studio. First AI observability skill for Claude Code.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "lead-research-assistant/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sales"],
+          "description": "Skill for identifying and qualifying high-quality leads by analyzing products, searching for target companies, and providing actionable outreach strategies.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "mcp-builder/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "Skill for guiding creation of high-quality MCP (Model Context Protocol) servers for integrating external APIs and services with LLMs using Python or TypeScript.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "meeting-insights-analyzer/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "hr"],
+          "description": "Skill for analyzing meeting transcripts to uncover behavioral patterns including conflict avoidance, speaking ratios, filler words, and leadership style.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "raffle-winner-picker/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for randomly selecting winners from lists with cryptographically secure randomness.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "skill-creator/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Meta-skill providing guidance for creating effective Claude Skills that extend capabilities with specialized knowledge, workflows, and tool integrations.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skill-share/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Skill for sharing and discovering Claude Skills across the community.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "slack-gif-creator/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for creating animated GIFs optimized for Slack with size validators and composable animation primitives.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "tailored-resume-generator/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "hr"],
+          "description": "Skill for analyzing job descriptions and generating tailored resumes to maximize interview chances.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "template-skill/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Template skill demonstrating the standard structure and format for creating new Claude Skills.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "theme-factory/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "frontend"],
+          "description": "Skill for applying professional font and color themes to artifacts with 10 pre-set themes.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "video-downloader/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for downloading videos from YouTube and other platforms for offline viewing or editing.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "webapp-testing/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Skill for testing local web applications using Playwright for verifying frontend functionality, debugging UI behavior, and capturing screenshots.",
+          "reuse_potential": "high"
+        }
+      ],
+      "statistics": {
+        "total_files": 308,
+        "assets_found": 36,
+        "practices_covered": [
+          "agentic-engineering",
+          "frontend",
+          "sdlc",
+          "platform",
+          "sales",
+          "hr",
+          "finance",
+          "data",
+          "ml-ai",
+          "backend",
+          "delivery",
+          "qa",
+          "devops"
+        ]
+      }
+    },
+    {
+      "name": "awos",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/awos",
+      "description": "Agentic Workflow Operating System (AWOS) by Provectus - a spec-driven development framework for AI-assisted code generation. Provides a structured workflow from product definition to implementation through specialized AI agent commands. Installable via npx @provectusinc/awos. Uses a document-centric approach where all project state lives in structured markdown files, making the system idempotent. Features commands for product definition, roadmap creation, architecture design, functional specs, technical specs, task breakdown, implementation delegation, and verification.",
+      "assets": [
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc", "platform"],
+          "description": "Comprehensive documentation of the AWOS framework including quick start guide, philosophy explanation, document structure overview, command workflow (product -> roadmap -> architecture -> spec -> tech -> tasks -> implement -> verify), customization guide, and update process.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "src/CLAUDE.md",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "CLAUDE.md file for the AWOS installer codebase. Describes the installer architecture, document-driven state management, command workflow pattern, agent delegation pattern, file structure conventions, and key implementation notes. Critical guidance for AI agents contributing to the AWOS framework.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "package.json",
+          "type": "config",
+          "practices": ["platform", "devops"],
+          "description": "NPM package configuration for @provectusinc/awos. Published as a CLI binary via npx. MIT licensed by Provectus Inc.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "index.js",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Main entry point for the AWOS installer CLI. Parses arguments and orchestrates the setup process.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/core/setup-orchestrator.js",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Core orchestrator that runs setup steps in sequence - creating directories, copying files, showing progress.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/config/setup-config.js",
+          "type": "config",
+          "practices": ["platform"],
+          "description": "Configuration defining what files to copy and where during installation (commands, templates, scripts mappings).",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/config/constants.js",
+          "type": "config",
+          "practices": ["platform"],
+          "description": "UI styling constants for the installer (colors, ASCII art, branding).",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "src/services/directory-creator.js",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Service for creating required directory structures during AWOS installation.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/services/file-copier.js",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Service for copying framework files from the package to user projects.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/utils/fs-utils.js",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "File system utility functions for the installer.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "src/utils/logger.js",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Logging utility for installer output formatting.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "src/utils/pattern-matcher.js",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Pattern matching utility for file operations during installation.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "src/migrations/runner.js",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Migration runner for applying framework updates and schema changes.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "src/migrations/001-move-agents-to-domain-experts.json",
+          "type": "config",
+          "practices": ["platform"],
+          "description": "Migration definition for restructuring agents to domain experts pattern.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "src/migrations/002-remove-bundled-domain-experts.json",
+          "type": "config",
+          "practices": ["platform"],
+          "description": "Migration definition for removing bundled domain experts in favor of external ones.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "commands/product.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "AI agent command for creating the Product Definition document. Guides non-technical product owners through defining what is being built, why, and for whom.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/roadmap.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "AI agent command for creating the Product Roadmap. Guides product managers through prioritizing and ordering features.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/architecture.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "AI agent command for defining System Architecture. Guides solution architects through technology stack, databases, infrastructure, and integration decisions.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/spec.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "AI agent command for creating Functional Specifications. Guides product analysts through detailed feature descriptions with acceptance criteria.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/tech.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "AI agent command for creating Technical Specifications. Guides tech leads through implementation planning including database changes, APIs, and system components.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/tasks.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "AI agent command for breaking technical specs into Task Lists. Creates actionable, runnable, and testable coding checklists.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/implement.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Lead Implementation Agent command that acts as an Engineering Manager. Reads task lists, loads full context, delegates coding to specialized subagents, and tracks progress. Never writes code directly.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "commands/verify.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Verification command that checks implementation against acceptance criteria and marks specs as completed when all criteria pass.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "claude/commands/architecture.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code wrapper command for architecture definition, delegating to .awos/commands/architecture.md. Uses AskUserQuestion tool for multiple-choice interactions.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "claude/commands/implement.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code wrapper command for implementation delegation.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "claude/commands/product.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code wrapper command for product definition.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "claude/commands/roadmap.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code wrapper command for roadmap creation.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "claude/commands/spec.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code wrapper command for functional specification creation.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "claude/commands/tasks.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code wrapper command for task list generation.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "claude/commands/tech.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code wrapper command for technical specification creation.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "claude/commands/verify.md",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code wrapper command for implementation verification.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "templates/product-definition-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Structured markdown template for Product Definition documents with placeholder sections for business goals, personas, and value propositions.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "templates/roadmap-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Structured markdown template for Product Roadmap documents with feature prioritization sections.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "templates/architecture-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Structured markdown template for System Architecture documents covering stack, databases, and infrastructure decisions.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "templates/functional-spec-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Structured markdown template for Functional Specifications with sections for overview/rationale, functional requirements with acceptance criteria, user stories format, and scope definition.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "templates/technical-considerations-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Structured markdown template for Technical Considerations documents covering implementation approach, database changes, API design, and component architecture.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "scripts/create-spec-directory.sh",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Shell script for creating numbered spec directories (e.g., 001-feature-name) under context/spec/ with auto-incrementing index. Supports up to 999 specs.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/agents/doc-writer.md",
+          "type": "agent",
+          "practices": ["agentic-engineering"],
+          "description": "GitHub Copilot agent configuration for DocWriter - produces concise, task-focused Markdown docs. Prefers bullets over prose, avoids marketing language, and summarizes only what exists.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/copilot-instructions.md",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "GitHub Copilot instructions for the AWOS repository defining architecture overview, document-driven state management, command workflow patterns, agent delegation patterns, and development conventions. Critical for AI agent alignment.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/quality-check.yml",
+          "type": "config",
+          "practices": ["devops", "qa"],
+          "description": "PR quality check workflow running Prettier formatting validation on pull requests.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/workflows/publish.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "NPM package publishing workflow triggered on GitHub releases. Supports OIDC-based npm provenance, manual workflow dispatch with version/tag inputs, and automatic version extraction from release tags.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/release-drafter.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "Release drafter workflow for automated changelog generation.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".github/release-drafter.yml",
+          "type": "config",
+          "practices": ["sdlc"],
+          "description": "Release drafter configuration template.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/document-structure.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Detailed guide to the AWOS document hierarchy: Product Definition, Roadmap, Architecture, Functional Specifications, Technical Considerations, Tasks, and Code. Explains the idempotent document-centric approach where project memory lives in files, not chat history.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "docs/rationale.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Philosophy and rationale behind the AWOS framework's spec-driven approach to AI-assisted development.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "docs/testing-strategies.md",
+          "type": "doc",
+          "practices": ["qa", "sdlc"],
+          "description": "Guide for integrating testing strategies (TDD, BDD, integration testing) within the AWOS workflow at /awos:tasks and /awos:implement integration points.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Contribution guidelines for the AWOS framework.",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Code of conduct for AWOS project contributors.",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "SECURITY.md",
+          "type": "doc",
+          "practices": ["security"],
+          "description": "Security policy and vulnerability reporting guidelines for the AWOS project.",
+          "reuse_potential": "medium"
+        }
+      ],
+      "statistics": {
+        "total_files": 56,
+        "assets_found": 49,
+        "practices_covered": [
+          "agentic-engineering",
+          "sdlc",
+          "platform",
+          "devops",
+          "qa",
+          "delivery",
+          "security"
+        ]
+      }
+    }
+  ]
+}

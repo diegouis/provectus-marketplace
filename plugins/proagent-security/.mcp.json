@@ -1,0 +1,48 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "gh",
+      "description": "GitHub CLI for repository security management, Dependabot alerts, code scanning alerts, secret scanning alerts, security advisories, branch protection rules, and pull request security reviews.",
+      "usage_examples": [
+        "gh api repos/{owner}/{repo}/code-scanning/alerts --jq '.[] | {rule: .rule.id, severity: .rule.security_severity_level, path: .most_recent_instance.location.path}'",
+        "gh api repos/{owner}/{repo}/secret-scanning/alerts --jq '.[] | {secret_type: .secret_type, state: .state, created_at: .created_at}'",
+        "gh api repos/{owner}/{repo}/dependabot/alerts --jq '.[] | {package: .security_advisory.summary, severity: .security_advisory.severity, state: .state}'",
+        "gh api repos/{owner}/{repo}/vulnerability-alerts -X PUT",
+        "gh api repos/{owner}/{repo}/branches/main/protection -X PUT --input branch-protection.json",
+        "gh pr checks <pr-number>",
+        "gh secret list",
+        "gh secret set <name>"
+      ],
+      "security_operations": {
+        "code_scanning": "gh api repos/{owner}/{repo}/code-scanning/alerts",
+        "secret_scanning": "gh api repos/{owner}/{repo}/secret-scanning/alerts",
+        "dependabot_alerts": "gh api repos/{owner}/{repo}/dependabot/alerts",
+        "enable_vulnerability_alerts": "gh api repos/{owner}/{repo}/vulnerability-alerts -X PUT",
+        "branch_protection": "gh api repos/{owner}/{repo}/branches/{branch}/protection",
+        "security_advisories": "gh api repos/{owner}/{repo}/security-advisories",
+        "list_secrets": "gh secret list",
+        "set_secret": "gh secret set <name>"
+      }
+    },
+    "gitlab": {
+      "command": "glab",
+      "description": "GitLab CLI for project security management, vulnerability reports, SAST/DAST pipeline results, dependency scanning, container scanning, and merge request security approvals.",
+      "usage_examples": [
+        "glab api projects/:id/vulnerability_findings --jq '.[] | {name: .name, severity: .severity, scanner: .scanner.name}'",
+        "glab api projects/:id/dependencies --jq '.[] | {name: .name, version: .version, vulnerabilities: .vulnerabilities}'",
+        "glab mr list --label security",
+        "glab ci status",
+        "glab variable list"
+      ],
+      "security_operations": {
+        "vulnerability_report": "glab api projects/:id/vulnerability_findings",
+        "dependency_list": "glab api projects/:id/dependencies",
+        "sast_results": "glab api projects/:id/pipelines/:pipeline_id/jobs --jq '.[] | select(.name | contains(\"sast\"))'",
+        "container_scanning": "glab api projects/:id/pipelines/:pipeline_id/jobs --jq '.[] | select(.name | contains(\"container_scanning\"))'",
+        "security_merge_requests": "glab mr list --label security",
+        "list_variables": "glab variable list",
+        "set_variable": "glab variable set <key> <value> --masked"
+      }
+    }
+  }
+}

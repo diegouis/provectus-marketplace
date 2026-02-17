@@ -1,0 +1,55 @@
+{
+  "mcpServers": {
+    "google-docs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-google-docs"
+      ],
+      "env": {
+        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
+        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}",
+        "GOOGLE_REFRESH_TOKEN": "${GOOGLE_REFRESH_TOKEN}"
+      },
+      "description": "Google Docs MCP server for creating and editing HR documents. Used to publish job descriptions, offer letters, performance review templates, onboarding plans, and policy documents directly to shared Google Drive folders."
+    },
+    "gmail": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-gmail"
+      ],
+      "env": {
+        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
+        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}",
+        "GOOGLE_REFRESH_TOKEN": "${GOOGLE_REFRESH_TOKEN}"
+      },
+      "description": "Gmail MCP server for HR communications. Used to send interview scheduling confirmations, onboarding welcome emails, offer letter notifications, internal announcements, and benefits enrollment reminders."
+    },
+    "slack": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-slack"
+      ],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
+      },
+      "description": "Slack MCP server for team notifications and internal communications. Used to post hiring pipeline updates to recruitment channels, send onboarding reminders, share new hire introductions, and distribute team announcements."
+    },
+    "google-calendar": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-google-calendar"
+      ],
+      "env": {
+        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
+        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}",
+        "GOOGLE_REFRESH_TOKEN": "${GOOGLE_REFRESH_TOKEN}"
+      },
+      "description": "Google Calendar MCP server for scheduling HR events. Used to coordinate interview panels, create onboarding milestone events, schedule performance review deadlines, set up recurring 1:1s, and manage development check-in cadences."
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "practice": "backend",
+  "plugin_name": "proagent-backend",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "mcp-builder/SKILL.md", "repo": "awesome-claude-skills", "description": "Guide creation of MCP servers for API integration", "reuse_potential": "high"},
+      {"path": "src/harness/skills/api-development/SKILL.md", "repo": "casdk-harness", "description": "API development with FastAPI starters", "reuse_potential": "high"},
+      {"path": "roles/backend-engineer/skills/api-design.md", "repo": "proagent", "description": "REST/GraphQL API design", "reuse_potential": "high"},
+      {"path": "roles/backend-engineer/skills/database-schema.md", "repo": "proagent", "description": "Database schema design", "reuse_potential": "high"},
+      {"path": "roles/backend-engineer/skills/security-hardening.md", "repo": "proagent", "description": "Application security hardening", "reuse_potential": "high"},
+      {"path": "roles/backend-engineer/skills/performance-optimization.md", "repo": "proagent", "description": "Backend performance optimization", "reuse_potential": "high"},
+      {"path": "roles/backend-engineer/skills/code-review.md", "repo": "proagent", "description": "Code review processes", "reuse_potential": "high"},
+      {"path": "roles/backend-engineer/skills/debugging.md", "repo": "proagent", "description": "Systematic debugging approaches", "reuse_potential": "high"},
+      {"path": "plugins/backend-development/skills/api-design-principles/SKILL.md", "repo": "agents", "description": "REST and GraphQL best practices", "reuse_potential": "high"},
+      {"path": "roles/technical-writer/skills/api-documentation.md", "repo": "proagent", "description": "API documentation creation", "reuse_potential": "high"}
+    ],
+    "commands": [
+      {"path": "roles/backend-engineer/commands/api-scaffold.md", "repo": "proagent", "description": "Scaffold a new REST API with boilerplate", "reuse_potential": "high"}
+    ],
+    "agents": [
+      {"path": "src/harness/agents/configs/dev-python-expert.md", "repo": "casdk-harness", "description": "Python/FastAPI development expert", "reuse_potential": "high"},
+      {"path": "src/harness/agents/configs/dev-go-expert.md", "repo": "casdk-harness", "description": "Go development expert", "reuse_potential": "high"},
+      {"path": "src/harness/agents/configs/dev-nodejs-expert.md", "repo": "casdk-harness", "description": "Node.js development expert", "reuse_potential": "high"},
+      {"path": "plugins/backend-development/agents/backend-architect.md", "repo": "agents", "description": "Backend architecture specialist", "reuse_potential": "high"},
+      {"path": "plugins/python-development/agents/python-pro.md", "repo": "agents", "description": "Python expert for modern Python 3.12+", "reuse_potential": "high"}
+    ],
+    "hooks": [],
+    "mcp_configs": [],
+    "scripts": [
+      {"path": "server/index.js", "repo": "claude-ui", "description": "Express server with SSE streaming", "reuse_potential": "medium"},
+      {"path": "server/models/database.js", "repo": "claude-ui", "description": "SQLite database model", "reuse_potential": "medium"},
+      {"path": "server/routes/messages.js", "repo": "claude-ui", "description": "Streaming responses via Anthropic SDK", "reuse_potential": "medium"},
+      {"path": "server/routes/auth.js", "repo": "claude-ui", "description": "Session-based authentication", "reuse_potential": "medium"},
+      {"path": "server/utils/pricing.js", "repo": "claude-ui", "description": "Token pricing calculator", "reuse_potential": "medium"},
+      {"path": "Code/tac-6/app/server/core/sql_security.py", "repo": "tac", "description": "SQL injection protection module", "reuse_potential": "high"},
+      {"path": "Code/tac-6/app/server/core/llm_processor.py", "repo": "tac", "description": "NL-to-SQL LLM processor", "reuse_potential": "high"},
+      {"path": "infrastructure/db/init_db.py", "repo": "proagent", "description": "SQLite database initialization", "reuse_potential": "medium"},
+      {"path": "skills/mcp-builder/reference/node_mcp_server.md", "repo": "skills", "description": "Node.js MCP server reference", "reuse_potential": "high"},
+      {"path": "skills/mcp-builder/reference/python_mcp_server.md", "repo": "skills", "description": "Python MCP server reference", "reuse_potential": "high"}
+    ],
+    "docs": [
+      {"path": "roles/backend-engineer/README (1).md", "repo": "proagent", "description": "Backend engineer role documentation", "reuse_potential": "high"},
+      {"path": "impl/puaf-20260120/puaf-20260120_roles_dev.md", "repo": "specs", "description": "Developer role implementations", "reuse_potential": "high"}
+    ],
+    "templates": [
+      {"path": "roles/backend-engineer/templates/rest-api-template.md", "repo": "proagent", "description": "REST API project template", "reuse_potential": "high"}
+    ],
+    "configs": [
+      {"path": "server/package.json", "repo": "claude-ui", "description": "Express backend package config", "reuse_potential": "medium"},
+      {"path": "core/templates/validation_workflows/backend-engineer.yaml", "repo": "proagent-repo GUI", "description": "Backend validation workflow", "reuse_potential": "high"}
+    ]
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": true,
+    "missing_agent": false,
+    "missing_hooks": true,
+    "missing_mcp": true,
+    "recommended_integrations": ["GitHub", "GitLab", "AWS", "GCP"]
+  },
+  "statistics": {
+    "total_assets": 63,
+    "high_reuse": 42,
+    "source_repos": ["awesome-claude-skills", "casdk-harness", "claude-ui", "proagent", "proagent-repo GUI", "ralph-orchestrator", "skills", "tac", "agents", "specs"]
+  }
+}

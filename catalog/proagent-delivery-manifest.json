@@ -1,0 +1,65 @@
+{
+  "practice": "delivery",
+  "plugin_name": "proagent-delivery",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "internal-comms/SKILL.md", "repo": "awesome-claude-skills", "description": "Write internal communications, 3P updates, newsletters, status reports", "reuse_potential": "high"},
+      {"path": "roles/project-manager/skills/meeting-facilitation.md", "repo": "proagent", "description": "Meeting facilitation and agenda management", "reuse_potential": "high"},
+      {"path": "roles/project-manager/skills/spec-creation.md", "repo": "proagent", "description": "Creating project specifications", "reuse_potential": "high"},
+      {"path": "roles/project-manager/skills/risk-assessment.md", "repo": "proagent", "description": "Project risk assessment", "reuse_potential": "high"},
+      {"path": "roles/project-manager/skills/status-reporting.md", "repo": "proagent", "description": "Generating project status reports", "reuse_potential": "high"},
+      {"path": "roles/project-manager/skills/stakeholder-management.md", "repo": "proagent", "description": "Stakeholder communication and management", "reuse_potential": "high"},
+      {"path": "core/skills/tac/agentic-kpis.md", "repo": "proagent-repo GUI", "description": "KPI framework for measuring agentic coding effectiveness", "reuse_potential": "high"},
+      {"path": ".claude/skills/find-code-tasks/SKILL.md", "repo": "ralph-orchestrator", "description": "List code tasks with status and metadata", "reuse_potential": "high"}
+    ],
+    "commands": [
+      {"path": "commands/product.md", "repo": "awos", "description": "Create Product Definition document", "reuse_potential": "high"},
+      {"path": "commands/roadmap.md", "repo": "awos", "description": "Create Product Roadmap", "reuse_potential": "high"},
+      {"path": "roles/project-manager/commands/weekly-standup.md", "repo": "proagent", "description": "Generate and run weekly standup reports", "reuse_potential": "high"},
+      {"path": "core/commands/plan.py", "repo": "proagent", "description": "Generate implementation plans from specs", "reuse_potential": "high"},
+      {"path": "cli/commands/cmd_plan.py", "repo": "proagent-repo GUI", "description": "Planning from specifications", "reuse_potential": "high"},
+      {"path": "core/commands/plan.py", "repo": "proagent-repo GUI", "description": "Core plan generation", "reuse_potential": "high"},
+      {"path": "commands/add-to-todos.md", "repo": "taches-cc-resources", "description": "Capture tasks mid-conversation", "reuse_potential": "high"},
+      {"path": "commands/check-todos.md", "repo": "taches-cc-resources", "description": "Resume captured tasks with context", "reuse_potential": "high"},
+      {"path": "commands/consider/pareto.md", "repo": "taches-cc-resources", "description": "80/20 rule for prioritization", "reuse_potential": "high"},
+      {"path": "commands/consider/first-principles.md", "repo": "taches-cc-resources", "description": "Break down to fundamentals", "reuse_potential": "high"},
+      {"path": "commands/consider/inversion.md", "repo": "taches-cc-resources", "description": "Solve backwards - what guarantees failure?", "reuse_potential": "high"},
+      {"path": "commands/consider/eisenhower-matrix.md", "repo": "taches-cc-resources", "description": "Prioritize by urgent/important", "reuse_potential": "high"},
+      {"path": "commands/consider/5-whys.md", "repo": "taches-cc-resources", "description": "Drill to root cause", "reuse_potential": "high"},
+      {"path": "commands/consider/swot.md", "repo": "taches-cc-resources", "description": "Map strengths, weaknesses, opportunities, threats", "reuse_potential": "high"}
+    ],
+    "agents": [],
+    "hooks": [],
+    "mcp_configs": [],
+    "scripts": [
+      {"path": "infrastructure/analytics/tracker.py", "repo": "proagent", "description": "Usage and event tracking", "reuse_potential": "medium"},
+      {"path": "infrastructure/analytics/reporter.py", "repo": "proagent", "description": "Analytics reporting", "reuse_potential": "medium"}
+    ],
+    "docs": [
+      {"path": "roles/project-manager/README (1).md", "repo": "proagent", "description": "Project manager role documentation", "reuse_potential": "high"},
+      {"path": "docs/todo-management.md", "repo": "taches-cc-resources", "description": "Todo management workflow", "reuse_potential": "medium"},
+      {"path": "impl/puaf-20260120/puaf-20260120_roles_business.md", "repo": "specs", "description": "Business role implementations", "reuse_potential": "high"}
+    ],
+    "templates": [
+      {"path": "templates/product-definition-template.md", "repo": "awos", "description": "Product Definition document template", "reuse_potential": "high"},
+      {"path": "templates/roadmap-template.md", "repo": "awos", "description": "Product Roadmap template", "reuse_potential": "high"},
+      {"path": "roles/project-manager/templates/project-charter.md", "repo": "proagent", "description": "Project charter for new projects", "reuse_potential": "high"},
+      {"path": "skills/internal-comms/examples/3p-updates.md", "repo": "skills", "description": "Third-party updates template", "reuse_potential": "medium"}
+    ],
+    "configs": []
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": false,
+    "missing_agent": true,
+    "missing_hooks": true,
+    "missing_mcp": true,
+    "recommended_integrations": ["Jira", "Slack", "Google Meet", "Google Calendar", "Confluence", "Google Docs"]
+  },
+  "statistics": {
+    "total_assets": 52,
+    "high_reuse": 42,
+    "source_repos": ["awesome-claude-skills", "awos", "proagent", "proagent-repo GUI", "ralph-orchestrator", "skills", "taches-cc-resources", "specs"]
+  }
+}

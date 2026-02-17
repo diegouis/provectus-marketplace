@@ -1,0 +1,40 @@
+{
+  "name": "proagent-hr",
+  "version": "0.1.0",
+  "description": "Human resources and talent management plugin for Provectus projects. Provides comprehensive HR workflows including job description drafting, interview planning, onboarding coordination, performance reviews, compensation analysis, and employee development tracking.",
+  "category": "hr",
+  "author": "Provectus",
+  "license": "MIT",
+  "skills": [
+    "skills/hr-assistant/SKILL.md"
+  ],
+  "commands": [
+    "commands/proagent-hr-hub.md",
+    "commands/proagent-hr-run.md",
+    "commands/proagent-hr-review.md"
+  ],
+  "agents": [
+    "agents/hr-specialist.md"
+  ],
+  "hooks": "hooks/hooks.json",
+  "mcp": "mcp.json",
+  "entrypoint": "CLAUDE.md",
+  "dependencies": {
+    "tools": ["google-docs", "gmail", "slack", "google-calendar"],
+    "mcp_servers": ["google-docs", "gmail", "slack", "google-calendar"],
+    "optional": ["google-meet", "google-sheets", "bamboohr"]
+  },
+  "tags": [
+    "hr",
+    "human-resources",
+    "hiring",
+    "interviews",
+    "onboarding",
+    "performance-reviews",
+    "job-descriptions",
+    "compensation",
+    "employee-development",
+    "talent-management",
+    "internal-communications"
+  ]
+}

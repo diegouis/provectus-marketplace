@@ -1,0 +1,72 @@
+{
+  "practice": "security",
+  "plugin_name": "proagent-security",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "roles/backend-engineer/skills/security-hardening.md", "repo": "proagent", "description": "Application security hardening", "reuse_potential": "high"},
+      {"path": "core/skills/tac/trust-ladder.md", "repo": "proagent-repo GUI", "description": "Trust ladder for progressive agent autonomy", "reuse_potential": "high"},
+      {"path": "core/skills/tac/validation-pyramid.md", "repo": "proagent-repo GUI", "description": "Validation pyramid for layered QA", "reuse_potential": "high"},
+      {"path": "core/skills/tac/validation.md", "repo": "proagent-repo GUI", "description": "Validation strategies for agent outputs", "reuse_potential": "high"}
+    ],
+    "commands": [
+      {"path": ".claude/commands/evaluate-repository.md", "repo": "awesome-claude-code", "description": "Security and quality evaluation of repos", "reuse_potential": "high"},
+      {"path": "cli/commands/cmd_zte.py", "repo": "proagent-repo GUI", "description": "Zero Trust Execution for trust-verified agent ops", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/commands/e2e/test_sql_injection.md", "repo": "tac", "description": "SQL injection prevention validation", "reuse_potential": "high"}
+    ],
+    "agents": [
+      {"path": "plugins/security-scanning/agents/security-auditor.md", "repo": "agents", "description": "Security auditor for SAST and OWASP compliance", "reuse_potential": "high"}
+    ],
+    "hooks": [
+      {"path": ".husky/pre-commit", "repo": "Auto-Claude", "description": "Pre-commit with npm audit for vulnerability detection", "reuse_potential": "high"},
+      {"path": ".github/workflows/block-internal-prs.yml", "repo": "gastown", "description": "Block PRs from internal branches", "reuse_potential": "medium"}
+    ],
+    "mcp_configs": [],
+    "scripts": [
+      {"path": "core/zte/trust_assessor.py", "repo": "proagent-repo GUI", "description": "Trust assessment engine for ZTE", "reuse_potential": "high"},
+      {"path": "core/zte/trust_ladder.py", "repo": "proagent-repo GUI", "description": "Trust ladder implementation", "reuse_potential": "high"},
+      {"path": "core/zte/zte_executor.py", "repo": "proagent-repo GUI", "description": "Zero Trust Execution engine", "reuse_potential": "high"},
+      {"path": "core/zte/zte_monitor.py", "repo": "proagent-repo GUI", "description": "ZTE policy compliance monitoring", "reuse_potential": "high"},
+      {"path": "server/middleware/csrf.js", "repo": "claude-ui", "description": "CSRF protection middleware", "reuse_potential": "medium"},
+      {"path": "server/middleware/rateLimit.js", "repo": "claude-ui", "description": "Rate limiting middleware", "reuse_potential": "medium"},
+      {"path": "server/utils/encryption.js", "repo": "claude-ui", "description": "Encryption utilities", "reuse_potential": "medium"},
+      {"path": "server/utils/password.js", "repo": "claude-ui", "description": "Password hashing", "reuse_potential": "medium"},
+      {"path": "Code/tac-6/app/server/core/sql_security.py", "repo": "tac", "description": "SQL injection protection", "reuse_potential": "high"},
+      {"path": "Code/tac-6/app/server/tests/test_sql_injection.py", "repo": "tac", "description": "SQL injection test suite", "reuse_potential": "high"}
+    ],
+    "docs": [
+      {"path": "docs/HARDENING.md", "repo": "casdk-harness", "description": "Production security hardening guide", "reuse_potential": "high"},
+      {"path": "SECURITY.md", "repo": "gastown", "description": "Security policy and vulnerability reporting", "reuse_potential": "high"},
+      {"path": "SECURITY.md", "repo": "awos", "description": "Security policy", "reuse_potential": "medium"},
+      {"path": "src/harness/plugins/context-engineering/patterns/tool-restriction-patterns.md", "repo": "casdk-harness", "description": "Tool restriction patterns for agent safety", "reuse_potential": "high"},
+      {"path": "docs/design/watchdog-chain.md", "repo": "gastown", "description": "Watchdog chain for agent monitoring", "reuse_potential": "high"},
+      {"path": "skills/systematic-debugging/defense-in-depth.md", "repo": "superpowers", "description": "Defense-in-depth strategy", "reuse_potential": "medium"}
+    ],
+    "templates": [
+      {"path": ".secretsignore.example", "repo": "Auto-Claude", "description": "Secrets ignore file example", "reuse_potential": "medium"},
+      {"path": "core/templates/tac/trust-assessment.md", "repo": "proagent-repo GUI", "description": "Trust assessment template", "reuse_potential": "high"},
+      {"path": "core/templates/tac/zte-runbook.md", "repo": "proagent-repo GUI", "description": "ZTE runbook template", "reuse_potential": "high"}
+    ],
+    "configs": [
+      {"path": ".github/workflows/quality-security.yml", "repo": "Auto-Claude", "description": "CodeQL + Bandit security scanning", "reuse_potential": "high"},
+      {"path": ".github/workflows/virustotal-scan.yml", "repo": "Auto-Claude", "description": "VirusTotal artifact scanning", "reuse_potential": "high"},
+      {"path": ".github/dependabot.yml", "repo": "Auto-Claude", "description": "Automated dependency vulnerability patches", "reuse_potential": "high"},
+      {"path": ".claude/settings.json", "repo": "casdk-harness", "description": "Permission allow/deny lists", "reuse_potential": "high"},
+      {"path": "core/zte/trust_config.yaml", "repo": "proagent-repo GUI", "description": "ZTE trust configuration rules", "reuse_potential": "high"},
+      {"path": ".beads/formulas/security-audit.formula.toml", "repo": "gastown", "description": "Security audit workflow formula", "reuse_potential": "high"}
+    ]
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": false,
+    "missing_agent": false,
+    "missing_hooks": false,
+    "missing_mcp": true,
+    "recommended_integrations": ["GitHub", "GitLab", "AWS", "GCP", "Slack"]
+  },
+  "statistics": {
+    "total_assets": 51,
+    "high_reuse": 37,
+    "source_repos": ["Auto-Claude", "awesome-claude-code", "casdk-harness", "claude-ui", "gastown", "proagent", "proagent-repo GUI", "ralph-orchestrator", "superpowers", "tac", "taches-cc-resources", "agents"]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read file_path; if [ -n \"$file_path\" ]; then case \"$file_path\" in */agents/*.md|*/skills/*/SKILL.md|*/commands/*.md) if echo \"$file_path\" | grep -q 'SKILL.md'; then if [ -f \"$file_path\" ] && ! head -1 \"$file_path\" | grep -q '^---'; then echo 'WARNING: SKILL.md files require YAML frontmatter with name and description fields' >&2; fi; fi ;; esac; fi; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read file_path; if [ -n \"$file_path\" ]; then case \"$file_path\" in */agents/*.md|*/skills/*/SKILL.md|*/commands/*.md|*/hooks/*.json) echo \"$(date -u +%Y-%m-%dT%H:%M:%SZ) MODIFIED $file_path\" >> /tmp/proagent-ae-audit.log ;; esac; fi; }",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[proagent-agentic-engineering] Agentic engineering plugin loaded. Use /proagent-agentic-engineering for capabilities.\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

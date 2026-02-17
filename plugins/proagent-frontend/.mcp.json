@@ -1,0 +1,35 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--isolated"
+      ],
+      "description": "Playwright MCP server for browser automation, visual regression testing, and cross-browser UI validation. Provides tools to navigate pages, interact with DOM elements, capture screenshots, test responsive layouts, and validate rendered component output across Chrome, Firefox, and Safari."
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "GitHub MCP server for repository operations, pull request management, and CI/CD integration. Used to create component library PRs with visual diffs, manage design system versioning, track frontend issues, and enforce quality gates on UI changes."
+    },
+    "gitlab": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gitlab"
+      ],
+      "env": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_TOKEN}",
+        "GITLAB_API_URL": "${GITLAB_API_URL:-https://gitlab.com/api/v4}"
+      },
+      "description": "GitLab MCP server for merge request management, pipeline monitoring, and design system release automation. Used to enforce accessibility and performance gates on merge requests and publish component library packages."
+    }
+  }
+}

@@ -1,0 +1,2544 @@
+{
+  "batch": 3,
+  "scan_date": "2026-02-16",
+  "repos": [
+    {
+      "name": "proagent",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/proagent",
+      "description": "Provectus Agent Framework - A role-agnostic, extensible agent framework that enables every Provectus employee to leverage AI agents for their work. Includes 10 role personas with skills, commands, templates, multi-role orchestration, external repo discovery, analytics, and integrations with Slack/GitHub/GitLab/Google Drive.",
+      "assets": [
+        {
+          "path": "README (1).md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Main README documenting ProAgent framework architecture, directory structure, core commands, and supported roles",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Contributing guide explaining how to add new skills, commands, and templates with standard formats",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "pyproject (1).toml",
+          "type": "config",
+          "practices": ["platform"],
+          "description": "Python project configuration with dependencies and build settings",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "cli (1).py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Main CLI entry point for ProAgent commands (spec-extract, interview, plan, skill-create)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/__init__.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "CLI package initialization",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "cli/commands/__init__.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "CLI commands package initialization",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "cli/commands/cmd_plan.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "CLI command for generating plans from specifications",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_build.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "CLI command for building/implementing from plans",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_test.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "CLI command for running tests on implementations",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_review.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "CLI command for code review workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_deploy.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "CLI command for deployment workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_sdlc.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "CLI command for full SDLC pipeline orchestration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/__init__.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Core package initialization",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "core/types (1).py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Core type definitions for the ProAgent framework",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "core/commands/base.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Base class for all ProAgent commands",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/commands/spec_extract.py",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Extract structured specifications from Slack, Google Docs, transcripts and other sources",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/commands/interview.py",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Structured Q&A interview to enhance and clarify specifications",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/commands/plan.py",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Generate comprehensive implementation plans from enhanced specifications",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/commands/skill_create.py",
+          "type": "command",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Create new skills through an interactive interview workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/skill-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Standard template for creating new AI skills with metadata, instructions, and examples",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/command-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Standard template for creating new Claude Code slash commands",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/integrations/__init__.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Integrations package initialization",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "core/integrations/base.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Base class for external integrations",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "core/integrations/slack.py",
+          "type": "script",
+          "practices": ["platform", "agentic-engineering"],
+          "description": "Slack integration connector for extracting specs from channels/threads",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/integrations/google_drive.py",
+          "type": "script",
+          "practices": ["platform", "agentic-engineering"],
+          "description": "Google Drive integration for reading/writing documents",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/integrations/github (1).py",
+          "type": "script",
+          "practices": ["platform", "devops"],
+          "description": "GitHub integration for repository operations",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/integrations/gitlab.py",
+          "type": "script",
+          "practices": ["platform", "devops"],
+          "description": "GitLab integration for repository operations",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/frontend-engineer/README (1).md",
+          "type": "doc",
+          "practices": ["frontend", "agentic-engineering"],
+          "description": "Frontend engineer role documentation and capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/frontend-engineer/skills/component-design.md",
+          "type": "skill",
+          "practices": ["frontend", "agentic-engineering"],
+          "description": "AI skill for frontend component design patterns and best practices",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/frontend-engineer/skills/state-management.md",
+          "type": "skill",
+          "practices": ["frontend", "agentic-engineering"],
+          "description": "AI skill for frontend state management strategies",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/frontend-engineer/skills/responsive-design.md",
+          "type": "skill",
+          "practices": ["frontend", "agentic-engineering"],
+          "description": "AI skill for responsive design implementation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/backend-engineer/README (1).md",
+          "type": "doc",
+          "practices": ["backend", "agentic-engineering"],
+          "description": "Backend engineer role documentation and capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/backend-engineer/skills/api-design.md",
+          "type": "skill",
+          "practices": ["backend", "agentic-engineering"],
+          "description": "AI skill for REST/GraphQL API design",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/backend-engineer/skills/database-schema.md",
+          "type": "skill",
+          "practices": ["backend", "data"],
+          "description": "AI skill for database schema design",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/backend-engineer/skills/security-hardening.md",
+          "type": "skill",
+          "practices": ["backend", "security"],
+          "description": "AI skill for application security hardening",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/backend-engineer/skills/performance-optimization.md",
+          "type": "skill",
+          "practices": ["backend"],
+          "description": "AI skill for backend performance optimization",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/backend-engineer/skills/code-review.md",
+          "type": "skill",
+          "practices": ["backend", "sdlc"],
+          "description": "AI skill for code review processes",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/backend-engineer/skills/debugging.md",
+          "type": "skill",
+          "practices": ["backend", "sdlc"],
+          "description": "AI skill for systematic debugging approaches",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/backend-engineer/commands/api-scaffold.md",
+          "type": "command",
+          "practices": ["backend", "platform"],
+          "description": "Command to scaffold a new REST API with boilerplate",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/backend-engineer/templates/rest-api-template.md",
+          "type": "template",
+          "practices": ["backend", "platform"],
+          "description": "REST API project template with standard structure",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/devops-engineer/README (1).md",
+          "type": "doc",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "DevOps engineer role documentation and capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/devops-engineer/skills/cicd-pipeline.md",
+          "type": "skill",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "AI skill for CI/CD pipeline creation and management",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/devops-engineer/skills/kubernetes-orchestration.md",
+          "type": "skill",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "AI skill for Kubernetes cluster and workload orchestration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/devops-engineer/skills/docker-containerization.md",
+          "type": "skill",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "AI skill for Docker containerization best practices",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/ml-engineer/README (1).md",
+          "type": "doc",
+          "practices": ["ml-ai", "agentic-engineering"],
+          "description": "ML engineer role documentation and capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/ml-engineer/skills/model-training.md",
+          "type": "skill",
+          "practices": ["ml-ai", "agentic-engineering"],
+          "description": "AI skill for ML model training workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/ml-engineer/skills/feature-engineering.md",
+          "type": "skill",
+          "practices": ["ml-ai", "data"],
+          "description": "AI skill for ML feature engineering",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/ml-engineer/skills/model-selection.md",
+          "type": "skill",
+          "practices": ["ml-ai"],
+          "description": "AI skill for selecting appropriate ML models",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/ml-engineer/skills/hyperparameter-tuning.md",
+          "type": "skill",
+          "practices": ["ml-ai"],
+          "description": "AI skill for hyperparameter optimization",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/ml-engineer/skills/model-evaluation.md",
+          "type": "skill",
+          "practices": ["ml-ai"],
+          "description": "AI skill for ML model evaluation metrics and methods",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/ml-engineer/skills/experiment-tracking.md",
+          "type": "skill",
+          "practices": ["ml-ai"],
+          "description": "AI skill for ML experiment tracking with MLflow etc.",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/ml-engineer/skills/model-deployment.md",
+          "type": "skill",
+          "practices": ["ml-ai", "devops"],
+          "description": "AI skill for ML model deployment and serving",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/ml-engineer/commands/train-model.md",
+          "type": "command",
+          "practices": ["ml-ai", "agentic-engineering"],
+          "description": "Command to initiate model training workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/ml-engineer/templates/ml-project-starter.md",
+          "type": "template",
+          "practices": ["ml-ai", "platform"],
+          "description": "ML project starter template with standard directory structure",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/data-scientist/README (1).md",
+          "type": "doc",
+          "practices": ["data", "agentic-engineering"],
+          "description": "Data scientist role documentation and capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/data-scientist/skills/data-visualization.md",
+          "type": "skill",
+          "practices": ["data", "agentic-engineering"],
+          "description": "AI skill for data visualization best practices",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/data-scientist/skills/exploratory-data-analysis.md",
+          "type": "skill",
+          "practices": ["data", "agentic-engineering"],
+          "description": "AI skill for systematic EDA workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/data-scientist/skills/statistical-analysis.md",
+          "type": "skill",
+          "practices": ["data", "agentic-engineering"],
+          "description": "AI skill for statistical analysis methods",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/project-manager/README (1).md",
+          "type": "doc",
+          "practices": ["delivery", "agentic-engineering"],
+          "description": "Project manager role documentation and capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/project-manager/skills/meeting-facilitation.md",
+          "type": "skill",
+          "practices": ["delivery", "agentic-engineering"],
+          "description": "AI skill for meeting facilitation and agenda management",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/project-manager/skills/spec-creation.md",
+          "type": "skill",
+          "practices": ["delivery", "sdlc"],
+          "description": "AI skill for creating project specifications",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/project-manager/skills/risk-assessment.md",
+          "type": "skill",
+          "practices": ["delivery", "agentic-engineering"],
+          "description": "AI skill for project risk assessment",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/project-manager/skills/status-reporting.md",
+          "type": "skill",
+          "practices": ["delivery", "agentic-engineering"],
+          "description": "AI skill for generating project status reports",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/project-manager/skills/stakeholder-management.md",
+          "type": "skill",
+          "practices": ["delivery", "sales"],
+          "description": "AI skill for stakeholder communication and management",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/project-manager/commands/weekly-standup.md",
+          "type": "command",
+          "practices": ["delivery", "agentic-engineering"],
+          "description": "Command to generate and run weekly standup reports",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/project-manager/templates/project-charter.md",
+          "type": "template",
+          "practices": ["delivery", "platform"],
+          "description": "Project charter template for new project initiation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/human-resources/README (1).md",
+          "type": "doc",
+          "practices": ["hr", "agentic-engineering"],
+          "description": "Human resources role documentation and capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/human-resources/skills/onboarding-coordination.md",
+          "type": "skill",
+          "practices": ["hr", "agentic-engineering"],
+          "description": "AI skill for employee onboarding process coordination",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/human-resources/skills/interview-process.md",
+          "type": "skill",
+          "practices": ["hr", "agentic-engineering"],
+          "description": "AI skill for managing hiring interview workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/human-resources/skills/performance-review.md",
+          "type": "skill",
+          "practices": ["hr", "agentic-engineering"],
+          "description": "AI skill for performance review facilitation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/qa-engineer/README (1).md",
+          "type": "doc",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "QA engineer role documentation and capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/qa-engineer/skills/automated-testing.md",
+          "type": "skill",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "AI skill for automated test creation and management",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/qa-engineer/skills/e2e-testing.md",
+          "type": "skill",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "AI skill for end-to-end testing with Cypress/Playwright",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/qa-engineer/skills/api-testing.md",
+          "type": "skill",
+          "practices": ["qa", "backend"],
+          "description": "AI skill for API testing strategies",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/technical-writer/README (1).md",
+          "type": "doc",
+          "practices": ["sdlc", "agentic-engineering"],
+          "description": "Technical writer role documentation and capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/technical-writer/skills/api-documentation.md",
+          "type": "skill",
+          "practices": ["sdlc", "backend"],
+          "description": "AI skill for creating API documentation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/technical-writer/skills/user-guide-creation.md",
+          "type": "skill",
+          "practices": ["sdlc", "agentic-engineering"],
+          "description": "AI skill for creating user guides and manuals",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/technical-writer/skills/information-architecture.md",
+          "type": "skill",
+          "practices": ["sdlc", "platform"],
+          "description": "AI skill for information architecture and content organization",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/solutions-architect/README (1).md",
+          "type": "doc",
+          "practices": ["platform", "agentic-engineering"],
+          "description": "Solutions architect role documentation and capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/solutions-architect/skills/system-design.md",
+          "type": "skill",
+          "practices": ["platform", "agentic-engineering"],
+          "description": "AI skill for system design and architecture decisions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/solutions-architect/skills/cloud-architecture.md",
+          "type": "skill",
+          "practices": ["devops", "platform"],
+          "description": "AI skill for cloud architecture patterns (AWS/GCP/Azure)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "roles/solutions-architect/skills/architecture-documentation.md",
+          "type": "skill",
+          "practices": ["platform", "sdlc"],
+          "description": "AI skill for documenting system architecture",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "external/catalog.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Catalog manager for discovered external repos and skills",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "external/discovery.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Auto-discovery engine for finding relevant skills in external GitHub/GitLab repos",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "external/extractor.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Skill extractor that pulls reusable patterns from discovered repos",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "external/curated/trusted-repos.json",
+          "type": "config",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Curated list of trusted external repos for skill discovery",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/orchestration/workflow.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Multi-role workflow coordination engine",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/orchestration/executor.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Workflow step executor with role handoff support",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/orchestration/handoff.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Agent handoff logic for multi-role workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/orchestration/state.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Workflow state management and persistence",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "infrastructure/orchestration/workflows/bug_fix.json",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Workflow definition for multi-role bug fix process",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/orchestration/workflows/spec_to_impl.json",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Workflow definition for spec-to-implementation pipeline",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/analytics/tracker.py",
+          "type": "script",
+          "practices": ["data", "platform"],
+          "description": "Usage and event tracking for agent sessions",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "infrastructure/analytics/reporter.py",
+          "type": "script",
+          "practices": ["data", "platform"],
+          "description": "Analytics reporter for generating usage reports",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "infrastructure/analytics/queries.py",
+          "type": "script",
+          "practices": ["data", "platform"],
+          "description": "SQL queries for analytics data retrieval",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "infrastructure/db/init_db.py",
+          "type": "script",
+          "practices": ["backend", "platform"],
+          "description": "SQLite database initialization for caching, history, and metadata",
+          "reuse_potential": "medium"
+        }
+      ],
+      "statistics": {
+        "total_files": 95,
+        "assets_found": 91,
+        "practices_covered": [
+          "agentic-engineering",
+          "platform",
+          "sdlc",
+          "frontend",
+          "backend",
+          "devops",
+          "ml-ai",
+          "data",
+          "delivery",
+          "hr",
+          "qa",
+          "security",
+          "sales"
+        ]
+      }
+    },
+    {
+      "name": "proagent-repo GUI",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/proagent-repo GUI",
+      "description": "Extended version of ProAgent with GUI capabilities, SDLC orchestration pipeline, Tactical Agentic Coding (TAC) skills framework, Zero Trust Execution (ZTE) engine, MCP server integrations, meta-prompts for quality gates, and validation workflows. A more mature version of the ProAgent framework with full SDLC pipeline support.",
+      "assets": [
+        {
+          "path": "CONTRIBUTING.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Contributing guide for adding skills, commands, and templates",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Main CLI entry point for ProAgent GUI variant",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_adw.py",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Agentic Development Workflow (ADW) command for autonomous development",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_build.py",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Build command for implementation from plans",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_deploy.py",
+          "type": "command",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "Deployment command with GitHub/GitLab integration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_plan.py",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Planning command for specification-based planning",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_review.py",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Code review command with multi-role perspectives",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_sdlc.py",
+          "type": "command",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Full SDLC pipeline command orchestrating plan->build->test->review->deploy",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_tactic.py",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Tactical Agentic Coding (TAC) command for applying agentic strategies",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_test.py",
+          "type": "command",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Automated testing command with role-specific validators",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "cli/commands/cmd_zte.py",
+          "type": "command",
+          "practices": ["security", "agentic-engineering"],
+          "description": "Zero Trust Execution (ZTE) command for trust-verified agent operations",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/commands/interview.py",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Structured interview command for spec enhancement",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/commands/plan.py",
+          "type": "command",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Core plan generation command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/commands/skill_create.py",
+          "type": "command",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Skill creation through interactive interview",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/commands/spec_extract.py",
+          "type": "command",
+          "practices": ["agentic-engineering"],
+          "description": "Specification extraction from multiple sources",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/integrations/github.py",
+          "type": "script",
+          "practices": ["devops", "platform"],
+          "description": "GitHub API integration for repo operations, PRs, issues",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/integrations/gitlab.py",
+          "type": "script",
+          "practices": ["devops", "platform"],
+          "description": "GitLab API integration for repo operations",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/integrations/slack.py",
+          "type": "script",
+          "practices": ["platform", "agentic-engineering"],
+          "description": "Slack integration for channel/thread reading and messaging",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/integrations/google_drive.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Google Drive integration for document access",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/mcp/client.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "MCP client for connecting to MCP servers",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/mcp/manager.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "MCP server lifecycle manager for starting/stopping servers",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/meta_prompts/base.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Base meta-prompt generation framework",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/meta_prompts/quality_gate_generator.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Generator for quality gate prompts that enforce standards",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/meta_prompts/role_prompts.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Role-specific prompt generator for different agent personas",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/meta_prompts/test_generator.py",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Automated test generation meta-prompt engine",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/meta_prompts/validation_generator.py",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Validation workflow prompt generator",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/orchestration/sdlc/pipeline.py",
+          "type": "script",
+          "practices": ["sdlc", "agentic-engineering"],
+          "description": "Full SDLC pipeline orchestration engine (plan->build->test->review->deploy)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/orchestration/sdlc/planner.py",
+          "type": "script",
+          "practices": ["sdlc", "agentic-engineering"],
+          "description": "SDLC planning phase orchestrator",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/orchestration/sdlc/tester.py",
+          "type": "script",
+          "practices": ["qa", "sdlc"],
+          "description": "SDLC testing phase orchestrator",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/orchestration/sdlc/deployer.py",
+          "type": "script",
+          "practices": ["devops", "sdlc"],
+          "description": "SDLC deployment phase orchestrator",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/orchestration/sdlc/github_deployer.py",
+          "type": "script",
+          "practices": ["devops", "sdlc"],
+          "description": "GitHub-specific deployer with PR/merge workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/adw.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Agentic Development Workflow (ADW) skill - autonomous development loop",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/agentic-kpis.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "KPI framework for measuring agentic coding effectiveness",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/automation.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Automation patterns for agentic workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/autonomy.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Agent autonomy levels and trust boundaries",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/core-four.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Core Four TAC principles for agentic development",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/focus.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Focus strategies for agent task execution",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/leverage-points.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Identifying and exploiting leverage points in agentic workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/maturity-model.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Maturity model for agentic coding adoption",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/perspective.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Multi-perspective analysis for agent decision making",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/piter.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "PITER methodology for iterative agent improvement",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/specialization.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Agent specialization patterns and role design",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/templating.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Templating strategies for reusable agent patterns",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/trust-ladder.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "security"],
+          "description": "Trust ladder framework for progressive agent autonomy",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/validation-pyramid.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Validation pyramid for layered quality assurance",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/skills/tac/validation.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Validation strategies for agent outputs",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/skill-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Standard template for creating new skills",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/command-template.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Standard template for creating new commands",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/tac/pipeline-config.yaml",
+          "type": "config",
+          "practices": ["agentic-engineering", "devops"],
+          "description": "TAC pipeline configuration template for SDLC workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/tac/sdlc-spec.md",
+          "type": "template",
+          "practices": ["sdlc", "agentic-engineering"],
+          "description": "SDLC specification template",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/tac/tactic-application.md",
+          "type": "template",
+          "practices": ["agentic-engineering"],
+          "description": "Template for applying TAC tactics to projects",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/tac/trust-assessment.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "security"],
+          "description": "Trust assessment template for evaluating agent autonomy levels",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/tac/zte-runbook.md",
+          "type": "template",
+          "practices": ["security", "agentic-engineering"],
+          "description": "Zero Trust Execution runbook template",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/validation_workflows/backend-engineer.yaml",
+          "type": "config",
+          "practices": ["backend", "qa"],
+          "description": "Validation workflow config for backend engineer role",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/validation_workflows/devops-engineer.yaml",
+          "type": "config",
+          "practices": ["devops", "qa"],
+          "description": "Validation workflow config for devops engineer role",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/validation_workflows/frontend-engineer.yaml",
+          "type": "config",
+          "practices": ["frontend", "qa"],
+          "description": "Validation workflow config for frontend engineer role",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/validation_workflows/ml-engineer.yaml",
+          "type": "config",
+          "practices": ["ml-ai", "qa"],
+          "description": "Validation workflow config for ML engineer role",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/templates/validation_workflows/qa-engineer.yaml",
+          "type": "config",
+          "practices": ["qa"],
+          "description": "Validation workflow config for QA engineer role",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/zte/trust_assessor.py",
+          "type": "script",
+          "practices": ["security", "agentic-engineering"],
+          "description": "Trust assessment engine for Zero Trust Execution",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/zte/trust_config.yaml",
+          "type": "config",
+          "practices": ["security", "agentic-engineering"],
+          "description": "Trust configuration rules for ZTE enforcement",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/zte/trust_ladder.py",
+          "type": "script",
+          "practices": ["security", "agentic-engineering"],
+          "description": "Trust ladder implementation for progressive agent autonomy",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/zte/zte_executor.py",
+          "type": "script",
+          "practices": ["security", "agentic-engineering"],
+          "description": "Zero Trust Execution engine that enforces trust policies on agent actions",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/zte/zte_monitor.py",
+          "type": "script",
+          "practices": ["security", "agentic-engineering"],
+          "description": "Real-time monitoring for ZTE policy compliance",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "core/workspace/manager.py",
+          "type": "script",
+          "practices": ["platform", "agentic-engineering"],
+          "description": "Workspace manager for agent working directories and isolation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "core/types.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Core type definitions for the framework",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "external/catalog.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "External repo catalog management",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "external/discovery.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "External skill discovery engine",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "external/extractor.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Skill pattern extractor from external repos",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "external/curated/trusted-repos.json",
+          "type": "config",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Curated trusted repo list for skill discovery",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/orchestration/workflows/adw_workflow.json",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Agentic Development Workflow definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/orchestration/workflows/bug_fix.json",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Bug fix workflow definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/orchestration/workflows/sdlc_pipeline.json",
+          "type": "config",
+          "practices": ["sdlc", "agentic-engineering"],
+          "description": "Full SDLC pipeline workflow definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/orchestration/workflows/spec_to_impl.json",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Spec-to-implementation workflow definition",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "infrastructure/analytics/tracker.py",
+          "type": "script",
+          "practices": ["data", "platform"],
+          "description": "Usage analytics tracker",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "infrastructure/analytics/reporter.py",
+          "type": "script",
+          "practices": ["data", "platform"],
+          "description": "Analytics report generator",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "infrastructure/db/init_db.py",
+          "type": "script",
+          "practices": ["backend", "platform"],
+          "description": "Database initialization script",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "mcp_servers/README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "MCP servers documentation with architecture diagram, showing Slack, GitHub, and GDrive MCP servers",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "mcp_servers/gdrive/server.py",
+          "type": "mcp",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Google Drive MCP server with tools for reading docs, listing, and searching",
+          "reuse_potential": "high"
+        }
+      ],
+      "statistics": {
+        "total_files": 105,
+        "assets_found": 79,
+        "practices_covered": [
+          "agentic-engineering",
+          "platform",
+          "sdlc",
+          "devops",
+          "security",
+          "qa",
+          "frontend",
+          "backend",
+          "ml-ai",
+          "data",
+          "delivery"
+        ]
+      }
+    },
+    {
+      "name": "ralph-orchestrator",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/ralph-orchestrator",
+      "description": "A hat-based multi-agent orchestration framework written in Rust that implements the Ralph Wiggum technique for autonomous task completion. Features a hat system for specialized agent personas, event-driven coordination, backpressure enforcement, 20+ preset workflows, multi-backend support (Claude, Kiro, Gemini, Codex, Amp, Copilot, OpenCode), interactive TUI, session recording, and spec-driven development methodology.",
+      "assets": [
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Comprehensive README with architecture, CLI reference, presets library, installation, and philosophy",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "AGENTS.md",
+          "type": "claude-file",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Agent philosophy document: Ralph Tenets, anti-patterns, build/test instructions, TUI validation, behavioral verification",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "DEVELOPMENT.md",
+          "type": "doc",
+          "practices": ["sdlc", "agentic-engineering"],
+          "description": "Spec-driven development workflow guide with new feature, modified feature, and bug fix workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "PROMPT.md",
+          "type": "claude-file",
+          "practices": ["agentic-engineering"],
+          "description": "Task prompt file for Ralph orchestrator runs",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "VERIFICATION_PROMPT_PRECEDENCE.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Documentation on verification prompt precedence rules",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Cargo.toml",
+          "type": "config",
+          "practices": ["platform"],
+          "description": "Rust workspace root Cargo.toml with 6 crate workspace",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "Dockerfile",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Multi-stage Docker build for Ralph (Python v1 version) with Claude Code and Gemini CLI pre-installed",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "LICENSE",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "MIT License",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".dockerignore",
+          "type": "config",
+          "practices": ["devops"],
+          "description": "Docker ignore file for build optimization",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".hooks/pre-commit",
+          "type": "hook",
+          "practices": ["sdlc", "qa"],
+          "description": "Pre-commit hook running cargo fmt check and clippy with warnings-as-errors",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "CI pipeline: embedded file check, tests, clippy, formatting, package verification",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/release.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "Release pipeline: cargo-dist builds, GitHub Release, crates.io publish, npm publish with OIDC",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".github/workflows/docs.yml",
+          "type": "config",
+          "practices": ["devops", "sdlc"],
+          "description": "Documentation deployment workflow",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".claude/agents/code-assist.md",
+          "type": "agent",
+          "practices": ["agentic-engineering"],
+          "description": "Code assist agent definition for Claude Code",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/commands/verify-behaviors.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Claude command to verify behavioral specifications against implementation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/commands/update-behaviors.md",
+          "type": "command",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Claude command to update behavior catalog after spec changes",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/code-assist/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "TDD-based code assist skill with Explore-Plan-Code-Commit workflow",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/codebase-summary/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Codebase analysis and documentation generation skill (AGENTS.md, README, CONTRIBUTING)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/creating-hat-collections/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Skill for creating Ralph hat collection presets and multi-agent workflows",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/evaluate-presets/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Skill for testing and validating Ralph preset configurations",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/eval/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "EvalKit - conversational evaluation framework for AI agents using Strands Evals SDK",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/code-task-generator/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Generates structured code task files from descriptions or PDD plans",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/ralph-code-assist/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering"],
+          "description": "Ralph-specific code assist that spawns Ralph as a subprocess for autonomous TDD",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/find-code-tasks/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "delivery"],
+          "description": "Lists code tasks with status, dates, and metadata for work overview",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/find-code-tasks/task-status.sh",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Shell script to parse and display code task status from task files",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".claude/skills/release-bump/SKILL.md",
+          "type": "skill",
+          "practices": ["sdlc", "devops"],
+          "description": "Version bump skill for ralph-orchestrator releases",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/pdd/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Prompt-Driven Development skill transforming rough ideas into detailed designs with implementation plans",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".claude/skills/tui-validate/SKILL.md",
+          "type": "skill",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "TUI validation skill using freeze for screenshot capture and LLM-as-judge for semantic validation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".sops/README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Standard Operating Procedures index for agent SOPs",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": ".sops/code-assist.sop.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Code assist SOP - detailed procedure for TDD implementation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": ".sops/code-task-generator.sop.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Code task generator SOP for structured task file creation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-proto/src/lib.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Protocol types library: Event, Hat, Topic, Error types",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-proto/src/event.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Event type definitions for inter-hat communication",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-proto/src/hat.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Hat (agent persona) type definitions",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-core/src/event_loop.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Core event loop for hat-based orchestration",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-core/src/hat_registry.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Hat registry for managing specialized agent personas",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-core/src/hatless_ralph.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Traditional mode (no hats) simple loop implementation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-core/src/config.rs",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "YAML configuration parser for ralph.yml",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-core/src/instructions.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Instruction builder for hat prompts with guardrails injection",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-core/src/event_parser.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Parser for extracting events from CLI output streams",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-core/src/session_recorder.rs",
+          "type": "script",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Session recording to JSONL for replay-based testing",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-core/src/session_player.rs",
+          "type": "script",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Session player for replaying recorded JSONL fixtures",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-core/src/summary_writer.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Summary writer for session/iteration outputs",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-core/src/workspace.rs",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Agent workspace management (.agent/ directory)",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-core/src/task_definition.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Code task file parser and definition types",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-core/src/testing/smoke_runner.rs",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Smoke test runner using JSONL replay fixtures",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-core/src/testing/replay_backend.rs",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Replay backend for deterministic testing without live APIs",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-core/src/testing/mock_backend.rs",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "Mock backend for unit testing",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-core/src/testing/scenario.rs",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Scenario-based testing framework for orchestration validation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-adapters/src/auto_detect.rs",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Auto-detection of installed CLI backends (Claude, Kiro, Gemini, etc.)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-adapters/src/cli_backend.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Generic CLI backend trait for executing AI CLIs",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-adapters/src/claude_stream.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Claude Code output stream parser",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-adapters/src/pty_handle.rs",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "PTY handle for interactive CLI subprocess management",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-adapters/src/pty_executor.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "PTY-based executor for running AI CLIs",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-cli/src/main.rs",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Ralph CLI binary entry point with clap argument parsing",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-cli/src/presets.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "Preset loader and management for workflow configurations",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/src/init.rs",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Project initialization (ralph init) with preset selection",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-cli/src/sop_runner.rs",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "SOP runner for ralph plan and ralph task commands",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/sops/pdd.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Prompt-Driven Development SOP for plan command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/sops/code-task-generator.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Code task generator SOP for task command",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Presets library documentation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/COLLECTION.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Hat collection preset documentation",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/feature.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Feature development preset: Planner-Builder pattern",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/feature-minimal.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Minimal feature development preset: single hat",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/tdd-red-green.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "TDD preset: Test-Implement-Refactor cycle",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/spec-driven.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Spec-driven development preset: Spec-Build-Verify",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/refactor.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Refactoring preset: Analyze-Plan-Execute",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/debug.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Debug preset: Investigate-Fix-Verify",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/incident-response.yml",
+          "type": "config",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "Incident response preset: Triage-Fix-Postmortem",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/code-archaeology.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Code archaeology preset: Explore-Document-Present",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/review.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Code review preset: Analyze-Critique-Suggest",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/pr-review.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "PR review preset: multi-perspective specialized reviewers",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/adversarial-review.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "security"],
+          "description": "Adversarial review preset: Critic-Defender devil's advocate style",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/docs.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Documentation preset: Write-Review-Publish",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/documentation-first.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Doc-first development preset: Doc-Implement-Sync",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/api-design.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "API design preset: Design-Implement-Document",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/migration-safety.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Migration safety preset: Analyze-Migrate-Verify",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/performance-optimization.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "Performance optimization preset: Profile-Optimize-Benchmark",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/deploy.yml",
+          "type": "config",
+          "practices": ["devops", "agentic-engineering"],
+          "description": "Deployment workflow preset",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/scientific-method.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Scientific method preset: Hypothesis-Experiment-Conclude",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/mob-programming.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Mob programming preset: rotating role-based development",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/socratic-learning.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Socratic learning preset: Question-Answer-Synthesize",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-cli/presets/research.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Research preset: Gather-Analyze-Synthesize",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/gap-analysis.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Gap analysis preset: Current-Target-Plan",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/hatless-baseline.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Hatless baseline preset for traditional mode comparison",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/claude.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Minimal Claude backend preset",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/kiro.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Minimal Kiro backend preset",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/gemini.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Minimal Gemini backend preset",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/codex.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Minimal Codex backend preset",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/amp.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Minimal Amp backend preset",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/opencode.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Minimal OpenCode backend preset",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/builder.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Minimal builder hat preset",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/code-assist.yml",
+          "type": "config",
+          "practices": ["agentic-engineering"],
+          "description": "Minimal code-assist preset",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/preset-evaluator.yml",
+          "type": "config",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "Preset evaluator configuration",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/test.yml",
+          "type": "config",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Minimal test preset",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-cli/presets/minimal/smoke.yml",
+          "type": "config",
+          "practices": ["qa"],
+          "description": "Smoke test preset",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "crates/ralph-bench/src/main.rs",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Benchmarking harness for measuring orchestrator performance",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "bench/tasks.json",
+          "type": "config",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Benchmark task definitions for evaluation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "bench/tasks/fizzbuzz-tdd/PROMPT.md",
+          "type": "template",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "FizzBuzz TDD benchmark prompt",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "bench/tasks/hello-world/PROMPT.md",
+          "type": "template",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Hello World benchmark prompt",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "cassettes/event-routing/er-001-task-start-routes-to-planner.jsonl",
+          "type": "config",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Test cassette: task start event routes to planner hat",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "cassettes/event-routing/er-002-build-task-routes-to-builder.jsonl",
+          "type": "config",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Test cassette: build task event routes to builder hat",
+          "reuse_potential": "medium"
+        }
+      ],
+      "statistics": {
+        "total_files": 140,
+        "assets_found": 100,
+        "practices_covered": [
+          "agentic-engineering",
+          "sdlc",
+          "devops",
+          "qa",
+          "platform",
+          "backend",
+          "security",
+          "delivery"
+        ]
+      }
+    },
+    {
+      "name": "skills",
+      "path": "/Users/diegofernandomartinezayala/My Drive (dmartinezayala@provectus.com)/Projects/Agentic Coding/skills",
+      "description": "Anthropic's official skills repository for Claude. Contains 16+ self-contained skills for document creation (DOCX, PDF, PPTX, XLSX), creative design (canvas, algorithmic art, themes, brand guidelines), MCP server building, webapp testing, internal communications, Slack GIF creation, skill creation, and web artifact building. Serves as a Claude Code plugin marketplace.",
+      "assets": [
+        {
+          "path": "README.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Main README: explains skills system, plugin marketplace registration, Claude Code/API usage",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES.md",
+          "type": "doc",
+          "practices": ["sdlc"],
+          "description": "Third-party license notices",
+          "reuse_potential": "low"
+        },
+        {
+          "path": ".claude-plugin/marketplace.json",
+          "type": "config",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Claude Code plugin marketplace manifest defining document-skills and example-skills plugin bundles",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/algorithmic-art/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "frontend"],
+          "description": "Skill for generating algorithmic art using JavaScript canvas",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/algorithmic-art/templates/generator_template.js",
+          "type": "template",
+          "practices": ["frontend"],
+          "description": "JavaScript template for algorithmic art generator",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/algorithmic-art/templates/viewer.html",
+          "type": "template",
+          "practices": ["frontend"],
+          "description": "HTML viewer template for algorithmic art display",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/brand-guidelines/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sales"],
+          "description": "Skill for creating and applying brand guidelines to content",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/canvas-design/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "frontend"],
+          "description": "Skill for creating visual designs using HTML Canvas with bundled fonts",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/doc-coauthoring/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "sdlc"],
+          "description": "Skill for collaborative document co-authoring with AI",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/docx/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Word document creation/editing skill - powers Claude's document capabilities",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/docx/scripts/accept_changes.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Script to accept tracked changes in DOCX files",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/docx/scripts/comment.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Script to add/manage comments in DOCX files",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/docx/scripts/office/pack.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Office document packaging utility",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/docx/scripts/office/unpack.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Office document unpacking utility for XML manipulation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/docx/scripts/office/validate.py",
+          "type": "script",
+          "practices": ["qa", "platform"],
+          "description": "Office document validation utility",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/docx/scripts/office/soffice.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "LibreOffice/soffice integration for document conversion",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/docx/scripts/office/validators/docx.py",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "DOCX-specific validation rules",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/docx/scripts/office/validators/pptx.py",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "PPTX-specific validation rules",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/docx/scripts/office/validators/redlining.py",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "Redline/tracked changes validation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/frontend-design/SKILL.md",
+          "type": "skill",
+          "practices": ["frontend", "agentic-engineering"],
+          "description": "Skill for creating frontend visual designs and UI components",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/internal-comms/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "hr"],
+          "description": "Skill for generating internal communications: newsletters, FAQs, updates",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/internal-comms/examples/company-newsletter.md",
+          "type": "template",
+          "practices": ["hr"],
+          "description": "Example company newsletter template",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/internal-comms/examples/faq-answers.md",
+          "type": "template",
+          "practices": ["hr"],
+          "description": "Example FAQ answers template",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/internal-comms/examples/3p-updates.md",
+          "type": "template",
+          "practices": ["hr", "delivery"],
+          "description": "Example third-party updates communication",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/internal-comms/examples/general-comms.md",
+          "type": "template",
+          "practices": ["hr"],
+          "description": "Example general internal communications",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/mcp-builder/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Guide for creating MCP servers that enable LLMs to interact with external services",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/mcp-builder/reference/mcp_best_practices.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "MCP server design best practices reference",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/mcp-builder/reference/node_mcp_server.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "Node.js MCP server implementation reference",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/mcp-builder/reference/python_mcp_server.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "backend"],
+          "description": "Python MCP server implementation reference",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/mcp-builder/reference/evaluation.md",
+          "type": "doc",
+          "practices": ["agentic-engineering", "qa"],
+          "description": "MCP server evaluation methodology",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/mcp-builder/scripts/connections.py",
+          "type": "script",
+          "practices": ["agentic-engineering"],
+          "description": "MCP connection management utility",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/mcp-builder/scripts/evaluation.py",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "MCP server evaluation script",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pdf/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "PDF creation, reading, form filling, and manipulation skill",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/pdf/reference.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "PDF manipulation reference documentation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pdf/forms.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "PDF form filling reference",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pdf/scripts/convert_pdf_to_images.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "PDF to image conversion utility",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pdf/scripts/check_bounding_boxes.py",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "PDF bounding box validation",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "skills/pdf/scripts/check_fillable_fields.py",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "PDF fillable field detection",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pdf/scripts/extract_form_field_info.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "PDF form field information extractor",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pdf/scripts/extract_form_structure.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "PDF form structure extractor",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pdf/scripts/fill_fillable_fields.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "PDF fillable field population script",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pdf/scripts/fill_pdf_form_with_annotations.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "PDF form filling with annotation overlays",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pdf/scripts/create_validation_image.py",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "PDF validation image generator for visual QA",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pptx/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "PowerPoint presentation creation and editing skill",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/pptx/editing.md",
+          "type": "doc",
+          "practices": ["platform"],
+          "description": "PPTX editing reference documentation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pptx/pptxgenjs.md",
+          "type": "doc",
+          "practices": ["platform", "frontend"],
+          "description": "PptxGenJS library reference for programmatic PPTX creation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pptx/scripts/add_slide.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "Script to add slides to PPTX files",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/pptx/scripts/clean.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "PPTX cleanup utility",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "skills/pptx/scripts/thumbnail.py",
+          "type": "script",
+          "practices": ["platform"],
+          "description": "PPTX slide thumbnail generator",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/skill-creator/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Meta-skill for creating new Claude skills with proper structure and best practices",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/skill-creator/references/output-patterns.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Reference for skill output pattern design",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/skill-creator/references/workflows.md",
+          "type": "doc",
+          "practices": ["agentic-engineering"],
+          "description": "Reference for skill workflow patterns",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/skill-creator/scripts/init_skill.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Skill initialization script creating directory structure",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/skill-creator/scripts/package_skill.py",
+          "type": "script",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Skill packaging script for distribution",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/skill-creator/scripts/quick_validate.py",
+          "type": "script",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Quick validation script for skill structure and content",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/slack-gif-creator/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "frontend"],
+          "description": "Skill for creating animated GIFs for Slack",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/slack-gif-creator/core/gif_builder.py",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "GIF builder with frame composition and animation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/slack-gif-creator/core/frame_composer.py",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Frame composer for animated GIF creation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/slack-gif-creator/core/easing.py",
+          "type": "script",
+          "practices": ["frontend"],
+          "description": "Easing functions for smooth animations",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "skills/slack-gif-creator/core/validators.py",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "GIF output validation",
+          "reuse_potential": "low"
+        },
+        {
+          "path": "skills/theme-factory/SKILL.md",
+          "type": "skill",
+          "practices": ["frontend", "agentic-engineering"],
+          "description": "Skill for generating themed visual designs with 10 pre-built themes",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/theme-factory/themes/modern-minimalist.md",
+          "type": "template",
+          "practices": ["frontend"],
+          "description": "Modern minimalist theme definition",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/theme-factory/themes/midnight-galaxy.md",
+          "type": "template",
+          "practices": ["frontend"],
+          "description": "Midnight galaxy theme definition",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/web-artifacts-builder/SKILL.md",
+          "type": "skill",
+          "practices": ["frontend", "agentic-engineering"],
+          "description": "Skill for building self-contained web artifacts (HTML/CSS/JS bundles)",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/web-artifacts-builder/scripts/bundle-artifact.sh",
+          "type": "script",
+          "practices": ["frontend", "devops"],
+          "description": "Shell script to bundle web artifacts into deployable packages",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/web-artifacts-builder/scripts/init-artifact.sh",
+          "type": "script",
+          "practices": ["frontend", "platform"],
+          "description": "Shell script to initialize new web artifact projects",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/webapp-testing/SKILL.md",
+          "type": "skill",
+          "practices": ["qa", "agentic-engineering"],
+          "description": "Playwright-based webapp testing skill with server lifecycle management",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/webapp-testing/scripts/with_server.py",
+          "type": "script",
+          "practices": ["qa"],
+          "description": "Server lifecycle manager for test environments",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "skills/webapp-testing/examples/console_logging.py",
+          "type": "template",
+          "practices": ["qa"],
+          "description": "Example: browser console log capture in tests",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/webapp-testing/examples/element_discovery.py",
+          "type": "template",
+          "practices": ["qa"],
+          "description": "Example: DOM element discovery and selector identification",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/webapp-testing/examples/static_html_automation.py",
+          "type": "template",
+          "practices": ["qa"],
+          "description": "Example: static HTML page test automation",
+          "reuse_potential": "medium"
+        },
+        {
+          "path": "skills/xlsx/SKILL.md",
+          "type": "skill",
+          "practices": ["agentic-engineering", "data"],
+          "description": "Excel spreadsheet creation and editing skill",
+          "reuse_potential": "high"
+        },
+        {
+          "path": "template/SKILL.md",
+          "type": "template",
+          "practices": ["agentic-engineering", "platform"],
+          "description": "Official skill template with frontmatter structure and content guidelines",
+          "reuse_potential": "high"
+        }
+      ],
+      "statistics": {
+        "total_files": 120,
+        "assets_found": 72,
+        "practices_covered": [
+          "agentic-engineering",
+          "platform",
+          "frontend",
+          "qa",
+          "sdlc",
+          "backend",
+          "hr",
+          "data",
+          "sales",
+          "delivery",
+          "devops"
+        ]
+      }
+    }
+  ]
+}

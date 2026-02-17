@@ -1,0 +1,78 @@
+{
+  "name": "proagent-data",
+  "version": "0.1.0",
+  "description": "Provectus Data practice plugin for data pipeline engineering, analytics, data warehousing, dbt transformations, SQL optimization, data quality, schema design, and exploratory data analysis across PostgreSQL, Snowflake, BigQuery, and Spark.",
+  "category": "data",
+  "author": "Provectus",
+  "license": "MIT",
+  "skills": [
+    {
+      "name": "data-assistant",
+      "path": "skills/data-assistant/SKILL.md",
+      "description": "Engineering Data Pipelines & Analytics - ETL/ELT, dbt transformations, data warehousing, SQL optimization, Airflow orchestration, Spark processing, data quality, and data modeling"
+    }
+  ],
+  "agents": [
+    {
+      "name": "data-specialist",
+      "path": "agents/data-specialist.md",
+      "description": "Senior data engineer specializing in pipeline architecture, dbt analytics engineering, SQL optimization, data warehouse design, data quality frameworks, and analytics across PostgreSQL, Snowflake, BigQuery, and Spark"
+    }
+  ],
+  "commands": [
+    {
+      "name": "proagent-data-hub",
+      "path": "commands/proagent-data-hub.md",
+      "description": "Data practice hub - overview of capabilities and available operations"
+    },
+    {
+      "name": "proagent-data-run",
+      "path": "commands/proagent-data-run.md",
+      "description": "Execute data operations: build-pipeline, design-schema, optimize-queries, setup-warehouse, data-quality-check"
+    },
+    {
+      "name": "proagent-data-review",
+      "path": "commands/proagent-data-review.md",
+      "description": "Review data pipelines, schemas, query performance, data quality, and dbt projects"
+    }
+  ],
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "path": "hooks/hooks.json",
+      "description": "Schema validation and SQL linting before database operations"
+    }
+  ],
+  "mcp_integrations": [
+    "aws",
+    "gcp",
+    "github"
+  ],
+  "source_repos": [
+    "proagent",
+    "casdk-harness",
+    "agents",
+    "awesome-claude-skills",
+    "claude-ui",
+    "tac",
+    "specs",
+    "skills"
+  ],
+  "keywords": [
+    "data-engineering",
+    "etl",
+    "elt",
+    "dbt",
+    "sql",
+    "data-warehouse",
+    "snowflake",
+    "bigquery",
+    "postgresql",
+    "spark",
+    "airflow",
+    "data-quality",
+    "analytics",
+    "data-modeling",
+    "schema-design"
+  ]
+}

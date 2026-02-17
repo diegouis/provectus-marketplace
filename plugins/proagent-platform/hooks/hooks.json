@@ -1,0 +1,46 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": {
+          "tool_name": "Write",
+          "file_path": "**/templates/**"
+        },
+        "command": "echo '[proagent-platform] Template written. Verify: (1) placeholders use consistent syntax, (2) invariants are clearly separated from variables, (3) usage examples are included, (4) validation rules are defined.'",
+        "timeout": 10
+      },
+      {
+        "matcher": {
+          "tool_name": "Write",
+          "file_path": "**/.claude-plugin/plugin.json"
+        },
+        "command": "echo '[proagent-platform] Plugin manifest written. Verify: (1) name follows naming convention, (2) version uses semver, (3) all resource paths are valid, (4) description is clear and complete.'",
+        "timeout": 10
+      },
+      {
+        "matcher": {
+          "tool_name": "Write",
+          "file_path": "**/SKILL.md"
+        },
+        "command": "echo '[proagent-platform] Skill file written. Verify: (1) YAML frontmatter has name and description, (2) description includes trigger terms, (3) body is under 500 lines, (4) references are one level deep from SKILL.md.'",
+        "timeout": 10
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": {
+          "tool_name": "Write",
+          "file_path": "**/scaffold/**"
+        },
+        "command": "echo '[proagent-platform] Scaffolding output detected. Ensure generated files follow golden path conventions and include all required components (tests, docs, CI config).'",
+        "timeout": 10
+      }
+    ],
+    "Notification": [
+      {
+        "command": "echo '[proagent-platform] DX feedback: Track time-to-first-contribution and self-service coverage for any new platform components.'",
+        "timeout": 5
+      }
+    ]
+  }
+}

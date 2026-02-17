@@ -1,0 +1,59 @@
+{
+  "mcpServers": {
+    "aws": {
+      "description": "AWS CLI for managing S3 data lakes, Redshift clusters, Glue ETL jobs, RDS/Aurora databases, Athena queries, and IAM data access policies",
+      "command": "aws",
+      "usage_examples": [
+        "aws s3 ls s3://data-lake/raw/",
+        "aws s3 cp s3://data-lake/raw/events/ ./local/ --recursive",
+        "aws redshift describe-clusters",
+        "aws redshift-data execute-statement --cluster-identifier my-cluster --database analytics --sql 'SELECT COUNT(*) FROM fct_orders'",
+        "aws glue get-job-runs --job-name etl-customer-events",
+        "aws glue start-job-run --job-name etl-customer-events",
+        "aws athena start-query-execution --query-string 'SELECT * FROM raw_events LIMIT 10' --result-configuration OutputLocation=s3://query-results/",
+        "aws rds describe-db-instances",
+        "aws secretsmanager get-secret-value --secret-id prod/database/credentials"
+      ],
+      "required_env": [
+        "AWS_ACCESS_KEY_ID",
+        "AWS_SECRET_ACCESS_KEY",
+        "AWS_DEFAULT_REGION"
+      ]
+    },
+    "gcp": {
+      "description": "Google Cloud CLI for managing BigQuery datasets, Cloud SQL instances, Cloud Storage data lakes, Dataflow pipelines, and Cloud Composer (managed Airflow)",
+      "command": "gcloud",
+      "usage_examples": [
+        "bq ls --project_id my-project analytics",
+        "bq query --use_legacy_sql=false 'SELECT COUNT(*) FROM analytics.fct_orders'",
+        "bq show --schema --format=prettyjson analytics.dim_customer",
+        "bq load --source_format=PARQUET analytics.raw_events gs://data-lake/events/*.parquet",
+        "gsutil ls gs://data-lake/raw/",
+        "gsutil cp gs://data-lake/raw/events/ ./local/ -r",
+        "gcloud sql instances list",
+        "gcloud sql databases list --instance=analytics-db",
+        "gcloud composer environments run my-airflow --location us-central1 dags trigger -- etl_customer_analytics"
+      ],
+      "required_env": [
+        "GOOGLE_APPLICATION_CREDENTIALS",
+        "GOOGLE_CLOUD_PROJECT"
+      ]
+    },
+    "github": {
+      "description": "GitHub CLI for managing data pipeline repositories, pull requests for schema changes, and CI/CD pipeline status for dbt deployments",
+      "command": "gh",
+      "usage_examples": [
+        "gh pr create --title 'feat(models): add dim_customer SCD Type 2' --body 'Implements slowly changing dimension for customer attributes'",
+        "gh pr list --label data-engineering",
+        "gh pr review --approve",
+        "gh run list --workflow=dbt-deploy.yml",
+        "gh run watch",
+        "gh issue create --title 'Data quality alert: fct_orders row count anomaly' --label bug,data-quality",
+        "gh api repos/{owner}/{repo}/actions/workflows/dbt-deploy.yml/dispatches -f ref=main"
+      ],
+      "required_env": [
+        "GITHUB_TOKEN"
+      ]
+    }
+  }
+}

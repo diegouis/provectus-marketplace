@@ -1,0 +1,48 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--isolated"
+      ],
+      "description": "Playwright MCP server for browser automation and E2E testing. Provides tools to navigate pages, click elements, fill forms, take screenshots, and validate rendered content."
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "GitHub MCP server for repository operations, pull request management, issue tracking, and CI/CD pipeline integration. Used to create test-related issues, link test results to PRs, and manage test automation workflows."
+    },
+    "gitlab": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gitlab"
+      ],
+      "env": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_TOKEN}",
+        "GITLAB_API_URL": "${GITLAB_API_URL:-https://gitlab.com/api/v4}"
+      },
+      "description": "GitLab MCP server for merge request management, pipeline monitoring, and issue tracking. Used to enforce test gates on merge requests and report test results in CI/CD pipelines."
+    },
+    "jira": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-jira"
+      ],
+      "env": {
+        "JIRA_BASE_URL": "${JIRA_BASE_URL}",
+        "JIRA_API_TOKEN": "${JIRA_API_TOKEN}",
+        "JIRA_USER_EMAIL": "${JIRA_USER_EMAIL}"
+      },
+      "description": "Jira MCP server for linking test results to user stories, creating defect tickets from test failures, and tracking QA progress across sprints."
+    }
+  }
+}

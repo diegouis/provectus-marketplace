@@ -1,0 +1,108 @@
+{
+  "hooks": [
+    {
+      "id": "proagent-frontend-pre-commit-component-validation",
+      "type": "pre-commit",
+      "description": "Validate frontend component quality before commits. Checks TypeScript compilation, ESLint rules, and Tailwind CSS class validity on staged frontend files.",
+      "trigger": "pre-commit",
+      "actions": [
+        {
+          "name": "typescript-check",
+          "description": "Run TypeScript type checking on staged frontend files to catch type errors before commit",
+          "command": "npx tsc --noEmit",
+          "fail_action": "block",
+          "timeout_ms": 60000
+        },
+        {
+          "name": "eslint-check",
+          "description": "Run ESLint with React/Vue/Angular plugin on staged component files",
+          "commands": {
+            "react": "npx eslint --ext .tsx,.jsx,.ts,.js {staged_files}",
+            "vue": "npx eslint --ext .vue,.ts,.js {staged_files}",
+            "angular": "npx eslint --ext .ts,.html {staged_files}"
+          },
+          "fail_action": "block",
+          "timeout_ms": 60000
+        },
+        {
+          "name": "component-accessibility-lint",
+          "description": "Run eslint-plugin-jsx-a11y or equivalent accessibility linting on staged components",
+          "commands": {
+            "react": "npx eslint --rule '{\"jsx-a11y/alt-text\": \"error\", \"jsx-a11y/aria-props\": \"error\", \"jsx-a11y/aria-role\": \"error\", \"jsx-a11y/click-events-have-key-events\": \"warn\", \"jsx-a11y/no-noninteractive-element-interactions\": \"warn\"}' {staged_files}",
+            "vue": "npx eslint --plugin vuejs-accessibility {staged_files}"
+          },
+          "fail_action": "warn",
+          "timeout_ms": 30000
+        }
+      ]
+    },
+    {
+      "id": "proagent-frontend-post-build-accessibility-audit",
+      "type": "post-build",
+      "description": "After frontend build completes, run automated accessibility checks on generated output. Uses axe-core to validate WCAG 2.1 AA compliance on built pages.",
+      "trigger": "post-build",
+      "actions": [
+        {
+          "name": "axe-core-audit",
+          "description": "Run axe-core accessibility audit on built HTML pages",
+          "command": "npx @axe-core/cli --exit --tags wcag2a,wcag2aa --reporter json http://localhost:${DEV_PORT:-5173}",
+          "fail_action": "warn",
+          "timeout_ms": 120000
+        },
+        {
+          "name": "lighthouse-accessibility",
+          "description": "Run Lighthouse accessibility audit to score component accessibility",
+          "command": "npx lighthouse http://localhost:${DEV_PORT:-5173} --only-categories=accessibility --output=json --chrome-flags='--headless'",
+          "thresholds": {
+            "accessibility_score_min": 90
+          },
+          "fail_action": "warn",
+          "timeout_ms": 120000
+        }
+      ]
+    },
+    {
+      "id": "proagent-frontend-pre-merge-ui-validation",
+      "type": "pre-merge",
+      "description": "Full UI validation gate before merging to the main branch. Runs component tests, accessibility audit, bundle size check, and visual regression tests.",
+      "trigger": "pre-merge",
+      "actions": [
+        {
+          "name": "component-tests",
+          "description": "Execute all component unit and integration tests",
+          "commands": {
+            "vitest": "npx vitest run --reporter=verbose",
+            "jest": "npx jest --ci --coverage --reporters=default"
+          },
+          "fail_action": "block",
+          "timeout_ms": 300000
+        },
+        {
+          "name": "accessibility-gate",
+          "description": "Run full WCAG 2.1 AA accessibility audit. Zero critical violations required to merge.",
+          "command": "Run /proagent-frontend-run accessibility-audit to validate WCAG compliance on changed components",
+          "fail_action": "block",
+          "timeout_ms": 180000
+        },
+        {
+          "name": "bundle-size-check",
+          "description": "Verify bundle size stays within performance budget after changes",
+          "command": "npm run build && npx bundlesize",
+          "thresholds": {
+            "max_initial_js_gzip_kb": 200,
+            "max_initial_css_gzip_kb": 50
+          },
+          "fail_action": "warn",
+          "on_failure_message": "Bundle size exceeds performance budget. Run /proagent-frontend-run optimize-performance to identify reduction opportunities."
+        },
+        {
+          "name": "visual-regression",
+          "description": "Run Playwright visual regression tests for component library changes",
+          "command": "npx playwright test --project=visual-regression",
+          "fail_action": "warn",
+          "timeout_ms": 300000
+        }
+      ]
+    }
+  ]
+}

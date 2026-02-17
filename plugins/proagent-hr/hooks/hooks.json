@@ -1,0 +1,96 @@
+{
+  "hooks": [
+    {
+      "id": "proagent-hr-document-format-validation",
+      "type": "pre-commit",
+      "description": "Validate HR document formatting before committing. Ensures job descriptions, review templates, and onboarding plans follow the required structure and include all mandatory sections.",
+      "trigger": "pre-commit",
+      "actions": [
+        {
+          "name": "job-description-structure-check",
+          "description": "Verify job descriptions contain all required sections: role summary, responsibilities, required qualifications, preferred qualifications, compensation range, and EEO statement",
+          "file_patterns": ["**/job-descriptions/**/*.md", "**/hiring/**/*.md", "**/jd-*.md"],
+          "required_sections": [
+            "Role Summary",
+            "Responsibilities",
+            "Required Qualifications",
+            "Preferred Qualifications",
+            "Compensation",
+            "Equal Opportunity"
+          ],
+          "fail_action": "warn",
+          "on_failure_message": "Job description is missing required sections. Run /proagent-hr-review review job descriptions to identify and fix gaps."
+        },
+        {
+          "name": "inclusive-language-check",
+          "description": "Scan HR documents for biased or exclusionary language patterns",
+          "file_patterns": ["**/job-descriptions/**/*.md", "**/hiring/**/*.md", "**/communications/**/*.md"],
+          "flagged_terms": [
+            "rockstar", "ninja", "guru", "manpower", "chairman",
+            "he/she", "his/her", "mankind", "man-hours"
+          ],
+          "fail_action": "warn",
+          "on_failure_message": "Document contains potentially biased language. Review flagged terms and replace with inclusive alternatives."
+        },
+        {
+          "name": "pii-protection-check",
+          "description": "Warn if HR documents containing PII (social security numbers, salary figures, personal addresses) are being committed to version control",
+          "file_patterns": ["**/hr/**", "**/reviews/**", "**/compensation/**", "**/onboarding/**"],
+          "sensitive_patterns": [
+            "\\b\\d{3}-\\d{2}-\\d{4}\\b",
+            "\\bSSN\\b",
+            "\\bsocial security\\b",
+            "\\$\\d{3},\\d{3}"
+          ],
+          "fail_action": "block",
+          "on_failure_message": "Potential PII detected in HR document. Remove sensitive personal data before committing. Use secure HR systems for storing employee PII."
+        }
+      ]
+    },
+    {
+      "id": "proagent-hr-onboarding-completeness",
+      "type": "pre-publish",
+      "description": "Validate onboarding plans are complete before sharing with new hires. Ensures all phases are covered and milestones have owners and deadlines.",
+      "trigger": "pre-publish",
+      "actions": [
+        {
+          "name": "onboarding-plan-completeness",
+          "description": "Verify onboarding plans include day-one checklist, 30/60/90-day milestones, buddy assignment, and review schedule",
+          "file_patterns": ["**/onboarding/**/*.md", "**/onboarding-*.md"],
+          "required_sections": [
+            "Day One",
+            "First 30 Days",
+            "Days 31-60",
+            "Days 61-90",
+            "Buddy",
+            "Check-in"
+          ],
+          "fail_action": "warn",
+          "on_failure_message": "Onboarding plan is missing required phases. Run /proagent-hr-review onboarding plans to identify gaps."
+        }
+      ]
+    },
+    {
+      "id": "proagent-hr-review-template-validation",
+      "type": "pre-publish",
+      "description": "Validate performance review templates before distribution. Ensures review documents align with company competency frameworks and include balanced feedback sections.",
+      "trigger": "pre-publish",
+      "actions": [
+        {
+          "name": "review-template-structure",
+          "description": "Verify performance review documents contain self-assessment, peer feedback, and manager evaluation sections with aligned competency criteria",
+          "file_patterns": ["**/reviews/**/*.md", "**/performance/**/*.md"],
+          "required_sections": [
+            "Summary",
+            "Strengths",
+            "Development Areas",
+            "Goal Achievement",
+            "Development Plan"
+          ],
+          "fail_action": "warn",
+          "on_failure_message": "Performance review template is missing required sections. Run /proagent-hr-run performance-review to generate a complete template."
+        }
+      ]
+    }
+  ]
+}

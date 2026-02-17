@@ -1,0 +1,60 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "gh",
+      "description": "GitHub integration for repository management, pull requests, issues, code review, and CI/CD pipeline status. Used for managing backend service repositories, reviewing API changes, and tracking schema migration PRs.",
+      "usage": [
+        "gh pr create --title 'Add user authentication endpoints' --body 'Implements JWT-based auth with refresh tokens'",
+        "gh pr review --approve --body 'API design follows REST conventions, schema migration is safe'",
+        "gh issue create --title 'Add rate limiting to public API' --label 'backend,security'",
+        "gh api repos/{owner}/{repo}/pulls/{number}/files",
+        "gh run list --workflow=backend-ci.yml",
+        "gh release create v1.0.0 --title 'API v1 Release' --notes 'Initial REST API release with auth, CRUD, and pagination'"
+      ]
+    },
+    "gitlab": {
+      "command": "glab",
+      "description": "GitLab integration for merge requests, CI/CD pipelines, and repository management. Used for backend service development workflows on GitLab-hosted projects.",
+      "usage": [
+        "glab mr create --title 'Implement order processing service' --description 'Adds async order processing with RabbitMQ'",
+        "glab mr approve",
+        "glab ci status",
+        "glab ci run --branch develop",
+        "glab issue create --title 'Database query optimization for orders endpoint' --label 'backend,performance'"
+      ]
+    },
+    "aws": {
+      "command": "aws",
+      "description": "AWS integration for backend infrastructure management including RDS databases, ElastiCache Redis clusters, SQS message queues, Lambda functions, API Gateway, Secrets Manager, and CloudWatch monitoring.",
+      "usage": [
+        "aws rds describe-db-instances --db-instance-identifier backend-postgres",
+        "aws rds create-db-snapshot --db-instance-identifier backend-postgres --db-snapshot-identifier pre-migration-snapshot",
+        "aws elasticache describe-cache-clusters --cache-cluster-id backend-redis",
+        "aws sqs create-queue --queue-name order-processing-queue --attributes '{\"MessageRetentionPeriod\":\"86400\",\"VisibilityTimeout\":\"30\"}'",
+        "aws sqs send-message --queue-url {queue_url} --message-body '{\"orderId\":\"123\",\"action\":\"process\"}'",
+        "aws lambda invoke --function-name process-order --payload '{\"orderId\":\"123\"}' response.json",
+        "aws apigateway get-rest-apis",
+        "aws secretsmanager get-secret-value --secret-id backend/database-url",
+        "aws secretsmanager create-secret --name backend/api-key --secret-string '{\"key\":\"value\"}'",
+        "aws cloudwatch get-metric-statistics --namespace Backend/API --metric-name Latency --start-time 2026-01-01T00:00:00Z --end-time 2026-01-02T00:00:00Z --period 300 --statistics Average",
+        "aws logs filter-log-events --log-group-name /backend/api --filter-pattern 'ERROR'"
+      ]
+    },
+    "gcp": {
+      "command": "gcloud",
+      "description": "GCP integration for backend infrastructure including Cloud SQL databases, Memorystore Redis, Cloud Tasks queues, Cloud Functions, Cloud Run services, Secret Manager, and Cloud Monitoring.",
+      "usage": [
+        "gcloud sql instances describe backend-postgres",
+        "gcloud sql backups create --instance=backend-postgres --description='Pre-migration backup'",
+        "gcloud redis instances describe backend-redis --region=us-central1",
+        "gcloud tasks queues create order-processing --max-dispatches-per-second=10 --max-concurrent-dispatches=5",
+        "gcloud run deploy backend-api --image=gcr.io/{project}/backend-api:latest --region=us-central1 --allow-unauthenticated",
+        "gcloud run services describe backend-api --region=us-central1",
+        "gcloud functions deploy process-order --runtime=python312 --trigger-topic=order-events --entry-point=process_order",
+        "gcloud secrets versions access latest --secret=backend-database-url",
+        "gcloud secrets create backend-api-key --replication-policy=automatic",
+        "gcloud logging read 'resource.type=cloud_run_revision AND severity>=ERROR' --limit=50"
+      ]
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "practice": "sdlc",
+  "plugin_name": "proagent-sdlc",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "changelog-generator/SKILL.md", "repo": "awesome-claude-skills", "description": "Auto-create changelogs from git commits", "reuse_potential": "high"},
+      {"path": "src/harness/skills/code-review/SKILL.md", "repo": "casdk-harness", "description": "Automated code review pipeline", "reuse_potential": "high"},
+      {"path": "src/harness/skills/debugging/SKILL.md", "repo": "casdk-harness", "description": "Bug-fix debugging workflow", "reuse_potential": "high"},
+      {"path": "src/harness/skills/documentation/SKILL.md", "repo": "casdk-harness", "description": "Automated doc generation", "reuse_potential": "high"},
+      {"path": "src/harness/skills/git-workflow/SKILL.md", "repo": "casdk-harness", "description": "Git workflow best practices", "reuse_potential": "high"},
+      {"path": "skills/planning-with-files/SKILL.md", "repo": "planning-with-files", "description": "File-based planning with hooks", "reuse_potential": "high"},
+      {"path": ".claude/skills/code-assist/SKILL.md", "repo": "ralph-orchestrator", "description": "TDD Explore-Plan-Code-Commit workflow", "reuse_potential": "high"},
+      {"path": ".claude/skills/codebase-summary/SKILL.md", "repo": "ralph-orchestrator", "description": "Codebase analysis and documentation", "reuse_potential": "high"},
+      {"path": ".claude/skills/pdd/SKILL.md", "repo": "ralph-orchestrator", "description": "Prompt-Driven Development", "reuse_potential": "high"},
+      {"path": ".claude/skills/code-task-generator/SKILL.md", "repo": "ralph-orchestrator", "description": "Structured code task generation", "reuse_potential": "high"},
+      {"path": "skills/brainstorming/SKILL.md", "repo": "superpowers", "description": "Socratic design refinement", "reuse_potential": "high"},
+      {"path": "skills/writing-plans/SKILL.md", "repo": "superpowers", "description": "Break work into 2-5 minute tasks", "reuse_potential": "high"},
+      {"path": "skills/executing-plans/SKILL.md", "repo": "superpowers", "description": "Batch execution with checkpoints", "reuse_potential": "high"},
+      {"path": "skills/subagent-driven-development/SKILL.md", "repo": "superpowers", "description": "Dispatch subagents with two-stage review", "reuse_potential": "high"},
+      {"path": "skills/systematic-debugging/SKILL.md", "repo": "superpowers", "description": "4-phase root cause debugging", "reuse_potential": "high"},
+      {"path": "skills/requesting-code-review/SKILL.md", "repo": "superpowers", "description": "Pre-review checklist between tasks", "reuse_potential": "high"},
+      {"path": "skills/receiving-code-review/SKILL.md", "repo": "superpowers", "description": "Incorporate code review feedback", "reuse_potential": "high"},
+      {"path": "skills/finishing-a-development-branch/SKILL.md", "repo": "superpowers", "description": "Branch completion workflow", "reuse_potential": "high"},
+      {"path": "skills/doc-coauthoring/SKILL.md", "repo": "skills", "description": "Collaborative document co-authoring", "reuse_potential": "high"},
+      {"path": "roles/technical-writer/skills/user-guide-creation.md", "repo": "proagent", "description": "User guide creation", "reuse_potential": "high"},
+      {"path": "roles/technical-writer/skills/information-architecture.md", "repo": "proagent", "description": "Information architecture", "reuse_potential": "high"},
+      {"path": "roles/project-manager/skills/spec-creation.md", "repo": "proagent", "description": "Project spec creation", "reuse_potential": "high"}
+    ],
+    "commands": [
+      {"path": "commands/architecture.md", "repo": "awos", "description": "Define System Architecture", "reuse_potential": "high"},
+      {"path": "commands/spec.md", "repo": "awos", "description": "Create Functional Specs", "reuse_potential": "high"},
+      {"path": "commands/tech.md", "repo": "awos", "description": "Create Technical Specs", "reuse_potential": "high"},
+      {"path": "commands/tasks.md", "repo": "awos", "description": "Break specs into task lists", "reuse_potential": "high"},
+      {"path": "commands/implement.md", "repo": "awos", "description": "Lead Implementation Agent", "reuse_potential": "high"},
+      {"path": "commands/verify.md", "repo": "awos", "description": "Verify implementation", "reuse_potential": "high"},
+      {"path": "Code/tac-3/.claude/commands/bug.md", "repo": "tac", "description": "Bug workflow with branch management", "reuse_potential": "high"},
+      {"path": "Code/tac-3/.claude/commands/feature.md", "repo": "tac", "description": "Feature workflow with spec", "reuse_potential": "high"},
+      {"path": "Code/tac-3/.claude/commands/implement.md", "repo": "tac", "description": "Implement with test-first", "reuse_potential": "high"},
+      {"path": "Code/tac-4/.claude/commands/classify_issue.md", "repo": "tac", "description": "GitHub issue classification", "reuse_potential": "high"},
+      {"path": "Code/tac-4/.claude/commands/commit.md", "repo": "tac", "description": "Semantic commit generation", "reuse_potential": "high"},
+      {"path": "Code/tac-4/.claude/commands/pull_request.md", "repo": "tac", "description": "Automated PR creation", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/commands/document.md", "repo": "tac", "description": "Auto-document code changes", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/commands/review.md", "repo": "tac", "description": "Automated review workflow", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/commands/patch.md", "repo": "tac", "description": "Incremental code changes", "reuse_potential": "high"},
+      {"path": "cli/commands/cmd_sdlc.py", "repo": "proagent-repo GUI", "description": "Full SDLC pipeline orchestration", "reuse_potential": "high"},
+      {"path": "cli/commands/cmd_build.py", "repo": "proagent-repo GUI", "description": "Build from plans", "reuse_potential": "high"},
+      {"path": "cli/commands/cmd_review.py", "repo": "proagent-repo GUI", "description": "Multi-role code review", "reuse_potential": "high"},
+      {"path": "commands/brainstorm.md", "repo": "superpowers", "description": "Socratic design refinement", "reuse_potential": "high"},
+      {"path": "commands/write-plan.md", "repo": "superpowers", "description": "Write implementation plans", "reuse_potential": "high"},
+      {"path": "commands/create-plan.md", "repo": "taches-cc-resources", "description": "Hierarchical project planning", "reuse_potential": "high"},
+      {"path": "commands/run-plan.md", "repo": "taches-cc-resources", "description": "Execute PLAN.md files", "reuse_potential": "high"},
+      {"path": "commands/debug.md", "repo": "taches-cc-resources", "description": "Expert debugging methodology", "reuse_potential": "high"},
+      {"path": "commands/research/feasibility.md", "repo": "taches-cc-resources", "description": "Feasibility study", "reuse_potential": "high"},
+      {"path": "plugins/full-stack-orchestration/commands/full-stack-feature.md", "repo": "agents", "description": "Full-stack feature with 7+ agents", "reuse_potential": "high"},
+      {"path": "plugins/c4-architecture/commands/c4-architecture.md", "repo": "agents", "description": "C4 architecture documentation", "reuse_potential": "high"},
+      {"path": ".claude/commands/interview.md", "repo": "root-claude-config", "description": "7-phase structured interview", "reuse_potential": "high"},
+      {"path": ".claude/commands/implement_mul-agent.md", "repo": "root-claude-config", "description": "Multi-agent implementation orchestrator", "reuse_potential": "high"}
+    ],
+    "agents": [
+      {"path": "src/harness/agents/configs/dev-code-review-expert.md", "repo": "casdk-harness", "description": "Automated code review expert", "reuse_potential": "high"},
+      {"path": "src/harness/agents/configs/dev-refactor-agent.md", "repo": "casdk-harness", "description": "Refactoring agent", "reuse_potential": "high"},
+      {"path": "agents/code-reviewer.md", "repo": "superpowers", "description": "Code review subagent", "reuse_potential": "high"},
+      {"path": "plugins/conductor/agents/conductor.md", "repo": "agents", "description": "Workflow orchestration conductor", "reuse_potential": "high"}
+    ],
+    "hooks": [
+      {"path": ".husky/pre-commit", "repo": "Auto-Claude", "description": "Pre-commit with linting and testing", "reuse_potential": "high"},
+      {"path": ".husky/commit-msg", "repo": "Auto-Claude", "description": "Conventional commit validation", "reuse_potential": "high"},
+      {"path": ".githooks/pre-push", "repo": "gastown", "description": "Pre-push validation", "reuse_potential": "medium"},
+      {"path": ".hooks/pre-commit", "repo": "ralph-orchestrator", "description": "Cargo fmt + clippy", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/hooks/pre_tool_use.py", "repo": "tac", "description": "Pre-validation guardrails", "reuse_potential": "high"},
+      {"path": "Code/tac-6/.claude/hooks/post_tool_use.py", "repo": "tac", "description": "Post-processing hook", "reuse_potential": "high"}
+    ],
+    "mcp_configs": [],
+    "scripts": [
+      {"path": "core/orchestration/sdlc/pipeline.py", "repo": "proagent-repo GUI", "description": "SDLC pipeline orchestration engine", "reuse_potential": "high"},
+      {"path": "Code/tac-6/adws/adw_sdlc.py", "repo": "tac", "description": "ADW full SDLC pipeline", "reuse_potential": "high"},
+      {"path": "Code/tac-6/adws/adw_build.py", "repo": "tac", "description": "ADW build automation", "reuse_potential": "high"},
+      {"path": "Code/tac-6/adws/adw_plan.py", "repo": "tac", "description": "ADW planning module", "reuse_potential": "high"},
+      {"path": "Code/tac-6/adws/adw_review.py", "repo": "tac", "description": "ADW code review", "reuse_potential": "high"}
+    ],
+    "docs": [
+      {"path": "docs/document-structure.md", "repo": "awos", "description": "AWOS document hierarchy guide", "reuse_potential": "high"},
+      {"path": "docs/testing-strategies.md", "repo": "awos", "description": "Testing strategies within AWOS", "reuse_potential": "high"},
+      {"path": "DEVELOPMENT.md", "repo": "ralph-orchestrator", "description": "Spec-driven development workflow", "reuse_potential": "high"},
+      {"path": ".sops/code-assist.sop.md", "repo": "ralph-orchestrator", "description": "Code assist TDD SOP", "reuse_potential": "high"},
+      {"path": "skills/test-driven-development/testing-anti-patterns.md", "repo": "superpowers", "description": "Testing anti-patterns reference", "reuse_potential": "high"},
+      {"path": "impl/gap-analysis-and-plan.md", "repo": "specs", "description": "Gap analysis: current vs needed", "reuse_potential": "high"}
+    ],
+    "templates": [
+      {"path": "templates/architecture-template.md", "repo": "awos", "description": "System Architecture template", "reuse_potential": "high"},
+      {"path": "templates/functional-spec-template.md", "repo": "awos", "description": "Functional Spec template", "reuse_potential": "high"},
+      {"path": "templates/technical-considerations-template.md", "repo": "awos", "description": "Technical Considerations template", "reuse_potential": "high"},
+      {"path": "skills/planning-with-files/templates/task_plan.md", "repo": "planning-with-files", "description": "Task planning template", "reuse_potential": "high"},
+      {"path": "core/templates/tac/sdlc-spec.md", "repo": "proagent-repo GUI", "description": "SDLC specification template", "reuse_potential": "high"},
+      {"path": "docs/SPEC.example.md", "repo": "casdk-harness", "description": "Example SPEC.md for autonomous development", "reuse_potential": "high"},
+      {"path": "skills/subagent-driven-development/spec-reviewer-prompt.md", "repo": "superpowers", "description": "Spec compliance review prompt", "reuse_potential": "high"},
+      {"path": "skills/subagent-driven-development/code-quality-reviewer-prompt.md", "repo": "superpowers", "description": "Code quality review prompt", "reuse_potential": "high"}
+    ],
+    "configs": [
+      {"path": ".coderabbit.yaml", "repo": "Auto-Claude", "description": "AI code review configuration", "reuse_potential": "high"},
+      {"path": ".github/release-drafter.yml", "repo": "Auto-Claude", "description": "Automated changelog from PRs", "reuse_potential": "high"},
+      {"path": ".github/dependabot.yml", "repo": "Auto-Claude", "description": "Automated dependency updates", "reuse_potential": "high"},
+      {"path": "infrastructure/orchestration/workflows/bug_fix.json", "repo": "proagent-repo GUI", "description": "Bug fix workflow definition", "reuse_potential": "high"},
+      {"path": "infrastructure/orchestration/workflows/sdlc_pipeline.json", "repo": "proagent-repo GUI", "description": "SDLC pipeline workflow", "reuse_potential": "high"},
+      {"path": "infrastructure/orchestration/workflows/spec_to_impl.json", "repo": "proagent-repo GUI", "description": "Spec-to-implementation workflow", "reuse_potential": "high"}
+    ]
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": false,
+    "missing_agent": false,
+    "missing_hooks": false,
+    "missing_mcp": true,
+    "recommended_integrations": ["GitHub", "GitLab", "Jira", "Confluence", "Slack"]
+  },
+  "statistics": {
+    "total_assets": 208,
+    "high_reuse": 157,
+    "source_repos": ["Auto-Claude", "awesome-claude-code", "awesome-claude-skills", "awos", "casdk-harness", "gastown", "planning-with-files", "proagent", "proagent-repo GUI", "ralph-orchestrator", "skills", "superpowers", "tac", "taches-cc-resources", "agents", "specs", "root-claude-config"]
+  }
+}

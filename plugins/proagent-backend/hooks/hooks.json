@@ -1,0 +1,156 @@
+{
+  "hooks": [
+    {
+      "name": "pre-api-validation",
+      "event": "PreToolUse",
+      "description": "Validates API endpoint implementations, request/response schemas, and route configurations before code is written or modified. Catches design violations, missing error handling, and security gaps before they reach production.",
+      "tool_patterns": ["Write", "Edit"],
+      "file_patterns": [
+        "*/routes/*.py",
+        "*/routes/*.ts",
+        "*/routes/*.js",
+        "*/controllers/*.py",
+        "*/controllers/*.ts",
+        "*/controllers/*.js",
+        "*/api/*.py",
+        "*/api/*.ts",
+        "*/api/*.js",
+        "*/endpoints/*.py",
+        "*/resolvers/*.py",
+        "*/resolvers/*.ts",
+        "*/schema.graphql",
+        "*.proto",
+        "openapi.yaml",
+        "openapi.json",
+        "swagger.yaml",
+        "swagger.json"
+      ],
+      "validations": [
+        {
+          "name": "api-design-standards",
+          "description": "Verify API endpoints follow RESTful design conventions and naming standards",
+          "check_rules": [
+            "Resource URLs use plural nouns, not verbs (e.g., /users not /getUsers)",
+            "HTTP methods match their semantics (GET for reads, POST for creates, PUT/PATCH for updates, DELETE for removals)",
+            "Endpoint URLs do not nest deeper than 3 levels (e.g., /users/{id}/orders is fine, /users/{id}/orders/{oid}/items/{iid}/details is not)",
+            "Response payloads include consistent envelope structure with data, pagination, and error fields",
+            "API versioning prefix is present (e.g., /api/v1/)"
+          ],
+          "on_failure": "warn",
+          "message": "API endpoint does not follow RESTful design conventions. Review the design against the proagent-backend skill guide."
+        },
+        {
+          "name": "error-handling-check",
+          "description": "Verify that API handlers include proper error handling, status codes, and structured error responses",
+          "check_rules": [
+            "All route handlers have try/except or try/catch blocks for error scenarios",
+            "HTTP status codes are used correctly (400 for validation, 401 for auth, 403 for forbidden, 404 for not found, 500 for server errors)",
+            "Error responses include a structured body with error code, message, and details fields",
+            "Async operations include timeout handling",
+            "External service calls are wrapped with error handling and circuit breaker patterns"
+          ],
+          "on_failure": "warn",
+          "message": "API handler is missing proper error handling. Add try/except blocks and return structured error responses with appropriate HTTP status codes."
+        },
+        {
+          "name": "input-validation-check",
+          "description": "Verify that all user input is validated and sanitized before processing",
+          "check_rules": [
+            "Request body fields are validated with schema validation (Pydantic, Joi, Zod, or similar)",
+            "Path parameters and query parameters are type-checked and range-validated",
+            "String inputs have length limits defined",
+            "File uploads validate type, size, and content",
+            "No raw user input is concatenated into SQL queries, shell commands, or template strings"
+          ],
+          "on_failure": "warn",
+          "message": "Input validation is missing or incomplete. All user input must be validated before processing."
+        },
+        {
+          "name": "authentication-check",
+          "description": "Verify that protected endpoints have authentication and authorization middleware",
+          "check_rules": [
+            "Non-public endpoints have authentication middleware or decorators applied",
+            "Authorization checks verify the requesting user has permission to access the resource",
+            "Resource ownership is verified (users can only access their own data unless admin)",
+            "JWT tokens are validated for expiration, signature, and claims",
+            "API keys are checked against a secure store, not hardcoded"
+          ],
+          "on_failure": "warn",
+          "message": "Endpoint may be missing authentication or authorization checks. Verify access control is properly configured."
+        }
+      ]
+    },
+    {
+      "name": "pre-schema-validation",
+      "event": "PreToolUse",
+      "description": "Validates database schema changes, migrations, and query patterns before they are applied. Catches missing indexes, constraint violations, and data integrity issues.",
+      "tool_patterns": ["Write", "Edit", "Bash"],
+      "file_patterns": [
+        "*/migrations/*.py",
+        "*/migrations/*.sql",
+        "*/models/*.py",
+        "*/models/*.ts",
+        "*/models/*.js",
+        "*/schema/*.sql",
+        "*/schema/*.prisma",
+        "alembic/versions/*.py",
+        "prisma/schema.prisma",
+        "*.sql"
+      ],
+      "command_patterns": [
+        "alembic upgrade",
+        "alembic downgrade",
+        "prisma migrate",
+        "prisma db push",
+        "django migrate",
+        "knex migrate",
+        "sequelize db:migrate",
+        "psql",
+        "mysql"
+      ],
+      "validations": [
+        {
+          "name": "schema-design-check",
+          "description": "Validate database schema design follows best practices",
+          "check_rules": [
+            "All tables have a primary key defined (UUID or auto-increment)",
+            "Foreign key constraints are defined for all relationship columns",
+            "Indexes exist on foreign key columns and columns used in WHERE/JOIN clauses",
+            "Timestamps (created_at, updated_at) are present on all tables",
+            "VARCHAR columns have appropriate length limits, not VARCHAR(255) everywhere",
+            "CHECK constraints enforce business rules at the database level",
+            "Decimal columns use appropriate precision for currency (DECIMAL(10,2))"
+          ],
+          "on_failure": "warn",
+          "message": "Database schema may be missing indexes, constraints, or timestamps. Review against the proagent-backend schema design guide."
+        },
+        {
+          "name": "migration-safety-check",
+          "description": "Verify database migrations are safe to apply in production",
+          "check_rules": [
+            "Migration includes both upgrade and downgrade functions",
+            "No DROP TABLE or DROP COLUMN without explicit confirmation",
+            "Large table alterations use batched operations to avoid locking",
+            "New NOT NULL columns have DEFAULT values to avoid breaking existing rows",
+            "Index creation uses CONCURRENTLY where supported to avoid table locks"
+          ],
+          "on_failure": "abort",
+          "message": "Database migration contains potentially destructive operations. Review carefully before applying."
+        },
+        {
+          "name": "query-safety-check",
+          "description": "Validate SQL queries for performance and security issues",
+          "check_rules": [
+            "No SELECT * in production queries (specify columns explicitly)",
+            "All queries use parameterized placeholders, not string concatenation",
+            "LIMIT is applied to queries that could return large result sets",
+            "JOINs reference indexed columns",
+            "Subqueries are used judiciously and can be replaced with JOINs where appropriate"
+          ],
+          "on_failure": "warn",
+          "message": "SQL query may have performance or security issues. Use parameterized queries and specify columns explicitly."
+        }
+      ]
+    }
+  ]
+}

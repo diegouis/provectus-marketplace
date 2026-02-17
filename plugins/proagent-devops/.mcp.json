@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "description": "GitHub integration for repository management, Actions workflows, and PR operations"
+    },
+    "gitlab": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+      "env": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_PERSONAL_ACCESS_TOKEN}",
+        "GITLAB_API_URL": "${GITLAB_API_URL:-https://gitlab.com/api/v4}"
+      },
+      "description": "GitLab integration for CI/CD pipelines, merge requests, and container registry"
+    },
+    "aws": {
+      "command": "aws",
+      "description": "AWS CLI for ECS, EKS, S3, RDS, Lambda, CloudFormation, and IAM",
+      "env": {
+        "AWS_ACCESS_KEY_ID": "${AWS_ACCESS_KEY_ID}",
+        "AWS_SECRET_ACCESS_KEY": "${AWS_SECRET_ACCESS_KEY}",
+        "AWS_DEFAULT_REGION": "${AWS_REGION:-us-east-1}"
+      }
+    },
+    "gcp": {
+      "command": "gcloud",
+      "description": "Google Cloud CLI for GKE, Cloud Run, Cloud Functions, and Cloud SQL",
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "${GOOGLE_APPLICATION_CREDENTIALS}",
+        "CLOUDSDK_CORE_PROJECT": "${GCP_PROJECT_ID}"
+      }
+    }
+  }
+}

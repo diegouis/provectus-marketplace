@@ -1,0 +1,52 @@
+{
+  "practice": "data",
+  "plugin_name": "proagent-data",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "document-skills/xlsx/SKILL.md", "repo": "awesome-claude-skills", "description": "Spreadsheet manipulation with formulas and charts", "reuse_potential": "high"},
+      {"path": "roles/data-scientist/skills/data-visualization.md", "repo": "proagent", "description": "Data visualization best practices", "reuse_potential": "high"},
+      {"path": "roles/data-scientist/skills/exploratory-data-analysis.md", "repo": "proagent", "description": "Systematic EDA workflows", "reuse_potential": "high"},
+      {"path": "roles/data-scientist/skills/statistical-analysis.md", "repo": "proagent", "description": "Statistical analysis methods", "reuse_potential": "high"},
+      {"path": "roles/ml-engineer/skills/feature-engineering.md", "repo": "proagent", "description": "ML feature engineering", "reuse_potential": "high"},
+      {"path": "roles/backend-engineer/skills/database-schema.md", "repo": "proagent", "description": "Database schema design", "reuse_potential": "high"},
+      {"path": "plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md", "repo": "agents", "description": "dbt transformation patterns", "reuse_potential": "high"},
+      {"path": "skills/xlsx/SKILL.md", "repo": "skills", "description": "Excel spreadsheet creation and editing", "reuse_potential": "high"}
+    ],
+    "commands": [],
+    "agents": [
+      {"path": "src/harness/agents/configs/db-postgres-expert.md", "repo": "casdk-harness", "description": "PostgreSQL database expert", "reuse_potential": "high"},
+      {"path": "src/harness/agents/configs/db-sql-expert.md", "repo": "casdk-harness", "description": "SQL expert for queries and optimization", "reuse_potential": "high"},
+      {"path": "plugins/business-analytics/agents/business-analyst.md", "repo": "agents", "description": "Business analyst for metrics and KPIs", "reuse_potential": "high"}
+    ],
+    "hooks": [],
+    "mcp_configs": [],
+    "scripts": [
+      {"path": "server/models/database.js", "repo": "claude-ui", "description": "SQLite database model with schema", "reuse_potential": "medium"},
+      {"path": "infrastructure/analytics/tracker.py", "repo": "proagent", "description": "Usage and event tracking", "reuse_potential": "medium"},
+      {"path": "infrastructure/analytics/reporter.py", "repo": "proagent", "description": "Analytics reporting", "reuse_potential": "medium"},
+      {"path": "infrastructure/analytics/queries.py", "repo": "proagent", "description": "SQL queries for analytics", "reuse_potential": "medium"},
+      {"path": "Code/tac-6/scripts/reset_db.sh", "repo": "tac", "description": "Database reset script", "reuse_potential": "medium"}
+    ],
+    "docs": [
+      {"path": "roles/data-scientist/README (1).md", "repo": "proagent", "description": "Data scientist role documentation", "reuse_potential": "high"},
+      {"path": "impl/puaf-20260120/puaf-20260120_roles_data.md", "repo": "specs", "description": "Data role implementations", "reuse_potential": "high"},
+      {"path": "impl/puaf-20260120/puaf-20260120_analytics.md", "repo": "specs", "description": "Usage analytics implementation", "reuse_potential": "high"}
+    ],
+    "templates": [],
+    "configs": []
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": true,
+    "missing_agent": false,
+    "missing_hooks": true,
+    "missing_mcp": true,
+    "recommended_integrations": ["AWS", "GCP", "GitHub", "Google Docs"]
+  },
+  "statistics": {
+    "total_assets": 27,
+    "high_reuse": 20,
+    "source_repos": ["awesome-claude-skills", "casdk-harness", "claude-ui", "proagent", "proagent-repo GUI", "tac", "agents", "specs", "skills"]
+  }
+}

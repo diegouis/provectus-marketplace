@@ -1,0 +1,82 @@
+{
+  "practice": "devops",
+  "plugin_name": "proagent-devops",
+  "plugin_readiness": "ready",
+  "assets": {
+    "skills": [
+      {"path": "roles/devops-engineer/skills/cicd-pipeline.md", "repo": "proagent", "description": "CI/CD pipeline creation and management", "reuse_potential": "high"},
+      {"path": "roles/devops-engineer/skills/kubernetes-orchestration.md", "repo": "proagent", "description": "Kubernetes cluster and workload orchestration", "reuse_potential": "high"},
+      {"path": "roles/devops-engineer/skills/docker-containerization.md", "repo": "proagent", "description": "Docker containerization best practices", "reuse_potential": "high"},
+      {"path": "roles/solutions-architect/skills/cloud-architecture.md", "repo": "proagent", "description": "Cloud architecture patterns (AWS/GCP/Azure)", "reuse_potential": "high"},
+      {"path": "roles/ml-engineer/skills/model-deployment.md", "repo": "proagent", "description": "ML model deployment and serving", "reuse_potential": "high"},
+      {"path": "skills/using-git-worktrees/SKILL.md", "repo": "superpowers", "description": "Parallel development via git worktrees", "reuse_potential": "high"},
+      {"path": ".claude/skills/release-bump/SKILL.md", "repo": "ralph-orchestrator", "description": "Version bump for releases", "reuse_potential": "high"},
+      {"path": "plugins/cicd-automation/skills/github-actions-templates/SKILL.md", "repo": "agents", "description": "GitHub Actions templates for CI/CD", "reuse_potential": "high"},
+      {"path": "plugins/incident-response/skills/postmortem-writing/SKILL.md", "repo": "agents", "description": "Postmortem writing for incident response", "reuse_potential": "high"}
+    ],
+    "commands": [
+      {"path": "cli/commands/cmd_deploy.py", "repo": "proagent", "description": "Deployment workflows", "reuse_potential": "high"},
+      {"path": "cli/commands/cmd_deploy.py", "repo": "proagent-repo GUI", "description": "Deployment with GitHub/GitLab integration", "reuse_potential": "high"},
+      {"path": "Code/tac-2/.claude/commands/install.md", "repo": "tac", "description": "Project setup and installation", "reuse_potential": "high"},
+      {"path": "Code/tac-3/.claude/commands/start.md", "repo": "tac", "description": "Launch application services", "reuse_potential": "high"}
+    ],
+    "agents": [
+      {"path": "src/harness/agents/configs/infra-docker-engineer.md", "repo": "casdk-harness", "description": "Docker infrastructure engineer", "reuse_potential": "high"},
+      {"path": "src/harness/agents/configs/infra-k8s-engineer.md", "repo": "casdk-harness", "description": "Kubernetes engineer", "reuse_potential": "high"},
+      {"path": "src/harness/agents/configs/infra-gcp-architect.md", "repo": "casdk-harness", "description": "GCP cloud architect", "reuse_potential": "high"},
+      {"path": "src/harness/agents/configs/infra-gitlab-ci-expert.md", "repo": "casdk-harness", "description": "GitLab CI pipeline expert", "reuse_potential": "high"},
+      {"path": "plugins/kubernetes-operations/agents/kubernetes-architect.md", "repo": "agents", "description": "Kubernetes architecture agent", "reuse_potential": "high"}
+    ],
+    "hooks": [
+      {"path": ".husky/pre-commit", "repo": "Auto-Claude", "description": "Pre-commit with linting, testing, audit", "reuse_potential": "high"},
+      {"path": ".pre-commit-config.yaml", "repo": "Auto-Claude", "description": "Pre-commit hooks config", "reuse_potential": "high"}
+    ],
+    "mcp_configs": [],
+    "scripts": [
+      {"path": "src/harness/monitoring.py", "repo": "casdk-harness", "description": "Prometheus metrics collector", "reuse_potential": "high"},
+      {"path": "src/harness/health.py", "repo": "casdk-harness", "description": "Health check endpoint", "reuse_potential": "medium"},
+      {"path": "Code/tac-6/adws/adw_modules/git_ops.py", "repo": "tac", "description": "Git operations for branch/commit/PR", "reuse_potential": "high"},
+      {"path": "Code/tac-6/adws/adw_modules/github.py", "repo": "tac", "description": "GitHub API integration", "reuse_potential": "high"},
+      {"path": "Code/tac-6/adws/adw_triggers/trigger_webhook.py", "repo": "tac", "description": "Webhook trigger for ADW", "reuse_potential": "high"},
+      {"path": "Code/tac-6/adws/adw_triggers/trigger_cron.py", "repo": "tac", "description": "Cron trigger for ADW", "reuse_potential": "high"},
+      {"path": "Code/tac-6/scripts/start.sh", "repo": "tac", "description": "Application startup script", "reuse_potential": "high"},
+      {"path": "setup-agentic-coding.sh", "repo": "root-setup", "description": "macOS dev environment setup", "reuse_potential": "high"},
+      {"path": "core/integrations/github.py", "repo": "proagent-repo GUI", "description": "GitHub API integration", "reuse_potential": "high"},
+      {"path": "core/integrations/gitlab.py", "repo": "proagent-repo GUI", "description": "GitLab API integration", "reuse_potential": "high"},
+      {"path": "core/orchestration/sdlc/deployer.py", "repo": "proagent-repo GUI", "description": "SDLC deployment orchestrator", "reuse_potential": "high"},
+      {"path": "core/orchestration/sdlc/github_deployer.py", "repo": "proagent-repo GUI", "description": "GitHub-specific deployer", "reuse_potential": "high"}
+    ],
+    "docs": [
+      {"path": "roles/devops-engineer/README (1).md", "repo": "proagent", "description": "DevOps engineer role documentation", "reuse_potential": "high"},
+      {"path": "RELEASING.md", "repo": "gastown", "description": "Release process documentation", "reuse_potential": "medium"}
+    ],
+    "templates": [],
+    "configs": [
+      {"path": ".github/workflows/ci.yml", "repo": "Auto-Claude", "description": "Cross-platform CI pipeline", "reuse_potential": "high"},
+      {"path": ".github/workflows/release.yml", "repo": "Auto-Claude", "description": "Multi-platform release workflow", "reuse_potential": "high"},
+      {"path": "docker-compose.yml", "repo": "casdk-harness", "description": "Docker Compose for services", "reuse_potential": "high"},
+      {"path": "agents/main/Dockerfile", "repo": "casdk-harness", "description": "Multi-stage Docker build", "reuse_potential": "high"},
+      {"path": "Makefile", "repo": "casdk-harness", "description": "40+ target Makefile", "reuse_potential": "high"},
+      {"path": ".env.example", "repo": "casdk-harness", "description": "Environment variable template", "reuse_potential": "high"},
+      {"path": "config/monitoring/prometheus.yml", "repo": "casdk-harness", "description": "Prometheus configuration", "reuse_potential": "medium"},
+      {"path": ".goreleaser.yml", "repo": "gastown", "description": "GoReleaser cross-platform config", "reuse_potential": "high"},
+      {"path": "Dockerfile", "repo": "ralph-orchestrator", "description": "Multi-stage Docker build", "reuse_potential": "high"},
+      {"path": ".github/workflows/release.yml", "repo": "ralph-orchestrator", "description": "Release pipeline with crates.io + npm", "reuse_potential": "high"},
+      {"path": "core/templates/tac/pipeline-config.yaml", "repo": "proagent-repo GUI", "description": "TAC pipeline configuration", "reuse_potential": "high"},
+      {"path": "core/templates/validation_workflows/devops-engineer.yaml", "repo": "proagent-repo GUI", "description": "DevOps validation workflow", "reuse_potential": "high"}
+    ]
+  },
+  "gaps": {
+    "missing_skill": false,
+    "missing_commands": false,
+    "missing_agent": false,
+    "missing_hooks": false,
+    "missing_mcp": true,
+    "recommended_integrations": ["GitHub", "GitLab", "AWS", "GCP", "Slack", "Jira"]
+  },
+  "statistics": {
+    "total_assets": 126,
+    "high_reuse": 89,
+    "source_repos": ["Auto-Claude", "awesome-claude-code", "awos", "casdk-harness", "claude-ui", "gastown", "proagent", "proagent-repo GUI", "ralph-orchestrator", "skills", "superpowers", "tac", "agents", "root-setup"]
+  }
+}
