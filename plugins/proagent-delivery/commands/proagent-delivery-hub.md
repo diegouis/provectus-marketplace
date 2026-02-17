@@ -1,7 +1,7 @@
 ---
 description: >
   Overview of all delivery management capabilities: sprint planning, status reports,
-  risk assessment, milestone tracking, retrospectives, and delivery health reviews.
+  risk assessment, milestone tracking, retrospectives, ROM estimation, and delivery health reviews.
 argument-hint: ""
 allowed-tools: Read, Glob, Grep
 ---
@@ -19,6 +19,7 @@ Execute a delivery workflow. Modes:
 - **risk-assess** -- Run a risk assessment: identify, analyze, prioritize, and develop mitigation strategies for project risks
 - **milestone-track** -- Track project milestones: assess schedule health, identify drift, calculate critical path impact
 - **retrospective** -- Facilitate a sprint retrospective: Start-Stop-Continue, 5 Whys root cause, action items
+- **rom-estimate** -- Generate a ROM (Rough Order of Magnitude) effort estimate: analyze project docs (local files, pasted content, or Google Drive), expand into sub-features, estimate effort and specialties, produce CSV with team composition and executive summary.
 
 ### `/proagent-delivery:proagent-delivery-review`
 Review and assess delivery health. Modes:
@@ -26,6 +27,7 @@ Review and assess delivery health. Modes:
 - **delivery-risks** -- Assess delivery risk posture: risk register review, new risk identification, mitigation progress
 - **timeline** -- Review project timeline against baseline: milestone drift, critical path, forecast completion
 - **stakeholder-alignment** -- Evaluate stakeholder engagement: communication cadence, satisfaction, open decisions
+- **estimate-review** -- Audit an existing ROM estimate CSV for completeness, sizing accuracy, missing epics, team balance, and risk coverage
 
 ## Quick Start
 
@@ -42,6 +44,8 @@ Tell me what you need and I will route you to the right command:
 | Review risk posture | `/proagent-delivery:proagent-delivery-review delivery-risks` |
 | Evaluate timeline health | `/proagent-delivery:proagent-delivery-review timeline` |
 | Check stakeholder alignment | `/proagent-delivery:proagent-delivery-review stakeholder-alignment` |
+| Generate a ROM estimate | `/proagent-delivery:proagent-delivery-run rom-estimate` |
+| Audit an existing ROM estimate | `/proagent-delivery:proagent-delivery-review estimate-review` |
 
 ## What would you like to do?
 

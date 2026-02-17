@@ -1,0 +1,90 @@
+epic;feature;effort_level;optimistic_duration;pessimistic_duration;specialities
+Team Onboarding & Planning;Onboard team members and assign roles;XS;0.5;1;All
+Team Onboarding & Planning;Provide access to development tools (GitHub, AWS, Jira);S;1;2;DevOps
+Team Onboarding & Planning;Refine user stories and agree on task effort estimates;M;3;5;All
+Team Onboarding & Planning;Create sprint backlog and initial timeline;S;1;3;All
+Infrastructure & Foundation;Deploy AWS accounts with organization structure;S;1;3;DevOps
+Infrastructure & Foundation;Configure VPCs with public/private subnets;M;3;5;DevOps
+Infrastructure & Foundation;Set up IAM roles and policies (least privilege);M;3;5;DevOps,Security
+Infrastructure & Foundation;Establish multi-stage CI/CD pipeline (dev/staging/prod);L;8;12;DevOps
+Infrastructure & Foundation;Implement feature flags system;M;3;5;DevOps,BE
+Infrastructure & Foundation;Configure cost alerts and budget monitoring;S;1;3;DevOps
+Infrastructure & Foundation;Set up secret management (AWS Secrets Manager);S;1;3;DevOps,Security
+Infrastructure & Foundation;Prepare cross-account roles for migration;M;3;5;DevOps
+Infrastructure & Foundation;Terraform IaC templates for all infrastructure;L;8;15;DevOps
+Data Infrastructure;Improve 45-point data framework with R/P/E prioritisation;M;3;8;MLE I,DE
+Data Infrastructure;Implement QuickBooks connector for raw data ingestion;M;3;5;DE
+Data Infrastructure;Implement NetSuite connector for raw data ingestion;M;3;5;DE
+Data Infrastructure;Begin optional ERP connectors (evaluation);S;1;3;DE
+Data Infrastructure;Produce curated datasets from raw ERP data;M;3;5;DE
+Data Infrastructure;Centralise data across ERPs and banks;L;8;12;DE
+Data Infrastructure;Define data-quality dimensions and validation rules;M;3;5;DE
+Data Infrastructure;Enforce data-quality and lineage checks;M;3;8;DE
+Data Infrastructure;Implement data versioning;M;3;5;DE
+Data Infrastructure;Define retention periods aligned with GLBA/CCPA;S;1;3;DE,Security
+Data Infrastructure;Centralise feedback for continuous improvement;S;1;3;DE
+Data Infrastructure;Implement data classification for compliance;M;3;5;DE,Security
+Application Frontend;Conduct UX discovery workshops;M;3;5;FE,UI/UX
+Application Frontend;Create low-fidelity prototypes;M;3;5;FE,UI/UX
+Application Frontend;Refine UI designs through stakeholder reviews;S;1;3;FE,UI/UX
+Application Frontend;Define in-app feedback channels;S;1;3;FE
+Application Frontend;Define success metrics (data quality, adoption, satisfaction);S;1;3;FE,UI/UX
+Application Frontend;Deliver responsive onboarding wizard UI;L;8;12;FE
+Application Frontend;Implement data-quality checks in wizard;M;3;5;FE,BE
+Application Frontend;Add privacy disclosures to wizard;S;1;2;FE
+Application Frontend;Deliver responsive vendor matching interface;L;8;12;FE
+Application Frontend;Implement manual-tuning interface;M;3;8;FE
+Application Frontend;Support role-based navigation;M;3;5;FE,BE
+Application Frontend;Implement GLBA privacy notices;M;3;5;FE,Security
+Application Frontend;Add SOC 2 and ISO 27001 UI controls;M;3;5;FE,Security
+Application Backend;Implement lifecycle tracking with notifications;M;3;5;BE
+Application Backend;Integrate Slack notifications for opportunity scouting;S;1;3;BE
+Application Backend;Integrate email notifications for opportunity scouting;S;1;3;BE
+Application Backend;Implement RBAC (role-based access control);L;8;12;DevOps,BE,FE
+Application Backend;Develop account/opportunity assignment workflows;M;3;5;BE
+Application Backend;Deliver onboarding endpoints;M;3;5;BE
+Application Backend;Support integration between FE and ML services;M;3;8;BE,MLE I
+Application Backend;Deliver vendor matching endpoints;M;3;5;BE
+Application Backend;Deliver feedback endpoints;S;1;3;BE
+Application Backend;Build endpoints for manual-tuning;M;3;5;BE
+Application Backend;Build dashboards for operational metrics;M;3;8;BE,FE
+Application Backend;Implement risk flagging logic;M;3;5;BE,MLE II
+Application Backend;Implement notification rules;S;1;3;BE
+Application Backend;Build adoption analytics endpoints;M;3;5;BE
+Application Backend;Implement audit logging;M;3;5;BE,Security
+Application Backend;Implement vulnerability management;M;3;5;BE,Security
+Application Backend;Create incident-response procedures;S;1;3;BE,Security
+Application Backend;Conduct baseline security assessments;M;3;5;BE,Security
+AI/ML Platform;Develop interpretable decision-tree engine;L;8;15;MLE I
+AI/ML Platform;Create manual-tuning interface for decision trees;M;3;8;MLE I,FE
+AI/ML Platform;Define 12 use-case structures with R/P/E priorities;M;3;5;MLE I
+AI/ML Platform;Implement AI-assisted vendor discovery POC;L;8;12;MLE II
+AI/ML Platform;Integrate LLM-based metadata extraction;L;8;12;MLE I
+AI/ML Platform;Implement retrieval-augmented-generation (RAG) pipelines;L;8;15;MLE I
+AI/ML Platform;Deploy semantic search;M;3;8;MLE I
+AI/ML Platform;Implement Text-to-SQL pipelines;L;8;12;MLE II
+AI/ML Platform;Implement scoring logic for all use cases;L;8;15;MLE II
+AI/ML Platform;Build foundation for CFO assistant;M;3;8;MLE II
+AI/ML Platform;Build foundation for BI dashboards;M;3;5;MLE II,BE
+AI/ML Platform;Establish prompt registry with versioning;M;3;5;MLE I,QA
+AI/ML Platform;Create evaluation datasets for prompts;M;3;5;MLE I,QA
+AI/ML Platform;Enforce guardrails against prompt injection;M;3;5;MLE I,QA,Security
+AI/ML Platform;Log prompts and responses;S;1;3;MLE I,BE
+AI/ML Platform;Implement experiment tracking;M;3;5;MLE II
+AI/ML Platform;Establish back-testing framework;M;3;5;MLE II
+AI/ML Platform;Establish baseline for all relevant metrics;M;3;5;MLE II
+Integration;Create vendor evaluation templates;S;1;3;MLE II
+Integration;Define six-step onboarding workflow;M;3;5;MLE II,BE
+Integration;Implement vendor-change triggers;M;3;5;MLE II,BE
+Security & Compliance;Enforce multi-factor authentication (MFA);M;3;5;DevOps,Security
+Testing & QA;Conduct unit testing;M;3;8;QA,BE,FE
+Testing & QA;Conduct integration testing;M;3;8;QA
+Testing & QA;Conduct end-to-end testing;L;8;12;QA
+Testing & QA;Conduct security testing (OWASP);M;3;5;QA,Security
+Testing & QA;Test for prompt injection vulnerabilities;M;3;5;QA,Security
+Testing & QA;Develop evaluation datasets;M;3;5;QA,MLE I
+Testing & QA;Conduct user-acceptance testing (UAT);M;3;8;QA
+Testing & QA;Post-migration smoke tests;S;1;3;QA
+Deployment & Operations;Migrate from legacy to Apex AWS account;XL;15;20;DevOps
+Deployment & Operations;Conduct performance checks;M;3;5;DevOps,QA
+Deployment & Operations;Create contingency planning documentation;S;1;3;DevOps
