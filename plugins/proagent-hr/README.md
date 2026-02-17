@@ -40,12 +40,15 @@ The plugin includes automated document validation via `hooks/hooks.json`:
 - **Onboarding Completeness**: Validates all onboarding phases are covered (day one through 90-day review)
 - **Review Template Validation**: Ensures performance reviews include strengths, development areas, and development plans
 
-## Integrations
+### MCP Servers
 
-### Configured MCP Servers
-- **Slack** (`@modelcontextprotocol/server-slack`): Post hiring pipeline updates, new hire introductions, and team announcements
-- **Google Drive** (`@modelcontextprotocol/server-google-drive`): Create and collaborate on job descriptions, offer letters, review templates, and policy documents
-- **GitHub** (`@modelcontextprotocol/server-github`): Repository access for HR documentation and policy version control
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| Rube | `rube.app/mcp` | SaaS automation gateway (BambooHR, Google Calendar, etc.) |
 
 ## Architecture
 

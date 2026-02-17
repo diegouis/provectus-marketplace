@@ -106,11 +106,15 @@ Use the sales-assistant skill to draft a proposal for a cloud migration engageme
 - Pricing consistency checks verifying line items sum correctly
 - Competitive intelligence freshness alerts for data older than 90 days
 
-### MCP Integrations
-- **Slack** - Deal notifications, proposal review requests, competitive intelligence sharing
-- **Google Docs** - Collaborative proposal editing, RFP response coordination, playbook maintenance
-- **Gmail** - Outreach email drafting, follow-up sequences, proposal delivery
-- **Google Calendar** - Discovery calls, proposal presentations, pipeline review cadences
+### MCP Servers
+
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| Rube | `rube.app/mcp` | SaaS automation gateway (Salesforce, HubSpot, Pipedrive, etc.) |
 
 ## Source Repositories
 
@@ -124,6 +128,6 @@ This plugin is built from production patterns across 5 Provectus repositories wi
 
 ## Version
 
-- Plugin version: 0.1.0
+- Plugin version: 0.2.0
 - Category: sales
 - Author: Provectus

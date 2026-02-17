@@ -78,11 +78,14 @@ This plugin synthesizes production patterns from:
 | proagent-repo GUI | ML engineer validation workflow configuration |
 | specs | ML/Data role implementation specifications |
 
-## MCP Integrations
+### MCP Servers
 
-- **AWS** - SageMaker model training and deployment, S3 data and artifact storage, ECR container registry
-- **GCP** - Vertex AI model serving, Cloud Storage for datasets, BigQuery for feature stores
-- **GitHub** - ML project repositories, model registry versioning, CI/CD pipeline management
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
 
 ## Requirements
 

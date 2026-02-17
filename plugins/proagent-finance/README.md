@@ -2,7 +2,7 @@
 
 A Claude Code plugin for comprehensive financial operations management. Covers budgeting, invoicing, revenue forecasting, P&L analysis, cost optimization, billing workflows, and financial reporting.
 
-**Version:** 0.1.0
+**Version:** 0.2.0
 **Category:** Finance
 **License:** MIT
 
@@ -71,15 +71,15 @@ Loads current budget and actual spending data, calculates variances per category
 | Hook | Invoice naming validation | Standardized filename convention enforcement |
 | Hook | Post-report summary | Severity-coded findings and budget overrun escalation |
 
-## MCP Integrations
+### MCP Servers
 
-The plugin ships with MCP server configurations for:
-
-| Server | Purpose | Required Environment Variable |
-|--------|---------|-------------------------------|
-| Google Docs | Budget documents, financial reports, P&L statements | `GOOGLE_APPLICATION_CREDENTIALS`, `GOOGLE_DOCS_OAUTH_TOKEN` |
-| Gmail | Invoice delivery, payment reminders, report distribution | `GOOGLE_APPLICATION_CREDENTIALS`, `GMAIL_OAUTH_TOKEN` |
-| Slack | Budget alerts, payment notifications, overdue escalations | `SLACK_BOT_TOKEN`, `SLACK_TEAM_ID` |
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| Rube | `rube.app/mcp` | SaaS automation gateway (Stripe, Square, Shopify, etc.) |
 
 Set the environment variables for the services your team uses. Unused servers will not be started.
 

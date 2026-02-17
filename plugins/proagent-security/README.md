@@ -124,9 +124,15 @@ Use the security-assistant skill to review this API for OWASP Top 10 vulnerabili
 - PCI-DSS requirement validation for cardholder data protection
 - Framework-agnostic technical control verification (authentication, authorization, encryption, logging)
 
-### MCP Integrations
-- GitHub CLI (gh) for code scanning alerts, secret scanning alerts, Dependabot alerts, branch protection, and security advisories
-- GitLab CLI (glab) for vulnerability findings, dependency scanning, SAST/DAST results, and container scanning
+### MCP Servers
+
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| GitLab | `@modelcontextprotocol/server-gitlab` | GitLab projects, MRs, vulnerability reports |
 
 ## Source Repositories
 
@@ -145,6 +151,6 @@ This plugin is built from production patterns across 10 Provectus repositories w
 
 ## Version
 
-- Plugin version: 0.1.0
+- Plugin version: 0.2.0
 - Category: security
 - Author: Provectus

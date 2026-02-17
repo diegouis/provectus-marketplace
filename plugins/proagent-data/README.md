@@ -119,10 +119,15 @@ Use the data-assistant skill to build an incremental dbt model for order events
 - Migration safety checks for lock contention, rollback reversibility, and NOT NULL safety
 - Post-query analysis for long-running operations and failed dbt tests
 
-### MCP Integrations
-- AWS CLI (aws) for S3 data lakes, Redshift, Glue ETL, Athena, and RDS
-- GCP CLI (gcloud, bq) for BigQuery, Cloud SQL, GCS, and Cloud Composer
-- GitHub CLI (gh) for data pipeline repository management and CI/CD
+### MCP Servers
+
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| Rube | `rube.app/mcp` | SaaS automation gateway (Google Sheets, Airtable, Supabase, etc.) |
 
 ## Source Repositories
 
@@ -139,6 +144,6 @@ This plugin is built from production patterns across 8 Provectus repositories wi
 
 ## Version
 
-- Plugin version: 0.1.0
+- Plugin version: 0.2.0
 - Category: data
 - Author: Provectus

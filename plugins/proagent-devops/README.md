@@ -114,11 +114,16 @@ Use the devops-assistant skill to create a GitHub Actions pipeline for this Pyth
 - Post-deployment health checks that verify service stability after changes
 - Security scanning for hardcoded secrets, overly permissive permissions, and missing hardening
 
-### MCP Integrations
-- GitHub CLI (gh) for repository, PR, and workflow management
-- GitLab CLI (glab) for merge request and pipeline management
-- AWS CLI (aws) for cloud infrastructure operations
-- GCP CLI (gcloud) for Google Cloud operations
+### MCP Servers
+
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| GitLab | `@modelcontextprotocol/server-gitlab` | CI/CD pipelines, merge requests, container registry |
+| Rube | `rube.app/mcp` | SaaS automation via Composio SDK |
 
 ## Environment Variables
 
@@ -145,6 +150,6 @@ This plugin is built from production patterns across 8 Provectus repositories wi
 
 ## Version
 
-- Plugin version: 0.1.0
+- Plugin version: 0.2.0
 - Category: devops
 - Author: Provectus

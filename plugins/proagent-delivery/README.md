@@ -2,7 +2,7 @@
 
 A Claude Code plugin for project delivery management. Covers sprint planning, milestone tracking, stakeholder updates, status reports, risk assessment, retrospectives, resource allocation, and agile/scrum ceremony facilitation.
 
-**Version:** 0.1.0
+**Version:** 0.2.0
 **Category:** Delivery
 **License:** MIT
 
@@ -71,16 +71,15 @@ Map stakeholders using Power/Interest Grid, audit communication cadence, review 
 | Hook | Milestone check | Acceptance criteria and stakeholder notification before release |
 | Hook | Sprint boundary notification | Follow-up actions after planning and retrospective |
 
-## MCP Integrations
+### MCP Servers
 
-The plugin ships with MCP server configurations for:
-
-| Server | Purpose | Required Environment Variable |
-|--------|---------|-------------------------------|
-| Jira | Sprint management, backlog, velocity, burndown | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_DOMAIN` |
-| Confluence | Meeting notes, charters, risk registers, dashboards | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_DOMAIN` |
-| Slack | Standups, 3P updates, blocker alerts, notifications | `SLACK_BOT_TOKEN` |
-| Google Calendar | Sprint ceremonies, milestone dates, review cadence | `GOOGLE_CREDENTIALS_PATH` |
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| Atlassian | `@modelcontextprotocol/server-atlassian` | Jira sprint management, backlog, Confluence documentation |
+| Rube | `rube.app/mcp` | SaaS automation gateway (Jira, Linear, Asana, Trello, etc.) |
 
 Set the environment variables for the services your team uses. Unused servers will not be started.
 

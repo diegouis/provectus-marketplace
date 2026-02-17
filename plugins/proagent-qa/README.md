@@ -73,7 +73,19 @@ The plugin is built around these components:
 - **Commands**: Three command files (Hub, Run, Review) that provide the user-facing interface for all QA operations
 - **Agent**: A QA specialist subagent with SDET expertise for autonomous test design, execution, and analysis
 - **Hooks**: Automated quality gates that enforce standards at commit, test, and merge time
-- **MCP Config**: Integration with Playwright, GitHub, GitLab, and Jira for end-to-end workflow automation
+- **MCP Config**: Integration with Playwright, GitHub, GitLab, Jira, Slack, Google Drive, and Google Workspace for end-to-end workflow automation
+
+### MCP Servers
+
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| GitLab | `@modelcontextprotocol/server-gitlab` | Merge request test enforcement, pipeline monitoring |
+| Playwright | `@playwright/mcp` | Browser automation for E2E testing |
+| Jira | `@modelcontextprotocol/server-atlassian` | Test-to-story linking, defect ticket creation |
 
 ## Source Attribution
 

@@ -31,7 +31,7 @@ Or add to project `.claude/settings.json` for automatic team installation:
   "plugins": {
     "proagent-agentic-engineering": {
       "source": "file:./plugins/proagent-agentic-engineering",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "enabled": true
     }
   }
@@ -52,9 +52,36 @@ Add the MCP servers from `.mcp.json` to your Claude Desktop configuration at `~/
         "GITHUB_PERSONAL_ACCESS_TOKEN": "your-token-here"
       }
     },
+    "gitlab": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+      "env": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "your-token-here",
+        "GITLAB_API_URL": "https://gitlab.com/api/v4"
+      }
+    },
     "playwright": {
       "command": "npx",
       "args": ["@playwright/mcp@latest"]
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "slack-mcp-server@latest", "--transport", "stdio"],
+      "env": {
+        "SLACK_MCP_XOXC_TOKEN": "your-xoxc-token",
+        "SLACK_MCP_XOXD_TOKEN": "your-xoxd-token"
+      }
+    },
+    "google-drive": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-gdrive"]
+    },
+    "google-workspace": {
+      "command": "uvx",
+      "args": ["mcp-gsuite"]
+    },
+    "rube": {
+      "url": "https://rube.app/mcp"
     }
   }
 }
@@ -150,11 +177,15 @@ Expert sub-agent that understands the complete Claude Code component architectur
 
 ### MCP Servers
 
-| Server | Purpose |
-|--------|---------|
-| GitHub | Repository management, PR workflows, issue tracking |
-| GitLab | Repository management, CI/CD integration |
-| Playwright | Browser automation for testing agent-built applications |
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| GitLab | `@modelcontextprotocol/server-gitlab` | Repository management, CI/CD integration |
+| Playwright | `@playwright/mcp` | Browser automation for testing agent-built applications |
+| Rube | `rube.app/mcp` | SaaS automation via Composio SDK |
 
 ## Source Repositories
 

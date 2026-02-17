@@ -33,7 +33,18 @@ Add to your Claude Desktop MCP configuration (see Claude Desktop docs for plugin
 - **Skill**: Building Developer Platforms & Tooling (6 capability areas)
 - **Agent**: Platform engineering specialist (scaffolding, MCP servers, DX optimization)
 - **Hooks**: Template validation, plugin manifest checks, DX metric tracking
-- **MCP**: GitHub, GitLab, Slack integrations
+- **MCP**: GitHub, GitLab, Slack, Google Drive, Google Workspace, Rube integrations
+
+### MCP Servers
+
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| GitLab | `@modelcontextprotocol/server-gitlab` | Project templates, CI/CD pipelines |
+| Rube | `rube.app/mcp` | SaaS automation via Composio SDK |
 
 ## Source Repositories
 
@@ -58,4 +69,4 @@ export SLACK_TEAM_ID="your-team-id"
 
 ## Version
 
-0.1.0
+0.2.0

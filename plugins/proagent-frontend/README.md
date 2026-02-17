@@ -26,13 +26,52 @@ proagent-frontend provides a complete frontend engineering toolkit that integrat
 
 ### Claude Desktop
 
-1. Open Claude Desktop Settings > Plugins
-2. Add the plugin directory path pointing to `proagent-frontend/`
-3. Configure MCP servers in Claude Desktop's MCP settings:
-   - Add Playwright MCP: `npx @playwright/mcp@latest --isolated`
-   - Add GitHub MCP: `npx -y @modelcontextprotocol/server-github` with `GITHUB_PERSONAL_ACCESS_TOKEN`
-   - Add GitLab MCP: `npx -y @modelcontextprotocol/server-gitlab` with `GITLAB_PERSONAL_ACCESS_TOKEN`
-4. Restart Claude Desktop to load the plugin
+Add the MCP servers from `.mcp.json` to your Claude Desktop configuration at `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-token-here"
+      }
+    },
+    "gitlab": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+      "env": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "your-token-here",
+        "GITLAB_API_URL": "https://gitlab.com/api/v4"
+      }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest", "--isolated"]
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "slack-mcp-server@latest", "--transport", "stdio"],
+      "env": {
+        "SLACK_MCP_XOXC_TOKEN": "your-xoxc-token",
+        "SLACK_MCP_XOXD_TOKEN": "your-xoxd-token"
+      }
+    },
+    "google-drive": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-gdrive"]
+    },
+    "google-workspace": {
+      "command": "uvx",
+      "args": ["mcp-gsuite"]
+    },
+    "rube": {
+      "url": "https://rube.app/mcp"
+    }
+  }
+}
+```
 
 ## Commands
 
@@ -108,7 +147,19 @@ The plugin is built around these components:
 - **Commands**: Three command files (Hub, Run, Review) that provide the user-facing interface for all frontend operations
 - **Agent**: A frontend specialist subagent with expertise in React/Vue/Angular, design systems, WCAG compliance, and performance engineering
 - **Hooks**: Automated quality gates that enforce TypeScript compilation, accessibility standards, and performance budgets at commit, build, and merge time
-- **MCP Config**: Integration with Playwright for visual testing, GitHub for PR workflows, and GitLab for merge request gates
+- **MCP Config**: Integration with Playwright, GitHub, GitLab, Slack, Google Drive, Google Workspace, and Rube for full workflow automation
+
+### MCP Servers
+
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| GitLab | `@modelcontextprotocol/server-gitlab` | Merge request UI gates, component package publishing |
+| Playwright | `@playwright/mcp` | Browser automation, visual regression, cross-browser testing |
+| Rube | `rube.app/mcp` | SaaS automation via Composio SDK |
 
 ## Source Attribution
 

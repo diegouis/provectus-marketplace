@@ -2,7 +2,7 @@
 
 A Claude Code plugin for end-to-end software development lifecycle management. Covers architecture decisions, code review, testing strategy, release management, documentation, semantic versioning, and git workflow enforcement.
 
-**Version:** 0.1.0
+**Version:** 0.2.0
 **Category:** SDLC
 **License:** MIT
 
@@ -71,16 +71,17 @@ Analyzes the codebase and generates the specified documentation type: architectu
 | Hook | Post-review notification | Structured review summary with severity counts |
 | Hook | Pre-push validation | No WIP commits, branch up-to-date check |
 
-## MCP Integrations
+## MCP Servers
 
-The plugin ships with MCP server configurations for:
-
-| Server | Purpose | Required Environment Variable |
-|--------|---------|-------------------------------|
-| GitHub | PR management, issues, CI/CD | `GITHUB_PERSONAL_ACCESS_TOKEN` |
-| GitLab | Merge requests, pipelines | `GITLAB_PERSONAL_ACCESS_TOKEN` |
-| Jira | Issue tracking, sprints | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_DOMAIN` |
-| Confluence | Documentation publishing | `ATLASSIAN_API_TOKEN`, `ATLASSIAN_EMAIL`, `ATLASSIAN_DOMAIN` |
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| GitLab | `@modelcontextprotocol/server-gitlab` | Merge requests, CI/CD pipelines |
+| Jira | `@modelcontextprotocol/server-atlassian` | Issue tracking, sprint management |
+| Confluence | `@modelcontextprotocol/server-atlassian` | Documentation publishing, ADRs |
 
 Set the environment variables for the services your team uses. Unused servers will not be started.
 

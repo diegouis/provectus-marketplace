@@ -78,15 +78,16 @@ The plugin includes pre-tool validation hooks that check:
 - **Schema Design** - Primary keys, foreign keys, indexes, timestamps, constraints, migration safety
 - **Query Safety** - Parameterized queries, column specification, LIMIT clauses, index usage
 
-## MCP Integrations
+### MCP Servers
 
-| Provider | Use Cases |
-|----------|-----------|
-| **GitHub** | Repository management, PR reviews for API changes, schema migration PRs, CI/CD status |
-| **GitLab** | Merge requests, pipeline management for GitLab-hosted backend projects |
-| **AWS** | RDS databases, ElastiCache Redis, SQS queues, Lambda functions, API Gateway, Secrets Manager |
-| **GCP** | Cloud SQL, Memorystore Redis, Cloud Tasks, Cloud Run, Cloud Functions, Secret Manager |
+| Server | Package | Purpose |
+|--------|---------|---------|
+| Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
+| Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
+| Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| GitLab | `@modelcontextprotocol/server-gitlab` | Merge requests, pipeline management for backend projects |
 
 ## Version
 
-0.1.0
+0.2.0
