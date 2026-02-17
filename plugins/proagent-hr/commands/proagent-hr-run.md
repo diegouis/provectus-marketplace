@@ -1,7 +1,7 @@
 ---
 description: >
   Execute HR operations: draft-job-description, plan-interview, create-onboarding,
-  performance-review, or compensation-analysis.
+  performance-review, compensation-analysis, or validate-cvs.
 argument-hint: "<operation> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
@@ -13,8 +13,8 @@ Execute human resources and talent management operations based on the specified 
 ## Variables
 
 mode: $1
-target: $2 (optional - role title, employee name, team name, or file path depending on mode)
-options: $3 (optional - additional configuration)
+target: $2 (optional - role title, employee name, team name, Google Drive folder path, or file path depending on mode)
+options: $3 (optional - additional configuration such as scoring weights or batch size)
 
 ## Instructions
 
@@ -222,9 +222,98 @@ Analyze compensation for a role, individual, or team.
    - Calculate budget impact for each scenario
    - Provide timeline recommendation for implementing adjustments
 
+---
+
+### Mode: validate-cvs
+
+Validate candidate CVs against a job description using a multi-agent orchestration pipeline with blind review.
+
+1. **Gather Inputs**
+   - If `target` is provided, use it as the Google Drive folder path containing CVs
+   - Ask for:
+     - **Job Description source**: Google Drive path or local file path to the JD
+     - **CV folder**: Google Drive folder containing candidate CV PDFs (if not provided as `target`)
+     - **Scoring weights** (optional): Custom weights for Skills/Experience/Education/Certifications (default: 35/35/15/15)
+     - **Batch size** (optional): Number of CVs to process per batch (default: all)
+   - Use Google Drive MCP to list files in the CV folder and confirm the count with the user
+
+2. **Extract Job Requirements**
+   - Read the job description from Google Drive via MCP
+   - Parse into a structured requirements rubric:
+     - **Must-Have Requirements**: Minimum qualifications (pass/fail)
+     - **Should-Have Requirements**: Strong preferences
+     - **Nice-to-Have Requirements**: Bonus qualifications
+   - Extract scoring dimensions: skills, experience level, education, certifications, industry alignment
+   - Present the extracted rubric to the user and **STOP for confirmation** before proceeding
+
+3. **Parse CVs (Sequential — cv-parser agent)**
+   - For each CV in the folder, dispatch the `cv-parser` agent via the Task tool
+   - The parser extracts structured data and separates PII into an identity envelope
+   - Store parsed profiles with anonymized candidate IDs (Candidate #001, #002, etc.)
+   - Track progress: "Parsed X of Y CVs"
+   - If a CV cannot be parsed, log the failure and continue with remaining CVs
+
+4. **Analyze Candidates (Parallel Fan-Out)**
+   For each parsed candidate, dispatch these agents in parallel via the Task tool:
+   - **cv-skills-matcher**: Score technical and professional skill match against JD
+   - **cv-experience-validator**: Validate work history timeline, progression, and relevance
+   - **cv-red-flag-detector**: Check for factual inconsistencies and integrity concerns
+
+   Each agent receives ONLY the anonymized profile (no PII) plus the JD rubric.
+   All three agents run simultaneously for each candidate.
+
+5. **Aggregate Scores (Fan-In — cv-scoring-aggregator agent)**
+   - Dispatch the `cv-scoring-aggregator` agent via the Task tool
+   - Aggregator collects all parallel results and produces:
+     - Per-candidate composite scorecards
+     - Candidate comparison matrix ranked by overall score
+     - Tier classifications (Tier 1-4)
+     - Batch summary statistics
+   - Write results to a Markdown file and optionally to Google Sheets via MCP
+
+6. **Recruiter Review Gate — STOP**
+   - Present the comparison matrix and batch summary to the user
+   - **STOP and wait for recruiter approval** before generating recommendations
+   - Options:
+     - **[A]pprove**: Proceed to recommendation generation
+     - **[E]dit**: Adjust weights, re-score specific candidates, or modify tier thresholds
+     - **[R]edo**: Re-run analysis with different parameters
+
+7. **Generate Recommendations (cv-recommendation-generator agent)**
+   - Only after recruiter approval, dispatch the `cv-recommendation-generator` agent
+   - Produces:
+     - Ranked shortlist with per-candidate advancement rationale
+     - Interview focus areas for each advancing candidate
+     - Pipeline summary with scheduling recommendations
+     - Action items for hiring manager, recruiter, and interviewers
+   - Reunite candidate numbers with names from the identity envelope in the final output
+   - If Gmail MCP is available, draft outreach emails for advancing candidates
+   - If Slack MCP is available, post completion notification to the hiring channel
+
+8. **Persist Session State**
+   Throughout the pipeline, maintain a session state file (`cv_validation_session.json`):
+   ```json
+   {
+     "started_at": "ISO timestamp",
+     "job_description": "source path",
+     "cv_folder": "source path",
+     "weights": { "skills": 35, "experience": 35, "education": 15, "certifications": 15 },
+     "total_cvs": 0,
+     "parsed_cvs": [],
+     "scored_cvs": [],
+     "current_step": "parsing|analyzing|aggregating|reviewing|recommending",
+     "status": "in_progress|paused_for_review|completed|failed"
+   }
+   ```
+   - Update after each candidate is fully processed
+   - If the session is interrupted, resume from the last completed candidate on restart
+
 ## Error Handling
 
 - If required context is missing (role title, employee name), prompt the user with specific questions before proceeding
 - If Google Docs or Gmail MCP is unavailable, output documents as formatted Markdown for manual publishing
 - If market compensation data cannot be retrieved, note the limitation and use available internal data with caveats
+- If a CV file cannot be read or parsed, log the error and continue with remaining candidates — do not abort the batch
+- If a parallel analysis agent fails for a candidate, note the gap in the aggregation and proceed with available results
+- If the Google Drive MCP is unavailable, fall back to reading local file paths
 - All outputs include a "Next Steps" section with clear action items and owners

@@ -6,7 +6,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'rm\\s+-rf\\s+(hr|reviews|compensation|onboarding|hiring)/'; then echo '[proagent-hr] Destructive operation on HR documents detected. Verify this is intentional.' >&2; exit 2; fi; }",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'rm\\s+-rf\\s+(hr|reviews|compensation|onboarding|hiring|cv-screening|candidates)/'; then echo '[proagent-hr] Destructive operation on HR documents detected. Verify this is intentional.' >&2; exit 2; fi; }",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.content // empty' | { read -r content; if echo \"$content\" | grep -qiE '(\\bage\\b|\\bgender\\b|\\bethnicity\\b|\\brace\\b|\\bdisability\\b|\\breligion\\b|\\bpregnant|\\bmarital)'; then echo '[proagent-hr] WARNING: CV screening output may reference protected characteristics. Review for bias before proceeding.' >&2; fi; }",
             "timeout": 10
           }
         ]
@@ -19,6 +29,16 @@
           {
             "type": "command",
             "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '(job-description|hiring|onboarding|review|compensation).*\\.md$'; then echo '[proagent-hr] HR document written. Verify inclusive language, required sections, and no PII exposure.'; fi; }",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '(scorecard|comparison-matrix|recommendation|cv-screening)'; then echo '[proagent-hr] CV screening artifact written. Verify blind review protocol: no PII in scoring rationale.'; fi; }",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE 'cv_validation_session\\.json$'; then echo '[proagent-hr] Session state updated.'; fi; }",
             "timeout": 10
           }
         ]

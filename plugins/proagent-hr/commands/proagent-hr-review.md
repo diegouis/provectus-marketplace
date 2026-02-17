@@ -1,7 +1,7 @@
 ---
 description: >
   Review HR artifacts: job descriptions, interview process, onboarding plans,
-  and team composition.
+  team composition, and cv-screening results.
 argument-hint: "[target]"
 allowed-tools: Read, Glob, Grep, Bash, Task
 ---
@@ -12,8 +12,8 @@ Review and assess HR processes, documents, and organizational health.
 
 ## Variables
 
-mode: $1 (one of: "review job descriptions", "interview process", "onboarding plans", "team composition")
-target: $2 (optional - specific document, role, team, or scope to review)
+mode: $1 (one of: "review job descriptions", "interview process", "onboarding plans", "team composition", "cv-screening")
+target: $2 (optional - specific document, role, team, screening batch, or scope to review)
 
 ## Instructions
 
@@ -174,3 +174,58 @@ Analyze team structure, skills distribution, and organizational health.
    - Succession risk summary with mitigation recommendations
    - Hiring priorities based on current gaps and planned work
    - Comparison against organizational benchmarks
+
+---
+
+### Mode: cv-screening
+
+Audit a completed CV screening batch for quality, consistency, and bias.
+
+1. **Locate Screening Results**
+   - If `target` is provided, use it as the path to the screening batch output (comparison matrix, scorecards, recommendations)
+   - Otherwise, look for the most recent `cv_validation_session.json` and associated output files
+   - Identify all components: parsed profiles, individual scorecards, comparison matrix, batch summary, recommendations
+
+2. **Assess Scoring Consistency**
+   - Verify that the same scoring weights were applied to all candidates in the batch
+   - Check for score distribution anomalies:
+     - Are all scores clustered in a narrow range? (may indicate rubric is too broad)
+     - Are scores bimodal? (may indicate a clear dividing line in candidate quality)
+     - Are there outlier scores that deviate significantly from the batch mean?
+   - Verify that must-have pass/fail was applied consistently (no candidates in Tier 1-2 with must-have failures)
+   - Cross-check tier assignments against the defined thresholds
+
+3. **Bias Audit**
+   - After reuniting candidate IDs with identity data, check for statistical patterns:
+     - Are rejection rates correlated with any demographic indicators? (name patterns, university regions, graduation years as age proxy)
+     - Are tier distributions uniform across demographic groups?
+     - Were employment gaps flagged as red flags? (they should not be)
+   - Review red flag analysis for any flags that could serve as proxies for protected characteristics
+   - Verify the blind review protocol was followed (no PII in scoring rationale)
+   - Flag any scoring rationale that references non-job-relevant criteria
+
+4. **Coverage Assessment**
+   - Verify all JD requirements were evaluated for every candidate
+   - Check that each scoring dimension has supporting evidence cited
+   - Identify requirements that no candidate satisfied (may indicate unrealistic JD)
+   - Identify skills that many candidates had but were not in the JD (may indicate market shift)
+
+5. **Report**
+   Provide a screening quality assessment:
+   - **Screening Quality Score** (1-10): Overall quality of the screening process
+   - **Consistency Check**: Pass/fail on weight application, tier thresholds, must-have gating
+   - **Bias Risk Assessment**: Low/Medium/High with specific findings
+   - **Coverage Report**: Requirements evaluated vs. total, evidence citation rate
+   - **Score Distribution Analysis**: Mean, median, std dev, tier breakdown
+   - **Recommendations**:
+     - Process improvements for future screenings
+     - JD adjustments if requirements appear miscalibrated
+     - Candidates to re-evaluate if bias concerns are identified
+   - **Compliance Checklist**:
+     - [ ] Blind review protocol followed
+     - [ ] No PII in scoring rationale
+     - [ ] No protected characteristic references in red flags
+     - [ ] Employment gaps not penalized
+     - [ ] Consistent weights across all candidates
+     - [ ] Must-have gate applied uniformly
+     - [ ] All scores have evidence citations
