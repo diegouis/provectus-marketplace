@@ -1,0 +1,173 @@
+# Provectus Marketplace
+
+Practice-specific plugins for Claude Code and Claude Desktop, built from 843 assets across 17 Provectus repositories.
+
+## Plugins
+
+| Plugin | Practice | Description |
+|--------|----------|-------------|
+| [proagent-agentic-engineering](plugins/proagent-agentic-engineering) | Agentic Engineering | AI agent systems, MCP servers, multi-agent orchestration, prompt engineering |
+| [proagent-sdlc](plugins/proagent-sdlc) | SDLC | Architecture, code review, testing strategy, release management, git workflows |
+| [proagent-platform](plugins/proagent-platform) | Platform | Service catalogs, golden paths, scaffolding, MCP development, DX optimization |
+| [proagent-devops](plugins/proagent-devops) | DevOps | CI/CD, Docker/Kubernetes, Terraform/IaC, monitoring, incident response |
+| [proagent-qa](plugins/proagent-qa) | QA | Test automation, Playwright/Cypress, regression testing, coverage, accessibility |
+| [proagent-backend](plugins/proagent-backend) | Backend | APIs, databases, microservices, auth, caching, queues, performance |
+| [proagent-frontend](plugins/proagent-frontend) | Frontend | React/Vue/Angular, design systems, WCAG 2.1 AA, responsive design |
+| [proagent-delivery](plugins/proagent-delivery) | Delivery | Sprint planning, milestones, status reports, risk management, retrospectives |
+| [proagent-security](plugins/proagent-security) | Security | Vulnerability scanning, compliance, secrets management, threat modeling, OWASP |
+| [proagent-data](plugins/proagent-data) | Data | ETL/ELT, dbt, Airflow, data warehousing, SQL optimization, data quality |
+| [proagent-ml-ai](plugins/proagent-ml-ai) | ML/AI | Model training, MLOps, experiment tracking, LLM apps, RAG, embeddings |
+| [proagent-hr](plugins/proagent-hr) | HR | Hiring, interviews, onboarding, performance reviews, compensation |
+| [proagent-sales](plugins/proagent-sales) | Sales | Proposals, RFPs, competitive analysis, lead research, pipeline management |
+| [proagent-finance](plugins/proagent-finance) | Finance | Budgeting, invoicing, forecasting, P&L analysis, cost optimization |
+
+## Installation
+
+### Claude Code (CLI)
+
+Install a single plugin from a local checkout:
+
+```bash
+claude plugin install ./plugins/proagent-devops
+```
+
+Or add plugins to your project's `.claude/settings.json` so they load automatically for the whole team:
+
+```json
+{
+  "plugins": {
+    "proagent-devops": {
+      "source": "file:./provectus-marketplace/plugins/proagent-devops",
+      "version": "0.2.0",
+      "enabled": true
+    },
+    "proagent-backend": {
+      "source": "file:./provectus-marketplace/plugins/proagent-backend",
+      "version": "0.2.0",
+      "enabled": true
+    }
+  }
+}
+```
+
+### Claude Desktop
+
+Each plugin's `.mcp.json` contains the MCP server configurations. Copy the servers you need into your Claude Desktop config:
+
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+## Plugin Anatomy
+
+Every plugin follows the same structure:
+
+```
+proagent-<practice>/
+├── .claude-plugin/
+│   └── plugin.json          # Metadata: name, version, description, resources
+├── skills/
+│   └── <practice>-assistant/
+│       └── SKILL.md          # Core skill — activates automatically on trigger terms
+├── commands/
+│   ├── proagent-<practice>-hub.md    # /proagent-<practice>-hub — overview and routing
+│   ├── proagent-<practice>-run.md    # /proagent-<practice>-run — execute workflows
+│   └── proagent-<practice>-review.md # /proagent-<practice>-review — review artifacts
+├── agents/
+│   └── <practice>-specialist.md      # Specialist subagent for the practice domain
+├── hooks/
+│   └── hooks.json            # Lifecycle hooks: validation, formatting, notifications
+├── .mcp.json                 # MCP server connections (GitHub, Slack, Rube, etc.)
+├── CLAUDE.md                 # Context loaded into Claude sessions
+└── README.md                 # Plugin-specific docs
+```
+
+### Components
+
+| Component | What it does |
+|-----------|-------------|
+| **Skill** | Model-invoked capability that activates autonomously when Claude detects relevant trigger terms in the conversation |
+| **Commands** | User-invoked slash commands (`/proagent-*-hub`, `/proagent-*-run`, `/proagent-*-review`) |
+| **Agent** | Specialist subagent that can be dispatched via the Task tool for domain-specific work |
+| **Hooks** | Shell commands that run on lifecycle events (PreToolUse, PostToolUse, SessionStart) for validation and automation |
+| **MCP Servers** | External tool connections — GitHub, Slack, Google Drive, Rube (Composio), and more |
+
+## MCP Integrations
+
+Plugins connect to 27 external services via MCP:
+
+GitHub, GitLab, Slack, Google Docs, Gmail, Google Calendar, AWS, GCP, Jira, Confluence, Playwright, HubSpot, Salesforce, Notion, Linear, Asana, Datadog, Sentry, PagerDuty, Stripe, BambooHR, Figma, Vercel, CircleCI, Discord, Microsoft Teams, and **Rube** (Composio gateway to 200+ SaaS apps).
+
+### Rube / Composio
+
+Nine plugins include the [Rube](https://rube.app) MCP server, a universal SaaS automation gateway powered by Composio. It provides three tools:
+
+| Tool | Purpose |
+|------|---------|
+| `RUBE_SEARCH_TOOLS` | Discover available actions for any connected app |
+| `RUBE_MANAGE_CONNECTIONS` | Authenticate and manage SaaS connections |
+| `RUBE_MULTI_EXECUTE_TOOL` | Execute actions across connected apps |
+
+This gives plugins access to Salesforce, HubSpot, Stripe, BambooHR, Jira, and dozens more without individual MCP server setup.
+
+## Key Features
+
+### Agent Teams
+
+Plugins for agentic-engineering, SDLC, and QA support multi-agent orchestration:
+
+- **Multi-Reviewer Code Review** — Parallel agents evaluate correctness, performance, security, and maintainability simultaneously
+- **Hypothesis-Driven Debugging** — Analysis of Competing Hypotheses (ACH) methodology with parallel evidence collection
+- **Parallel Feature Development** — One-owner-per-file rule with concurrent implementation agents
+
+### AWOS Workflow
+
+The SDLC, delivery, and agentic-engineering plugins implement the 8-step specification-to-implementation pipeline:
+
+1. Product Requirements → 2. Roadmap → 3. Architecture → 4. Spec → 5. Tech Spec → 6. Task Breakdown → 7. Implementation → 8. Verification
+
+Each step requires explicit user confirmation before proceeding.
+
+### Mandatory Confirmation Pattern
+
+Destructive or high-impact operations always pause for user approval. Plugins for agentic-engineering, SDLC, and delivery enforce confirmation gates at key decision points.
+
+## Statistics
+
+| Metric | Count |
+|--------|-------|
+| Plugins | 14 |
+| Skills | 14 |
+| Commands | 42 |
+| Agents | 14 |
+| Hooks | 36 |
+| MCP Integrations | 48 |
+| Source Assets | 843 |
+| Source Repos | 17 |
+
+## Project Structure
+
+```
+provectus-marketplace/
+├── marketplace.json       # Marketplace manifest with all plugin metadata
+├── plugins/               # 14 practice plugins
+│   ├── proagent-agentic-engineering/
+│   ├── proagent-sdlc/
+│   ├── proagent-platform/
+│   ├── proagent-devops/
+│   ├── proagent-qa/
+│   ├── proagent-backend/
+│   ├── proagent-frontend/
+│   ├── proagent-delivery/
+│   ├── proagent-security/
+│   ├── proagent-data/
+│   ├── proagent-ml-ai/
+│   ├── proagent-hr/
+│   ├── proagent-sales/
+│   └── proagent-finance/
+├── catalog/               # Asset catalog from repo scanning
+└── scan-reports/          # Raw scan reports per repo batch
+```
+
+## License
+
+MIT
