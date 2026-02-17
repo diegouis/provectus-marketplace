@@ -89,13 +89,29 @@ proagent-<practice>/
 | **Commands** | User-invoked slash commands (`/proagent-*-hub`, `/proagent-*-run`, `/proagent-*-review`) |
 | **Agent** | Specialist subagent that can be dispatched via the Task tool for domain-specific work |
 | **Hooks** | Shell commands that run on lifecycle events (PreToolUse, PostToolUse, SessionStart) for validation and automation |
-| **MCP Servers** | External tool connections — GitHub, Slack, Google Drive, Rube (Composio), and more |
+| **MCP Servers** | External tool connections — GitHub, Slack, Google Drive, Gmail, Calendar, Rube (Composio), and more |
 
 ## MCP Integrations
 
-Plugins connect to 27 external services via MCP:
+Every plugin ships with a core set of MCP servers. Additional servers are included per practice where relevant.
 
-GitHub, GitLab, Slack, Google Docs, Gmail, Google Calendar, AWS, GCP, Jira, Confluence, Playwright, HubSpot, Salesforce, Notion, Linear, Asana, Datadog, Sentry, PagerDuty, Stripe, BambooHR, Figma, Vercel, CircleCI, Discord, Microsoft Teams, and **Rube** (Composio gateway to 200+ SaaS apps).
+### Core MCP Servers (all 14 plugins)
+
+| Server | Package | What it provides |
+|--------|---------|-----------------|
+| **Slack** | `slack-mcp-server@latest` | Channels, messages, users, threads — full Slack workspace access via xoxc/xoxd auth |
+| **Google Drive** | `@modelcontextprotocol/server-gdrive` | Drive file listing, search, read. Docs exported as Markdown, Sheets as CSV, Slides as text |
+| **Google Workspace** | `mcp-gsuite` (via `uvx`) | Gmail (list, search, send, draft, modify) + Google Calendar (list, create, update, delete events) |
+| **GitHub** | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions, code search |
+
+### Additional MCP Servers (per practice)
+
+| Server | Package | Plugins |
+|--------|---------|---------|
+| **GitLab** | `@modelcontextprotocol/server-gitlab` | agentic-engineering, sdlc, platform, devops, qa, backend, frontend, security |
+| **Atlassian (Jira/Confluence)** | `@modelcontextprotocol/server-atlassian` | sdlc, qa, delivery |
+| **Playwright** | `@playwright/mcp@latest` | agentic-engineering, qa, frontend |
+| **Rube (Composio)** | `https://rube.app/mcp` | agentic-engineering, platform, devops, frontend, delivery, data, hr, sales, finance |
 
 ### Rube / Composio
 
@@ -107,7 +123,18 @@ Nine plugins include the [Rube](https://rube.app) MCP server, a universal SaaS a
 | `RUBE_MANAGE_CONNECTIONS` | Authenticate and manage SaaS connections |
 | `RUBE_MULTI_EXECUTE_TOOL` | Execute actions across connected apps |
 
-This gives plugins access to Salesforce, HubSpot, Stripe, BambooHR, Jira, and dozens more without individual MCP server setup.
+This gives plugins access to Salesforce, HubSpot, Stripe, BambooHR, Jira, Figma, and 200+ more SaaS apps without individual MCP server setup.
+
+### Environment Variables
+
+| Variable | Used by |
+|----------|---------|
+| `SLACK_MCP_XOXC_TOKEN` / `SLACK_MCP_XOXD_TOKEN` | Slack |
+| `GITHUB_PERSONAL_ACCESS_TOKEN` | GitHub |
+| `GITLAB_PERSONAL_ACCESS_TOKEN` / `GITLAB_API_URL` | GitLab |
+| `ATLASSIAN_API_TOKEN` / `ATLASSIAN_EMAIL` / `ATLASSIAN_DOMAIN` | Jira, Confluence |
+| Google Drive uses OAuth browser flow (`gcp-oauth.keys.json`) | Google Drive |
+| Google Workspace uses OAuth (`.gauth.json` + `.accounts.json`) | Gmail, Calendar |
 
 ## Key Features
 
