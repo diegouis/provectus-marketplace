@@ -73,6 +73,11 @@
       "name": "proagent-security",
       "source": "./plugins/proagent-security",
       "description": "Security operations: vulnerability scanning, compliance enforcement, secrets management, encryption, threat modeling, OWASP Top 10, and Zero Trust architecture."
+    },
+    {
+      "name": "proagent-documentation",
+      "source": "./plugins/proagent-documentation",
+      "description": "Cross-platform repository documentation and Confluence publishing: analyze GitHub/GitLab repos, generate docs (README, architecture, API, onboarding, runbooks), and publish/sync Confluence pages."
     }
   ]
 }

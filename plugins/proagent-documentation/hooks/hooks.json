@@ -1,0 +1,48 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'rm -rf.*(docs|documentation|wiki|confluence)|drop.*table.*doc'; then echo 'BLOCK: [proagent-documentation] Destructive operation on documentation directory detected. Aborting — use manual deletion if intentional.' && exit 1; fi; }",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if [ -f \"$fp\" ] && echo \"$fp\" | grep -qiE '(README|CHANGELOG|CONTRIBUTING|ARCHITECTURE|docs/)\\.md$'; then echo '[proagent-documentation] Warning: overwriting existing documentation file. Review diff before publishing to Confluence.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '\\.(md|rst|adoc|txt)$'; then echo '[proagent-documentation] Documentation file written. Review content for accuracy before publishing to Confluence.'; fi; }",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'confluence-publisher\\|publish.*confluence\\|create.*confluence'; then echo '[proagent-documentation] Confluence publish completed. Verify the page at your Atlassian site — check formatting, links, and page hierarchy.'; fi; }",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

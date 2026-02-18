@@ -228,17 +228,33 @@
         "hooks": 3,
         "mcp_servers": 3
       }
+    },
+    {
+      "name": "proagent-documentation",
+      "version": "0.2.0",
+      "category": "documentation",
+      "description": "Cross-platform repository documentation and Confluence publishing — analyze GitHub/GitLab repos, generate docs, publish and sync Confluence pages",
+      "source": "./plugins/proagent-documentation",
+      "assets_count": 0,
+      "source_repos": 0,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 3,
+        "hooks": 4,
+        "mcp_servers": 6
+      }
     }
   ],
   "statistics": {
-    "total_plugins": 14,
+    "total_plugins": 15,
     "total_assets_cataloged": 843,
     "total_source_repos": 17,
-    "total_skills": 15,
-    "total_commands": 42,
-    "total_agents": 20,
-    "total_hooks": 38,
-    "total_mcp_integrations": 32,
+    "total_skills": 16,
+    "total_commands": 45,
+    "total_agents": 23,
+    "total_hooks": 42,
+    "total_mcp_integrations": 38,
     "practices_covered": [
       "agentic-engineering",
       "sdlc",
@@ -253,7 +269,8 @@
       "ml-ai",
       "hr",
       "sales",
-      "finance"
+      "finance",
+      "documentation"
     ]
   },
   "mcp_servers_core": [
@@ -291,13 +308,13 @@
       "name": "gitlab",
       "package": "@modelcontextprotocol/server-gitlab",
       "runtime": "npx",
-      "plugins": ["agentic-engineering", "sdlc", "platform", "devops", "qa", "backend", "frontend", "security"]
+      "plugins": ["agentic-engineering", "sdlc", "platform", "devops", "qa", "backend", "frontend", "security", "documentation"]
     },
     {
       "name": "atlassian",
       "package": "@modelcontextprotocol/server-atlassian",
       "runtime": "npx",
-      "plugins": ["sdlc", "qa", "delivery"]
+      "plugins": ["sdlc", "qa", "delivery", "documentation"]
     },
     {
       "name": "playwright",
