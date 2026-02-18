@@ -78,6 +78,7 @@ Map stakeholders using Power/Interest Grid, audit communication cadence, review 
 | Slack | `slack-mcp-server` | Team communication, channels, messages, threads |
 | Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
 | Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
+| Excalidraw | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders canvases directly in chat via natural language |
 | Atlassian | `@modelcontextprotocol/server-atlassian` | Jira sprint management, backlog, Confluence documentation |
 | Rube | `rube.app/mcp` | SaaS automation gateway (Jira, Linear, Asana, Trello, etc.) |
 

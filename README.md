@@ -67,7 +67,7 @@ proagent-<practice>/
 │   └── plugin.json          # Metadata: name, version, description, resources
 ├── skills/
 │   └── <practice>-assistant/
-│       └── SKILL.md          # Core skill — activates automatically on trigger terms
+│       └── SKILL.md          # Core skill — activates on trigger terms (includes Excalidraw diagramming)
 ├── commands/
 │   ├── proagent-<practice>-hub.md    # /proagent-<practice>-hub — overview and routing
 │   ├── proagent-<practice>-run.md    # /proagent-<practice>-run — execute workflows
@@ -103,6 +103,7 @@ Every plugin ships with a core set of MCP servers. Additional servers are includ
 | **Google Drive** | `@modelcontextprotocol/server-gdrive` | Drive file listing, search, read. Docs exported as Markdown, Sheets as CSV, Slides as text |
 | **Google Workspace** | `mcp-gsuite` (via `uvx`) | Gmail (list, search, send, draft, modify) + Google Calendar (list, create, update, delete events) |
 | **GitHub** | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions, code search |
+| **Excalidraw** | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language |
 
 ### Additional MCP Servers (per practice)
 
@@ -163,13 +164,13 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 | Metric | Count |
 |--------|-------|
 | Plugins | 14 |
-| Skills | 14 |
+| Skills | 15 |
 | Commands | 42 |
-| Agents | 14 |
-| Hooks | 36 |
-| MCP Servers (core) | 4 (Slack, Google Drive, Google Workspace, GitHub) |
+| Agents | 20 |
+| Hooks | 39 |
+| MCP Servers (core) | 5 (Slack, Google Drive, Google Workspace, GitHub, Excalidraw) |
 | MCP Servers (additional) | 4 (GitLab, Atlassian, Playwright, Rube) |
-| MCP Integrations | 30 |
+| MCP Integrations | 31 |
 | Source Assets | 843 |
 | Source Repos | 17 |
 

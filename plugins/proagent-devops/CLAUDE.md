@@ -46,6 +46,7 @@ When performing DevOps tasks, follow these standards:
 - **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
 - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
 - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **GitLab**: CI/CD pipelines, merge requests, and container registry via `@modelcontextprotocol/server-gitlab`
 - **Rube (Composio)**: SaaS automation gateway for CircleCI, Vercel, Render, Datadog, Sentry, PagerDuty, and 200+ integrations via `https://rube.app/mcp`
 

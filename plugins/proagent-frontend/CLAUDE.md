@@ -43,6 +43,7 @@ The hooks configuration enforces:
 - **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
 - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
 - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **GitLab**: Merge request UI gates, pipeline monitoring, component package publishing via `@modelcontextprotocol/server-gitlab`
 - **Playwright**: Cross-browser UI testing, visual regression, responsive layout validation, and accessibility auditing via `@playwright/mcp@latest`
 - **Rube (Composio)**: SaaS automation for Figma, Canva, Webflow, Miro, and 200+ integrations via `https://rube.app/mcp`

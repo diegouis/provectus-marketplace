@@ -7,7 +7,8 @@ This plugin provides platform engineering capabilities for Claude Code — devel
 ```
 proagent-platform/
 ├── .claude-plugin/plugin.json    # Plugin manifest
-├── skills/platform-assistant/    # Core skill: Building Developer Platforms & Tooling
+├── skills/
+│   └── platform-assistant/       # Core skill: Building Developer Platforms & Tooling
 ├── commands/
 │   ├── proagent-platform-hub.md     # /proagent-platform:hub — capabilities overview
 │   ├── proagent-platform-run.md     # /proagent-platform:run — scaffold, create-template, build-tool, setup-dx
@@ -37,6 +38,7 @@ proagent-platform/
 - **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
 - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
 - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **GitLab**: Project templates, CI/CD pipelines, and merge requests via `@modelcontextprotocol/server-gitlab`
 - **Rube (Composio)**: SaaS automation gateway for Notion, Confluence, Figma, and 200+ integrations via `https://rube.app/mcp`
 

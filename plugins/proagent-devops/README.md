@@ -122,6 +122,7 @@ Use the devops-assistant skill to create a GitHub Actions pipeline for this Pyth
 | Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
 | Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
 | GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| Excalidraw | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders canvases directly in chat via natural language |
 | GitLab | `@modelcontextprotocol/server-gitlab` | CI/CD pipelines, merge requests, container registry |
 | Rube | `rube.app/mcp` | SaaS automation via Composio SDK |
 

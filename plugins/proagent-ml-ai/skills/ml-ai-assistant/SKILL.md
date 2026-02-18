@@ -595,3 +595,28 @@ ml-project/
 | Anthropic LLM Utility | `tac/Code/tac-6/.claude/hooks/utils/llm/anth.py` | Anthropic API integration utility |
 | NL-to-SQL Processor | `tac/Code/tac-6/app/server/core/llm_processor.py` | LLM-powered natural language to SQL translation |
 | ML Engineer Role | `proagent/roles/ml-engineer/README (1).md` | ML engineer role definition and quick start guide |
+
+## Visual Diagramming with Excalidraw
+
+Use the Excalidraw MCP server to generate interactive diagrams directly in the conversation. Describe what you need in natural language and Excalidraw renders it as an interactive canvas with hand-drawn style.
+
+### When to Use
+
+- ML pipeline architecture and training flow diagrams
+- RAG pipeline topology and embedding flow visualizations
+- Experiment DAG and model versioning diagrams
+- Model deployment and serving architecture maps
+
+### Workflow
+
+1. Describe the diagram you need — be specific about components, relationships, and layout
+2. Review the rendered interactive diagram in the chat
+3. Request refinements by describing what to change (add/remove/rearrange elements)
+4. Use fullscreen mode for detailed editing when needed
+
+### Tips for Effective Diagrams
+
+- Name specific components and their connections (e.g., "API Gateway connects to Auth Service and User Service")
+- Specify layout direction when it matters (e.g., "left-to-right flow" or "top-down hierarchy")
+- Request specific diagram types (architecture diagram, flowchart, sequence diagram, ER diagram)
+- Iterate — start with the overall structure, then refine details

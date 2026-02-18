@@ -2,14 +2,20 @@
   "mcpServers": {
     "github": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
       }
     },
     "gitlab": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gitlab"
+      ],
       "env": {
         "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_TOKEN}",
         "GITLAB_API_URL": "${GITLAB_API_URL:-https://gitlab.com/api/v4}"
@@ -17,11 +23,18 @@
     },
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp@latest"]
+      "args": [
+        "@playwright/mcp@latest"
+      ]
     },
     "slack": {
       "command": "npx",
-      "args": ["-y", "slack-mcp-server@latest", "--transport", "stdio"],
+      "args": [
+        "-y",
+        "slack-mcp-server@latest",
+        "--transport",
+        "stdio"
+      ],
       "env": {
         "SLACK_MCP_XOXC_TOKEN": "${SLACK_MCP_XOXC_TOKEN}",
         "SLACK_MCP_XOXD_TOKEN": "${SLACK_MCP_XOXD_TOKEN}",
@@ -31,11 +44,20 @@
     },
     "google-drive": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-gdrive"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gdrive"
+      ]
     },
     "google-workspace": {
       "command": "uvx",
-      "args": ["mcp-gsuite"]
+      "args": [
+        "mcp-gsuite"
+      ]
+    },
+    "excalidraw": {
+      "type": "url",
+      "url": "https://mcp.excalidraw.com/mcp"
     },
     "rube": {
       "url": "https://rube.app/mcp"
