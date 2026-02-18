@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.subagent_type // empty' | { read agent; if [ -n \"$agent\" ]; then echo \"[proagent-router] Dispatching to specialist: $agent\"; fi; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

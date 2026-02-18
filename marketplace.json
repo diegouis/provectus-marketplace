@@ -228,16 +228,32 @@
         "hooks": 3,
         "mcp_servers": 4
       }
+    },
+    {
+      "name": "proagent-router",
+      "version": "0.2.0",
+      "category": "router",
+      "description": "Provectus Practice Router \u2014 single /proagent command that detects the domain from user input and dispatches to the appropriate practice specialist across all 15 plugins",
+      "source": "./plugins/proagent-router",
+      "assets_count": 0,
+      "source_repos": 0,
+      "components": {
+        "skills": 1,
+        "commands": 1,
+        "agents": 0,
+        "hooks": 1,
+        "mcp_servers": 0
+      }
     }
   ],
   "statistics": {
-    "total_plugins": 14,
+    "total_plugins": 16,
     "total_assets_cataloged": 843,
     "total_source_repos": 17,
-    "total_skills": 15,
-    "total_commands": 42,
+    "total_skills": 18,
+    "total_commands": 46,
     "total_agents": 20,
-    "total_hooks": 39,
+    "total_hooks": 40,
     "total_mcp_integrations": 31,
     "practices_covered": [
       "agentic-engineering",
@@ -253,7 +269,8 @@
       "ml-ai",
       "hr",
       "sales",
-      "finance"
+      "finance",
+      "router"
     ]
   },
   "mcp_servers_core": [
