@@ -57,6 +57,32 @@ Each plugin's `.mcp.json` contains the MCP server configurations. Copy the serve
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
+**Important notes for Claude Desktop:**
+
+1. **Remote MCP servers** (Excalidraw, Rube) use `"url"` in `.mcp.json`, but Claude Desktop does not support the `url` format. Wrap them with `mcp-remote`:
+   ```json
+   {
+     "excalidraw": {
+       "command": "npx",
+       "args": ["-y", "mcp-remote", "https://mcp.excalidraw.com/mcp"]
+     }
+   }
+   ```
+
+2. **Google Drive and Google Workspace** require OAuth authentication before they will connect. Run the auth flow first:
+   - Google Drive: `npx -y @modelcontextprotocol/server-gdrive auth`
+   - Google Workspace (`mcp-gsuite`): Requires `.accounts.json` and OAuth setup — see [mcp-gsuite docs](https://github.com/MarkusMaal/mcp-gsuite)
+
+3. **GitLab** — If using a self-hosted GitLab instance (e.g., `gitlab.provectus.com`), update `GITLAB_API_URL` to point to your instance:
+   ```json
+   "GITLAB_API_URL": "https://gitlab.provectus.com/api/v4"
+   ```
+   The `GITLAB_PERSONAL_ACCESS_TOKEN` must be generated on that same instance (not `gitlab.com`).
+
+4. **Skills, commands, agents, and hooks** are Claude Code (CLI) features only — they do not work in Claude Desktop. Desktop gets MCP server integrations. To use plugin knowledge in Desktop, paste the plugin's `CLAUDE.md` and `skills/*/SKILL.md` content into a Project's custom instructions.
+
+5. **Edit the config while Claude Desktop is closed** — it may overwrite your changes on startup if edited while running.
+
 ## Plugin Anatomy
 
 Every plugin follows the same structure:

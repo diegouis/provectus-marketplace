@@ -1,0 +1,8 @@
+{
+  "name": "proagent-aws-ai",
+  "version": "0.2.0",
+  "description": "Provectus AWS AI practice plugin for designing AI architectures on AWS, building agents with Bedrock AgentCore, creating MCP servers, and deploying generative AI solutions with Well-Architected best practices.",
+  "author": {
+    "name": "diegouis"
+  }
+}
