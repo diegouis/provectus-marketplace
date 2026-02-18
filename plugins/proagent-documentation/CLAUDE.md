@@ -36,22 +36,25 @@ This plugin provides the Documentation practice context for the Provectus agenti
 - Flag broken links, outdated code examples, and missing sections
 - Track coverage across repos — identify undocumented modules and APIs
 
-## Default Confluence Target
+## Confluence Target Configuration
 
-When publishing documentation, use these defaults unless the user specifies otherwise:
+When publishing documentation, the user must specify the target Confluence space and parent page. There are no hardcoded defaults — this keeps the plugin reusable across projects and organizations.
 
-| Setting | Value |
-|---------|-------|
-| **Space Key** | `PGPM` |
-| **Space ID** | `215056390` |
-| **Space Name** | Punchbowl News AI |
-| **Parent Page** | Technical Documents |
-| **Parent Page ID** | `223445003` |
+**Required parameters for publishing:**
+- `--space <SPACE_KEY>` — the Confluence space key (e.g., `ENG`, `DOCS`, `TEAM`)
+- `--parent <page-title>` — the parent page under which new docs will be created
 
-This means:
-- `/proagent-documentation-run publish-confluence` will default to `--space PGPM --parent "Technical Documents"`
-- New pages will be created as children of **Technical Documents** in the Punchbowl News AI space
-- The page hierarchy under Technical Documents includes: Data Engineering, AI/ML, DevOps
+**Example usage:**
+```
+/proagent-documentation-run publish-confluence --space ENG --parent "Technical Documents"
+```
+
+If the user does not provide these parameters, prompt them before publishing. You can help the user discover available spaces and pages using the Confluence MCP integration.
+
+**Recommended page hierarchy:**
+- Create a top-level parent page (e.g., "Technical Documents") in the target space
+- Organize child pages by category: Architecture, API Reference, Onboarding, Runbooks
+- Use consistent naming: `<Project Name> - <Doc Type>`
 
 ## MCP Integrations
 
