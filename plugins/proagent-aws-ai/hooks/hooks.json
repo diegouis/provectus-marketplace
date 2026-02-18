@@ -1,0 +1,43 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'aws.*delete|aws.*remove|aws.*terminate|cdk destroy'; then echo '[proagent-aws-ai] Destructive AWS operation detected. Verify this is intentional and targeting the correct environment.' >&2; exit 2; fi; }",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'cdk deploy|cdk synth|aws cloudformation|terraform apply'; then echo '[proagent-aws-ai] Infrastructure deployment detected. Ensure IAM roles follow least privilege, VPC is configured, resource tags are applied, and Guardrails are enabled.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'cdk deploy|aws cloudformation create|terraform apply'; then echo '[proagent-aws-ai] Infrastructure deployed. Verify CloudWatch dashboards, AgentCore Observability, and cost allocation tags are configured.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '\\.(ts|py|yaml|yml|json)$' && echo \"$fp\" | grep -qiE 'cdk|stack|template|bedrock|agent|mcp'; then echo '[proagent-aws-ai] AWS AI infrastructure code written. Verify Well-Architected compliance: IAM least privilege, VPC isolation, Guardrails, observability, and cost tags.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
