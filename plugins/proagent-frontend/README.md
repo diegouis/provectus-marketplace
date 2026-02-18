@@ -157,6 +157,7 @@ The plugin is built around these components:
 | Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
 | Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
 | GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| Excalidraw | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders canvases directly in chat via natural language |
 | GitLab | `@modelcontextprotocol/server-gitlab` | Merge request UI gates, component package publishing |
 | Playwright | `@playwright/mcp` | Browser automation, visual regression, cross-browser testing |
 | Rube | `rube.app/mcp` | SaaS automation via Composio SDK |

@@ -15,7 +15,12 @@
     },
     "slack": {
       "command": "npx",
-      "args": ["-y", "slack-mcp-server@latest", "--transport", "stdio"],
+      "args": [
+        "-y",
+        "slack-mcp-server@latest",
+        "--transport",
+        "stdio"
+      ],
       "env": {
         "SLACK_MCP_XOXC_TOKEN": "${SLACK_MCP_XOXC_TOKEN}",
         "SLACK_MCP_XOXD_TOKEN": "${SLACK_MCP_XOXD_TOKEN}",
@@ -25,11 +30,20 @@
     },
     "google-drive": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-gdrive"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gdrive"
+      ]
     },
     "google-workspace": {
       "command": "uvx",
-      "args": ["mcp-gsuite"]
+      "args": [
+        "mcp-gsuite"
+      ]
+    },
+    "excalidraw": {
+      "type": "url",
+      "url": "https://mcp.excalidraw.com/mcp"
     },
     "rube": {
       "url": "https://rube.app/mcp"

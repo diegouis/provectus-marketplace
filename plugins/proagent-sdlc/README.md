@@ -79,6 +79,7 @@ Analyzes the codebase and generates the specified documentation type: architectu
 | Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
 | Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
 | GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| Excalidraw | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders canvases directly in chat via natural language |
 | GitLab | `@modelcontextprotocol/server-gitlab` | Merge requests, CI/CD pipelines |
 | Jira | `@modelcontextprotocol/server-atlassian` | Issue tracking, sprint management |
 | Confluence | `@modelcontextprotocol/server-atlassian` | Documentation publishing, ADRs |

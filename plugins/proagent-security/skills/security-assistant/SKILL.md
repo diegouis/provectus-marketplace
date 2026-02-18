@@ -561,3 +561,28 @@ Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
 | Secrets Ignore | `Auto-Claude/.secretsignore.example` | Secret pattern exclusion template |
 | Security Audit Formula | `gastown/.beads/formulas/security-audit.formula.toml` | Security audit workflow formula |
 | Watchdog Chain | `gastown/docs/design/watchdog-chain.md` | Agent monitoring design |
+
+## Visual Diagramming with Excalidraw
+
+Use the Excalidraw MCP server to generate interactive diagrams directly in the conversation. Describe what you need in natural language and Excalidraw renders it as an interactive canvas with hand-drawn style.
+
+### When to Use
+
+- Threat model diagrams (STRIDE, attack trees)
+- Network security zone and Zero Trust architecture maps
+- Compliance workflow and audit trail flows
+- Incident response runbook visualizations
+
+### Workflow
+
+1. Describe the diagram you need — be specific about components, relationships, and layout
+2. Review the rendered interactive diagram in the chat
+3. Request refinements by describing what to change (add/remove/rearrange elements)
+4. Use fullscreen mode for detailed editing when needed
+
+### Tips for Effective Diagrams
+
+- Name specific components and their connections (e.g., "API Gateway connects to Auth Service and User Service")
+- Specify layout direction when it matters (e.g., "left-to-right flow" or "top-down hierarchy")
+- Request specific diagram types (architecture diagram, flowchart, sequence diagram, ER diagram)
+- Iterate — start with the overall structure, then refine details

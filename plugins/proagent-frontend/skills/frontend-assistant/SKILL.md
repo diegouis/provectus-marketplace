@@ -160,6 +160,31 @@ Source: `agents/plugins/frontend-mobile-development/` (Tailwind v4 skill)
 - **axe-core**: Automated accessibility testing in CI pipelines
 - **Lighthouse**: Performance auditing and Core Web Vitals monitoring
 
+## Visual Diagramming with Excalidraw
+
+Use the Excalidraw MCP server to generate interactive diagrams directly in the conversation. Describe what you need in natural language and Excalidraw renders it as an interactive canvas with hand-drawn style.
+
+### When to Use
+
+- Component hierarchy and state flow diagrams
+- Page routing and navigation maps
+- Design system architecture and token relationships
+- Data flow and prop drilling visualizations
+
+### Workflow
+
+1. Describe the diagram you need — be specific about components, relationships, and layout
+2. Review the rendered interactive diagram in the chat
+3. Request refinements by describing what to change (add/remove/rearrange elements)
+4. Use fullscreen mode for detailed editing when needed
+
+### Tips for Effective Diagrams
+
+- Name specific components and their connections (e.g., "API Gateway connects to Auth Service and User Service")
+- Specify layout direction when it matters (e.g., "left-to-right flow" or "top-down hierarchy")
+- Request specific diagram types (architecture diagram, flowchart, sequence diagram, ER diagram)
+- Iterate — start with the overall structure, then refine details
+
 ## Composio App Automations
 
 This plugin integrates with Composio-powered SaaS automation skills via the Rube MCP server. These skills connect to real external services for end-to-end workflow automation.

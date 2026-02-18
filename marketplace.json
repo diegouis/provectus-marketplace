@@ -1,7 +1,7 @@
 {
   "name": "provectus-marketplace",
   "version": "0.2.0",
-  "description": "ProAgent Plugin Marketplace — practice-specific plugins for Provectus teams, built from 843 assets across 17 repositories",
+  "description": "ProAgent Plugin Marketplace \u2014 practice-specific plugins for Provectus teams, built from 843 assets across 17 repositories",
   "author": "diegouis",
   "generated": "2026-02-16",
   "plugins": [
@@ -18,14 +18,14 @@
         "commands": 3,
         "agents": 1,
         "hooks": 3,
-        "mcp_servers": 3
+        "mcp_servers": 4
       }
     },
     {
       "name": "proagent-sdlc",
       "version": "0.2.0",
       "category": "sdlc",
-      "description": "Managing Software Development Lifecycle — architecture, code review, testing strategy, release management, documentation, and git workflows",
+      "description": "Managing Software Development Lifecycle \u2014 architecture, code review, testing strategy, release management, documentation, and git workflows",
       "source": "./plugins/proagent-sdlc",
       "assets_count": 208,
       "source_repos": 12,
@@ -34,14 +34,14 @@
         "commands": 3,
         "agents": 1,
         "hooks": 3,
-        "mcp_servers": 4
+        "mcp_servers": 5
       }
     },
     {
       "name": "proagent-platform",
       "version": "0.2.0",
       "category": "platform",
-      "description": "Building Developer Platforms & Tooling — service catalogs, golden paths, scaffolding, MCP server development, and DX optimization",
+      "description": "Building Developer Platforms & Tooling \u2014 service catalogs, golden paths, scaffolding, MCP server development, and DX optimization",
       "source": "./plugins/proagent-platform",
       "assets_count": 127,
       "source_repos": 8,
@@ -50,14 +50,14 @@
         "commands": 3,
         "agents": 1,
         "hooks": 3,
-        "mcp_servers": 3
+        "mcp_servers": 4
       }
     },
     {
       "name": "proagent-devops",
       "version": "0.2.0",
       "category": "devops",
-      "description": "Managing Infrastructure & Deployments — CI/CD pipelines, Docker/Kubernetes, Terraform/IaC, monitoring, incident response, and cloud operations",
+      "description": "Managing Infrastructure & Deployments \u2014 CI/CD pipelines, Docker/Kubernetes, Terraform/IaC, monitoring, incident response, and cloud operations",
       "source": "./plugins/proagent-devops",
       "assets_count": 126,
       "source_repos": 5,
@@ -66,14 +66,14 @@
         "commands": 3,
         "agents": 1,
         "hooks": 2,
-        "mcp_servers": 4
+        "mcp_servers": 5
       }
     },
     {
       "name": "proagent-qa",
       "version": "0.2.0",
       "category": "qa",
-      "description": "Ensuring Software Quality — test automation, Playwright/Cypress, regression testing, coverage analysis, E2E testing, and accessibility",
+      "description": "Ensuring Software Quality \u2014 test automation, Playwright/Cypress, regression testing, coverage analysis, E2E testing, and accessibility",
       "source": "./plugins/proagent-qa",
       "assets_count": 110,
       "source_repos": 6,
@@ -82,14 +82,14 @@
         "commands": 3,
         "agents": 1,
         "hooks": 3,
-        "mcp_servers": 4
+        "mcp_servers": 5
       }
     },
     {
       "name": "proagent-backend",
       "version": "0.2.0",
       "category": "backend",
-      "description": "Building Scalable Backend Services — APIs, databases, microservices, auth, caching, queues, and performance optimization",
+      "description": "Building Scalable Backend Services \u2014 APIs, databases, microservices, auth, caching, queues, and performance optimization",
       "source": "./plugins/proagent-backend",
       "assets_count": 63,
       "source_repos": 4,
@@ -98,14 +98,14 @@
         "commands": 3,
         "agents": 1,
         "hooks": 2,
-        "mcp_servers": 4
+        "mcp_servers": 5
       }
     },
     {
       "name": "proagent-frontend",
       "version": "0.2.0",
       "category": "frontend",
-      "description": "Building Modern Web Interfaces — React/Vue/Angular, design systems, accessibility (WCAG 2.1 AA), responsive design, and performance optimization",
+      "description": "Building Modern Web Interfaces \u2014 React/Vue/Angular, design systems, accessibility (WCAG 2.1 AA), responsive design, and performance optimization",
       "source": "./plugins/proagent-frontend",
       "assets_count": 60,
       "source_repos": 8,
@@ -114,14 +114,14 @@
         "commands": 3,
         "agents": 1,
         "hooks": 3,
-        "mcp_servers": 3
+        "mcp_servers": 4
       }
     },
     {
       "name": "proagent-delivery",
       "version": "0.2.0",
       "category": "delivery",
-      "description": "Managing Project Delivery — sprint planning, milestones, status reports, risk management, stakeholder communication, and retrospectives",
+      "description": "Managing Project Delivery \u2014 sprint planning, milestones, status reports, risk management, stakeholder communication, and retrospectives",
       "source": "./plugins/proagent-delivery",
       "assets_count": 52,
       "source_repos": 8,
@@ -130,14 +130,14 @@
         "commands": 3,
         "agents": 1,
         "hooks": 3,
-        "mcp_servers": 4
+        "mcp_servers": 5
       }
     },
     {
       "name": "proagent-security",
       "version": "0.2.0",
       "category": "security",
-      "description": "Securing Software & Infrastructure — vulnerability scanning, compliance, secrets management, threat modeling, OWASP, and Zero Trust",
+      "description": "Securing Software & Infrastructure \u2014 vulnerability scanning, compliance, secrets management, threat modeling, OWASP, and Zero Trust",
       "source": "./plugins/proagent-security",
       "assets_count": 51,
       "source_repos": 10,
@@ -146,14 +146,14 @@
         "commands": 3,
         "agents": 1,
         "hooks": 2,
-        "mcp_servers": 2
+        "mcp_servers": 3
       }
     },
     {
       "name": "proagent-data",
       "version": "0.2.0",
       "category": "data",
-      "description": "Engineering Data Pipelines & Analytics — ETL/ELT, dbt, Airflow, data warehousing, SQL optimization, and data quality",
+      "description": "Engineering Data Pipelines & Analytics \u2014 ETL/ELT, dbt, Airflow, data warehousing, SQL optimization, and data quality",
       "source": "./plugins/proagent-data",
       "assets_count": 27,
       "source_repos": 5,
@@ -162,49 +162,17 @@
         "commands": 3,
         "agents": 1,
         "hooks": 3,
-        "mcp_servers": 3
+        "mcp_servers": 4
       }
     },
     {
       "name": "proagent-ml-ai",
       "version": "0.2.0",
       "category": "ml-ai",
-      "description": "Building ML & AI Systems — model training, MLOps, experiment tracking, LLM applications, RAG, embeddings, and deployment",
+      "description": "Building ML & AI Systems \u2014 model training, MLOps, experiment tracking, LLM applications, RAG, embeddings, and deployment",
       "source": "./plugins/proagent-ml-ai",
       "assets_count": 22,
       "source_repos": 3,
-      "components": {
-        "skills": 1,
-        "commands": 3,
-        "agents": 1,
-        "hooks": 2,
-        "mcp_servers": 3
-      }
-    },
-    {
-      "name": "proagent-hr",
-      "version": "0.3.0",
-      "category": "hr",
-      "description": "Managing Human Resources & Talent — hiring, interviews, onboarding, performance reviews, compensation, employee development, and CV validation at scale with multi-agent orchestration and blind review",
-      "source": "./plugins/proagent-hr",
-      "assets_count": 22,
-      "source_repos": 5,
-      "components": {
-        "skills": 2,
-        "commands": 3,
-        "agents": 7,
-        "hooks": 5,
-        "mcp_servers": 6
-      }
-    },
-    {
-      "name": "proagent-sales",
-      "version": "0.2.0",
-      "category": "sales",
-      "description": "Driving Sales & Business Development — proposals, RFPs, competitive analysis, lead research, pipeline management, and quote generation",
-      "source": "./plugins/proagent-sales",
-      "assets_count": 13,
-      "source_repos": 5,
       "components": {
         "skills": 1,
         "commands": 3,
@@ -214,10 +182,42 @@
       }
     },
     {
+      "name": "proagent-hr",
+      "version": "0.3.0",
+      "category": "hr",
+      "description": "Managing Human Resources & Talent \u2014 hiring, interviews, onboarding, performance reviews, compensation, employee development, and CV validation at scale with multi-agent orchestration and blind review",
+      "source": "./plugins/proagent-hr",
+      "assets_count": 22,
+      "source_repos": 5,
+      "components": {
+        "skills": 2,
+        "commands": 3,
+        "agents": 7,
+        "hooks": 5,
+        "mcp_servers": 7
+      }
+    },
+    {
+      "name": "proagent-sales",
+      "version": "0.2.0",
+      "category": "sales",
+      "description": "Driving Sales & Business Development \u2014 proposals, RFPs, competitive analysis, lead research, pipeline management, and quote generation",
+      "source": "./plugins/proagent-sales",
+      "assets_count": 13,
+      "source_repos": 5,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 2,
+        "mcp_servers": 5
+      }
+    },
+    {
       "name": "proagent-finance",
       "version": "0.2.0",
       "category": "finance",
-      "description": "Managing Financial Operations — budgeting, invoicing, forecasting, P&L analysis, cost optimization, and financial reporting",
+      "description": "Managing Financial Operations \u2014 budgeting, invoicing, forecasting, P&L analysis, cost optimization, and financial reporting",
       "source": "./plugins/proagent-finance",
       "assets_count": 4,
       "source_repos": 3,
@@ -226,7 +226,7 @@
         "commands": 3,
         "agents": 1,
         "hooks": 3,
-        "mcp_servers": 3
+        "mcp_servers": 4
       }
     }
   ],
@@ -237,8 +237,8 @@
     "total_skills": 15,
     "total_commands": 42,
     "total_agents": 20,
-    "total_hooks": 38,
-    "total_mcp_integrations": 32,
+    "total_hooks": 39,
+    "total_mcp_integrations": 31,
     "practices_covered": [
       "agentic-engineering",
       "sdlc",
@@ -261,7 +261,7 @@
       "name": "slack",
       "package": "slack-mcp-server@latest",
       "runtime": "npx",
-      "description": "Slack workspace access — channels, messages, users, threads",
+      "description": "Slack workspace access \u2014 channels, messages, users, threads",
       "plugins": "all"
     },
     {
@@ -284,6 +284,13 @@
       "runtime": "npx",
       "description": "Repositories, PRs, issues, Actions, code search",
       "plugins": "all"
+    },
+    {
+      "name": "excalidraw",
+      "url": "https://mcp.excalidraw.com/mcp",
+      "runtime": "remote",
+      "description": "Interactive visual diagramming \u2014 renders Excalidraw canvases directly in chat via natural language prompts",
+      "plugins": "all"
     }
   ],
   "mcp_servers_additional": [
@@ -291,25 +298,52 @@
       "name": "gitlab",
       "package": "@modelcontextprotocol/server-gitlab",
       "runtime": "npx",
-      "plugins": ["agentic-engineering", "sdlc", "platform", "devops", "qa", "backend", "frontend", "security"]
+      "plugins": [
+        "agentic-engineering",
+        "sdlc",
+        "platform",
+        "devops",
+        "qa",
+        "backend",
+        "frontend",
+        "security"
+      ]
     },
     {
       "name": "atlassian",
       "package": "@modelcontextprotocol/server-atlassian",
       "runtime": "npx",
-      "plugins": ["sdlc", "qa", "delivery"]
+      "plugins": [
+        "sdlc",
+        "qa",
+        "delivery"
+      ]
     },
     {
       "name": "playwright",
       "package": "@playwright/mcp@latest",
       "runtime": "npx",
-      "plugins": ["agentic-engineering", "qa", "frontend"]
+      "plugins": [
+        "agentic-engineering",
+        "qa",
+        "frontend"
+      ]
     },
     {
       "name": "rube",
       "url": "https://rube.app/mcp",
-      "description": "Composio SaaS gateway — 200+ apps via RUBE_SEARCH_TOOLS, RUBE_MANAGE_CONNECTIONS, RUBE_MULTI_EXECUTE_TOOL",
-      "plugins": ["agentic-engineering", "platform", "devops", "frontend", "delivery", "data", "hr", "sales", "finance"]
+      "description": "Composio SaaS gateway \u2014 200+ apps via RUBE_SEARCH_TOOLS, RUBE_MANAGE_CONNECTIONS, RUBE_MULTI_EXECUTE_TOOL",
+      "plugins": [
+        "agentic-engineering",
+        "platform",
+        "devops",
+        "frontend",
+        "delivery",
+        "data",
+        "hr",
+        "sales",
+        "finance"
+      ]
     }
   ],
   "mcp_integrations_available": [
@@ -341,6 +375,7 @@
     "Vercel",
     "CircleCI",
     "Discord",
+    "Excalidraw",
     "Microsoft Teams",
     "Rube"
   ]
