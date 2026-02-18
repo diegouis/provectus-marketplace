@@ -64,6 +64,7 @@ When performing backend development tasks, follow these standards:
 - **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
 - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
 - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **GitLab**: Merge requests, pipeline management for backend projects via `@modelcontextprotocol/server-gitlab`
 
 ## Source Repositories

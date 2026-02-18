@@ -653,3 +653,28 @@ Source: `awesome-claude-skills` Composio app automation skills
 | Release Workflow | `Auto-Claude/.github/workflows/release.yml` | Multi-platform release workflow |
 | Prometheus Config | `casdk-harness/config/monitoring/prometheus.yml` | Prometheus monitoring setup |
 | Deployment Orchestrator | `proagent-repo GUI/core/orchestration/sdlc/deployer.py` | SDLC deployment automation |
+
+## Visual Diagramming with Excalidraw
+
+Use the Excalidraw MCP server to generate interactive diagrams directly in the conversation. Describe what you need in natural language and Excalidraw renders it as an interactive canvas with hand-drawn style.
+
+### When to Use
+
+- Infrastructure architecture diagrams (cloud topology, network layout)
+- CI/CD pipeline flow diagrams
+- Deployment strategy visualizations (blue-green, canary, rolling)
+- Monitoring and alerting topology maps
+
+### Workflow
+
+1. Describe the diagram you need — be specific about components, relationships, and layout
+2. Review the rendered interactive diagram in the chat
+3. Request refinements by describing what to change (add/remove/rearrange elements)
+4. Use fullscreen mode for detailed editing when needed
+
+### Tips for Effective Diagrams
+
+- Name specific components and their connections (e.g., "API Gateway connects to Auth Service and User Service")
+- Specify layout direction when it matters (e.g., "left-to-right flow" or "top-down hierarchy")
+- Request specific diagram types (architecture diagram, flowchart, sequence diagram, ER diagram)
+- Iterate — start with the overall structure, then refine details

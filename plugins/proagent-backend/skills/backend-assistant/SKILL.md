@@ -1003,3 +1003,28 @@ Source: `agents/plugins/python-development/` (v1.2.1)
 | Session Auth | `claude-ui/server/routes/auth.js` | Session-based authentication patterns |
 | MCP Server (Node) | `skills/mcp-builder/reference/node_mcp_server.md` | Node.js MCP server reference |
 | MCP Server (Python) | `skills/mcp-builder/reference/python_mcp_server.md` | Python MCP server reference |
+
+## Visual Diagramming with Excalidraw
+
+Use the Excalidraw MCP server to generate interactive diagrams directly in the conversation. Describe what you need in natural language and Excalidraw renders it as an interactive canvas with hand-drawn style.
+
+### When to Use
+
+- API architecture and microservice topology diagrams
+- Database schema and entity relationship diagrams
+- Authentication/authorization flow visualizations
+- Message queue and async processing flow diagrams
+
+### Workflow
+
+1. Describe the diagram you need — be specific about components, relationships, and layout
+2. Review the rendered interactive diagram in the chat
+3. Request refinements by describing what to change (add/remove/rearrange elements)
+4. Use fullscreen mode for detailed editing when needed
+
+### Tips for Effective Diagrams
+
+- Name specific components and their connections (e.g., "API Gateway connects to Auth Service and User Service")
+- Specify layout direction when it matters (e.g., "left-to-right flow" or "top-down hierarchy")
+- Request specific diagram types (architecture diagram, flowchart, sequence diagram, ER diagram)
+- Iterate — start with the overall structure, then refine details

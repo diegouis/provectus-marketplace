@@ -127,6 +127,7 @@ Use the data-assistant skill to build an incremental dbt model for order events
 | Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
 | Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
 | GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| Excalidraw | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders canvases directly in chat via natural language |
 | Rube | `rube.app/mcp` | SaaS automation gateway (Google Sheets, Airtable, Supabase, etc.) |
 
 ## Source Repositories

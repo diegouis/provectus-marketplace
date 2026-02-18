@@ -56,6 +56,7 @@ When performing sales tasks, follow these standards:
 - **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
 - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
 - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **Rube (Composio)**: SaaS automation gateway providing access to Salesforce, HubSpot, Pipedrive, Close, LinkedIn, and Zoho CRM via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
 
 ## Source Repositories
@@ -67,7 +68,8 @@ This plugin draws patterns from: awesome-claude-skills, agents, taches-cc-resour
 ```
 proagent-sales/
   .claude-plugin/plugin.json
-  skills/sales-assistant/SKILL.md
+  skills/
+    sales-assistant/SKILL.md
   commands/proagent-sales-hub.md
   commands/proagent-sales-run.md
   commands/proagent-sales-review.md

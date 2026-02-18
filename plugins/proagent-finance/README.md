@@ -79,6 +79,7 @@ Loads current budget and actual spending data, calculates variances per category
 | Google Drive | `@modelcontextprotocol/server-gdrive` | Drive files, Docs, Sheets, Slides |
 | Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
 | GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| Excalidraw | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders canvases directly in chat via natural language |
 | Rube | `rube.app/mcp` | SaaS automation gateway (Stripe, Square, Shopify, etc.) |
 
 Set the environment variables for the services your team uses. Unused servers will not be started.

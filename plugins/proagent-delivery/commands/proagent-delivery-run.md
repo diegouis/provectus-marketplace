@@ -1,7 +1,7 @@
 ---
 description: >
   Execute delivery workflows: plan-sprint, status-report, risk-assess,
-  milestone-track, or retrospective.
+  milestone-track, retrospective, or rom-estimate.
 argument-hint: "<mode> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
@@ -14,7 +14,7 @@ You are the delivery execution engine for the proagent-delivery plugin. Parse th
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `plan-sprint`, `status-report`, `risk-assess`, `milestone-track`, or `retrospective`.
+Parse the first word of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `plan-sprint`, `status-report`, `risk-assess`, `milestone-track`, `retrospective`, or `rom-estimate`.
 
 ---
 
@@ -408,4 +408,88 @@ Facilitate a sprint retrospective with structured frameworks for team learning a
    - Change: [What we will try differently]
    - Measure: [How we will know if it worked]
    - Duration: [One sprint]
+   ```
+
+---
+
+## Mode: rom-estimate
+
+Generate a ROM (Rough Order of Magnitude) effort estimate from project documents, task lists, or scope descriptions. Produces a semicolon-delimited CSV and a formatted analysis summary. (from rom-estimate standalone skill)
+
+**Announce:** "Starting ROM estimation. I'll analyze your project scope, expand tasks into sub-features, estimate effort, and generate a CSV with team composition and risk analysis."
+
+### Process
+
+1. **Gather input documents:**
+   - Parse `$ARGUMENTS` for file paths, Google Drive links, or inline content
+   - **Google Drive:** If the user provides a Drive folder URL or file link, use the Google Drive MCP to list and read project documents (Docs as Markdown, Sheets as CSV, PDFs). If Google Drive MCP is unavailable, inform the user and fall back to local file paths.
+   - **Local files:** Read files via the Read tool (ROADMAP.md, requirements, PRDs, task lists)
+   - **Pasted content:** Parse inline CSV, tables, or bullet lists from the arguments
+   - **No input:** Ask the user to provide a Google Drive link, file paths, paste a task list, or describe the project scope
+   - Check for optional flags: `--output=<path>` for custom CSV path, `--timeline=<weeks>` for FTE calculations
+
+2. **Analyze scope and identify epics:**
+   - Extract: project name, description, domain, timeline, team roles, technology stack, business constraints
+   - Group features into standard epics (Team Onboarding & Planning, Infrastructure & Foundation, Data Infrastructure, Application Backend, Application Frontend, AI/ML Platform, Integration, Security & Compliance, Testing & QA, Deployment & Operations, Observability)
+   - Create custom epics when the domain demands it (5+ features that don't fit standard categories)
+
+3. **Expand tasks into sub-features:**
+   - Break each high-level task into 2-5 granular sub-features
+   - Each sub-feature must be independently estimable, map to a clear deliverable, and have identifiable specialties
+   - Example: "RBAC" expands into permission model definition (S), middleware implementation (M), admin UI (M), API endpoints (M), frontend route guards (S)
+
+4. **Estimate effort for each sub-feature:**
+   - Assign effort level: XS (0.5-1d), S (1-3d), M (3-8d), L (8-15d), XL (15-20+d)
+   - Assign optimistic and pessimistic duration within the level range
+   - Assign specialties: DevOps, BE, FE, MLE I, MLE II, DE, QA, Security, Cloud Architecture, UI/UX
+   - Use the detailed sizing guide in `skills/rom-estimate/references/effort-levels.md` for complexity signals
+
+5. **Generate CSV file:**
+   - Default output path: `docs/rom-estimation/{slug}-rom.csv`
+   - Format: `epic;feature;effort_level;optimistic_duration;pessimistic_duration;specialities`
+   - Sort by epic name, then effort level descending (XL to XS)
+   - Create parent directories if needed
+
+6. **Display analysis summary:**
+   ```
+   ================================================================================
+   ROM ESTIMATION COMPLETE
+   ================================================================================
+
+   Project:  [name]
+   Timeline: [weeks] weeks
+   Features: [count] across [epic_count] epics
+   CSV:      [path]
+
+   EFFORT TOTALS
+   -------------
+   Optimistic:    [opt] person-days ([opt/5] weeks)
+   Pessimistic:   [pess] person-days ([pess/5] weeks)
+   Expected P50:  [avg] person-days ([avg/5] weeks)
+
+   EFFORT BY EPIC                                         % of Total
+   ----------------------------------------------------------------------
+   [epic]: [pct]% ([days] days)
+
+   EFFORT LEVEL DISTRIBUTION
+   -------------------------
+   XS: [n]  S: [n]  M: [n]  L: [n]  XL: [n]
+
+   TEAM REQUIREMENTS (for [timeline] weeks)
+   ----------------------------------------
+   [specialty]: [features] features, ~[FTE] FTE
+   Total: ~[total_fte] FTE
+
+   RISK FACTORS
+   ------------
+   - [XL items, external deps, compliance, migration, AI/ML uncertainty]
+
+   ASSUMPTIONS
+   -----------
+   - Team experienced with the tech stack
+   - Accounts/infrastructure provisioned before dev starts
+   - API specs and credentials available on schedule
+   - Standard business hours (8h/day, 5d/week)
+   - [project-specific assumptions]
+   ================================================================================
    ```

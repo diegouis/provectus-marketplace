@@ -20,6 +20,7 @@ This plugin provides comprehensive tooling for building, orchestrating, and opti
   - **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
   - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
   - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+  - **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
   - **GitLab**: Merge requests, CI/CD pipelines, and project management via `@modelcontextprotocol/server-gitlab`
   - **Playwright**: Browser automation for E2E testing and visual validation via `@playwright/mcp@latest`
   - **Rube (Composio)**: SaaS automation gateway providing access to 200+ integrations with session-based isolation and automatic OAuth via `https://rube.app/mcp`

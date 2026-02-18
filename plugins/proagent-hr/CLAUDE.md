@@ -93,6 +93,7 @@ The hooks configuration enforces:
 - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
 - **Google Sheets**: Spreadsheet operations — read, write, create sheets for comparison matrices via `@anthropic/mcp-server-google-sheets`
 - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **Rube (Composio)**: SaaS automation gateway providing access to BambooHR, Google Calendar, Slack, Gmail, and ATS systems (Greenhouse, Lever) via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
 
 ## Conventions

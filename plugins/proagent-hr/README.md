@@ -95,6 +95,7 @@ The plugin includes automated document validation via `hooks/hooks.json`:
 | Google Workspace | `mcp-gsuite` | Gmail and Google Calendar |
 | Google Sheets | `@anthropic/mcp-server-google-sheets` | Comparison matrices, batch reports |
 | GitHub | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions |
+| Excalidraw | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders canvases directly in chat via natural language |
 | Rube | `rube.app/mcp` | SaaS automation gateway (BambooHR, ATS systems, etc.) |
 
 ## Architecture

@@ -47,6 +47,7 @@ Three hooks enforce quality gates:
 - **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
 - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
 - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **GitLab**: Merge requests, CI/CD pipelines, and project management via `@modelcontextprotocol/server-gitlab`
 - **Jira**: Issue tracking, sprint management, and backlog grooming via `@modelcontextprotocol/server-atlassian`
 - **Confluence**: Documentation, ADRs, and knowledge base management via `@modelcontextprotocol/server-atlassian`

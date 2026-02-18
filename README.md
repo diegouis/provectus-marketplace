@@ -57,6 +57,32 @@ Each plugin's `.mcp.json` contains the MCP server configurations. Copy the serve
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
+**Important notes for Claude Desktop:**
+
+1. **Remote MCP servers** (Excalidraw, Rube) use `"url"` in `.mcp.json`, but Claude Desktop does not support the `url` format. Wrap them with `mcp-remote`:
+   ```json
+   {
+     "excalidraw": {
+       "command": "npx",
+       "args": ["-y", "mcp-remote", "https://mcp.excalidraw.com/mcp"]
+     }
+   }
+   ```
+
+2. **Google Drive and Google Workspace** require OAuth authentication before they will connect. Run the auth flow first:
+   - Google Drive: `npx -y @modelcontextprotocol/server-gdrive auth`
+   - Google Workspace (`mcp-gsuite`): Requires `.accounts.json` and OAuth setup — see [mcp-gsuite docs](https://github.com/MarkusMaal/mcp-gsuite)
+
+3. **GitLab** — If using a self-hosted GitLab instance (e.g., `gitlab.provectus.com`), update `GITLAB_API_URL` to point to your instance:
+   ```json
+   "GITLAB_API_URL": "https://gitlab.provectus.com/api/v4"
+   ```
+   The `GITLAB_PERSONAL_ACCESS_TOKEN` must be generated on that same instance (not `gitlab.com`).
+
+4. **Skills, commands, agents, and hooks** are Claude Code (CLI) features only — they do not work in Claude Desktop. Desktop gets MCP server integrations. To use plugin knowledge in Desktop, paste the plugin's `CLAUDE.md` and `skills/*/SKILL.md` content into a Project's custom instructions.
+
+5. **Edit the config while Claude Desktop is closed** — it may overwrite your changes on startup if edited while running.
+
 ## Plugin Anatomy
 
 Every plugin follows the same structure:
@@ -67,7 +93,7 @@ proagent-<practice>/
 │   └── plugin.json          # Metadata: name, version, description, resources
 ├── skills/
 │   └── <practice>-assistant/
-│       └── SKILL.md          # Core skill — activates automatically on trigger terms
+│       └── SKILL.md          # Core skill — activates on trigger terms (includes Excalidraw diagramming)
 ├── commands/
 │   ├── proagent-<practice>-hub.md    # /proagent-<practice>-hub — overview and routing
 │   ├── proagent-<practice>-run.md    # /proagent-<practice>-run — execute workflows
@@ -103,6 +129,7 @@ Every plugin ships with a core set of MCP servers. Additional servers are includ
 | **Google Drive** | `@modelcontextprotocol/server-gdrive` | Drive file listing, search, read. Docs exported as Markdown, Sheets as CSV, Slides as text |
 | **Google Workspace** | `mcp-gsuite` (via `uvx`) | Gmail (list, search, send, draft, modify) + Google Calendar (list, create, update, delete events) |
 | **GitHub** | `@modelcontextprotocol/server-github` | Repos, PRs, issues, Actions, code search |
+| **Excalidraw** | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language |
 
 ### Additional MCP Servers (per practice)
 
@@ -163,13 +190,13 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 | Metric | Count |
 |--------|-------|
 | Plugins | 14 |
-| Skills | 14 |
+| Skills | 15 |
 | Commands | 42 |
-| Agents | 14 |
-| Hooks | 36 |
-| MCP Servers (core) | 4 (Slack, Google Drive, Google Workspace, GitHub) |
+| Agents | 20 |
+| Hooks | 39 |
+| MCP Servers (core) | 5 (Slack, Google Drive, Google Workspace, GitHub, Excalidraw) |
 | MCP Servers (additional) | 4 (GitLab, Atlassian, Playwright, Rube) |
-| MCP Integrations | 30 |
+| MCP Integrations | 31 |
 | Source Assets | 843 |
 | Source Repos | 17 |
 

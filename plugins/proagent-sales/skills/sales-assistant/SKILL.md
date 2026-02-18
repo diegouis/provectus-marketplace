@@ -477,3 +477,28 @@ Source: `awesome-claude-skills` Composio app automation skills
 | Options Comparison | `taches-cc-resources/commands/research/options.md` | Side-by-side option evaluation with recommendations |
 | Stakeholder Management | `proagent/roles/project-manager/skills/stakeholder-management.md` | Stakeholder identification, engagement, and communication |
 | Brand Guidelines | `skills/skills/brand-guidelines/SKILL.md` | Visual styling for branded sales materials |
+
+## Visual Diagramming with Excalidraw
+
+Use the Excalidraw MCP server to generate interactive diagrams directly in the conversation. Describe what you need in natural language and Excalidraw renders it as an interactive canvas with hand-drawn style.
+
+### When to Use
+
+- Sales funnel and deal flow stage diagrams
+- Competitive landscape and market positioning maps
+- Proposal architecture and pricing flow visualizations
+- Pipeline management and forecast diagrams
+
+### Workflow
+
+1. Describe the diagram you need — be specific about components, relationships, and layout
+2. Review the rendered interactive diagram in the chat
+3. Request refinements by describing what to change (add/remove/rearrange elements)
+4. Use fullscreen mode for detailed editing when needed
+
+### Tips for Effective Diagrams
+
+- Name specific components and their connections (e.g., "API Gateway connects to Auth Service and User Service")
+- Specify layout direction when it matters (e.g., "left-to-right flow" or "top-down hierarchy")
+- Request specific diagram types (architecture diagram, flowchart, sequence diagram, ER diagram)
+- Iterate — start with the overall structure, then refine details

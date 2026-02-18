@@ -56,6 +56,7 @@ When performing ML & AI tasks, follow these standards:
 - **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
 - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
 - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 
 ## Source Repositories
 
@@ -66,7 +67,8 @@ This plugin draws patterns from: proagent (ML engineer role, skills, commands, t
 ```
 proagent-ml-ai/
   .claude-plugin/plugin.json
-  skills/ml-ai-assistant/SKILL.md
+  skills/
+    ml-ai-assistant/SKILL.md
   commands/proagent-ml-ai-hub.md
   commands/proagent-ml-ai-run.md
   commands/proagent-ml-ai-review.md

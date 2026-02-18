@@ -2,12 +2,19 @@
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest", "--isolated"],
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--isolated"
+      ],
       "description": "Playwright MCP server for browser automation and E2E testing. Provides tools to navigate pages, click elements, fill forms, take screenshots, and validate rendered content."
     },
     "github": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
       },
@@ -15,7 +22,10 @@
     },
     "gitlab": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gitlab"
+      ],
       "env": {
         "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_PERSONAL_ACCESS_TOKEN}",
         "GITLAB_API_URL": "${GITLAB_API_URL:-https://gitlab.com/api/v4}"
@@ -24,7 +34,10 @@
     },
     "jira": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-atlassian"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-atlassian"
+      ],
       "env": {
         "ATLASSIAN_API_TOKEN": "${ATLASSIAN_API_TOKEN}",
         "ATLASSIAN_EMAIL": "${ATLASSIAN_EMAIL}",
@@ -34,7 +47,12 @@
     },
     "slack": {
       "command": "npx",
-      "args": ["-y", "slack-mcp-server@latest", "--transport", "stdio"],
+      "args": [
+        "-y",
+        "slack-mcp-server@latest",
+        "--transport",
+        "stdio"
+      ],
       "env": {
         "SLACK_MCP_XOXC_TOKEN": "${SLACK_MCP_XOXC_TOKEN}",
         "SLACK_MCP_XOXD_TOKEN": "${SLACK_MCP_XOXD_TOKEN}",
@@ -44,11 +62,19 @@
     },
     "google-drive": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-gdrive"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gdrive"
+      ]
     },
     "google-workspace": {
       "command": "uvx",
-      "args": ["mcp-gsuite"]
+      "args": [
+        "mcp-gsuite"
+      ]
+    },
+    "excalidraw": {
+      "url": "https://mcp.excalidraw.com/mcp"
     }
   }
 }

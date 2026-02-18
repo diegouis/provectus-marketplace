@@ -606,3 +606,28 @@ Source: `awesome-claude-skills/composio-sdk/SKILL.md` (28 detailed rule files co
 | Bundle of related components | **Plugin** |
 | External service integration | **MCP Server** |
 | Complex multi-step task decomposition | **Multi-Agent Orchestration** |
+
+## Visual Diagramming with Excalidraw
+
+Use the Excalidraw MCP server to generate interactive diagrams directly in the conversation. Describe what you need in natural language and Excalidraw renders it as an interactive canvas with hand-drawn style.
+
+### When to Use
+
+- Agent orchestration flows and multi-agent topology diagrams
+- MCP server architecture and plugin component relationships
+- Prompt chain and workflow visualizations
+- Fan-out/fan-in patterns and parallel agent coordination
+
+### Workflow
+
+1. Describe the diagram you need — be specific about components, relationships, and layout
+2. Review the rendered interactive diagram in the chat
+3. Request refinements by describing what to change (add/remove/rearrange elements)
+4. Use fullscreen mode for detailed editing when needed
+
+### Tips for Effective Diagrams
+
+- Name specific components and their connections (e.g., "API Gateway connects to Auth Service and User Service")
+- Specify layout direction when it matters (e.g., "left-to-right flow" or "top-down hierarchy")
+- Request specific diagram types (architecture diagram, flowchart, sequence diagram, ER diagram)
+- Iterate — start with the overall structure, then refine details

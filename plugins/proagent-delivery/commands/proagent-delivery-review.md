@@ -1,7 +1,7 @@
 ---
 description: >
   Review delivery health: sprint-health, delivery-risks, timeline,
-  or stakeholder-alignment assessment.
+  stakeholder-alignment, or estimate-review assessment.
 argument-hint: "<mode> [target]"
 allowed-tools: Read, Glob, Grep, Task
 ---
@@ -14,7 +14,7 @@ You are the delivery health review engine for the proagent-delivery plugin. Pars
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `sprint-health`, `delivery-risks`, `timeline`, or `stakeholder-alignment`.
+Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `sprint-health`, `delivery-risks`, `timeline`, `stakeholder-alignment`, or `estimate-review`.
 
 ---
 
@@ -320,4 +320,94 @@ Evaluate stakeholder engagement and communication health.
    ### Overall Stakeholder Health
    **[ALIGNED / MINOR GAPS / SIGNIFICANT MISALIGNMENT]**
    [2-3 sentence summary]
+   ```
+
+---
+
+## Mode: estimate-review
+
+Audit an existing ROM estimate CSV for completeness, sizing accuracy, epic coverage, team composition balance, and risk identification. (from rom-estimate standalone skill)
+
+**Announce:** "Starting ROM estimate review. I'll audit the CSV for sizing accuracy, missing coverage, team balance, and risk factors."
+
+### Process
+
+1. **Load the ROM estimate:**
+   - If `$ARGUMENTS` includes a file path or Google Drive link, read the CSV from that location
+   - Otherwise, search for ROM files: `docs/rom-estimation/*-rom.csv`, or ask the user for the file path
+   - Parse the semicolon-delimited CSV: `epic;feature;effort_level;optimistic_duration;pessimistic_duration;specialities`
+
+2. **Completeness check:**
+   - Are all standard epics represented? Flag missing epics that are typically needed for the project type
+   - Are there any epics with fewer than 2 features? (may indicate under-scoping)
+   - Are there features without specialties assigned?
+   - Are there features without duration ranges?
+   - Check for "catch-all" epics with too many unrelated features
+
+3. **Sizing accuracy review:**
+   - Flag features where effort level doesn't match the duration range (e.g., M-level with 1-2d durations)
+   - Identify features that may be under-estimated based on complexity signals:
+     - Multi-service integrations at S or below
+     - AI/ML features at M or below
+     - Cross-account/migration features at L or below
+   - Identify features that may be over-estimated:
+     - Config changes or documentation at M or above
+     - Single CRUD endpoints at L or above
+   - Reference `skills/rom-estimate/references/effort-levels.md` for red flag signals
+
+4. **Team composition analysis:**
+   - Count features per specialty and calculate workload balance
+   - Identify specialties with disproportionate load (>30% of total effort)
+   - Flag specialties mentioned in features but not represented in the team
+   - Calculate FTE requirements per specialty for the stated timeline
+   - Identify bottleneck specialties (single-threaded work streams)
+
+5. **Risk and dependency review:**
+   - Count XL features (each is a risk factor)
+   - Identify features with external dependencies
+   - Flag compliance-related features that may require audit time
+   - Check if testing effort is proportional to implementation effort (minimum 15-20%)
+   - Identify sequential dependencies between epics
+
+6. **Output audit report:**
+   ```
+   ## ROM Estimate Review: [Project Name]
+   Review Date: [Date]
+   Source CSV: [path]
+
+   ### Summary
+   - Total features: [count]
+   - Total epics: [count]
+   - Effort range: [opt]-[pess] person-days
+
+   ### Completeness
+   | Check | Status | Notes |
+   |-------|--------|-------|
+   | All standard epics covered | Pass/Warn | [missing epics] |
+   | All features have sizing | Pass/Warn | [count missing] |
+   | All features have specialties | Pass/Warn | [count missing] |
+   | No catch-all epics | Pass/Warn | [flagged epics] |
+
+   ### Sizing Concerns
+   | Feature | Current Level | Suggested Level | Reason |
+   |---------|---------------|-----------------|--------|
+
+   ### Team Composition
+   | Specialty | Features | % of Effort | FTE Needed | Status |
+   |-----------|----------|-------------|------------|--------|
+
+   ### Risk Factors
+   - XL features: [count] ([list])
+   - External dependencies: [count]
+   - Compliance features: [count]
+   - Testing coverage: [test effort]% of total ([adequate/insufficient])
+
+   ### Recommendations
+   1. [Most impactful improvement]
+   2. [Second priority]
+   3. [Third priority]
+
+   ### Overall Estimate Health
+   **[SOLID / NEEDS REFINEMENT / SIGNIFICANT GAPS]**
+   [2-3 sentence summary with confidence level]
    ```
