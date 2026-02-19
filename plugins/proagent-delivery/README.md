@@ -106,7 +106,7 @@ Audit an existing SOW for completeness, scope specificity, pricing alignment, ti
 | Command | `proagent-delivery:proagent-delivery-review` | Delivery health reviews (8 modes) |
 | Agent | `proagent-delivery:delivery-specialist` | Subagent for assessments and reports |
 | Agent | `proagent-delivery:sow-context-extractor` | SOW context extraction from Slack + Drive |
-| Hook | Status update reminder | 3-day freshness check, milestone proximity alert |
+| Hook | Status update reminder | Suggests status report after git commits |
 | Hook | Milestone check | Acceptance criteria and stakeholder notification before release |
 | Hook | Sprint boundary notification | Follow-up actions after planning and retrospective |
 | Hook | SOW output notification | Share SOW with stakeholders after generation |

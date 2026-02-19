@@ -86,7 +86,7 @@ You optimize team capacity and resource distribution:
 You generate AI-assisted standup notes from multiple data sources (from `agents` repo `plugins/team-collaboration/commands/standup-notes.md`):
 - Analyze git commit history (last 24-48h) and group related commits into accomplishment bullets
 - Query Jira tickets for status updates and correlate with commits
-- Extract meeting outcomes and task completions from Obsidian vault or daily notes
+- Extract meeting outcomes and task completions from local files (TO-DOS.md, CHANGELOG.md, sprint backlog)
 - Format for async standup patterns: written-only Slack posts, thread-based discussions, rolling 24-hour windows
 - Focus on delivered value ("Shipped user auth") not activity ("Worked on auth")
 - Auto-extract follow-up tasks: blockers requiring escalation, promised deliverables, dependencies on others
