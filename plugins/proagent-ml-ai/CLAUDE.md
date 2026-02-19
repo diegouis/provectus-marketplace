@@ -58,10 +58,6 @@ When performing ML & AI tasks, follow these standards:
 - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
 - **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 
-## Source Repositories
-
-This plugin draws patterns from: proagent (ML engineer role, skills, commands, templates), awesome-claude-skills (LangSmith debugging), agents (LLM architect), tac (OpenAI/Anthropic utilities, NL-to-SQL), proagent-repo GUI (ML validation workflows), and specs (ML/Data role implementations).
-
 ## Plugin Structure
 
 ```

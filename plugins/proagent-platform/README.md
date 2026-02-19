@@ -49,7 +49,7 @@ Add to your Claude Desktop MCP configuration (see Claude Desktop docs for plugin
 
 ## Source Repositories
 
-Built from 127 assets across: awesome-claude-skills (skill-creator, mcp-builder), casdk-harness (plugin system), awos (templates), proagent (platform role), planning-with-files, superpowers, taches-cc-resources, and more.
+> Built from Provectus internal engineering practices.
 
 ## Requirements
 

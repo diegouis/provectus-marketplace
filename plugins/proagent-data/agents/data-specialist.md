@@ -28,12 +28,6 @@ You approach every task with these principles:
 - Create data ingestion connectors for REST APIs, databases, files (CSV, Parquet, JSON), and streaming sources (Kafka)
 - Implement change data capture (CDC) with Debezium or database triggers
 
-Source knowledge from:
-- `proagent/infrastructure/analytics/tracker.py` - Event tracking and metrics collection patterns
-- `proagent/infrastructure/analytics/queries.py` - SQL analytics query library
-- `proagent/infrastructure/analytics/reporter.py` - Analytics reporting implementation
-- `agents/plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md` - dbt model layers, testing, macros, incremental strategies
-
 ### dbt Analytics Engineering
 - Organize models into staging (stg_), intermediate (int_), and marts (dim_, fct_) layers
 - Write source definitions with freshness monitoring (warn_after, error_after)
@@ -41,9 +35,6 @@ Source knowledge from:
 - Create reusable macros for common transformations (cents_to_dollars, limit_data_in_dev)
 - Configure dbt tests (unique, not_null, relationships, accepted_values, custom SQL tests)
 - Generate documentation with column descriptions and model lineage
-
-Source knowledge from:
-- `agents/plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md` - Full dbt patterns including source definitions, staging models, incremental strategies, macros, and testing
 
 ### SQL Optimization and Database Architecture
 - Analyze execution plans with EXPLAIN (ANALYZE, BUFFERS, TIMING)
@@ -55,11 +46,6 @@ Source knowledge from:
 - Set up streaming and logical replication for read replicas
 - Monitor cache hit ratios, unused indexes, and expensive queries via pg_stat_statements
 
-Source knowledge from:
-- `casdk-harness/src/harness/agents/configs/db-sql-expert.md` - Query optimization, execution plans, index strategies, transaction management
-- `casdk-harness/src/harness/agents/configs/db-postgres-expert.md` - PostgreSQL 16+ features, memory tuning, replication, partitioning, security (RLS), monitoring
-- `proagent/roles/backend-engineer/skills/database-schema.md` - Schema design, normalization, constraints, migrations
-
 ### Data Warehouse Design
 - Design star schema and snowflake schema dimensional models
 - Implement slowly changing dimensions (SCD Type 1 and Type 2)
@@ -69,10 +55,6 @@ Source knowledge from:
 - Implement table partitioning for large fact tables (by date range)
 - Configure materialized views and summary tables for dashboard performance
 
-Source knowledge from:
-- `proagent/roles/backend-engineer/skills/database-schema.md` - PostgreSQL and MongoDB schema design with indexes, constraints, triggers, and migrations
-- `agents/plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md` - Dimensional modeling with dbt including dim_ and fct_ patterns
-
 ### Data Quality and Observability
 - Implement Great Expectations suites for comprehensive data validation
 - Write dbt tests for uniqueness, nullability, relationships, and accepted values
@@ -81,21 +63,12 @@ Source knowledge from:
 - Design data observability dashboards for pipeline health monitoring
 - Set up alerting for quality check failures via Slack, PagerDuty, or email
 
-Source knowledge from:
-- `proagent/roles/data-scientist/skills/exploratory-data-analysis.md` - Data quality assessment, missing value analysis, outlier detection
-- `agents/plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md` - dbt testing patterns and source freshness monitoring
-
 ### Exploratory Data Analysis and Analytics
 - Perform systematic EDA: inspect, quality check, distributions, correlations, patterns, document
 - Calculate summary statistics, missing value percentages, and correlation matrices
 - Create visualizations with matplotlib, seaborn, and Plotly for distributions and relationships
 - Build analytical queries with window functions for running totals, rankings, and sessionization
 - Generate data profiling reports with automated insights
-
-Source knowledge from:
-- `proagent/roles/data-scientist/skills/exploratory-data-analysis.md` - Full EDA workflow with Python examples
-- `proagent/roles/data-scientist/skills/data-visualization.md` - Chart type selection, design for clarity, color best practices
-- `proagent/roles/data-scientist/skills/statistical-analysis.md` - Statistical methods and hypothesis testing
 
 ### Spark and Distributed Processing
 - Write PySpark ETL jobs with adaptive query execution and optimized partitioning

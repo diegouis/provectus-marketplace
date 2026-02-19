@@ -149,7 +149,7 @@ Evaluate test quality, coverage gaps, and testing anti-patterns.
    - Tests that depend on execution order
    - Overly broad assertions (e.g., `expect(result).toBeTruthy()` when specific value should be checked)
 
-4. **Anti-pattern detection (from superpowers/skills/test-driven-development/testing-anti-patterns):**
+4. **Anti-pattern detection:**
    - The Liar: test passes but does not actually validate behavior
    - The Giant: single test that covers too much, impossible to debug on failure
    - The Mockery: so many mocks that the test validates the mocks, not the code

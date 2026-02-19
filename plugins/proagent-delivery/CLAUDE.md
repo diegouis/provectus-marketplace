@@ -1,6 +1,6 @@
 # ProAgent Delivery Plugin
 
-This plugin provides comprehensive project delivery management for Claude Code. It was synthesized from 8 source repositories including proagent (project-manager roles), awesome-claude-skills (internal-comms), taches-cc-resources (prioritization frameworks), and awos (product/roadmap commands).
+This plugin provides comprehensive project delivery management for Claude Code.
 
 ## Plugin Structure
 
@@ -70,16 +70,3 @@ Key features:
 - Executive summary with FTE estimates, epic breakdown, and risk factors
 
 The `estimate-review` review mode audits existing ROM CSVs for completeness, sizing accuracy, and team balance.
-
-## Source Attribution
-
-Key patterns and content were drawn from:
-- **proagent** -- Project-manager role skills (meeting facilitation, risk assessment, status reporting, stakeholder management, spec creation), weekly standup command, project charter template
-- **awesome-claude-skills** -- Internal communications skill (3P updates, newsletters, FAQ responses, general comms)
-- **taches-cc-resources** -- Prioritization frameworks (Eisenhower matrix, Pareto analysis, 5 Whys root cause, SWOT mapping, inversion, first principles), todo management workflows
-- **awos** -- Product definition and roadmap commands, product definition template, roadmap template
-- **proagent-repo GUI** -- KPI framework for measuring agentic coding effectiveness, planning from specifications
-- **ralph-orchestrator** -- Code task listing with status and metadata
-- **skills** -- Third-party update templates
-- **specs** -- Business role implementation patterns
-- **rom-estimate** -- ROM estimation skill with effort sizing guide, epic taxonomy, and sample output

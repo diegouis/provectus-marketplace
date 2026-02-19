@@ -88,21 +88,4 @@ Set the environment variables for the services your team uses. Unused servers wi
 
 ## Source Repositories
 
-This plugin synthesizes patterns and content from 17 open-source repositories:
-
-- **awos** -- Architecture command, verification workflow, document hierarchy, spec templates
-- **casdk-harness** -- Code review checklist (8 dimensions), automated review pipeline, documentation and git workflow skills
-- **superpowers** -- TDD planning with bite-sized tasks, code review dispatch, testing anti-patterns, branch completion, subagent-driven development
-- **tac** -- Semantic commit generation, automated PR creation, review command with spec compliance, full SDLC pipeline orchestration (adw_sdlc.py)
-- **ralph-orchestrator** -- Spec-driven development workflow, TDD SOP, codebase summary, cargo-fmt quality gates
-- **awesome-claude-skills** -- Changelog generation from git commits
-- **proagent** -- Technical writer roles (user guide creation, information architecture), project manager spec creation
-- **planning-with-files** -- File-based planning with hooks and task plan templates
-- **agents** -- C4 architecture documentation, full-stack feature orchestration, conductor workflow agent
-- **taches-cc-resources** -- Hierarchical project planning, plan execution, expert debugging, feasibility studies
-- **root-claude-config** -- Multi-agent implementation orchestrator, structured interview workflow
-- **Auto-Claude** -- Pre-commit hooks with linting/testing, conventional commit validation, release drafter, CodeRabbit config, Dependabot
-- **proagent-repo GUI** -- SDLC pipeline orchestration engine, build/review/plan commands, workflow definitions
-- **skills** -- Collaborative document co-authoring
-- **specs** -- Gap analysis and implementation planning
-- **gastown** -- Pre-push validation hooks
+> Built from Provectus internal engineering practices.

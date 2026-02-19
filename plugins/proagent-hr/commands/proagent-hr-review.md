@@ -158,7 +158,7 @@ Analyze team structure, skills distribution, and organizational health.
    - Assess level distribution (healthy pyramid vs. top-heavy or flat structures)
    - Evaluate diversity of experience backgrounds and perspectives
    - Check manager-to-IC ratio against organizational benchmarks (target: 5-8 ICs per manager)
-   - Review meeting behavioral patterns if transcript data is available (derived from meeting-insights-analyzer)
+   - Review meeting behavioral patterns if transcript data is available
 
 4. **Succession Planning**
    - Identify critical roles with no backup coverage

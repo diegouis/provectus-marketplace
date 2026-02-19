@@ -35,8 +35,6 @@ Every pipeline should follow this ordered progression:
 
 ### GitHub Actions Pipeline Pattern
 
-Derived from `proagent/roles/devops-engineer/skills/cicd-pipeline.md` and `agents/plugins/cicd-automation/skills/github-actions-templates/SKILL.md`:
-
 ```yaml
 name: CI/CD Pipeline
 
@@ -141,8 +139,6 @@ jobs:
 
 ### GitLab CI Pipeline Pattern
 
-Derived from `proagent/roles/devops-engineer/skills/cicd-pipeline.md` and `casdk-harness/src/harness/agents/configs/infra-gitlab-ci-expert.md`:
-
 ```yaml
 stages:
   - test
@@ -209,8 +205,6 @@ deploy:production:
 
 ### Optimized Multi-Stage Dockerfile
 
-Derived from `casdk-harness/src/harness/agents/configs/infra-docker-engineer.md` and `casdk-harness/agents/main/Dockerfile`:
-
 ```dockerfile
 # Build stage
 FROM node:20-alpine AS builder
@@ -240,8 +234,6 @@ CMD ["node", "dist/index.js"]
 ```
 
 ### Docker Compose Production Pattern
-
-Derived from `casdk-harness/docker-compose.yml` and `casdk-harness/src/harness/agents/configs/infra-docker-engineer.md`:
 
 ```yaml
 version: '3.9'
@@ -345,8 +337,6 @@ volumes:
 
 ### Application Deployment Pattern
 
-Derived from `proagent/roles/devops-engineer/skills/kubernetes-orchestration.md` and `agents/plugins/kubernetes-operations/agents/kubernetes-architect.md`:
-
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -440,8 +430,6 @@ spec:
 
 ### GitOps with ArgoCD
 
-Derived from `agents/plugins/kubernetes-operations/skills/gitops-workflow/SKILL.md`:
-
 - Store all Kubernetes manifests in a Git repository as the single source of truth
 - Use ArgoCD Application CRDs to define sync policies and health checks
 - Implement environment promotion via pull requests (dev -> staging -> production)
@@ -449,8 +437,6 @@ Derived from `agents/plugins/kubernetes-operations/skills/gitops-workflow/SKILL.
 - Use Kustomize overlays or Helm value files for environment-specific configuration
 
 ### Helm Chart Best Practices
-
-Derived from `agents/plugins/kubernetes-operations/skills/helm-chart-scaffolding/SKILL.md`:
 
 - Maintain a standardized chart structure with Chart.yaml, values.yaml, and templates/
 - Use `.helmignore` to exclude unnecessary files from chart packages
@@ -460,7 +446,7 @@ Derived from `agents/plugins/kubernetes-operations/skills/helm-chart-scaffolding
 
 ## Agent Workload Operations
 
-When running AI agent workloads in production (patterns from Auto-Claude):
+When running AI agent workloads in production:
 
 - **OOM prevention**: Cap input sizes, monitor memory usage, set process limits
 - **Orphaned agent cleanup**: Monitor agent processes and terminate those exceeding time or resource bounds
@@ -470,8 +456,6 @@ When running AI agent workloads in production (patterns from Auto-Claude):
 ## Monitoring and Observability
 
 ### Prometheus Metrics Collection
-
-Derived from `casdk-harness/src/harness/monitoring.py` and `casdk-harness/config/monitoring/prometheus.yml`:
 
 Key metrics to track:
 - `request_duration_seconds` - Request latency histogram
@@ -515,8 +499,6 @@ groups:
 
 ### Postmortem Template
 
-Derived from `agents/plugins/incident-response/skills/postmortem-writing/SKILL.md`:
-
 Follow blameless postmortem principles:
 1. **Timeline** - Document exact times for detection, escalation, mitigation, and resolution
 2. **Root Cause Analysis** - Use the 5 Whys method to identify systemic causes
@@ -552,8 +534,6 @@ Follow blameless postmortem principles:
 5. Complete rollout when confidence is established
 
 ### Rollback Procedure
-
-Derived from `casdk-harness/src/harness/agents/configs/infra-docker-engineer.md`:
 
 ```bash
 #!/bin/bash
@@ -629,30 +609,6 @@ Add the Rube MCP server to your `.mcp.json`:
   "url": "https://rube.app/mcp"
 }
 ```
-
-Source: `awesome-claude-skills` Composio app automation skills
-
-## Reference Assets
-
-| Asset | Source | Description |
-|-------|--------|-------------|
-| CI/CD Pipeline Skill | `proagent/roles/devops-engineer/skills/cicd-pipeline.md` | Full pipeline design patterns for GitHub Actions, GitLab CI, Jenkins |
-| Kubernetes Orchestration | `proagent/roles/devops-engineer/skills/kubernetes-orchestration.md` | Deployment, Service, Ingress, HPA, StatefulSet patterns |
-| Docker Containerization | `proagent/roles/devops-engineer/skills/docker-containerization.md` | Multi-stage builds, optimization, security |
-| Docker Engineer Agent | `casdk-harness/src/harness/agents/configs/infra-docker-engineer.md` | Production Docker Compose, monitoring, deployment scripts |
-| K8s Engineer Agent | `casdk-harness/src/harness/agents/configs/infra-k8s-engineer.md` | Kubernetes cluster management |
-| GCP Architect Agent | `casdk-harness/src/harness/agents/configs/infra-gcp-architect.md` | Google Cloud architecture patterns |
-| GitLab CI Expert Agent | `casdk-harness/src/harness/agents/configs/infra-gitlab-ci-expert.md` | GitLab CI pipeline patterns |
-| GitHub Actions Templates | `agents/plugins/cicd-automation/skills/github-actions-templates/SKILL.md` | Reusable workflow templates |
-| Postmortem Writing | `agents/plugins/incident-response/skills/postmortem-writing/SKILL.md` | Blameless postmortem methodology |
-| Kubernetes Architect | `agents/plugins/kubernetes-operations/agents/kubernetes-architect.md` | GitOps, service mesh, platform engineering |
-| Helm Chart Scaffolding | `agents/plugins/kubernetes-operations/skills/helm-chart-scaffolding/SKILL.md` | Helm chart best practices |
-| GitOps Workflow | `agents/plugins/kubernetes-operations/skills/gitops-workflow/SKILL.md` | ArgoCD/Flux GitOps patterns |
-| Release Bump | `ralph-orchestrator/.claude/skills/release-bump/SKILL.md` | Version bump automation |
-| CI Workflow | `Auto-Claude/.github/workflows/ci.yml` | Cross-platform CI pipeline |
-| Release Workflow | `Auto-Claude/.github/workflows/release.yml` | Multi-platform release workflow |
-| Prometheus Config | `casdk-harness/config/monitoring/prometheus.yml` | Prometheus monitoring setup |
-| Deployment Orchestrator | `proagent-repo GUI/core/orchestration/sdlc/deployer.py` | SDLC deployment automation |
 
 ## Visual Diagramming with Excalidraw
 

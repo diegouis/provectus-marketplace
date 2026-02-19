@@ -51,4 +51,4 @@ proagent-platform/
 
 ## Source Repositories
 
-This plugin synthesizes assets from: skill-creator, mcp-builder, casdk-harness plugin system, awos templates, proagent platform role, planning-with-files, superpowers, and taches-cc-resources.
+> Built from Provectus internal engineering practices.

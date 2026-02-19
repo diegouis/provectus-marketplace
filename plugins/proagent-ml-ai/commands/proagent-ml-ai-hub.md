@@ -88,12 +88,3 @@ To get started, tell me what you need help with:
 - "Deploy my model to SageMaker" -> `/proagent-ml-ai-run deploy-model`
 - "Review my training code for issues" -> `/proagent-ml-ai-review`
 
-## Source Assets
-
-This plugin is built from production patterns across these Provectus repositories:
-- **proagent** - ML engineer role definitions, skills (model training, feature engineering, model selection, hyperparameter tuning, model evaluation, experiment tracking, model deployment), commands, and templates
-- **awesome-claude-skills** - LangSmith fetch for LangChain/LangGraph agent debugging
-- **agents** - LLM architect for RAG systems and agent architectures
-- **tac** - OpenAI and Anthropic LLM utilities, NL-to-SQL LLM processor
-- **proagent-repo GUI** - ML engineer validation workflows
-- **specs** - ML/Data role implementations and specifications

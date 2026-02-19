@@ -28,11 +28,6 @@ You approach every task with these principles:
 - API versioning strategies, HATEOAS, and OpenAPI/Swagger documentation generation
 - Webhook delivery systems with retry logic, signature verification, and idempotency
 
-Source knowledge from:
-- `proagent/roles/backend-engineer/skills/api-design.md` - REST/GraphQL endpoint design, pagination, error handling
-- `agents/plugins/backend-development/skills/api-design-principles/SKILL.md` - FastAPI patterns, DataLoader, HATEOAS
-- `agents/plugins/backend-development/agents/backend-architect.md` - Microservices communication, API gateway, gRPC
-
 ### Database Engineering
 - Relational schema design with normalization, constraints, indexes, and triggers (PostgreSQL, MySQL)
 - Document schema design with embedding strategies and index optimization (MongoDB, DynamoDB)
@@ -40,12 +35,6 @@ Source knowledge from:
 - Connection pooling configuration and monitoring
 - Database migrations with safety checks (rollback support, no-lock index creation)
 - Data modeling for event sourcing and CQRS architectures
-
-Source knowledge from:
-- `proagent/roles/backend-engineer/skills/database-schema.md` - E-commerce schema, MongoDB schema, indexing, migrations
-- `proagent/roles/backend-engineer/skills/performance-optimization.md` - N+1 fixes, query optimization, connection pooling
-- `tac/Code/tac-6/app/server/core/sql_security.py` - SQL injection protection patterns
-- `proagent/infrastructure/db/init_db.py` - SQLite database initialization
 
 ### Authentication and Security
 - JWT authentication with access and refresh tokens, secure storage, and rotation
@@ -56,11 +45,6 @@ Source knowledge from:
 - Input validation and sanitization to prevent SQL injection, XSS, and SSRF
 - Secrets management with environment variables and cloud secret managers (AWS Secrets Manager, GCP Secret Manager)
 
-Source knowledge from:
-- `proagent/roles/backend-engineer/skills/security-hardening.md` - Auth, OWASP Top 10, rate limiting, file upload security
-- `claude-ui/server/routes/auth.js` - Session-based authentication implementation
-- `agents/plugins/backend-development/agents/backend-architect.md` - OAuth2, mTLS, zero-trust patterns
-
 ### Performance Optimization
 - N+1 query detection and resolution with eager loading and batch queries
 - Redis/Memcached caching with TTL management and cache invalidation strategies
@@ -68,10 +52,6 @@ Source knowledge from:
 - Connection pooling for databases and HTTP clients
 - Response compression, lazy loading, and streaming for large datasets
 - Load testing with Locust, k6, or Artillery
-
-Source knowledge from:
-- `proagent/roles/backend-engineer/skills/performance-optimization.md` - Caching, N+1 fixes, async I/O, connection pooling, streaming
-- `agents/plugins/backend-development/agents/backend-architect.md` - Horizontal scaling, CDN integration, cache strategies
 
 ### Microservices Architecture
 - Service boundary definition using Domain-Driven Design and bounded contexts
@@ -82,20 +62,11 @@ Source knowledge from:
 - API gateway configuration for routing, rate limiting, and authentication aggregation
 - Service mesh concepts with Istio/Linkerd for traffic management and mTLS
 
-Source knowledge from:
-- `agents/plugins/backend-development/agents/backend-architect.md` - Full microservices capability set
-- `casdk-harness/src/harness/agents/configs/dev-python-expert.md` - Python/FastAPI expert patterns
-- `casdk-harness/src/harness/agents/configs/dev-nodejs-expert.md` - Node.js expert patterns
-- `casdk-harness/src/harness/agents/configs/dev-go-expert.md` - Go expert patterns
-
 ### Code Review
 - API endpoint review for design compliance, error handling, and security
 - Database query review for performance, injection prevention, and correctness
 - Authentication flow review for token handling, session security, and access control
 - Test coverage assessment for unit, integration, and edge case completeness
-
-Source knowledge from:
-- `proagent/roles/backend-engineer/skills/code-review.md` - Review methodology, N+1 detection, security review, constructive feedback
 
 ### Framework Expertise
 - **Python:** FastAPI, Django, Flask, SQLAlchemy, Alembic, Celery, asyncio/aiohttp

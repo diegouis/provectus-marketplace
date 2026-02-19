@@ -37,7 +37,7 @@ Depending on which operations you use, install the following CLI tools:
 | `bandit` | Python SAST scanning | `pip install bandit` |
 | `pip-audit` | Python dependency audit | `pip install pip-audit` |
 | `trivy` | Container and filesystem scanning | [aquasecurity.github.io](https://aquasecurity.github.io/trivy/) |
-| `semgrep` | Multi-language SAST | [semgrep.dev](https://semgrep.dev/docs/getting-started/) |
+| `semgrep` | Multi-language SAST (OSS tier) | [semgrep.dev](https://semgrep.dev/docs/getting-started/) |
 | `govulncheck` | Go vulnerability scanning | `go install golang.org/x/vuln/cmd/govulncheck@latest` |
 | `gh` | GitHub security alerts and APIs | [cli.github.com](https://cli.github.com/) |
 | `glab` | GitLab security reports and APIs | [gitlab.com](https://gitlab.com/gitlab-org/cli) |
@@ -137,18 +137,7 @@ Use the security-assistant skill to review this API for OWASP Top 10 vulnerabili
 
 ## Source Repositories
 
-This plugin is built from production patterns across 10 Provectus repositories with 51 total assets (37 high-reuse). Key sources include:
-
-- **proagent** - Security hardening skill with authentication, authorization, input validation, encryption, and OWASP patterns
-- **proagent-repo GUI** - Zero Trust Execution engine with trust assessor, trust ladder, and policy compliance monitoring
-- **casdk-harness** - Production hardening plan with CVSS-scored vulnerabilities, tool restriction patterns, permission allow/deny lists
-- **Auto-Claude** - CodeQL/Bandit security scanning pipeline, Dependabot configuration, VirusTotal artifact scanning, secrets ignore templates
-- **awesome-claude-code** - Repository security evaluation framework with Claude Code ecosystem risk analysis
-- **agents** - Security auditor agent with DevSecOps, OWASP, compliance, threat modeling, and incident response capabilities
-- **tac** - SQL injection prevention implementation and E2E security testing commands
-- **claude-ui** - CSRF protection middleware, rate limiting middleware, encryption utilities, password hashing
-- **gastown** - Security policy and vulnerability reporting, security audit workflow formulas, watchdog chain monitoring
-- **superpowers** - Defense-in-depth security strategy
+> Built from Provectus internal engineering practices.
 
 ## Version
 

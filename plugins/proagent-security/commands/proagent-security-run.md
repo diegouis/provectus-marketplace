@@ -32,7 +32,7 @@ Execute a multi-layer vulnerability scan on the codebase.
    - For Python projects: Run `bandit -r src/ -ll -ii -f json` to scan for common vulnerabilities (B101-B703)
    - For JavaScript/TypeScript: Check for ESLint security plugin configuration, scan with `npx eslint --rule 'no-eval: error'`
    - For all languages: Recommend CodeQL configuration if not already present
-   - Check for Semgrep rules and suggest security-focused rulesets
+   - Check for Semgrep (OSS tier) rules and suggest security-focused rulesets
 3. **Run Dependency Vulnerability Audit:**
    - For Node.js: Execute `npm audit --audit-level=high` and parse results
    - For Python: Execute `pip-audit --strict --desc` or `safety check --full-report`

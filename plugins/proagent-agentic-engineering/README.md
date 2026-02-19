@@ -188,21 +188,6 @@ Expert sub-agent that understands the complete Claude Code component architectur
 | Playwright | `@playwright/mcp` | Browser automation for testing agent-built applications |
 | Rube | `rube.app/mcp` | SaaS automation via Composio SDK |
 
-## Source Repositories
-
-This plugin synthesizes patterns from 19 repositories containing 612 assets (445 high-reuse):
-
-| Repository | Key Assets |
-|------------|-----------|
-| casdk-harness | Context engineering plugin (5 skills), 14 agent definitions, orchestration patterns |
-| superpowers | Subagent-driven development, parallel agents, TDD, brainstorming, 13 skills |
-| awesome-claude-skills | Skill creator, MCP builder, template skill, 30+ skills |
-| taches-cc-resources | Agent/hook/command creation skills, 27 commands, 3 auditor agents |
-| ralph-orchestrator | Prompt-Driven Development, evaluation framework, code-assist |
-| proagent-repo GUI | TAC principles (ADW, Core Four, Trust Ladder), Google Drive MCP |
-| planning-with-files | File-based planning with hooks, plan execution |
-| awos | Product-to-implementation pipeline (16 commands) |
-
 ## License
 
 MIT

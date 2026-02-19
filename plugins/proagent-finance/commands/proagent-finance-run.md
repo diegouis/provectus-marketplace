@@ -155,7 +155,7 @@ Analyze spending patterns, identify savings opportunities, and recommend optimiz
 
 1. **Gather expense data:**
    - Locate expense records: invoices, bank statements, accounting exports, receipt folders
-   - Use the invoice-organizer pattern (from awesome-claude-skills) to scan and extract data from invoice files if needed
+   - Use the invoice-organizer pattern to scan and extract data from invoice files if needed
    - Parse into structured format: date, vendor, amount, category, description
 
 2. **Categorize and aggregate:**
@@ -263,7 +263,7 @@ Create, organize, or reconcile invoices.
      ```
    - Save to `invoices/YYYY-MM-DD Client - Invoice - INV-YYYY-NNNN.md`
 
-3. **Invoice Organization (from awesome-claude-skills/invoice-organizer):**
+3. **Invoice Organization:**
    - Scan the target folder for invoice files (PDF, JPG, PNG, documents)
    - For each file, extract: vendor/company name, invoice number, date, amount, description
    - Rename to standardized format: `YYYY-MM-DD Vendor - Invoice - Description.ext`

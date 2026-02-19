@@ -24,7 +24,6 @@ Create a new Claude Code sub-agent definition.
 5. Save to `.claude/agents/agent-name.md` or plugin `agents/` directory
 6. Test discovery with natural language queries
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/agent-definition-creation/SKILL.md`
 
 ### create-skill
 Create a new Claude Code skill (model-invoked autonomous capability).
@@ -41,7 +40,6 @@ Create a new Claude Code skill (model-invoked autonomous capability).
 6. Add supporting files (scripts/, references/, assets/, examples/)
 7. Test autonomous activation with natural language
 
-Reference: `awesome-claude-skills/skill-creator/SKILL.md`, `casdk-harness/src/harness/plugins/context-engineering/skills/skill-creation/SKILL.md`
 
 ### create-command
 Create a new Claude Code slash command.
@@ -61,7 +59,6 @@ Create a new Claude Code slash command.
 4. Save to `.claude/commands/` or plugin `commands/` directory
 5. Test with various argument combinations
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/command-creation/SKILL.md`
 
 ### create-hook
 Create a Claude Code lifecycle hook for deterministic automation.
@@ -79,7 +76,6 @@ Create a Claude Code lifecycle hook for deterministic automation.
 5. Test security (no credential exposure, safe logging)
 6. Add to `.claude/settings.json` hooks section or plugin `hooks/hooks.json`
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/hook-configuration/SKILL.md`
 
 ### create-mcp
 Create a new MCP (Model Context Protocol) server.
@@ -100,7 +96,6 @@ Create a new MCP (Model Context Protocol) server.
 6. Test with evaluation harness
 7. Create 10 evaluation questions (independent, read-only, complex, verifiable)
 
-Reference: `awesome-claude-skills/mcp-builder/SKILL.md`
 
 ### create-plugin
 Create a complete Claude Code plugin bundling multiple components.
@@ -125,7 +120,6 @@ Create a complete Claude Code plugin bundling multiple components.
 6. Write README.md with installation and usage instructions
 7. Test locally with `/plugin install /path/to/plugin`
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/plugin-development/SKILL.md`
 
 ### orchestrate
 Design and implement a multi-agent orchestration workflow.
@@ -144,7 +138,6 @@ Design and implement a multi-agent orchestration workflow.
 7. Track progress with logging and checkpoints
 8. Budget token usage across agents
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/patterns/multi-agent-orchestration.md`, `superpowers/skills/subagent-driven-development/SKILL.md`
 
 ### evaluate
 Evaluate an agent system's effectiveness.
@@ -162,7 +155,6 @@ Evaluate an agent system's effectiveness.
 5. Generate evaluation report with scores and recommendations
 6. Iterate on agent design based on findings
 
-Reference: `ralph-orchestrator/.claude/skills/eval/SKILL.md`, `superpowers/skills/verification-before-completion/SKILL.md`
 
 ---
 

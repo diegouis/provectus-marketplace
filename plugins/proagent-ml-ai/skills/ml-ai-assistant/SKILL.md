@@ -24,7 +24,7 @@ Comprehensive ML and AI skill covering the full lifecycle of machine learning mo
 
 ### Training Pipeline Design
 
-Every training pipeline should follow this structured progression, derived from `proagent/roles/ml-engineer/skills/model-training.md`:
+Every training pipeline should follow this structured progression:
 
 1. **Data Preparation** - Load, clean, and split data into train/validation/test sets
 2. **Feature Engineering** - Create, transform, and select features from raw data
@@ -36,16 +36,12 @@ Every training pipeline should follow this structured progression, derived from 
 
 ### Data Splitting Strategies
 
-Derived from `proagent/roles/ml-engineer/skills/model-training.md`:
-
 - **Hold-out Validation:** Single train/val split for large datasets (typically 70/15/15 or 80/10/10)
 - **Stratified K-Fold Cross-Validation:** 5-10 folds for smaller datasets; maintains class distribution
 - **Time Series Split:** Respects temporal order for sequential data; never shuffle time series
 - **Group K-Fold:** Prevents data leakage when samples are grouped (same patient, same user)
 
 ### Classification Model Training Pattern
-
-Derived from `proagent/roles/ml-engineer/skills/model-training.md` and `proagent/roles/ml-engineer/commands/train-model.md`:
 
 ```python
 import numpy as np
@@ -103,8 +99,6 @@ joblib.dump(pipeline, 'models/model.pkl')
 
 ### Neural Network Training with Early Stopping
 
-Derived from `proagent/roles/ml-engineer/skills/model-training.md`:
-
 ```python
 import tensorflow as tf
 from tensorflow import keras
@@ -148,8 +142,6 @@ history = model.fit(
 
 ### XGBoost with Early Stopping
 
-Derived from `proagent/roles/ml-engineer/skills/model-training.md`:
-
 ```python
 import xgboost as xgb
 
@@ -182,8 +174,6 @@ model.save_model('models/xgboost_model.json')
 
 ## Feature Engineering
 
-Derived from `proagent/roles/ml-engineer/skills/feature-engineering.md`:
-
 ### Core Techniques
 
 - **Missing Value Handling:** Imputation (mean/median/KNN), indicator variables, or deletion for <5% missing
@@ -210,8 +200,6 @@ pipeline.fit(X_train, y_train)  # Scaler fits only on X_train
 ```
 
 ## Model Evaluation
-
-Derived from `proagent/roles/ml-engineer/skills/model-evaluation.md`:
 
 ### Binary Classification Evaluation
 
@@ -243,8 +231,6 @@ def evaluate_binary_classifier(y_true, y_pred, y_pred_proba):
 | Ranking | NDCG, MAP, MRR | - |
 
 ## Experiment Tracking
-
-Derived from `proagent/roles/ml-engineer/skills/experiment-tracking.md`:
 
 ### MLflow Tracking Pattern
 
@@ -315,8 +301,6 @@ wandb.finish()
 
 ## Model Deployment
 
-Derived from `proagent/roles/ml-engineer/skills/model-deployment.md`:
-
 ### FastAPI Model Serving
 
 ```python
@@ -374,8 +358,6 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ### AWS SageMaker Deployment
 
-Derived from `proagent/roles/ml-engineer/skills/model-deployment.md`:
-
 ```python
 import sagemaker
 from sagemaker.sklearn import SKLearnModel
@@ -420,8 +402,6 @@ def batch_predict(input_path, output_path, model_path, batch_size=1000):
 ```
 
 ## Model Monitoring
-
-Derived from `proagent/roles/ml-engineer/skills/model-deployment.md`:
 
 ### Data Drift Detection
 
@@ -522,8 +502,6 @@ similarity = np.dot(embeddings[0], embeddings[1])
 
 ## LangSmith Agent Debugging
 
-Derived from `awesome-claude-skills/langsmith-fetch/SKILL.md`:
-
 Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio:
 
 ```bash
@@ -539,8 +517,6 @@ langsmith-fetch --trace-id <id> --verbose
 ```
 
 ## ML Project Structure
-
-Derived from `proagent/roles/ml-engineer/templates/ml-project-starter.md`:
 
 ```
 ml-project/
@@ -575,26 +551,6 @@ ml-project/
 5. **Missing Preprocessing in Deployment:** Forgetting to include feature engineering in the serving pipeline
 6. **No Monitoring:** Deploying without tracking data drift or prediction distribution shifts
 7. **Poor Experiment Tracking:** Training many models without logging parameters and results
-
-## Reference Assets
-
-| Asset | Source | Description |
-|-------|--------|-------------|
-| Model Training Skill | `proagent/roles/ml-engineer/skills/model-training.md` | Complete training pipeline patterns with scikit-learn, TensorFlow, XGBoost |
-| Feature Engineering Skill | `proagent/roles/ml-engineer/skills/feature-engineering.md` | Feature creation, transformation, and selection techniques |
-| Model Selection Skill | `proagent/roles/ml-engineer/skills/model-selection.md` | Algorithm selection by problem type and data characteristics |
-| Hyperparameter Tuning Skill | `proagent/roles/ml-engineer/skills/hyperparameter-tuning.md` | Grid search, random search, Bayesian optimization, Hyperband |
-| Model Evaluation Skill | `proagent/roles/ml-engineer/skills/model-evaluation.md` | Metrics, visualizations, statistical significance testing |
-| Experiment Tracking Skill | `proagent/roles/ml-engineer/skills/experiment-tracking.md` | MLflow, W&B, Neptune, custom tracking patterns |
-| Model Deployment Skill | `proagent/roles/ml-engineer/skills/model-deployment.md` | FastAPI serving, SageMaker, batch prediction, monitoring |
-| Train Model Command | `proagent/roles/ml-engineer/commands/train-model.md` | End-to-end training pipeline command template |
-| ML Project Starter | `proagent/roles/ml-engineer/templates/ml-project-starter.md` | Standard ML project directory structure |
-| LangSmith Fetch Skill | `awesome-claude-skills/langsmith-fetch/SKILL.md` | LangChain/LangGraph agent debugging via LangSmith traces |
-| LLM Architect Agent | `agents/plugins/llm-application-dev/agents/llm-architect.md` | RAG systems and agent architecture design |
-| OpenAI LLM Utility | `tac/Code/tac-6/.claude/hooks/utils/llm/oai.py` | OpenAI API integration utility |
-| Anthropic LLM Utility | `tac/Code/tac-6/.claude/hooks/utils/llm/anth.py` | Anthropic API integration utility |
-| NL-to-SQL Processor | `tac/Code/tac-6/app/server/core/llm_processor.py` | LLM-powered natural language to SQL translation |
-| ML Engineer Role | `proagent/roles/ml-engineer/README (1).md` | ML engineer role definition and quick start guide |
 
 ## Visual Diagramming with Excalidraw
 

@@ -34,14 +34,3 @@ This plugin provides comprehensive tooling for building, orchestrating, and opti
 - Plugins require `.claude-plugin/plugin.json` with `name`, `version` (semver), and `description`
 - MCP servers should be workflow-oriented (not raw API wrappers) with input validation and actionable error messages
 
-## Source Repositories
-
-This plugin synthesizes patterns from 19 repositories with 612 total assets:
-- casdk-harness (context engineering plugin, 14 agents, 12 skills)
-- superpowers (SDD, parallel agents, TDD, brainstorming, 13 skills)
-- awesome-claude-skills (skill-creator, mcp-builder, 30+ skills)
-- taches-cc-resources (agent/hook/command creation, 27 commands)
-- ralph-orchestrator (PDD, eval, code-assist, 12 skills)
-- proagent-repo GUI (TAC principles: ADW, Core Four, Trust Ladder)
-- planning-with-files (file-based planning with hooks)
-- awos (product-to-implementation pipeline, 16 commands)

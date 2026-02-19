@@ -1,6 +1,6 @@
 # ProAgent SDLC Plugin
 
-This plugin provides end-to-end software development lifecycle management for Claude Code. It was synthesized from 17 open-source repositories including AWOS, superpowers, casdk-harness, tac, ralph-orchestrator, and proagent.
+This plugin provides end-to-end software development lifecycle management for Claude Code.
 
 ## Plugin Structure
 
@@ -54,12 +54,4 @@ Three hooks enforce quality gates:
 
 ## Source Attribution
 
-Key patterns and content were drawn from:
-- **awos** -- Architecture command, spec/verify workflows, document hierarchy templates
-- **casdk-harness** -- Code review checklist, automated review pipeline, documentation skills
-- **superpowers** -- TDD planning (writing-plans), code review dispatch (requesting-code-review), testing anti-patterns, branch completion workflows
-- **tac** -- Semantic commits, automated PR creation, review command with spec compliance, SDLC pipeline orchestration
-- **ralph-orchestrator** -- Spec-driven development, TDD SOP, codebase summary skill
-- **awesome-claude-skills** -- Changelog generation from git commits
-- **proagent** -- Technical writer roles (user guide creation, information architecture, spec creation)
-- **planning-with-files** -- File-based planning with hooks and task templates
+> Built from Provectus internal engineering practices.

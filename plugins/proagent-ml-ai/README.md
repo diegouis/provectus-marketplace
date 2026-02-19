@@ -65,19 +65,6 @@ proagent-ml-ai/
   README.md                    # This file
 ```
 
-## Source Repositories
-
-This plugin synthesizes production patterns from:
-
-| Repository | Assets Used |
-|-----------|-------------|
-| proagent | ML engineer role definition, 7 skills (model-training, feature-engineering, model-selection, hyperparameter-tuning, model-evaluation, experiment-tracking, model-deployment), train-model command, ML project starter template |
-| awesome-claude-skills | LangSmith fetch skill for LangChain/LangGraph agent debugging |
-| agents | LLM architect agent for RAG systems and agent architectures |
-| tac | OpenAI and Anthropic LLM utilities, NL-to-SQL LLM processor |
-| proagent-repo GUI | ML engineer validation workflow configuration |
-| specs | ML/Data role implementation specifications |
-
 ### MCP Servers
 
 | Server | Package | Purpose |

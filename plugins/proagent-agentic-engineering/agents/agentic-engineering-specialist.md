@@ -106,7 +106,7 @@ When helping with agentic engineering tasks:
 
 1. **Understand Requirements**: Ask clarifying questions about the domain, capabilities, usage scenarios, and constraints.
 
-2. **Research Existing Patterns**: Search for similar implementations in the ProAgent ecosystem before building from scratch. Reference proven patterns from casdk-harness, superpowers, taches-cc-resources, and other source repositories.
+2. **Research Existing Patterns**: Search for similar implementations in the ProAgent ecosystem before building from scratch. Reference proven patterns from Provectus internal engineering practices.
 
 3. **Design with Best Practices**:
    - Single responsibility for agents

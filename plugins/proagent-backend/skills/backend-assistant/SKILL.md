@@ -22,8 +22,6 @@ Comprehensive backend engineering skill covering the full lifecycle of API desig
 
 ### RESTful API Design
 
-Derived from `proagent/roles/backend-engineer/skills/api-design.md` and `agents/plugins/backend-development/skills/api-design-principles/SKILL.md`:
-
 **Resource Modeling:**
 - Resources are nouns (users, orders, products), never verbs
 - Use HTTP methods for actions: GET (read), POST (create), PUT/PATCH (update), DELETE (remove)
@@ -45,8 +43,6 @@ POST   /api/v1/products/{id}/reviews # Create review for product
 ```
 
 **Pagination Pattern:**
-
-Derived from `agents/plugins/backend-development/skills/api-design-principles/SKILL.md`:
 
 ```python
 from fastapi import FastAPI, Query
@@ -94,8 +90,6 @@ async def list_products(
 
 **Error Response Pattern:**
 
-Derived from `proagent/roles/backend-engineer/skills/api-design.md`:
-
 ```python
 from fastapi import HTTPException, status
 
@@ -133,8 +127,6 @@ async def get_user(user_id: str):
 ```
 
 ### GraphQL API Design
-
-Derived from `proagent/roles/backend-engineer/skills/api-design.md` and `agents/plugins/backend-development/skills/api-design-principles/SKILL.md`:
 
 **Schema-First Design:**
 
@@ -218,8 +210,6 @@ type Error {
 
 **DataLoader for N+1 Prevention:**
 
-Derived from `agents/plugins/backend-development/skills/api-design-principles/SKILL.md`:
-
 ```python
 from aiodataloader import DataLoader
 
@@ -239,8 +229,6 @@ class OrdersByUserLoader(DataLoader):
 ```
 
 ### gRPC Service Design
-
-Derived from `agents/plugins/backend-development/agents/backend-architect.md`:
 
 ```protobuf
 syntax = "proto3";
@@ -295,8 +283,6 @@ message ListOrdersResponse {
 ## Database Schema Engineering
 
 ### Relational Database Design (PostgreSQL)
-
-Derived from `proagent/roles/backend-engineer/skills/database-schema.md`:
 
 **Complete E-Commerce Schema:**
 
@@ -407,8 +393,6 @@ CREATE TRIGGER update_orders_updated_at BEFORE UPDATE ON orders
 
 ### Document Database Design (MongoDB)
 
-Derived from `proagent/roles/backend-engineer/skills/database-schema.md`:
-
 ```javascript
 // Users collection - embedding addresses for read performance
 {
@@ -484,8 +468,6 @@ db.orders.createIndex({ "createdAt": -1 });
 
 ### JWT Authentication with Refresh Tokens
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
-
 ```python
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
@@ -551,8 +533,6 @@ def login(username, password):
 
 ### Role-Based Access Control (RBAC)
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
-
 ```python
 from functools import wraps
 from flask import g, jsonify, request
@@ -591,8 +571,6 @@ def get_all_users():
 
 ### Rate Limiting
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
-
 ```python
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -628,8 +606,6 @@ def ratelimit_handler(e):
 ## Caching Strategies
 
 ### Redis Caching with Invalidation
-
-Derived from `proagent/roles/backend-engineer/skills/performance-optimization.md`:
 
 ```python
 import redis
@@ -683,8 +659,6 @@ def update_product(product_id):
 
 ### Fixing N+1 Query Problems
 
-Derived from `proagent/roles/backend-engineer/skills/performance-optimization.md`:
-
 ```python
 # BEFORE: 1001 queries for 1000 users (~5000ms)
 @app.route('/api/v1/users')
@@ -721,8 +695,6 @@ def get_users_fast():
 
 ### Query Optimization with Indexes
 
-Derived from `proagent/roles/backend-engineer/skills/performance-optimization.md`:
-
 ```sql
 -- BEFORE: Sequential scan, 2500ms
 SELECT * FROM orders
@@ -745,8 +717,6 @@ WHERE status = 'completed';
 ```
 
 ### Async Parallel Requests
-
-Derived from `proagent/roles/backend-engineer/skills/performance-optimization.md`:
 
 ```python
 import asyncio
@@ -778,8 +748,6 @@ async def get_user_dashboard(user_id):
 
 ### Connection Pooling
 
-Derived from `proagent/roles/backend-engineer/skills/performance-optimization.md`:
-
 ```python
 from psycopg2 import pool
 
@@ -810,16 +778,12 @@ def get_user(user_id):
 
 ### Service Boundaries (Domain-Driven Design)
 
-Derived from `agents/plugins/backend-development/agents/backend-architect.md`:
-
 - Define bounded contexts based on business domains (Orders, Users, Payments, Inventory)
 - Each service owns its data store (database-per-service pattern)
 - Services communicate via well-defined API contracts
 - Use asynchronous messaging for cross-service events
 
 ### Resilience Patterns
-
-Derived from `agents/plugins/backend-development/agents/backend-architect.md`:
 
 - **Circuit Breaker**: Detect failing services and stop cascading failures
 - **Retry with Backoff**: Exponential backoff with jitter for transient failures
@@ -879,8 +843,6 @@ def process_order_events():
 
 ### Input Validation and SQL Injection Prevention
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
-
 ```python
 from sqlalchemy import text
 
@@ -896,8 +858,6 @@ users = User.query.filter(User.username.like(f'%{query}%')).all()
 ```
 
 ### Secure File Upload
-
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
 
 ```python
 from werkzeug.utils import secure_filename
@@ -936,8 +896,6 @@ def upload_file():
 ```
 
 ### Secrets Management
-
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
 
 ```python
 import os
@@ -983,26 +941,6 @@ When building Python backends, leverage modern Python 3.12+ features:
 - Leverage `Field.db_default` for database-level defaults
 - Use `aiterator()` for async ORM iteration
 - Prefer `async` views with `@sync_to_async` for I/O-bound operations
-
-Source: `agents/plugins/python-development/` (v1.2.1)
-
-## Reference Assets
-
-| Asset | Source | Description |
-|-------|--------|-------------|
-| API Design Skill | `proagent/roles/backend-engineer/skills/api-design.md` | REST/GraphQL API design patterns with examples |
-| Database Schema Skill | `proagent/roles/backend-engineer/skills/database-schema.md` | Relational and NoSQL schema design |
-| Security Hardening Skill | `proagent/roles/backend-engineer/skills/security-hardening.md` | Auth, input validation, encryption, rate limiting |
-| Performance Optimization | `proagent/roles/backend-engineer/skills/performance-optimization.md` | N+1 fixes, caching, connection pooling, async I/O |
-| Code Review Skill | `proagent/roles/backend-engineer/skills/code-review.md` | Security and performance review patterns |
-| API Design Principles | `agents/plugins/backend-development/skills/api-design-principles/SKILL.md` | REST and GraphQL best practices with FastAPI |
-| Backend Architect Agent | `agents/plugins/backend-development/agents/backend-architect.md` | Microservices, event-driven, resilience patterns |
-| Python Expert Agent | `casdk-harness/src/harness/agents/configs/dev-python-expert.md` | Python/FastAPI development patterns |
-| SQL Security Module | `tac/Code/tac-6/app/server/core/sql_security.py` | SQL injection protection |
-| Express Server | `claude-ui/server/index.js` | Express server with SSE streaming |
-| Session Auth | `claude-ui/server/routes/auth.js` | Session-based authentication patterns |
-| MCP Server (Node) | `skills/mcp-builder/reference/node_mcp_server.md` | Node.js MCP server reference |
-| MCP Server (Python) | `skills/mcp-builder/reference/python_mcp_server.md` | Python MCP server reference |
 
 ## Visual Diagramming with Excalidraw
 

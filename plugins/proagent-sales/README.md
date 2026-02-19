@@ -117,16 +117,6 @@ Use the sales-assistant skill to draft a proposal for a cloud migration engageme
 | Excalidraw | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders canvases directly in chat via natural language |
 | Rube | `rube.app/mcp` | SaaS automation gateway (Salesforce, HubSpot, Pipedrive, etc.) |
 
-## Source Repositories
-
-This plugin is built from production patterns across 5 Provectus repositories with 13 total assets (8 high-reuse). Key sources include:
-
-- **awesome-claude-skills** - Lead research assistant for prospect identification and competitive ads extractor for messaging analysis
-- **agents** - Sales automation agent for email sequences, proposals, and objection handling scripts
-- **taches-cc-resources** - Competitive research framework and options comparison methodology
-- **proagent** - Stakeholder management patterns for enterprise deal engagement
-- **skills** - Brand guidelines for consistent proposal and presentation styling
-
 ## Version
 
 - Plugin version: 0.2.0

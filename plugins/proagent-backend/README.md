@@ -53,19 +53,7 @@ proagent-backend/
 
 ## Source Repositories
 
-This plugin synthesizes patterns from the following Provectus engineering repositories:
-
-| Repository | Assets Used |
-|-----------|-------------|
-| **proagent** | Backend engineer role with API design, database schema, security hardening, performance optimization, and code review skills |
-| **agents** | Backend architect agent, API design principles plugin with FastAPI patterns and DataLoader |
-| **casdk-harness** | Python/FastAPI expert agent, Node.js and Go expert agents, API development harness |
-| **claude-ui** | Express server with SSE streaming, session-based authentication, SQLite database model |
-| **tac** | SQL injection protection module, NL-to-SQL LLM processor |
-| **skills** | MCP server references for Node.js and Python |
-| **proagent-repo GUI** | Backend validation workflows |
-| **specs** | Developer role implementation specifications |
-| **awesome-claude-skills** | MCP builder guide for API integration servers |
+> Built from Provectus internal engineering practices.
 
 ## Hooks
 

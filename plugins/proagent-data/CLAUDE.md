@@ -61,10 +61,6 @@ When performing data engineering tasks, follow these standards:
 - **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **Rube (Composio)**: SaaS automation gateway providing access to Google Sheets, Airtable, Supabase, Amplitude, Mixpanel, PostHog, and Segment via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
 
-## Source Repositories
-
-This plugin draws patterns from: proagent, casdk-harness, agents, awesome-claude-skills, specs, tac, claude-ui, and skills.
-
 ## Plugin Structure
 
 ```

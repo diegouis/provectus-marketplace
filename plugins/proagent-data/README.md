@@ -130,19 +130,6 @@ Use the data-assistant skill to build an incremental dbt model for order events
 | Excalidraw | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders canvases directly in chat via natural language |
 | Rube | `rube.app/mcp` | SaaS automation gateway (Google Sheets, Airtable, Supabase, etc.) |
 
-## Source Repositories
-
-This plugin is built from production patterns across 8 Provectus repositories with 27 total assets (20 high-reuse). Key sources include:
-
-- **proagent** - Data scientist role with EDA, visualization, and statistical analysis skills; analytics infrastructure with tracking, queries, and reporting
-- **casdk-harness** - PostgreSQL expert and SQL expert agent configurations with query optimization, execution plan analysis, indexing strategies, replication, and partitioning
-- **agents** - dbt transformation patterns plugin with model layers, testing, macros, and incremental strategies; business analytics agent
-- **awesome-claude-skills** - Spreadsheet manipulation skill for data processing
-- **specs** - Data role implementation specifications and analytics architecture
-- **tac** - Database reset scripts and migration patterns
-- **claude-ui** - SQLite database model and schema design reference
-- **skills** - Excel spreadsheet creation and editing skill
-
 ## Version
 
 - Plugin version: 0.2.0

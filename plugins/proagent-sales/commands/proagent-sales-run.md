@@ -56,8 +56,6 @@ If the user has an existing proposal template or past winning proposal, read it 
 
 Identify and qualify prospective leads based on ideal customer profile criteria.
 
-Derived from `awesome-claude-skills/lead-research-assistant/SKILL.md`:
-
 **Steps:**
 1. **Define the ideal customer profile:**
    - Target industry or vertical
@@ -93,8 +91,6 @@ Derived from `awesome-claude-skills/lead-research-assistant/SKILL.md`:
 ### `competitive-analysis` - Analyze Competitors
 
 Research and document the competitive landscape for a product, service, or market segment.
-
-Derived from `taches-cc-resources/commands/research/competitive.md` and `awesome-claude-skills/competitive-ads-extractor/SKILL.md`:
 
 **Steps:**
 1. **Define the competitive space:**

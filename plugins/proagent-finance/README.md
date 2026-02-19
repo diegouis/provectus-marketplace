@@ -84,10 +84,3 @@ Loads current budget and actual spending data, calculates variances per category
 
 Set the environment variables for the services your team uses. Unused servers will not be started.
 
-## Source Repositories
-
-This plugin synthesizes patterns and content from open-source repositories:
-
-- **awesome-claude-skills/invoice-organizer** -- Automated invoice scanning and extraction, standardized file naming (YYYY-MM-DD Vendor - Invoice - Description.ext), multi-format support (PDF, images, documents), folder organization by vendor/category/date/tax-category, CSV summary generation for accounting software import
-- **agents/stripe-integration** -- Payment processing patterns (checkout sessions, Payment Intents, subscription lifecycle), webhook event handling (payment_intent.succeeded, customer.subscription.updated, charge.refunded), PCI-compliant payment flows, customer management, refund processing with audit trails, idempotent webhook processing
-- **agents/quant-analyst** -- Quantitative financial analysis methodology, time series forecasting, risk metrics and portfolio concepts adapted for business revenue analysis, data quality validation, scenario modeling with sensitivity analysis, statistical methods using pandas/numpy/scipy patterns

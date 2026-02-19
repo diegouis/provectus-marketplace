@@ -103,7 +103,7 @@ Generate a status report tailored to the specified audience and format.
    - `daily` or `standup` -- Daily standup format
    - `weekly` -- Weekly team status email
    - `monthly` or `executive` -- Monthly executive summary
-   - `3p` -- Progress/Plans/Problems format (from awesome-claude-skills/internal-comms)
+   - `3p` -- Progress/Plans/Problems format
    - If not specified, ask the user which format they need
 
 2. **Gather project data:**
@@ -124,7 +124,7 @@ Generate a status report tailored to the specified audience and format.
    Blockers: [None or describe]
    ```
 
-   **Weekly Status (from proagent/roles/project-manager/skills/status-reporting):**
+   **Weekly Status:**
    ```
    Subject: [Project] - Week [X] Status [Green/Yellow/Red]
 
@@ -178,7 +178,7 @@ Generate a status report tailored to the specified audience and format.
    NEXT MONTH: [Key activities and milestones]
    ```
 
-   **3P Update (from awesome-claude-skills/internal-comms/examples/3p-updates):**
+   **3P Update:**
    - Pick an emoji that captures the team vibe
    - Format: `[emoji] [Team Name] ([Dates Covered])`
    - Progress: 1-3 sentences, data-driven, focus on things shipped and milestones achieved
@@ -202,7 +202,7 @@ Run a project risk assessment following the structured framework from proagent p
 
 ### Process
 
-1. **Identify potential risks (from proagent/roles/project-manager/skills/risk-assessment):**
+1. **Identify potential risks:**
    - **Technical risks:** unfamiliar technology, complex integrations, performance unknowns, technical debt, security vulnerabilities, architecture decisions
    - **Schedule risks:** aggressive timelines, external dependencies, holiday periods, competing priorities, underestimated complexity
    - **Resource risks:** team availability or turnover, skill gaps, budget constraints, vendor reliability
@@ -241,8 +241,8 @@ Run a project risk assessment following the structured framework from proagent p
    - **Acceptance:** acknowledge and plan for impact (contingency budget, communication plan)
 
 5. **Apply root cause analysis for materialized risks:**
-   - **5 Whys (from taches-cc-resources):** Ask "Why?" iteratively to drill to root cause
-   - **SWOT (from taches-cc-resources):** Map strengths, weaknesses, opportunities, and threats around the risk area
+   - **5 Whys:** Ask "Why?" iteratively to drill to root cause
+   - **SWOT:** Map strengths, weaknesses, opportunities, and threats around the risk area
 
 6. **Generate risk register:**
    ```
@@ -342,7 +342,7 @@ Facilitate a sprint retrospective with structured frameworks for team learning a
    - Optional icebreaker: "Rate this sprint 1-5 and say why in one sentence"
 
 2. **Gather data (15 minutes):**
-   - **Start-Stop-Continue (from proagent/roles/project-manager/skills/meeting-facilitation):**
+   - **Start-Stop-Continue:**
      - Start: What new practices should we adopt?
      - Stop: What practices should we eliminate?
      - Continue: What is working well that we should keep doing?
@@ -351,7 +351,7 @@ Facilitate a sprint retrospective with structured frameworks for team learning a
 
 3. **Generate insights (15 minutes):**
    - Group related observations into themes
-   - Apply **5 Whys (from taches-cc-resources/commands/consider/5-whys)** to top issues:
+   - Apply **5 Whys** to top issues:
      ```
      Problem: [What went wrong]
      Why? [First answer]
@@ -360,7 +360,7 @@ Facilitate a sprint retrospective with structured frameworks for team learning a
      Why? [Getting to root]
      Why? [Root cause identified]
      ```
-   - Apply **Inversion (from taches-cc-resources/commands/consider/inversion):** "What would guarantee we fail next sprint?" then ensure the opposite
+   - Apply **Inversion:** "What would guarantee we fail next sprint?" then ensure the opposite
    - Identify systemic issues vs. one-time events
 
 4. **Decide on actions (20 minutes):**

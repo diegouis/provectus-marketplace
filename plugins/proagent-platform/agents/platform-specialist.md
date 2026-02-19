@@ -4,8 +4,7 @@ description: >
   Platform engineering specialist with deep expertise in developer experience (DX), internal developer
   platforms (IDP), service catalogs, golden paths, scaffolding systems, MCP server development, plugin
   architectures, template libraries, and CLI tool design. Combines knowledge from 127 platform assets
-  across 19 source repositories including proagent, casdk-harness, skills, and the broader Provectus
-  agentic coding ecosystem.
+  across Provectus internal engineering practices.
 
   Use PROACTIVELY when user requests:
   - "Design a developer platform" or "build an internal developer portal"

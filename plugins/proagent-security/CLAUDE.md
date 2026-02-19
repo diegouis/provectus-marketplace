@@ -60,7 +60,7 @@ When performing security tasks, follow these standards:
 
 ## Source Repositories
 
-This plugin draws patterns from: proagent, proagent-repo GUI, casdk-harness, Auto-Claude, awesome-claude-code, agents, tac, claude-ui, gastown, and superpowers.
+> Built from Provectus internal engineering practices.
 
 ## Plugin Structure
 

@@ -33,8 +33,6 @@ Every data pipeline should follow this ordered progression:
 
 ### Airflow DAG Pattern
 
-Derived from `proagent/infrastructure/analytics/tracker.py` and `proagent/infrastructure/analytics/queries.py`:
-
 ```python
 from datetime import datetime, timedelta
 from airflow import DAG
@@ -184,8 +182,6 @@ with DAG(
 ## dbt Transformation Patterns
 
 ### Model Layers (Medallion Architecture)
-
-Derived from `agents/plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md`:
 
 ```
 sources/          Raw data definitions
@@ -552,8 +548,6 @@ dbt ls --select tag:critical     # List models by tag
 
 ### Relational Schema Design Workflow
 
-Derived from `proagent/roles/backend-engineer/skills/database-schema.md`:
-
 1. **Analyze Data Requirements** - Identify entities, attributes, relationships, data volume, and query patterns
 2. **Choose Database Type** - PostgreSQL for structured data with ACID; MongoDB for flexible schema; Redis for caching
 3. **Design Tables** - Create tables with proper primary keys, data types, and normalization to 3NF
@@ -698,8 +692,6 @@ CREATE INDEX idx_fct_sales_order ON fct_sales(order_id);
 
 ### Using EXPLAIN ANALYZE
 
-Derived from `casdk-harness/src/harness/agents/configs/db-sql-expert.md`:
-
 ```sql
 -- Always analyze execution plans for slow queries
 EXPLAIN (ANALYZE, BUFFERS, TIMING)
@@ -802,8 +794,6 @@ GROUP BY user_id, session_id;
 ```
 
 ## PostgreSQL Performance Tuning
-
-Derived from `casdk-harness/src/harness/agents/configs/db-postgres-expert.md`:
 
 ### Memory Configuration
 
@@ -975,8 +965,6 @@ WHERE d.metric_date = CURRENT_DATE - INTERVAL '1 day';
 
 ## Exploratory Data Analysis
 
-Derived from `proagent/roles/data-scientist/skills/exploratory-data-analysis.md`:
-
 ### Systematic EDA Workflow
 
 1. **Load and Inspect** - Check dimensions, column types, memory usage, first/last rows
@@ -1109,8 +1097,6 @@ Add the Rube MCP server to your `.mcp.json`:
 }
 ```
 
-Source: `awesome-claude-skills` Composio app automation skills
-
 ## Visual Diagramming with Excalidraw
 
 Use the Excalidraw MCP server to generate interactive diagrams directly in the conversation. Describe what you need in natural language and Excalidraw renders it as an interactive canvas with hand-drawn style.
@@ -1135,19 +1121,3 @@ Use the Excalidraw MCP server to generate interactive diagrams directly in the c
 - Specify layout direction when it matters (e.g., "left-to-right flow" or "top-down hierarchy")
 - Request specific diagram types (architecture diagram, flowchart, sequence diagram, ER diagram)
 - Iterate — start with the overall structure, then refine details
-
-## Reference Assets
-
-| Asset | Source | Description |
-|-------|--------|-------------|
-| EDA Skill | `proagent/roles/data-scientist/skills/exploratory-data-analysis.md` | Systematic EDA workflow with Python examples |
-| Data Visualization | `proagent/roles/data-scientist/skills/data-visualization.md` | Chart type selection and design best practices |
-| Database Schema Design | `proagent/roles/backend-engineer/skills/database-schema.md` | Relational and NoSQL schema patterns |
-| dbt Transformation Patterns | `agents/plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md` | dbt model layers, testing, macros |
-| SQL Expert Agent | `casdk-harness/src/harness/agents/configs/db-sql-expert.md` | Query optimization and index strategies |
-| PostgreSQL Expert Agent | `casdk-harness/src/harness/agents/configs/db-postgres-expert.md` | PostgreSQL tuning, replication, partitioning |
-| Analytics Queries | `proagent/infrastructure/analytics/queries.py` | SQL analytics query patterns |
-| Analytics Tracker | `proagent/infrastructure/analytics/tracker.py` | Event tracking and metrics collection |
-| Database Model | `claude-ui/server/models/database.js` | SQLite schema design reference |
-| Database Reset | `tac/Code/tac-6/scripts/reset_db.sh` | Database reset and migration scripts |
-| Spreadsheet Skill | `awesome-claude-skills/document-skills/xlsx/SKILL.md` | Spreadsheet manipulation and formulas |

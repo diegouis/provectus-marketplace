@@ -69,7 +69,7 @@ When performing backend development tasks, follow these standards:
 
 ## Source Repositories
 
-This plugin draws patterns from: proagent, agents, casdk-harness, claude-ui, tac, skills, proagent-repo GUI, awesome-claude-skills, and specs.
+> Built from Provectus internal engineering practices.
 
 ## Plugin Structure
 

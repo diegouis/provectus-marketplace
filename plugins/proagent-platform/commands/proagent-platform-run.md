@@ -40,7 +40,7 @@ Create a new reusable template for the team's template library.
 6. Include a usage example and list of common mistakes to avoid
 7. Create a validation check that verifies template outputs match expected structure
 
-Template categories (from `proagent/core/skills/tac/templating.md`):
+Template categories:
 - Prompt templates: reusable instruction patterns
 - Code templates: standard code patterns (API endpoints, models, tests)
 - Workflow templates: stage-based operation sequences
@@ -54,11 +54,11 @@ Build an internal developer tool (CLI, script, integration, or MCP server).
 1. Clarify the tool type and purpose
 2. For CLI tools:
    - Set up argument parsing with subcommands
-   - Add Rich terminal formatting (from `casdk-harness/src/harness/cli.py`)
-   - Implement Pydantic-based configuration (from `casdk-harness/src/harness/config.py`)
-   - Add plugin discovery if extensibility is needed (from `casdk-harness/src/harness/plugin_manager.py`)
+   - Add Rich terminal formatting
+   - Implement Pydantic-based configuration
+   - Add plugin discovery if extensibility is needed
 3. For integrations:
-   - Reference existing connectors: Slack, GitHub, GitLab, Google Drive (from `proagent/core/integrations/`)
+   - Reference existing connectors: Slack, GitHub, GitLab, Google Drive
    - Implement authentication, rate limiting, error handling
    - Add retry logic with exponential backoff
 4. For MCP servers:
@@ -76,7 +76,7 @@ Set up or evaluate a developer experience environment.
    - Verify shell configuration and aliases
    - Assess IDE/editor setup
    - Review MCP server availability
-2. Identify gaps against the DX maturity model (from `proagent/core/skills/tac/maturity-model.md`):
+2. Identify gaps against the DX maturity model:
    - Level 1: Manual setup, tribal knowledge
    - Level 2: Documented processes, basic scripts
    - Level 3: Automated setup, template libraries, self-service

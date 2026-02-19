@@ -108,16 +108,6 @@ The plugin is built around these components:
 - **Hooks**: Document quality gates enforcing formatting, inclusive language, PII protection, and bias-free screening
 - **MCP Config**: Integration with Slack, Google Drive, Google Sheets, Google Workspace, GitHub, and Rube for end-to-end workflow automation
 
-## Source Attribution
-
-This plugin synthesizes patterns and practices from the following Provectus repositories:
-
-- **proagent**: Human resources role definition, onboarding coordination skills, interview process management, performance review facilitation
-- **awesome-claude-skills**: Developer growth analysis for personalized growth reports, meeting insights analyzer for behavioral pattern detection, tailored resume generator for job description alignment
-- **skills**: Internal communications skill for newsletters, FAQs, and company-wide updates
-- **agents**: HR professional agent for policy documentation and compliance workflows
-- **specs**: Business role implementations covering project-manager, human-resources, and technical-writer within the Provectus Unified Agent Framework (PUAF)
-
 ## License
 
 MIT

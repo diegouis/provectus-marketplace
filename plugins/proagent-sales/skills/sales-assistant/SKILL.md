@@ -24,7 +24,7 @@ Comprehensive sales skill covering the full lifecycle of business development fr
 
 ### Proposal Structure
 
-Every proposal should follow this ordered progression, derived from `agents/plugins/customer-sales-automation/agents/sales-automator.md`:
+Every proposal should follow this ordered progression:
 
 1. **Executive Summary** - The client's problem restated in their language, your approach in one paragraph, and the expected business outcome
 2. **Understanding of Requirements** - Demonstrate that you have listened; restate scope, constraints, and success criteria
@@ -36,8 +36,6 @@ Every proposal should follow this ordered progression, derived from `agents/plug
 8. **Appendices** - Resumes, certifications, architecture diagrams, references
 
 ### Proposal Writing Principles
-
-Derived from the sales-automator agent pattern:
 
 - Lead with value, not features; every section should answer "so what?" for the client
 - Personalize using research on the client's industry, recent news, and stated pain points
@@ -126,8 +124,6 @@ Payment terms: [Net 30 / milestone-based / etc.]
 
 ### Ideal Customer Profile Definition
 
-Derived from `awesome-claude-skills/lead-research-assistant/SKILL.md`:
-
 When researching leads, build a profile across these dimensions:
 
 1. **Company Firmographics** - Industry, employee count, revenue range, funding stage, headquarters location
@@ -188,8 +184,6 @@ For each lead, assign a fit score (1-10) based on:
 
 ### Competitive Research Framework
 
-Derived from `taches-cc-resources/commands/research/competitive.md`:
-
 For each competitor, analyze:
 
 1. **Solution Positioning** - How they describe their offering and who they target
@@ -241,8 +235,6 @@ For each competitor, analyze:
 ```
 
 ### Ad and Messaging Analysis
-
-Derived from `awesome-claude-skills/competitive-ads-extractor/SKILL.md`:
 
 When analyzing competitor marketing:
 
@@ -379,8 +371,6 @@ Date: _________________________
 
 ### Cold Email Sequence Pattern
 
-Derived from `agents/plugins/customer-sales-automation/agents/sales-automator.md`:
-
 **Email 1: Value-First Introduction**
 - Subject line: Specific to their pain point, under 50 characters
 - Open with research insight about their company
@@ -412,8 +402,6 @@ For each prospect, research and incorporate:
 ## Stakeholder Engagement for Enterprise Deals
 
 ### Stakeholder Mapping
-
-Derived from `proagent/roles/project-manager/skills/stakeholder-management.md`:
 
 For enterprise deals, map the buying committee using a Power/Interest grid:
 
@@ -463,20 +451,6 @@ Add the Rube MCP server to your `.mcp.json`:
   "url": "https://rube.app/mcp"
 }
 ```
-
-Source: `awesome-claude-skills` Composio app automation skills
-
-## Reference Assets
-
-| Asset | Source | Description |
-|-------|--------|-------------|
-| Lead Research Assistant | `awesome-claude-skills/lead-research-assistant/SKILL.md` | Lead identification, qualification, and outreach strategy |
-| Competitive Ads Extractor | `awesome-claude-skills/competitive-ads-extractor/SKILL.md` | Competitor ad analysis and messaging extraction |
-| Sales Automator Agent | `agents/plugins/customer-sales-automation/agents/sales-automator.md` | Cold emails, follow-ups, proposals, and sales scripts |
-| Competitive Research | `taches-cc-resources/commands/research/competitive.md` | Structured competitive landscape analysis |
-| Options Comparison | `taches-cc-resources/commands/research/options.md` | Side-by-side option evaluation with recommendations |
-| Stakeholder Management | `proagent/roles/project-manager/skills/stakeholder-management.md` | Stakeholder identification, engagement, and communication |
-| Brand Guidelines | `skills/skills/brand-guidelines/SKILL.md` | Visual styling for branded sales materials |
 
 ## Visual Diagramming with Excalidraw
 

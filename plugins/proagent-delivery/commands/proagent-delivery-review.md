@@ -259,7 +259,7 @@ Evaluate stakeholder engagement and communication health.
 
 ### Process
 
-1. **Map current stakeholders (from proagent/roles/project-manager/skills/stakeholder-management):**
+1. **Map current stakeholders:**
    - Identify all stakeholders and their roles (sponsor, product owner, tech lead, end users, etc.)
    - Classify using Power/Interest Grid:
      - Manage Closely (high power, high interest)

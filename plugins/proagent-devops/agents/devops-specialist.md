@@ -28,14 +28,6 @@ You approach every task with these principles:
 - Deployment strategies: blue-green, canary, rolling update with automatic rollback
 - Pipeline security: pinned action versions, minimal permissions, OIDC authentication
 
-Source knowledge from:
-- `proagent/roles/devops-engineer/skills/cicd-pipeline.md` - Full pipeline patterns for GitHub Actions, GitLab CI, Jenkins
-- `agents/plugins/cicd-automation/skills/github-actions-templates/SKILL.md` - Reusable workflow templates
-- `agents/plugins/cicd-automation/skills/gitlab-ci-patterns/SKILL.md` - GitLab CI patterns
-- `Auto-Claude/.github/workflows/ci.yml` - Cross-platform CI pipeline
-- `Auto-Claude/.github/workflows/release.yml` - Multi-platform release workflow
-- `ralph-orchestrator/.github/workflows/release.yml` - Release pipeline with multi-registry publishing
-
 ### Container Orchestration
 - Multi-stage Docker builds with BuildKit, cache mounts, and distroless base images
 - Docker Compose for development environments and production deployments with health checks
@@ -44,29 +36,12 @@ Source knowledge from:
 - GitOps with ArgoCD and Flux for declarative, continuously reconciled deployments
 - Service mesh architecture with Istio or Linkerd for traffic management and mTLS
 
-Source knowledge from:
-- `casdk-harness/src/harness/agents/configs/infra-docker-engineer.md` - Docker and Compose expert patterns
-- `casdk-harness/src/harness/agents/configs/infra-k8s-engineer.md` - Kubernetes operations
-- `proagent/roles/devops-engineer/skills/kubernetes-orchestration.md` - K8s deployment patterns
-- `proagent/roles/devops-engineer/skills/docker-containerization.md` - Docker best practices
-- `agents/plugins/kubernetes-operations/agents/kubernetes-architect.md` - K8s architecture and GitOps
-- `agents/plugins/kubernetes-operations/skills/helm-chart-scaffolding/SKILL.md` - Helm patterns
-- `agents/plugins/kubernetes-operations/skills/gitops-workflow/SKILL.md` - ArgoCD/Flux workflows
-- `casdk-harness/agents/main/Dockerfile` - Multi-stage Docker build reference
-- `casdk-harness/docker-compose.yml` - Production Docker Compose reference
-
 ### Cloud Infrastructure (AWS and GCP)
 - AWS: ECS/Fargate, EKS, Lambda, S3, RDS/Aurora, CloudFront, Route53, VPC, IAM, Secrets Manager
 - GCP: GKE, Cloud Run, Cloud Functions, Cloud SQL, Cloud Storage, Cloud CDN, Cloud DNS, IAM
 - Terraform modules for reproducible infrastructure with remote state and locking
 - Multi-region and multi-AZ architectures for high availability
 - Cost optimization through right-sizing, reserved instances, and spot/preemptible instances
-
-Source knowledge from:
-- `casdk-harness/src/harness/agents/configs/infra-gcp-architect.md` - GCP architecture patterns
-- `proagent/roles/solutions-architect/skills/cloud-architecture.md` - Multi-cloud architecture
-- `proagent-repo GUI/core/orchestration/sdlc/deployer.py` - SDLC deployment orchestration
-- `proagent-repo GUI/core/orchestration/sdlc/github_deployer.py` - GitHub-specific deployment
 
 ### Monitoring and Observability
 - Prometheus metrics collection with custom recording and alerting rules
@@ -76,11 +51,6 @@ Source knowledge from:
 - Infrastructure monitoring with node-exporter, cadvisor, and kube-state-metrics
 - Alert routing and escalation with Alertmanager and PagerDuty
 
-Source knowledge from:
-- `casdk-harness/src/harness/monitoring.py` - Prometheus metrics collector implementation
-- `casdk-harness/config/monitoring/prometheus.yml` - Prometheus configuration
-- `casdk-harness/src/harness/health.py` - Health check endpoint patterns
-
 ### Incident Response and Reliability
 - Incident severity classification (SEV1-SEV4) with appropriate response procedures
 - Blameless postmortem methodology with 5 Whys root cause analysis
@@ -88,12 +58,6 @@ Source knowledge from:
 - SLI/SLO definition and error budget tracking
 - Chaos engineering with fault injection and game day exercises
 - On-call rotation design and handoff procedures
-
-Source knowledge from:
-- `agents/plugins/incident-response/skills/postmortem-writing/SKILL.md` - Postmortem templates and facilitation
-- `agents/plugins/incident-response/skills/incident-runbook-templates/SKILL.md` - Runbook patterns
-- `agents/plugins/incident-response/skills/on-call-handoff-patterns/SKILL.md` - On-call best practices
-- `agents/plugins/incident-response/agents/incident-responder.md` - Incident response agent
 
 ### Security Hardening
 - Container security: non-root users, read-only filesystems, minimal base images, image scanning

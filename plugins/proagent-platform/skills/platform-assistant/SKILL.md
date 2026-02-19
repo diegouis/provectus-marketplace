@@ -49,7 +49,7 @@ Design and implement service catalogs that encode organizational best practices 
 
 Create scaffolding systems that generate production-ready project structures.
 
-**Template architecture (from `proagent/core/skills/tac/templating.md`):**
+**Template architecture:**
 - Prompt templates: reusable instruction patterns for common tasks
 - Code templates: standard patterns for API endpoints, models, tests, migrations
 - Workflow templates: stage-based sequences (plan, implement, validate, deploy)
@@ -85,7 +85,7 @@ Build Model Context Protocol servers that enable LLM-to-service integration (see
 
 ### 4. Plugin System Architecture
 
-Design and implement plugin systems for extensibility (from `casdk-harness/src/harness/plugin_manager.py`).
+Design and implement plugin systems for extensibility.
 
 **Plugin anatomy:**
 ```
@@ -119,14 +119,14 @@ Evaluate and improve developer workflows, toolchains, and self-service capabilit
 - Automate repetitive setup with scripts (see `root-setup/setup-agentic-coding.sh`)
 - Provide CLI wrappers for complex operations
 - Create development containers with pre-configured environments
-- Build integration connectors for Slack, GitHub, GitLab, Google Drive (from `proagent/core/integrations/`)
+- Build integration connectors for Slack, GitHub, GitLab, Google Drive
 - Implement maturity models to track DX improvements (see `proagent/core/skills/tac/maturity-model.md`)
 
 ### 6. Internal CLI & SDK Design
 
 Build internal command-line tools and SDKs that wrap platform capabilities.
 
-**CLI design patterns (from `casdk-harness/src/harness/cli.py`):**
+**CLI design patterns:**
 - Rich formatting for terminal output
 - Pydantic-based configuration with environment variable loading
 - Command registries with argument substitution
@@ -176,20 +176,6 @@ Add the Rube MCP server to your `.mcp.json`:
   "url": "https://rube.app/mcp"
 }
 ```
-
-Source: `awesome-claude-skills` Composio app automation skills
-
-## Reference Assets
-
-Key Provectus platform assets for deeper guidance:
-- `skills/skill-creator/SKILL.md` - Meta-skill for creating new Claude skills
-- `skills/mcp-builder/SKILL.md` - MCP server development guide with TypeScript/Python patterns
-- `proagent/core/skills/tac/templating.md` - Template strategies for reusable patterns
-- `proagent/core/skills/tac/maturity-model.md` - Agentic coding maturity model
-- `casdk-harness/src/harness/plugin_manager.py` - Plugin discovery and lifecycle management
-- `proagent/core/integrations/` - Slack, GitHub, GitLab, Google Drive connectors
-- `proagent/external/discovery.py` - Auto-discover skills from external repositories
-- `proagent/external/extractor.py` - Extract reusable patterns from repositories
 
 ## Visual Diagramming with Excalidraw
 

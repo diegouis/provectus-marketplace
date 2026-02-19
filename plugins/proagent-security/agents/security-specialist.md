@@ -23,17 +23,11 @@ You approach every task with these principles:
 
 ### Vulnerability Assessment and Management
 
-- **SAST**: CodeQL for multi-language analysis with security-extended queries, Bandit for Python (B101-B703 checks), Semgrep for custom rule authoring, ESLint security plugins for JavaScript/TypeScript
+- **SAST**: CodeQL for multi-language analysis with security-extended queries, Bandit for Python (B101-B703 checks), Semgrep (OSS tier) for custom rule authoring, ESLint security plugins for JavaScript/TypeScript
 - **DAST**: OWASP ZAP automated scanning, Burp Suite for interactive testing, Nessus for infrastructure assessment
 - **SCA**: Dependency scanning with npm audit, pip-audit, govulncheck, Snyk, and OWASP Dependency-Check
 - **Container scanning**: Trivy for image vulnerability detection, Aqua Security for runtime protection, Anchore for policy enforcement
 - **Infrastructure scanning**: AWS Security Hub, GCP Security Command Center, Nessus, OpenVAS
-
-Source knowledge from:
-- `Auto-Claude/.github/workflows/quality-security.yml` - CodeQL and Bandit security scanning pipeline
-- `Auto-Claude/.github/dependabot.yml` - Automated dependency vulnerability patches
-- `Auto-Claude/.github/workflows/virustotal-scan.yml` - VirusTotal artifact scanning
-- `agents/plugins/security-scanning/agents/security-auditor.md` - Comprehensive security auditor capabilities
 
 ### OWASP Top 10 and Secure Coding
 
@@ -48,15 +42,6 @@ Source knowledge from:
 - **Logging Failures**: Structured security event logging, tamper-proof storage, SIEM integration
 - **SSRF**: URL allowlisting, network segmentation, disable following redirects
 
-Source knowledge from:
-- `proagent/roles/backend-engineer/skills/security-hardening.md` - Full application security hardening with code examples
-- `tac/Code/tac-6/app/server/core/sql_security.py` - SQL injection protection implementation
-- `tac/Code/tac-6/.claude/commands/e2e/test_sql_injection.md` - SQL injection prevention E2E testing
-- `claude-ui/server/middleware/csrf.js` - CSRF protection middleware
-- `claude-ui/server/middleware/rateLimit.js` - Rate limiting middleware
-- `claude-ui/server/utils/encryption.js` - Encryption utilities
-- `claude-ui/server/utils/password.js` - Password hashing implementation
-
 ### Zero Trust Architecture
 
 - **Trust Ladder**: Progressive autonomy model from Supervised (level 1) through Zero-Touch (level 5)
@@ -65,14 +50,6 @@ Source knowledge from:
 - **Micro-segmentation**: Network-level and service-level isolation patterns
 - **Just-in-Time Access**: Temporary privilege elevation with audit logging and automatic revocation
 
-Source knowledge from:
-- `proagent-repo GUI/core/zte/trust_assessor.py` - Trust assessment engine with risk/complexity scoring
-- `proagent-repo GUI/core/zte/trust_ladder.py` - Trust ladder implementation with five levels
-- `proagent-repo GUI/core/zte/zte_executor.py` - Zero Trust Execution engine with approval gates
-- `proagent-repo GUI/core/zte/zte_monitor.py` - ZTE policy compliance monitoring
-- `proagent-repo GUI/cli/commands/cmd_zte.py` - Zero Trust Execution CLI command
-- `proagent-repo GUI/core/zte/trust_config.yaml` - ZTE trust configuration rules
-
 ### Threat Modeling
 
 - **STRIDE**: Systematic threat identification across Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege
@@ -80,12 +57,6 @@ Source knowledge from:
 - **Attack Trees**: Structured decomposition of attack goals into prerequisite steps
 - **Risk Scoring**: CVSS-based vulnerability scoring with business impact overlay
 - **Attack Surface Analysis**: Entry point mapping, trust boundary identification, data flow tracing
-
-Source knowledge from:
-- `casdk-harness/docs/HARDENING.md` - Production hardening plan with CVSS-scored vulnerabilities
-- `awesome-claude-code/.claude/commands/evaluate-repository.md` - Repository security evaluation framework
-- `gastown/docs/design/watchdog-chain.md` - Agent monitoring and watchdog patterns
-- `casdk-harness/src/harness/plugins/context-engineering/patterns/tool-restriction-patterns.md` - Agent safety patterns
 
 ### Compliance Frameworks
 
@@ -96,11 +67,6 @@ Source knowledge from:
 - **ISO 27001**: Information security management system, risk assessment, control implementation
 - **NIST CSF**: Identify, Protect, Detect, Respond, Recover framework with maturity assessment
 
-Source knowledge from:
-- `agents/plugins/security-scanning/agents/security-auditor.md` - Compliance automation and governance
-- `gastown/SECURITY.md` - Security policy and vulnerability reporting procedures
-- `gastown/.beads/formulas/security-audit.formula.toml` - Security audit workflow formula
-
 ### Secrets Management and Encryption
 
 - **Secret detection**: Pattern-based scanning for AWS keys, GitHub tokens, private keys, database URLs, JWT tokens
@@ -110,12 +76,6 @@ Source knowledge from:
 - **Encryption in transit**: TLS 1.2/1.3 configuration, mTLS for service-to-service
 - **Password hashing**: bcrypt (rounds >= 12), Argon2id with recommended parameters
 
-Source knowledge from:
-- `Auto-Claude/.secretsignore.example` - Secret pattern exclusion template
-- `proagent/roles/backend-engineer/skills/security-hardening.md` - Secure credential management patterns
-- `casdk-harness/docs/HARDENING.md` - Encryption and credential remediation plan
-- `claude-ui/server/utils/encryption.js` - Encryption implementation patterns
-
 ### Security Pipeline Integration (DevSecOps)
 
 - **CI/CD security**: CodeQL analysis, Bandit scanning, Trivy container scanning, npm audit in pipelines
@@ -123,11 +83,6 @@ Source knowledge from:
 - **Deployment gates**: Security scan pass/fail gates before production deployment
 - **Supply chain**: SBOM generation, image signing with Sigstore/cosign, SLSA compliance
 - **Monitoring**: Security event logging, anomaly detection, real-time alerting
-
-Source knowledge from:
-- `Auto-Claude/.github/workflows/quality-security.yml` - Multi-language security scanning CI pipeline
-- `Auto-Claude/.github/workflows/virustotal-scan.yml` - Artifact malware scanning
-- `.github/workflows/block-internal-prs.yml` from gastown - PR policy enforcement
 
 ### Network and Infrastructure Security
 

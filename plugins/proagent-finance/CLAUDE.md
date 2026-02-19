@@ -1,6 +1,6 @@
 # ProAgent Finance Plugin
 
-This plugin provides comprehensive financial operations management for Claude Code. It was synthesized from open-source repositories including awesome-claude-skills (invoice-organizer), agents (stripe-integration, quant-analyst), and Provectus finance practice patterns.
+This plugin provides comprehensive financial operations management for Claude Code.
 
 ## Plugin Structure
 
@@ -50,9 +50,3 @@ Three hooks enforce financial document quality:
 - **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **Rube (Composio)**: SaaS automation gateway providing access to Stripe, Square, and Shopify via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
 
-## Source Attribution
-
-Key patterns and content were drawn from:
-- **awesome-claude-skills/invoice-organizer** -- Invoice scanning, data extraction, standardized naming (YYYY-MM-DD Vendor - Invoice - Description.ext), folder organization by vendor/category/date, CSV summary generation for accounting handoff
-- **agents/stripe-integration** -- Payment processing patterns (checkout sessions, subscription management, webhook handling), PCI-compliant payment flows, idempotent transaction processing, refund handling with audit trails
-- **agents/quant-analyst** -- Quantitative analysis methodology (time series analysis, statistical forecasting), risk metrics (VaR concepts adapted to revenue risk), data quality validation practices, scenario modeling with sensitivity analysis

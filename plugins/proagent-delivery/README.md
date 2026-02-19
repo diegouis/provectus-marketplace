@@ -84,15 +84,3 @@ Map stakeholders using Power/Interest Grid, audit communication cadence, review 
 
 Set the environment variables for the services your team uses. Unused servers will not be started.
 
-## Source Repositories
-
-This plugin synthesizes patterns and content from 8 source repositories:
-
-- **proagent** -- Project-manager role with 5 delivery skills (meeting facilitation, risk assessment, status reporting, stakeholder management, spec creation), weekly standup command, and project charter template
-- **awesome-claude-skills** -- Internal communications skill with 3P update format, company newsletter templates, FAQ response patterns, and general communications guidelines
-- **taches-cc-resources** -- Prioritization and analysis frameworks (Eisenhower matrix for urgent/important classification, Pareto 80/20 analysis, 5 Whys root cause drilling, SWOT mapping, inversion thinking, first principles decomposition), plus todo capture and resume workflows
-- **awos** -- Product definition command and template, product roadmap command and template for milestone-based planning
-- **proagent-repo GUI** -- KPI framework for measuring delivery effectiveness, planning command for generating implementation plans from specifications
-- **ralph-orchestrator** -- Code task listing with status metadata for progress tracking
-- **skills** -- Third-party update templates for external stakeholder communications
-- **specs** -- Business role implementation patterns for delivery practice definition

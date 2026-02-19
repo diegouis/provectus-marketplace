@@ -52,7 +52,7 @@ When performing DevOps tasks, follow these standards:
 
 ## Source Repositories
 
-This plugin draws patterns from: proagent, casdk-harness, agents, Auto-Claude, ralph-orchestrator, tac, proagent-repo GUI, and gastown.
+> Built from Provectus internal engineering practices.
 
 ## Plugin Structure
 

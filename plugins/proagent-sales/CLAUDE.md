@@ -59,10 +59,6 @@ When performing sales tasks, follow these standards:
 - **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **Rube (Composio)**: SaaS automation gateway providing access to Salesforce, HubSpot, Pipedrive, Close, LinkedIn, and Zoho CRM via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
 
-## Source Repositories
-
-This plugin draws patterns from: awesome-claude-skills, agents, taches-cc-resources, proagent, and skills.
-
 ## Plugin Structure
 
 ```

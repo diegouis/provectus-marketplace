@@ -7,7 +7,7 @@ description: Use when managing financial operations -- budgeting, invoicing, rev
 
 ## Overview
 
-This skill orchestrates financial operations across budgeting, invoicing, forecasting, P&L analysis, revenue tracking, cost optimization, billing, and financial reporting. It draws on proven patterns from awesome-claude-skills/invoice-organizer (automated invoice processing and document organization), agents/stripe-integration (payment processing, subscription billing, and webhook-driven financial workflows), and agents/quant-analyst (financial modeling, risk metrics, and time series forecasting).
+This skill orchestrates financial operations across budgeting, invoicing, forecasting, P&L analysis, revenue tracking, cost optimization, billing, and financial reporting.
 
 **Announce at start:** "I'm using the proagent-finance:finance-assistant skill to manage this financial operation."
 
@@ -48,7 +48,7 @@ budget-YYYY.csv / budget-YYYY.xlsx
 
 ### 2. Invoicing
 
-Automates invoice generation, organization, and reconciliation. Draws directly on the awesome-claude-skills/invoice-organizer pattern for reading, extracting, renaming, and sorting financial documents.
+Automates invoice generation, organization, and reconciliation.
 
 **Invoice generation:**
 - Create professional invoices from project data, time entries, or deliverables
@@ -56,7 +56,7 @@ Automates invoice generation, organization, and reconciliation. Draws directly o
 - Support multiple currencies with exchange rate notation
 - Generate in Markdown, CSV, or structured JSON for accounting system import
 
-**Invoice organization (from invoice-organizer):**
+**Invoice organization:**
 - Scan folders for invoice files (PDF, images, documents)
 - Extract key fields: vendor, invoice number, date, amount, description, payment method
 - Rename to standardized format: `YYYY-MM-DD Vendor - Invoice - Description.ext`
@@ -71,7 +71,7 @@ Automates invoice generation, organization, and reconciliation. Draws directly o
 
 ### 3. Revenue Forecasting
 
-Project future revenue using historical data, growth rates, and scenario modeling. Applies quantitative analysis patterns from agents/quant-analyst for time series analysis and statistical forecasting.
+Project future revenue using historical data, growth rates, and scenario modeling.
 
 **Forecasting methods:**
 - **Linear trend:** Fit a linear regression to historical monthly revenue data
@@ -181,7 +181,7 @@ Analyze spending patterns, identify savings opportunities, and recommend optimiz
 
 ### 7. Billing and Payment Processing
 
-Manage billing workflows and payment integrations. Draws on agents/stripe-integration for payment processing patterns including checkout flows, subscription management, webhook handling, and refund processing.
+Manage billing workflows and payment integrations.
 
 **Billing workflows:**
 - Generate billing schedules from contracts (monthly, quarterly, milestone-based)
@@ -190,7 +190,7 @@ Manage billing workflows and payment integrations. Draws on agents/stripe-integr
 - Handle partial payments and payment plan installments
 - Process refunds with audit trail and reason codes
 
-**Payment integration patterns (from stripe-integration):**
+**Payment integration patterns:**
 - Checkout session creation for one-time and recurring payments
 - Subscription lifecycle management (create, upgrade, downgrade, cancel)
 - Webhook event handling for payment confirmation and failure notification
@@ -263,8 +263,6 @@ Add the Rube MCP server to your `.mcp.json`:
 }
 ```
 
-Source: `awesome-claude-skills` Composio app automation skills
-
 ## Visual Diagramming with Excalidraw
 
 Use the Excalidraw MCP server to generate interactive diagrams directly in the conversation. Describe what you need in natural language and Excalidraw renders it as an interactive canvas with hand-drawn style.
@@ -289,6 +287,7 @@ Use the Excalidraw MCP server to generate interactive diagrams directly in the c
 - Specify layout direction when it matters (e.g., "left-to-right flow" or "top-down hierarchy")
 - Request specific diagram types (architecture diagram, flowchart, sequence diagram, ER diagram)
 - Iterate — start with the overall structure, then refine details
+
 
 ## Workflow Summary
 

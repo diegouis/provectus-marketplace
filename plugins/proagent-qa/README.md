@@ -90,18 +90,7 @@ The plugin is built around these components:
 
 ## Source Attribution
 
-This plugin synthesizes patterns and practices from the following Provectus repositories:
-
-- **tac**: Test suite execution, E2E testing with Playwright MCP, test failure resolution workflows
-- **superpowers**: TDD red-green-refactor enforcement, evidence-based verification, testing anti-patterns reference
-- **proagent**: QA engineer role definition, automated testing skills, E2E and API testing strategies
-- **proagent-repo GUI**: Validation pyramid, quality gate generation, test generation workflows
-- **casdk-harness**: SDET agent configuration, testing strategy orchestration
-- **ralph-orchestrator**: Behavior verification, TDD presets, smoke test runners
-- **skills**: Playwright-based webapp testing, server lifecycle management for tests
-- **Auto-Claude**: Pre-commit hook configuration with pytest and ESLint
-- **taches-cc-resources**: Skill and command auditing patterns
-- **agents**: TDD workflow plugin patterns
+> Built from Provectus internal engineering practices.
 
 ## License
 

@@ -117,8 +117,6 @@ Assess the access control implementation:
 
 ### Container Security Review
 
-Derived from `casdk-harness/docs/HARDENING.md`:
-
 - Running as root (missing `USER` directive in Dockerfile)
 - Using `latest` tag instead of pinned versions
 - SSH private keys or secrets mounted into containers

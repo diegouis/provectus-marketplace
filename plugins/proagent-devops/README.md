@@ -138,16 +138,7 @@ Note: AWS and GCP operations use their respective CLIs (`aws`, `gcloud`) which s
 
 ## Source Repositories
 
-This plugin is built from production patterns across 8 Provectus repositories with 126 total assets (89 high-reuse). Key sources include:
-
-- **proagent** - DevOps engineer role with CI/CD, Kubernetes, and Docker skill definitions
-- **casdk-harness** - Docker Compose orchestration, Prometheus monitoring, multi-stage Dockerfiles, and infrastructure agent configurations
-- **agents** - CI/CD automation, incident response, and Kubernetes operations plugin collections
-- **Auto-Claude** - Cross-platform CI/CD workflows and pre-commit hook configurations
-- **ralph-orchestrator** - Release management pipelines and version automation
-- **tac** - Git operations automation, GitHub API integration, and trigger systems
-- **proagent-repo GUI** - SDLC deployment orchestration and validation workflows
-- **gastown** - GoReleaser cross-platform build configuration
+> Built from Provectus internal engineering practices.
 
 ## Version
 
