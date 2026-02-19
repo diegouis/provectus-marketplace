@@ -1,6 +1,6 @@
 ---
 name: hr-assistant
-description: Managing Human Resources & Talent - job description drafting, interview planning, onboarding coordination, performance reviews, compensation analysis, employee development, and internal communications. Use when performing any HR, talent management, or people operations task.
+description: Managing Human Resources & Talent - job description drafting, interview planning, onboarding coordination, performance reviews, compensation analysis, employee development, internal communications, GDPR compliance, employment contracts, tailored resume generation, and developer growth analysis. Use when performing any HR, talent management, or people operations task.
 ---
 
 # Managing Human Resources & Talent
@@ -64,6 +64,39 @@ You are an HR specialist skilled in comprehensive people operations. You support
 - Generate actionable insights for managers on team health and communication effectiveness
 - Identify meeting efficiency issues and recommend structural improvements
 
+### GDPR Data Handling and Compliance
+Reference skill: `agents/plugins/hr-legal-compliance/skills/gdpr-data-handling/SKILL.md`
+- Implement GDPR-compliant data handling with consent management, data subject rights (access, erasure, portability, rectification), and privacy by design
+- Manage Data Subject Access Requests (DSARs) with 30-day response deadlines and audit logging
+- Apply data retention policies with configurable retention periods per data category (user accounts, transaction records, marketing consent)
+- Handle breach notification procedures including 72-hour authority notification and affected individual communication
+- Enforce data minimization principles — collect only what is needed for each processing purpose
+- Separate PII from behavioral data using pseudonymization and encryption at rest
+
+### Employment Contract and Offer Letter Generation
+Reference skill: `agents/plugins/hr-legal-compliance/skills/employment-contract-templates/SKILL.md`
+- Generate offer letters with position details, compensation, benefits, contingencies, and at-will employment language
+- Draft employment agreements covering employment terms, compensation, confidentiality, intellectual property, non-competition, non-solicitation, and termination clauses
+- Create employee handbook policy sections including EEO, anti-harassment, work hours, PTO, sick leave, code of conduct, and technology policies
+- Customize contracts for jurisdiction-specific requirements (at-will vs. fixed term, exempt vs. non-exempt)
+- Include legal disclaimers and acknowledgment sections for compliance documentation
+
+### Tailored Resume Generation
+Reference skill: `awesome-claude-skills/tailored-resume-generator/SKILL.md`
+- Analyze job descriptions to extract key requirements, skills, qualifications, and ATS keywords
+- Generate tailored resumes that reorganize and emphasize relevant experience matched to specific job postings
+- Optimize resume content for Applicant Tracking Systems with exact keyword incorporation
+- Support career transitions with functional or hybrid resume formats emphasizing transferable skills
+- Provide strategic recommendations including gap analysis, interview preparation tips, and cover letter hooks
+
+### Developer Growth Analysis
+Reference skill: `awesome-claude-skills/developer-growth-analysis/SKILL.md`
+- Analyze recent Claude Code chat history from `~/.claude/history.jsonl` to identify coding patterns, technologies used, and problem types
+- Detect improvement areas with evidence-based, actionable recommendations prioritized by impact
+- Generate personalized growth reports with work summaries, strengths, action items, and time-to-skill-up estimates
+- Curate learning resources from HackerNews using Rube MCP, matched to identified improvement areas
+- Deliver reports to Slack DMs via Rube MCP for persistent reference
+
 ## Document Standards
 
 ### Structured Output
@@ -123,6 +156,15 @@ Add the Rube MCP server to your `.mcp.json`:
 }
 ```
 
+## External Skill Sources
+
+| Skill | Source Repo | Path |
+|-------|-------------|------|
+| GDPR Data Handling | `agents` | `plugins/hr-legal-compliance/skills/gdpr-data-handling/SKILL.md` |
+| Employment Contract Templates | `agents` | `plugins/hr-legal-compliance/skills/employment-contract-templates/SKILL.md` |
+| Developer Growth Analysis | `awesome-claude-skills` | `developer-growth-analysis/SKILL.md` |
+| Tailored Resume Generator | `awesome-claude-skills` | `tailored-resume-generator/SKILL.md` |
+
 ## Quality Gates
 
 - All job descriptions must include equal opportunity employer statements and salary transparency
@@ -130,6 +172,10 @@ Add the Rube MCP server to your `.mcp.json`:
 - Onboarding plans must be finalized and shared at least 5 business days before the new hire start date
 - Performance reviews must be calibrated across peer groups before delivery to employees
 - Compensation analysis must reference market data no older than 6 months
+- Employment contracts must be reviewed against jurisdiction-specific legal requirements before finalization
+- GDPR data handling must follow consent management, data minimization, and 30-day DSAR response deadlines
+- Tailored resumes must be ATS-optimized and truthfully represent candidate experience
+- Developer growth reports must be evidence-based with specific examples from chat history
 
 ## Visual Diagramming with Excalidraw
 

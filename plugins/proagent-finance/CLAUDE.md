@@ -25,15 +25,15 @@ proagent-finance/
 ## Usage
 
 ### Skill
-Use the `proagent-finance:finance-assistant` skill when managing any financial operation. It covers budgeting, invoicing, revenue forecasting, P&L analysis, revenue tracking, cost optimization, billing workflows, and financial reporting.
+Use the `proagent-finance:finance-assistant` skill when managing any financial operation. It covers budgeting, invoicing, revenue forecasting, P&L analysis, revenue tracking, cost optimization, cloud FinOps, payment processing (Stripe integration, PCI compliance), billing workflows, financial projections, and financial reporting.
 
 ### Commands
 - `/proagent-finance-hub` -- See all available commands and choose the right workflow
-- `/proagent-finance-run <mode>` -- Execute a workflow (create-budget, forecast-revenue, analyze-costs, generate-invoice, financial-report)
-- `/proagent-finance-review <type>` -- Run a financial review (budgets, forecasts, cost-structures, financial-health)
+- `/proagent-finance-run <mode>` -- Execute a workflow (create-budget, forecast-revenue, analyze-costs, generate-invoice, financial-report, financial-projections, cloud-cost-optimization)
+- `/proagent-finance-review <type>` -- Run a financial review (budgets, forecasts, cost-structures, financial-health, budget-variance)
 
 ### Agent
-The `proagent-finance:finance-specialist` agent can be dispatched as a subagent for financial analysis, invoice processing, budget variance tracking, and report generation. It produces structured reports with findings categorized by severity (CRITICAL, WARNING, NOTE).
+The `proagent-finance:finance-specialist` agent can be dispatched as a subagent for financial analysis, invoice processing, budget variance tracking, cloud cost allocation analysis, payment processing integration (Stripe, PCI compliance), financial projections, and report generation. It produces structured reports with findings categorized by severity (CRITICAL, WARNING, NOTE).
 
 ### Hooks
 Three hooks enforce financial document quality:
@@ -49,4 +49,16 @@ Three hooks enforce financial document quality:
 - **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
 - **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
 - **Rube (Composio)**: SaaS automation gateway providing access to Stripe, Square, and Shopify via `RUBE_SEARCH_TOOLS`, `RUBE_MANAGE_CONNECTIONS`, and `RUBE_MULTI_EXECUTE_TOOL`
+
+### External Asset References
+
+This plugin incorporates patterns and techniques from these discovered assets across the Provectus ecosystem:
+
+| Source Repo | Asset Path | Capability |
+|-------------|-----------|------------|
+| `agents` | `plugins/cloud-infrastructure/skills/cost-optimization/SKILL.md` | Cloud cost optimization and FinOps patterns |
+| `agents` | `plugins/payment-processing/skills/stripe-integration/SKILL.md` | Stripe payment integration workflows |
+| `agents` | `plugins/payment-processing/skills/pci-compliance/SKILL.md` | PCI compliance for payment processing |
+| `agents` | `plugins/startup-business-analyst/commands/financial-projections.md` | Financial projections generation |
+| `awesome-claude-skills` | `invoice-organizer/SKILL.md` | Invoice organization and processing |
 

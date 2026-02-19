@@ -1,7 +1,7 @@
 ---
 description: >
   Execute HR operations: draft-job-description, plan-interview, create-onboarding,
-  performance-review, compensation-analysis, or validate-cvs.
+  performance-review, compensation-analysis, validate-cvs, generate-resume, or analyze-growth.
 argument-hint: "<operation> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
@@ -308,6 +308,98 @@ Validate candidate CVs against a job description using a multi-agent orchestrati
    - Update after each candidate is fully processed
    - If the session is interrupted, resume from the last completed candidate on restart
 
+---
+
+### Mode: generate-resume
+
+Generate a tailored, ATS-optimized resume for a specific job description.
+
+Reference skill: `awesome-claude-skills/tailored-resume-generator/SKILL.md`
+
+1. **Gather Inputs**
+   - If `target` is provided, use it as the path to the job description file
+   - Ask for:
+     - **Job Description**: Full text or file path to the target job posting
+     - **Candidate Background**: Existing resume file, or work history, education, skills, and achievements
+     - **Format Preference** (optional): Markdown, plain text, or formatting guidance for Word/PDF
+     - **Resume Style** (optional): Chronological, functional, or hybrid (default: chronological)
+
+2. **Analyze Job Requirements**
+   - Extract must-have qualifications, key skills, soft skills, industry knowledge, and ATS keywords
+   - Prioritize requirements into critical (deal-breakers), important (strongly desired), and nice-to-have (bonus)
+   - Identify company values and cultural fit indicators from the job description
+
+3. **Map Experience to Requirements**
+   - For each job requirement, identify matching experience from the candidate's background
+   - Find transferable skills for career transitions where no direct match exists
+   - Note gaps to address or de-emphasize
+   - Identify unique strengths to highlight
+
+4. **Generate the Tailored Resume**
+   Structure the resume with:
+   - **Professional Summary**: 3-4 lines leading with years of experience, top required skills, industry experience, and unique value proposition
+   - **Technical/Core Skills**: Grouped by category matching job requirements, using exact terminology from the JD
+   - **Professional Experience**: Achievements quantified with metrics, reordered to prioritize most relevant, using action verbs and job description keywords
+   - **Education**: Degrees, certifications, relevant coursework
+   - **Optional Sections**: Certifications, publications, awards, projects as applicable
+
+5. **Optimize for ATS**
+   - Use standard section headings (Professional Experience, Education, Skills)
+   - Incorporate exact keywords from the job description naturally
+   - Avoid tables, graphics, or complex formatting
+   - Include both acronyms and full terms (e.g., "SQL (Structured Query Language)")
+
+6. **Provide Strategic Recommendations**
+   - Strengths analysis: what makes the candidate competitive
+   - Gap analysis: requirements not fully met with suggestions to address them
+   - Interview preparation tips and key talking points
+   - Cover letter hooks: 2-3 opening lines for the cover letter
+
+---
+
+### Mode: analyze-growth
+
+Analyze a developer's recent coding patterns and generate a personalized growth report.
+
+Reference skill: `awesome-claude-skills/developer-growth-analysis/SKILL.md`
+
+1. **Access Chat History**
+   - Read the chat history from `~/.claude/history.jsonl` (JSONL format with `display`, `project`, `timestamp`, `pastedContents` fields)
+   - Filter for entries from the past 24-48 hours based on the current timestamp
+   - If `target` is provided, use it to scope the analysis to a specific project or time range
+
+2. **Analyze Work Patterns**
+   Extract and analyze:
+   - **Projects and Domains**: Backend, frontend, DevOps, data, etc.
+   - **Technologies Used**: Languages, frameworks, and tools in conversations
+   - **Problem Types**: Performance optimization, debugging, feature implementation, refactoring, setup
+   - **Challenges Encountered**: Repeated questions, multi-attempt problems, knowledge gap indicators
+   - **Approach Patterns**: Methodical, exploratory, experimental problem-solving styles
+
+3. **Identify Improvement Areas**
+   - Identify 3-5 specific, evidence-based, actionable improvement areas prioritized by impact
+   - Each area must include: why it matters, what was observed (specific evidence from chat history), concrete recommendation, and time-to-skill-up estimate
+
+4. **Generate Growth Report**
+   Structure the report:
+   - **Work Summary**: 2-3 paragraphs on projects, technologies, and focus areas
+   - **Improvement Areas (Prioritized)**: Each with why it matters, evidence, recommendation, and time estimate
+   - **Strengths Observed**: 2-3 things the developer is doing well
+   - **Action Items**: Priority-ordered list derived from improvement areas
+
+5. **Curate Learning Resources**
+   - Use Rube MCP (`RUBE_SEARCH_TOOLS`) to search HackerNews for articles related to each improvement area
+   - For each area, include 2-3 relevant articles with title, date, relevance description, and link
+   - Prioritize posts with high engagement (comments, upvotes)
+
+6. **Deliver the Report**
+   - Present the complete report in the CLI
+   - Use Rube MCP (`RUBE_MANAGE_CONNECTIONS`, `RUBE_MULTI_EXECUTE_TOOL`) to send the report to the developer's Slack DMs
+   - Break the report into logical sections for Slack formatting
+   - Confirm delivery in the CLI output
+
+---
+
 ## Error Handling
 
 - If required context is missing (role title, employee name), prompt the user with specific questions before proceeding
@@ -316,4 +408,7 @@ Validate candidate CVs against a job description using a multi-agent orchestrati
 - If a CV file cannot be read or parsed, log the error and continue with remaining candidates — do not abort the batch
 - If a parallel analysis agent fails for a candidate, note the gap in the aggregation and proceed with available results
 - If the Google Drive MCP is unavailable, fall back to reading local file paths
+- If `~/.claude/history.jsonl` is not found or empty, inform the user that developer growth analysis requires Claude Code chat history
+- If HackerNews search via Rube MCP returns no results, provide generic learning resource recommendations based on the identified improvement areas
+- If the candidate provides insufficient background for resume generation, ask targeted follow-up questions for work history, skills, and achievements
 - All outputs include a "Next Steps" section with clear action items and owners

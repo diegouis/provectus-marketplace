@@ -1,22 +1,26 @@
 ---
 name: frontend-assistant
 description: >
-  Building Modern Web Interfaces. Comprehensive frontend engineering guidance: React/Vue/Angular
+  Building Modern Web Interfaces. Comprehensive frontend engineering guidance: React/Vue/Angular/Next.js/React Native
   component development, design systems and theming, WCAG accessibility, responsive design,
-  performance optimization, and frontend tooling (Vite, TypeScript, Tailwind CSS).
+  performance optimization, i18n/localization, mobile/desktop native apps (SwiftUI),
+  and frontend tooling (Vite, TypeScript, Tailwind CSS).
 
   Use when the user needs to:
-  (1) Build or scaffold UI components (React, Vue, Angular),
+  (1) Build or scaffold UI components (React, Vue, Angular, Next.js App Router, React Native),
   (2) Create or extend a design system with tokens and theming,
   (3) Audit or fix accessibility (WCAG 2.1 AA),
   (4) Implement responsive layouts,
-  (5) Optimize frontend performance (Core Web Vitals, bundle size),
-  (6) Configure frontend tooling (Vite, TypeScript, ESLint, Tailwind).
+  (5) Optimize frontend performance (Core Web Vitals, bundle size, virtualized lists),
+  (6) Configure frontend tooling (Vite, TypeScript, ESLint, Tailwind),
+  (7) Add internationalization/localization (i18n) with locale management,
+  (8) Build mobile apps with React Native or native iOS/macOS apps with SwiftUI.
 
   Activate when user mentions: frontend, UI, component, React, Vue, Angular, Tailwind, CSS,
   design system, theme, dark mode, accessibility, WCAG, a11y, responsive, mobile-first,
   performance, bundle size, Core Web Vitals, LCP, CLS, Vite, TypeScript, JSX, TSX, Storybook,
-  design tokens, component library.
+  design tokens, component library, Next.js, App Router, React Native, i18n, localization,
+  internationalization, locale, SwiftUI, iOS, macOS, mobile app, virtualized list, image optimization.
 ---
 
 # Building Modern Web Interfaces
@@ -40,6 +44,8 @@ You are a frontend engineering specialist skilled in building production-ready w
 - Apply pre-built visual themes: modern-minimalist, midnight-galaxy, and custom themes with font/color/spacing presets
 - Integrate with Tailwind CSS utility classes, CSS Modules, styled-components, or CSS-in-JS solutions
 - Enforce brand guidelines through design tokens: primary/secondary colors, heading/body typography, logo placement rules
+- Create themes dynamically using theme factory patterns for rapid theme generation and customization
+- Reference: `Auto-Claude` repo `.design-system/src/components/Button.tsx` for design system component patterns, `awesome-claude-skills` repo `brand-guidelines/SKILL.md` and `theme-factory/SKILL.md`
 
 ### Responsive Design and Layout
 - Implement mobile-first responsive layouts using CSS Grid, Flexbox, and container queries
@@ -75,6 +81,52 @@ You are a frontend engineering specialist skilled in building production-ready w
 - Apply caching strategies: service workers for offline support, HTTP cache headers, SWR/stale-while-revalidate patterns
 - Optimize font loading: font-display swap, preload critical fonts, subset to used characters
 
+### Next.js App Router Patterns
+- Architect Next.js applications using the App Router with React Server Components (RSC)
+- Implement server components for data fetching, client components for interactivity, using the `"use client"` directive
+- Design layouts with nested route segments, parallel routes, intercepting routes, and route groups
+- Apply server actions for form handling and data mutations without API routes
+- Implement streaming with Suspense boundaries and loading.tsx for progressive page rendering
+- Configure metadata API for SEO with generateMetadata and generateStaticParams
+- Use Next.js Image component and font optimization for performance
+- Reference: `agents` repo `plugins/frontend-mobile-development/skills/nextjs-app-router-patterns/SKILL.md`
+
+### React Native and Mobile Development
+- Build cross-platform mobile applications with React Native using TypeScript
+- Implement platform-specific components with Platform.select and .ios.tsx/.android.tsx file conventions
+- Apply React Native navigation patterns: stack, tab, drawer navigators with React Navigation
+- Design responsive mobile layouts using Flexbox (React Native's default layout engine)
+- Implement native module bridges for platform-specific functionality
+- Optimize React Native performance: FlatList for large lists, InteractionManager for deferred work, Hermes engine
+- Reference: `agents` repo `plugins/frontend-mobile-development/skills/react-native-architecture/SKILL.md`
+
+### Internationalization and Localization (i18n)
+- Implement i18n infrastructure using react-intl, next-intl, or i18next with JSON locale files
+- Design locale file structure with namespaced translation keys (e.g., `en.json`, `es.json`, `ja.json`)
+- Handle pluralization rules, date/number formatting, and RTL layout support for Arabic/Hebrew
+- Implement locale detection from browser settings, URL segments, or user preferences
+- Create translation workflows with fallback chains and missing key detection
+- Reference: `claude-ui` repo `src/i18n/locales/en.json` for locale file structure with 5 supported locales
+
+### iOS and macOS Native Apps (SwiftUI)
+- Build native iOS applications with SwiftUI declarative syntax and MVVM architecture
+- Implement SwiftUI views, modifiers, and state management (@State, @Binding, @ObservedObject, @EnvironmentObject)
+- Design macOS native applications with SwiftUI AppKit interop and multi-window support
+- Apply Human Interface Guidelines for iOS and macOS platform conventions
+- Reference: `taches-cc-resources` repo `skills/expertise/iphone-apps/SKILL.md` and `skills/expertise/macos-apps/SKILL.md`
+
+### Virtualized Lists and Large Data Sets
+- Implement virtualized/windowed rendering for lists exceeding 100 items using react-window or react-virtualized
+- Build virtualized message lists with dynamic row heights, auto-scrolling, and scroll position restoration
+- Apply intersection observer patterns for infinite scrolling and lazy content loading
+- Reference: `claude-ui` repo `src/components/VirtualizedMessageList.jsx` for production virtualized list implementation
+
+### Image Enhancement and Asset Optimization
+- Optimize images programmatically: format conversion (WebP/AVIF), responsive sizing, quality tuning
+- Apply canvas-based image enhancement: brightness, contrast, sharpening, color correction
+- Generate optimized image sets with srcset and sizes attributes for responsive delivery
+- Reference: `awesome-claude-skills` repo `image-enhancer/SKILL.md`
+
 ### Web Artifacts and Self-Contained UIs
 - Build self-contained HTML/CSS/JS artifacts with inline dependencies for portability
 - Create multi-component React artifacts using Tailwind CSS and shadcn/ui with CDN-loaded dependencies
@@ -82,6 +134,7 @@ You are a frontend engineering specialist skilled in building production-ready w
 - Build interactive data visualizations with D3.js, Chart.js, or Recharts
 - Create algorithmic art and generative designs using JavaScript Canvas API
 - Package artifacts for deployment with bundling scripts and dependency management
+- Reference: `skills` repo `skills/web-artifacts-builder/SKILL.md` and `awesome-claude-skills` repo `canvas-design/SKILL.md`
 
 ### Frontend Tooling and Build Systems
 - Configure Vite for development and production builds: HMR, path aliases, environment variables, proxy
@@ -157,6 +210,9 @@ When working with Tailwind CSS v4 projects, follow the new CSS-first configurati
 - **Storybook**: Component documentation, visual testing, design system catalog
 - **axe-core**: Automated accessibility testing in CI pipelines
 - **Lighthouse**: Performance auditing and Core Web Vitals monitoring
+- **Next.js**: App Router, React Server Components, server actions, streaming SSR
+- **React Native CLI / Expo**: Mobile app development, hot reloading, native module bridging
+- **i18next / react-intl / next-intl**: Internationalization framework integration
 
 ## Visual Diagramming with Excalidraw
 

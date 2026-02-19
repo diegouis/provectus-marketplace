@@ -1,6 +1,6 @@
 # ProAgent Platform Engineering Plugin
 
-This plugin provides platform engineering capabilities for Claude Code — developer experience, internal tooling, service catalogs, golden paths, scaffolding, MCP server development, and plugin systems.
+This plugin provides platform engineering capabilities for Claude Code — developer experience, internal tooling, service catalogs, golden paths, scaffolding, MCP server development, plugin systems, document generation (PDF/DOCX/PPTX/XLSX), reproducible environments, and setup orchestration. Built from 107 assets across 13 source repositories.
 
 ## Structure
 
@@ -23,14 +23,16 @@ proagent-platform/
 
 | Command | Description |
 |---------|-------------|
-| `/proagent-platform:hub` | Browse all 127 platform assets by type |
+| `/proagent-platform:hub` | Browse all 107 platform assets by type |
 | `/proagent-platform:run scaffold` | Generate projects from golden path templates |
 | `/proagent-platform:run create-template` | Build reusable project templates |
 | `/proagent-platform:run build-tool` | Create CLI tools, integrations, MCP servers |
 | `/proagent-platform:run setup-dx` | Set up or audit developer experience |
+| `/proagent-platform:run generate-doc` | Generate documents (PDF, DOCX, PPTX, XLSX) |
 | `/proagent-platform:review dx` | DX scorecard across 5 dimensions |
 | `/proagent-platform:review tooling` | Internal tooling quality and health |
 | `/proagent-platform:review templates` | Template library coverage and freshness |
+| `/proagent-platform:review plugins` | Plugin system health, lifecycle, and extensibility |
 
 ## MCP Integrations
 
@@ -48,7 +50,10 @@ proagent-platform/
 - Templates use variable interpolation with `{{variable}}` syntax
 - MCP servers follow the official `@modelcontextprotocol/server-*` package pattern
 - Plugin manifests must validate against the `.claude-plugin/plugin.json` schema
+- Document generation follows the awesome-claude-skills patterns (PDF via `pdf/SKILL.md`, DOCX via `docx/SKILL.md`, PPTX via `pptx/SKILL.md`, XLSX via `xlsx/SKILL.md`)
+- Project scaffolding supports Python (`python-scaffold.md`) and TypeScript (`typescript-scaffold.md`) golden paths from the agents repo
+- Plugin lifecycle management follows patterns from casdk-harness (`plugin_manager.py`) and gastown (`internal/cmd/plugin.go`)
 
 ## Source Repositories
 
-> Built from Provectus internal engineering practices.
+> Built from 107 assets across 13 Provectus source repos: agents, awesome-claude-code, awesome-claude-skills, awos, casdk-harness, gastown, planning-with-files, proagent-repo, provectus-marketplace, ralph-orchestrator, skills, superpowers, taches-cc-resources.

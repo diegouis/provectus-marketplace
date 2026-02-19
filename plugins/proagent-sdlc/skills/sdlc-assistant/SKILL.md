@@ -1,6 +1,6 @@
 ---
 name: sdlc-assistant
-description: Use when managing any phase of the software development lifecycle -- architecture decisions, code review, testing strategy, release planning, documentation, versioning, or git workflows
+description: Use when managing any phase of the software development lifecycle -- architecture decisions, code review, testing strategy, release planning, documentation, versioning, git workflows, debugging, hierarchical planning, ADR generation, C4 diagrams, or multi-agent review pipelines
 ---
 
 # Managing Software Development Lifecycle
@@ -18,6 +18,11 @@ This skill orchestrates the full software development lifecycle from architectur
 - Generating or updating project documentation
 - Establishing or enforcing git workflow conventions
 - Breaking requirements into implementation plans with TDD
+- Debugging issues systematically using hypothesis-driven root-cause analysis
+- Generating Architecture Decision Records (ADRs) and C4 context diagrams
+- Orchestrating multi-stage pipelines (ProAgent 5-stage, PITER framework)
+- Creating and executing hierarchical project plans with progress tracking
+- Finalizing development branches with pre-merge quality checks
 
 ## Capabilities
 
@@ -133,12 +138,27 @@ Follows conventional commit standards and branch management best practices.
 - PRs required for all merges to main
 - CI must pass before merge
 
+**Enhanced commit workflow** (from awesome-claude-code `resources/slash-commands/commit/commit.md`):
+- Analyze staged changes to auto-generate semantic commit messages
+- Validate conventional commit format before committing
+- Include scope detection from changed file paths
+
+**AI-powered PR creation** (from awesome-claude-code `resources/slash-commands/create-pr/create-pr.md`):
+- Auto-generate PR title and description from branch commits
+- Link related issues automatically
+- Populate review checklist based on change types
+
+**Branch finalization** (from superpowers `skills/finishing-a-development-branch/SKILL.md`):
+- Pre-merge quality checklist: all tests pass, no TODO/FIXME in diff, documentation updated
+- Squash or rebase strategy recommendation based on commit history
+- Final review dispatch before merge
+
 ### Structured Requirements Elicitation
 The `ask-me-questions` command pattern provides structured requirement gathering by asking the user targeted questions before beginning implementation. Use this pattern at the start of any development workflow to ensure requirements are clear before writing code.
 
 ### 7. Planning and Task Breakdown
 
-Breaks requirements into bite-sized tasks (2-5 minutes each) with explicit file paths, complete code snippets, exact test commands, and expected outputs.
+Breaks requirements into bite-sized tasks (2-5 minutes each) with explicit file paths, complete code snippets, exact test commands, and expected outputs. Integrates patterns from taches-cc-resources (hierarchical project planning) and superpowers (plan writing and execution).
 
 **Plan structure:**
 - Header: goal, architecture summary, tech stack
@@ -147,9 +167,77 @@ Breaks requirements into bite-sized tasks (2-5 minutes each) with explicit file 
 - TDD cycle per task: write failing test, verify fail, implement, verify pass, commit
 - Execution handoff: subagent-driven (in-session) or parallel session
 
+**Hierarchical planning** (from taches-cc-resources `skills/create-plans/SKILL.md`):
+- Decompose complex projects into epics, features, and tasks
+- Each task includes clear acceptance criteria and dependencies
+- Track progress with status markers (pending, in-progress, done, blocked)
+
+**Plan execution** (from superpowers `skills/executing-plans/SKILL.md`):
+- Read the plan file, identify the next uncompleted task
+- Execute the task following TDD discipline
+- Mark task complete with commit reference
+- Auto-advance to next task or pause for confirmation at phase boundaries
+
+### 8. Debugging
+
+Applies systematic, hypothesis-driven debugging methodologies drawn from casdk-harness (`src/harness/skills/debugging/SKILL.md`) and taches-cc-resources (`skills/debug-like-expert/SKILL.md`).
+
+**Debugging workflow:**
+1. Reproduce the issue with a minimal test case
+2. Gather evidence: error messages, stack traces, logs, git blame
+3. Form hypotheses ranked by likelihood
+4. Test each hypothesis with targeted instrumentation (breakpoints, logging, assertions)
+5. Identify root cause, not just symptoms
+6. Implement fix with regression test
+7. Verify fix does not introduce side effects
+
+**Debugging anti-patterns to avoid:**
+- Shotgun debugging (random changes hoping something works)
+- Print-statement overload without hypothesis
+- Fixing symptoms instead of root cause
+- Skipping the regression test after fix
+
+### 9. Architecture Decision Records (ADRs)
+
+Generates ADRs following the pattern from agents repo (`plugins/documentation-generation/skills/architecture-decision-records/SKILL.md`). Each ADR captures a single architectural decision with full context.
+
+**ADR structure:**
+- Title: short descriptive name
+- Status: proposed, accepted, deprecated, superseded
+- Context: what forces are at play, what is the problem
+- Decision: what was decided and why
+- Consequences: what becomes easier, what becomes harder
+- Alternatives considered: with trade-off analysis
+
+### 10. C4 Architecture Diagrams
+
+Generates C4 model documentation following the pattern from agents repo (`plugins/c4-architecture/agents/c4-context.md`).
+
+**C4 levels:**
+- Context: system boundaries, external actors, and integrations
+- Container: applications, data stores, and communication protocols
+- Component: internal modules, services, and their responsibilities
+- Code: class/module level detail (optional, for critical paths only)
+
+Output as structured markdown with Excalidraw or Mermaid diagram descriptions.
+
+## Changelog Generation
+
+Automated changelog generation follows the pattern from awesome-claude-skills (`changelog-generator/SKILL.md`):
+
+1. Parse conventional commits since last release tag
+2. Group by type: Features, Bug Fixes, Performance, Breaking Changes, Documentation, Chores
+3. Include commit hash, scope, and description
+4. Highlight breaking changes at the top with migration notes
+5. Output as CHANGELOG.md entry with release date and version
+
 ## Agent Teams for Code Review
 
-For comprehensive code reviews, use Agent Teams parallel review patterns:
+For comprehensive code reviews, use Agent Teams parallel review patterns. Draws on specialized agents from the agents repo:
+- `plugins/code-review-ai/agents/architect-review.md` -- AI-powered architect-level review
+- `plugins/git-pr-workflows/agents/code-reviewer.md` -- PR-focused code reviewer
+- `plugins/debugging-toolkit/agents/debugger.md` -- Debugging specialist for root-cause analysis
+- `plugins/code-refactoring/agents/legacy-modernizer.md` -- Legacy code modernization assessment
 
 ### Parallel Multi-Dimensional Review
 Spawn specialized reviewers running simultaneously:
@@ -169,6 +257,39 @@ After all reviewers complete, consolidate findings:
 - **Medium**: Partial impact, workaround exists (N+1 query, missing edge case)
 - **Low**: Minimal impact, cosmetic (style, minor optimization)
 
+## ProAgent 5-Stage SDLC Pipeline
+
+The ProAgent orchestration engine (`proagent-repo/core/orchestration/sdlc/pipeline.py`) defines a 5-stage pipeline that maps to the core SDLC phases:
+
+1. **Analyze** -- Gather requirements, read specs, understand the problem domain
+2. **Design** -- Architecture decisions, technology selection, component design
+3. **Implement** -- Code generation with TDD, following the plan task-by-task
+4. **Validate** -- Code review, test execution, acceptance criteria verification
+5. **Deliver** -- Versioning, changelog, release readiness, deployment preparation
+
+Each stage produces artifacts that feed the next. The pipeline can be run end-to-end or entered at any stage for targeted workflows.
+
+## PITER Framework
+
+The PITER framework (`proagent-repo/core/skills/tac/piter.md`) provides a micro-cycle for individual task execution:
+
+- **Plan** -- Understand the task, identify files to change, define the approach
+- **Implement** -- Write the code following the plan
+- **Test** -- Write and run tests to verify correctness
+- **Evaluate** -- Assess quality, check edge cases, review against requirements
+- **Refine** -- Improve based on evaluation feedback, optimize, clean up
+
+Apply PITER within each task of a larger plan. It complements TDD by adding explicit evaluation and refinement phases.
+
+## Ralph Orchestrator Presets
+
+The ralph-orchestrator provides pre-configured workflow presets for common SDLC scenarios:
+
+- **Bugfix preset** (`ralph-orchestrator/presets/bugfix.yml`): Reproduce issue, isolate root cause, implement fix with regression test, verify no side effects
+- **Refactor preset** (`ralph-orchestrator/presets/refactor.yml`): Identify refactoring target, ensure test coverage exists, apply transformation, verify behavior preservation
+
+These presets define step sequences, quality gates, and rollback conditions for orchestrated multi-agent workflows.
+
 ## AWOS Specification-to-Implementation Pipeline
 
 The AWOS (Agentic Workflow Operating System) provides an 8-step pipeline for transforming ideas into production code:
@@ -182,6 +303,16 @@ The AWOS (Agentic Workflow Operating System) provides an 8-step pipeline for tra
 6. **Task Decomposition** → `tasks.md` + `task_list.json` — Step-by-step implementation checklist
 7. **Implementation** → Code changes with progress tracking
 8. **Verification** → Validate acceptance criteria are met
+
+### AWOS Commands
+The AWOS framework provides 7 commands that map to pipeline steps:
+- `awos/commands/spec.md` -- Generate functional specifications from product vision
+- `awos/commands/architecture.md` -- Interactive architecture design with alternatives
+- `awos/commands/implement.md` -- Execute implementation with task decomposition and TDD
+
+AWOS also provides reusable templates:
+- `awos/templates/architecture-template.md` -- Structured architecture document scaffold
+- `awos/templates/functional-spec-template.md` -- Functional specification scaffold with acceptance criteria sections
 
 ### Mandatory Confirmation Gates
 After each step, the workflow STOPS and presents output for user review:
@@ -220,9 +351,20 @@ This pattern prevents autonomous runaway and ensures stakeholder alignment at cr
 Requirements --> Architecture --> Specs --> Plan --> Implement (TDD) --> Review --> Release
      |              |              |          |           |               |          |
      v              v              v          v           v               v          v
-  Brainstorm   Tech choices   Func+Tech   Bite-sized   Red-green    Multi-layer  Changelog
-  refinement   with alts      specs       tasks        refactor     checklist    + version
+  Brainstorm   Tech choices   Func+Tech   Hierarchical  PITER cycle  Multi-agent  Changelog
+  refinement   C4 + ADRs     specs+AWOS   task plans   per task     parallel     + version
+               templates     templates    + tracking   red-green    review       + branch
+                                                       refactor     pipeline     finalize
 ```
+
+### Pipeline Frameworks
+
+| Framework | Source | Scope | Stages |
+|-----------|--------|-------|--------|
+| ProAgent 5-stage | `proagent-repo/core/orchestration/sdlc/pipeline.py` | Full project | Analyze, Design, Implement, Validate, Deliver |
+| AWOS 8-step | `awos/commands/*` | Feature development | Vision, Roadmap, Architecture, Spec, Plan, Tasks, Implement, Verify |
+| PITER | `proagent-repo/core/skills/tac/piter.md` | Single task | Plan, Implement, Test, Evaluate, Refine |
+| Ralph presets | `ralph-orchestrator/presets/*.yml` | Targeted workflows | Bugfix, Refactor (configurable step sequences) |
 
 ## Visual Diagramming with Excalidraw
 

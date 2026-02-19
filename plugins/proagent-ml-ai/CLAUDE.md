@@ -4,15 +4,18 @@ This plugin provides the ML & AI practice context for the Provectus agentic codi
 
 ## Practice Scope
 
-The ML & AI practice covers seven operational domains:
+The ML & AI practice covers ten operational domains:
 
 1. **Model Training** - Scikit-learn pipelines, TensorFlow/Keras neural networks, XGBoost/LightGBM gradient boosting, PyTorch training loops with cross-validation, early stopping, and checkpointing
 2. **Feature Engineering** - Missing value handling, categorical encoding, numerical transformations, temporal features, text features, and feature selection
-3. **Model Evaluation** - Classification metrics (F1, ROC-AUC, PR-AUC), regression metrics (RMSE, MAE, R-squared), confusion matrices, ROC/PR curves, error analysis, and model comparison with statistical significance testing
+3. **Model Evaluation** - Classification metrics (F1, ROC-AUC, PR-AUC), regression metrics (RMSE, MAE, R-squared), confusion matrices, ROC/PR curves, error analysis, model comparison with statistical significance testing, and LLM judge evaluation (`ralph-orchestrator/tools/e2e/helpers/llm_judge.py`)
 4. **Experiment Tracking** - MLflow parameter/metric/artifact logging, Weights & Biases training visualization, experiment comparison, model registry management
-5. **Model Deployment** - FastAPI REST APIs, Docker containerization, AWS SageMaker endpoints, Google Vertex AI serving, batch prediction pipelines
-6. **LLM Applications** - RAG systems with document loading/chunking/embedding/retrieval, prompt engineering patterns, LangChain/LangGraph agent architectures, vector stores (Chroma, Pinecone, Weaviate), embedding models
+5. **Model Deployment** - FastAPI REST APIs, Docker containerization, AWS SageMaker endpoints, AWS Bedrock integration, Google Vertex AI serving, batch prediction pipelines
+6. **LLM Applications** - RAG systems with document loading/chunking/embedding/retrieval, prompt engineering patterns, LangChain/LangGraph/LangGraphJS agent architectures, vector stores (Chroma, Pinecone, Weaviate), embedding models, LangSmith observability (`awesome-claude-skills/langsmith-fetch/SKILL.md`)
 7. **Production Monitoring** - Data drift detection with KS tests, prediction distribution tracking, model performance monitoring, retraining triggers
+8. **Knowledge Graph Integration** - Graphiti knowledge graph patterns for structured knowledge retrieval and context management (`Auto-Claude/apps/backend/context/graphiti_integration.py`)
+9. **Meta-Prompting Frameworks** - Base meta-prompt construction with role knowledge (`proagent-repo/core/meta_prompts/base.py`), meta-prompt creation commands and generation skills (`taches-cc-resources/commands/create-meta-prompt.md`, `taches-cc-resources/skills/create-meta-prompts/SKILL.md`)
+10. **ML Pipeline Workflows** - End-to-end ML pipeline patterns including validation workflows (`proagent-repo/core/templates/validation_workflows/ml-engineer.yaml`, `agents/plugins/machine-learning-ops/skills/ml-pipeline-workflow/SKILL.md`)
 
 ## Key Conventions
 

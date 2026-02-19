@@ -1,6 +1,6 @@
 # proagent-security
 
-Provectus Security practice plugin for Claude Code. Provides production-tested vulnerability scanning, compliance enforcement, secrets management, encryption, audit logging, threat modeling, OWASP Top 10 protection, and Zero Trust architecture patterns drawn from actual Provectus engineering repositories.
+Provectus Security practice plugin for Claude Code. Provides production-tested vulnerability scanning (SAST, DAST, XSS, VirusTotal), compliance enforcement (GDPR, SOC2, PCI, HIPAA, ISO 27001), secrets management, encryption, audit logging, threat modeling (STRIDE, PASTA), OWASP Top 10 protection, Zero Trust architecture with trust ladder, agent sandboxing and access control, frontend security, risk classification, smart contract auditing, and security audit workflows drawn from actual Provectus engineering repositories.
 
 ## Installation
 
@@ -57,11 +57,15 @@ View all available security capabilities:
 Execute security operations:
 
 ```
-/proagent-security-run scan-vulnerabilities   # Run comprehensive vulnerability scan
+/proagent-security-run scan-vulnerabilities   # Run comprehensive vulnerability scan (SAST, SCA, OWASP)
 /proagent-security-run audit-secrets          # Detect hardcoded secrets and credentials
-/proagent-security-run threat-model           # Generate a threat model for the application
-/proagent-security-run compliance-check       # Validate compliance against a framework
+/proagent-security-run threat-model           # Generate a threat model (STRIDE, trust assessment)
+/proagent-security-run compliance-check       # Validate compliance against a framework (GDPR, SOC2, PCI, HIPAA)
 /proagent-security-run encrypt-setup          # Configure encryption for data protection
+/proagent-security-run xss-scan              # Frontend XSS vulnerability scanning
+/proagent-security-run risk-classify         # Classify code change risk level
+/proagent-security-run agent-harden          # Harden autonomous agent deployments
+/proagent-security-run audit-workflow        # Execute structured security audit workflow
 ```
 
 ### Review Command
@@ -82,6 +86,9 @@ The review command checks:
 - CI/CD pipelines for security scanning coverage
 - Infrastructure code for overly permissive policies
 - Access controls for least-privilege enforcement
+- Frontend components for XSS and CSRF vulnerabilities
+- Agent configurations for sandbox and trust level hardening
+- Solidity smart contracts for reentrancy, overflow, and access control issues
 
 ### Using the Security Specialist Agent
 
@@ -112,11 +119,18 @@ Use the security-assistant skill to review this API for OWASP Top 10 vulnerabili
 - Security header configuration (CSP, HSTS, X-Frame-Options, SameSite)
 - TLS configuration with recommended cipher suites
 - Zero Trust trust ladder with five progressive autonomy levels
+- Agent sandboxing and hardening patterns for production autonomous agents
+- Risk classification for code changes with keyword and scope analysis
+- XSS vulnerability scanning with framework-specific detection (React, Vue, Angular)
+- Solidity smart contract security patterns (reentrancy, overflow, access control)
+- Security audit workflow formulas for repeatable audit processes
 
 ### Automated Checks
 - Pre-commit hooks that scan for AWS keys, GitHub tokens, private keys, database URLs, and generic secrets
 - Dependency vulnerability audit hooks that run before npm install, pip install, Docker build, and Go module operations
 - Pattern-based secret detection covering 10+ credential types
+- VirusTotal malware scanning integration for CI/CD pipelines
+- Automated risk scoring for pull requests and code changes
 
 ### Compliance Checklists
 - GDPR compliance checklist with data processing, consent, erasure, and breach notification controls
@@ -137,10 +151,10 @@ Use the security-assistant skill to review this API for OWASP Top 10 vulnerabili
 
 ## Source Repositories
 
-> Built from Provectus internal engineering practices.
+Built from 10 Provectus internal repositories: `agents`, `Auto-Claude`, `awos`, `casdk-harness`, `claude-ui`, `gastown`, `proagent-repo`, `proagent-repo GUI`, `provectus-marketplace`, `ralph-orchestrator`. Total: 41 cataloged assets (22 newly discovered in latest scan). Key external assets include security scanning commands and hardening agents from `agents`, risk classification and VirusTotal workflows from `Auto-Claude`, agent sandboxing from `casdk-harness`, trust ladder and ZTE assessor from `proagent-repo`, audit formulas from `gastown`, and security considerations from `ralph-orchestrator`.
 
 ## Version
 
-- Plugin version: 0.2.0
+- Plugin version: 0.3.0
 - Category: security
 - Author: Provectus

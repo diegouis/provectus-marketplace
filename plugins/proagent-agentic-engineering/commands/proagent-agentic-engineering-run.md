@@ -156,6 +156,50 @@ Evaluate an agent system's effectiveness.
 6. Iterate on agent design based on findings
 
 
+### bootstrap-loop
+Bootstrap an autonomous coding loop using one of the ecosystem frameworks.
+
+**Process**:
+1. Assess project requirements: language, complexity, backend preference
+2. Recommend framework:
+   - **ralph-orchestrator** for Rust projects or multi-backend LLM needs (Claude, Kiro, Gemini, Codex)
+   - **casdk-harness** for Python projects with Claude SDK and plugin lifecycle needs
+   - **Auto-Claude** for projects needing persistent knowledge graph context (Graphiti)
+   - **gastown** for Go projects or molecule-based workflow composition
+3. Configure orchestration preset or autonomous mode settings
+4. Set up tool registry with required capabilities
+5. Define exit conditions (test pass, build success, coverage threshold)
+6. Configure ZTE trust level (Observer through Autonomous) from `proagent-repo core/zte/trust_ladder.py`
+7. Add confirmation gates at critical decision points
+8. Set up context persistence (session files, knowledge graph, or checkpoint files)
+9. Test loop execution with a small, scoped task
+
+
+### spec-driven
+Run a spec-driven development workflow from architecture to verified implementation.
+
+**Process**:
+1. Generate architecture documentation (following AWOS `/architecture` pattern)
+2. Produce functional specification with acceptance criteria (following AWOS `/spec` pattern)
+3. Present spec for user approval (confirmation gate)
+4. Route through implementation stages (following ProAgent SDLC 5-stage pipeline)
+5. Implement features from approved specs (following AWOS `/implement` pattern)
+6. Verify implementation against spec acceptance criteria (following AWOS `/verify` pattern)
+7. Generate verification report with pass/fail status per acceptance criterion
+
+
+### context-plan
+Create a structured planning session using the 3-file planning pattern.
+
+**Process**:
+1. Create plan file with task decomposition and dependencies
+2. Create progress tracker for status monitoring
+3. Create output log for artifact tracking
+4. Set up hooks for automatic progress tracking via file existence detection
+5. Execute plan phases with confirmation gates between major stages
+6. Update progress tracker as tasks complete
+
+
 ---
 
 If no workflow is specified, display this menu and ask which workflow to execute.

@@ -1,8 +1,8 @@
 # proagent-finance
 
-A Claude Code plugin for comprehensive financial operations management. Covers budgeting, invoicing, revenue forecasting, P&L analysis, cost optimization, billing workflows, and financial reporting.
+A Claude Code plugin for comprehensive financial operations management. Covers budgeting, invoicing, revenue forecasting, P&L analysis, cost optimization, cloud FinOps, payment processing (Stripe, PCI compliance), financial projections, budget variance analysis, billing workflows, and financial reporting. Incorporates assets from 3 source repos: `agents`, `awesome-claude-skills`, and `provectus-marketplace`.
 
-**Version:** 0.2.0
+**Version:** 0.3.0
 **Category:** Finance
 **License:** MIT
 
@@ -46,6 +46,18 @@ Create new invoices with professional formatting and sequential numbering, organ
 ```
 Generates a structured profit and loss statement with revenue segmentation, COGS, gross margin, operating expenses, and net income. Includes period-over-period comparison and margin trend analysis.
 
+**Build financial projections:**
+```
+/proagent-finance-run financial-projections
+```
+Build forward-looking financial models for startups and growth-stage companies: revenue projections (bottom-up and top-down), expense models (headcount-driven), cash flow projections with runway calculation, unit economics (CAC, LTV, payback period), and break-even analysis. Based on patterns from the `agents` repo `plugins/startup-business-analyst/commands/financial-projections.md`.
+
+**Optimize cloud costs (FinOps):**
+```
+/proagent-finance-run cloud-cost-optimization
+```
+Analyze cloud infrastructure spending across AWS, GCP, and Azure. Identifies idle resources, right-sizing opportunities, reserved instance coverage gaps, storage tier optimization, and orphaned resources. Produces prioritized recommendations with estimated savings. Based on patterns from the `agents` repo `plugins/cloud-infrastructure/skills/cost-optimization/SKILL.md`.
+
 **Check financial health:**
 ```
 /proagent-finance-review financial-health
@@ -53,6 +65,12 @@ Generates a structured profit and loss statement with revenue segmentation, COGS
 Runs a comprehensive assessment across profitability (gross/operating/net margins), liquidity (cash position, burn rate, runway), growth (revenue growth, MRR/ARR, churn), and risk (concentration, dependency, seasonal vulnerability). Outputs a scored dashboard with action items.
 
 **Review budget variances:**
+```
+/proagent-finance-review budget-variance
+```
+Compares actuals against budget with threshold-based classification (on track, warning, critical). Includes run-rate projections to predict budget exhaustion, reallocation recommendations from under-budget to over-budget categories, and root cause analysis for material variances.
+
+**Review budget completeness:**
 ```
 /proagent-finance-review budgets
 ```
@@ -62,11 +80,11 @@ Loads current budget and actual spending data, calculates variances per category
 
 | Component | Name | Purpose |
 |-----------|------|---------|
-| Skill | `proagent-finance:finance-assistant` | Core skill covering all financial operations |
+| Skill | `proagent-finance:finance-assistant` | Core skill covering all financial operations (11 capabilities) |
 | Command | `proagent-finance-hub` | Command hub and routing |
-| Command | `proagent-finance-run` | Execute financial workflows (5 modes) |
-| Command | `proagent-finance-review` | Financial reviews and assessments (4 modes) |
-| Agent | `proagent-finance:finance-specialist` | Subagent for analysis and report generation |
+| Command | `proagent-finance-run` | Execute financial workflows (7 modes) |
+| Command | `proagent-finance-review` | Financial reviews and assessments (5 modes) |
+| Agent | `proagent-finance:finance-specialist` | Subagent for analysis, projections, FinOps, and report generation |
 | Hook | Financial document validation | Invoice fields, budget categories, report structure |
 | Hook | Invoice naming validation | Standardized filename convention enforcement |
 | Hook | Post-report summary | Severity-coded findings and budget overrun escalation |
@@ -83,4 +101,16 @@ Loads current budget and actual spending data, calculates variances per category
 | Rube | `rube.app/mcp` | SaaS automation gateway (Stripe, Square, Shopify, etc.) |
 
 Set the environment variables for the services your team uses. Unused servers will not be started.
+
+### External Asset Sources
+
+This plugin integrates patterns from assets discovered across the Provectus ecosystem (14 total assets from 3 repos):
+
+| Source Repo | Asset | Integrated As |
+|-------------|-------|---------------|
+| `agents` | `plugins/cloud-infrastructure/skills/cost-optimization/SKILL.md` | Cloud FinOps capability + `cloud-cost-optimization` run mode |
+| `agents` | `plugins/payment-processing/skills/stripe-integration/SKILL.md` | Stripe integration patterns in billing capability |
+| `agents` | `plugins/payment-processing/skills/pci-compliance/SKILL.md` | PCI compliance guidance in billing capability |
+| `agents` | `plugins/startup-business-analyst/commands/financial-projections.md` | Financial projections capability + `financial-projections` run mode |
+| `awesome-claude-skills` | `invoice-organizer/SKILL.md` | Invoice organization patterns in invoicing capability |
 

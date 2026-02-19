@@ -1,6 +1,6 @@
 # proagent-sales
 
-Provectus Sales practice plugin for Claude Code. Provides production-tested proposal drafting, lead research, competitive analysis, pricing, RFP response, and deal pipeline management patterns drawn from actual Provectus repositories.
+Provectus Sales practice plugin for Claude Code. Provides production-tested proposal drafting, lead research, competitive analysis, pricing, RFP response, deal pipeline management, sales automation, content marketing, business case generation, and market opportunity analysis patterns drawn from actual Provectus repositories.
 
 ## Installation
 
@@ -53,11 +53,15 @@ View all available sales capabilities:
 Execute sales operations:
 
 ```
-/proagent-sales-run draft-proposal       # Draft a client proposal or SOW
-/proagent-sales-run research-lead        # Research and qualify prospective leads
-/proagent-sales-run competitive-analysis # Analyze competitors in a market segment
-/proagent-sales-run generate-quote       # Generate a pricing quote for a client
-/proagent-sales-run prepare-rfp          # Prepare a structured RFP response
+/proagent-sales-run draft-proposal          # Draft a client proposal or SOW
+/proagent-sales-run research-lead           # Research and qualify prospective leads
+/proagent-sales-run competitive-analysis    # Analyze competitors in a market segment
+/proagent-sales-run generate-quote          # Generate a pricing quote for a client
+/proagent-sales-run prepare-rfp             # Prepare a structured RFP response
+/proagent-sales-run build-business-case     # Generate a business case with ROI analysis
+/proagent-sales-run assess-market-opportunity # Analyze market opportunities (TAM/SAM/SOM)
+/proagent-sales-run extract-competitor-ads  # Extract and analyze competitor advertising
+/proagent-sales-run create-content          # Create marketing and sales enablement content
 ```
 
 ### Review Command
@@ -70,6 +74,9 @@ Review sales artifacts and strategy:
 /proagent-sales-review pricing           # Review pricing for margin and competitiveness
 /proagent-sales-review pipeline          # Review pipeline health metrics
 /proagent-sales-review deal-strategy     # Review strategy for a specific deal
+/proagent-sales-review business-case     # Review a business case for financial rigor
+/proagent-sales-review market-opportunity # Review a market opportunity analysis
+/proagent-sales-review content           # Review marketing or sales enablement content
 ```
 
 ### Using the Sales Specialist Agent
@@ -99,12 +106,19 @@ Use the sales-assistant skill to draft a proposal for a cloud migration engageme
 - RFP compliance matrix with point-by-point response tracking
 - Pipeline stage definitions with entry/exit criteria and health metrics
 - Cold email sequence templates (value-first introduction, follow-up, breakup)
+- Business case template with ROI, NPV, payback period, and sensitivity analysis
+- Market opportunity framework with TAM/SAM/SOM sizing and opportunity scoring
+- Content marketing brief and SEO-optimized writing patterns
+- Competitor ad extraction and messaging analysis templates
 
 ### Automated Checks
 - Proposal template validation ensuring all required sections are present
 - Placeholder text detection to prevent sending unfinished documents to clients
 - Pricing consistency checks verifying line items sum correctly
 - Competitive intelligence freshness alerts for data older than 90 days
+
+### External Asset Sources
+Assets integrated from 4 repositories: `agents`, `awesome-claude-skills`, `taches-cc-resources`, `provectus-marketplace`
 
 ### MCP Servers
 
@@ -119,6 +133,6 @@ Use the sales-assistant skill to draft a proposal for a cloud migration engageme
 
 ## Version
 
-- Plugin version: 0.2.0
+- Plugin version: 0.3.0
 - Category: sales
 - Author: Provectus

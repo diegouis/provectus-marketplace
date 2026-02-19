@@ -4,7 +4,7 @@ Provectus QA plugin for Claude Code. Comprehensive quality assurance and test au
 
 ## Overview
 
-proagent-qa provides a complete testing toolkit that integrates with Claude Code to automate test creation, execution, coverage analysis, regression detection, and E2E browser testing. It follows the validation pyramid model and enforces quality gates through pre-commit hooks and CI/CD integration.
+proagent-qa provides a complete testing toolkit that integrates with Claude Code to automate test creation, execution, coverage analysis, regression detection, E2E browser testing, TDD workflows, LLM-based test evaluation, and implementation verification. It follows the validation pyramid model and enforces quality gates through pre-commit hooks and CI/CD integration. Version 0.3.0 incorporates 72 newly discovered assets from 14 scanned repositories.
 
 ## Installation
 
@@ -25,9 +25,15 @@ proagent-qa provides a complete testing toolkit that integrates with Claude Code
 | `/proagent-qa-run coverage-report` | Measure code coverage with gap analysis |
 | `/proagent-qa-run regression-check` | Run targeted regression tests on recent changes |
 | `/proagent-qa-run e2e-test <test_file>` | Execute E2E tests with Playwright |
+| `/proagent-qa-run tdd-cycle <target>` | Execute full TDD red/green/refactor cycle |
+| `/proagent-qa-run accessibility-audit <url>` | Run WCAG 2.1 AA accessibility audit |
+| `/proagent-qa-run llm-judge <target>` | Evaluate AI outputs with LLM judge scoring |
+| `/proagent-qa-run verify <spec>` | Verify implementation meets acceptance criteria |
 | `/proagent-qa-review test suites` | Audit test quality and best practices |
 | `/proagent-qa-review coverage` | Analyze coverage against thresholds |
 | `/proagent-qa-review test strategy` | Evaluate testing maturity and strategy |
+| `/proagent-qa-review test plan` | Review or generate structured test plans |
+| `/proagent-qa-review skill audit` | Audit QA skill quality and completeness |
 
 ## Quality Gates
 
@@ -65,13 +71,24 @@ The plugin includes automated quality gates via `hooks/hooks.json`:
 - Lighthouse (performance auditing)
 - axe-core (accessibility testing)
 
+### Deterministic and AI Testing
+- Mock backends for service simulation (ralph-orchestrator pattern)
+- Replay backends for deterministic API call reproduction (ralph-orchestrator pattern)
+- LLM judge for evaluating AI-generated outputs (ralph-orchestrator pattern)
+
+### TDD and Verification
+- Red/green/refactor cycle workflows (agents, superpowers patterns)
+- Implementation verification against acceptance criteria (superpowers, awos patterns)
+- Test plan generation from specifications (awesome-claude-code pattern)
+- Validation pyramid enforcement (proagent-repo pattern)
+
 ## Architecture
 
 The plugin is built around these components:
 
-- **SKILL.md**: Defines the QA assistant's core competencies across test automation, Playwright/Cypress integration, regression testing, coverage analysis, E2E testing, performance testing, and accessibility auditing
-- **Commands**: Three command files (Hub, Run, Review) that provide the user-facing interface for all QA operations
-- **Agent**: A QA specialist subagent with SDET expertise for autonomous test design, execution, and analysis
+- **SKILL.md**: Defines the QA assistant's core competencies across test automation, TDD workflows, Playwright/Cypress integration, regression testing, coverage analysis, E2E testing, LLM-based evaluation, mock/replay backends, performance testing, accessibility auditing, and implementation verification
+- **Commands**: Three command files (Hub, Run, Review) providing 15 modes for QA operations including TDD cycles, accessibility audits, LLM judge evaluation, verification, test plan review, and skill auditing
+- **Agent**: A QA specialist subagent with SDET expertise for autonomous test design, execution, TDD guidance, LLM evaluation, and verification
 - **Hooks**: Automated quality gates that enforce standards at commit, test, and merge time
 - **MCP Config**: Integration with Playwright, GitHub, GitLab, Jira, Slack, Google Drive, and Google Workspace for end-to-end workflow automation
 
@@ -90,7 +107,7 @@ The plugin is built around these components:
 
 ## Source Attribution
 
-> Built from Provectus internal engineering practices.
+> Built from Provectus internal engineering practices and 100 assets discovered across 14 repositories: agents, Auto-Claude, awesome-claude-code, awesome-claude-skills, awos, casdk-harness, claude-ui, gastown, proagent-repo, provectus-marketplace, ralph-orchestrator, skills, superpowers, taches-cc-resources.
 
 ## License
 

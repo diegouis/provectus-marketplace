@@ -1,13 +1,13 @@
 ---
 name: finance-assistant
-description: Use when managing financial operations -- budgeting, invoicing, revenue forecasting, P&L analysis, cost optimization, billing workflows, and financial reporting
+description: Use when managing financial operations -- budgeting, invoicing, revenue forecasting, P&L analysis, cost optimization, cloud FinOps, payment processing (Stripe, PCI compliance), financial projections, billing workflows, and financial reporting
 ---
 
 # Managing Financial Operations
 
 ## Overview
 
-This skill orchestrates financial operations across budgeting, invoicing, forecasting, P&L analysis, revenue tracking, cost optimization, billing, and financial reporting.
+This skill orchestrates financial operations across budgeting, invoicing, forecasting, P&L analysis, revenue tracking, cost optimization, cloud FinOps, payment processing (Stripe integration, PCI compliance), financial projections, billing, and financial reporting. It incorporates patterns from the `agents` repo (cloud-infrastructure cost-optimization, payment-processing stripe-integration and pci-compliance skills, startup-business-analyst financial-projections) and the `awesome-claude-skills` repo (invoice-organizer).
 
 **Announce at start:** "I'm using the proagent-finance:finance-assistant skill to manage this financial operation."
 
@@ -21,6 +21,11 @@ This skill orchestrates financial operations across budgeting, invoicing, foreca
 - Optimizing costs by analyzing spending patterns and vendor contracts
 - Setting up or managing billing and payment processing workflows
 - Producing financial reports for stakeholders, audits, or compliance
+- Building financial projections for startups and growth-stage companies
+- Analyzing and optimizing cloud infrastructure costs (FinOps)
+- Allocating cloud costs across teams, projects, and business units
+- Integrating Stripe payment processing with PCI-compliant workflows
+- Running budget variance analysis with threshold-based alerts
 
 ## Capabilities
 
@@ -48,7 +53,7 @@ budget-YYYY.csv / budget-YYYY.xlsx
 
 ### 2. Invoicing
 
-Automates invoice generation, organization, and reconciliation.
+Automates invoice generation, organization, and reconciliation. Invoice organization follows patterns from the `awesome-claude-skills` repo `invoice-organizer/SKILL.md`.
 
 **Invoice generation:**
 - Create professional invoices from project data, time entries, or deliverables
@@ -179,9 +184,92 @@ Analyze spending patterns, identify savings opportunities, and recommend optimiz
 
 **Output:** Cost optimization report with ranked recommendations, estimated savings, implementation effort, and timeline.
 
-### 7. Billing and Payment Processing
+### 7. Cloud Cost Optimization (FinOps)
 
-Manage billing workflows and payment integrations.
+Analyze and optimize cloud infrastructure spending using patterns from the `agents` repo `plugins/cloud-infrastructure/skills/cost-optimization/SKILL.md`.
+
+**Cloud cost analysis approach:**
+1. Inventory cloud resources across providers (AWS, GCP, Azure)
+2. Map costs to teams, projects, and business units using tagging and cost allocation
+3. Identify idle and underutilized resources (instances, storage, databases)
+4. Evaluate reserved instance and savings plan coverage vs. on-demand spend
+5. Analyze data transfer costs and cross-region traffic patterns
+6. Review storage tier optimization (hot vs. warm vs. cold vs. archive)
+7. Assess containerized workload efficiency (right-sizing pods, node utilization)
+
+**Cost allocation dimensions:**
+- By team or department (engineering, data, ML, platform)
+- By project or product line
+- By environment (production, staging, development, sandbox)
+- By service category (compute, storage, networking, database, ML/AI)
+
+**Optimization levers:**
+- Reserved instances / savings plans for predictable baseline workloads
+- Spot/preemptible instances for fault-tolerant batch processing
+- Auto-scaling policies tuned to actual demand patterns
+- Storage lifecycle policies (auto-tier to cheaper storage classes)
+- Right-sizing recommendations based on CPU/memory utilization metrics
+- Cleanup of orphaned resources (unattached EBS volumes, stale snapshots, unused Elastic IPs)
+
+**Output:** Cloud cost optimization report with per-resource savings estimates, implementation priority, and projected monthly/annual savings.
+
+### 8. Financial Projections
+
+Build forward-looking financial models for startups and growth-stage companies using patterns from the `agents` repo `plugins/startup-business-analyst/commands/financial-projections.md`.
+
+**Projection types:**
+- **Revenue projections:** Bottom-up (units x price) and top-down (TAM x capture rate) models
+- **Expense projections:** Hiring plan-driven personnel costs, infrastructure scaling models, marketing spend curves
+- **Cash flow projections:** Monthly cash in/out with runway calculation and fundraising trigger points
+- **Unit economics:** CAC, LTV, LTV/CAC ratio, payback period projections over time
+- **Break-even analysis:** Fixed and variable cost modeling to determine revenue threshold for profitability
+
+**Key steps:**
+1. Define projection horizon (typically 12-36 months for startups, 12 months for growth-stage)
+2. Build revenue model: pricing tiers, expected customer acquisition, expansion revenue, churn assumptions
+3. Build expense model: headcount plan, infrastructure scaling, vendor costs, marketing budget
+4. Calculate monthly cash flow: net burn rate, cash runway, funding milestones
+5. Sensitivity analysis: test impact of varying growth rate, churn, and hiring pace
+6. Present investor-ready output with assumptions clearly documented
+
+**Output format:**
+```
+Financial Projections - [Company] - [Period]
+├── Revenue Model (by stream, monthly/quarterly)
+├── Expense Model (by category, headcount-driven)
+├── Cash Flow Projection (monthly, cumulative)
+├── Unit Economics (CAC, LTV, payback, margins)
+├── Break-Even Analysis (months to profitability)
+├── Sensitivity Matrix (key variable impacts)
+└── Assumptions Log (all inputs documented)
+```
+
+### 9. Budget Variance Analysis
+
+Dedicated budget variance tracking and analysis with automated alerting thresholds.
+
+**Variance analysis workflow:**
+1. Load current budget allocations and actual spending data
+2. Calculate variance per line item: absolute ($) and relative (%)
+3. Apply threshold classification:
+   - **On track:** Within 10% of allocation (favorable or neutral)
+   - **Warning:** 10-20% over allocation -- flag for review
+   - **Critical:** Over 20% -- requires immediate action and approval
+4. Calculate year-to-date cumulative budget utilization per category
+5. Project run-rate to period end: will current spending rate exhaust the budget?
+6. Identify categories consistently under budget (reallocation opportunity)
+7. Generate variance report with drill-down by category, department, and month
+
+**Automated alerts:**
+- Weekly: summary of any categories approaching warning threshold
+- Monthly: full variance report with trend analysis
+- Immediate: notification when any category crosses critical threshold (20%+ over)
+
+**Output:** Budget variance report with color-coded status per category, run-rate projections, reallocation recommendations, and escalation items.
+
+### 10. Billing and Payment Processing (Stripe, PCI Compliance)
+
+Manage billing workflows and payment integrations. Incorporates Stripe integration patterns from the `agents` repo `plugins/payment-processing/skills/stripe-integration/SKILL.md` and PCI compliance guidance from `plugins/payment-processing/skills/pci-compliance/SKILL.md`.
 
 **Billing workflows:**
 - Generate billing schedules from contracts (monthly, quarterly, milestone-based)
@@ -206,7 +294,16 @@ Manage billing workflows and payment integrations.
 - `invoice.payment_succeeded` -- Record recurring payment
 - `charge.refunded` -- Update ledger, adjust revenue
 
-### 8. Financial Reporting
+**PCI compliance requirements:**
+- Never store raw card numbers, CVV, or magnetic stripe data in application databases
+- Use Stripe Elements, Checkout, or Payment Intents for client-side card collection (tokenization)
+- Enforce HTTPS/TLS for all payment-related API communication
+- Implement webhook signature verification (`Stripe-Signature` header) to prevent spoofed events
+- Log payment events with masked card details (last 4 digits only) for audit trails
+- Maintain SAQ-A or SAQ-A-EP compliance scope when using hosted payment pages
+- Review PCI DSS requirements annually and document compliance controls
+
+### 11. Financial Reporting
 
 Generate structured financial reports for stakeholders, board meetings, audits, and compliance.
 
@@ -231,7 +328,8 @@ Generate structured financial reports for stakeholders, board meetings, audits, 
 - **Google Docs:** Budget documents, financial reports, P&L statements shared with stakeholders
 - **Gmail:** Invoice delivery, payment reminders, financial report distribution, overdue notices
 - **Slack:** Budget alerts, payment notifications, revenue milestone announcements, expense approvals
-- **Stripe:** Payment processing, subscription billing, webhook-driven payment status updates
+- **Stripe:** Payment processing, subscription billing, webhook-driven payment status updates (per `agents` repo stripe-integration and pci-compliance patterns)
+- **Cloud providers (AWS, GCP, Azure):** Cost Explorer, Billing APIs, and tagging for cloud cost allocation and FinOps (per `agents` repo cost-optimization patterns)
 - **Accounting software:** CSV/JSON export compatible with QuickBooks, Xero, FreshBooks
 
 ## Composio App Automations
@@ -298,4 +396,11 @@ Budget Planning --> Invoice Management --> Revenue Tracking --> P&L Analysis -->
   Allocate by       Generate/organize      Track MRR/ARR       Margin analysis  Executive
   category with     invoices, reconcile    by source and        cost ratios      summaries
   variance gates    against payments       type, flag churn     period compare   and forecasts
+
+Cloud FinOps -----> Financial Projections --> Budget Variance --> Payment Processing
+      |                    |                     |                   |
+      v                    v                     v                   v
+  Cloud cost         Revenue/expense        Threshold-based     Stripe integration
+  allocation by      models, break-even     alerts, run-rate    PCI compliance
+  team/project       unit economics         projections         webhook automation
 ```

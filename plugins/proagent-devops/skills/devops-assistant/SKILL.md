@@ -1,6 +1,6 @@
 ---
 name: devops-assistant
-description: Managing Infrastructure & Deployments - CI/CD pipelines, Docker/Kubernetes containerization, Terraform/IaC, monitoring and observability, incident response, and multi-cloud operations across AWS and GCP. Use when performing any infrastructure, deployment, or operational task.
+description: Managing Infrastructure & Deployments - CI/CD pipelines (GitHub Actions templates, GitLab CI, release workflows), Docker/Kubernetes containerization (Helm chart scaffolding, production-hardened compose), Terraform/IaC (module libraries, Nix flakes), monitoring and observability (Prometheus configuration, Grafana dashboards, alerting rules), secrets management, GitOps workflows (ArgoCD, Flux), incident response, cloud cost optimization, and multi-cloud operations across AWS and GCP. Use when performing any infrastructure, deployment, or operational task.
 ---
 
 # Managing Infrastructure & Deployments
@@ -10,14 +10,22 @@ Comprehensive DevOps skill covering the full lifecycle of infrastructure managem
 ## When to Use This Skill
 
 - Designing or implementing CI/CD pipelines (GitHub Actions, GitLab CI, Jenkins)
+- Scaffolding GitHub Actions workflows from reusable templates (reference `agents/plugins/cicd-automation/skills/github-actions-templates/`)
 - Containerizing applications with Docker and Docker Compose
 - Orchestrating workloads on Kubernetes (EKS, GKE, AKS)
+- Scaffolding Helm charts for Kubernetes deployments (reference `agents/plugins/kubernetes-operations/skills/helm-chart-scaffolding/`)
 - Provisioning infrastructure with Terraform or other IaC tools
-- Setting up monitoring, alerting, and observability stacks
+- Using Terraform module libraries for standardized infrastructure (reference `agents/plugins/cloud-infrastructure/skills/terraform-module-library/`)
+- Setting up monitoring, alerting, and observability stacks (Prometheus, Grafana)
+- Configuring Prometheus scrape targets and alerting rules (reference `agents/plugins/observability-monitoring/skills/prometheus-configuration/`)
+- Building Grafana dashboards for service and infrastructure monitoring (reference `agents/plugins/observability-monitoring/skills/grafana-dashboards/`)
+- Managing secrets across environments (reference `agents/plugins/cicd-automation/skills/secrets-management/`)
+- Implementing GitOps workflows with ArgoCD or Flux (reference `agents/plugins/kubernetes-operations/skills/gitops-workflow/`)
+- Optimizing cloud costs and implementing FinOps practices (reference `agents/plugins/cloud-infrastructure/skills/cost-optimization/`)
 - Responding to incidents and writing postmortems
 - Managing cloud resources on AWS or GCP
 - Reviewing infrastructure configurations for security and best practices
-- Implementing GitOps workflows with ArgoCD or Flux
+- Setting up release preparation workflows (reference `Auto-Claude/.github/workflows/prepare-release.yml`)
 
 ## CI/CD Pipeline Design
 
@@ -436,13 +444,43 @@ spec:
 - Enable auto-sync with self-healing for drift detection and remediation
 - Use Kustomize overlays or Helm value files for environment-specific configuration
 
-### Helm Chart Best Practices
+### Helm Chart Scaffolding
 
-- Maintain a standardized chart structure with Chart.yaml, values.yaml, and templates/
-- Use `.helmignore` to exclude unnecessary files from chart packages
-- Validate charts with `helm lint` and `helm template` before deployment
-- Implement chart testing with `helm test` hooks
-- Version charts semantically and publish to a chart repository
+Reference: `agents/plugins/kubernetes-operations/skills/helm-chart-scaffolding/SKILL.md`
+
+When creating new Helm charts:
+
+1. **Initialize the chart structure:**
+   ```bash
+   helm create <chart-name>
+   ```
+2. **Standard chart layout:**
+   ```
+   chart-name/
+     Chart.yaml          # Chart metadata and dependencies
+     values.yaml         # Default configuration values
+     values-staging.yaml # Staging overrides
+     values-prod.yaml    # Production overrides
+     templates/
+       deployment.yaml
+       service.yaml
+       ingress.yaml
+       hpa.yaml
+       serviceaccount.yaml
+       configmap.yaml
+       secrets.yaml
+       _helpers.tpl       # Template helpers and named templates
+     tests/
+       test-connection.yaml
+   ```
+3. **Best practices:**
+   - Maintain a standardized chart structure with Chart.yaml, values.yaml, and templates/
+   - Use `.helmignore` to exclude unnecessary files from chart packages
+   - Validate charts with `helm lint` and `helm template` before deployment
+   - Implement chart testing with `helm test` hooks
+   - Version charts semantically and publish to a chart repository
+   - Use named templates in `_helpers.tpl` for reusable label and selector blocks
+   - Parameterize image tags, replica counts, resource limits, and ingress hosts via values.yaml
 
 ## Agent Workload Operations
 
@@ -575,6 +613,226 @@ done
 - Enforce RBAC with least-privilege service accounts
 - Enable audit logging for all cluster operations
 - Sign container images with Sigstore/cosign for supply chain security
+
+## Secrets Management
+
+Reference: `agents/plugins/cicd-automation/skills/secrets-management/SKILL.md`
+
+### Secret Storage Backends
+
+| Backend | Use Case | Integration |
+|---------|----------|-------------|
+| AWS Secrets Manager | AWS-native workloads | IAM role-based access, automatic rotation |
+| GCP Secret Manager | GCP-native workloads | Service account-based access, versioned secrets |
+| HashiCorp Vault | Multi-cloud, on-prem | Dynamic secrets, PKI, transit encryption |
+| Kubernetes Secrets | In-cluster apps | External Secrets Operator for sync from cloud backends |
+
+### Patterns
+
+- Use External Secrets Operator to sync cloud secrets into Kubernetes Secrets
+- Rotate secrets on a defined schedule (90 days for credentials, 365 days for certificates)
+- Audit all secret access through cloud provider audit logs
+- Never pass secrets as environment variables in CI/CD logs; use masked variables or secret injection
+- For GitHub Actions, use repository or environment secrets; never hardcode in workflow files
+- For Docker, use BuildKit `--secret` mounts during build; never use `ARG` or `ENV` for secrets
+
+## GitOps Workflow Patterns
+
+Reference: `agents/plugins/kubernetes-operations/skills/gitops-workflow/SKILL.md`
+
+### ArgoCD Application Pattern
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/org/k8s-manifests.git
+    targetRevision: main
+    path: environments/production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+```
+
+### Environment Promotion Flow
+
+1. Developer merges feature branch into `main` in the application repo
+2. CI pipeline builds and pushes container image, updates image tag in the GitOps manifests repo
+3. ArgoCD detects the manifest change and syncs to the staging environment
+4. After validation, promote to production via pull request updating `environments/production/` values
+5. ArgoCD syncs production after PR merge with automatic self-healing enabled
+
+## Terraform Module Library
+
+Reference: `agents/plugins/cloud-infrastructure/skills/terraform-module-library/SKILL.md`
+
+### Module Structure
+
+```
+modules/
+  vpc/
+    main.tf
+    variables.tf
+    outputs.tf
+    README.md
+  eks-cluster/
+    main.tf
+    variables.tf
+    outputs.tf
+  rds/
+    main.tf
+    variables.tf
+    outputs.tf
+  s3-bucket/
+    main.tf
+    variables.tf
+    outputs.tf
+```
+
+### Module Usage Pattern
+
+```hcl
+module "vpc" {
+  source = "./modules/vpc"
+
+  project     = var.project
+  environment = var.environment
+  cidr_block  = "10.0.0.0/16"
+  azs         = ["us-east-1a", "us-east-1b", "us-east-1c"]
+}
+
+module "eks" {
+  source = "./modules/eks-cluster"
+
+  cluster_name = "${var.project}-${var.environment}"
+  vpc_id       = module.vpc.vpc_id
+  subnet_ids   = module.vpc.private_subnet_ids
+  node_groups = {
+    default = {
+      instance_types = ["m5.large"]
+      min_size       = 2
+      max_size       = 10
+      desired_size   = 3
+    }
+  }
+}
+```
+
+### Module Best Practices
+
+- Pin module versions in `source` using tags or commit SHAs
+- Every module must define `variables.tf` with descriptions and validation rules
+- Every module must define `outputs.tf` for dependent resources
+- Use `terraform-docs` to auto-generate module documentation
+- Test modules with `terratest` or `terraform test`
+
+## Cloud Cost Optimization
+
+Reference: `agents/plugins/cloud-infrastructure/skills/cost-optimization/SKILL.md`
+
+### Cost Reduction Strategies
+
+| Strategy | Savings Potential | Complexity |
+|----------|------------------|------------|
+| Right-sizing instances | 20-40% | Low |
+| Reserved Instances / Savings Plans | 30-60% | Medium |
+| Spot/Preemptible instances for batch | 60-90% | Medium |
+| Auto-scaling with schedule-based policies | 20-30% | Low |
+| Storage tiering (S3 Intelligent-Tiering, GCS Nearline) | 30-50% | Low |
+| Idle resource cleanup | 10-25% | Low |
+
+### Tagging Standards for Cost Allocation
+
+All resources must include these tags:
+
+```hcl
+tags = {
+  Project     = var.project
+  Environment = var.environment
+  Team        = var.team
+  CostCenter  = var.cost_center
+  ManagedBy   = "terraform"
+}
+```
+
+### Monitoring Cloud Spend
+
+- Enable AWS Cost Explorer or GCP Billing Reports with daily granularity
+- Set budget alerts at 50%, 80%, and 100% of monthly budget
+- Review AWS Trusted Advisor or GCP Recommender for optimization suggestions
+- Track cost-per-service and cost-per-environment in Grafana dashboards
+
+## Prometheus and Grafana Configuration
+
+### Prometheus Configuration
+
+Reference: `agents/plugins/observability-monitoring/skills/prometheus-configuration/SKILL.md`
+Production example: `casdk-harness/config/monitoring/alerting.yml`
+
+Key scrape targets to configure:
+
+```yaml
+scrape_configs:
+  - job_name: 'application'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['api:3000']
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+  - job_name: 'kubernetes-pods'
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+```
+
+### Grafana Dashboard Patterns
+
+Reference: `agents/plugins/observability-monitoring/skills/grafana-dashboards/SKILL.md`
+
+Dashboard organization:
+
+- **Service Overview** - RED metrics (request rate, error rate, duration) per service
+- **Infrastructure** - CPU, memory, disk, network per node and container
+- **Kubernetes** - Pod status, deployment rollout, HPA scaling events, resource quotas
+- **Business Metrics** - Custom application KPIs and SLO burn rate
+- **Cost** - Cloud spend by service, environment, and team
+
+## Production Docker Compose Patterns
+
+Reference: `casdk-harness/docker-compose.prod.yml`
+
+Additional production hardening beyond the standard Docker Compose pattern:
+
+- Use `read_only: true` for container root filesystems where possible
+- Mount only specific directories as writable via `tmpfs` mounts
+- Set `no-new-privileges: true` in security options
+- Use `cap_drop: [ALL]` and add back only required capabilities
+- Configure log drivers with size rotation limits (`json-file` with `max-size` and `max-file`)
+- Use Docker secrets instead of environment variables for sensitive values
 
 ## Composio App Automations
 

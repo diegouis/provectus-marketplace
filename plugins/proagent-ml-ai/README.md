@@ -4,7 +4,7 @@ Provectus ML & AI practice plugin for the agentic coding platform. Provides prod
 
 ## Overview
 
-This plugin equips Claude with comprehensive ML and AI capabilities drawn from actual Provectus engineering repositories. It covers the full lifecycle from data preparation through model training, evaluation, deployment, and production monitoring, along with modern AI application development including LLM-powered RAG systems, prompt engineering, and vector stores.
+This plugin equips Claude with comprehensive ML and AI capabilities drawn from actual Provectus engineering repositories. It covers the full lifecycle from data preparation through model training, evaluation, deployment, and production monitoring, along with modern AI application development including LLM-powered RAG systems, prompt engineering, vector stores, knowledge graph integration (Graphiti), meta-prompting frameworks, LLM judge evaluation, ML pipeline validation workflows, and AWS AI services (SageMaker, Bedrock). Incorporates 34 assets from 8 source repositories: `agents`, `Auto-Claude`, `awesome-claude-code`, `awesome-claude-skills`, `proagent-repo`, `provectus-marketplace`, `ralph-orchestrator`, and `taches-cc-resources`.
 
 ## Installation
 
@@ -28,7 +28,19 @@ Track experiments with MLflow or Weights & Biases. Log parameters, metrics, and 
 Deploy models via FastAPI REST APIs, AWS SageMaker endpoints, Google Vertex AI serving, or batch prediction pipelines. Containerize with Docker multi-stage builds. Monitor data drift and prediction distributions in production.
 
 ### LLM Applications
-Build RAG systems with document loading, chunking, embedding generation, and vector store management. Engineer prompts with system instructions, few-shot examples, and chain-of-thought reasoning. Debug LangChain/LangGraph agents with LangSmith traces.
+Build RAG systems with document loading, chunking, embedding generation, and vector store management. Engineer prompts with system instructions, few-shot examples, and chain-of-thought reasoning. Debug LangChain/LangGraph/LangGraphJS agents with LangSmith traces. Integrate AWS Bedrock foundation models for managed inference.
+
+### Knowledge Graphs
+Build Graphiti knowledge graphs for structured context retrieval in AI applications. Connect related concepts across experiments, models, and deployments for grounded, traceable LLM context.
+
+### Meta-Prompting
+Design and generate meta-prompts that define AI agent roles, capabilities, and behavioral constraints. Validate meta-prompts against test scenarios with LLM judge evaluation.
+
+### LLM Judge Evaluation
+Evaluate AI-generated outputs programmatically using LLM-as-judge patterns. Criteria-based scoring, A/B testing, and automated quality assessment for ML documentation, code, and RAG responses.
+
+### ML Pipeline Validation
+Define structured validation gates for ML pipelines (data, training, evaluation, deployment) to ensure quality before promotion. Automated quality checks integrated into CI/CD.
 
 ### MLOps
 Scaffold ML projects with standard directory structures. Enforce reproducibility through random seeds, versioned data, and pinned dependencies. Set up CI/CD for ML with automated testing and staged deployment.
@@ -43,6 +55,10 @@ Scaffold ML projects with standard directory structures. Enforce reproducibility
 | `/proagent-ml-ai-run setup-experiment` | Set up experiment tracking |
 | `/proagent-ml-ai-run create-embedding` | Generate embeddings and vector store |
 | `/proagent-ml-ai-run deploy-model` | Deploy a model to production |
+| `/proagent-ml-ai-run build-knowledge-graph` | Build a Graphiti knowledge graph |
+| `/proagent-ml-ai-run create-meta-prompt` | Generate a meta-prompt for an AI agent |
+| `/proagent-ml-ai-run evaluate-with-judge` | Evaluate AI outputs with LLM judge |
+| `/proagent-ml-ai-run validate-pipeline` | Validate ML pipeline against quality gates |
 | `/proagent-ml-ai-review` | Review ML artifacts for best practices |
 
 ## Plugin Structure
@@ -84,6 +100,8 @@ proagent-ml-ai/
 - Experiment Tracking: mlflow or wandb
 - Model Serving: fastapi, uvicorn, pydantic
 - LLM Applications: langchain, chromadb, sentence-transformers (as needed)
+- Knowledge Graphs: graphiti-core, neo4j (as needed)
+- AWS AI: boto3, sagemaker (as needed)
 - Containerization: Docker
 
 ## License

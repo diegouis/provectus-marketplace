@@ -1,6 +1,6 @@
 ---
-description: "Execute an SDLC workflow: architect, review-code, plan-release, document, or version"
-argument-hint: <mode> [options] — modes: architect, review-code, plan-release, document, version
+description: "Execute an SDLC workflow: architect, review-code, plan-release, document, version, debug, plan, or adr"
+argument-hint: <mode> [options] — modes: architect, review-code, plan-release, document, version, debug, plan, adr
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
@@ -12,7 +12,7 @@ You are the SDLC execution engine for the proagent-sdlc plugin. Parse the mode f
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `architect`, `review-code`, `plan-release`, `document`, or `version`.
+Parse the first word of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `architect`, `review-code`, `plan-release`, `document`, `version`, `debug`, `plan`, or `adr`.
 
 ---
 
@@ -229,3 +229,185 @@ Manage semantic versioning based on conventional commits.
    - Generate or update CHANGELOG.md
    - Create a version commit: `chore(release): bump version to X.Y.Z`
    - Optionally create a git tag: `vX.Y.Z`
+
+---
+
+## Mode: debug
+
+Systematically debug an issue using hypothesis-driven root-cause analysis. Based on patterns from casdk-harness (`src/harness/skills/debugging/SKILL.md`) and taches-cc-resources (`skills/debug-like-expert/SKILL.md`).
+
+**Announce:** "Starting debugging workflow. I'll systematically isolate the root cause using hypothesis-driven analysis."
+
+### Process
+
+1. **Understand the issue:**
+   - Ask the user to describe the problem: expected behavior vs. actual behavior
+   - Identify reproduction steps if not provided
+   - Check for error messages, stack traces, or log output
+
+2. **Reproduce:**
+   - Create or identify a minimal reproduction case
+   - Run the reproduction and capture the exact error output
+   - If the issue is intermittent, identify conditions that increase likelihood
+
+3. **Gather evidence:**
+   - Read relevant source files identified from stack traces or error messages
+   - Check `git log` and `git blame` for recent changes to affected files
+   - Review related test files for existing coverage of the failing scenario
+   - Check environment configuration if relevant
+
+4. **Form hypotheses:**
+   - List 3-5 possible causes ranked by likelihood
+   - For each hypothesis, identify what evidence would confirm or refute it
+   - Present hypotheses to user for input on likelihood
+
+5. **Test hypotheses:**
+   - Start with the most likely hypothesis
+   - Add targeted instrumentation (logging, assertions, breakpoints)
+   - Run the reproduction with instrumentation
+   - Analyze results to confirm or eliminate the hypothesis
+   - Proceed to next hypothesis if refuted
+
+6. **Implement fix:**
+   - Write a failing regression test that reproduces the bug
+   - Implement the minimal fix
+   - Run regression test to confirm it passes
+   - Run the full test suite to check for side effects
+   - Commit with `fix(scope): description` message referencing the issue
+
+7. **Report:**
+   ```
+   ## Debug Report
+
+   ### Issue
+   <description of the problem>
+
+   ### Root Cause
+   <what was actually wrong and why>
+
+   ### Fix
+   <what was changed, with file paths and line references>
+
+   ### Regression Test
+   <test file and test name that prevents recurrence>
+
+   ### Verification
+   - Regression test: PASS
+   - Full test suite: PASS/FAIL (details)
+   ```
+
+---
+
+## Mode: plan
+
+Create a hierarchical implementation plan for a feature or project. Based on patterns from taches-cc-resources (`skills/create-plans/SKILL.md`, `commands/create-plan.md`) and superpowers (`skills/writing-plans/SKILL.md`).
+
+**Announce:** "Starting planning workflow. I'll decompose the requirements into a hierarchical, executable plan."
+
+### Process
+
+1. **Gather requirements:**
+   - Read any linked spec files, issues, or requirements documents
+   - If no spec exists, use structured requirements elicitation (ask targeted questions)
+   - Identify scope boundaries: what is in scope, what is explicitly out of scope
+
+2. **Analyze the codebase:**
+   - Understand existing architecture, patterns, and conventions
+   - Identify files and modules that will need changes
+   - Identify dependencies and integration points
+
+3. **Decompose into hierarchy:**
+   - **Epics**: Major work streams (1-3 per plan)
+   - **Features**: Deliverable units within each epic (2-5 per epic)
+   - **Tasks**: Atomic implementation steps (2-5 minutes each, 3-8 per feature)
+
+4. **Detail each task:**
+   - Exact file paths to create or modify
+   - Complete code snippets (not pseudocode)
+   - Test commands with expected output
+   - Dependencies on other tasks (must-complete-before)
+   - Acceptance criteria
+
+5. **Apply PITER micro-cycle per task:**
+   - Plan: what to change and why
+   - Implement: the code changes
+   - Test: write and run tests
+   - Evaluate: check against acceptance criteria
+   - Refine: optimize and clean up
+
+6. **Output plan file:**
+   Write to `plan.md` (or user-specified path) with:
+   - Header: goal, tech stack, architecture context
+   - Task list with status markers: `[ ]` pending, `[x]` done, `[~]` in progress, `[!]` blocked
+   - Dependency graph (which tasks block which)
+   - Estimated total tasks and completion tracking
+
+7. **Execution handoff:**
+   - Offer to begin executing the plan immediately
+   - Or save for later execution via `/proagent-sdlc:run plan --execute`
+   - Track progress by updating status markers in the plan file
+
+---
+
+## Mode: adr
+
+Generate an Architecture Decision Record. Based on patterns from agents repo (`plugins/documentation-generation/skills/architecture-decision-records/SKILL.md`).
+
+**Announce:** "Starting ADR generation. I'll document the architectural decision with full context and trade-off analysis."
+
+### Process
+
+1. **Identify the decision:**
+   - Ask the user what architectural decision needs to be recorded
+   - If context files exist (architecture.md, previous ADRs), read them for background
+
+2. **Determine ADR number:**
+   - Look for existing ADRs in `docs/adr/`, `adr/`, or `context/decisions/`
+   - Assign the next sequential number (e.g., `ADR-0012`)
+
+3. **Gather context:**
+   - What problem or requirement drove this decision?
+   - What constraints exist (technical, business, team)?
+   - What alternatives were considered?
+
+4. **Write the ADR:**
+   ```markdown
+   # ADR-NNNN: <Title>
+
+   ## Status
+   Proposed | Accepted | Deprecated | Superseded by ADR-XXXX
+
+   ## Context
+   <What forces are at play? What is the problem or requirement?>
+
+   ## Decision
+   <What was decided and why? Be specific about the chosen approach.>
+
+   ## Consequences
+
+   ### Positive
+   - <What becomes easier or better?>
+
+   ### Negative
+   - <What becomes harder or is a trade-off?>
+
+   ### Neutral
+   - <What changes but is neither better nor worse?>
+
+   ## Alternatives Considered
+
+   ### <Alternative 1>
+   - Pros: ...
+   - Cons: ...
+   - Why rejected: ...
+
+   ### <Alternative 2>
+   - Pros: ...
+   - Cons: ...
+   - Why rejected: ...
+   ```
+
+5. **Save and link:**
+   - Write ADR to the appropriate directory
+   - If an architecture document exists, add a reference to the new ADR
+   - Suggest committing with `docs(adr): add ADR-NNNN <title>`

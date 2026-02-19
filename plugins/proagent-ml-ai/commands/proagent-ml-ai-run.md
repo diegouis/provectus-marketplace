@@ -1,7 +1,8 @@
 ---
 description: >
   Execute ML/AI operations: train-model, build-pipeline, setup-experiment,
-  create-embedding, or deploy-model.
+  create-embedding, deploy-model, build-knowledge-graph, create-meta-prompt,
+  evaluate-with-judge, or validate-pipeline.
 argument-hint: "<operation> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
@@ -231,6 +232,125 @@ Deploy a trained ML model to a production serving environment.
    - Configure alerts for latency spikes, error rate increases, or distribution shifts
    - Create a retraining trigger based on model performance degradation
    - Document the monitoring setup and alert escalation path
+
+### `build-knowledge-graph` - Build a Graphiti Knowledge Graph
+
+Set up a knowledge graph for structured context retrieval in AI applications. Based on patterns from `Auto-Claude/apps/backend/context/graphiti_integration.py`.
+
+**Steps:**
+1. **Set up infrastructure:**
+   - Install dependencies: `pip install graphiti-core neo4j`
+   - Configure Neo4j connection (local Docker or cloud instance)
+   - Initialize the Graphiti client with credentials
+
+2. **Define knowledge schema:**
+   - Identify entity types relevant to the domain (models, datasets, experiments, deployments)
+   - Define relationship types between entities
+   - Establish episode types for knowledge ingestion (text, document, conversation)
+
+3. **Ingest knowledge:**
+   - Load source documents, experiment logs, and domain documentation
+   - Add episodes to the graph with proper source attribution
+   - Validate graph connectivity and entity resolution
+
+4. **Configure retrieval:**
+   - Set up search queries optimized for the target use case
+   - Configure relevance scoring and result ranking
+   - Build integration layer for LLM applications to query the graph
+   - Test retrieval quality with sample queries
+
+5. **Integrate with LLM pipeline:**
+   - Connect knowledge graph retrieval to the LLM context window
+   - Implement hybrid retrieval (graph + vector store) where appropriate
+   - Add fact attribution and source tracing to responses
+
+### `create-meta-prompt` - Generate a Meta-Prompt
+
+Design and generate meta-prompts that define AI agent roles, capabilities, and constraints. Based on patterns from `proagent-repo/core/meta_prompts/base.py` and `taches-cc-resources/skills/create-meta-prompts/SKILL.md`.
+
+**Steps:**
+1. **Define role and scope:**
+   - Specify the target role (ML engineer, data scientist, MLOps engineer)
+   - Define the domain knowledge boundaries
+   - Identify the expected task types and complexity levels
+
+2. **Collect domain knowledge:**
+   - Gather reference patterns from the codebase and documentation
+   - Extract best practices and conventions from existing workflows
+   - Compile tool and framework expertise requirements
+
+3. **Build the meta-prompt:**
+   - Write the role definition with clear identity and expertise areas
+   - Inject domain knowledge as structured reference material
+   - Define behavioral constraints and guardrails (what the agent must always/never do)
+   - Specify output format expectations (code, analysis, recommendations)
+   - Provide 2-5 few-shot examples demonstrating expected behavior
+
+4. **Validate and iterate:**
+   - Test the meta-prompt against representative task scenarios
+   - Evaluate output quality using LLM judge criteria
+   - Refine constraints and examples based on failure cases
+   - Document the meta-prompt version and changelog
+
+### `evaluate-with-judge` - Evaluate AI Outputs with LLM Judge
+
+Programmatically evaluate AI-generated outputs using LLM-as-judge patterns. Based on `ralph-orchestrator/tools/e2e/helpers/llm_judge.py`.
+
+**Steps:**
+1. **Define evaluation criteria:**
+   - Specify the quality dimensions to evaluate (accuracy, completeness, clarity, adherence to best practices)
+   - Set scoring rubrics for each criterion (1-5 scale with anchored descriptions)
+   - Optionally provide reference answers for comparison
+
+2. **Configure the judge:**
+   - Select the judge model (recommend Claude for nuanced evaluation)
+   - Write the judge prompt with clear evaluation instructions
+   - Include scoring rubric and output format specification
+
+3. **Run evaluation:**
+   - Submit the AI output along with criteria and optional reference to the judge
+   - Parse structured scores and justifications from the judge response
+   - Aggregate scores across multiple evaluation samples
+
+4. **Analyze and report:**
+   - Calculate mean scores and standard deviations per criterion
+   - Identify systematic weaknesses across evaluated outputs
+   - Generate an evaluation report with actionable improvement suggestions
+   - Compare scores across different model/prompt configurations for A/B testing
+
+### `validate-pipeline` - Validate an ML Pipeline Against Quality Gates
+
+Run a structured validation workflow on an ML pipeline. Based on `proagent-repo/core/templates/validation_workflows/ml-engineer.yaml` and `agents/plugins/machine-learning-ops/skills/ml-pipeline-workflow/SKILL.md`.
+
+**Steps:**
+1. **Data validation gate:**
+   - Verify schema matches expected feature definitions
+   - Check null rates against thresholds (default: <5%)
+   - Run distribution drift tests (KS test) against reference data
+   - Validate minimum sample size requirements
+
+2. **Training validation gate:**
+   - Confirm random seeds are set for all frameworks used
+   - Verify cross-validation is properly configured
+   - Check that experiment tracking is active and logging parameters
+   - Confirm baseline model comparison is included
+
+3. **Evaluation gate:**
+   - Verify primary metric meets minimum threshold (e.g., F1 >= 0.80)
+   - Check overfitting gap between train and validation metrics (<5% deviation)
+   - Confirm error analysis has been performed
+   - Validate that test set was used only once for final evaluation
+
+4. **Deployment readiness gate:**
+   - Verify health check endpoint exists and responds
+   - Confirm input validation with Pydantic schemas
+   - Check that monitoring is configured (drift detection, latency tracking)
+   - Validate that rollback procedures are documented
+
+5. **Generate validation report:**
+   - Summarize pass/fail status for each gate
+   - List all failed checks with specific remediation steps
+   - Provide overall pipeline readiness assessment (READY / NEEDS WORK / BLOCKED)
 
 ## Error Handling
 

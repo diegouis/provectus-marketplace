@@ -1,6 +1,6 @@
 ---
-description: Execute backend operations - scaffold APIs, design schemas, build microservices, set up auth, optimize queries
-argument-hint: <create-api|design-schema|build-service|setup-auth|optimize-queries> [options]
+description: Execute backend operations - scaffold APIs, design schemas, build microservices, set up auth, optimize queries, implement CQRS, create MCP servers
+argument-hint: <create-api|design-schema|build-service|setup-auth|optimize-queries|implement-cqrs|create-mcp-server> [options]
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
@@ -30,8 +30,9 @@ Design and generate a complete API with endpoints, validation, error handling, a
    - Expected traffic volume and performance targets
 2. **Design the API contract:**
    - For REST: Generate endpoint listing with HTTP methods, URL patterns, request/response schemas, and status codes following resource-oriented design from `proagent/roles/backend-engineer/skills/api-design.md`
-   - For GraphQL: Generate schema with types, queries, mutations, subscriptions, and Relay-style pagination following patterns from `agents/plugins/backend-development/skills/api-design-principles/SKILL.md`
+   - For GraphQL: Generate schema with types, queries, mutations, subscriptions, and Relay-style pagination following patterns from `agents/plugins/backend-development/skills/api-design-principles/SKILL.md` and `agents/plugins/api-scaffolding/agents/graphql-architect.md`
    - For gRPC: Generate Protocol Buffer service definitions with message types and streaming patterns following patterns from `agents/plugins/backend-development/agents/backend-architect.md`
+   - For Fastify+tRPC: Generate type-safe API with Zod validation following patterns from `ralph-orchestrator/backend/ralph-web-server/package.json`
 3. **Generate implementation code:**
    - Route handlers with input validation (Pydantic for FastAPI, Joi/Zod for Node.js)
    - Structured error responses with proper HTTP status codes
@@ -191,6 +192,67 @@ Profile and optimize database queries for improved performance.
    - Compare response times before and after optimization
    - Load test with realistic traffic patterns
    - Monitor for regressions after deployment
+
+### `implement-cqrs` - Implement CQRS and Event Sourcing
+
+Set up a CQRS architecture with separate command and query models, event store, and saga orchestration.
+
+**Steps:**
+1. **Assess domain complexity:**
+   - Identify aggregates and their commands (write operations)
+   - Identify read models and their query patterns
+   - Determine if event sourcing is needed (audit trail, temporal queries, event replay)
+   - Map distributed transaction boundaries for saga orchestration
+2. **Implement command side:**
+   - Command objects with validation following `agents/plugins/backend-development/skills/cqrs-implementation/SKILL.md`
+   - Command handlers with domain logic
+   - Event store for persisting domain events (append-only)
+   - Aggregate root pattern with event application
+3. **Implement query side:**
+   - Denormalized read model projections optimized for query patterns
+   - Event handlers that update projections when domain events occur
+   - Eventually consistent read models with projection versioning
+4. **Implement saga orchestration (if distributed):**
+   - Saga orchestrator for multi-service transactions following `agents/plugins/backend-development/skills/saga-orchestration/SKILL.md`
+   - Compensating actions for each saga step
+   - Saga state persistence and recovery
+   - Dead letter handling for failed compensation
+5. **Add infrastructure:**
+   - Event bus for publishing domain events (in-process or message broker)
+   - Snapshot strategy for aggregates with many events
+   - Projection rebuild mechanism
+   - Monitoring for event lag and projection freshness
+
+### `create-mcp-server` - Build an MCP Server
+
+Create a Model Context Protocol server that exposes backend tools, resources, and prompts to Claude and other LLM clients.
+
+**Steps:**
+1. **Define server scope:**
+   - Server name and purpose
+   - Language: Python or TypeScript (following `taches-cc-resources/skills/create-mcp-servers/SKILL.md`)
+   - Tools to expose (database queries, API calls, health checks, deployments)
+   - Resources to expose (configuration, schemas, documentation)
+   - Prompts to expose (code generation templates, review checklists)
+2. **Generate server scaffold:**
+   - For Python: MCP server using `mcp` SDK with `stdio` transport
+   - For TypeScript: MCP server using `@modelcontextprotocol/sdk` with `StdioServerTransport`
+   - Tool handlers with input schema validation (JSON Schema)
+   - Resource handlers for exposing backend data
+   - Error handling with structured MCP error responses
+3. **Implement tools:**
+   - Define tool input schemas with JSON Schema validation
+   - Implement tool handlers with proper error handling
+   - Add safety guards (read-only database access, input sanitization)
+   - Include timeout handling for external service calls
+4. **Add configuration:**
+   - Environment variable configuration for database URLs, API keys
+   - MCP server manifest for client registration
+   - Integration instructions for `.mcp.json` in Claude Code projects
+5. **Generate tests:**
+   - Tool handler unit tests
+   - Integration tests with mock MCP client
+   - Input validation edge case tests
 
 ## Error Handling
 

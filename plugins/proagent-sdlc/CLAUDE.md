@@ -12,8 +12,8 @@ proagent-sdlc/
 │   └── sdlc-assistant/SKILL.md   # Core skill: Managing Software Development Lifecycle
 ├── commands/
 │   ├── hub.md                    # Command hub: list and route to SDLC commands
-│   ├── run.md                    # Execute: architect, review-code, plan-release, document, version
-│   └── review.md                 # Review: pr, architecture, test-coverage, release-readiness
+│   ├── run.md                    # Execute: architect, review-code, plan-release, document, version, debug, plan, adr
+│   └── review.md                 # Review: pr, architecture, test-coverage, release-readiness, plan
 ├── agents/
 │   └── sdlc-specialist.md        # SDLC specialist subagent for code review and assessments
 ├── hooks/
@@ -29,11 +29,11 @@ Use the `proagent-sdlc:sdlc-assistant` skill when managing any SDLC phase. It co
 
 ### Commands
 - `/proagent-sdlc:hub` -- See all available commands and choose the right workflow
-- `/proagent-sdlc:run <mode>` -- Execute a workflow (architect, review-code, plan-release, document, version)
-- `/proagent-sdlc:review <type>` -- Run a quality review (pr, architecture, test-coverage, release-readiness)
+- `/proagent-sdlc:run <mode>` -- Execute a workflow (architect, review-code, plan-release, document, version, debug, plan, adr)
+- `/proagent-sdlc:review <type>` -- Run a quality review (pr, architecture, test-coverage, release-readiness, plan)
 
 ### Agent
-The `proagent-sdlc:sdlc-specialist` agent can be dispatched as a subagent for code reviews, architecture assessments, and release readiness checks. It produces structured reports with findings categorized by severity.
+The `proagent-sdlc:sdlc-specialist` agent can be dispatched as a subagent for code reviews, architecture assessments, debugging, plan reviews, ADR generation, and release readiness checks. It produces structured reports with findings categorized by severity. It leverages multi-agent review patterns (architect-review, code-reviewer, debugger, legacy-modernizer agents) for parallel multi-dimensional analysis.
 
 ### Hooks
 Three hooks enforce quality gates:
@@ -52,6 +52,15 @@ Three hooks enforce quality gates:
 - **Jira**: Issue tracking, sprint management, and backlog grooming via `@modelcontextprotocol/server-atlassian`
 - **Confluence**: Documentation, ADRs, and knowledge base management via `@modelcontextprotocol/server-atlassian`
 
+## Pipeline Frameworks
+
+| Framework | Source | Use Case |
+|-----------|--------|----------|
+| ProAgent 5-stage | `proagent-repo/core/orchestration/sdlc/pipeline.py` | Full project lifecycle (Analyze, Design, Implement, Validate, Deliver) |
+| AWOS 8-step | `awos/commands/*` | Feature spec-to-implementation pipeline |
+| PITER | `proagent-repo/core/skills/tac/piter.md` | Per-task micro-cycle (Plan, Implement, Test, Evaluate, Refine) |
+| Ralph presets | `ralph-orchestrator/presets/*.yml` | Bugfix and refactoring orchestration |
+
 ## Source Attribution
 
-> Built from Provectus internal engineering practices.
+> Built from Provectus internal engineering practices and 14 source repositories: agents, Auto-Claude, awesome-claude-code, awesome-claude-skills, awos, casdk-harness, gastown, planning-with-files, proagent-repo, provectus-marketplace, ralph-orchestrator, skills, superpowers, taches-cc-resources.
