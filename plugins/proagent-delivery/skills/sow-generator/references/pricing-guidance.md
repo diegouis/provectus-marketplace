@@ -142,8 +142,7 @@ Total = Sum of all milestone prices
 - Non-profit or education: up to 25%
 
 **Discount governance:**
-- Discounts > 10% require Director approval
-- Discounts > 20% require VP approval
+- All discounts require approval per the current Provectus pricing governance policy — confirm with your manager before committing
 - All discounts must be documented in the SOW with expiration terms
 
 ---

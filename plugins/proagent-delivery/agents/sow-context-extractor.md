@@ -35,7 +35,6 @@ You are a **Client Context Extraction Specialist** for the proagent-delivery SOW
 You will receive one or more of:
 - `channel` — Slack channel name or ID to read
 - `drive` — Google Drive folder URL or file links
-- `template` — SOW template path or URL to read
 
 ## Process
 

@@ -25,7 +25,7 @@
 - Total is sum of all milestone prices
 - Include milestone acceptance process and timeline
 
-**Payment table pattern:**
+**Payment table pattern** (synthetic — none of the 5 sample Provectus SOWs used milestone-based billing; this pattern is based on industry standards):
 ```
 | Milestone | Deliverables | Price | Payment Trigger |
 |---|---|---|---|

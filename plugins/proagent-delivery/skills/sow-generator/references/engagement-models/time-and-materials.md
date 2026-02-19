@@ -23,16 +23,16 @@
 
 **Section 6 (Payment & Fee Schedule):**
 - Open with: "Time & Materials. Provectus estimates that [Client]'s total payment under this Statement of Work will be $[X] unless specified through a change order"
-- Cost table: `Description | Duration (Sprints) | Cost per Sprint | Estimated Total`
+- Cost table: `Description | Duration (Sprints) | Cost per Sprint | Estimated Total Cost`
 - Invoice schedule aligned to sprints (monthly)
 - Include termination clause with 30-day notice
 
 **Real example (Natera SOW #28):**
 ```
-| Description | Duration (Sprints) | Cost per Sprint | Estimated Total |
+| Description | Duration (Sprints) | Cost per Sprint | Estimated Total Cost |
 |---|---|---|---|
 | AI Pod | 6 | $16,560 | $99,360 |
-| | | Total Cost | $99,360 |
+| | | **Total Cost** | **$99,360** |
 ```
 
 ## When to Recommend

@@ -97,13 +97,17 @@ Key features:
 - Reads client context from Slack channels via Slack MCP and Google Drive documents via Google Drive MCP
 - Dispatches `sow-context-extractor` subagent for isolated data gathering
 - Conducts structured clarification interview with the Solution Owner using `AskUserQuestion`
-- Supports multiple engagement models: T&M, Fixed-Price, Milestone-Based, Discovery+Delivery
-- Generates all 9 required SOW sections with Provectus conventions
+- Supports multiple engagement models: T&M, Fixed-Price, Milestone-Based
+- Generates all 8 standard SOW sections with Provectus conventions (Purpose, Organization, Project Overview, Project Scope, Estimated Durations & Team, Payment & Fee Schedule, Project Assumptions, Signatures)
 - Mandatory review gate before output (Approve / Edit / Redo)
 - Outputs directly to Google Drive as a Google Doc
 - Optional ROM estimate as appendix via `--with-rom` flag
 
 The `sow-review` review mode audits existing SOWs for section completeness, scope specificity, pricing alignment, timeline realism, team composition, and risk coverage.
+
+## Design Guidelines
+
+Architecture decisions in this plugin follow `PLUGIN-DESIGN-GUIDELINES.md` at the repository root. Key patterns: thin dispatcher commands, lazy-loaded references, single source of truth between skills and mode files, cite-your-work verification.
 
 ## Source Repositories
 

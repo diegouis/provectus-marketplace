@@ -32,7 +32,7 @@ Fixed Fee. GANT Travel total payment under this Statement of Work will be $250,0
 unless specified through a change order and following the prescribed change order process.
 ```
 
-**Section 8 (Completion/Success Criteria) — recommended for fixed-price:**
+**Optional: Completion/Success Criteria (recommended for fixed-price, insert before Signatures or as a sub-section of Section 4):**
 - Define measurable success criteria
 - "The MVP will be deemed successful if..." pattern
 - Each criterion should be independently verifiable

@@ -119,13 +119,24 @@ Read `skills/sow-generator/references/sow-sections.md` for section-by-section wr
 Generate a 1-page outline with section titles and 1-sentence scope per section. Present to the SO:
 > "Here's the SOW outline. Does this structure capture the right scope before I write the full draft?"
 
-**Step 4d — Generate full draft** following the template structure. The standard Provectus SOW has these numbered sections:
+**Step 4d — Adapt structure to SOW type:**
+
+If the user selected **Discovery** in Phase 3 Step 2, apply these modifications to the standard structure:
+- **Section 3 (Project Overview):** Frame as a scoping/assessment engagement. Focus on understanding requirements, evaluating architecture, and producing a roadmap — not building production software.
+- **Section 4 (Project Scope):** Scope items are discovery deliverables: requirements document, architecture assessment, technology evaluation, roadmap with ROM estimates, recommended team composition. Use "Discovery Deliverables" instead of "Areas of Focus" or "In-Scope Activities."
+- **Section 5 (Estimated Durations & Team):** Typically 2-6 weeks. Smaller team (SA + SO, possibly 1 engineer for technical spikes).
+- **Section 6 (Payment):** Usually T&M or fixed-price for a short duration. Lower total cost.
+- Add an **optional section** after Section 7: "Next Steps" describing how Discovery outputs feed into a Delivery SOW.
+
+If the user selected **Both**, generate two separate SOW documents: a Discovery SOW first, then a Delivery SOW. The Delivery SOW can reference "pending Discovery outcomes" for scope items that depend on Discovery findings.
+
+**Generate full draft** following the template structure. The standard Provectus SOW has these numbered sections:
 
 1. **Purpose** — Legal boilerplate: effective date, parties, MSA reference
 2. **Organization** — Client company description (industry, mission, context)
 3. **Project Overview** — What Provectus will do and why (business drivers, objectives)
 4. **Project Scope** — Methodology + detailed scope of work (areas of focus, in-scope activities, out-of-scope)
-5. **Estimated Durations & Team** — Timeline, sprint structure, team composition table (Role | Responsibility)
+5. **Estimated Durations & Team** — Timeline, sprint structure, team composition table (Role | Allocation | Responsibility)
 6. **Payment & Fee Schedule** — Engagement model, cost table, invoice schedule, termination terms
 7. **Project Assumptions** — Client responsibilities, Provectus responsibilities, legal/IP/compliance clauses
 8. **Signatures & Dates** — Vendor and Customer signature blocks
@@ -178,7 +189,11 @@ AskUserQuestion(
 3. Inform the user: "Drive write failed. The SOW has been saved locally and displayed above. You can copy it to Google Drive manually."
 
 **ROM appendix (if `--with-rom`):**
-- Extract scope sections from the generated SOW
-- Run the `rom-estimate` skill with the scope as input
-- Append ROM executive summary as a SOW appendix
-- Generate the ROM CSV as a separate file
+1. Extract the Project Scope (Section 4) text from the generated SOW
+2. Dispatch a Task subagent (model: sonnet) with this prompt:
+   - Read the skill definition from `skills/rom-estimate/SKILL.md`
+   - Use the extracted scope text as the project input
+   - Generate the ROM CSV and executive summary following the skill's process
+3. When the subagent returns, append the ROM executive summary as a new section in the SOW (after Section 7, before Signatures)
+4. Save the ROM CSV as a separate file at `docs/rom-estimation/{client-slug}-rom.csv`
+5. If the subagent fails, inform the user: "ROM generation failed. The SOW has been saved without the ROM appendix. You can run `/proagent-delivery:proagent-delivery-run rom-estimate` separately."
