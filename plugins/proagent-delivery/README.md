@@ -86,7 +86,7 @@ Create a phased task plan with progress tracking, decision logs, and error track
 ```
 /proagent-delivery:proagent-delivery-run generate-sow --channel=proj-acme-delivery --drive=https://drive.google.com/... --with-rom
 ```
-Generate a delivery-ready Statement of Work from client context. Reads Slack channel history and Google Drive documents via MCP, conducts a structured clarification interview with the Solution Owner (engagement model, pricing, phases, assumptions), generates all 9 SOW sections using Provectus templates, and outputs to Google Drive as a Google Doc. Optionally appends a ROM estimate via `--with-rom`.
+Generate a delivery-ready Statement of Work from client context. Reads Slack channel history and Google Drive documents via MCP, conducts a structured clarification interview with the Solution Owner (engagement model, pricing, phases, assumptions), generates all 7 standard SOW sections (Purpose, Organization, Project Overview, Project Scope, Estimated Durations & Team, Payment & Fee Schedule, Project Assumptions, Signatures) using Provectus templates, and outputs to Google Drive as a Google Doc. Optionally appends a ROM estimate via `--with-rom`.
 
 **Review a SOW:**
 ```

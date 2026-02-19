@@ -78,24 +78,45 @@ Provectus uses a role-based rate card. Rates vary by:
 
 ## Pricing Construction
 
-### T&M Pricing
+### T&M Pricing (Sprint-Based)
+
+Provectus T&M SOWs typically price by **pod per sprint** (2-week sprints), not hourly:
+
 ```
-Monthly Run Rate = Sum(Role Rate × Allocation) for all team members
-Estimated Total = Monthly Run Rate × Duration (months)
+Cost per Sprint = Pod rate (blended team cost for 2-week sprint)
+Estimated Total = Cost per Sprint × Number of Sprints
 ```
-- Always present as a range: "Estimated investment: $XXX,XXX - $XXX,XXX"
-- Range should reflect optimistic and pessimistic timelines
-- Note: "Actual billing based on hours/days worked"
+
+**Real example (Natera SOW #28):**
+
+| Description | Duration (Sprints) | Cost per Sprint | Estimated Total Cost |
+|---|---|---|---|
+| AI Pod | 6 | $16,560 | $99,360 |
+
+**Standard T&M language:**
+> "Provectus estimates that [Client]'s total payment under this Statement of Work will be $[X] unless specified through a change order."
+
+- Use the word "estimates" — T&M total is not guaranteed
+- Include an invoice schedule table with monthly billing dates
+- Note: "Actual billing based on time worked"
 
 ### Fixed-Price Pricing
+
 ```
 Base Effort = ROM estimate (person-days at P50)
-Buffered Effort = Base Effort × 1.20 (20% risk buffer)
+Buffered Effort = Base Effort × 1.20 (15-25% risk buffer)
 Fixed Price = Buffered Effort × Blended Daily Rate
 ```
+
+**Standard fixed-price language:**
+> "[Client] total payment under this Statement of Work will be $[X]."
+
+Note the difference from T&M: no "estimates" — the price is committed.
+
 - Round to nearest $5K or $10K for clean numbers
-- Payment schedule tied to milestones (not time)
-- Include assumptions that protect the price (if assumptions change, price may adjust)
+- Payment schedule may be milestone-based or monthly
+- Include assumptions that protect the price (if assumptions change, price may adjust via change order)
+- Define "defect" (warranty) vs. "enhancement" (change order)
 
 ### Milestone-Based Pricing
 ```

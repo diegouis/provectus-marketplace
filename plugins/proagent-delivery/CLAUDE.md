@@ -16,15 +16,21 @@ proagent-delivery/
 │   │   ├── references/epic-categories.md       # Epic taxonomy with sub-category guidance
 │   │   └── examples/apex-vendor-platform-rom.csv  # Sample 89-feature ROM output
 │   └── sow-generator/                          # SOW generation skill: create delivery-ready SOWs
-│       ├── SKILL.md                            # 6-phase SOW generation workflow
-│       ├── references/sow-sections.md          # Section-by-section SOW writing guidance
-│       ├── references/engagement-models.md     # T&M, Fixed-Price, Milestone, Discovery+Delivery patterns
+│       ├── SKILL.md                            # Domain knowledge, conventions, quality criteria
+│       ├── references/sow-sections.md          # Section-by-section writing guidance (real SOW examples)
+│       ├── references/engagement-models/       # Per-model reference files (lazy-loaded)
+│       │   ├── time-and-materials.md
+│       │   ├── fixed-price.md
+│       │   └── milestone-based.md
 │       ├── references/pricing-guidance.md      # Rate card structure and pricing conventions
-│       └── templates/                          # Directory for user-provided sample SOW templates
+│       └── templates/sow-default.md            # Default SOW scaffold based on real Provectus SOWs
 ├── commands/
 │   ├── proagent-delivery-hub.md                # Command hub: list and route to delivery commands
-│   ├── proagent-delivery-run.md                # Execute: plan-sprint, status-report, risk-assess, milestone-track, retrospective, rom-estimate, generate-sow
-│   └── proagent-delivery-review.md             # Review: sprint-health, delivery-risks, timeline, stakeholder-alignment, estimate-review, sow-review
+│   ├── proagent-delivery-run.md                # Thin dispatcher: routes to inline modes or modes/ files
+│   ├── proagent-delivery-review.md             # Thin dispatcher: routes to inline modes or modes/ files
+│   └── modes/                                  # Per-mode instruction files (loaded only when invoked)
+│       ├── generate-sow.md                     # Full SOW generation workflow (6 phases)
+│       └── sow-review.md                       # SOW audit against quality criteria
 ├── agents/
 │   ├── delivery-specialist.md                  # Delivery specialist subagent for assessments and reports
 │   └── sow-context-extractor.md               # SOW context extraction from Slack + Google Drive

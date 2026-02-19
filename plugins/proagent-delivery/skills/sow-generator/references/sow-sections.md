@@ -1,289 +1,231 @@
 # SOW Section Writing Guidance
 
-Detailed guidance for each SOW section with Provectus-specific conventions.
+Section-by-section conventions for the standard Provectus SOW structure. Based on analysis of 5 real signed/draft SOWs (Natera #28, Natera #30, GANT #3, Johnson Lambert, Fincredibilizer #2).
 
 ---
 
-## 1. Executive Summary
+## 1. Purpose
 
-**Purpose:** Give the reader a complete picture in 60 seconds.
+**What it does:** Legal boilerplate establishing the SOW, parties, effective date, and MSA reference.
 
-**Structure:**
-- Paragraph 1: Client context and project purpose. Who is the client? What problem are we solving? Why now?
-- Paragraph 2: Engagement overview. What will Provectus deliver? What engagement model? What timeline?
+**Standard language (copy and customize):**
+> This Statement of Work ("SOW") is dated as of [DATE] ("Effective Date") by and between Provectus IT, Inc. ("Provectus" or "Vendor") and [CLIENT LEGAL NAME] ("Customer" or "[SHORT NAME]"). The purpose of this SOW is to describe the services that Provectus will provide to the Customer under the terms and conditions of the Master Services Agreement ("MSA") between the parties, dated [MSA DATE].
 
 **Conventions:**
-- Use the client's legal entity name (e.g., "Acme Corp, Inc." not "Acme")
-- State the engagement model explicitly: "This is a Time & Materials engagement..."
-- Include the total duration: "...spanning 16 weeks from project kickoff."
-- Reference the number of use cases or phases: "...covering 3 use cases across 2 phases."
-
-**Example opening:**
-> Acme Corp, Inc. ("Client") engages Provectus ("Provider") to design and implement a cloud-native data platform that consolidates three legacy data sources into a unified analytics layer. This Time & Materials engagement spans 16 weeks and covers three use cases: data ingestion pipeline, real-time dashboarding, and predictive analytics.
-
-**Anti-patterns:**
-- Vague openers: "Provectus will help the client with their data needs"
-- Missing engagement model
-- No timeline reference
-- Marketing language instead of factual description
+- Always include the SOW number: "Statement of Work #[N]"
+- Use legal entity names with abbreviations defined in parentheses
+- Reference the MSA date — this is a legal requirement
 
 ---
 
-## 2. Scope of Work
+## 2. Organization
 
-**Purpose:** Define exactly what Provectus will build/deliver. This is the contractual boundary.
+**What it does:** Client company description — who they are, what they do, why it matters.
 
-**Structure by use case:**
-```
-### Use Case 1: [Name]
+**Real example (Natera):**
+> Natera, Inc. is a clinical genetic testing company specializing in non-invasive, cell-free DNA (cfDNA) testing technology, focusing on women's health, cancer, and organ health. Natera's proprietary technology combines novel molecular biology techniques with a suite of bioinformatics software that allows detection down to a single molecule in a tube of blood.
 
-**Objective:** [One sentence — what business outcome does this use case deliver?]
-
-**Scope items:**
-1. [Specific deliverable or activity]
-   - Description: [What exactly will be built/done]
-   - Deliverable: [Tangible output]
-   - Acceptance criteria: [How the client verifies completion]
-
-2. [Next scope item...]
-```
+**Real example (GANT):**
+> Gant Travel is a digitally driven, data-focused corporate travel management company that delivers end-to-end solutions for business travel, meetings, and expense optimization. With a strong focus on technology and user experience, Gant leverages data insights to simplify travel management and enhance traveler satisfaction.
 
 **Conventions:**
-- Organize by use case, phase, or workstream — never as a flat list
-- Each scope item must be independently verifiable
-- Use action verbs: "Design," "Implement," "Configure," "Deploy," "Migrate"
-- Include quantities where possible: "12 API endpoints," "3 data connectors," "1 admin dashboard"
-- Reference technologies: "AWS Lambda," "PostgreSQL," "React," "LangChain"
-
-**Specificity examples:**
-
-| Vague (avoid) | Specific (use) |
-|----------------|----------------|
-| Build the backend | Implement REST API with 12 endpoints for user management, authentication, and data retrieval |
-| Set up infrastructure | Provision AWS infrastructure: VPC, ECS Fargate cluster, RDS PostgreSQL, S3, and CloudFront CDN |
-| Create dashboards | Build 4 Grafana dashboards: system health, API latency, error rates, and business KPIs |
-| AI integration | Integrate GPT-4 via LangChain for document classification across 5 document types with >90% accuracy target |
+- 1-2 paragraphs
+- Include industry, core business, and technology context relevant to the engagement
+- May include "Business Drivers & Key Challenges" sub-section for complex engagements (see GANT example)
+- Tone: factual, not promotional
 
 ---
 
-## 3. Deliverables
+## 3. Project Overview
 
-**Purpose:** Enumerate every tangible output the client will receive.
+**What it does:** High-level summary of what Provectus will do and why.
 
-**Structure:**
-```
-| # | Deliverable | Description | Format | Acceptance Criteria | Phase |
-|---|-------------|-------------|--------|---------------------|-------|
-| D1 | Architecture Design Document | System architecture, data flows, technology stack decisions | Google Doc | Reviewed and approved by client CTO | Phase 1 |
-| D2 | Data Ingestion Pipeline | Automated ETL from 3 sources to data lake | Running AWS service | Processes >1M records/day with <5 min latency | Phase 2 |
-```
+**Real example (Natera #30):**
+> Provectus will partner with Natera's Shopfloor Engineering and AI teams to advance the development and operationalization of prioritized GenAI initiatives aligned to lab productivity, automation, and data unification. This engagement is structured as a capacity-based, agile delivery model that enables Provectus to flexibly support a dynamic backlog of use cases.
+
+**Real example (Fincredibilizer):**
+> The Fincredibilizer MVP establishes a production-ready platform that transforms portfolio management into a scalable, data-driven growth engine. By integrating structured, unstructured, and public data sources, it builds rich client profiles and continuously identifies high-impact opportunities across finance and operations.
 
 **Conventions:**
-- Number deliverables sequentially (D1, D2, D3...)
-- Each deliverable maps to one or more scope items
-- Format should specify the actual output type: Google Doc, GitHub repo, AWS service, Figma file
-- Acceptance criteria are testable, not subjective
-- Tie each deliverable to a phase or milestone
-
-**Acceptance criteria patterns:**
-- Documents: "Reviewed and approved by [role]"
-- Software: "Deployed to [environment], passing [test suite], meeting [performance threshold]"
-- Data: "Processing [volume] with [latency/accuracy] meeting [target]"
-- Models: "Achieving [metric] >= [threshold] on [evaluation dataset]"
+- 2-3 paragraphs
+- First paragraph: what Provectus will do
+- Second paragraph: business objectives and strategic alignment
+- Third paragraph (optional): engagement structure and approach
+- Reference specific technology domains (GenAI, ML, data platform, etc.)
 
 ---
 
-## 4. Timeline & Milestones
+## 4. Project Scope
 
-**Purpose:** Set expectations for when deliverables will be ready.
+**What it does:** The contractual boundary — exactly what is and isn't included.
 
-**Structure:**
+**Sub-sections (standard pattern):**
+
+### 4.1 Methodology
+Standard opening: "Provectus will collaborate closely with [Client] and follow the methodology and/or practices of the existing team."
+
+### 4.2 Scope of Work
+Organized as **numbered areas of focus** (T&M) or **detailed use cases** (Fixed-Price).
+
+**T&M pattern (Natera #28 — lean):**
 ```
-### Phase 1: Discovery & Architecture (Weeks 1-4)
-- **Milestone M1:** Architecture Design Approved (Week 4)
-  - Deliverables: D1 (Architecture Document), D2 (Technical Specifications)
-  - Acceptance gate: Client CTO sign-off
-  - Dependencies: Client provides access to existing systems by Week 1
-
-### Phase 2: Implementation (Weeks 5-12)
-- **Milestone M2:** MVP Deployed to Staging (Week 8)
-  - Deliverables: D3 (API), D4 (Frontend)
-  - Acceptance gate: QA test suite passing, stakeholder demo completed
-- **Milestone M3:** Production Release (Week 12)
-  - Deliverables: D5 (Production deployment), D6 (Operations runbook)
-  - Acceptance gate: Load testing passed, security scan clean
+Potential Areas of Focus:
+1. Ingestion Expansion — Add Women's Health, Organ Health, and expanded xCures/Kno2 pipelines.
+2. New Use Cases — Support ClinVerify Billing, Appeals evidence retrieval, and downstream workflows.
+3. Retrieval Enhancements — Enable delta-by-timepoint document retrieval and date-range queries.
+4. Scalability & Operations — Scale throughput for post-launch load and improve maintenance efficiency.
 ```
 
-**Conventions:**
-- Number milestones (M1, M2, M3...) for easy reference
-- Each milestone has: date, deliverables, acceptance gate, dependencies
-- Include buffer between phases (1 week recommended for handoff and review)
-- Flag dependencies clearly: "Client must provide X by Week Y"
-- For Discovery SOWs, timeline is typically 2-6 weeks
-- For Delivery SOWs, phases rarely exceed 8 weeks (break longer efforts into multiple phases)
+**Fixed-Price pattern (GANT — detailed):**
+```
+In-Scope Activities:
+1. MLP Phase 1 - Booking (Flight, Hotel, Auto Search)
+   - Identity-Aware Sessions: The system assumes a User ID is passed from the TalkDesk login context.
+   - Permission Logic: The ID is validated to differentiate between Primary Traveler and Traveler Arranger.
+   - Search Flow: The agent calls GANT APIs in sequence...
+   - Hotel Sub-flow: A 5-API sequence will be implemented:
+     1. City search for baseline pricing
+     2. Geo-location filtering
+     3. Hotel selection for live pricing
+     4. Content retrieval for descriptions and imagery
+     5. Session preparation for checkout
+```
+
+### Out of Scope
+Always include. Real example (GANT):
+```
+- Actual booking creation and email confirmations
+- Payment Processing: All checkout/refunds happen in the GANT Portal
+- TSA Integration: Due to high complexity and low immediate value
+- User Authentication: Assumed to be handled prior to the chat session
+- Multi-city trips booking
+- Group booking
+```
+
+**Specificity Do/Don't:**
+
+| Don't | Do |
+|---|---|
+| "Build the backend" | "Implement REST API with 12 endpoints for user management with JWT authentication" |
+| "Set up infrastructure" | "Provision AWS environments (Dev, STG, PROD) including AgentCore Runtime, DynamoDB, and Secrets Manager" |
+| "AI integration" | "Implement Model Context Protocol (MCP) tools for flight and hotel searches directly with GANT APIs" |
+| "Add monitoring" | "Expand visibility into operational bottlenecks, aging samples, and equipment performance" |
 
 ---
 
-## 5. Team Composition & Roles
+## 5. Estimated Durations & Team
 
-**Purpose:** Define who will work on the project, how much, and what they're responsible for.
+**What it does:** Timeline, sprint structure, and team composition.
 
-**Structure:**
-```
-### Provectus Team
-| Role | Seniority | Allocation | Responsibilities |
-|------|-----------|------------|------------------|
-| Solution Owner | Senior | 20% (8h/week) | Project governance, client communication, escalation management |
-| Tech Lead | Senior | 100% | Architecture decisions, code reviews, technical mentoring |
-| Backend Engineer | Mid-Senior | 100% | API development, database design, integration implementation |
-| ML Engineer | Senior | 50% | Model development, evaluation, deployment pipeline |
-| QA Engineer | Mid | 50% | Test strategy, automated testing, UAT coordination |
+**Standard opening:**
+> This project phase will be timeboxed to [DURATION] ([N] [2-week sprints]). The project will start on [START DATE] and end on [END DATE].
 
-### Client Team
-| Role | Responsibilities |
-|------|------------------|
-| Product Owner | Requirements clarification, priority decisions, acceptance sign-off |
-| Technical Sponsor | Infrastructure access, security approvals, architecture review |
-| Subject Matter Expert | Domain knowledge, data validation, business rule verification |
-```
+**Team table (standard Provectus format):**
+
+| Role | Allocation | Responsibility |
+|------|------------|----------------|
+| Solution Architect (100%) | Full-time | Designing and overseeing technical architecture, developing solution designs, ensuring alignment between business requirements and technical implementations |
+| Solution Owner (10%) | Part-time | Primary interface between client and team, prioritizing requirements, managing expectations, facilitating decision-making |
 
 **Conventions:**
-- Always include a Solution Owner (SO) role — this is the Provectus project lead
-- Allocation in % or hours/week — be explicit
-- Client-side roles are just as important — undefined client responsibilities cause delays
-- For T&M engagements, allocation may flex; state the expected range
-- Include ramp-up and ramp-down periods if applicable
+- Allocation as percentage in the role name: "Solution Architect (100%)"
+- Responsibility column: multi-sentence description of what this role does
+- Always include Solution Owner (SO) — typically 10-25%
+- May include delivery model narrative explaining why the team is structured this way
+- For AWS-funded engagements, may include TCO calculation sub-section
 
 ---
 
-## 6. Pricing & Payment Terms
+## 6. Payment and Fee Schedule
 
-**Purpose:** Define the commercial terms clearly and unambiguously.
+**What it does:** Commercial terms — pricing, invoicing, termination.
 
-**See `references/pricing-guidance.md` for rate card details.**
+**T&M opening pattern:**
+> Time & Materials. Provectus estimates that [Client]'s total payment under this Statement of Work will be $[AMOUNT] unless specified through a change order and following the prescribed [Client] change order process.
 
-**Structure for T&M:**
-```
-### Rate Card
-| Role | Monthly Rate | Hourly Rate |
-|------|-------------|-------------|
-| Solution Owner | $X,XXX | $XXX |
-| Senior Engineer | $XX,XXX | $XXX |
+**Fixed-price opening pattern:**
+> Fixed Fee. [Client] total payment under this Statement of Work will be $[AMOUNT] unless specified through a change order and following the prescribed change order process.
 
-### Estimated Investment
-- Monthly run rate: $XX,XXX (based on team composition above)
-- Estimated total: $XXX,XXX - $XXX,XXX (for XX weeks)
-- Actual billing based on hours worked
+**Cost table (real example — Natera):**
 
-### Payment Terms
-- Invoicing: Monthly, in arrears
-- Payment: Net 30 from invoice date
-- Currency: USD
-```
+| Description | Duration (Sprints) | Cost per Sprint | Estimated Total Cost |
+|---|---|---|---|
+| AI Pod | 6 | $16,560 | $99,360 |
+| | | **Total Cost** | **$99,360** |
 
-**Structure for Fixed-Price:**
-```
-### Project Investment
-| Phase | Deliverables | Price |
-|-------|-------------|-------|
-| Phase 1: Discovery | D1, D2 | $XX,XXX |
-| Phase 2: Implementation | D3, D4, D5 | $XXX,XXX |
-| **Total** | | **$XXX,XXX** |
+**Invoice schedule (real example — Natera):**
 
-### Payment Schedule
-| Milestone | Payment | Amount |
-|-----------|---------|--------|
-| Project kickoff | 30% upfront | $XX,XXX |
-| M1: Architecture approved | 20% | $XX,XXX |
-| M2: MVP deployed | 30% | $XX,XXX |
-| M3: Production release | 20% final | $XX,XXX |
+| Invoice Date | Description | Cost |
+|---|---|---|
+| 2/1/2026 | Services rendered in January | $16,560 |
+| 3/1/2026 | Services rendered in February | $33,120 |
+| 4/1/2026 | Services rendered in March | $33,120 |
+| 5/1/2026 | Services rendered in April | $16,560 |
 
-### Payment Terms
-- Currency: USD
-- Payment: Net 30 from milestone acceptance
-```
-
-**Conventions:**
-- Always state currency
-- For T&M, provide an estimated range (not just a single number)
-- For fixed-price, tie payments to milestones with clear acceptance gates
-- Include travel and expenses policy: "Travel expenses billed at cost with prior client approval"
-- State what is NOT included: "Hardware costs, third-party license fees, and cloud infrastructure costs are the Client's responsibility"
+**Termination clause (standard):**
+> If the Customer wishes to terminate this SOW without cause, the Customer must provide the Vendor with thirty (30) days' written notice (email is acceptable). Notwithstanding the above, Customer will be responsible for the prorated fee for the remaining term from the date of the termination notice until the termination date.
 
 ---
 
-## 7. Assumptions & Dependencies
+## 7. Project Assumptions
 
-**Purpose:** Document conditions that must be true for the SOW to be valid.
+**What it does:** Conditions that must hold true. This is the longest section and contains both operational assumptions and legal clauses.
 
-**Categories:**
+**Standard assumptions (present in all 5 sample SOWs — include by default):**
 
-**Technical assumptions:**
-- Cloud accounts and infrastructure provisioned before development starts
-- Required API credentials and access provided by [date]
-- Development, staging, and production environments available
-- Client systems meet specified compatibility requirements
+**Client responsibilities:**
+- Provide access to SMEs and resources required for project work
+- Provide access to cloud infrastructure, datasets, and tools
+- Review and sign-off deliverables in a timely manner
+- Align incentives of employees and vendors to cooperate with Provectus
+- Provide appropriate system access for reviewing configurations
+- Provide timely access to technical information and environments
 
-**Client dependencies:**
-- Product Owner available for weekly sprint reviews
-- Technical Sponsor provides infrastructure access within 5 business days of request
-- Business rules and data validation logic provided before Phase 2
-- Acceptance testing feedback provided within 5 business days of deliverable submission
+**Provectus limitations:**
+- Not responsible for products not provided by or tasks not performed by Provectus consultants
+- Not responsible for third-party software/hardware bugs, incompatibilities, or defects
+- Not responsible for delays, errors, or omissions caused by other parties
 
-**Timeline assumptions:**
-- Project starts on [date]
-- Team members available as specified in Team Composition
-- Standard business hours (8h/day, 5d/week)
-- No extended holidays or company shutdowns during the engagement
-- Scope changes processed through Change Management (Section 8)
+**Operational:**
+- Normal business hours (8:00 am to 5:00 pm local time), Mon-Fri, except holidays
+- Schedule estimates represent commercially reasonable technical judgment
+- Work commences on mutually agreeable date after fully executed SOW
+- May use subcontractors where appropriate
 
-**Conventions:**
-- Each assumption should be testable — can you verify it's true or false?
-- Client dependencies should have timing ("within X business days")
-- Include consequences: "If [dependency] is not met, timeline may shift by [impact]"
-- Keep this section separate from scope — assumptions buried in scope text get missed
+**Acceptance and scope:**
+- Deliverables deemed accepted upon delivery unless otherwise noted in writing
+- Only tasks in this SOW will be undertaken
+- Customer signs project completion form upon completion
 
----
+**Termination:**
+- Customer may terminate with prior notice for non-performance
+- All fees and expenses to date of termination will be invoiced
 
-## 8. Change Management Process
-
-**Purpose:** Define how scope changes are handled to prevent uncontrolled scope creep.
-
-**Standard process:**
-```
-1. **Request:** Either party submits a Change Request (CR) describing the change, reason, and expected impact
-2. **Assessment:** Provectus evaluates impact on timeline, budget, resources, and quality within 3 business days
-3. **Proposal:** Provectus provides a Change Order (CO) with revised scope, timeline, and cost
-4. **Approval:** Both parties sign the Change Order before work begins
-5. **Execution:** Approved changes are incorporated into the project plan
-```
-
-**Conventions:**
-- Define who can submit change requests (named roles, not "anyone")
-- Include assessment SLA (typically 3-5 business days)
-- State that no changed scope work begins until the CO is signed
-- For T&M engagements, clarify that priority changes within the existing scope are normal and don't require COs
-- For fixed-price, any scope addition triggers a CO
+**Client-specific additions (varies by engagement):**
+- Data residency requirements (Natera: "data will not be moved outside the US")
+- IP/compliance clauses (Natera: patient re-identification prohibition, AI data ownership)
+- Security clearance coordination
+- Referenceability clause (Johnson Lambert)
+- Completion/success criteria (Fincredibilizer, Johnson Lambert)
 
 ---
 
-## 9. Acceptance Criteria
+## 8. Signatures and Dates
 
-**Purpose:** Define how the client formally accepts deliverables.
+Standard two-column layout: VENDOR (Provectus IT, Inc.) and CUSTOMER ([Client]).
 
-**Standard process:**
-```
-1. **Submission:** Provectus delivers the deliverable and notifies the Client
-2. **Review period:** Client reviews within [X] business days (typically 5-10)
-3. **Feedback:** Client provides written acceptance or specific, actionable feedback
-4. **Remediation:** Provectus addresses feedback within [X] business days
-5. **Final acceptance:** Client signs off on the deliverable
-6. **Deemed acceptance:** If no feedback is provided within the review period, the deliverable is deemed accepted
-```
+Fields: Signature, Printed Name, Title, Date.
 
-**Conventions:**
-- Define review period length (5-10 business days is standard)
-- Include deemed acceptance clause — prevents indefinite review cycles
-- Feedback must be "specific and actionable" — no vague rejections
-- Define warranty/support period post-acceptance (typically 30 days for bug fixes)
-- Final acceptance of all deliverables triggers project completion
+---
+
+## Optional Sections
+
+Some SOWs include additional sections based on engagement complexity:
+
+| Section | When to Include | Example |
+|---|---|---|
+| Completion/Success Criteria | Fixed-price MVPs | Fincredibilizer: "The MVP will be deemed successful if..." |
+| Solution Architecture | Complex technical engagements | Fincredibilizer: architecture diagram + TCO |
+| Referenceability | When marketing permission is negotiated | Johnson Lambert |
+| Target State Architecture | When scope is Phase 1 of a larger vision | GANT: future capabilities designed but not built |
+| AWS TCO | AWS-funded engagements | Natera #30 |
