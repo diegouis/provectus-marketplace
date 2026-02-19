@@ -1,7 +1,7 @@
 ---
 description: >
   Review delivery health: sprint-health, delivery-risks, timeline,
-  stakeholder-alignment, estimate-review, meeting-insights, or comms-quality assessment.
+  stakeholder-alignment, estimate-review, meeting-insights, comms-quality, or sow-review assessment.
 argument-hint: "<mode> [target]"
 allowed-tools: Read, Glob, Grep, Task
 ---
@@ -14,7 +14,7 @@ You are the delivery health review engine for the proagent-delivery plugin. Pars
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `sprint-health`, `delivery-risks`, `timeline`, `stakeholder-alignment`, `estimate-review`, `meeting-insights`, or `comms-quality`.
+Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `sprint-health`, `delivery-risks`, `timeline`, `stakeholder-alignment`, `estimate-review`, `meeting-insights`, `comms-quality`, or `sow-review`.
 
 ---
 
@@ -550,4 +550,143 @@ Review the quality and consistency of team communications (status updates, 3P re
    ### Overall Comms Health
    **[STRONG / ADEQUATE / NEEDS IMPROVEMENT]**
    [2-3 sentence summary]
+   ```
+
+---
+
+## Mode: sow-review
+
+Audit an existing Statement of Work for completeness, quality, and internal consistency.
+
+**Announce:** "Starting SOW review. I'll assess the document against Provectus quality criteria for completeness, specificity, pricing alignment, and risk coverage."
+
+### Process
+
+1. **Load the SOW:**
+   - If `$ARGUMENTS` includes a file path or Google Drive link, read the SOW from that location
+   - Otherwise, search for recent SOW files in the project directory or ask the user for the file path
+   - Parse the document into sections
+
+2. **Section completeness check:**
+   Verify all 9 required sections are present:
+   - [ ] Executive Summary
+   - [ ] Scope of Work
+   - [ ] Deliverables
+   - [ ] Timeline & Milestones
+   - [ ] Team Composition & Roles
+   - [ ] Pricing & Payment Terms
+   - [ ] Assumptions & Dependencies
+   - [ ] Change Management Process
+   - [ ] Acceptance Criteria
+
+   Flag any missing or empty sections.
+
+3. **Scope specificity review:**
+   For each scope item, check:
+   - Is it specific enough to be independently verifiable?
+   - Does it include quantities where applicable (endpoints, connectors, dashboards)?
+   - Does it use action verbs (Design, Implement, Configure, Deploy)?
+   - Could the client and provider disagree about whether it's "done"?
+
+   **Specificity scoring:**
+   - **Strong:** "Implement 12 REST API endpoints for user management with JWT authentication"
+   - **Weak:** "Build the backend" or "Set up the API"
+   - **Flag:** Any scope item that is a single vague sentence
+
+4. **Deliverables quality review:**
+   For each deliverable:
+   - Does it have explicit acceptance criteria?
+   - Is the acceptance criteria testable (not subjective)?
+   - Is the deliverable format specified (Google Doc, GitHub repo, deployed service)?
+   - Is it tied to a phase or milestone?
+
+5. **Timeline realism check:**
+   - Is the total timeline proportional to the scope complexity?
+   - Are phases reasonable in duration (not too compressed or stretched)?
+   - If a ROM estimate is available, cross-check: does timeline x team size >= ROM person-days?
+   - Are there buffer periods between phases for review and handoff?
+   - Are dependencies between phases identified?
+
+6. **Team composition validation:**
+   - Does the team size match the scope complexity?
+   - Are all required specialties covered (e.g., ML scope needs ML engineer)?
+   - Are allocations realistic (no one person at 200%)?
+   - Are client-side roles and responsibilities defined?
+   - Is there a Solution Owner or project lead identified?
+
+7. **Pricing alignment check:**
+   - Does the pricing model match the engagement model?
+   - For T&M: Is the estimated range realistic given team x timeline?
+   - For fixed-price: Is there adequate buffer (15-25% above ROM)?
+   - For milestone-based: Do milestone prices sum correctly?
+   - Is the payment schedule defined with terms (Net 30, etc.)?
+   - Are excluded costs stated (cloud, licenses, hardware)?
+
+8. **Assumptions and risk review:**
+   - Are assumptions explicit (not buried in scope sections)?
+   - Do assumptions cover: timeline, access, dependencies, team availability?
+   - Are client responsibilities clear with timing expectations?
+   - Are out-of-scope items listed?
+   - Is change management process defined with approval workflow?
+
+9. **Output audit report:**
+   ```
+   ## SOW Review: [Client Name] - [Project Name]
+   Review Date: [Date]
+   Source: [file path or Drive link]
+
+   ### Section Completeness
+   | Section | Present | Quality | Notes |
+   |---------|---------|---------|-------|
+   | Executive Summary | Yes/No | Strong/Adequate/Weak | [context] |
+   | Scope of Work | Yes/No | Strong/Adequate/Weak | [context] |
+   | Deliverables | Yes/No | Strong/Adequate/Weak | [context] |
+   | Timeline & Milestones | Yes/No | Strong/Adequate/Weak | [context] |
+   | Team Composition | Yes/No | Strong/Adequate/Weak | [context] |
+   | Pricing & Payment | Yes/No | Strong/Adequate/Weak | [context] |
+   | Assumptions | Yes/No | Strong/Adequate/Weak | [context] |
+   | Change Management | Yes/No | Strong/Adequate/Weak | [context] |
+   | Acceptance Criteria | Yes/No | Strong/Adequate/Weak | [context] |
+
+   ### Scope Issues
+   | Scope Item | Issue | Recommendation |
+   |------------|-------|----------------|
+   | [item] | [too vague / missing quantities / no acceptance criteria] | [specific fix] |
+
+   ### Deliverable Issues
+   | Deliverable | Issue | Recommendation |
+   |-------------|-------|----------------|
+   | [deliverable] | [missing acceptance criteria / no format / not tied to milestone] | [specific fix] |
+
+   ### Timeline Assessment
+   - Timeline vs. scope: [Realistic / Aggressive / Conservative]
+   - Timeline vs. ROM (if available): [Aligned / Mismatched by X%]
+   - Buffer periods: [Adequate / Insufficient / Missing]
+   - Critical dependencies: [List any timeline-blocking dependencies]
+
+   ### Team Assessment
+   - Team size vs. scope: [Adequate / Under-staffed / Over-staffed]
+   - Specialty coverage: [All covered / Missing: X, Y]
+   - Client roles: [Defined / Missing]
+
+   ### Pricing Assessment
+   - Pricing model: [Appropriate / Mismatched for engagement type]
+   - Total estimate: [Realistic / Under-priced / Over-priced]
+   - Payment terms: [Complete / Missing details]
+   - Excluded costs: [Listed / Missing]
+
+   ### Risk Gaps
+   - Missing assumptions: [List]
+   - Missing out-of-scope items: [List]
+   - Change management: [Defined / Incomplete / Missing]
+   - Acceptance process: [Defined / Incomplete / Missing]
+
+   ### Recommendations
+   1. [Most critical fix — address before sending to client]
+   2. [Second priority]
+   3. [Third priority]
+
+   ### Overall SOW Quality
+   **[READY FOR CLIENT / NEEDS REVISION / MAJOR GAPS]**
+   [2-3 sentence summary with confidence level]
    ```

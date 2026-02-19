@@ -1,7 +1,7 @@
 ---
 description: >
   Execute delivery workflows: plan-sprint, status-report, risk-assess,
-  milestone-track, retrospective, or rom-estimate.
+  milestone-track, retrospective, rom-estimate, generate-sow, or others.
 argument-hint: "<mode> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
@@ -14,7 +14,7 @@ You are the delivery execution engine for the proagent-delivery plugin. Parse th
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `plan-sprint`, `status-report`, `risk-assess`, `milestone-track`, `retrospective`, `rom-estimate`, `standup-notes`, `create-prd`, `internal-comms`, or `task-plan`.
+Parse the first word of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `plan-sprint`, `status-report`, `risk-assess`, `milestone-track`, `retrospective`, `rom-estimate`, `generate-sow`, `standup-notes`, `create-prd`, `internal-comms`, or `task-plan`.
 
 ---
 
@@ -493,6 +493,150 @@ Generate a ROM (Rough Order of Magnitude) effort estimate from project documents
    - [project-specific assumptions]
    ================================================================================
    ```
+
+---
+
+## Mode: generate-sow
+
+Generate a delivery-ready Statement of Work (SOW) from client context gathered via Slack channels and Google Drive documents. Based on the `sow-generator` skill.
+
+**Announce:** "Starting SOW generation workflow. I'll gather client context, conduct a clarification interview, generate the SOW, and output it to Google Drive."
+
+### Arguments
+
+Parse these flags from `$ARGUMENTS`:
+- `--channel=<slack-channel-name>` — Slack channel to read for client context
+- `--drive=<google-drive-folder-url>` — Google Drive folder with client documents
+- `--template=<path-or-drive-url>` — SOW template to use (local or Drive)
+- `--type=<discovery|delivery|both>` — SOW type (default: ask during interview)
+- `--with-rom` — Generate ROM estimate as appendix
+- `--output=<google-drive-folder-url>` — Where to save the output Google Doc
+
+### Process
+
+1. **Dispatch `sow-context-extractor` subagent:**
+   - Pass `--channel` and `--drive` values to the subagent
+   - The subagent reads Slack channel history via Slack MCP
+   - Extracts Google Drive URLs from messages and reads all linked documents
+   - Reads meeting transcripts from Drive
+   - Returns a structured **Client Context Brief**
+
+   Use the Task tool to dispatch the subagent:
+   ```
+   Task(
+     subagent_type: "general-purpose",
+     model: "sonnet",
+     description: "Extract SOW client context",
+     prompt: "[Include the sow-context-extractor agent instructions and the channel/drive parameters]"
+   )
+   ```
+
+   If no `--channel` or `--drive` is provided, ask the user:
+   ```
+   AskUserQuestion(
+     header: "SOW Sources",
+     question: "Where should I gather client context from?",
+     options: [
+       { label: "Slack + Drive", description: "I'll provide a Slack channel and Google Drive folder with client documents" },
+       { label: "Slack only", description: "I'll provide a Slack channel name — I'll extract context from messages" },
+       { label: "Drive only", description: "I'll provide a Google Drive folder with project documents and transcripts" },
+       { label: "Manual input", description: "I'll describe the client context and requirements directly" }
+     ]
+   )
+   ```
+
+2. **Synthesize context:**
+   - Parse the Client Context Brief from the subagent
+   - Organize into: client info, requirements, technical context, timeline, budget, engagement model signals
+   - Identify gaps that need clarification
+
+3. **Conduct clarification interview:**
+   Present synthesized context to the SO and ask targeted questions via `AskUserQuestion`:
+
+   a. **Validate context:** Present the summary and ask for corrections or additions
+
+   b. **SOW type** (if not provided via `--type`):
+   ```
+   AskUserQuestion(
+     header: "SOW Type",
+     question: "What type of SOW should I generate?",
+     options: [
+       { label: "Discovery", description: "Scoping engagement: requirements, architecture, delivery roadmap" },
+       { label: "Delivery", description: "Full delivery with defined scope, timeline, and deliverables" },
+       { label: "Both", description: "Discovery SOW + Delivery SOW as a pair" }
+     ]
+   )
+   ```
+
+   c. **Engagement model:**
+   ```
+   AskUserQuestion(
+     header: "Engagement",
+     question: "What engagement model should this SOW use?",
+     options: [
+       { label: "Time & Materials", description: "Billed by hours/days — flexible scope" },
+       { label: "Fixed-Price", description: "Fixed total for defined scope — budget certainty" },
+       { label: "Milestone-Based", description: "Payments tied to deliverable milestones" },
+       { label: "Discovery + Delivery", description: "Fixed Discovery, then T&M or milestone Delivery" }
+     ]
+   )
+   ```
+
+   d. **Pricing model:**
+   ```
+   AskUserQuestion(
+     header: "Pricing",
+     question: "What pricing structure should the SOW use?",
+     options: [
+       { label: "Flat-rate", description: "Single rate for all team members" },
+       { label: "Role-based rates", description: "Different rates per role and seniority" },
+       { label: "Delivery-based", description: "Pricing per deliverable or use case" },
+       { label: "Blended rate", description: "Weighted average rate across the team" }
+     ]
+   )
+   ```
+
+   e. **Phase structure, assumptions, and out-of-scope items**
+
+4. **Load SOW template:**
+   - If `--template` provided, read the template from local path or Google Drive
+   - Otherwise, check `skills/sow-generator/templates/` for available templates
+   - If no templates found, use the default section structure from the skill
+
+5. **Generate SOW draft:**
+   - Apply template structure + client context + interview answers
+   - Generate all 9 required sections: Executive Summary, Scope of Work, Deliverables, Timeline & Milestones, Team Composition & Roles, Pricing & Payment Terms, Assumptions & Dependencies, Change Management Process, Acceptance Criteria
+   - Reference `skills/sow-generator/references/sow-sections.md` for section guidance
+   - Reference `skills/sow-generator/references/engagement-models.md` for engagement model patterns
+   - Reference `skills/sow-generator/references/pricing-guidance.md` for pricing conventions
+
+6. **Review gate (mandatory):**
+   Present the full SOW draft and ask:
+   ```
+   AskUserQuestion(
+     header: "SOW Review",
+     question: "I've generated the SOW draft. Please review it. What would you like to do?",
+     options: [
+       { label: "Approve", description: "The SOW is ready — write it to Google Drive" },
+       { label: "Edit", description: "I'll provide specific changes to make" },
+       { label: "Redo", description: "Start over with different parameters" }
+     ]
+   )
+   ```
+   If "Edit": apply changes and repeat the review gate.
+   If "Redo": return to step 3.
+
+7. **Output to Google Drive:**
+   - Use Google Drive MCP to create a new Google Doc
+   - File name: `[Client Name] - [Project Name] SOW - [Date]`
+   - If `--output` provided, create in that folder
+   - Share the Google Drive link with the user
+
+8. **ROM estimation (if `--with-rom`):**
+   - Extract scope sections from the generated SOW
+   - Run the `rom-estimate` skill with the scope as input
+   - Generate ROM CSV and append executive summary as SOW appendix
+   - Link the ROM CSV in the SOW document
 
 ---
 

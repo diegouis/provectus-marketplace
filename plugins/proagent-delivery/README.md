@@ -1,8 +1,8 @@
 # proagent-delivery
 
-A Claude Code plugin for project delivery management. Covers sprint planning, milestone tracking, stakeholder updates, status reports, risk assessment, retrospectives, resource allocation, agile/scrum ceremony facilitation, standup notes generation, PRD creation, internal communications, task planning, meeting insights analysis, agentic KPIs tracking, todo management, and Eisenhower matrix prioritization.
+A Claude Code plugin for project delivery management. Covers sprint planning, milestone tracking, stakeholder updates, status reports, risk assessment, retrospectives, resource allocation, agile/scrum ceremony facilitation, SOW generation and review, standup notes generation, PRD creation, internal communications, task planning, meeting insights analysis, agentic KPIs tracking, todo management, and Eisenhower matrix prioritization.
 
-**Version:** 0.3.0
+**Version:** 0.4.0
 **Category:** Delivery
 **License:** MIT
 
@@ -82,18 +82,34 @@ Write internal communications using company-standard formats. Supports 3P update
 ```
 Create a phased task plan with progress tracking, decision logs, and error tracking. Breaks work into 3-7 phases with structured tracking sections.
 
+**Generate a SOW:**
+```
+/proagent-delivery:proagent-delivery-run generate-sow --channel=proj-acme-delivery --drive=https://drive.google.com/... --with-rom
+```
+Generate a delivery-ready Statement of Work from client context. Reads Slack channel history and Google Drive documents via MCP, conducts a structured clarification interview with the Solution Owner (engagement model, pricing, phases, assumptions), generates all 9 SOW sections using Provectus templates, and outputs to Google Drive as a Google Doc. Optionally appends a ROM estimate via `--with-rom`.
+
+**Review a SOW:**
+```
+/proagent-delivery:proagent-delivery-review sow-review path/to/sow.md
+```
+Audit an existing SOW for completeness, scope specificity, pricing alignment, timeline realism, team composition, and risk coverage. Produces a structured audit report with section-by-section quality scores and actionable recommendations.
+
 ## Components
 
 | Component | Name | Purpose |
 |-----------|------|---------|
 | Skill | `proagent-delivery:delivery-assistant` | Core skill covering all delivery phases |
+| Skill | `proagent-delivery:rom-estimate` | ROM effort estimation from project docs |
+| Skill | `proagent-delivery:sow-generator` | SOW generation from Slack + Drive context |
 | Command | `proagent-delivery:proagent-delivery-hub` | Command hub and routing |
-| Command | `proagent-delivery:proagent-delivery-run` | Execute delivery workflows (10 modes) |
-| Command | `proagent-delivery:proagent-delivery-review` | Delivery health reviews (7 modes) |
+| Command | `proagent-delivery:proagent-delivery-run` | Execute delivery workflows (11 modes) |
+| Command | `proagent-delivery:proagent-delivery-review` | Delivery health reviews (8 modes) |
 | Agent | `proagent-delivery:delivery-specialist` | Subagent for assessments and reports |
+| Agent | `proagent-delivery:sow-context-extractor` | SOW context extraction from Slack + Drive |
 | Hook | Status update reminder | 3-day freshness check, milestone proximity alert |
 | Hook | Milestone check | Acceptance criteria and stakeholder notification before release |
 | Hook | Sprint boundary notification | Follow-up actions after planning and retrospective |
+| Hook | SOW output notification | Share SOW with stakeholders after generation |
 
 ### MCP Servers
 
