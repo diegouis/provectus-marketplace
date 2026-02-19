@@ -19,5 +19,19 @@ node_modules/
 # Secrets — never commit tokens or credentials
 *.pem
 *.key
+*.p12
+*.pfx
 credentials.json
+secrets/
+.secrets/
+**/service-account*.json
+
+# MCP server caches
+.users_cache.json
+.channels_cache_v2.json
+
+# Testing artifacts
+testing/
+
+# Misc
 rom-estimate/*
