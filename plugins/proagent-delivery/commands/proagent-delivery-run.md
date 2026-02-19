@@ -1,7 +1,7 @@
 ---
 description: >
   Execute delivery workflows: plan-sprint, status-report, risk-assess,
-  milestone-track, retrospective, or rom-estimate.
+  milestone-track, retrospective, rom-estimate, generate-sow, or others.
 argument-hint: "<mode> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
@@ -14,7 +14,12 @@ You are the delivery execution engine for the proagent-delivery plugin. Parse th
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `plan-sprint`, `status-report`, `risk-assess`, `milestone-track`, `retrospective`, `rom-estimate`, `standup-notes`, `create-prd`, `internal-comms`, or `task-plan`.
+Parse the first word of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `plan-sprint`, `status-report`, `risk-assess`, `milestone-track`, `retrospective`, `rom-estimate`, `generate-sow`, `standup-notes`, `create-prd`, `internal-comms`, or `task-plan`.
+
+**Modes with dedicated files (read and execute the file):**
+- `generate-sow` → Read and execute `commands/modes/generate-sow.md`
+
+All other modes are defined inline below.
 
 ---
 

@@ -32,6 +32,16 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read fpath; if echo \"$fpath\" | grep -qiE 'sow|statement.of.work'; then echo '[proagent-delivery] SOW document written. Consider sharing it with stakeholders via Slack and uploading to the client Google Drive folder.'; fi; }",
+            "timeout": 5
+          }
+        ]
       }
     ]
   }

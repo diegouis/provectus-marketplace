@@ -19,7 +19,8 @@ Execute a delivery workflow. Modes:
 - **risk-assess** -- Run a risk assessment: identify, analyze, prioritize, and develop mitigation strategies for project risks
 - **milestone-track** -- Track project milestones: assess schedule health, identify drift, calculate critical path impact
 - **retrospective** -- Facilitate a sprint retrospective: Start-Stop-Continue, 5 Whys root cause, action items
-- **rom-estimate** -- Generate a ROM (Rough Order of Magnitude) effort estimate: analyze project docs (local files, pasted content, or Google Drive), expand into sub-features, estimate effort and specialties, produce CSV with team composition and executive summary.
+- **rom-estimate** -- Generate a ROM (Rough Order of Magnitude) effort estimate: analyze project docs (local files, pasted content, or Google Drive), expand into sub-features, estimate effort and specialties, produce CSV with team composition and executive summary
+- **generate-sow** -- Generate a delivery-ready Statement of Work (SOW): read Slack + Drive for client context, conduct clarification interview, apply SOW template, output to Google Drive. Flags: `--channel=`, `--drive=`, `--template=`, `--type=`, `--with-rom`, `--output=`
 
 ### `/proagent-delivery:proagent-delivery-review`
 Review and assess delivery health. Modes:
@@ -28,6 +29,7 @@ Review and assess delivery health. Modes:
 - **timeline** -- Review project timeline against baseline: milestone drift, critical path, forecast completion
 - **stakeholder-alignment** -- Evaluate stakeholder engagement: communication cadence, satisfaction, open decisions
 - **estimate-review** -- Audit an existing ROM estimate CSV for completeness, sizing accuracy, missing epics, team balance, and risk coverage
+- **sow-review** -- Audit an existing SOW for completeness, scope specificity, pricing alignment, timeline realism, and risk coverage
 
 ## Quick Start
 
@@ -45,7 +47,9 @@ Tell me what you need and I will route you to the right command:
 | Evaluate timeline health | `/proagent-delivery:proagent-delivery-review timeline` |
 | Check stakeholder alignment | `/proagent-delivery:proagent-delivery-review stakeholder-alignment` |
 | Generate a ROM estimate | `/proagent-delivery:proagent-delivery-run rom-estimate` |
+| Generate a SOW | `/proagent-delivery:proagent-delivery-run generate-sow` |
 | Audit an existing ROM estimate | `/proagent-delivery:proagent-delivery-review estimate-review` |
+| Audit an existing SOW | `/proagent-delivery:proagent-delivery-review sow-review` |
 
 ## What would you like to do?
 

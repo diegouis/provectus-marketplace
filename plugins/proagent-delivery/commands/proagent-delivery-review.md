@@ -1,7 +1,7 @@
 ---
 description: >
   Review delivery health: sprint-health, delivery-risks, timeline,
-  stakeholder-alignment, estimate-review, meeting-insights, or comms-quality assessment.
+  stakeholder-alignment, estimate-review, meeting-insights, comms-quality, or sow-review assessment.
 argument-hint: "<mode> [target]"
 allowed-tools: Read, Glob, Grep, Task
 ---
@@ -14,7 +14,12 @@ You are the delivery health review engine for the proagent-delivery plugin. Pars
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `sprint-health`, `delivery-risks`, `timeline`, `stakeholder-alignment`, `estimate-review`, `meeting-insights`, or `comms-quality`.
+Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `sprint-health`, `delivery-risks`, `timeline`, `stakeholder-alignment`, `estimate-review`, `meeting-insights`, `comms-quality`, or `sow-review`.
+
+**Modes with dedicated files (read and execute the file):**
+- `sow-review` → Read and execute `commands/modes/sow-review.md`
+
+All other modes are defined inline below.
 
 ---
 
@@ -551,3 +556,4 @@ Review the quality and consistency of team communications (status updates, 3P re
    **[STRONG / ADEQUATE / NEEDS IMPROVEMENT]**
    [2-3 sentence summary]
    ```
+
