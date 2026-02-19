@@ -21,6 +21,10 @@ Execute a delivery workflow. Modes:
 - **retrospective** -- Facilitate a sprint retrospective: Start-Stop-Continue, 5 Whys root cause, action items
 - **rom-estimate** -- Generate a ROM (Rough Order of Magnitude) effort estimate: analyze project docs (local files, pasted content, or Google Drive), expand into sub-features, estimate effort and specialties, produce CSV with team composition and executive summary
 - **generate-sow** -- Generate a delivery-ready Statement of Work (SOW): read Slack + Drive for client context, conduct clarification interview, apply SOW template, output to Google Drive. Flags: `--channel=`, `--drive=`, `--template=`, `--type=`, `--with-rom`, `--output=`
+- **standup-notes** -- Generate AI-assisted daily standup notes from git history, Jira tickets, and calendar data. Supports daily, async, and 3P formats
+- **create-prd** -- Create a Product Requirements Document from feature ideas and JTBD analysis
+- **internal-comms** -- Draft internal communications: 3P updates, newsletters, FAQs, incident reports, leadership updates
+- **task-plan** -- Create a phased task plan with progress tracking, decision logs, and error tracking
 
 ### `/proagent-delivery:proagent-delivery-review`
 Review and assess delivery health. Modes:
@@ -29,6 +33,8 @@ Review and assess delivery health. Modes:
 - **timeline** -- Review project timeline against baseline: milestone drift, critical path, forecast completion
 - **stakeholder-alignment** -- Evaluate stakeholder engagement: communication cadence, satisfaction, open decisions
 - **estimate-review** -- Audit an existing ROM estimate CSV for completeness, sizing accuracy, missing epics, team balance, and risk coverage
+- **meeting-insights** -- Analyze meeting transcripts or notes for communication patterns, decision quality, and facilitation effectiveness
+- **comms-quality** -- Review quality and consistency of team communications (status updates, 3P reports, stakeholder emails)
 - **sow-review** -- Audit an existing SOW for completeness, scope specificity, pricing alignment, timeline realism, and risk coverage
 
 ## Quick Start
@@ -48,7 +54,13 @@ Tell me what you need and I will route you to the right command:
 | Check stakeholder alignment | `/proagent-delivery:proagent-delivery-review stakeholder-alignment` |
 | Generate a ROM estimate | `/proagent-delivery:proagent-delivery-run rom-estimate` |
 | Generate a SOW | `/proagent-delivery:proagent-delivery-run generate-sow` |
+| Generate standup notes | `/proagent-delivery:proagent-delivery-run standup-notes` |
+| Create a PRD | `/proagent-delivery:proagent-delivery-run create-prd` |
+| Draft internal communications | `/proagent-delivery:proagent-delivery-run internal-comms` |
+| Create a task plan | `/proagent-delivery:proagent-delivery-run task-plan` |
 | Audit an existing ROM estimate | `/proagent-delivery:proagent-delivery-review estimate-review` |
+| Analyze meeting communication | `/proagent-delivery:proagent-delivery-review meeting-insights` |
+| Review communications quality | `/proagent-delivery:proagent-delivery-review comms-quality` |
 | Audit an existing SOW | `/proagent-delivery:proagent-delivery-review sow-review` |
 
 ## What would you like to do?

@@ -270,8 +270,8 @@ Generates AI-assisted daily standup notes by analyzing multiple data sources. Ba
 **Data source orchestration:**
 1. **Git commit history:** Parse recent commits (last 24-48h) using `git log --author="<user>" --since="yesterday"` to extract accomplishments grouped by feature area
 2. **Jira tickets:** Query assigned tickets for status updates (`assignee = currentUser() AND status CHANGED TO "Done" DURING (-1d, now())`)
-3. **Obsidian vault:** Review recent daily notes, task completions, and meeting outcomes via `mcp-obsidian`
-4. **Calendar events:** Include meeting context and time commitments via `mcp-gsuite`
+3. **Calendar events:** Include meeting context and time commitments via `mcp-gsuite`
+4. **Local files:** Check `TO-DOS.md`, `CHANGELOG.md`, sprint backlog documents for task completions and meeting outcomes
 
 **Standup note structure:**
 ```
