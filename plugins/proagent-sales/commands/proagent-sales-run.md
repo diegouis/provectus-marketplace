@@ -1,7 +1,8 @@
 ---
 description: >
   Execute sales operations: draft-proposal, research-lead, competitive-analysis,
-  generate-quote, or prepare-rfp.
+  generate-quote, prepare-rfp, build-business-case, assess-market-opportunity,
+  extract-competitor-ads, or create-content.
 argument-hint: "<operation> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
@@ -179,6 +180,124 @@ Create a structured response to a Request for Proposal.
    - Compliance matrix as an appendix
    - Pricing in a separate sealed section if required
 7. **Save output** to `artifacts/rfp-responses/YYYY-MM-DD-[rfp-name]-response.md`
+
+### `build-business-case` - Generate a Business Case Document
+
+Create a structured business case with ROI analysis to justify an investment or initiative. Patterns from `agents` repo (`startup-business-analyst/commands/business-case.md`).
+
+**Steps:**
+1. **Gather context:**
+   - Initiative name and description
+   - Sponsoring stakeholder and target audience
+   - Current state costs, pain points, and inefficiencies
+   - Proposed solution overview and scope
+2. **Build the cost-benefit analysis:**
+   - Itemize all implementation costs (one-time and recurring)
+   - Quantify expected benefits (revenue increase, cost reduction, risk mitigation)
+   - Build conservative, expected, and optimistic scenarios
+3. **Calculate financial metrics:**
+   - Net Present Value (NPV) with appropriate discount rate
+   - Payback period
+   - Internal Rate of Return (IRR)
+   - Break-even point
+   - Total Cost of Ownership (1, 3, and 5 year horizons)
+4. **Assess risks:**
+   - Identify key risks with probability and impact ratings
+   - Define mitigation strategies for each
+   - Run sensitivity analysis on top 3 variables
+5. **Draft the document:**
+   - Executive summary (one page)
+   - Current state analysis
+   - Proposed solution with implementation roadmap
+   - Financial analysis with scenario comparison
+   - Risk assessment and mitigation plan
+   - Clear go/no-go recommendation
+6. **Save output** to `artifacts/business-cases/YYYY-MM-DD-[initiative-slug]-business-case.md`
+
+### `assess-market-opportunity` - Analyze Market Opportunities
+
+Assess a market opportunity using TAM/SAM/SOM sizing and opportunity scoring. Patterns from `agents` repo (`startup-business-analyst/commands/market-opportunity.md`).
+
+**Steps:**
+1. **Define the opportunity:**
+   - Product/service category
+   - Target customer segments
+   - Geographic scope
+   - Provectus capabilities that apply
+2. **Size the market:**
+   - TAM: Total global demand for the category
+   - SAM: Reachable portion given business model and geography
+   - SOM: Realistic near-term capturable share
+   - CAGR and growth projections (3-5 year outlook)
+3. **Analyze competitive dynamics:**
+   - Map key competitors and their market shares
+   - Identify barriers to entry and switching costs
+   - Assess disruption risk from adjacent markets
+4. **Score the opportunity:**
+   - Market Size (25%), Growth Rate (20%), Competitive Intensity (20%), Provectus Fit (20%), Timing (15%)
+   - Provide a weighted total score with justification
+5. **Identify trends and niches:**
+   - Macro trends affecting the market (technology, regulatory, demographic)
+   - Emerging underserved segments
+   - Positioning recommendations
+6. **Save output** to `artifacts/research/YYYY-MM-DD-[market-slug]-opportunity.md`
+
+### `extract-competitor-ads` - Extract and Analyze Competitor Advertising
+
+Systematically analyze competitor advertising patterns and messaging. Patterns from `awesome-claude-skills` (`competitive-ads-extractor/SKILL.md`) and `taches-cc-resources` (`commands/research/competitive.md`).
+
+**Steps:**
+1. **Define scope:**
+   - Competitors to analyze
+   - Channels to cover (search, social, display, email)
+   - Time period for analysis
+2. **Extract ad content:**
+   - Headlines, body copy, and CTAs from each ad
+   - Visual themes and creative formats
+   - Landing page messaging and offers
+   - Targeting signals (audience, keywords, placements)
+3. **Analyze patterns:**
+   - Categorize messaging themes (problems, solutions, proof points)
+   - Identify A/B test variations and what they reveal about strategy
+   - Map audience-specific messaging (enterprise vs. SMB vs. startup)
+   - Track messaging evolution over time
+4. **Estimate spend and prioritization:**
+   - Relative spend allocation across channels
+   - Which messages get the most investment
+   - Frequency and saturation indicators
+5. **Generate recommendations:**
+   - Messaging gaps competitors are not covering
+   - Counter-positioning opportunities
+   - Underserved audience segments
+   - Recommended ad concepts and copy angles
+6. **Save output** to `artifacts/research/YYYY-MM-DD-[competitor]-ads-analysis.md`
+
+### `create-content` - Create Marketing Content
+
+Research and write sales enablement and marketing content. Patterns from `agents` repo (`content-marketing/agents/content-marketer.md`) and `awesome-claude-skills` (`content-research-writer/SKILL.md`).
+
+**Steps:**
+1. **Define content brief:**
+   - Content type (blog post, whitepaper, case study, one-pager, email sequence, solution brief)
+   - Target audience and their stage in the buying journey
+   - Key message and desired action
+   - SEO keywords or topics (if applicable)
+2. **Research the topic:**
+   - Identify top-performing content on the topic
+   - Find data points, statistics, and quotable sources
+   - Analyze competitor content gaps
+   - Gather Provectus case studies and proof points
+3. **Draft the content:**
+   - Write with proper heading structure (H1, H2, H3)
+   - Include meta description and title tag for SEO content
+   - Integrate internal and external links where relevant
+   - Add calls-to-action aligned with the content goal
+4. **Quality review:**
+   - Verify factual accuracy of claims and data
+   - Check readability and tone consistency
+   - Ensure brand voice alignment
+   - Confirm CTA is clear and compelling
+5. **Save output** to `artifacts/content/YYYY-MM-DD-[topic-slug]-[type].md`
 
 ## Error Handling
 

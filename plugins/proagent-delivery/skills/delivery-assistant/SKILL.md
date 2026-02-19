@@ -1,6 +1,6 @@
 ---
 name: delivery-assistant
-description: Use when managing project delivery -- sprint planning, milestones, stakeholder updates, status reports, risk management, timelines, resource allocation, agile/scrum ceremonies, and retrospectives
+description: Use when managing project delivery -- sprint planning, milestones, stakeholder updates, status reports, risk management, timelines, resource allocation, agile/scrum ceremonies, retrospectives, standup notes generation, PRD creation, todo management, meeting insights analysis, internal communications, agentic KPIs tracking, task planning, and Eisenhower matrix prioritization
 ---
 
 # Managing Project Delivery
@@ -21,6 +21,15 @@ This skill orchestrates all aspects of project delivery from sprint planning thr
 - Running agile/scrum ceremonies (sprint planning, review, retro, standup)
 - Creating project charters, specifications, or roadmaps
 - Managing scope changes through change control processes
+- Generating AI-assisted standup notes from git history, Jira, and calendar data
+- Creating Product Requirements Documents (PRDs) from feature ideas and JTBD analysis
+- Writing internal communications (3P updates, newsletters, FAQs, incident reports, leadership updates)
+- Analyzing meeting transcripts for communication patterns and facilitation insights
+- Managing todo backlogs with structured capture and context-aware retrieval
+- Tracking agentic KPIs (autonomy rate, first-pass success, cycle time, recovery rate)
+- Planning tasks with phased progress tracking templates
+- Prioritizing work using the Eisenhower matrix (urgent/important quadrant classification)
+- Creating handoff documents for work continuity across sessions
 
 ## Capabilities
 
@@ -253,6 +262,202 @@ ROOT CAUSES IDENTIFIED:
 EXPERIMENT FOR NEXT SPRINT:
 - [One improvement to try and measure]
 ```
+
+### 9. Standup Notes Generation
+
+Generates AI-assisted daily standup notes by analyzing multiple data sources. Based on the standup-notes command from the `agents` repo (`plugins/team-collaboration/commands/standup-notes.md`).
+
+**Data source orchestration:**
+1. **Git commit history:** Parse recent commits (last 24-48h) using `git log --author="<user>" --since="yesterday"` to extract accomplishments grouped by feature area
+2. **Jira tickets:** Query assigned tickets for status updates (`assignee = currentUser() AND status CHANGED TO "Done" DURING (-1d, now())`)
+3. **Obsidian vault:** Review recent daily notes, task completions, and meeting outcomes via `mcp-obsidian`
+4. **Calendar events:** Include meeting context and time commitments via `mcp-gsuite`
+
+**Standup note structure:**
+```
+# Standup - YYYY-MM-DD
+
+## Yesterday / Last Update
+- [Completed task] - [Jira ticket link if applicable]
+- [Shipped feature/fix] - [PR link]
+- [Meeting outcomes or decisions made]
+
+## Today / Next
+- [Continue work on X] - [Jira ticket] - [Expected completion]
+- [Start new feature Y] - [Goal for today]
+- [Code review for Z] - [PR link]
+
+## Blockers / Notes
+- [Blocker description] - **Needs:** [Help needed] - **From:** [Person/team]
+- [Dependency] - **ETA:** [Expected resolution]
+```
+
+**Async standup patterns:**
+- Written-only standups posted to Slack `#standup` channel at consistent daily times
+- Thread-based standups with emoji reactions for acknowledgment
+- Rolling 24-hour standup windows for distributed teams across timezones
+- Auto-generated follow-up tasks from standup notes (blockers, deliverables, dependencies)
+
+**Accomplishment quality criteria:**
+- Focus on delivered value, not activity ("Shipped user auth" vs "Worked on auth")
+- Include impact when known ("Fixed bug affecting 20% of users")
+- Connect to team goals or sprint objectives
+
+### 10. PRD Creation
+
+Generates Product Requirements Documents from feature ideas and Jobs to be Done analysis. Based on the create-prd command from the `awesome-claude-code` repo (`resources/slash-commands/create-prd/create-prd.md`).
+
+**PRD creation process:**
+1. Read product documentation (`product-development/resources/product.md`) to understand product context
+2. Read feature documentation (`product-development/current-feature/feature.md`) for the feature idea
+3. Read JTBD documentation (`product-development/current-feature/JTBD.md`) for Jobs to be Done analysis
+4. Apply PRD template to generate a structured requirements document capturing what, why, and how
+5. Output PRD to `product-development/current-feature/PRD.md`
+
+**Key principles:**
+- Focus on product requirements and user needs, not technical implementation
+- Do not include time estimates in the PRD
+- Capture user stories, acceptance criteria, and success metrics
+- Define scope boundaries and out-of-scope items
+
+### 11. Internal Communications
+
+Writes internal communications using company-standard formats. Based on the internal-comms skill from the `awesome-claude-skills` repo (`internal-comms/SKILL.md`).
+
+**Supported communication types:**
+- **3P updates:** Progress/Plans/Problems format for team updates -- 30-60 second read, data-driven, matter-of-fact tone
+- **Company newsletters:** Company-wide updates with highlights, announcements, and recognition
+- **FAQ responses:** Structured answers to frequently asked questions
+- **Incident reports:** Post-incident documentation with timeline, impact, root cause, and remediation
+- **Leadership updates:** Executive-level status and strategic alignment updates
+- **Project updates:** Detailed project progress reports for active contributors
+
+**Usage pattern:**
+1. Identify the communication type from the request
+2. Load the appropriate guideline (3P updates, newsletter, FAQ, or general comms format)
+3. Follow specific formatting, tone, and content-gathering instructions for that type
+
+### 12. Meeting Insights Analysis
+
+Analyzes meeting transcripts to uncover communication patterns, behavioral insights, and actionable feedback. Based on the meeting-insights-analyzer skill from the `awesome-claude-skills` repo (`meeting-insights-analyzer/SKILL.md`).
+
+**Analysis capabilities:**
+- **Conflict avoidance detection:** Hedging language, indirect phrasing, subject changes when tension arises
+- **Speaking ratios:** Percentage of meeting time speaking, interruption counts, turn-taking balance
+- **Filler word tracking:** Frequency of "um", "uh", "like", "you know" per minute or per speaking turn
+- **Active listening indicators:** Questions referencing others' points, paraphrasing, building on contributions
+- **Leadership facilitation:** Decision-making approach, disagreement handling, inclusion of quieter participants
+
+**Output format:**
+```
+# Meeting Insights Summary
+
+Analysis Period: [Date range]
+Meetings Analyzed: [X meetings]
+
+## Key Patterns Identified
+### 1. [Pattern]
+- Observed: [What was seen]
+- Impact: [Why it matters]
+- Recommendation: [How to improve]
+
+## Communication Strengths
+## Growth Opportunities
+## Speaking Statistics
+## Next Steps
+```
+
+### 13. Todo Management
+
+Captures and retrieves structured todo items with full context for later resumption. Based on the taches-cc todo commands from the `taches-cc-resources` repo (`commands/add-to-todos.md`, `commands/check-todos.md`, `commands/whats-next.md`).
+
+**Add todo (`add-to-todos` pattern):**
+1. Read `TO-DOS.md` in working directory (create if absent)
+2. Check for duplicate todos before adding
+3. Extract context from conversation: problem, file paths with line numbers, technical details, root cause
+4. Append structured entry: `## Brief Context Title - YYYY-MM-DD HH:MM` with `- **[Action verb] [Component]** - Description. **Problem:** What's wrong. **Files:** path:line-range. **Solution:** Approach hints.`
+
+**Check todos (`check-todos` pattern):**
+1. Parse `TO-DOS.md` and display compact numbered list with dates
+2. User selects a todo by number
+3. Load full context: Problem, Files, Solution fields
+4. Check for project workflows in `CLAUDE.md` and `.claude/skills/`
+5. Present options: invoke matching skill, work directly, brainstorm approach, or put back
+
+**Handoff documents (`whats-next` pattern):**
+- Generates comprehensive handoff documents capturing: original task, work completed, work remaining, attempted approaches, critical context, and current state
+- Enables continuing work in a fresh context with zero information loss
+- Writes to `whats-next.md` in the current working directory
+
+### 14. Agentic KPIs
+
+Tracks AI effectiveness metrics for human-AI collaboration in delivery workflows. Based on the agentic-kpis framework from the `proagent-repo` (`core/skills/tac/agentic-kpis.md`).
+
+**Core KPIs:**
+
+| KPI | Definition | Target |
+|-----|-----------|--------|
+| Autonomy Rate | Tasks completed without human intervention | > 80% routine tasks |
+| First-Pass Success | Tasks correct on first attempt | > 90% |
+| Human Touch Points | Average human interventions per task | < 0.5 for standard tasks |
+| Cycle Time | Average time from task start to completion | Simple fix < 5 min, Feature < 2 hours |
+| Recovery Rate | Failures successfully self-corrected | > 80% |
+| Code Quality Score | Composite of lint, coverage, maintainability, security | > 85/100 |
+
+**Secondary KPIs:** Context Efficiency, Token Efficiency, Escalation Rate, Trust Progression Rate
+
+**KPI-driven actions:**
+- When Autonomy Rate drops: analyze intervention causes, identify missing context patterns, update agent prompts
+- When First-Pass drops: review recent failures, identify requirement gaps, strengthen validation
+- When Cycle Time increases: identify bottlenecks, check for blockers, optimize slow stages
+
+**KPI targets by trust level:**
+| KPI | Level 1 | Level 3 | Level 5 |
+|-----|---------|---------|---------|
+| Autonomy | 20% | 70% | 95% |
+| First-Pass | 70% | 90% | 98% |
+| HTP | 2.0 | 0.5 | 0.05 |
+
+### 15. Task Planning with Phased Progress Tracking
+
+Structures complex delivery tasks into phased plans with progress tracking. Based on the task_plan template from the `planning-with-files` repo (`skills/planning-with-files/templates/task_plan.md`).
+
+**Task plan structure:**
+1. **Goal:** One clear sentence describing the end state (north star reference)
+2. **Current Phase:** Quick reference for active phase
+3. **Phases** (3-7 logical phases):
+   - Phase 1: Requirements & Discovery (understand intent, identify constraints, document findings)
+   - Phase 2: Planning & Structure (define approach, create structure, document decisions)
+   - Phase 3: Implementation (execute plan, write to files, test incrementally)
+   - Phase 4: Testing & Verification (verify requirements, document results, fix issues)
+   - Phase 5: Delivery (review output, ensure completeness, deliver)
+4. **Key Questions:** Guide research and decision-making
+5. **Decisions Made:** Table with Decision and Rationale columns
+6. **Errors Encountered:** Table with Error, Attempt, and Resolution columns
+
+**Phase status tracking:** `pending` -> `in_progress` -> `complete`
+
+**Best practices:**
+- Create the plan FIRST before starting any work
+- Update phase status after each phase completes
+- Re-read the plan before major decisions (attention manipulation)
+- Log ALL errors to avoid repeating failed approaches
+
+### 16. Eisenhower Matrix Prioritization
+
+Applies the Eisenhower urgent/important matrix to prioritize tasks, backlogs, or decisions. Based on the eisenhower-matrix thinking model from the `taches-cc-resources` repo (`commands/consider/eisenhower-matrix.md`).
+
+**Quadrant classification:**
+- **Q1: Do First** (Important + Urgent) -- Items with deadline pressure that contribute to long-term goals. Include specific next action and deadline.
+- **Q2: Schedule** (Important + Not Urgent) -- Strategic work without immediate pressure. Specify when to do it and why it matters long-term.
+- **Q3: Delegate** (Not Important + Urgent) -- Time-sensitive but not goal-aligned. Identify who can handle it or how to minimize time spent.
+- **Q4: Eliminate** (Not Important + Not Urgent) -- Noise items. Explicitly mark as droppable with rationale.
+
+**Application to delivery:**
+- Sprint backlog prioritization: classify stories across quadrants before commitment
+- Risk register triage: map risks by urgency of mitigation vs. importance of impact
+- Stakeholder request management: sort incoming requests to protect team focus
+- Meeting agenda optimization: ensure ceremony time is spent on Q1/Q2 items
 
 ## AWOS Delivery Planning Patterns
 

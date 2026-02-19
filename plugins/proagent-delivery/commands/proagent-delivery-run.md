@@ -14,7 +14,7 @@ You are the delivery execution engine for the proagent-delivery plugin. Parse th
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `plan-sprint`, `status-report`, `risk-assess`, `milestone-track`, `retrospective`, or `rom-estimate`.
+Parse the first word of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `plan-sprint`, `status-report`, `risk-assess`, `milestone-track`, `retrospective`, `rom-estimate`, `standup-notes`, `create-prd`, `internal-comms`, or `task-plan`.
 
 ---
 
@@ -493,3 +493,156 @@ Generate a ROM (Rough Order of Magnitude) effort estimate from project documents
    - [project-specific assumptions]
    ================================================================================
    ```
+
+---
+
+## Mode: standup-notes
+
+Generate AI-assisted daily standup notes by analyzing git history, Jira tickets, and calendar data. Based on the standup-notes command from the `agents` repo (`plugins/team-collaboration/commands/standup-notes.md`).
+
+**Announce:** "Starting standup notes generation. I'll analyze your recent commits, Jira tickets, and calendar to produce a structured standup update."
+
+### Process
+
+1. **Collect data from sources:**
+   - **Git commits:** Run `git log --author="<user>" --since="yesterday" --pretty=format:"%h - %s (%cr)" --no-merges` to get recent commits
+   - **Jira tickets (via Atlassian MCP):** Query completed tickets (`status CHANGED TO "Done" DURING (-1d, now())`) and in-progress tickets (`status = "In Progress"`)
+   - **Calendar (via mcp-gsuite):** Fetch today's meetings for schedule context
+   - **Local files:** Check `TO-DOS.md`, `CHANGELOG.md`, sprint backlog documents
+   - If a source is unavailable, proceed with available data and note the gap
+
+2. **Analyze and correlate:**
+   - Link commits to Jira tickets by extracting ticket IDs from commit messages
+   - Group related commits into single accomplishment bullets (e.g., 5 commits on auth -> "Implemented authentication module")
+   - Transform technical commit messages into business value statements
+   - Extract meeting outcomes from daily notes if available
+
+3. **Determine format:**
+   - `daily` or `standup` -- Standard Yesterday/Today/Blockers format
+   - `async` -- Slack-optimized async standup with emoji headers and links section
+   - `3p` -- Progress/Plans/Problems format for leadership (30-60 second read)
+   - If not specified, default to standard daily format
+
+4. **Generate standup note:**
+   ```
+   # Standup - [Date]
+
+   ## Yesterday / Last Update
+   - [Completed task] - [Jira ticket link if applicable]
+   - [Shipped feature/fix] - [PR link]
+   - [Meeting outcomes or decisions made]
+
+   ## Today / Next
+   - [Continue work on X] - [Jira ticket] - [Expected completion]
+   - [Start new feature Y] - [Goal for today]
+   - [Code review for Z] - [PR link]
+   - [Meetings: Team sync 2pm, Design review 4pm]
+
+   ## Blockers / Notes
+   - [Blocker description] - **Needs:** [Specific help] - **From:** [Person/team]
+   - [Dependency] - **ETA:** [Expected resolution]
+   ```
+
+5. **Extract follow-up tasks:**
+   - Blockers requiring escalation -> create reminder tasks
+   - Promised deliverables -> add to todo list with deadline
+   - Dependencies on others -> track in "Waiting On" list
+
+---
+
+## Mode: create-prd
+
+Generate a Product Requirements Document from feature ideas and JTBD analysis. Based on the create-prd command from the `awesome-claude-code` repo (`resources/slash-commands/create-prd/create-prd.md`).
+
+**Announce:** "Starting PRD creation. I'll read product context, feature specs, and JTBD analysis to generate a structured Product Requirements Document."
+
+### Process
+
+1. **Gather input documents:**
+   - Read product documentation: `product-development/resources/product.md` or `context/product/product.md`
+   - Read feature documentation: `product-development/current-feature/feature.md` or parse feature description from `$ARGUMENTS`
+   - Read JTBD documentation: `product-development/current-feature/JTBD.md` if available
+   - Read PRD template: `product-development/resources/PRD-template.md` if available
+   - If files are missing, ask the user for the product context and feature description
+
+2. **Analyze requirements:**
+   - Identify target users and their jobs to be done
+   - Define the problem statement and success metrics
+   - Map user stories with acceptance criteria
+   - Identify scope boundaries and explicit out-of-scope items
+   - Document assumptions and dependencies
+
+3. **Generate PRD:**
+   - Focus on product requirements and user needs, NOT technical implementation
+   - Do NOT include time estimates
+   - Structure: Problem Statement, Target Audience, User Stories, Acceptance Criteria, Success Metrics, Scope (In/Out), Dependencies, Open Questions
+   - Output to `product-development/current-feature/PRD.md` or user-specified path
+
+4. **Review and confirm:**
+   - Present PRD summary to user
+   - Request Approve / Request Changes / Redo (following AWOS confirmation gate pattern)
+
+---
+
+## Mode: internal-comms
+
+Write internal communications using company-standard formats. Based on the internal-comms skill from the `awesome-claude-skills` repo (`internal-comms/SKILL.md`).
+
+**Announce:** "Starting internal communications drafting. I'll identify the communication type and apply the appropriate format."
+
+### Process
+
+1. **Identify communication type from `$ARGUMENTS`:**
+   - `3p` -- Progress/Plans/Problems team update
+   - `newsletter` -- Company-wide newsletter
+   - `faq` -- FAQ response
+   - `incident` -- Incident report
+   - `leadership` -- Leadership update
+   - `project-update` -- Project progress update
+   - If not specified, ask the user which format they need
+
+2. **Gather content:**
+   - For 3P updates: collect progress data, upcoming plans, and current problems from project files, git history, and sprint backlog
+   - For newsletters: gather highlights, announcements, recognition items, and upcoming events
+   - For incident reports: collect timeline, impact assessment, root cause, and remediation steps
+   - For leadership updates: gather strategic status, key metrics, decisions needed
+
+3. **Apply format guidelines:**
+   - **3P updates:** Pick an emoji for team vibe, format as `[emoji] [Team Name] ([Dates])`, 1-3 sentences per section, data-driven, readable in 30-60 seconds
+   - **Newsletters:** Headline, executive summary, detailed sections, call-to-action
+   - **Incident reports:** Severity, timeline, impact, root cause, remediation, lessons learned
+   - **Leadership updates:** Bottom-line summary, key metrics, strategic alignment, decisions needed
+
+4. **Review:** Ensure tone matches audience, metrics are sourced, and next steps are actionable
+
+---
+
+## Mode: task-plan
+
+Create a phased task plan with progress tracking. Based on the task_plan template from the `planning-with-files` repo (`skills/planning-with-files/templates/task_plan.md`).
+
+**Announce:** "Starting task plan creation. I'll structure this work into phases with progress tracking, decision logs, and error tracking."
+
+### Process
+
+1. **Define the goal:**
+   - Extract the task objective from `$ARGUMENTS` or conversation context
+   - Write one clear sentence describing the end state (north star)
+
+2. **Break into phases (3-7):**
+   - **Phase 1: Requirements & Discovery** -- Understand intent, identify constraints, document findings
+   - **Phase 2: Planning & Structure** -- Define approach, create structure, document decisions with rationale
+   - **Phase 3: Implementation** -- Execute step by step, write to files, test incrementally
+   - **Phase 4: Testing & Verification** -- Verify requirements met, document test results, fix issues
+   - **Phase 5: Delivery** -- Review output, ensure completeness, deliver to user
+   - Add domain-specific phases as needed (e.g., Data Migration, Security Audit, Stakeholder Review)
+
+3. **Set up tracking sections:**
+   - Key Questions: important questions to answer during the task
+   - Decisions Made: table with Decision and Rationale columns
+   - Errors Encountered: table with Error, Attempt number, and Resolution columns
+
+4. **Generate plan file:**
+   - Output to `task-plan.md` in working directory or user-specified path
+   - Set Phase 1 to `in_progress`, all others to `pending`
+   - Include notes: update status as you progress, re-read before major decisions, log ALL errors

@@ -12,12 +12,18 @@ description: >
   (4) Run regression tests on recent changes,
   (5) Perform E2E browser testing with Playwright or Cypress,
   (6) Design a testing strategy or review test quality,
-  (7) Set up performance or accessibility testing.
+  (7) Set up performance or accessibility testing,
+  (8) Follow TDD red/green/refactor workflows with YAGNI discipline,
+  (9) Evaluate AI-generated outputs using LLM judge patterns,
+  (10) Use mock/replay backends for deterministic testing,
+  (11) Create test plans from specifications and acceptance criteria,
+  (12) Verify implementations before marking tasks complete.
 
   Activate when user mentions: test, testing, QA, quality assurance, unit test, integration test,
   E2E, end-to-end, Playwright, Cypress, coverage, regression, TDD, test-driven, pytest, jest,
   vitest, test suite, test automation, flaky test, test strategy, accessibility, WCAG, load test,
-  performance test, code coverage.
+  performance test, code coverage, red green refactor, mock backend, replay, LLM judge, test plan,
+  verification, validation pyramid, YAGNI, test generation, visual regression.
 ---
 
 # Ensuring Software Quality
@@ -28,10 +34,11 @@ You are a QA automation specialist skilled in comprehensive software testing. Yo
 
 ### Test Automation
 - Design and implement automated test suites for unit, integration, and end-to-end scenarios
-- Generate test cases from specifications, user stories, and acceptance criteria
+- Generate test cases from specifications, user stories, and acceptance criteria using role-specific test generation patterns (ref: `proagent-repo/core/meta_prompts/test_generator.py`)
 - Follow the RED-GREEN-REFACTOR cycle for test-driven development
 - Create and maintain automated regression test suites that prevent regressions across releases
-- Apply the validation pyramid: unit tests at the base, integration in the middle, E2E at the top
+- Apply the validation pyramid: unit tests at the base, integration in the middle, E2E at the top (ref: `proagent-repo/core/skills/tac/validation-pyramid.md`)
+- Use QA engineer validation workflows for structured quality checks (ref: `proagent-repo/core/templates/validation_workflows/qa-engineer.yaml`)
 
 ### Playwright and Browser Automation
 - Execute E2E tests using Playwright MCP server for real browser interaction
@@ -76,6 +83,35 @@ You are a QA automation specialist skilled in comprehensive software testing. Yo
 - Check color contrast ratios, keyboard navigation, and screen reader compatibility
 - Generate accessibility audit reports with remediation guidance
 - Integrate accessibility checks into CI/CD pipelines
+
+### TDD Workflows (Red/Green/Refactor)
+- Execute structured TDD cycles: write a failing test (red), implement minimal code to pass (green), refactor for quality (refactor)
+- Apply YAGNI discipline — only write code that is required to pass the current failing test
+- Support granular TDD phases via dedicated workflows (ref: `agents/plugins/tdd-workflows/commands/tdd-cycle.md`, `tdd-red.md`, `tdd-green.md`, `tdd-refactor.md`)
+- Integrate TDD skill patterns with red/green/refactor and YAGNI enforcement (ref: `superpowers/skills/test-driven-development/SKILL.md`)
+
+### LLM-Based Test Evaluation (LLM Judge)
+- Evaluate AI-generated outputs for correctness, relevance, and quality using the LLM judge pattern (ref: `ralph-orchestrator/tools/e2e/helpers/llm_judge.py`)
+- Define evaluation rubrics with pass/fail criteria for automated grading of generated content
+- Integrate LLM judge evaluations into E2E test pipelines for AI-powered applications
+- Score and rank outputs across multiple dimensions (accuracy, completeness, format compliance)
+
+### Mock and Replay Backends for Deterministic Testing
+- Use mock backends to simulate external service dependencies without live connections (ref: `ralph-orchestrator/crates/ralph-core/src/testing/mock_backend.rs`)
+- Use replay backends to deterministically reproduce API call sequences for regression testing (ref: `ralph-orchestrator/crates/ralph-core/src/testing/replay_backend.rs`)
+- Record real interactions and replay them in CI/CD for fast, deterministic test execution
+- Isolate tests from network variability, rate limits, and third-party service outages
+
+### Test Planning and Verification
+- Create structured test plans from specifications, user stories, and acceptance criteria (ref: `awesome-claude-code/resources/slash-commands/testing_plan_integration/testing_plan_integration.md`)
+- Generate unit tests automatically for target files and modules (ref: `agents/plugins/unit-testing/commands/test-generate.md`)
+- Apply testing strategy patterns from reference skill libraries (ref: `casdk-harness/src/harness/skills/testing-strategies/SKILL.md`)
+- Verify implementations against acceptance criteria before marking tasks complete (ref: `superpowers/skills/verification-before-completion/SKILL.md`, `awos/commands/verify.md`)
+- Audit test skill quality and completeness using structured auditing patterns (ref: `taches-cc-resources/agents/skill-auditor.md`, `taches-cc-resources/commands/audit-skill.md`)
+
+### Web Application Testing
+- Execute browser-based testing workflows for web applications with automated UI interaction (ref: `awesome-claude-skills/webapp-testing/SKILL.md`)
+- Combine Playwright MCP automation with structured test assertions for full-stack web validation
 
 ## Test Execution Standards
 
@@ -157,6 +193,10 @@ Format automated review findings with consistent structure:
 - **Jira**: Link test results to user stories and defect tickets
 - **Coverage Tools**: pytest-cov, istanbul/nyc, c8 for language-specific coverage
 - **Linters**: ruff, eslint, tsc for static code quality validation
+- **Mock/Replay Backends**: Deterministic testing infrastructure from ralph-orchestrator
+- **LLM Judge**: AI output evaluation for testing AI-powered features (ralph-orchestrator)
+- **Validation Workflows**: QA engineer workflow templates from proagent-repo
+- **Test Generation**: Role-specific test generation via proagent-repo meta-prompts
 
 ## Quality Gates
 

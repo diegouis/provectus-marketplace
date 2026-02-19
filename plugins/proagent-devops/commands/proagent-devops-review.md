@@ -33,7 +33,9 @@ When no specific target is provided, scan for these files and review all that ar
 | 7 | `*.tf` | Terraform configuration review |
 | 8 | `helm/*/Chart.yaml` | Helm chart validation |
 | 9 | `prometheus*.yml`, `alerting*.yml` | Monitoring configuration review |
-| 10 | `.env`, `.env.example` | Environment variable security |
+| 10 | `argocd/*.yaml`, `flux-system/*.yaml` | GitOps configuration review |
+| 11 | `.env`, `.env.example` | Environment variable security |
+| 12 | `values*.yaml` (Helm) | Helm values security and completeness |
 
 ### Dockerfile Review
 
@@ -145,6 +147,44 @@ Check for these issues:
 - Missing `lifecycle` blocks for critical resources
 - No data source validation
 - Unused variables or outputs
+
+### Helm Values Review
+
+Check for these issues:
+
+- Secrets or credentials hardcoded in values files
+- Missing resource requests or limits
+- No liveness or readiness probes configured
+- Using `latest` image tag
+- Missing security context (runAsNonRoot, readOnlyRootFilesystem)
+- No PodDisruptionBudget configured
+- Missing ingress TLS configuration for production
+- No HPA or replica count for production values
+- Overly permissive network policies or missing them entirely
+
+### GitOps Configuration Review
+
+Check for these issues:
+
+- ArgoCD Application resources missing `syncPolicy.automated.selfHeal`
+- No retry policy configured for sync operations
+- Missing RBAC restrictions on ArgoCD projects
+- Flux Kustomization resources without health checks
+- No pruning enabled (orphaned resources after manifest removal)
+- Missing namespace creation policies
+- No drift detection or alerting configured
+- Environment promotion not gated by pull requests
+
+### Cost and Resource Review
+
+Check for these issues:
+
+- Resources missing cost allocation tags (project, environment, team, cost-center)
+- Over-provisioned resource limits (memory/CPU significantly exceeding actual usage)
+- No auto-scaling configured for production workloads
+- Using on-demand instances where spot/preemptible would be appropriate
+- Storage volumes without lifecycle policies
+- Missing budget alerts or spending guardrails
 
 ### Security Posture Review
 

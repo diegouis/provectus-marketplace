@@ -12,8 +12,8 @@ proagent-hr/
     cv-validation/SKILL.md     - CV validation skill: parsing, scoring, ranking, blind review, batch processing
   commands/
     proagent-hr-hub.md          - Plugin hub with command overview and quick start
-    proagent-hr-run.md          - Execute HR ops: draft-job-description, plan-interview, create-onboarding, performance-review, compensation-analysis, validate-cvs
-    proagent-hr-review.md       - Review quality: job descriptions, interview process, onboarding plans, team composition, cv-screening
+    proagent-hr-run.md          - Execute HR ops: draft-job-description, plan-interview, create-onboarding, performance-review, compensation-analysis, validate-cvs, generate-resume, analyze-growth
+    proagent-hr-review.md       - Review quality: job descriptions, interview process, onboarding plans, team composition, cv-screening, compliance-audit
   agents/
     hr-specialist.md            - HR specialist subagent for people operations and talent management
     cv-parser.md                - CV document parser: extracts structured data, separates PII for blind review
@@ -26,6 +26,17 @@ proagent-hr/
   .mcp.json                      - MCP server configs: Slack, Google Drive, Google Workspace, Google Sheets, GitHub, Rube
 ```
 
+## External Skill References
+
+The following skills from external repos are integrated into this plugin's workflows:
+
+| Skill | Source Repo | Path | Usage |
+|-------|-------------|------|-------|
+| GDPR Data Handling | `agents` | `plugins/hr-legal-compliance/skills/gdpr-data-handling/SKILL.md` | Compliance reviews, data subject rights, consent management, breach notification |
+| Employment Contract Templates | `agents` | `plugins/hr-legal-compliance/skills/employment-contract-templates/SKILL.md` | Offer letters, employment agreements, employee handbook policies |
+| Developer Growth Analysis | `awesome-claude-skills` | `developer-growth-analysis/SKILL.md` | Personalized developer growth reports from chat history, learning resource curation |
+| Tailored Resume Generator | `awesome-claude-skills` | `tailored-resume-generator/SKILL.md` | ATS-optimized resume generation tailored to specific job descriptions |
+
 ## Commands
 
 - `/proagent-hr-hub` - View all available HR commands and quick start guide
@@ -35,11 +46,14 @@ proagent-hr/
 - `/proagent-hr-run performance-review` - Facilitate a performance review cycle with templates, feedback synthesis, and calibration
 - `/proagent-hr-run compensation-analysis` - Analyze compensation against market benchmarks with equity auditing and scenario modeling
 - `/proagent-hr-run validate-cvs` - Validate candidate CVs against a job description using multi-agent orchestration with blind review, scoring, and ranked shortlisting
+- `/proagent-hr-run generate-resume` - Generate a tailored, ATS-optimized resume for a specific job description using the tailored-resume-generator skill (from `awesome-claude-skills`)
+- `/proagent-hr-run analyze-growth` - Analyze a developer's recent coding patterns and generate a personalized growth report with curated learning resources using the developer-growth-analysis skill (from `awesome-claude-skills`)
 - `/proagent-hr-review review job descriptions` - Audit job descriptions for completeness, bias, and compliance
 - `/proagent-hr-review interview process` - Evaluate interview workflow coverage, candidate experience, and question quality
 - `/proagent-hr-review onboarding plans` - Review onboarding plan completeness and effectiveness
 - `/proagent-hr-review team composition` - Analyze team structure, skills distribution, and succession planning
 - `/proagent-hr-review cv-screening` - Audit a completed CV screening batch for scoring consistency, bias, and coverage
+- `/proagent-hr-review compliance-audit` - Audit HR processes for GDPR compliance, data subject rights handling, and employment contract adherence using the gdpr-data-handling and employment-contract-templates skills (from `agents/hr-legal-compliance`)
 
 ## CV Validation Pipeline
 
@@ -85,6 +99,8 @@ The hooks configuration enforces:
 5. **Review Template Validation**: Ensures performance review documents contain balanced feedback sections
 6. **Bias-Free Screening**: Warns when CV screening outputs reference protected characteristics (age, gender, ethnicity, race, disability, religion)
 7. **Blind Review Enforcement**: Verifies no PII appears in scoring rationale for CV screening artifacts
+8. **GDPR Compliance**: Validates that HR data handling follows GDPR consent management, data subject rights, retention policies, and breach notification procedures (reference: `agents/plugins/hr-legal-compliance/skills/gdpr-data-handling/SKILL.md`)
+9. **Employment Contract Compliance**: Ensures offer letters and employment agreements include required legal sections — at-will language, confidentiality, IP assignment, and jurisdiction-specific provisions (reference: `agents/plugins/hr-legal-compliance/skills/employment-contract-templates/SKILL.md`)
 
 ## MCP Integrations
 
@@ -108,3 +124,7 @@ The hooks configuration enforces:
 - Red flags in CV screening are informational only — never auto-reject candidates
 - Scoring weights are declared upfront and applied consistently across all candidates in a batch
 - Recruiter confirmation is required before generating final recommendations
+- Resume generation follows ATS optimization best practices and uses exact job description keywords
+- Developer growth reports are evidence-based, drawn from actual chat history patterns
+- Employment contracts and offer letters are reviewed against jurisdiction-specific legal requirements
+- GDPR data handling follows consent management, data minimization, and breach notification protocols

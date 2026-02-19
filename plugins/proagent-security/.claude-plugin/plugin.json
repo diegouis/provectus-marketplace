@@ -1,6 +1,6 @@
 {
   "name": "proagent-security",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Provectus Security practice plugin for vulnerability scanning, compliance enforcement, secrets management, encryption, audit logging, threat modeling, OWASP Top 10 protection, and Zero Trust architecture.",
   "author": {
     "name": "diegouis"

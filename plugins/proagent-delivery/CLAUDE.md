@@ -36,8 +36,8 @@ Use the `proagent-delivery:rom-estimate` skill when generating ROM (Rough Order 
 
 ### Commands
 - `/proagent-delivery:proagent-delivery-hub` -- See all available commands and choose the right workflow
-- `/proagent-delivery:proagent-delivery-run <mode>` -- Execute a workflow (plan-sprint, status-report, risk-assess, milestone-track, retrospective, rom-estimate)
-- `/proagent-delivery:proagent-delivery-review <type>` -- Run a delivery health review (sprint-health, delivery-risks, timeline, stakeholder-alignment, estimate-review)
+- `/proagent-delivery:proagent-delivery-run <mode>` -- Execute a workflow (plan-sprint, status-report, risk-assess, milestone-track, retrospective, rom-estimate, standup-notes, create-prd, internal-comms, task-plan)
+- `/proagent-delivery:proagent-delivery-review <type>` -- Run a delivery health review (sprint-health, delivery-risks, timeline, stakeholder-alignment, estimate-review, meeting-insights, comms-quality)
 
 ### Agent
 The `proagent-delivery:delivery-specialist` agent can be dispatched as a subagent for sprint planning, risk assessments, status report generation, and stakeholder alignment checks. It produces structured reports with findings organized by priority and RAG status.
@@ -70,3 +70,7 @@ Key features:
 - Executive summary with FTE estimates, epic breakdown, and risk factors
 
 The `estimate-review` review mode audits existing ROM CSVs for completeness, sizing accuracy, and team balance.
+
+## Source Repositories
+
+Built from Provectus internal repositories: `agents`, `awesome-claude-code`, `awesome-claude-skills`, `awos`, `planning-with-files`, `proagent-repo`, `provectus-marketplace`. Key external assets include standup-notes and team collaboration commands from `agents`, PRD creation from `awesome-claude-code`, internal comms skill from `awesome-claude-skills`, and task planning templates from `planning-with-files`.

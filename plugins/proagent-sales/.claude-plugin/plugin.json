@@ -1,7 +1,7 @@
 {
   "name": "proagent-sales",
-  "version": "0.2.0",
-  "description": "Provectus Sales practice plugin for proposals, RFP responses, pricing strategies, CRM management, deal pipeline tracking, competitive analysis, lead research, and quote generation.",
+  "version": "0.3.0",
+  "description": "Provectus Sales practice plugin for proposals, RFP responses, pricing strategies, CRM management, deal pipeline tracking, competitive analysis, lead research, quote generation, sales automation, content marketing, business case analysis, and market opportunity assessment.",
   "author": {
     "name": "diegouis"
   }

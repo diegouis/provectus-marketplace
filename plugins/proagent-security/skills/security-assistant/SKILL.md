@@ -1,6 +1,6 @@
 ---
 name: security-assistant
-description: Securing Software & Infrastructure - vulnerability scanning, compliance enforcement, secrets management, encryption, audit logging, threat modeling, OWASP Top 10 protection, and Zero Trust architecture. Use when performing any security assessment, hardening, compliance, or threat analysis task.
+description: Securing Software & Infrastructure - vulnerability scanning (SAST, DAST, XSS, VirusTotal), compliance enforcement (PCI, GDPR, SOC2, HIPAA), secrets management, encryption, audit logging, threat modeling, OWASP Top 10 protection, Zero Trust architecture, agent sandboxing, risk classification, frontend security, and smart contract security. Use when performing any security assessment, hardening, compliance, or threat analysis task.
 ---
 
 # Securing Software & Infrastructure
@@ -19,6 +19,12 @@ Comprehensive security skill covering the full lifecycle of application security
 - Configuring security headers, CORS, CSRF protections
 - Setting up security monitoring, logging, and incident response
 - Hardening containers, Kubernetes clusters, and cloud resources
+- Scanning for XSS vulnerabilities in frontend applications
+- Auditing Solidity smart contracts for Web3 security
+- Classifying risk levels for code changes and pull requests
+- Sandboxing and hardening autonomous agent deployments
+- Running VirusTotal malware scans in CI/CD pipelines
+- Executing security audit workflow formulas
 
 ## Vulnerability Scanning
 
@@ -56,6 +62,37 @@ Additional SAST tools by language:
 - **JavaScript/TypeScript**: ESLint security plugin, Semgrep, CodeQL
 - **Go**: gosec, staticcheck
 - **Java**: SpotBugs with FindSecBugs, PMD
+- **Solidity**: Smart contract security auditing for reentrancy, overflow, and access control vulnerabilities (reference: `agents/plugins/blockchain-web3/skills/solidity-security/SKILL.md`)
+
+For centralized SAST scanning and security hardening commands, see:
+- `agents/plugins/security-scanning/commands/security-sast.md` - Dedicated SAST command
+- `agents/plugins/security-scanning/commands/security-hardening.md` - Security hardening command
+
+### VirusTotal Malware Scanning
+
+Integrate VirusTotal scanning into CI/CD pipelines to detect malicious artifacts before deployment:
+
+```yaml
+# VirusTotal scan workflow (from Auto-Claude)
+# Reference: Auto-Claude/.github/workflows/virustotal-scan.yml
+- name: VirusTotal Scan
+  uses: crazy-max/ghaction-virustotal@v4
+  with:
+    vt_api_key: ${{ secrets.VT_API_KEY }}
+    files: |
+      dist/*.tar.gz
+      dist/*.whl
+```
+
+### XSS Vulnerability Scanning
+
+Dedicated XSS scanning for frontend applications (reference: `agents/plugins/frontend-mobile-security/commands/xss-scan.md`):
+
+- Scan for `innerHTML`, `dangerouslySetInnerHTML`, `v-html` usage without sanitization
+- Detect reflected input in templates and error messages
+- Validate Content Security Policy headers block `unsafe-inline` and `unsafe-eval`
+- Check for DOM-based XSS via `document.write`, `eval`, and `location.href` manipulation
+- Review framework-specific XSS vectors (React, Vue, Angular)
 
 ### Dependency Vulnerability Scanning
 
@@ -334,6 +371,7 @@ Common misconfigurations to check:
 
 ```python
 # Trust ladder for progressive agent autonomy
+# Reference: proagent-repo/core/skills/tac/trust-ladder.md
 class TrustLevel(Enum):
     SUPERVISED = 1      # Human reviews every action
     APPROVAL_GATED = 2  # Human approves before execution
@@ -341,6 +379,25 @@ class TrustLevel(Enum):
     AUTONOMOUS = 4      # Full autonomy with periodic audits
     ZERO_TOUCH = 5      # Complete trust with compliance guardrails
 ```
+
+### Trust Assessment Engine
+
+Automated trust level assessment based on task risk (reference: `proagent-repo/core/zte/trust_assessor.py`):
+
+- Evaluate task keywords against risk dictionaries (delete, deploy, migrate, credential, etc.)
+- Score task complexity using architecture, integration, and scope indicators
+- Assign trust level dynamically based on combined risk and complexity score
+- Enforce approval gates when trust level exceeds the agent's current authorization
+
+### Agent Sandboxing and Hardening
+
+Production security for autonomous agents (reference: `casdk-harness/src/harness/security.py`, `casdk-harness/docs/HARDENING.md`):
+
+- Sandbox agent execution with restricted filesystem, network, and process access
+- Enforce permission boundaries: agents cannot escalate beyond their assigned trust level
+- Isolate agent sessions to prevent cross-contamination between tasks
+- Implement resource limits (CPU, memory, execution time) for agent processes
+- Audit all agent actions with immutable logging for post-incident analysis
 
 Access control enforcement:
 - Identity-based access with strong authentication (OAuth 2.0/OIDC, WebAuthn, FIDO2)
@@ -486,6 +543,24 @@ def search():
   }
 }
 ```
+
+## Risk Classification for Code Changes
+
+Automated risk scoring for pull requests and code changes (reference: `Auto-Claude/apps/backend/analysis/risk_classifier.py`, `Auto-Claude/apps/backend/analysis/security_scanner.py`):
+
+- Classify code changes by risk level (LOW, MEDIUM, HIGH, CRITICAL) based on files modified, keywords present, and scope of change
+- Flag changes touching authentication, authorization, encryption, or database schema as elevated risk
+- Integrate security scanner module for automated vulnerability detection on changed files
+- Generate risk reports that feed into approval workflows and deployment gates
+
+## Security Audit Workflow Formulas
+
+Structured audit workflows using formula-based automation (reference: `gastown/.beads/formulas/security-audit.formula.toml`):
+
+- Define repeatable security audit steps as workflow formulas
+- Chain scanning, analysis, and reporting steps into automated audit pipelines
+- Track audit findings across iterations with status tracking (open, in-progress, mitigated, accepted)
+- Generate compliance evidence artifacts from audit runs
 
 ## Security Checklist
 

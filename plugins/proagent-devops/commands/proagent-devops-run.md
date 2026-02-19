@@ -1,6 +1,6 @@
 ---
 description: Execute DevOps operations - deploy, provision infrastructure, set up monitoring, respond to incidents, create pipelines
-argument-hint: <deploy|provision|monitor|incident-respond|pipeline-create> [options]
+argument-hint: <deploy|provision|monitor|incident-respond|pipeline-create|secrets-setup|cost-review|gitops-setup|helm-scaffold> [options]
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
@@ -146,6 +146,115 @@ Create a CI/CD pipeline configuration for a project.
    - Required repository secrets (registry credentials, cloud provider keys, Slack webhooks)
    - Branch protection rules for deployment gates
    - Environment configuration in the CI/CD platform
+
+### `secrets-setup` - Configure Secrets Management
+
+Set up secrets management for an application or infrastructure.
+
+**Steps:**
+1. **Assess the environment:**
+   - Identify the target platform (Kubernetes, ECS, Docker Compose, CI/CD)
+   - Determine the secrets backend (AWS Secrets Manager, GCP Secret Manager, HashiCorp Vault)
+   - Inventory existing secrets (database credentials, API keys, certificates)
+2. **Configure the secrets backend:**
+   - For AWS: Create secrets in AWS Secrets Manager with rotation policies
+   - For GCP: Create secrets in GCP Secret Manager with IAM bindings
+   - For Vault: Configure secrets engines, policies, and authentication methods
+3. **Set up secret injection:**
+   - For Kubernetes: Install and configure External Secrets Operator with `SecretStore` and `ExternalSecret` CRDs
+   - For CI/CD: Configure repository/environment secrets in GitHub Actions or GitLab CI variables
+   - For Docker Compose: Use Docker secrets or environment variable files with restricted permissions
+4. **Validate and document:**
+   - Verify secrets are accessible from the application
+   - Document rotation schedule and access policies
+   - Set up alerts for secret expiration
+
+Reference: `agents/plugins/cicd-automation/skills/secrets-management/SKILL.md`
+
+### `cost-review` - Cloud Cost Optimization Review
+
+Analyze and optimize cloud infrastructure costs.
+
+**Steps:**
+1. **Gather cost data:**
+   - Pull current billing data from AWS Cost Explorer or GCP Billing
+   - Identify top cost contributors by service, region, and tag
+   - Calculate cost trends over the past 30/60/90 days
+2. **Identify optimization opportunities:**
+   - Find idle or underutilized resources (instances below 10% CPU for 7+ days)
+   - Recommend right-sizing based on actual utilization metrics
+   - Identify candidates for Reserved Instances, Savings Plans, or Committed Use Discounts
+   - Review storage tiering opportunities (S3 Intelligent-Tiering, GCS Nearline)
+   - Check for unattached EBS volumes, unused Elastic IPs, and orphaned snapshots
+3. **Generate recommendations:**
+   - Prioritize by savings potential and implementation effort
+   - Provide specific commands or Terraform changes for each recommendation
+   - Estimate monthly savings for each action
+4. **Set up cost guardrails:**
+   - Configure budget alerts at 50%, 80%, and 100% thresholds
+   - Ensure all resources have cost allocation tags (project, environment, team, cost-center)
+   - Recommend auto-scaling policies to prevent over-provisioning
+
+Reference: `agents/plugins/cloud-infrastructure/skills/cost-optimization/SKILL.md`
+
+### `gitops-setup` - Configure GitOps Workflow
+
+Set up a GitOps deployment workflow with ArgoCD or Flux.
+
+**Steps:**
+1. **Assess requirements:**
+   - Target Kubernetes cluster(s) and namespaces
+   - GitOps tool preference (ArgoCD or Flux)
+   - Number of environments (dev, staging, production)
+   - Source repository for Kubernetes manifests
+2. **Set up the GitOps manifests repository:**
+   - Create directory structure: `environments/{dev,staging,production}/`
+   - Configure Kustomize overlays or Helm value files per environment
+   - Set up branch or directory-based environment separation
+3. **Install and configure the GitOps controller:**
+   - For ArgoCD: Install via Helm, create Application CRDs with sync policies
+   - For Flux: Bootstrap with `flux bootstrap github`, create Kustomization and HelmRelease resources
+   - Configure RBAC and SSO integration
+4. **Implement promotion workflow:**
+   - Set up automated image tag updates via CI pipeline
+   - Configure pull request-based promotion between environments
+   - Enable auto-sync with self-healing for drift detection
+5. **Validate the pipeline:**
+   - Deploy a test change through the full promotion flow
+   - Verify drift detection and self-healing
+   - Confirm rollback procedures work correctly
+
+Reference: `agents/plugins/kubernetes-operations/skills/gitops-workflow/SKILL.md`
+
+### `helm-scaffold` - Scaffold Helm Chart
+
+Generate a production-ready Helm chart for a Kubernetes application.
+
+**Steps:**
+1. **Gather application details:**
+   - Application name, type (web service, API, worker, cron job)
+   - Container image and port
+   - Required Kubernetes resources (Deployment, Service, Ingress, HPA, ConfigMap, Secrets)
+   - Environment-specific overrides needed
+2. **Generate the chart structure:**
+   - Create `Chart.yaml` with metadata and dependencies
+   - Generate `values.yaml` with sensible defaults for replicas, resources, probes, and ingress
+   - Create `values-staging.yaml` and `values-prod.yaml` with environment overrides
+   - Generate templates for all required Kubernetes resources
+   - Add `_helpers.tpl` with standard label and selector templates
+3. **Add production hardening:**
+   - Security context (non-root, read-only filesystem)
+   - Resource requests and limits
+   - Liveness and readiness probes
+   - PodDisruptionBudget
+   - NetworkPolicy
+   - HorizontalPodAutoscaler
+4. **Validate and test:**
+   - Run `helm lint` to validate chart syntax
+   - Run `helm template` to verify rendered manifests
+   - Generate a `tests/test-connection.yaml` for `helm test`
+
+Reference: `agents/plugins/kubernetes-operations/skills/helm-chart-scaffolding/SKILL.md`
 
 ## Error Handling
 

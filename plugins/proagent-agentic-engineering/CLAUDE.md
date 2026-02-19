@@ -1,12 +1,12 @@
 # ProAgent Agentic Engineering Plugin
 
-This plugin provides comprehensive tooling for building, orchestrating, and optimizing AI agent systems with Claude Code.
+This plugin provides comprehensive tooling for building, orchestrating, and optimizing AI agent systems with Claude Code. It consolidates patterns from 16 source repositories including ralph-orchestrator, casdk-harness, Auto-Claude, gastown, proagent-repo, planning-with-files, superpowers, taches-cc-resources, awesome-claude-skills, and AWOS.
 
 ## What This Plugin Provides
 
-- **Skill**: `Building Agentic Systems` -- Comprehensive autonomous capability covering agent design, skill/command/hook creation, MCP server development, multi-agent orchestration, prompt engineering, and agent evaluation. Located in `skills/agentic-engineering-assistant/SKILL.md`.
+- **Skill**: `Building Agentic Systems` -- Comprehensive autonomous capability covering agent design, skill/command/hook creation, MCP server development, multi-agent orchestration, autonomous coding loops, context engineering, multi-backend adapters, trust/autonomy frameworks, and agent evaluation. Located in `skills/agentic-engineering-assistant/SKILL.md`.
 
-- **Agent**: `agentic-engineering-specialist` -- Specialist sub-agent with deep knowledge of Claude Code component architecture, multi-agent patterns, and context engineering. Located in `agents/agentic-engineering-specialist.md`.
+- **Agent**: `agentic-engineering-specialist` -- Specialist sub-agent with deep knowledge of Claude Code component architecture, multi-agent patterns, autonomous coding loops (ralph, casdk-harness, Auto-Claude, gastown), context engineering, and multi-backend orchestration. Located in `agents/agentic-engineering-specialist.md`.
 
 - **Commands**:
   - `/proagent-agentic-engineering` -- Hub command showing capabilities and routing to sub-commands
@@ -33,4 +33,10 @@ This plugin provides comprehensive tooling for building, orchestrating, and opti
 - Hooks are JSON configurations in `.claude/settings.json` with event names as keys, matchers for tool filtering, and shell commands that process stdin JSON via `jq`
 - Plugins require `.claude-plugin/plugin.json` with `name`, `version` (semver), and `description`
 - MCP servers should be workflow-oriented (not raw API wrappers) with input validation and actionable error messages
+- Autonomous coding loops follow the explore-plan-code-commit cycle with configurable presets (ralph-orchestrator `presets/feature.yml`, casdk-harness `autonomous.py`)
+- Plugin lifecycle management uses discovery and namespacing patterns (casdk-harness `plugin_manager.py`)
+- Trust/autonomy uses ProAgent ZTE 5-level trust ladder: Observer, Assistant, Collaborator, Delegator, Autonomous (`proagent-repo core/zte/trust_ladder.py`)
+- Multi-backend orchestration supports Claude, Kiro, Gemini, and Codex adapters (ralph-orchestrator)
+- Context engineering uses 3-file planning patterns (planning-with-files) and context handoff protocols (taches-cc-resources, casdk-harness)
+- Thinking model commands apply structured mental models (first-principles, etc.) from taches-cc-resources
 

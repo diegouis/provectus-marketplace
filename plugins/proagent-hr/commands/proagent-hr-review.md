@@ -1,7 +1,7 @@
 ---
 description: >
   Review HR artifacts: job descriptions, interview process, onboarding plans,
-  team composition, and cv-screening results.
+  team composition, cv-screening results, and compliance-audit.
 argument-hint: "[target]"
 allowed-tools: Read, Glob, Grep, Bash, Task
 ---
@@ -12,7 +12,7 @@ Review and assess HR processes, documents, and organizational health.
 
 ## Variables
 
-mode: $1 (one of: "review job descriptions", "interview process", "onboarding plans", "team composition", "cv-screening")
+mode: $1 (one of: "review job descriptions", "interview process", "onboarding plans", "team composition", "cv-screening", "compliance-audit")
 target: $2 (optional - specific document, role, team, screening batch, or scope to review)
 
 ## Instructions
@@ -229,3 +229,82 @@ Audit a completed CV screening batch for quality, consistency, and bias.
      - [ ] Consistent weights across all candidates
      - [ ] Must-have gate applied uniformly
      - [ ] All scores have evidence citations
+
+---
+
+### Mode: compliance-audit
+
+Audit HR processes for GDPR compliance, employment contract adherence, and data protection.
+
+Reference skills:
+- `agents/plugins/hr-legal-compliance/skills/gdpr-data-handling/SKILL.md`
+- `agents/plugins/hr-legal-compliance/skills/employment-contract-templates/SKILL.md`
+
+1. **Scope the Audit**
+   - If `target` is provided, use it as the specific area to audit (e.g., "data handling", "contracts", "onboarding documentation")
+   - Otherwise, conduct a comprehensive compliance review across all HR processes
+
+2. **GDPR Data Handling Audit**
+   - Verify legal basis is documented for each personal data processing activity (consent, contract, legal obligation, legitimate interest)
+   - Check consent mechanisms: freely given, specific, informed, withdrawable
+   - Review Data Subject Access Request (DSAR) processes:
+     - Is there a documented process for access, erasure, rectification, and portability requests?
+     - Are responses delivered within the 30-day deadline?
+     - Is there an audit log for all DSARs?
+   - Assess data retention policies:
+     - Are retention periods defined per data category (user accounts, transaction records, marketing consent, analytics)?
+     - Is archive-before-delete enforced where required?
+     - Are anonymization policies applied for analytics data?
+   - Evaluate privacy by design:
+     - Is PII separated from behavioral data?
+     - Is encryption at rest implemented for sensitive personal data?
+     - Is data minimization enforced (collecting only what is needed for each purpose)?
+   - Review breach notification readiness:
+     - Is there a documented breach detection and notification process?
+     - Can the organization meet the 72-hour authority notification deadline?
+     - Are individual notification procedures in place for high-severity breaches?
+
+3. **Employment Contract Audit**
+   - Review offer letters for required sections: position details, compensation, benefits, contingencies, at-will language, acceptance deadline
+   - Check employment agreements for:
+     - Complete employment terms (position, duties, location)
+     - Compensation clauses (base salary, bonus, equity, benefits, expenses)
+     - Confidentiality and non-disclosure provisions
+     - Intellectual property assignment and prior inventions disclosure
+     - Non-competition and non-solicitation clauses (with jurisdiction-appropriate scope)
+     - Termination provisions (for cause, without cause, by employee, severance)
+     - General provisions (governing law, dispute resolution, severability)
+   - Verify employee handbook policies cover: EEO, anti-harassment, work hours, PTO, sick leave, holidays, code of conduct, technology use, social media
+   - Ensure all documents include appropriate legal disclaimers and acknowledgment sections
+   - Flag documents that may create implied contracts or contain jurisdiction-inappropriate language
+
+4. **Data Protection in HR Processes**
+   - Verify CV screening follows blind review protocol (PII separated from scoring)
+   - Check that performance review data is treated as confidential with appropriate access controls
+   - Ensure compensation data is protected from unauthorized disclosure
+   - Verify onboarding documentation handles PII securely (account credentials, personal details)
+   - Check that employee records in BambooHR (via Rube MCP) follow data minimization principles
+
+5. **Report**
+   Provide a compliance assessment:
+   - **Overall Compliance Score** (1-10): Aggregated score across all areas
+   - **GDPR Readiness**:
+     - [ ] Legal bases documented for all processing activities
+     - [ ] Consent mechanisms meet GDPR requirements
+     - [ ] DSAR process implemented with 30-day response capability
+     - [ ] Data retention policies defined and enforced
+     - [ ] Privacy by design implemented (PII separation, encryption, minimization)
+     - [ ] Breach notification process documented (72-hour authority notification)
+     - [ ] Records of processing activities maintained (Art. 30)
+   - **Employment Documentation**:
+     - [ ] Offer letters include all required sections
+     - [ ] Employment agreements cover confidentiality, IP, non-compete, termination
+     - [ ] Employee handbook policies comprehensive and current
+     - [ ] Jurisdiction-specific requirements addressed
+     - [ ] Legal disclaimers and acknowledgments included
+   - **Data Protection in HR**:
+     - [ ] Blind review protocol followed in CV screening
+     - [ ] Performance and compensation data confidentiality enforced
+     - [ ] PII handling in onboarding follows minimization principles
+   - **Risk Assessment**: Low/Medium/High with specific findings per area
+   - **Remediation Recommendations**: Priority-ordered list of compliance gaps with specific actions to address each
