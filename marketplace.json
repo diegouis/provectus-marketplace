@@ -244,6 +244,22 @@
         "hooks": 1,
         "mcp_servers": 0
       }
+    },
+    {
+      "name": "proagent-documentation",
+      "version": "0.2.0",
+      "category": "documentation",
+      "description": "Cross-platform repository documentation and Confluence publishing — analyze GitHub/GitLab repos, generate docs, publish and sync Confluence pages",
+      "source": "./plugins/proagent-documentation",
+      "assets_count": 0,
+      "source_repos": 0,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 3,
+        "hooks": 4,
+        "mcp_servers": 6
+      }
     }
   ],
   "statistics": {
@@ -252,9 +268,9 @@
     "total_source_repos": 16,
     "total_skills": 18,
     "total_commands": 46,
-    "total_agents": 20,
-    "total_hooks": 40,
-    "total_mcp_integrations": 31,
+    "total_agents": 23,
+    "total_hooks": 44,
+    "total_mcp_integrations": 37,
     "practices_covered": [
       "agentic-engineering",
       "sdlc",
@@ -270,7 +286,8 @@
       "hr",
       "sales",
       "finance",
-      "router"
+      "router",
+      "documentation"
     ]
   },
   "mcp_servers_core": [
@@ -323,7 +340,8 @@
         "qa",
         "backend",
         "frontend",
-        "security"
+        "security",
+        "documentation"
       ]
     },
     {
@@ -333,7 +351,8 @@
       "plugins": [
         "sdlc",
         "qa",
-        "delivery"
+        "delivery",
+        "documentation"
       ]
     },
     {

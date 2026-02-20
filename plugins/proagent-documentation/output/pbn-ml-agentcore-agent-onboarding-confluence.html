@@ -1,0 +1,1175 @@
+<h1>Developer Onboarding Guide: pbn-ml-agentcore-agent</h1>
+
+<blockquote><p><strong>Repository</strong>: <a href="https://github.com/Provectus-PBN/pbn-ml-agentcore-agent">Provectus-PBN/pbn-ml-agentcore-agent</a><br />
+<strong>Last updated</strong>: 2026-02-18</p></blockquote>
+
+<hr />
+
+<h2>Welcome</h2>
+
+<p>This guide walks you through getting productive with the <strong>PBN ML AgentCore Agent</strong> repository — the multi-agent system powering Punchbowl News' AI-driven political intelligence platform. By the end of this guide, you'll understand the architecture, be able to run agents locally, and know how to deploy changes.</p>
+
+<hr />
+
+<h2>Table of Contents</h2>
+
+<ac:structured-macro ac:name="toc">
+  <ac:parameter ac:name="maxLevel">3</ac:parameter>
+</ac:structured-macro>
+
+<hr />
+
+<h2>1. What This Project Does</h2>
+
+<p>PBN AgentCore is a <strong>multi-agent AI system</strong> that provides political intelligence for Punchbowl News journalists and subscribers. It consists of:</p>
+
+<ul>
+  <li><strong>7 specialized sub-agents</strong> that each handle a specific data domain (votes, staffers, regulations, etc.)</li>
+  <li><strong>1 orchestrator agent</strong> that routes user queries to the appropriate sub-agent(s) and synthesizes responses</li>
+  <li>All agents run on <strong>AWS Bedrock AgentCore</strong> using <strong>Claude Sonnet 4.5</strong> as the LLM</li>
+  <li>Communication between agents and backend APIs uses the <strong>Model Context Protocol (MCP)</strong></li>
+</ul>
+
+<h3>Data Domains</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Agent</th>
+      <th>What It Queries</th>
+    </tr>
+    <tr>
+      <td>Votes/Bills</td>
+      <td>House &amp; Senate voting records, bill statuses, roll calls</td>
+    </tr>
+    <tr>
+      <td>Staffers</td>
+      <td>Congressional staff members, roles, contact info</td>
+    </tr>
+    <tr>
+      <td>FEC/LDA</td>
+      <td>Campaign finance filings, lobbying disclosure reports</td>
+    </tr>
+    <tr>
+      <td>Floor/Committees</td>
+      <td>Committee hearings, floor schedules, meeting transcripts</td>
+    </tr>
+    <tr>
+      <td>Regulations</td>
+      <td>Federal Register notices, agency rulemaking, dockets</td>
+    </tr>
+    <tr>
+      <td>PBN News</td>
+      <td>Punchbowl News articles, political reporting archives</td>
+    </tr>
+    <tr>
+      <td>Alerts</td>
+      <td>User notification subscriptions and alert management</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2>2. Architecture Overview</h2>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">text</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+┌─────────────────────────────────────────────────────────────────┐
+│                     User Query (via PBN API)                     │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              Orchestrator Agent (Strands + BedrockModel)         │
+│  - Routes queries to appropriate sub-agent(s)                    │
+│  - Synthesizes multi-source responses                            │
+│  - Uses Claude Sonnet 4.5 for reasoning                          │
+└──┬──────┬──────┬──────┬──────┬──────┬──────┬────────────────────┘
+   │      │      │      │      │      │      │
+   ▼      ▼      ▼      ▼      ▼      ▼      ▼
+┌──────┐┌──────┐┌──────┐┌──────┐┌──────┐┌──────┐┌──────┐
+│Votes ││Staff ││FEC/  ││Floor/││Regs  ││PBN   ││Alerts│
+│Agent ││Agent ││LDA   ││Comm. ││Agent ││News  ││Agent │
+└──┬───┘└──┬───┘└──┬───┘└──┬───┘└──┬───┘└──┬───┘└──┬───┘
+   │       │       │       │       │       │       │
+   ▼       ▼       ▼       ▼       ▼       ▼       ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              MCP Gateway (Bedrock AgentCore Gateway)             │
+│  - Cognito OAuth2 authentication                                 │
+│  - OpenAPI spec → MCP tool conversion                            │
+│  - Streamable HTTP transport                                     │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                   FastAPI Backend Services                        │
+│  (pbn-ml-coordinator-agent / pbn-backend-enbloc-api)             │
+│  - Text2SQL agents for structured data                           │
+│  - RAG retrieval for unstructured data                           │
+│  - PostgreSQL + pgvector + S3                                    │
+└─────────────────────────────────────────────────────────────────┘
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Two Types of Agents</h3>
+
+<ol>
+  <li><strong>Sub-agents</strong> (e.g., <code>votes_agent_mcp_tools/</code>): Connect to backend APIs via MCP Gateway. Each wraps MCP tool calls with a custom <code>EnblocPayloadTool</code> that transforms Strands agent calls into the required payload format.</li>
+  <li><strong>Orchestrator agent</strong> (<code>orchestrartor_agent/</code>): Doesn't use MCP. Instead, it invokes sub-agent runtimes directly via <code>boto3</code> / <code>aioboto3</code> calls to <code>bedrock-agentcore:invoke_agent_runtime</code>.</li>
+</ol>
+
+<hr />
+
+<h2>3. Prerequisites</h2>
+
+<h3>Required Software</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Tool</th>
+      <th>Version</th>
+      <th>Purpose</th>
+    </tr>
+    <tr>
+      <td>Python</td>
+      <td>3.12+</td>
+      <td>Runtime for all agents</td>
+    </tr>
+    <tr>
+      <td>Docker</td>
+      <td>With Buildx</td>
+      <td>Container builds (ARM64)</td>
+    </tr>
+    <tr>
+      <td>AWS CLI</td>
+      <td>v2.x+</td>
+      <td>AWS service interaction</td>
+    </tr>
+    <tr>
+      <td>Git</td>
+      <td>Any recent</td>
+      <td>Version control</td>
+    </tr>
+    <tr>
+      <td>uv</td>
+      <td>Latest</td>
+      <td>Fast Python package installer (used in Docker)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Required Access</h3>
+
+<ul>
+  <li>&#9744; <strong>GitHub</strong>: Write access to <code>Provectus-PBN/pbn-ml-agentcore-agent</code></li>
+  <li>&#9744; <strong>AWS Account</strong>: IAM credentials (not SSO) with access to:
+    <ul>
+      <li>Amazon Bedrock (AgentCore + model invocation)</li>
+      <li>Amazon ECR (container registry)</li>
+      <li>Amazon Cognito (OAuth2 tokens)</li>
+      <li>AWS Secrets Manager</li>
+      <li>CloudWatch Logs</li>
+    </ul>
+  </li>
+  <li>&#9744; <strong>AWS Region</strong>: <code>us-east-1</code> (all resources are deployed here)</li>
+</ul>
+
+<h3>Verify Your Setup</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+# Python version
+python3 --version  # Should be 3.12+
+
+# Docker
+docker --version
+docker buildx version
+
+# AWS CLI
+aws --version
+aws sts get-caller-identity  # Should show your account
+
+# Bedrock access
+aws bedrock list-foundation-models --region us-east-1 --query 'modelSummaries[?contains(modelId, `anthropic`)].modelId' --output table
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<hr />
+
+<h2>4. Day 1: Environment Setup &amp; Orientation</h2>
+
+<h3>Clone the Repository</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+git clone https://github.com/Provectus-PBN/pbn-ml-agentcore-agent.git
+cd pbn-ml-agentcore-agent
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Understand the Directory Layout</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">text</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+pbn-ml-agentcore-agent/
+├── votes_agent_mcp_tools/          # Votes/Bills sub-agent
+│   ├── agent_deployment/           #   Runtime code + Docker
+│   └── gateway/                    #   MCP Gateway setup scripts
+├── staffers_agent_mcp_tools/       # Staffers sub-agent
+├── fec_lda_agent_mcp_tools/        # FEC/LDA sub-agent
+├── floor_committees_agent_mcp_tools/ # Floor/Committees sub-agent
+├── regulations_agent_mcp_tools/    # Regulations sub-agent
+├── punchbowl_news_agent_mcp_tools/ # PBN News sub-agent
+├── alerts_agent_mcp_tools/         # Alerts sub-agent
+├── orchestrartor_agent/            # Orchestrator (multi-agent coordinator)
+│   └── agent_deployment/           #   Runtime code + Docker
+├── infrastructure/                 # Terraform configs
+│   └── terraform/
+│       ├── github-oidc/            #   GitHub Actions OIDC (one-time setup)
+│       ├── gateways/               #   MCP Gateway Terraform modules
+│       ├── modules/                #   Reusable Terraform modules
+│       └── scripts/                #   Setup helper scripts
+├── legacy/                         # Deprecated agent implementations
+├── .github/workflows/              # CI/CD pipeline
+│   └── deploy-agents.yml           #   Build + deploy workflow
+├── README.md
+└── .gitignore
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Read These Files First</h3>
+
+<p>Spend your first day reading these key files to build mental models:</p>
+
+<ol>
+  <li><strong>Root README.md</strong> — High-level overview and conventions</li>
+  <li><strong><code>votes_agent_mcp_tools/agent_deployment/main_app.py</code></strong> — How a sub-agent starts up (simplest entry point)</li>
+  <li><strong><code>orchestrartor_agent/agent_deployment/main_app.py</code></strong> — How the orchestrator starts up</li>
+  <li><strong><code>orchestrartor_agent/agent_deployment/orchestrator_instructions.txt</code></strong> — The LLM system prompt (explains what each agent does)</li>
+  <li><strong><code>infrastructure/terraform/README.md</code></strong> — Deployment architecture and CI/CD flow</li>
+</ol>
+
+<hr />
+
+<h2>5. Day 2: Understanding Agent Structure</h2>
+
+<h3>Sub-Agent Structure (e.g., votes_agent_mcp_tools)</h3>
+
+<p>Every sub-agent follows this pattern:</p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">text</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+<agent>_mcp_tools/
+├── agent_deployment/
+│   ├── main_app.py                  # Entry point — creates MCP client, agent, runs app
+│   ├── enbloc_mcp_wrapper_v2.py     # Custom tool wrapper (transforms payloads for gateway)
+│   ├── utils_functions.py           # Helper functions (OAuth, transport, agent creation)
+│   ├── orchestrator_instructions.txt # LLM system prompt (XML format)
+│   ├── Dockerfile                   # ARM64 container build
+│   ├── requirements.txt             # Python dependencies
+│   ├── .bedrock_agentcore.yaml      # AgentCore deployment config
+│   ├── .env.example                 # Environment variables template
+│   ├── build_and_push_ecr.sh        # Manual ECR build script
+│   ├── deploy_prepare.py            # AgentCore runtime configuration
+│   ├── test_agent.py                # Integration test script
+│   ├── payload/                     # Test payloads (JSON)
+│   └── env_vars/                    # Per-environment config (config.json)
+└── gateway/
+    ├── <agent>_gateway_setup.py     # Creates IAM, Cognito, Gateway, Target
+    ├── get_credentials.py           # Retrieves Cognito credentials
+    ├── utils.py                     # Shared AWS utility functions
+    ├── openapi-specs/               # Modified OpenAPI specs (anyOf fixed)
+    └── env_vars/                    # Gateway configuration
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Key Code Flow (Sub-Agent)</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">python</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+# main_app.py — Startup sequence:
+
+1. Load env vars (GATEWAY_URL, CLIENT_ID, CLIENT_SECRET, TOKEN_URL, MODEL_ID)
+2. Fetch OAuth2 access token from Cognito
+3. Create MCP client with streamable HTTP transport
+4. Open MCP client context (keeps connection alive)
+5. List all available MCP tools from gateway
+6. Wrap each tool with EnblocPayloadTool (payload transformation)
+7. Create Strands Agent with BedrockModel + wrapped tools + system prompt
+8. Register @app.entrypoint handler
+9. app.run() — starts BedrockAgentCoreApp server
+
+# When a query arrives:
+@app.entrypoint
+async def model_invoke(event):
+    query = event["sessionAttributes"]["UserQuery"]
+    response = await agent.invoke_async(query, invocation_state={'event': event})
+    return response.message['content'][0]['text']
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>The EnblocPayloadTool Wrapper</h3>
+
+<p>This is the most complex piece. It transforms agent tool calls into the specific payload format the backend APIs expect:</p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">python</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+# What the LLM generates:
+{"toolUseId": "abc123", "input": {"query": "What bills passed today?"}}
+
+# What EnblocPayloadTool sends to the gateway:
+{
+    "messageVersion": "1.0",
+    "httpMethod": "POST",
+    "sessionId": "from-invocation-state",
+    "agent": {"name": "...", "version": "...", "id": "...", "alias": "..."},
+    "actionGroup": "action_group_quick_start_sb1ze",
+    "apiPath": "/query-all-legislative-activity",
+    "sessionAttributes": {
+        "MessageId": "abc123",
+        "UserId": "from-event",
+        "Metadata": "congressional context...",
+        "UserQuery": "What bills passed today?",
+        "UserToken": "jwt-token"
+    },
+    "inputText": "What bills passed today?"
+}
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Orchestrator Structure</h3>
+
+<p>The orchestrator is simpler — no MCP, no gateway. It directly invokes sub-agent runtimes:</p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">python</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+# orchestrartor_agent/agent_deployment/pbn_agents.py
+
+@tool(context=True)
+async def votes_bills_agent(query: str, tool_context=None) -> str:
+    event = tool_context.invocation_state.get('event')
+    payload = build_agent_payload(event, query)
+    response = await invoke_agent_async(VOTES_BILLS_AGENT_ARN, payload)
+    return response
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<p>Each sub-agent is exposed as a Strands <code>@tool</code> that the orchestrator's LLM can call.</p>
+
+<hr />
+
+<h2>6. Day 3: Running an Agent Locally</h2>
+
+<h3>Option A: Run a Sub-Agent Locally</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/agent_deployment
+
+# 1. Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Set up environment variables
+cp .env.example .env
+# Edit .env with real credentials (ask your team lead):
+#   GATEWAY_URL=https://<gateway>.gateway.bedrock-agentcore.us-east-1.amazonaws.com/mcp
+#   CLIENT_ID=<from-cognito>
+#   CLIENT_SECRET=<from-cognito>
+#   TOKEN_URL=https://<pool>.auth.us-east-1.amazoncognito.com/oauth2/token
+#   MODEL_ID=us.anthropic.claude-sonnet-4-5-20250929-v1:0
+
+# 4. Run the agent
+python main_app.py
+# Agent starts on port 8080
+
+# 5. Test with curl (in another terminal)
+curl -X POST http://localhost:8080/invocations \
+  -H "Content-Type: application/json" \
+  -d "$(cat payload/payload.json)"
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Option B: Run with Docker</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/agent_deployment
+
+# Build ARM64 image
+docker buildx build --platform linux/arm64 -t pbn-votes-agent --load .
+
+# Run (pass env vars)
+docker run -p 8080:8080 \
+  -e GATEWAY_URL="..." \
+  -e CLIENT_ID="..." \
+  -e CLIENT_SECRET="..." \
+  -e TOKEN_URL="..." \
+  -e MODEL_ID="us.anthropic.claude-sonnet-4-5-20250929-v1:0" \
+  pbn-votes-agent
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Option C: Test Against Deployed Agent</h3>
+
+<p>If the agent is already deployed to AgentCore, you can test it directly:</p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/agent_deployment
+
+# Make sure AWS credentials are configured
+python test_agent.py
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<p>This loads <code>payload/payload.json</code> and invokes the deployed runtime via <code>boto3</code>.</p>
+
+<h3>Getting Credentials</h3>
+
+<p>To get the MCP Gateway credentials for an agent:</p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/gateway
+python get_credentials.py
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<p>This queries Cognito and outputs GATEWAY_URL, CLIENT_ID, CLIENT_SECRET, and TOKEN_URL.</p>
+
+<hr />
+
+<h2>7. Day 4: Gateway &amp; MCP Protocol Deep Dive</h2>
+
+<h3>What Is an MCP Gateway?</h3>
+
+<p>Each sub-agent talks to backend FastAPI services through an <strong>MCP Gateway</strong>. The gateway:</p>
+
+<ol>
+  <li><strong>Accepts</strong> MCP protocol requests (streamable HTTP)</li>
+  <li><strong>Authenticates</strong> via Cognito OAuth2 (client_credentials grant)</li>
+  <li><strong>Converts</strong> OpenAPI endpoints into MCP tools</li>
+  <li><strong>Proxies</strong> requests to the actual FastAPI backend</li>
+</ol>
+
+<h3>Gateway Setup (One-Time Per Agent)</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/gateway
+python legislative_gateway_setup.py
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<p>This creates:</p>
+
+<ol>
+  <li>IAM role for the gateway</li>
+  <li>Cognito User Pool + App Client (M2M OAuth)</li>
+  <li>Bedrock AgentCore Gateway</li>
+  <li>S3 bucket for OpenAPI specs</li>
+  <li>Credential provider for API key auth</li>
+  <li>Gateway target mapping API endpoints to MCP tools</li>
+</ol>
+
+<h3>OpenAPI Spec Compatibility Issue</h3>
+
+<p>AWS Bedrock AgentCore Gateway does <strong>not</strong> support <code>anyOf</code> type definitions in OpenAPI schemas. FastAPI auto-generates these for nullable fields.</p>
+
+<p><strong>Before</strong> (broken):</p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">json</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+"Metadata": {
+  "anyOf": [{"type": "string"}, {"type": "null"}],
+  "title": "Metadata"
+}
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<p><strong>After</strong> (fixed, stored in <code>openapi-specs/</code>):</p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">json</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+"Metadata": {"type": "string", "title": "Metadata"}
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<p>When updating OpenAPI specs:</p>
+
+<ol>
+  <li>Download from the API: <code>curl https://&lt;api&gt;/openapi.json &gt; openapi-specs/&lt;name&gt;.json</code></li>
+  <li>Find and fix <code>anyOf</code>: <code>grep -n "anyOf" openapi-specs/&lt;name&gt;.json</code></li>
+  <li>Replace each <code>anyOf</code> with a simple type (prefer <code>string</code>)</li>
+  <li>Add <code>servers</code> block if missing</li>
+  <li>Upload to S3 and update gateway target</li>
+</ol>
+
+<h3>MCP Tools Exposed (Votes Agent Example)</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <th>MCP Tool</th>
+      <th>Maps To</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><code>query_all</code></td>
+      <td><code>POST /query-all-legislative-activity</code></td>
+      <td>Query Bills + House + Senate concurrently</td>
+    </tr>
+    <tr>
+      <td><code>bills</code></td>
+      <td><code>POST /query-bills</code></td>
+      <td>Query bills data only</td>
+    </tr>
+    <tr>
+      <td><code>house_votes</code></td>
+      <td><code>POST /query-house-votes</code></td>
+      <td>Query House voting records only</td>
+    </tr>
+    <tr>
+      <td><code>senate_votes</code></td>
+      <td><code>POST /query-senate-votes</code></td>
+      <td>Query Senate voting records only</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2>8. Day 5: Orchestrator Agent &amp; Multi-Agent Flow</h2>
+
+<h3>How the Orchestrator Works</h3>
+
+<p>The orchestrator is the "brain" — it receives user queries and decides which specialized agent(s) to call.</p>
+
+<p><strong>File</strong>: <code>orchestrartor_agent/agent_deployment/main_app.py</code></p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">python</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+agent = Agent(
+    model=BedrockModel(model_id="us.anthropic.claude-sonnet-4-5-20250929-v1:0"),
+    tools=[
+        votes_bills_agent,       # @tool function → invokes AgentCore runtime
+        articles_agent,
+        congressional_meetings_agent,
+        regulations_agent,
+        fec_lda_agent,
+        alerts_agent,
+        staffers_agent,
+    ],
+    system_prompt=system_prompt,  # Loaded from orchestrator_instructions.txt
+)
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Query Flow Example</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">text</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+User: "How did senators vote on the latest defense bill?"
+
+1. Orchestrator receives query
+2. Claude Sonnet reasons: "This needs votes AND bills data"
+3. Claude calls votes_bills_agent tool with the query
+4. votes_bills_agent:
+   a. Builds payload from invocation_state (session attrs, user token, etc.)
+   b. Calls bedrock-agentcore:invoke_agent_runtime with VOTES_BILLS_AGENT_ARN
+   c. Votes sub-agent receives payload
+   d. Sub-agent's Claude instance decides to use query_bills_and_votes MCP tool
+   e. EnblocPayloadTool wraps the call into gateway-compatible format
+   f. MCP Gateway proxies to FastAPI backend
+   g. Backend runs Text2SQL, queries PostgreSQL
+   h. Response flows back up the chain
+5. Orchestrator synthesizes the response and returns to user
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Orchestrator Environment Variables</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">none</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+MODEL_ID=us.anthropic.claude-sonnet-4-5-20250929-v1:0
+AWS_REGION=us-east-1
+VOTES_BILLS_AGENT=arn:aws:bedrock-agentcore:us-east-1:ACCOUNT:runtime/RUNTIME_ID
+CONGRESSIONAL_MEETINGS_AGENT=arn:aws:bedrock-agentcore:us-east-1:ACCOUNT:runtime/RUNTIME_ID
+STAFFERS_AGENT=arn:aws:bedrock-agentcore:us-east-1:ACCOUNT:runtime/RUNTIME_ID
+ARTICLES_AGENT=arn:aws:bedrock-agentcore:us-east-1:ACCOUNT:runtime/RUNTIME_ID
+REGULATIONS_AGENT=arn:aws:bedrock-agentcore:us-east-1:ACCOUNT:runtime/RUNTIME_ID
+FEC_LDA_AGENT=arn:aws:bedrock-agentcore:us-east-1:ACCOUNT:runtime/RUNTIME_ID
+ALERTS_AGENT=arn:aws:bedrock-agentcore:us-east-1:ACCOUNT:runtime/RUNTIME_ID
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<hr />
+
+<h2>9. Day 6: CI/CD, Deployment &amp; Infrastructure</h2>
+
+<h3>GitHub Actions Pipeline</h3>
+
+<p><strong>File</strong>: <code>.github/workflows/deploy-agents.yml</code></p>
+
+<p>The pipeline automates everything:</p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">text</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+Push to main/develop
+    │
+    ▼
+┌─ Setup ──────────────────────────────┐
+│  - Detect which agents changed       │
+│  - Set environment (main=prod,       │
+│    develop=staging)                   │
+│  - Build deployment matrix           │
+└──────────────┬───────────────────────┘
+               │
+               ▼
+┌─ Deploy (per agent) ────────────────────────────────┐
+│  1. Configure AWS via OIDC (no static credentials)  │
+│  2. Create ECR repository (if not exists)           │
+│  3. Build ARM64 Docker image                        │
+│  4. Push to ECR (:latest + :commit-sha)             │
+│  5. Create IAM execution role (if not exists)       │
+│  6. Create/Update Bedrock AgentCore runtime         │
+└──────────────┬──────────────────────────────────────┘
+               │
+               ▼
+┌─ Integration Tests ─────────────────┐
+│  Run test_agent.py against deployed │
+│  runtime                            │
+└─────────────────────────────────────┘
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Trigger Rules</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Event</th>
+      <th>Branch</th>
+      <th>Environment</th>
+      <th>Deploys?</th>
+    </tr>
+    <tr>
+      <td>Push</td>
+      <td><code>main</code></td>
+      <td><code>production</code></td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Push</td>
+      <td><code>develop</code></td>
+      <td><code>staging</code></td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>PR</td>
+      <td>any</td>
+      <td>—</td>
+      <td>No (tests only)</td>
+    </tr>
+    <tr>
+      <td>Manual dispatch</td>
+      <td>—</td>
+      <td>Choose (dev/staging/prod)</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Path-Based Triggers</h3>
+
+<p>Only agents with changed files get deployed:</p>
+
+<ul>
+  <li><code>staffers_agent_mcp_tools/agent_deployment/**</code> — deploys staffers</li>
+  <li><code>votes_agent_mcp_tools/agent_deployment/**</code> — deploys votes</li>
+</ul>
+
+<h3>Resource Naming Convention</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Resource</th>
+      <th>Pattern</th>
+    </tr>
+    <tr>
+      <td>ECR Repo</td>
+      <td><code>pbn-agentcore-{agent}-agent_{environment}</code></td>
+    </tr>
+    <tr>
+      <td>IAM Role</td>
+      <td><code>pbn-agentcore-{agent}-agent_{environment}-execution-role</code></td>
+    </tr>
+    <tr>
+      <td>Runtime</td>
+      <td><code>pbn-agentcore-{agent}-agent_{environment}</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Manual Deployment (ECR Script)</h3>
+
+<p>For quick manual deployments:</p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/agent_deployment
+bash build_and_push_ecr.sh
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Terraform (Infrastructure Foundation)</h3>
+
+<p>Terraform handles one-time foundational setup:</p>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+# GitHub OIDC for Actions (one-time)
+cd infrastructure/terraform/github-oidc
+terraform init && terraform apply
+
+# Save the output role_arn as GitHub Secret: AWS_ROLE_ARN
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Required GitHub Secrets</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Secret</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><code>AWS_ROLE_ARN</code></td>
+      <td>OIDC role for GitHub Actions</td>
+    </tr>
+    <tr>
+      <td><code>staffers_GATEWAY_URL</code></td>
+      <td>MCP Gateway URL</td>
+    </tr>
+    <tr>
+      <td><code>staffers_COGNITO_CLIENT_ID</code></td>
+      <td>Cognito client ID</td>
+    </tr>
+    <tr>
+      <td><code>staffers_COGNITO_CLIENT_SECRET</code></td>
+      <td>Cognito client secret</td>
+    </tr>
+    <tr>
+      <td><code>staffers_COGNITO_TOKEN_URL</code></td>
+      <td>Cognito token URL</td>
+    </tr>
+    <tr>
+      <td><code>votes_GATEWAY_URL</code></td>
+      <td>(same pattern for each agent)</td>
+    </tr>
+    <tr>
+      <td><code>votes_COGNITO_CLIENT_ID</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>votes_COGNITO_CLIENT_SECRET</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>votes_COGNITO_TOKEN_URL</code></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2>10. Day 7: Making Your First Change</h2>
+
+<h3>Scenario: Update the Votes Agent System Prompt</h3>
+
+<ol>
+  <li>
+    <p><strong>Edit the instructions file</strong>:</p>
+    <ac:structured-macro ac:name="code">
+      <ac:parameter ac:name="language">bash</ac:parameter>
+      <ac:plain-text-body><![CDATA[
+vim votes_agent_mcp_tools/agent_deployment/orchestrator_instructions.txt
+      ]]></ac:plain-text-body>
+    </ac:structured-macro>
+  </li>
+  <li>
+    <p><strong>Test locally</strong>:</p>
+    <ac:structured-macro ac:name="code">
+      <ac:parameter ac:name="language">bash</ac:parameter>
+      <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/agent_deployment
+source venv/bin/activate
+python main_app.py
+# Test with curl in another terminal
+      ]]></ac:plain-text-body>
+    </ac:structured-macro>
+  </li>
+  <li>
+    <p><strong>Commit and push</strong>:</p>
+    <ac:structured-macro ac:name="code">
+      <ac:parameter ac:name="language">bash</ac:parameter>
+      <ac:plain-text-body><![CDATA[
+git checkout -b feature/update-votes-prompt
+git add votes_agent_mcp_tools/agent_deployment/orchestrator_instructions.txt
+git commit -m "Update votes agent system prompt for better bill analysis"
+git push origin feature/update-votes-prompt
+      ]]></ac:plain-text-body>
+    </ac:structured-macro>
+  </li>
+  <li><p><strong>Open a PR</strong> — CI runs tests (no deploy on PR)</p></li>
+  <li><p><strong>Merge to develop</strong> — Auto-deploys to staging</p></li>
+  <li><p><strong>Merge to main</strong> — Auto-deploys to production</p></li>
+</ol>
+
+<h3>Scenario: Add a New Agent</h3>
+
+<ol>
+  <li>
+    <p><strong>Copy an existing agent as template</strong>:</p>
+    <ac:structured-macro ac:name="code">
+      <ac:parameter ac:name="language">bash</ac:parameter>
+      <ac:plain-text-body><![CDATA[
+cp -r votes_agent_mcp_tools/ new_agent_mcp_tools/
+      ]]></ac:plain-text-body>
+    </ac:structured-macro>
+  </li>
+  <li>
+    <p><strong>Modify key files</strong>:</p>
+    <ul>
+      <li><code>agent_deployment/main_app.py</code> — Update agent name</li>
+      <li><code>agent_deployment/orchestrator_instructions.txt</code> — Write new system prompt</li>
+      <li><code>agent_deployment/enbloc_mcp_wrapper_v2.py</code> — Update tool-to-API-path mapping</li>
+      <li><code>agent_deployment/.bedrock_agentcore.yaml</code> — Update agent name and config</li>
+      <li><code>gateway/&lt;agent&gt;_gateway_setup.py</code> — Configure new gateway</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Set up the gateway</strong>:</p>
+    <ac:structured-macro ac:name="code">
+      <ac:parameter ac:name="language">bash</ac:parameter>
+      <ac:plain-text-body><![CDATA[
+cd new_agent_mcp_tools/gateway
+python new_agent_gateway_setup.py
+python get_credentials.py  # Save these
+      ]]></ac:plain-text-body>
+    </ac:structured-macro>
+  </li>
+  <li>
+    <p><strong>Add to orchestrator</strong> (<code>orchestrartor_agent/agent_deployment/</code>):</p>
+    <ul>
+      <li>Add new tool function in <code>pbn_agents.py</code></li>
+      <li>Add agent ARN env var</li>
+      <li>Register tool in <code>main_app.py</code></li>
+      <li>Update <code>orchestrator_instructions.txt</code></li>
+    </ul>
+  </li>
+  <li><p><strong>Add CI/CD support</strong>: Update <code>.github/workflows/deploy-agents.yml</code> path filters and matrix</p></li>
+</ol>
+
+<hr />
+
+<h2>11. Key Concepts Reference</h2>
+
+<h3>Strands Agents SDK</h3>
+
+<p>The core framework for building agents. Key concepts:</p>
+
+<ul>
+  <li><strong><code>Agent</code></strong>: The main class — combines an LLM model with tools and a system prompt</li>
+  <li><strong><code>@tool</code></strong>: Decorator to expose Python functions as tools the LLM can call</li>
+  <li><strong><code>MCPClient</code></strong>: Connects to MCP servers (gateways) to discover and use remote tools</li>
+  <li><strong><code>BedrockModel</code></strong>: Wraps Amazon Bedrock models for use with Strands</li>
+  <li><strong><code>invocation_state</code></strong>: Runtime context passed through tool calls (carries session data)</li>
+</ul>
+
+<h3>Bedrock AgentCore</h3>
+
+<p>AWS service for hosting and managing AI agents:</p>
+
+<ul>
+  <li><strong>Runtime</strong>: A deployed agent container (like a Lambda function but for agents)</li>
+  <li><strong>Gateway</strong>: An MCP-compatible proxy that converts REST APIs into MCP tools</li>
+  <li><strong>Gateway Target</strong>: Maps a specific API (via OpenAPI spec) to MCP tools within a gateway</li>
+</ul>
+
+<h3>MCP (Model Context Protocol)</h3>
+
+<p>An open protocol for connecting AI models to data sources:</p>
+
+<ul>
+  <li><strong>Transport</strong>: Streamable HTTP (used here)</li>
+  <li><strong>Tools</strong>: Functions the model can call (mapped from API endpoints)</li>
+  <li><strong>Authentication</strong>: Bearer token via Cognito OAuth2</li>
+</ul>
+
+<h3>Key Design Patterns</h3>
+
+<ol>
+  <li><strong>Reusable Agent Instances</strong>: Agents are created once at startup and handle multiple queries via <code>invocation_state</code></li>
+  <li><strong>Payload Wrapping</strong>: <code>EnblocPayloadTool</code> transforms simple tool calls into full gateway-compatible payloads</li>
+  <li><strong>Async All The Way</strong>: Both orchestrator and sub-agents use <code>async/await</code> for concurrency</li>
+  <li><strong>Session Propagation</strong>: User session attributes (UserId, UserToken, Metadata) flow from orchestrator to sub-agent to gateway to backend</li>
+</ol>
+
+<hr />
+
+<h2>12. Common Tasks Cheat Sheet</h2>
+
+<h3>Check Deployed Runtimes</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+aws bedrock-agentcore list-agent-runtimes --query 'agentRuntimes[*].{Name:agentRuntimeName,ID:agentRuntimeId,Status:status}' --output table
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>View Agent Logs</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+aws logs tail /aws/bedrock-agentcore/pbn-agentcore-votes-agent_development --follow
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Test a Deployed Agent</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/agent_deployment
+python test_agent.py
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Build Docker Image Locally</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/agent_deployment
+docker buildx build --platform linux/arm64 -t pbn-votes-agent --load .
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Push to ECR Manually</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/agent_deployment
+bash build_and_push_ecr.sh
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Get Gateway Credentials</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+cd votes_agent_mcp_tools/gateway
+python get_credentials.py
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Check ECR Images</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+aws ecr describe-images --repository-name pbn-agentcore-votes-agent_development --query 'imageDetails[*].{Tags:imageTags,Pushed:imagePushedAt}' --output table
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>Manual Workflow Trigger</h3>
+
+<p>Go to <strong>GitHub Actions</strong> → <strong>Deploy Bedrock AgentCore Agents</strong> → <strong>Run workflow</strong> → Select environment and agent.</p>
+
+<hr />
+
+<h2>13. Troubleshooting</h2>
+
+<h3>"Authentication failed" when starting agent locally</h3>
+
+<ul>
+  <li>Verify <code>.env</code> has correct <code>CLIENT_ID</code>, <code>CLIENT_SECRET</code>, and <code>TOKEN_URL</code></li>
+  <li>Tokens expire — if the agent has been running a long time, restart it</li>
+  <li>Check that Cognito User Pool and App Client still exist</li>
+</ul>
+
+<h3>"Cannot connect to MCP gateway"</h3>
+
+<ul>
+  <li>Verify <code>GATEWAY_URL</code> ends with <code>/mcp</code></li>
+  <li>Check that the gateway is active: <code>aws bedrock-agentcore list-gateways</code></li>
+  <li>Ensure the gateway target exists and is properly configured</li>
+</ul>
+
+<h3>Docker build fails on ARM64</h3>
+
+<ul>
+  <li>Make sure Docker Buildx is installed: <code>docker buildx version</code></li>
+  <li>For M1/M2 Macs, ARM64 builds are native</li>
+  <li>For x86 machines, ensure QEMU emulation is set up: <code>docker run --rm --privileged multiarch/qemu-user-static --reset -p yes</code></li>
+</ul>
+
+<h3>"PermissionError: [Errno 13]" in Docker</h3>
+
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+chmod 644 *.py
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<p>Then rebuild the image.</p>
+
+<h3>Agent timeout (300s)</h3>
+
+<ul>
+  <li>Agent invocations have a 300-second timeout</li>
+  <li>If the backend API is slow, the agent may time out</li>
+  <li>Check backend health: <code>curl https://&lt;api-endpoint&gt;/health</code></li>
+</ul>
+
+<h3>"anyOf" errors when creating gateway target</h3>
+
+<ul>
+  <li>The OpenAPI spec needs manual fixing — replace all <code>anyOf</code> with simple types</li>
+  <li>See the OpenAPI Spec Compatibility section above</li>
+</ul>
+
+<h3>AgentCore runtime fails to start</h3>
+
+<ol>
+  <li>Check CloudWatch logs: <code>aws logs tail /aws/bedrock-agentcore/&lt;runtime-name&gt; --follow</code></li>
+  <li>Verify env vars are set (especially GATEWAY_URL, CLIENT_ID, CLIENT_SECRET, TOKEN_URL)</li>
+  <li>Ensure the IAM execution role can pull from ECR</li>
+  <li>Check that the Docker image was built for <code>linux/arm64</code></li>
+</ol>
+
+<hr />
+
+<h2>14. Who to Ask</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Topic</th>
+      <th>Contact</th>
+    </tr>
+    <tr>
+      <td>AWS access &amp; permissions</td>
+      <td>DevOps / Infrastructure team</td>
+    </tr>
+    <tr>
+      <td>Agent logic &amp; prompts</td>
+      <td>ML Engineering team</td>
+    </tr>
+    <tr>
+      <td>Backend API endpoints</td>
+      <td>Backend Engineering team</td>
+    </tr>
+    <tr>
+      <td>Gateway &amp; MCP setup</td>
+      <td>ML Engineering team</td>
+    </tr>
+    <tr>
+      <td>CI/CD pipeline</td>
+      <td>DevOps / ML Engineering team</td>
+    </tr>
+    <tr>
+      <td>Cognito credentials</td>
+      <td>DevOps / Infrastructure team</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2>Glossary</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Term</th>
+      <th>Definition</th>
+    </tr>
+    <tr>
+      <td><strong>AgentCore</strong></td>
+      <td>AWS Bedrock service for deploying and managing AI agent runtimes</td>
+    </tr>
+    <tr>
+      <td><strong>MCP</strong></td>
+      <td>Model Context Protocol — open standard for connecting AI models to tools/data</td>
+    </tr>
+    <tr>
+      <td><strong>Strands</strong></td>
+      <td>AWS SDK for building AI agents with tool use and multi-turn conversations</td>
+    </tr>
+    <tr>
+      <td><strong>Gateway</strong></td>
+      <td>MCP-compatible proxy that converts REST APIs into MCP tools</td>
+    </tr>
+    <tr>
+      <td><strong>Gateway Target</strong></td>
+      <td>A specific API mapping within a gateway (defined by OpenAPI spec)</td>
+    </tr>
+    <tr>
+      <td><strong>Cognito</strong></td>
+      <td>AWS identity service used for OAuth2 authentication between agents and gateways</td>
+    </tr>
+    <tr>
+      <td><strong>EnblocPayloadTool</strong></td>
+      <td>Custom wrapper that transforms Strands tool calls into backend-compatible payloads</td>
+    </tr>
+    <tr>
+      <td><strong>invocation_state</strong></td>
+      <td>Runtime context passed through the agent chain (carries session, user, and event data)</td>
+    </tr>
+    <tr>
+      <td><strong>Text2SQL</strong></td>
+      <td>Pattern where an LLM converts natural language to SQL queries</td>
+    </tr>
+    <tr>
+      <td><strong>ARM64</strong></td>
+      <td>Processor architecture required by Bedrock AgentCore (Graviton)</td>
+    </tr>
+  </tbody>
+</table>

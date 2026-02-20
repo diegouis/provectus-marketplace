@@ -78,6 +78,11 @@
       "name": "proagent-router",
       "source": "./plugins/proagent-router",
       "description": "Provectus practice router: single /proagent command that detects the domain from user input and dispatches to the appropriate practice specialist across all 15 plugins."
+    },
+    {
+      "name": "proagent-documentation",
+      "source": "./plugins/proagent-documentation",
+      "description": "Cross-platform repository documentation and Confluence publishing: analyze GitHub/GitLab repos, generate docs (README, architecture, API, onboarding, runbooks), and publish/sync Confluence pages."
     }
   ]
 }
