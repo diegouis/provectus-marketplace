@@ -19,6 +19,7 @@ Practice-specific plugins for Claude Code and Claude Desktop, built from 867 ass
 | [proagent-ml-ai](plugins/proagent-ml-ai) | ML/AI | Model training, knowledge graphs, meta-prompting, LLM judge, RAG, AWS Bedrock |
 | [proagent-hr](plugins/proagent-hr) | HR | Hiring, CV validation, GDPR compliance, resume generation, growth analysis, onboarding |
 | [proagent-sales](plugins/proagent-sales) | Sales | Proposals, sales automation, content marketing, business cases, market opportunity analysis |
+| [proagent-documentation](plugins/proagent-documentation) | Documentation | Repo analysis, doc generation (README/architecture/API/onboarding/runbook), Confluence publishing and sync |
 | [proagent-finance](plugins/proagent-finance) | Finance | Budgeting, cloud FinOps, financial projections, Stripe/PCI, budget variance analysis |
 
 ## Installation
@@ -121,7 +122,7 @@ proagent-<practice>/
 
 Every plugin ships with a core set of MCP servers. Additional servers are included per practice where relevant.
 
-### Core MCP Servers (all 14 plugins)
+### Core MCP Servers (all 15 plugins)
 
 | Server | Package | What it provides |
 |--------|---------|-----------------|
@@ -135,8 +136,8 @@ Every plugin ships with a core set of MCP servers. Additional servers are includ
 
 | Server | Package | Plugins |
 |--------|---------|---------|
-| **GitLab** | `@modelcontextprotocol/server-gitlab` | agentic-engineering, sdlc, platform, devops, qa, backend, frontend, security |
-| **Atlassian (Jira/Confluence)** | `@modelcontextprotocol/server-atlassian` | sdlc, qa, delivery |
+| **GitLab** | `@modelcontextprotocol/server-gitlab` | agentic-engineering, sdlc, platform, devops, qa, backend, frontend, security, documentation |
+| **Atlassian (Jira/Confluence)** | `@modelcontextprotocol/server-atlassian` | sdlc, qa, delivery, documentation |
 | **Playwright** | `@playwright/mcp@latest` | agentic-engineering, qa, frontend |
 | **Rube (Composio)** | `https://rube.app/mcp` | agentic-engineering, platform, devops, frontend, delivery, data, hr, sales, finance |
 
@@ -189,14 +190,14 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 
 | Metric | Count |
 |--------|-------|
-| Plugins | 14 |
-| Skills | 15 |
-| Commands | 42 |
-| Agents | 20 |
-| Hooks | 39 |
+| Plugins | 15 |
+| Skills | 16 |
+| Commands | 45 |
+| Agents | 23 |
+| Hooks | 43 |
 | MCP Servers (core) | 5 (Slack, Google Drive, Google Workspace, GitHub, Excalidraw) |
 | MCP Servers (additional) | 4 (GitLab, Atlassian, Playwright, Rube) |
-| MCP Integrations | 31 |
+| MCP Integrations | 37 |
 | Source Assets | 867 |
 | Source Repos | 16 |
 | Marketplace Version | 0.3.0 |
@@ -206,7 +207,7 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 ```
 provectus-marketplace/
 ├── marketplace.json       # Marketplace manifest with all plugin metadata
-├── plugins/               # 14 practice plugins
+├── plugins/               # 15 practice plugins
 │   ├── proagent-agentic-engineering/
 │   ├── proagent-sdlc/
 │   ├── proagent-platform/
@@ -220,7 +221,8 @@ provectus-marketplace/
 │   ├── proagent-ml-ai/
 │   ├── proagent-hr/
 │   ├── proagent-sales/
-│   └── proagent-finance/
+│   ├── proagent-finance/
+│   └── proagent-documentation/
 ├── catalog/               # Asset catalog from repo scanning
 └── scan-reports/          # Raw scan reports per repo batch
 ```
