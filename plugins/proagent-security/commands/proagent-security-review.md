@@ -36,6 +36,9 @@ When no specific target is provided, scan for these files and review all that ar
 | 8 | Authentication/authorization modules | Access control review |
 | 9 | `nginx.conf`, `apache.conf`, server configs | Web server hardening |
 | 10 | Logging and monitoring configuration | Audit logging completeness |
+| 11 | `*.sol` (Solidity contracts) | Smart contract security (reentrancy, overflow, access) |
+| 12 | Agent configuration, sandbox settings | Agent hardening and trust level review |
+| 13 | Frontend components with user input | XSS and CSRF vulnerability scanning |
 
 ### Code Security Review
 
@@ -117,8 +120,6 @@ Assess the access control implementation:
 
 ### Container Security Review
 
-Derived from `casdk-harness/docs/HARDENING.md`:
-
 - Running as root (missing `USER` directive in Dockerfile)
 - Using `latest` tag instead of pinned versions
 - SSH private keys or secrets mounted into containers
@@ -149,6 +150,40 @@ Derived from `casdk-harness/docs/HARDENING.md`:
 - Missing logging and monitoring for infrastructure changes
 - Publicly accessible resources that should be private (S3 buckets, databases)
 - Missing network ACLs and VPC flow logs
+
+### Frontend Security Review
+
+Check for XSS and CSRF vulnerabilities (reference: `agents/plugins/frontend-mobile-security/commands/xss-scan.md`, `agents/plugins/frontend-mobile-security/agents/frontend-security-coder.md`):
+
+- `innerHTML`, `dangerouslySetInnerHTML`, `v-html` usage without DOMPurify or equivalent sanitization
+- `eval()`, `Function()`, `document.write()` with user-controlled input
+- Missing or misconfigured Content Security Policy (allows `unsafe-inline`, `unsafe-eval`)
+- CSRF tokens missing on forms with state-changing actions
+- Missing SameSite cookie attributes on session cookies
+- CORS configuration allowing wildcard or untrusted origins
+- Reflected user input in error messages, search results, or URL parameters
+
+### Agent Hardening Review
+
+Review autonomous agent security posture (reference: `casdk-harness/src/harness/security.py`, `casdk-harness/docs/HARDENING.md`):
+
+- Agent sandbox configuration (filesystem, network, process restrictions)
+- Trust level assignment and escalation policies (`proagent-repo/core/skills/tac/trust-ladder.md`)
+- Permission boundaries preventing privilege escalation
+- Audit logging coverage for agent actions
+- Resource limits (CPU, memory, execution time) to prevent abuse
+- Session isolation between concurrent agent tasks
+
+### Smart Contract Security Review
+
+For Solidity smart contracts (reference: `agents/plugins/blockchain-web3/skills/solidity-security/SKILL.md`):
+
+- Reentrancy vulnerabilities (external calls before state updates)
+- Integer overflow/underflow without SafeMath or Solidity 0.8+ checks
+- Access control issues (missing `onlyOwner`, unprotected `selfdestruct`)
+- Unchecked return values from low-level calls
+- Front-running vulnerabilities in DEX or auction contracts
+- Gas griefing and denial of service vectors
 
 ## Output Format
 

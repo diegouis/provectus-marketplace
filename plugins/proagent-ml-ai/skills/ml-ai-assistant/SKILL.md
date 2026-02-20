@@ -1,6 +1,6 @@
 ---
 name: ml-ai-assistant
-description: Building ML & AI Systems - model training, inference optimization, MLOps pipelines, experiment tracking, prompt engineering, embeddings, vector stores, LLM application development, and RAG systems. Use when performing any machine learning, deep learning, or AI engineering task.
+description: Building ML & AI Systems - model training, inference optimization, MLOps pipelines, experiment tracking, prompt engineering, embeddings, vector stores, LLM application development, RAG systems, knowledge graph integration (Graphiti), meta-prompting frameworks, LLM judge evaluation, and AWS AI services (SageMaker, Bedrock). Use when performing any machine learning, deep learning, or AI engineering task.
 ---
 
 # Building ML & AI Systems
@@ -19,12 +19,17 @@ Comprehensive ML and AI skill covering the full lifecycle of machine learning mo
 - Creating and managing embeddings and vector stores
 - Monitoring model performance and detecting data drift in production
 - Debugging LangChain/LangGraph agents via LangSmith traces
+- Building knowledge graphs with Graphiti for structured context retrieval
+- Creating and managing meta-prompts for role-based AI systems
+- Evaluating AI outputs using LLM judge patterns
+- Integrating AWS Bedrock foundation models alongside SageMaker
+- Designing ML pipeline workflows with validation gates
 
 ## Model Training
 
 ### Training Pipeline Design
 
-Every training pipeline should follow this structured progression, derived from `proagent/roles/ml-engineer/skills/model-training.md`:
+Every training pipeline should follow this structured progression:
 
 1. **Data Preparation** - Load, clean, and split data into train/validation/test sets
 2. **Feature Engineering** - Create, transform, and select features from raw data
@@ -36,16 +41,12 @@ Every training pipeline should follow this structured progression, derived from 
 
 ### Data Splitting Strategies
 
-Derived from `proagent/roles/ml-engineer/skills/model-training.md`:
-
 - **Hold-out Validation:** Single train/val split for large datasets (typically 70/15/15 or 80/10/10)
 - **Stratified K-Fold Cross-Validation:** 5-10 folds for smaller datasets; maintains class distribution
 - **Time Series Split:** Respects temporal order for sequential data; never shuffle time series
 - **Group K-Fold:** Prevents data leakage when samples are grouped (same patient, same user)
 
 ### Classification Model Training Pattern
-
-Derived from `proagent/roles/ml-engineer/skills/model-training.md` and `proagent/roles/ml-engineer/commands/train-model.md`:
 
 ```python
 import numpy as np
@@ -103,8 +104,6 @@ joblib.dump(pipeline, 'models/model.pkl')
 
 ### Neural Network Training with Early Stopping
 
-Derived from `proagent/roles/ml-engineer/skills/model-training.md`:
-
 ```python
 import tensorflow as tf
 from tensorflow import keras
@@ -148,8 +147,6 @@ history = model.fit(
 
 ### XGBoost with Early Stopping
 
-Derived from `proagent/roles/ml-engineer/skills/model-training.md`:
-
 ```python
 import xgboost as xgb
 
@@ -182,8 +179,6 @@ model.save_model('models/xgboost_model.json')
 
 ## Feature Engineering
 
-Derived from `proagent/roles/ml-engineer/skills/feature-engineering.md`:
-
 ### Core Techniques
 
 - **Missing Value Handling:** Imputation (mean/median/KNN), indicator variables, or deletion for <5% missing
@@ -210,8 +205,6 @@ pipeline.fit(X_train, y_train)  # Scaler fits only on X_train
 ```
 
 ## Model Evaluation
-
-Derived from `proagent/roles/ml-engineer/skills/model-evaluation.md`:
 
 ### Binary Classification Evaluation
 
@@ -243,8 +236,6 @@ def evaluate_binary_classifier(y_true, y_pred, y_pred_proba):
 | Ranking | NDCG, MAP, MRR | - |
 
 ## Experiment Tracking
-
-Derived from `proagent/roles/ml-engineer/skills/experiment-tracking.md`:
 
 ### MLflow Tracking Pattern
 
@@ -315,8 +306,6 @@ wandb.finish()
 
 ## Model Deployment
 
-Derived from `proagent/roles/ml-engineer/skills/model-deployment.md`:
-
 ### FastAPI Model Serving
 
 ```python
@@ -374,8 +363,6 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ### AWS SageMaker Deployment
 
-Derived from `proagent/roles/ml-engineer/skills/model-deployment.md`:
-
 ```python
 import sagemaker
 from sagemaker.sklearn import SKLearnModel
@@ -420,8 +407,6 @@ def batch_predict(input_path, output_path, model_path, batch_size=1000):
 ```
 
 ## Model Monitoring
-
-Derived from `proagent/roles/ml-engineer/skills/model-deployment.md`:
 
 ### Data Drift Detection
 
@@ -520,9 +505,215 @@ embeddings = model.encode(texts, normalize_embeddings=True)
 similarity = np.dot(embeddings[0], embeddings[1])
 ```
 
-## LangSmith Agent Debugging
+## Knowledge Graph Integration (Graphiti)
 
-Derived from `awesome-claude-skills/langsmith-fetch/SKILL.md`:
+Build structured knowledge graphs for enhanced context retrieval in AI applications. Based on patterns from `Auto-Claude/apps/backend/context/graphiti_integration.py`:
+
+```python
+from graphiti_core import Graphiti
+from graphiti_core.nodes import EpisodeType
+
+# Initialize Graphiti knowledge graph
+graphiti = Graphiti(
+    neo4j_uri="bolt://localhost:7687",
+    neo4j_user="neo4j",
+    neo4j_password="password"
+)
+
+# Add episodes (knowledge units) to the graph
+await graphiti.add_episode(
+    name="model-deployment-guide",
+    episode_body="SageMaker endpoints require inference.py with model_fn, input_fn, predict_fn, output_fn handlers.",
+    source=EpisodeType.text,
+    source_description="ML deployment documentation"
+)
+
+# Search the knowledge graph for relevant context
+results = await graphiti.search("How to deploy models to SageMaker?")
+for result in results:
+    print(f"Fact: {result.fact}")
+    print(f"Source: {result.episodes}")
+```
+
+### When to Use Knowledge Graphs
+
+- Accumulating structured domain knowledge across multiple ML projects
+- Building context-aware AI assistants that learn from project history
+- Connecting related concepts across experiments, models, and deployments
+- Providing grounded, traceable context to LLM applications (alternative or complement to RAG)
+
+## Meta-Prompting Frameworks
+
+Design and generate meta-prompts that define AI agent roles, capabilities, and behavioral constraints. Based on patterns from `proagent-repo/core/meta_prompts/base.py` and `taches-cc-resources/skills/create-meta-prompts/SKILL.md`:
+
+### Meta-Prompt Structure
+
+```python
+# Base meta-prompt template with role knowledge injection
+meta_prompt = {
+    "role_definition": "You are a senior ML engineer specializing in...",
+    "domain_knowledge": [
+        "Training pipeline design patterns",
+        "Feature engineering best practices",
+        "Model evaluation methodologies"
+    ],
+    "behavioral_constraints": [
+        "Always set random seeds for reproducibility",
+        "Never fit preprocessors on test data",
+        "Log all experiments to tracking server"
+    ],
+    "output_format": "structured JSON with rationale",
+    "examples": [
+        {"input": "...", "output": "...", "reasoning": "..."}
+    ]
+}
+```
+
+### Meta-Prompt Creation Workflow
+
+1. Define the target role and domain scope
+2. Collect domain knowledge from reference materials and codebase patterns
+3. Specify behavioral constraints and guardrails
+4. Provide few-shot examples that demonstrate expected behavior
+5. Validate the meta-prompt against test scenarios
+6. Iterate based on output quality and adherence to constraints
+
+## LLM Judge Evaluation
+
+Evaluate AI-generated outputs programmatically using LLM-as-judge patterns. Based on `ralph-orchestrator/tools/e2e/helpers/llm_judge.py`:
+
+```python
+from anthropic import Anthropic
+
+client = Anthropic()
+
+def llm_judge_evaluate(output: str, criteria: list[str], reference: str = None) -> dict:
+    """Evaluate AI output using an LLM judge with specified criteria."""
+    judge_prompt = f"""Evaluate the following AI-generated output against these criteria:
+
+Criteria:
+{chr(10).join(f'- {c}' for c in criteria)}
+
+Output to evaluate:
+{output}
+
+{"Reference answer: " + reference if reference else ""}
+
+For each criterion, provide:
+1. Score (1-5)
+2. Brief justification
+
+Then provide an overall score and summary."""
+
+    response = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=1024,
+        messages=[{"role": "user", "content": judge_prompt}]
+    )
+    return {"evaluation": response.content[0].text}
+
+# Usage for ML model explanations
+result = llm_judge_evaluate(
+    output=model_explanation,
+    criteria=[
+        "Technical accuracy of ML concepts",
+        "Clarity of explanation for non-technical audience",
+        "Completeness of feature importance discussion",
+        "Actionable recommendations provided"
+    ]
+)
+```
+
+### LLM Judge Use Cases in ML/AI
+
+- Evaluating model documentation quality and completeness
+- Assessing generated code for ML best practice adherence
+- Comparing RAG system response quality across configurations
+- Validating prompt engineering outputs against acceptance criteria
+- A/B testing LLM application responses with automated scoring
+
+## AWS Bedrock Integration
+
+Access foundation models through AWS Bedrock alongside SageMaker for managed inference. Based on patterns from `Auto-Claude/apps/backend/integrations/graphiti/providers_pkg/llm_providers/anthropic_llm.py` and `provectus-marketplace/plugins/proagent-aws-ai/skills/aws-ai-assistant/SKILL.md`:
+
+```python
+import boto3
+import json
+
+bedrock_runtime = boto3.client("bedrock-runtime", region_name="us-east-1")
+
+def invoke_bedrock_model(prompt: str, model_id: str = "anthropic.claude-3-sonnet-20240229-v1:0"):
+    """Invoke a foundation model via AWS Bedrock."""
+    body = json.dumps({
+        "anthropic_version": "bedrock-2023-05-31",
+        "max_tokens": 1024,
+        "messages": [{"role": "user", "content": prompt}]
+    })
+    response = bedrock_runtime.invoke_model(
+        modelId=model_id,
+        body=body,
+        contentType="application/json",
+        accept="application/json"
+    )
+    result = json.loads(response["body"].read())
+    return result["content"][0]["text"]
+
+# Use Bedrock for ML tasks: data analysis, feature suggestions, code generation
+analysis = invoke_bedrock_model(
+    "Analyze this feature correlation matrix and suggest feature engineering steps: ..."
+)
+```
+
+### Bedrock vs SageMaker Decision Guide
+
+| Use Case | Bedrock | SageMaker |
+|---|---|---|
+| Foundation model inference (text, vision) | Preferred | Not applicable |
+| Custom model training | Not applicable | Preferred |
+| Custom model hosting | Not applicable | Preferred |
+| RAG with knowledge bases | Bedrock Knowledge Bases | Custom RAG pipeline |
+| Fine-tuning foundation models | Bedrock custom models | SageMaker JumpStart |
+| Real-time custom ML inference | Not applicable | SageMaker Endpoints |
+
+## ML Pipeline Validation Workflows
+
+Define structured validation gates for ML pipelines to ensure quality before promotion. Based on `proagent-repo/core/templates/validation_workflows/ml-engineer.yaml` and `agents/plugins/machine-learning-ops/skills/ml-pipeline-workflow/SKILL.md`:
+
+```yaml
+# ml-pipeline-validation.yaml
+pipeline:
+  name: model-promotion-workflow
+  stages:
+    - name: data-validation
+      checks:
+        - schema_match: true
+        - null_rate_threshold: 0.05
+        - distribution_drift_test: ks_test
+        - min_sample_size: 1000
+
+    - name: training-validation
+      checks:
+        - random_seeds_set: [numpy, random, torch]
+        - cross_validation_folds: 5
+        - experiment_tracked: true
+        - baseline_comparison: required
+
+    - name: evaluation-gate
+      checks:
+        - min_f1_score: 0.80
+        - min_roc_auc: 0.85
+        - max_overfitting_gap: 0.05
+        - error_analysis_complete: true
+
+    - name: deployment-readiness
+      checks:
+        - health_endpoint: /health
+        - input_validation: pydantic
+        - monitoring_configured: true
+        - rollback_documented: true
+```
+
+## LangSmith Agent Debugging
 
 Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio:
 
@@ -539,8 +730,6 @@ langsmith-fetch --trace-id <id> --verbose
 ```
 
 ## ML Project Structure
-
-Derived from `proagent/roles/ml-engineer/templates/ml-project-starter.md`:
 
 ```
 ml-project/
@@ -575,26 +764,6 @@ ml-project/
 5. **Missing Preprocessing in Deployment:** Forgetting to include feature engineering in the serving pipeline
 6. **No Monitoring:** Deploying without tracking data drift or prediction distribution shifts
 7. **Poor Experiment Tracking:** Training many models without logging parameters and results
-
-## Reference Assets
-
-| Asset | Source | Description |
-|-------|--------|-------------|
-| Model Training Skill | `proagent/roles/ml-engineer/skills/model-training.md` | Complete training pipeline patterns with scikit-learn, TensorFlow, XGBoost |
-| Feature Engineering Skill | `proagent/roles/ml-engineer/skills/feature-engineering.md` | Feature creation, transformation, and selection techniques |
-| Model Selection Skill | `proagent/roles/ml-engineer/skills/model-selection.md` | Algorithm selection by problem type and data characteristics |
-| Hyperparameter Tuning Skill | `proagent/roles/ml-engineer/skills/hyperparameter-tuning.md` | Grid search, random search, Bayesian optimization, Hyperband |
-| Model Evaluation Skill | `proagent/roles/ml-engineer/skills/model-evaluation.md` | Metrics, visualizations, statistical significance testing |
-| Experiment Tracking Skill | `proagent/roles/ml-engineer/skills/experiment-tracking.md` | MLflow, W&B, Neptune, custom tracking patterns |
-| Model Deployment Skill | `proagent/roles/ml-engineer/skills/model-deployment.md` | FastAPI serving, SageMaker, batch prediction, monitoring |
-| Train Model Command | `proagent/roles/ml-engineer/commands/train-model.md` | End-to-end training pipeline command template |
-| ML Project Starter | `proagent/roles/ml-engineer/templates/ml-project-starter.md` | Standard ML project directory structure |
-| LangSmith Fetch Skill | `awesome-claude-skills/langsmith-fetch/SKILL.md` | LangChain/LangGraph agent debugging via LangSmith traces |
-| LLM Architect Agent | `agents/plugins/llm-application-dev/agents/llm-architect.md` | RAG systems and agent architecture design |
-| OpenAI LLM Utility | `tac/Code/tac-6/.claude/hooks/utils/llm/oai.py` | OpenAI API integration utility |
-| Anthropic LLM Utility | `tac/Code/tac-6/.claude/hooks/utils/llm/anth.py` | Anthropic API integration utility |
-| NL-to-SQL Processor | `tac/Code/tac-6/app/server/core/llm_processor.py` | LLM-powered natural language to SQL translation |
-| ML Engineer Role | `proagent/roles/ml-engineer/README (1).md` | ML engineer role definition and quick start guide |
 
 ## Visual Diagramming with Excalidraw
 

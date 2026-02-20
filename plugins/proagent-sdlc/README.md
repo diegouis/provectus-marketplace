@@ -1,8 +1,8 @@
 # proagent-sdlc
 
-A Claude Code plugin for end-to-end software development lifecycle management. Covers architecture decisions, code review, testing strategy, release management, documentation, semantic versioning, and git workflow enforcement.
+A Claude Code plugin for end-to-end software development lifecycle management. Covers architecture decisions, code review, testing strategy, release management, documentation, semantic versioning, git workflow enforcement, systematic debugging, hierarchical planning, ADR generation, C4 architecture diagrams, and multi-agent review pipelines.
 
-**Version:** 0.2.0
+**Version:** 0.3.0
 **Category:** SDLC
 **License:** MIT
 
@@ -58,14 +58,38 @@ Reads conventional commits since the last tag, recommends a version bump (major/
 ```
 Analyzes the codebase and generates the specified documentation type: architecture, api, spec, guide, summary, or changelog.
 
+**Debug an issue:**
+```
+/proagent-sdlc:run debug
+```
+Applies hypothesis-driven root-cause analysis: reproduce, gather evidence, rank hypotheses, test systematically, implement fix with regression test. Based on casdk-harness and taches-cc-resources debugging patterns.
+
+**Create an implementation plan:**
+```
+/proagent-sdlc:run plan
+```
+Decomposes requirements into a hierarchical plan (epics, features, tasks) with exact file paths, code snippets, test commands, and dependency tracking. Each task follows the PITER micro-cycle.
+
+**Generate an ADR:**
+```
+/proagent-sdlc:run adr
+```
+Creates an Architecture Decision Record with status, context, decision, consequences, and alternatives considered. Saves to the project's ADR directory with sequential numbering.
+
+**Review an implementation plan:**
+```
+/proagent-sdlc:review plan
+```
+Assesses plan completeness, task granularity, dependency correctness, spec alignment, and risk areas. Outputs a structured report with coverage table and verdict.
+
 ## Components
 
 | Component | Name | Purpose |
 |-----------|------|---------|
 | Skill | `proagent-sdlc:sdlc-assistant` | Core skill covering all SDLC phases |
 | Command | `proagent-sdlc:hub` | Command hub and routing |
-| Command | `proagent-sdlc:run` | Execute SDLC workflows (5 modes) |
-| Command | `proagent-sdlc:review` | Quality reviews (4 modes) |
+| Command | `proagent-sdlc:run` | Execute SDLC workflows (8 modes) |
+| Command | `proagent-sdlc:review` | Quality reviews (5 modes) |
 | Agent | `proagent-sdlc:sdlc-specialist` | Subagent for reviews and assessments |
 | Hook | Pre-commit quality gate | Conventional commits, TODO check, test file check |
 | Hook | Post-review notification | Structured review summary with severity counts |
@@ -86,23 +110,15 @@ Analyzes the codebase and generates the specified documentation type: architectu
 
 Set the environment variables for the services your team uses. Unused servers will not be started.
 
+## Pipeline Frameworks
+
+| Framework | Source | Scope |
+|-----------|--------|-------|
+| ProAgent 5-stage | `proagent-repo/core/orchestration/sdlc/pipeline.py` | Full project lifecycle |
+| AWOS 8-step | `awos/commands/*` | Feature spec-to-implementation |
+| PITER | `proagent-repo/core/skills/tac/piter.md` | Per-task micro-cycle |
+| Ralph presets | `ralph-orchestrator/presets/*.yml` | Bugfix and refactoring orchestration |
+
 ## Source Repositories
 
-This plugin synthesizes patterns and content from 17 open-source repositories:
-
-- **awos** -- Architecture command, verification workflow, document hierarchy, spec templates
-- **casdk-harness** -- Code review checklist (8 dimensions), automated review pipeline, documentation and git workflow skills
-- **superpowers** -- TDD planning with bite-sized tasks, code review dispatch, testing anti-patterns, branch completion, subagent-driven development
-- **tac** -- Semantic commit generation, automated PR creation, review command with spec compliance, full SDLC pipeline orchestration (adw_sdlc.py)
-- **ralph-orchestrator** -- Spec-driven development workflow, TDD SOP, codebase summary, cargo-fmt quality gates
-- **awesome-claude-skills** -- Changelog generation from git commits
-- **proagent** -- Technical writer roles (user guide creation, information architecture), project manager spec creation
-- **planning-with-files** -- File-based planning with hooks and task plan templates
-- **agents** -- C4 architecture documentation, full-stack feature orchestration, conductor workflow agent
-- **taches-cc-resources** -- Hierarchical project planning, plan execution, expert debugging, feasibility studies
-- **root-claude-config** -- Multi-agent implementation orchestrator, structured interview workflow
-- **Auto-Claude** -- Pre-commit hooks with linting/testing, conventional commit validation, release drafter, CodeRabbit config, Dependabot
-- **proagent-repo GUI** -- SDLC pipeline orchestration engine, build/review/plan commands, workflow definitions
-- **skills** -- Collaborative document co-authoring
-- **specs** -- Gap analysis and implementation planning
-- **gastown** -- Pre-push validation hooks
+> Built from Provectus internal engineering practices and 14 source repositories: agents, Auto-Claude, awesome-claude-code, awesome-claude-skills, awos, casdk-harness, gastown, planning-with-files, proagent-repo, provectus-marketplace, ralph-orchestrator, skills, superpowers, taches-cc-resources.

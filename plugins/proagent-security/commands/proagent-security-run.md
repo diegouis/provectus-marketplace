@@ -1,7 +1,7 @@
 ---
 description: >
   Execute security operations: scan-vulnerabilities, audit-secrets, threat-model,
-  compliance-check, or encrypt-setup.
+  compliance-check, encrypt-setup, xss-scan, risk-classify, agent-harden, or audit-workflow.
 argument-hint: "<operation> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
@@ -32,13 +32,14 @@ Execute a multi-layer vulnerability scan on the codebase.
    - For Python projects: Run `bandit -r src/ -ll -ii -f json` to scan for common vulnerabilities (B101-B703)
    - For JavaScript/TypeScript: Check for ESLint security plugin configuration, scan with `npx eslint --rule 'no-eval: error'`
    - For all languages: Recommend CodeQL configuration if not already present
-   - Check for Semgrep rules and suggest security-focused rulesets
+   - Check for Semgrep (OSS tier) rules and suggest security-focused rulesets
 3. **Run Dependency Vulnerability Audit:**
    - For Node.js: Execute `npm audit --audit-level=high` and parse results
    - For Python: Execute `pip-audit --strict --desc` or `safety check --full-report`
    - For Go: Execute `govulncheck ./...`
    - For Docker images: Execute `trivy image --severity HIGH,CRITICAL <image>`
    - For GitHub Actions: Check action versions for known vulnerabilities
+   - For release artifacts: Recommend VirusTotal scanning integration (reference: `Auto-Claude/.github/workflows/virustotal-scan.yml`)
 4. **Scan for OWASP Top 10 patterns:**
    - Search for SQL string concatenation (injection risk)
    - Search for `eval()`, `exec()`, `subprocess.call(shell=True)` (code injection)
@@ -192,6 +193,104 @@ Set up encryption for data protection.
    - Key management setup instructions
    - Testing procedures to verify encryption is active
    - Ongoing monitoring recommendations
+
+### `xss-scan` - Frontend XSS Vulnerability Scan
+
+Scan frontend code for cross-site scripting vulnerabilities (reference: `agents/plugins/frontend-mobile-security/commands/xss-scan.md`).
+
+**Steps:**
+1. **Detect frontend framework:**
+   - Identify React, Vue, Angular, Svelte, or vanilla JS from package.json and imports
+   - Check for server-side rendering (Next.js, Nuxt, SvelteKit)
+2. **Scan for DOM-based XSS:**
+   - Search for `innerHTML`, `outerHTML`, `document.write`, `document.writeln`
+   - Search for `dangerouslySetInnerHTML` (React), `v-html` (Vue), `[innerHTML]` (Angular)
+   - Search for `eval()`, `Function()`, `setTimeout(string)`, `setInterval(string)`
+   - Check for unsanitized URL parameters used in DOM manipulation
+3. **Scan for reflected XSS:**
+   - Check error messages and search results for unescaped user input
+   - Verify template engines use auto-escaping by default
+   - Check for raw output directives (`{!! !!}` in Blade, `| safe` in Jinja2, `<%- %>` in EJS)
+4. **Verify security headers:**
+   - Check Content-Security-Policy blocks `unsafe-inline` and `unsafe-eval`
+   - Verify X-Content-Type-Options is set to `nosniff`
+   - Check Referrer-Policy configuration
+5. **Generate XSS report:**
+   - Categorize findings by severity and XSS type (stored, reflected, DOM-based)
+   - Provide framework-specific remediation (use DOMPurify, sanitize-html, etc.)
+   - Recommend CSP configuration updates
+
+### `risk-classify` - Classify Code Change Risk
+
+Analyze code changes and classify risk level (reference: `Auto-Claude/apps/backend/analysis/risk_classifier.py`, `Auto-Claude/apps/backend/analysis/security_scanner.py`).
+
+**Steps:**
+1. **Identify changed files:**
+   - Parse git diff or PR changeset to identify modified files
+   - Classify files by sensitivity (auth modules, database schemas, deployment configs, security controls)
+2. **Analyze change content:**
+   - Scan for high-risk keywords: `delete`, `drop`, `migrate`, `deploy`, `credential`, `secret`, `password`, `api_key`, `production`
+   - Evaluate change scope: number of files, lines changed, cross-module impact
+   - Check if changes touch security-critical paths (authentication, authorization, encryption, logging)
+3. **Score and classify:**
+   - Assign risk level: LOW (read-only, reversible), MEDIUM (modifies files, testable), HIGH (production impact), CRITICAL (security or data loss potential)
+   - Map to trust ladder level for required approval
+4. **Generate risk report:**
+   - Risk classification with justification
+   - Required approval level based on trust ladder
+   - Recommended review checklist for the identified risk areas
+
+### `agent-harden` - Harden Agent Deployment
+
+Apply production security hardening for autonomous agent deployments (reference: `casdk-harness/src/harness/security.py`, `casdk-harness/docs/HARDENING.md`).
+
+**Steps:**
+1. **Assess current agent configuration:**
+   - Check for permission boundaries and sandbox configuration
+   - Identify filesystem, network, and process access scope
+   - Review trust level assignment and escalation policies
+2. **Apply sandboxing controls:**
+   - Restrict filesystem access to designated working directories
+   - Limit network access to approved endpoints and protocols
+   - Set execution time limits and resource caps (CPU, memory)
+   - Disable access to secrets and credentials not required for the task
+3. **Configure audit logging:**
+   - Enable immutable logging of all agent actions
+   - Record tool invocations, file modifications, and external API calls
+   - Set up alerts for anomalous behavior patterns
+4. **Validate hardening:**
+   - Test that sandbox restrictions are enforced
+   - Verify agent cannot escalate beyond assigned trust level
+   - Confirm audit logs capture all security-relevant events
+5. **Generate hardening report:**
+   - Current vs recommended security posture
+   - Applied restrictions and remaining gaps
+   - Ongoing monitoring recommendations
+
+### `audit-workflow` - Execute Security Audit Workflow
+
+Run a structured security audit using formula-based workflows (reference: `gastown/.beads/formulas/security-audit.formula.toml`).
+
+**Steps:**
+1. **Select audit scope:**
+   - Full application audit, infrastructure audit, compliance audit, or targeted component audit
+   - Identify in-scope systems, repositories, and configurations
+2. **Execute audit formula steps:**
+   - Run vulnerability scanning (SAST, SCA, container scanning)
+   - Run secrets audit
+   - Run compliance check against relevant framework
+   - Run access control review
+   - Run infrastructure security check
+3. **Aggregate findings:**
+   - Deduplicate findings across scanning tools
+   - Correlate related issues into unified finding records
+   - Score aggregate risk posture
+4. **Generate audit report:**
+   - Executive summary with overall risk rating
+   - Detailed findings with evidence and remediation guidance
+   - Compliance evidence artifacts for passing controls
+   - Prioritized remediation roadmap with effort estimates
+   - Comparison with previous audit results if available
 
 ## Error Handling
 

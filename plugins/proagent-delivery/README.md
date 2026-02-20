@@ -1,8 +1,8 @@
 # proagent-delivery
 
-A Claude Code plugin for project delivery management. Covers sprint planning, milestone tracking, stakeholder updates, status reports, risk assessment, retrospectives, resource allocation, and agile/scrum ceremony facilitation.
+A Claude Code plugin for project delivery management. Covers sprint planning, milestone tracking, stakeholder updates, status reports, risk assessment, retrospectives, resource allocation, agile/scrum ceremony facilitation, SOW generation and review, standup notes generation, PRD creation, internal communications, task planning, meeting insights analysis, agentic KPIs tracking, todo management, and Eisenhower matrix prioritization.
 
-**Version:** 0.2.0
+**Version:** 0.4.0
 **Category:** Delivery
 **License:** MIT
 
@@ -58,18 +58,58 @@ Assess velocity trends, burndown progress, active blockers, and scope stability.
 ```
 Map stakeholders using Power/Interest Grid, audit communication cadence, review open decisions, and identify alignment gaps. Ensures the "No Surprises" rule is being followed.
 
+**Generate standup notes:**
+```
+/proagent-delivery:proagent-delivery-run standup-notes
+```
+Generate AI-assisted daily standup notes by analyzing git history, Jira tickets, and calendar data. Supports daily, async, and 3P formats. Links commits to Jira tickets and transforms technical messages into business value statements.
+
+**Create a PRD:**
+```
+/proagent-delivery:proagent-delivery-run create-prd
+```
+Generate a Product Requirements Document from feature ideas and JTBD analysis. Reads product context, feature specs, and JTBD documentation. Outputs structured PRD with problem statement, user stories, acceptance criteria, and success metrics.
+
+**Draft internal communications:**
+```
+/proagent-delivery:proagent-delivery-run internal-comms <type>
+```
+Write internal communications using company-standard formats. Supports 3P updates, newsletters, FAQs, incident reports, leadership updates, and project updates.
+
+**Create a task plan:**
+```
+/proagent-delivery:proagent-delivery-run task-plan
+```
+Create a phased task plan with progress tracking, decision logs, and error tracking. Breaks work into 3-7 phases with structured tracking sections.
+
+**Generate a SOW:**
+```
+/proagent-delivery:proagent-delivery-run generate-sow --channel=proj-acme-delivery --drive=https://drive.google.com/... --with-rom
+```
+Generate a delivery-ready Statement of Work from client context. Reads Slack channel history and Google Drive documents via MCP, conducts a structured clarification interview with the Solution Owner (engagement model, pricing, phases, assumptions), generates all 8 standard SOW sections (Purpose, Organization, Project Overview, Project Scope, Estimated Durations & Team, Payment & Fee Schedule, Project Assumptions, Signatures) using Provectus templates, and outputs to Google Drive as a Google Doc. Optionally appends a ROM estimate via `--with-rom`.
+
+**Review a SOW:**
+```
+/proagent-delivery:proagent-delivery-review sow-review path/to/sow.md
+```
+Audit an existing SOW for completeness, scope specificity, pricing alignment, timeline realism, team composition, and risk coverage. Produces a structured audit report with section-by-section quality scores and actionable recommendations.
+
 ## Components
 
 | Component | Name | Purpose |
 |-----------|------|---------|
 | Skill | `proagent-delivery:delivery-assistant` | Core skill covering all delivery phases |
+| Skill | `proagent-delivery:rom-estimate` | ROM effort estimation from project docs |
+| Skill | `proagent-delivery:sow-generator` | SOW generation from Slack + Drive context |
 | Command | `proagent-delivery:proagent-delivery-hub` | Command hub and routing |
-| Command | `proagent-delivery:proagent-delivery-run` | Execute delivery workflows (5 modes) |
-| Command | `proagent-delivery:proagent-delivery-review` | Delivery health reviews (4 modes) |
+| Command | `proagent-delivery:proagent-delivery-run` | Execute delivery workflows (11 modes) |
+| Command | `proagent-delivery:proagent-delivery-review` | Delivery health reviews (8 modes) |
 | Agent | `proagent-delivery:delivery-specialist` | Subagent for assessments and reports |
-| Hook | Status update reminder | 3-day freshness check, milestone proximity alert |
+| Agent | `proagent-delivery:sow-context-extractor` | SOW context extraction from Slack + Drive |
+| Hook | Status update reminder | Suggests status report after git commits |
 | Hook | Milestone check | Acceptance criteria and stakeholder notification before release |
 | Hook | Sprint boundary notification | Follow-up actions after planning and retrospective |
+| Hook | SOW output notification | Share SOW with stakeholders after generation |
 
 ### MCP Servers
 
@@ -84,15 +124,3 @@ Map stakeholders using Power/Interest Grid, audit communication cadence, review 
 
 Set the environment variables for the services your team uses. Unused servers will not be started.
 
-## Source Repositories
-
-This plugin synthesizes patterns and content from 8 source repositories:
-
-- **proagent** -- Project-manager role with 5 delivery skills (meeting facilitation, risk assessment, status reporting, stakeholder management, spec creation), weekly standup command, and project charter template
-- **awesome-claude-skills** -- Internal communications skill with 3P update format, company newsletter templates, FAQ response patterns, and general communications guidelines
-- **taches-cc-resources** -- Prioritization and analysis frameworks (Eisenhower matrix for urgent/important classification, Pareto 80/20 analysis, 5 Whys root cause drilling, SWOT mapping, inversion thinking, first principles decomposition), plus todo capture and resume workflows
-- **awos** -- Product definition command and template, product roadmap command and template for milestone-based planning
-- **proagent-repo GUI** -- KPI framework for measuring delivery effectiveness, planning command for generating implementation plans from specifications
-- **ralph-orchestrator** -- Code task listing with status metadata for progress tracking
-- **skills** -- Third-party update templates for external stakeholder communications
-- **specs** -- Business role implementation patterns for delivery practice definition

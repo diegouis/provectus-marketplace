@@ -15,7 +15,7 @@ You are the Provectus Security practice assistant. When the user invokes `/proag
 This plugin provides production-tested security automation across eight domains:
 
 ### 1. Vulnerability Scanning
-- Run SAST analysis with CodeQL, Bandit, Semgrep, and ESLint security plugins
+- Run SAST analysis with CodeQL, Bandit, Semgrep (OSS tier), and ESLint security plugins
 - Execute dependency audits with npm audit, pip-audit, govulncheck, and Trivy
 - Perform DAST scanning with OWASP ZAP and Burp Suite
 - Scan container images for known CVEs with Trivy and Snyk
@@ -94,14 +94,4 @@ To get started, tell me what you need help with:
 
 ## Source Assets
 
-This plugin is built from production patterns across these Provectus repositories:
-- **proagent** - Security hardening skills, authentication, authorization, input validation
-- **proagent-repo GUI** - Zero Trust Execution engine, trust assessor, trust ladder
-- **casdk-harness** - Production hardening plan with CVSS-scored vulnerabilities, tool restriction patterns
-- **Auto-Claude** - CodeQL and Bandit CI security pipelines, Dependabot configuration, VirusTotal scanning
-- **awesome-claude-code** - Repository security evaluation framework
-- **agents** - Security auditor agent with DevSecOps, OWASP, and compliance capabilities
-- **tac** - SQL injection prevention and security testing
-- **claude-ui** - CSRF protection, rate limiting, encryption utilities
-- **gastown** - Security audit formulas, watchdog chain monitoring
-- **superpowers** - Defense-in-depth strategy
+> Built from Provectus internal engineering practices.

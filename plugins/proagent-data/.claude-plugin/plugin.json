@@ -1,7 +1,7 @@
 {
   "name": "proagent-data",
-  "version": "0.2.0",
-  "description": "Provectus Data practice plugin for data pipeline engineering, analytics, data warehousing, dbt transformations, SQL optimization, data quality, schema design, and exploratory data analysis.",
+  "version": "0.3.0",
+  "description": "Provectus Data practice plugin for data pipeline engineering, analytics, data warehousing, dbt transformations, SQL optimization, data quality, schema design, exploratory data analysis, business analytics (KPI dashboards, data storytelling), bioinformatics pipelines (Nextflow, Allotrope), analytics infrastructure, and Excel spreadsheet operations.",
   "author": {
     "name": "diegouis"
   }

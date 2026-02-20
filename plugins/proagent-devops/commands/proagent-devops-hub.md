@@ -74,11 +74,4 @@ To get started, tell me what you need help with:
 
 ## Source Assets
 
-This plugin is built from production patterns across these Provectus repositories:
-- **proagent** - DevOps engineer role definitions and skill sets
-- **casdk-harness** - Docker Compose orchestration, Prometheus monitoring, multi-agent infrastructure
-- **agents** - CI/CD automation, incident response, and Kubernetes operations plugins
-- **Auto-Claude** - Cross-platform CI/CD and release workflows
-- **ralph-orchestrator** - Release management and version bump automation
-- **tac** - Git operations, GitHub API integration, webhook and cron triggers
-- **proagent-repo GUI** - Deployment orchestration, GitHub/GitLab integrations
+> Built from Provectus internal engineering practices.

@@ -1,7 +1,7 @@
 ---
 description: >
   Review delivery health: sprint-health, delivery-risks, timeline,
-  stakeholder-alignment, or estimate-review assessment.
+  stakeholder-alignment, estimate-review, meeting-insights, comms-quality, or sow-review assessment.
 argument-hint: "<mode> [target]"
 allowed-tools: Read, Glob, Grep, Task
 ---
@@ -14,7 +14,12 @@ You are the delivery health review engine for the proagent-delivery plugin. Pars
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `sprint-health`, `delivery-risks`, `timeline`, `stakeholder-alignment`, or `estimate-review`.
+Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `sprint-health`, `delivery-risks`, `timeline`, `stakeholder-alignment`, `estimate-review`, `meeting-insights`, `comms-quality`, or `sow-review`.
+
+**Modes with dedicated files (read and execute the file):**
+- `sow-review` → Read and execute `commands/modes/sow-review.md`
+
+All other modes are defined inline below.
 
 ---
 
@@ -259,7 +264,7 @@ Evaluate stakeholder engagement and communication health.
 
 ### Process
 
-1. **Map current stakeholders (from proagent/roles/project-manager/skills/stakeholder-management):**
+1. **Map current stakeholders:**
    - Identify all stakeholders and their roles (sponsor, product owner, tech lead, end users, etc.)
    - Classify using Power/Interest Grid:
      - Manage Closely (high power, high interest)
@@ -411,3 +416,144 @@ Audit an existing ROM estimate CSV for completeness, sizing accuracy, epic cover
    **[SOLID / NEEDS REFINEMENT / SIGNIFICANT GAPS]**
    [2-3 sentence summary with confidence level]
    ```
+
+---
+
+## Mode: meeting-insights
+
+Analyze meeting transcripts or notes for communication patterns, decision quality, and facilitation effectiveness.
+
+**Announce:** "Starting meeting insights review. I'll analyze communication patterns, decision tracking, and facilitation quality."
+
+### Process
+
+1. **Gather meeting data:**
+   - Find meeting notes, transcripts, or recordings in project files
+   - Check for meeting summaries in Confluence (via Atlassian MCP), Google Docs (via Google Drive MCP), or local files
+   - Identify meeting type: standup, planning, review, retro, stakeholder sync, design review, or ad hoc
+
+2. **Communication pattern analysis:**
+   - **Participation balance:** Are all attendees contributing, or is one person dominating?
+   - **Topic drift:** How often does the conversation diverge from the agenda?
+   - **Decision velocity:** How quickly are decisions made vs. deferred?
+   - **Action item clarity:** Are action items assigned with owners and deadlines?
+   - **Follow-up rate:** What percentage of previous action items were completed?
+
+3. **Decision quality assessment:**
+   - Are decisions documented with context and rationale?
+   - Are decision-makers identified (RACI clarity)?
+   - Are alternatives discussed before deciding?
+   - Are decisions reversible or one-way (and treated accordingly)?
+   - Are open decisions tracked with deadlines?
+
+4. **Facilitation effectiveness:**
+   - Does the meeting start and end on time?
+   - Is there a clear agenda shared in advance?
+   - Are parking lot items captured and scheduled?
+   - Is the meeting outcome proportional to the time invested?
+   - Could this meeting have been an async update?
+
+5. **Output report:**
+   ```
+   ## Meeting Insights Review
+   Review Date: [Date]
+   Meetings Analyzed: [count]
+
+   ### Communication Health
+   | Metric | Score | Notes |
+   |--------|-------|-------|
+   | Participation balance | Green/Yellow/Red | [context] |
+   | Topic focus | Green/Yellow/Red | [context] |
+   | Decision velocity | Green/Yellow/Red | [context] |
+   | Action item clarity | Green/Yellow/Red | [context] |
+   | Follow-up completion | Green/Yellow/Red | [X% of previous items completed] |
+
+   ### Decision Log
+   | Decision | Made By | Date | Alternatives Considered | Status |
+   |----------|---------|------|------------------------|--------|
+
+   ### Facilitation Recommendations
+   1. [Most impactful improvement]
+   2. [Second priority]
+   3. [Third priority]
+
+   ### Meetings That Could Be Async
+   [List any meetings where an async update would be more efficient]
+
+   ### Overall Meeting Health
+   **[EFFECTIVE / NEEDS IMPROVEMENT / INEFFICIENT]**
+   [2-3 sentence summary]
+   ```
+
+---
+
+## Mode: comms-quality
+
+Review the quality and consistency of team communications (status updates, 3P reports, stakeholder emails, Slack messages).
+
+**Announce:** "Starting communications quality review. I'll assess clarity, consistency, tone, and completeness of team communications."
+
+### Process
+
+1. **Gather communications samples:**
+   - Find recent status reports, 3P updates, stakeholder emails, and Slack messages
+   - Check for communication templates and standards in project documentation
+   - Identify the audience for each communication type
+
+2. **Clarity assessment:**
+   - Are updates readable in 30-60 seconds?
+   - Is the bottom line stated upfront (not buried)?
+   - Are metrics data-driven with specific numbers?
+   - Are RAG statuses honest and consistent?
+   - Are next steps actionable with owners and dates?
+
+3. **Consistency check:**
+   - Is the team using a consistent format across updates?
+   - Are communication cadences being met (weekly, bi-weekly, monthly)?
+   - Are all required stakeholders receiving their expected updates?
+   - Is terminology consistent across communications?
+
+4. **Tone and audience fit:**
+   - Is the tone appropriate for the audience (executive vs. team vs. external)?
+   - Are technical details abstracted for non-technical stakeholders?
+   - Is the language matter-of-fact rather than overly optimistic or pessimistic?
+   - Are concerns raised early rather than hidden?
+
+5. **Completeness check:**
+   - Do updates cover progress, plans, and problems?
+   - Are blockers called out with specific asks?
+   - Are wins and recognition included?
+   - Are risks flagged before they become issues?
+
+6. **Output report:**
+   ```
+   ## Communications Quality Review
+   Review Date: [Date]
+   Samples Reviewed: [count]
+
+   ### Quality Scores
+   | Dimension | Score | Notes |
+   |-----------|-------|-------|
+   | Clarity | Green/Yellow/Red | [context] |
+   | Consistency | Green/Yellow/Red | [context] |
+   | Tone/Audience Fit | Green/Yellow/Red | [context] |
+   | Completeness | Green/Yellow/Red | [context] |
+   | Timeliness | Green/Yellow/Red | [context] |
+
+   ### Common Issues
+   - [Most frequent issue across communications]
+   - [Second most frequent]
+
+   ### Best Practices Observed
+   - [What the team is doing well]
+
+   ### Recommendations
+   1. [Most impactful improvement]
+   2. [Second priority]
+   3. [Third priority]
+
+   ### Overall Comms Health
+   **[STRONG / ADEQUATE / NEEDS IMPROVEMENT]**
+   [2-3 sentence summary]
+   ```
+

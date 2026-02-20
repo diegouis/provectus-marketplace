@@ -35,7 +35,7 @@ Audit UI components for quality, reusability, and best practices.
    - **Props Design**: Check for well-typed interfaces, consistent naming (onAction for handlers, isState for booleans), sensible defaults, and JSDoc documentation
    - **Composition Patterns**: Verify proper use of children/slots, compound component patterns, render props, and custom hooks for shared logic
    - **Separation of Concerns**: Flag components mixing business logic with presentation. Container components should handle data; presentation components should handle rendering
-   - **State Management**: Check for state lifted to the appropriate level, avoid prop drilling deeper than 3 levels, proper use of context for shared state (derived from proagent/roles/frontend-engineer/skills/state-management.md)
+   - **State Management**: Check for state lifted to the appropriate level, avoid prop drilling deeper than 3 levels, proper use of context for shared state
    - **Error Handling**: Verify error boundaries for component trees, fallback UI for loading/error states, graceful degradation
    - **Component Size**: Flag components exceeding 300 lines; recommend splitting into sub-components
    - Anti-patterns to detect:
@@ -77,7 +77,7 @@ Deep accessibility review against WCAG 2.1 AA standards.
    - Test arrow key navigation in menus, tabs, and radio groups
    - Verify focus trapping in modals and dialogs (focus should not escape)
    - Check that focus returns to the trigger element when modals/popups close
-   - Verify skip navigation link is present and functional (derived from claude-ui/src/components/CommandPalette.jsx keyboard handling)
+   - Verify skip navigation link is present and functional
 
 3. **Screen Reader Compatibility**
    - Verify all images have descriptive alt text (not "image", not empty for decorative images used with role="presentation")
@@ -178,7 +178,7 @@ Review UI elements against the project's design system and visual patterns.
    - Check that light and dark themes are fully implemented (no hardcoded colors that break in dark mode)
    - Verify theme transitions are smooth (no flash of incorrect theme on load)
    - Check that all component variants work correctly in both themes
-   - Verify theme persistence across page reloads (derived from claude-ui/src/contexts/ThemeContext.jsx)
+   - Verify theme persistence across page reloads
 
 5. **Report**
    Provide a design consistency assessment:

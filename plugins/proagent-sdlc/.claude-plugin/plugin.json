@@ -1,7 +1,7 @@
 {
   "name": "proagent-sdlc",
-  "version": "0.2.0",
-  "description": "End-to-end software development lifecycle management: architecture decisions, code review, testing strategy, release planning, documentation, versioning, and git workflows.",
+  "version": "0.3.0",
+  "description": "End-to-end software development lifecycle management: architecture decisions, code review, testing strategy, release planning, documentation, versioning, git workflows, debugging, spec-driven development (AWOS), plan orchestration (PITER), and multi-agent review pipelines.",
   "author": {
     "name": "diegouis"
   }

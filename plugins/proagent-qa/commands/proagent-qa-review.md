@@ -1,6 +1,6 @@
 ---
-description: Review test quality - audit test suites, analyze coverage gaps, evaluate testing strategy and maturity
-argument-hint: <test suites|coverage|test strategy> [target]
+description: Review test quality - audit test suites, analyze coverage gaps, evaluate testing strategy and maturity, review test plans, audit skill quality
+argument-hint: <test suites|coverage|test strategy|test plan|skill audit> [target]
 allowed-tools: Read, Grep, Glob, Bash
 ---
 
@@ -10,7 +10,7 @@ Review and assess testing quality, coverage, and strategy for the project.
 
 ## Variables
 
-mode: $1 (one of: "test suites", "coverage", "test strategy")
+mode: $1 (one of: "test suites", "coverage", "test strategy", "test plan", "skill audit")
 target: $2 (optional - specific file, directory, or scope to review)
 
 ## Instructions
@@ -116,3 +116,65 @@ Evaluate the overall testing strategy and recommend improvements.
    - Recommended tooling additions or changes
    - Suggested quality gates for the CI/CD pipeline
    - Timeline estimate for implementing recommendations
+
+---
+
+### Mode: test plan
+
+Review and assess an existing test plan or generate a structured test plan from specifications.
+
+Based on patterns from `awesome-claude-code/resources/slash-commands/testing_plan_integration/testing_plan_integration.md` and `proagent-repo/core/templates/validation_workflows/qa-engineer.yaml`.
+
+1. **Analyze Input**
+   - If `target` is a test plan document, read and assess its completeness
+   - If `target` is a specification or feature description, identify testable behaviors
+   - Extract acceptance criteria, edge cases, and non-functional requirements
+
+2. **Evaluate Validation Pyramid Coverage**
+   - Check that the plan includes unit, integration, and E2E test scenarios
+   - Verify the pyramid balance (unit tests should outnumber integration, integration should outnumber E2E)
+   - Identify missing test levels for critical behaviors
+
+3. **Assess Test Data and Environment**
+   - Review test data requirements and fixtures
+   - Check for mock/stub requirements for external dependencies
+   - Evaluate environment configuration needs (mock backends, replay servers)
+
+4. **Report**
+   Provide a test plan assessment:
+   - Completeness score (percentage of acceptance criteria with corresponding tests)
+   - Pyramid balance analysis
+   - List of missing test scenarios by priority
+   - Recommended test data fixtures and mock configurations
+   - Effort estimate for full test plan implementation
+
+---
+
+### Mode: skill audit
+
+Audit the quality and completeness of QA-related skills, commands, and agents.
+
+Based on patterns from `taches-cc-resources/agents/skill-auditor.md` and `taches-cc-resources/commands/audit-skill.md`.
+
+1. **Discover QA Assets**
+   - Locate all QA-related skill files, command files, and agent definitions
+   - If `target` is provided, scope the audit to that specific skill or directory
+   - Check for proper frontmatter, description, and activation triggers
+
+2. **Evaluate Quality**
+   - Verify each skill has clear, actionable instructions
+   - Check for concrete examples rather than generic guidance
+   - Confirm integration points reference real tools and MCP servers
+   - Validate that commands have proper argument hints and error handling
+
+3. **Cross-Reference Coverage**
+   - Compare discovered skills against the QA manifest asset inventory
+   - Identify patterns from source repos not yet captured in skills
+   - Check for redundancy or conflicting guidance between skills
+
+4. **Report**
+   Provide a skill audit report:
+   - Total skills/commands/agents audited
+   - Quality score per asset (1-10)
+   - List of gaps where known patterns lack corresponding skill coverage
+   - Specific recommendations for improvement with priority ranking

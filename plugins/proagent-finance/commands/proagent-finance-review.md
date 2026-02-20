@@ -1,5 +1,5 @@
 ---
-description: "Review and assess financial health: budgets, forecasts, cost-structures, or financial-health"
+description: "Review and assess financial health: budgets, forecasts, cost-structures, financial-health, or budget-variance"
 argument-hint: "<type>"
 allowed-tools: Read, Glob, Grep, Bash, Task
 ---
@@ -12,7 +12,7 @@ You are the financial review and assessment engine for the proagent-finance plug
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `budgets`, `forecasts`, `cost-structures`, or `financial-health`.
+Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `budgets`, `forecasts`, `cost-structures`, `financial-health`, or `budget-variance`.
 
 ---
 
@@ -292,4 +292,85 @@ Comprehensive financial health assessment across margins, liquidity, growth, and
    ### Overall Verdict
    STRONG / STABLE / NEEDS ATTENTION / AT RISK
    [2-3 sentence summary with the single most important action to take]
+   ```
+
+---
+
+## Mode: budget-variance
+
+Dedicated budget variance analysis with detailed drill-down and trend tracking.
+
+**Announce:** "Starting budget variance analysis. I'll compare actuals against budget and flag items needing attention."
+
+### Process
+
+1. **Load data sources:**
+   - Find budget files: `budget-*.csv`, `budget-*.md`, `budgets/`, or user-specified path
+   - Find actuals: expense records, accounting exports, invoice summaries, bank statements
+   - If no budget found, suggest: "No budget document found. Create one with `/proagent-finance-run create-budget`."
+   - If no actuals found, suggest: "No expense data found. Provide accounting exports or run `/proagent-finance-run analyze-costs` first."
+
+2. **Calculate variances:**
+   - For each budget line item, calculate: budgeted amount, actual amount, variance ($), variance (%)
+   - Apply threshold classification:
+     - **On track (green):** Actual within 10% of budget (favorable or neutral)
+     - **Warning (yellow):** Actual 10-20% over budget -- flag for review
+     - **Critical (red):** Actual over 20% of budget -- requires immediate action
+   - Calculate year-to-date cumulative utilization per category
+   - Calculate month-over-month variance trends (improving or worsening)
+
+3. **Run-rate projection:**
+   - For each category, calculate current monthly run-rate from trailing 3-month average
+   - Project to period end: run-rate x remaining months
+   - Compare projected total to budget total
+   - Flag categories where projected spend will exceed annual budget
+   - Calculate months until budget is exhausted at current run-rate
+
+4. **Reallocation analysis:**
+   - Identify categories consistently under budget by >15% (surplus candidates)
+   - Identify categories approaching or exceeding budget (deficit candidates)
+   - Propose specific reallocation: move $X from [under-budget category] to [over-budget category]
+   - Ensure total budget remains unchanged after reallocation
+
+5. **Root cause analysis:**
+   - For each critical or warning variance, investigate probable causes:
+     - One-time expense vs. recurring increase?
+     - Price increase vs. volume increase?
+     - Planned initiative vs. unplanned spend?
+     - Seasonal pattern vs. structural shift?
+   - Recommend corrective action per item
+
+6. **Output report:**
+   ```
+   ## Budget Variance Report - [Period]
+
+   ### Summary
+   | Metric | Value |
+   |--------|-------|
+   | Total Budget | $X |
+   | Total Actual | $X |
+   | Overall Variance | $X (X%) |
+   | Categories On Track | X of Y |
+   | Categories Warning | X |
+   | Categories Critical | X |
+
+   ### Variance Detail
+   | Category | Budget | Actual | Variance ($) | Variance (%) | Status | Trend |
+   |----------|--------|--------|-------------|-------------|--------|-------|
+
+   ### Critical Items (Immediate Action)
+   | Category | Over By | Root Cause | Recommended Action |
+   |----------|---------|------------|-------------------|
+
+   ### Run-Rate Projections
+   | Category | YTD Spend | Run-Rate | Projected Annual | Budget | Projected Variance |
+   |----------|----------|---------|-----------------|--------|-------------------|
+
+   ### Reallocation Recommendations
+   | From Category | To Category | Amount | Rationale |
+   |--------------|------------|--------|-----------|
+
+   ### Verdict
+   WITHIN BUDGET / MINOR OVERRUNS / SIGNIFICANT OVERRUNS / BUDGET AT RISK
+   [Summary with top priority action item]
    ```

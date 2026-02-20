@@ -1,6 +1,6 @@
 ---
 name: data-assistant
-description: Engineering Data Pipelines & Analytics - ETL/ELT design, dbt transformation patterns, data warehousing, SQL optimization, Airflow orchestration, Spark processing, data quality frameworks, data modeling, and exploratory data analysis. Use when performing any data engineering, analytics, or database task.
+description: Engineering Data Pipelines & Analytics - ETL/ELT design, dbt transformation patterns, data warehousing, SQL optimization, Airflow orchestration, Spark processing, data quality frameworks, data modeling, exploratory data analysis, business analytics (KPI dashboards, data storytelling), bioinformatics pipelines (Nextflow, Allotrope), analytics infrastructure, and Excel spreadsheet operations. Use when performing any data engineering, analytics, or database task.
 ---
 
 # Engineering Data Pipelines & Analytics
@@ -17,6 +17,10 @@ Comprehensive data engineering skill covering the full lifecycle of data pipelin
 - Performing exploratory data analysis on datasets
 - Designing database schemas for relational and NoSQL databases
 - Creating data models for analytics and reporting
+- Designing KPI dashboards and data storytelling visualizations for business stakeholders
+- Building bioinformatics pipelines with Nextflow or converting instrument data to Allotrope format
+- Setting up analytics infrastructure for usage tracking and KPI reporting
+- Reading, writing, and transforming Excel spreadsheets
 
 ## Data Pipeline Architecture
 
@@ -32,8 +36,6 @@ Every data pipeline should follow this ordered progression:
 6. **Document** - Update data catalog and lineage metadata
 
 ### Airflow DAG Pattern
-
-Derived from `proagent/infrastructure/analytics/tracker.py` and `proagent/infrastructure/analytics/queries.py`:
 
 ```python
 from datetime import datetime, timedelta
@@ -184,8 +186,6 @@ with DAG(
 ## dbt Transformation Patterns
 
 ### Model Layers (Medallion Architecture)
-
-Derived from `agents/plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md`:
 
 ```
 sources/          Raw data definitions
@@ -552,8 +552,6 @@ dbt ls --select tag:critical     # List models by tag
 
 ### Relational Schema Design Workflow
 
-Derived from `proagent/roles/backend-engineer/skills/database-schema.md`:
-
 1. **Analyze Data Requirements** - Identify entities, attributes, relationships, data volume, and query patterns
 2. **Choose Database Type** - PostgreSQL for structured data with ACID; MongoDB for flexible schema; Redis for caching
 3. **Design Tables** - Create tables with proper primary keys, data types, and normalization to 3NF
@@ -698,8 +696,6 @@ CREATE INDEX idx_fct_sales_order ON fct_sales(order_id);
 
 ### Using EXPLAIN ANALYZE
 
-Derived from `casdk-harness/src/harness/agents/configs/db-sql-expert.md`:
-
 ```sql
 -- Always analyze execution plans for slow queries
 EXPLAIN (ANALYZE, BUFFERS, TIMING)
@@ -802,8 +798,6 @@ GROUP BY user_id, session_id;
 ```
 
 ## PostgreSQL Performance Tuning
-
-Derived from `casdk-harness/src/harness/agents/configs/db-postgres-expert.md`:
 
 ### Memory Configuration
 
@@ -975,8 +969,6 @@ WHERE d.metric_date = CURRENT_DATE - INTERVAL '1 day';
 
 ## Exploratory Data Analysis
 
-Derived from `proagent/roles/data-scientist/skills/exploratory-data-analysis.md`:
-
 ### Systematic EDA Workflow
 
 1. **Load and Inspect** - Check dimensions, column types, memory usage, first/last rows
@@ -1076,6 +1068,73 @@ customer_metrics.write \
     .save("s3://data-warehouse/customer_metrics/")
 ```
 
+## Business Analytics
+
+### KPI Dashboard Design
+
+When designing KPI dashboards, follow these principles from `agents/plugins/business-analytics/skills/kpi-dashboard-design/SKILL.md`:
+
+1. **Define metric hierarchy** - Separate leading indicators (pipeline velocity, conversion rates) from lagging indicators (revenue, churn)
+2. **Choose the right visualization** - Line charts for trends, bar charts for comparisons, scorecards for KPIs, heatmaps for correlations
+3. **Design for the audience** - Executive dashboards show high-level summaries; operational dashboards show drill-down detail
+4. **Set alerting thresholds** - Define green/yellow/red ranges for each KPI based on business targets
+5. **Include time comparisons** - Show period-over-period (WoW, MoM, YoY) changes alongside absolute values
+
+### Data Storytelling
+
+When presenting data insights, follow patterns from `agents/plugins/business-analytics/skills/data-storytelling/SKILL.md`:
+
+1. **Context** - Why does this analysis matter? What question are we answering?
+2. **Key finding** - Lead with the most important insight, supported by data
+3. **Supporting evidence** - Show trends, comparisons, and statistical significance
+4. **Implications** - What should the audience do differently based on this data?
+5. **Next steps** - Recommend concrete actions with expected impact
+
+## Bioinformatics Data Pipelines
+
+### Nextflow Pipeline Development
+
+For genomics and life-sciences pipelines, reference `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/nextflow-development/SKILL.md`:
+
+- Use Nextflow DSL2 for modular, reusable bioinformatics workflows
+- Define processes with input/output channels for parallel execution
+- Configure resource requirements (cpus, memory, time) per process
+- Use containers (Docker/Singularity) for reproducible environments
+- Implement resume capability for fault-tolerant long-running pipelines
+
+### Instrument Data to Allotrope Conversion
+
+For lab instrument data standardization, reference `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/instrument-data-to-allotrope/SKILL.md`:
+
+- Convert vendor-specific instrument output to Allotrope Simple Model (ASM) format
+- Map instrument metadata fields to Allotrope ontology terms
+- Validate converted data against ASM JSON schemas
+- Support common instrument types (plate readers, chromatography, spectroscopy)
+
+## Analytics Infrastructure
+
+Reference scripts in `proagent-repo/infrastructure/analytics/` for internal analytics patterns:
+
+- **tracker.py** - Usage event tracking with structured event schema, batched writes, and async submission
+- **reporter.py** - KPI report generation with scheduled delivery, aggregation windows, and Slack integration
+- **queries.py** - Reusable SQL query library for analytics aggregations, funnel analysis, and cohort retention
+
+## Excel Spreadsheet Operations
+
+Reference `skills/skills/xlsx/SKILL.md` for Excel file handling:
+
+- Read and parse .xlsx files with multi-sheet support
+- Write structured data to Excel with formatting, formulas, and named ranges
+- Transform CSV/database exports into formatted Excel reports
+- Handle large spreadsheets with streaming reads for memory efficiency
+
+## External Subagent References
+
+The following expert subagents from `casdk-harness` can be delegated to for specialized database tasks:
+
+- **db-postgres-expert** (`casdk-harness/src/harness/agents/configs/db-postgres-expert.md`) - Deep PostgreSQL expertise including advanced indexing, partitioning, replication, vacuum tuning, and pg_stat analysis
+- **db-sql-expert** (`casdk-harness/src/harness/agents/configs/db-sql-expert.md`) - Cross-database SQL expertise for complex query authoring, optimization, and migration between database engines
+
 ## Composio App Automations
 
 This plugin integrates with Composio-powered SaaS automation skills via the Rube MCP server. These skills connect to real external services for end-to-end workflow automation.
@@ -1109,8 +1168,6 @@ Add the Rube MCP server to your `.mcp.json`:
 }
 ```
 
-Source: `awesome-claude-skills` Composio app automation skills
-
 ## Visual Diagramming with Excalidraw
 
 Use the Excalidraw MCP server to generate interactive diagrams directly in the conversation. Describe what you need in natural language and Excalidraw renders it as an interactive canvas with hand-drawn style.
@@ -1135,19 +1192,3 @@ Use the Excalidraw MCP server to generate interactive diagrams directly in the c
 - Specify layout direction when it matters (e.g., "left-to-right flow" or "top-down hierarchy")
 - Request specific diagram types (architecture diagram, flowchart, sequence diagram, ER diagram)
 - Iterate — start with the overall structure, then refine details
-
-## Reference Assets
-
-| Asset | Source | Description |
-|-------|--------|-------------|
-| EDA Skill | `proagent/roles/data-scientist/skills/exploratory-data-analysis.md` | Systematic EDA workflow with Python examples |
-| Data Visualization | `proagent/roles/data-scientist/skills/data-visualization.md` | Chart type selection and design best practices |
-| Database Schema Design | `proagent/roles/backend-engineer/skills/database-schema.md` | Relational and NoSQL schema patterns |
-| dbt Transformation Patterns | `agents/plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md` | dbt model layers, testing, macros |
-| SQL Expert Agent | `casdk-harness/src/harness/agents/configs/db-sql-expert.md` | Query optimization and index strategies |
-| PostgreSQL Expert Agent | `casdk-harness/src/harness/agents/configs/db-postgres-expert.md` | PostgreSQL tuning, replication, partitioning |
-| Analytics Queries | `proagent/infrastructure/analytics/queries.py` | SQL analytics query patterns |
-| Analytics Tracker | `proagent/infrastructure/analytics/tracker.py` | Event tracking and metrics collection |
-| Database Model | `claude-ui/server/models/database.js` | SQLite schema design reference |
-| Database Reset | `tac/Code/tac-6/scripts/reset_db.sh` | Database reset and migration scripts |
-| Spreadsheet Skill | `awesome-claude-skills/document-skills/xlsx/SKILL.md` | Spreadsheet manipulation and formulas |

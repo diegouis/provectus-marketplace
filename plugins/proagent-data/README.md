@@ -1,6 +1,6 @@
 # proagent-data
 
-Provectus Data practice plugin for Claude Code. Provides production-tested data pipeline engineering, analytics, data warehousing, dbt transformations, SQL optimization, data quality, and schema design patterns drawn from actual Provectus engineering repositories.
+Provectus Data practice plugin for Claude Code. Provides production-tested data pipeline engineering, analytics, data warehousing, dbt transformations, SQL optimization, data quality, schema design, business analytics (KPI dashboards, data storytelling), bioinformatics pipelines (Nextflow, Allotrope), analytics infrastructure, and Excel spreadsheet patterns drawn from actual Provectus engineering repositories.
 
 ## Installation
 
@@ -63,6 +63,9 @@ Execute data operations:
 /proagent-data-run optimize-queries     # Analyze and optimize SQL query performance
 /proagent-data-run setup-warehouse      # Set up a data warehouse with dimensional modeling
 /proagent-data-run data-quality-check   # Run data quality checks and generate a report
+/proagent-data-run build-dashboard      # Design a KPI dashboard with metrics and visualizations
+/proagent-data-run build-bio-pipeline   # Build a Nextflow bioinformatics pipeline
+/proagent-data-run analytics-infra      # Set up analytics tracking and reporting infrastructure
 ```
 
 ### Review Command
@@ -82,6 +85,9 @@ The review command checks:
 - Airflow DAGs for retry policies, idempotency, and observability
 - Data quality configurations for coverage and alerting
 - Spark jobs for partitioning, caching, and memory management
+- Nextflow pipelines for DSL2 patterns, containers, and resource configuration
+- KPI dashboards for metric definitions, thresholds, and time comparisons
+- Analytics infrastructure for event tracking schemas and reporting pipelines
 
 ### Using the Data Specialist Agent
 
@@ -111,6 +117,20 @@ Use the data-assistant skill to build an incremental dbt model for order events
 - PySpark ETL job with adaptive execution and partition optimization
 - Great Expectations validation suite for comprehensive data quality
 - SQL-based data quality checks for row counts, nulls, integrity, and volume anomalies
+- KPI dashboard design with metric hierarchies, thresholds, and time comparisons
+- Data storytelling framework for presenting insights to business stakeholders
+- Nextflow DSL2 bioinformatics pipelines with containerized processes
+- Allotrope ASM instrument data conversion patterns
+- Analytics infrastructure (event tracking, KPI reporting, SQL query libraries)
+- Excel spreadsheet read/write/transform operations
+
+### External Reference Assets
+- `agents/plugins/data-engineering/` - Data engineer agent, pipeline command, Airflow/dbt/Spark skills
+- `agents/plugins/business-analytics/` - Business analyst agent, KPI dashboard and storytelling skills
+- `casdk-harness/src/harness/agents/configs/` - PostgreSQL expert and SQL expert subagents
+- `proagent-repo/infrastructure/analytics/` - Usage tracker, reporter, and analytics queries
+- `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/` - Nextflow and Allotrope skills
+- `skills/skills/xlsx/SKILL.md` - Excel spreadsheet skill
 
 ### Automated Checks
 - Schema validation hooks that prevent destructive operations (DROP, TRUNCATE without confirmation)
@@ -130,21 +150,8 @@ Use the data-assistant skill to build an incremental dbt model for order events
 | Excalidraw | `excalidraw/excalidraw-mcp` (remote) | Interactive visual diagramming — renders canvases directly in chat via natural language |
 | Rube | `rube.app/mcp` | SaaS automation gateway (Google Sheets, Airtable, Supabase, etc.) |
 
-## Source Repositories
-
-This plugin is built from production patterns across 8 Provectus repositories with 27 total assets (20 high-reuse). Key sources include:
-
-- **proagent** - Data scientist role with EDA, visualization, and statistical analysis skills; analytics infrastructure with tracking, queries, and reporting
-- **casdk-harness** - PostgreSQL expert and SQL expert agent configurations with query optimization, execution plan analysis, indexing strategies, replication, and partitioning
-- **agents** - dbt transformation patterns plugin with model layers, testing, macros, and incremental strategies; business analytics agent
-- **awesome-claude-skills** - Spreadsheet manipulation skill for data processing
-- **specs** - Data role implementation specifications and analytics architecture
-- **tac** - Database reset scripts and migration patterns
-- **claude-ui** - SQLite database model and schema design reference
-- **skills** - Excel spreadsheet creation and editing skill
-
 ## Version
 
-- Plugin version: 0.2.0
+- Plugin version: 0.3.0
 - Category: data
 - Author: Provectus

@@ -1,6 +1,6 @@
 ---
-description: "Review and assess quality: pr, architecture, test-coverage, or release-readiness"
-argument-hint: <type> [target] — types: pr, architecture, test-coverage, release-readiness
+description: "Review and assess quality: pr, architecture, test-coverage, release-readiness, or plan"
+argument-hint: <type> [target] — types: pr, architecture, test-coverage, release-readiness, plan
 allowed-tools: Read, Bash, Glob, Grep
 ---
 
@@ -12,7 +12,7 @@ You are the quality review engine for the proagent-sdlc plugin. Parse the review
 
 ## Mode Detection
 
-Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `pr`, `architecture`, `test-coverage`, or `release-readiness`.
+Parse the first word of `$ARGUMENTS` to determine the review type. If no type is provided, ask the user to choose: `pr`, `architecture`, `test-coverage`, `release-readiness`, or `plan`.
 
 ---
 
@@ -149,7 +149,7 @@ Evaluate test quality, coverage gaps, and testing anti-patterns.
    - Tests that depend on execution order
    - Overly broad assertions (e.g., `expect(result).toBeTruthy()` when specific value should be checked)
 
-4. **Anti-pattern detection (from superpowers/skills/test-driven-development/testing-anti-patterns):**
+4. **Anti-pattern detection:**
    - The Liar: test passes but does not actually validate behavior
    - The Giant: single test that covers too much, impossible to debug on failure
    - The Mockery: so many mocks that the test validates the mocks, not the code
@@ -240,4 +240,57 @@ Check whether a release candidate meets all quality gates for production deploym
 
    ### Verdict
    <READY FOR RELEASE / NOT READY -- with specific blockers to resolve>
+   ```
+
+---
+
+## Mode: plan
+
+Review an implementation plan for completeness, feasibility, and alignment with requirements.
+
+**Announce:** "Starting plan review. I'll assess completeness, task granularity, dependency correctness, and spec alignment."
+
+### Process
+
+1. **Load the plan:**
+   - Find plan files: `plan.md`, `tasks.md`, `task_list.json`, or path specified by the user
+   - If no plan found, suggest creating one via `/proagent-sdlc:run plan`
+
+2. **Completeness check:**
+   - Does the plan cover all requirements from the spec?
+   - Are there acceptance criteria for each feature/task?
+   - Are test steps included for each implementation task?
+   - Are file paths and code references specific (not vague)?
+
+3. **Feasibility check:**
+   - Are task sizes appropriate (2-5 minutes each)?
+   - Are dependencies correctly ordered (no circular dependencies)?
+   - Are there tasks that require unavailable tools or access?
+   - Is the tech stack consistent with the architecture document?
+
+4. **Risk assessment:**
+   - Identify tasks with high complexity or uncertainty
+   - Flag tasks that touch critical paths (auth, data persistence, payment)
+   - Check for missing error handling or rollback steps
+
+5. **Output report:**
+   ```
+   ## Plan Review
+
+   ### Coverage
+   | Requirement | Covered | Task Reference |
+   |-------------|---------|----------------|
+
+   ### Issues
+   | # | Severity | Description | Suggestion |
+   |---|----------|-------------|------------|
+
+   ### Task Quality
+   - Total tasks: N
+   - Well-specified: N (exact files, code, tests)
+   - Needs refinement: N (vague or missing details)
+   - Dependency issues: N
+
+   ### Verdict
+   <READY TO EXECUTE / NEEDS REFINEMENT -- with specific items to address>
    ```

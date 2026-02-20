@@ -1,6 +1,6 @@
 ---
 name: security-assistant
-description: Securing Software & Infrastructure - vulnerability scanning, compliance enforcement, secrets management, encryption, audit logging, threat modeling, OWASP Top 10 protection, and Zero Trust architecture. Use when performing any security assessment, hardening, compliance, or threat analysis task.
+description: Securing Software & Infrastructure - vulnerability scanning (SAST, DAST, XSS, VirusTotal), compliance enforcement (PCI, GDPR, SOC2, HIPAA), secrets management, encryption, audit logging, threat modeling, OWASP Top 10 protection, Zero Trust architecture, agent sandboxing, risk classification, frontend security, and smart contract security. Use when performing any security assessment, hardening, compliance, or threat analysis task.
 ---
 
 # Securing Software & Infrastructure
@@ -19,12 +19,16 @@ Comprehensive security skill covering the full lifecycle of application security
 - Configuring security headers, CORS, CSRF protections
 - Setting up security monitoring, logging, and incident response
 - Hardening containers, Kubernetes clusters, and cloud resources
+- Scanning for XSS vulnerabilities in frontend applications
+- Auditing Solidity smart contracts for Web3 security
+- Classifying risk levels for code changes and pull requests
+- Sandboxing and hardening autonomous agent deployments
+- Running VirusTotal malware scans in CI/CD pipelines
+- Executing security audit workflow formulas
 
 ## Vulnerability Scanning
 
 ### Static Application Security Testing (SAST)
-
-Derived from `Auto-Claude/.github/workflows/quality-security.yml` and `agents/plugins/security-scanning/agents/security-auditor.md`:
 
 Scan source code for security vulnerabilities before deployment:
 
@@ -54,14 +58,43 @@ Scan source code for security vulnerabilities before deployment:
 ```
 
 Additional SAST tools by language:
-- **Python**: Bandit, Semgrep, CodeQL
+- **Python**: Bandit, Semgrep (OSS tier), CodeQL
 - **JavaScript/TypeScript**: ESLint security plugin, Semgrep, CodeQL
 - **Go**: gosec, staticcheck
 - **Java**: SpotBugs with FindSecBugs, PMD
+- **Solidity**: Smart contract security auditing for reentrancy, overflow, and access control vulnerabilities (reference: `agents/plugins/blockchain-web3/skills/solidity-security/SKILL.md`)
+
+For centralized SAST scanning and security hardening commands, see:
+- `agents/plugins/security-scanning/commands/security-sast.md` - Dedicated SAST command
+- `agents/plugins/security-scanning/commands/security-hardening.md` - Security hardening command
+
+### VirusTotal Malware Scanning
+
+Integrate VirusTotal scanning into CI/CD pipelines to detect malicious artifacts before deployment:
+
+```yaml
+# VirusTotal scan workflow (from Auto-Claude)
+# Reference: Auto-Claude/.github/workflows/virustotal-scan.yml
+- name: VirusTotal Scan
+  uses: crazy-max/ghaction-virustotal@v4
+  with:
+    vt_api_key: ${{ secrets.VT_API_KEY }}
+    files: |
+      dist/*.tar.gz
+      dist/*.whl
+```
+
+### XSS Vulnerability Scanning
+
+Dedicated XSS scanning for frontend applications (reference: `agents/plugins/frontend-mobile-security/commands/xss-scan.md`):
+
+- Scan for `innerHTML`, `dangerouslySetInnerHTML`, `v-html` usage without sanitization
+- Detect reflected input in templates and error messages
+- Validate Content Security Policy headers block `unsafe-inline` and `unsafe-eval`
+- Check for DOM-based XSS via `document.write`, `eval`, and `location.href` manipulation
+- Review framework-specific XSS vectors (React, Vue, Angular)
 
 ### Dependency Vulnerability Scanning
-
-Derived from `Auto-Claude/.github/dependabot.yml` and `agents/plugins/security-scanning/agents/security-auditor.md`:
 
 ```yaml
 # Dependabot configuration
@@ -112,8 +145,6 @@ trivy image --severity HIGH,CRITICAL myregistry.io/myapp:latest
 
 ### Dynamic Application Security Testing (DAST)
 
-Derived from `agents/plugins/security-scanning/agents/security-auditor.md`:
-
 - OWASP ZAP for automated web application scanning
 - Burp Suite for interactive security testing
 - Nessus for infrastructure vulnerability assessment
@@ -122,8 +153,6 @@ Derived from `agents/plugins/security-scanning/agents/security-auditor.md`:
 ## Secrets Management
 
 ### Secret Detection and Prevention
-
-Derived from `Auto-Claude/.secretsignore.example` and `proagent/roles/backend-engineer/skills/security-hardening.md`:
 
 Patterns to detect in pre-commit scanning:
 ```
@@ -155,8 +184,6 @@ credentials/
 ```
 
 ### Secure Secrets Storage
-
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md` and `agents/plugins/security-scanning/agents/security-auditor.md`:
 
 ```python
 import os
@@ -193,8 +220,6 @@ Secret rotation policy:
 
 ### STRIDE Methodology
 
-Derived from `agents/plugins/security-scanning/agents/security-auditor.md` and `casdk-harness/docs/HARDENING.md`:
-
 For each component in the system, evaluate:
 
 | Threat | Description | Example Mitigation |
@@ -207,8 +232,6 @@ For each component in the system, evaluate:
 | **Elevation of Privilege** | Gaining unauthorized access | RBAC, least privilege, input validation |
 
 ### Trust Assessment for Agent Operations
-
-Derived from `proagent-repo GUI/core/zte/trust_assessor.py` and `proagent-repo GUI/core/zte/zte_executor.py`:
 
 ```python
 class TaskRisk(Enum):
@@ -243,8 +266,6 @@ For every application, document:
 ## OWASP Top 10 Protection
 
 ### A01: Broken Access Control
-
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
 
 ```python
 from functools import wraps
@@ -291,8 +312,6 @@ def get_order(order_id):
 
 ### A03: Injection
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md` and `tac/Code/tac-6/app/server/core/sql_security.py`:
-
 ```python
 from sqlalchemy import text
 
@@ -320,8 +339,6 @@ Input validation rules:
 
 ### A05: Security Misconfiguration
 
-Derived from `casdk-harness/docs/HARDENING.md`:
-
 Common misconfigurations to check:
 - Default credentials still active
 - Unnecessary features or services enabled
@@ -345,8 +362,6 @@ Common misconfigurations to check:
 
 ### Core Principles
 
-Derived from `proagent-repo GUI/cli/commands/cmd_zte.py` and `agents/plugins/security-scanning/agents/security-auditor.md`:
-
 1. **Never trust, always verify** - Authenticate and authorize every request
 2. **Least privilege access** - Grant minimum permissions needed for each operation
 3. **Assume breach** - Design systems to limit blast radius when compromise occurs
@@ -356,6 +371,7 @@ Derived from `proagent-repo GUI/cli/commands/cmd_zte.py` and `agents/plugins/sec
 
 ```python
 # Trust ladder for progressive agent autonomy
+# Reference: proagent-repo/core/skills/tac/trust-ladder.md
 class TrustLevel(Enum):
     SUPERVISED = 1      # Human reviews every action
     APPROVAL_GATED = 2  # Human approves before execution
@@ -363,6 +379,25 @@ class TrustLevel(Enum):
     AUTONOMOUS = 4      # Full autonomy with periodic audits
     ZERO_TOUCH = 5      # Complete trust with compliance guardrails
 ```
+
+### Trust Assessment Engine
+
+Automated trust level assessment based on task risk (reference: `proagent-repo/core/zte/trust_assessor.py`):
+
+- Evaluate task keywords against risk dictionaries (delete, deploy, migrate, credential, etc.)
+- Score task complexity using architecture, integration, and scope indicators
+- Assign trust level dynamically based on combined risk and complexity score
+- Enforce approval gates when trust level exceeds the agent's current authorization
+
+### Agent Sandboxing and Hardening
+
+Production security for autonomous agents (reference: `casdk-harness/src/harness/security.py`, `casdk-harness/docs/HARDENING.md`):
+
+- Sandbox agent execution with restricted filesystem, network, and process access
+- Enforce permission boundaries: agents cannot escalate beyond their assigned trust level
+- Isolate agent sessions to prevent cross-contamination between tasks
+- Implement resource limits (CPU, memory, execution time) for agent processes
+- Audit all agent actions with immutable logging for post-incident analysis
 
 Access control enforcement:
 - Identity-based access with strong authentication (OAuth 2.0/OIDC, WebAuthn, FIDO2)
@@ -419,8 +454,6 @@ ssl_stapling_verify on;
 
 ### Security Headers
 
-Derived from `claude-ui/server/middleware/csrf.js` and `proagent/roles/backend-engineer/skills/security-hardening.md`:
-
 ```
 Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'
 Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
@@ -432,8 +465,6 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 ```
 
 ### Password Hashing
-
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
 
 ```python
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -457,8 +488,6 @@ Password policy:
 - No password reuse for last 12 passwords
 
 ## Rate Limiting and DoS Protection
-
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md` and `claude-ui/server/middleware/rateLimit.js`:
 
 ```python
 from flask_limiter import Limiter
@@ -515,9 +544,25 @@ def search():
 }
 ```
 
-## Security Checklist
+## Risk Classification for Code Changes
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
+Automated risk scoring for pull requests and code changes (reference: `Auto-Claude/apps/backend/analysis/risk_classifier.py`, `Auto-Claude/apps/backend/analysis/security_scanner.py`):
+
+- Classify code changes by risk level (LOW, MEDIUM, HIGH, CRITICAL) based on files modified, keywords present, and scope of change
+- Flag changes touching authentication, authorization, encryption, or database schema as elevated risk
+- Integrate security scanner module for automated vulnerability detection on changed files
+- Generate risk reports that feed into approval workflows and deployment gates
+
+## Security Audit Workflow Formulas
+
+Structured audit workflows using formula-based automation (reference: `gastown/.beads/formulas/security-audit.formula.toml`):
+
+- Define repeatable security audit steps as workflow formulas
+- Chain scanning, analysis, and reporting steps into automated audit pipelines
+- Track audit findings across iterations with status tracking (open, in-progress, mitigated, accepted)
+- Generate compliance evidence artifacts from audit runs
+
+## Security Checklist
 
 - [ ] Use HTTPS for all communications
 - [ ] Hash passwords with bcrypt/Argon2
@@ -537,30 +582,6 @@ Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
 - [ ] Validate file uploads by type, size, and content
 - [ ] Use Content Security Policy to prevent XSS
 - [ ] Implement proper session management with timeouts
-
-## Reference Assets
-
-| Asset | Source | Description |
-|-------|--------|-------------|
-| Security Hardening Skill | `proagent/roles/backend-engineer/skills/security-hardening.md` | Full application security hardening patterns |
-| Security Auditor Agent | `agents/plugins/security-scanning/agents/security-auditor.md` | DevSecOps, OWASP, compliance frameworks |
-| Trust Assessor | `proagent-repo GUI/core/zte/trust_assessor.py` | Risk assessment engine for task execution |
-| ZTE Executor | `proagent-repo GUI/core/zte/zte_executor.py` | Zero Trust Execution engine |
-| Trust Ladder | `proagent-repo GUI/core/zte/trust_ladder.py` | Progressive autonomy trust levels |
-| Quality Security Workflow | `Auto-Claude/.github/workflows/quality-security.yml` | CodeQL and Bandit security scanning pipeline |
-| Repository Hardening | `casdk-harness/docs/HARDENING.md` | Production security hardening plan with CVSS scoring |
-| SQL Injection Tests | `tac/Code/tac-6/.claude/commands/e2e/test_sql_injection.md` | SQL injection prevention validation |
-| SQL Security Module | `tac/Code/tac-6/app/server/core/sql_security.py` | SQL injection protection implementation |
-| CSRF Middleware | `claude-ui/server/middleware/csrf.js` | CSRF protection middleware |
-| Rate Limiting | `claude-ui/server/middleware/rateLimit.js` | Rate limiting middleware |
-| Encryption Utilities | `claude-ui/server/utils/encryption.js` | Encryption implementation patterns |
-| Evaluate Repository | `awesome-claude-code/.claude/commands/evaluate-repository.md` | Security and quality evaluation of repositories |
-| Tool Restriction Patterns | `casdk-harness/src/harness/plugins/context-engineering/patterns/tool-restriction-patterns.md` | Agent safety patterns |
-| Defense in Depth | `superpowers/skills/systematic-debugging/defense-in-depth.md` | Multi-layer security strategy |
-| Dependabot Config | `Auto-Claude/.github/dependabot.yml` | Automated dependency vulnerability patches |
-| Secrets Ignore | `Auto-Claude/.secretsignore.example` | Secret pattern exclusion template |
-| Security Audit Formula | `gastown/.beads/formulas/security-audit.formula.toml` | Security audit workflow formula |
-| Watchdog Chain | `gastown/docs/design/watchdog-chain.md` | Agent monitoring design |
 
 ## Visual Diagramming with Excalidraw
 
