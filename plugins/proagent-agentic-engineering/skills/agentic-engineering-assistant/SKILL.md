@@ -4,7 +4,8 @@ description: >
   Comprehensive skill for designing, building, orchestrating, and optimizing AI agent systems
   with Claude Code. Covers agent design patterns, multi-agent orchestration, skill/command/hook
   creation, MCP server development, prompt engineering, plugin architecture, agent evaluation,
-  and context engineering best practices.
+  context engineering, autonomous coding loops, multi-backend orchestration, trust/autonomy
+  frameworks, spec-driven development, and thinking model commands.
 
   This skill should be used when the user mentions:
   - Creating agents, skills, commands, hooks, or plugins for Claude Code
@@ -16,6 +17,12 @@ description: >
   - Agentic development workflows (ADW), trust ladder, progressive autonomy
   - Subagent-driven development (SDD), dispatching parallel agents
   - File-based planning with hooks, plan execution with agents
+  - Autonomous coding loops (ralph, casdk-harness, Auto-Claude, gastown)
+  - Multi-backend adapters (Claude, Kiro, Gemini, Codex)
+  - Spec-driven development (AWOS spec/implement/verify, ProAgent SDLC pipeline)
+  - Tool registry, plugin lifecycle, knowledge graph integration
+  - Thinking models, first-principles reasoning, mental model commands
+  - 3-file planning pattern, context handoff, session persistence
 
   Do NOT use for:
   - General software development without an agentic component (use sdlc or backend/frontend skills)
@@ -28,7 +35,7 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, WebFetch, WebSearch
 
 ## Overview
 
-This skill provides comprehensive guidance for building, orchestrating, and optimizing AI agent systems using Claude Code. It synthesizes proven patterns from 19 source repositories containing 612 assets, covering the full lifecycle of agentic engineering: from designing individual agents to orchestrating complex multi-agent workflows.
+This skill provides comprehensive guidance for building, orchestrating, and optimizing AI agent systems using Claude Code, covering the full lifecycle of agentic engineering: from designing individual agents to orchestrating complex multi-agent workflows.
 
 ## Core Domains
 
@@ -36,7 +43,7 @@ This skill provides comprehensive guidance for building, orchestrating, and opti
 
 Create specialized AI agents following Anthropic's sub-agent architecture.
 
-**Key Patterns** (from `casdk-harness/src/harness/plugins/context-engineering/skills/agent-definition-creation/SKILL.md`):
+**Key Patterns**:
 
 - **Single Responsibility**: One agent = one domain. Focused expertise, not general purpose.
 - **Discovery-Optimized Descriptions**: Include concrete `<example>` dialogues with `<commentary>` in the YAML `description` field.
@@ -52,20 +59,18 @@ Create specialized AI agents following Anthropic's sub-agent architecture.
 | Infrastructure | Bash, Read, Write | Docker engineer, K8s expert |
 | Orchestration | Task, Read, Write | Project planner, workflow coordinator |
 
-**Reference Agents** (from `casdk-harness/src/harness/agents/configs/`):
-- `dev-python-expert.md` -- Python/FastAPI development expert
-- `dev-typescript-expert.md` -- TypeScript development expert
-- `dev-react-expert.md` -- React development expert
-- `dev-code-review-expert.md` -- Automated code review expert
-- `infra-docker-engineer.md` -- Docker infrastructure engineer
-- `infra-k8s-engineer.md` -- Kubernetes engineer
-- `test-sdet-expert.md` -- SDET agent for testing strategies
-
-**Additional Agent References**:
-- `ralph-orchestrator/.claude/agents/code-assist.md` -- Code assist agent with Explore-Plan-Code-Commit workflow
-- `superpowers/agents/code-reviewer.md` -- Code review subagent
-- `taches-cc-resources/agents/skill-auditor.md` -- Skill quality auditor
-- `agents/plugins/conductor/agents/conductor.md` -- Workflow orchestration conductor
+**Agent Archetypes and Examples**:
+- Python/FastAPI development expert
+- TypeScript development expert
+- React development expert
+- Automated code review expert
+- Docker infrastructure engineer
+- Kubernetes engineer
+- SDET agent for testing strategies
+- Code assist agent with Explore-Plan-Code-Commit workflow
+- Code review subagent
+- Skill quality auditor
+- Workflow orchestration conductor
 
 **Agent Definition Structure**:
 
@@ -108,7 +113,7 @@ You are a [role description] specializing in [domain].
 
 Create model-invoked autonomous capabilities that Claude activates based on context.
 
-**Key Patterns** (from `awesome-claude-skills/skill-creator/SKILL.md` and `casdk-harness/src/harness/plugins/context-engineering/skills/skill-creation/SKILL.md`):
+**Key Patterns**:
 
 - **Progressive Disclosure**: Three-level loading -- metadata (~100 words), SKILL.md body (<5k words), bundled resources (unlimited).
 - **Discovery Optimization**: The `description` field determines when Claude uses the skill. Include trigger terms, activation scenarios, and scope boundaries.
@@ -125,7 +130,7 @@ skill-name/
 └── examples/                # Optional: Usage examples
 ```
 
-**Skill Creation Process** (from `awesome-claude-skills/skill-creator/SKILL.md`):
+**Skill Creation Process**:
 
 1. **Understand** -- Gather concrete usage examples and trigger scenarios
 2. **Plan** -- Identify reusable resources (scripts, references, assets)
@@ -134,22 +139,22 @@ skill-name/
 5. **Package** -- Validate and distribute
 6. **Iterate** -- Refine based on real usage
 
-**Reference Skills**:
-- `superpowers/skills/writing-skills/SKILL.md` -- Meta-skill for creating new skills
-- `taches-cc-resources/skills/create-agent-skills/SKILL.md` -- Build new agent skills from descriptions
-- `superpowers/skills/brainstorming/SKILL.md` -- Socratic design refinement before coding
-- `superpowers/skills/writing-plans/SKILL.md` -- Break work into 2-5 minute tasks
-- `superpowers/skills/test-driven-development/SKILL.md` -- RED-GREEN-REFACTOR TDD cycle
-- `superpowers/skills/verification-before-completion/SKILL.md` -- Evidence-based verification
-- `planning-with-files/skills/planning-with-files/SKILL.md` -- Manus-style file-based planning with hooks
-- `ralph-orchestrator/.claude/skills/pdd/SKILL.md` -- Prompt-Driven Development
-- `ralph-orchestrator/.claude/skills/eval/SKILL.md` -- Conversational evaluation framework
+**Skill Examples**:
+- Meta-skill for creating new skills
+- Build new agent skills from descriptions
+- Socratic design refinement before coding
+- Break work into 2-5 minute tasks
+- RED-GREEN-REFACTOR TDD cycle
+- Evidence-based verification
+- Manus-style file-based planning with hooks
+- Prompt-Driven Development
+- Conversational evaluation framework
 
 ### 3. Command Creation
 
 Create user-invoked slash commands as reusable prompt templates.
 
-**Key Patterns** (from `casdk-harness/src/harness/plugins/context-engineering/skills/command-creation/SKILL.md`):
+**Key Patterns**:
 
 - **Argument Handling**: `$ARGUMENTS` (all args), `$1, $2` (positional), `${1:-default}` (defaults)
 - **File References**: `@file` includes file contents in the prompt
@@ -161,24 +166,24 @@ Create user-invoked slash commands as reusable prompt templates.
 - Personal: `~/.claude/commands/command-name.md`
 - Plugin: `plugin-name/commands/command-name.md`
 
-**Reference Commands**:
-- `taches-cc-resources/commands/create-agent-skill.md` -- Invoke skill creation
-- `taches-cc-resources/commands/create-slash-command.md` -- Build custom slash commands
-- `taches-cc-resources/commands/create-subagent.md` -- Build specialized Claude instances
-- `taches-cc-resources/commands/create-hook.md` -- Build event-driven hooks
-- `taches-cc-resources/commands/create-prompt.md` -- Generate optimized prompts
-- `superpowers/commands/brainstorm.md` -- Socratic design refinement
-- `superpowers/commands/write-plan.md` -- Write detailed implementation plans
-- `superpowers/commands/execute-plan.md` -- Execute plans with human checkpoints
-- `awos/commands/implement.md` -- Lead implementation agent
-- `awos/commands/verify.md` -- Verify implementation against acceptance criteria
-- `casdk-harness/src/harness/plugins/context-engineering/commands/create-agent.md` -- Create new agent definitions interactively
+**Command Examples**:
+- Invoke skill creation
+- Build custom slash commands
+- Build specialized Claude instances
+- Build event-driven hooks
+- Generate optimized prompts
+- Socratic design refinement
+- Write detailed implementation plans
+- Execute plans with human checkpoints
+- Lead implementation agent
+- Verify implementation against acceptance criteria
+- Create new agent definitions interactively
 
 ### 4. Hook Configuration
 
 Create lifecycle event automation for deterministic control.
 
-**Key Patterns** (from `casdk-harness/src/harness/plugins/context-engineering/skills/hook-configuration/SKILL.md`):
+**Key Patterns**:
 
 **Ten Lifecycle Events**:
 
@@ -218,18 +223,18 @@ Create lifecycle event automation for deterministic control.
 
 **Hook Input**: JSON via stdin. Use `jq` to extract: `.tool_input.file_path`, `.tool_input.command`, `.tool_name`, `.session_id`, `.cwd`.
 
-**Reference Hooks**:
-- `superpowers/hooks/hooks.json` -- SessionStart hook for loading context
-- `planning-with-files/.cursor/hooks.json` -- PreToolUse/PostToolUse/Stop hooks for file-based planning
-- `tac/Code/tac-6/.claude/hooks/pre_tool_use.py` -- Pre-validation guardrails
-- `tac/Code/tac-6/.claude/hooks/post_tool_use.py` -- Post-processing and logging
-- `tac/Code/tac-6/.claude/hooks/stop.py` -- Graceful session termination
+**Hook Examples**:
+- SessionStart hook for loading context
+- PreToolUse/PostToolUse/Stop hooks for file-based planning
+- Pre-validation guardrails
+- Post-processing and logging
+- Graceful session termination
 
 ### 5. Plugin Development
 
 Bundle agents, skills, commands, hooks, and MCP servers into distributable plugins.
 
-**Key Patterns** (from `casdk-harness/src/harness/plugins/context-engineering/skills/plugin-development/SKILL.md`):
+**Key Patterns**:
 
 **Plugin Structure**:
 
@@ -257,15 +262,15 @@ plugin-name/
 - `/plugin install https://github.com/user/plugin.git` -- From Git
 - `.claude/settings.json` plugins config -- Project-level auto-install
 
-**Reference Plugins**:
-- `casdk-harness/src/harness/plugins/context-engineering/` -- Context engineering plugin (5 skills, 1 agent, 1 command)
-- `casdk-harness/src/harness/plugins/research-team/` -- Research team plugin (3 agents, 1 skill, 1 command)
+**Plugin Examples**:
+- Context engineering plugin (5 skills, 1 agent, 1 command)
+- Research team plugin (3 agents, 1 skill, 1 command)
 
 ### 6. MCP Server Development
 
 Build Model Context Protocol servers to connect Claude to external services.
 
-**Key Patterns** (from `awesome-claude-skills/mcp-builder/SKILL.md`):
+**Key Patterns**:
 
 **Four-Phase Process**:
 
@@ -286,19 +291,95 @@ Build Model Context Protocol servers to connect Claude to external services.
 **Python**: Use FastMCP with Pydantic v2 models, `@mcp.tool` decorator
 **TypeScript**: Use MCP TypeScript SDK with Zod schemas, `server.registerTool`
 
-**Reference MCP Configs**:
-- `casdk-harness/src/harness/config/.mcp.json` -- Playwright and Puppeteer MCP servers
-- `tac/Code/tac-6/.mcp.json` -- Playwright MCP for E2E testing
-- `proagent-repo GUI/mcp_servers/gdrive/server.py` -- Google Drive MCP server
+**MCP Configuration Examples**:
+- Playwright and Puppeteer MCP servers
+- Playwright MCP for E2E testing
+- Google Drive MCP server
 
-### Autonomous Coding Loop Bootstrap
-The `setup-ralph` skill (from `taches-cc-resources`) provides a pattern for bootstrapping autonomous coding loops — configuring an agent to iteratively explore, plan, implement, and commit code changes with minimal human intervention. Reference this pattern when building agents that need sustained autonomous operation.
+### Autonomous Coding Loop Frameworks
+
+Four production-grade autonomous loop implementations exist in the ecosystem:
+
+**ralph-orchestrator** (Rust):
+- Core event loop engine (`crates/ralph-core/src/event_loop/mod.rs`) drives the explore-plan-code-commit cycle
+- AI agent iteration loop runner (`crates/ralph-cli/src/loop_runner.rs`) manages multi-turn autonomous sessions
+- Configurable orchestration presets (`presets/feature.yml`) define phase sequences, exit conditions, and tool permissions
+- Multi-backend adapters supporting Claude, Kiro, Gemini, and Codex as interchangeable LLM backends
+
+**casdk-harness** (Python):
+- `AgentSession` (`src/harness/agent.py`) provides Claude SDK integration with MCP support and lifecycle management
+- Autonomous mode orchestration (`src/harness/autonomous.py`) for self-directed task completion
+- Plugin lifecycle management (`src/harness/plugin_manager.py`) with discovery, namespacing, and hot-reload
+- Bundled plugins: context-engineering (context-engineer agent), research-team (lead-research-coordinator agent)
+
+**Auto-Claude** (Python):
+- Autonomous multi-agent coding framework with main agent pipeline (`apps/backend/agent.py`)
+- Tool registry (`apps/backend/agents/tools_pkg/registry.py`) for dynamic agent capability management
+- Graphiti knowledge graph integration (`apps/backend/context/graphiti_integration.py`) for persistent context across sessions
+
+**gastown** (Go):
+- Multi-agent orchestration CLI (`cmd/gt/main.go`) with molecule-based workflow composition
+- Workflow molecules (`internal/beads/molecule.go`) as composable units of agent coordination
+- Design workflow formulas (`.beads/formulas/design.formula.toml`) for declarative orchestration
+
+### Context Engineering Patterns
+
+**3-File Planning Pattern** (planning-with-files):
+- `/plan` command (`commands/plan.md`) initiates structured planning sessions
+- Planning skill (`skills/planning-with-files/SKILL.md`) uses three files: plan, progress tracker, and output log
+- Hook-driven plan execution tracks progress automatically through file existence detection
+
+**Context Priming** (awesome-claude-code):
+- Context priming slash command (`resources/slash-commands/context-prime/context-prime.md`) loads relevant context at session start
+
+**Context Engineering Plugin** (casdk-harness):
+- Dedicated context-engineer agent (`src/harness/plugins/context-engineering/agents/context-engineer.md`) for managing context windows
+- Research team coordinator (`src/harness/plugins/research-team/agents/lead-research-coordinator.md`) for multi-agent research workflows
+
+**Context Handoff** (taches-cc-resources):
+- Setup-ralph skill (`skills/setup-ralph/SKILL.md`) for bootstrapping autonomous loop context
+- First-principles thinking model (`commands/consider/first-principles.md`) for structured reasoning before implementation
+
+### Spec-Driven Development Workflows
+
+**AWOS** (spec-to-implementation pipeline):
+- `/architecture` command (`claude/commands/architecture.md`) generates system architecture documentation
+- `/spec` command (`claude/commands/spec.md`) produces functional specifications from requirements
+- `/implement` command (`claude/commands/implement.md`) builds features from specs
+- `/verify` command (`claude/commands/verify.md`) validates implementation against spec acceptance criteria
+
+**ProAgent SDLC Pipeline** (proagent-repo):
+- CLI entry point (`cli.py`) with TAC, SDLC, and ZTE command groups
+- 5-stage pipeline orchestrator (`core/orchestration/sdlc/pipeline.py`): Requirements, Design, Implementation, Testing, Deployment
+- ZTE trust ladder (`core/zte/trust_ladder.py`): 5 levels of progressive autonomy (Observer, Assistant, Collaborator, Delegator, Autonomous)
+
+### Extended Skill Library
+
+Skills discovered across external repositories:
+
+| Skill | Source Repo | Description |
+|-------|-------------|-------------|
+| subagent-driven-development | superpowers | Fresh subagent per task with two-stage review |
+| dispatching-parallel-agents | superpowers | One agent per independent domain, verify no conflicts |
+| systematic-debugging | superpowers | Root cause tracing with hypothesis-driven investigation |
+| artifacts-builder | awesome-claude-skills | Interactive artifacts builder for rich outputs |
+| connect-apps | awesome-claude-skills | 500+ app integration via Composio SDK |
+| mcp-builder | awesome-claude-skills | MCP server scaffolding and development |
+| skill-creator | awesome-claude-skills | Meta-skill for creating new Claude skills |
+| create-agent-skills | taches-cc-resources | Skill for creating new agent skills from descriptions |
+| create-mcp-servers | taches-cc-resources | MCP server builder with best practices |
+| setup-ralph | taches-cc-resources | Bootstrap ralph autonomous loop configuration |
+| context-driven-development | agents (conductor) | Context-driven development patterns |
+| workflow-patterns | agents (conductor) | Workflow orchestration pattern library |
+| prompt-engineering-patterns | agents (llm-application-dev) | LLM prompt optimization techniques |
+| langchain-architecture | agents (llm-application-dev) | LangChain architecture patterns for agent systems |
+| planning-with-files | planning-with-files | 3-file planning pattern with hook-driven tracking |
 
 ### 7. Multi-Agent Orchestration
 
 Design and implement multi-agent systems for complex workflows.
 
-**Orchestration Patterns** (from `casdk-harness/src/harness/plugins/context-engineering/patterns/multi-agent-orchestration.md`):
+**Orchestration Patterns**:
 
 | Pattern | When to Use | Example |
 |---------|-------------|---------|
@@ -312,26 +393,26 @@ Design and implement multi-agent systems for complex workflows.
 - **Shared Context**: Agents communicate through shared files
 - **Message Passing**: Orchestrator maintains message queue
 
-**Subagent-Driven Development** (from `superpowers/skills/subagent-driven-development/SKILL.md`):
+**Subagent-Driven Development**:
 - Fresh subagent per task (no context pollution)
 - Two-stage review: spec compliance first, then code quality
 - Implementer + spec reviewer + code quality reviewer per task
 - Controller extracts all tasks upfront, provides full text to each subagent
 
-**Parallel Agent Dispatch** (from `superpowers/skills/dispatching-parallel-agents/SKILL.md`):
+**Parallel Agent Dispatch**:
 - One agent per independent problem domain
 - Focused prompts with specific scope, clear goals, constraints, and expected output
 - Review and integrate results after all agents return
 - Verify fixes do not conflict before running full test suite
 
-**Reference Orchestration Patterns**:
-- `root-claude-config/.claude/commands/implement_mul-agent.md` -- Multi-agent implementation orchestrator
-- `awos/commands/implement.md` -- Lead implementation agent
-- `ralph-orchestrator/.claude/skills/code-assist/SKILL.md` -- Explore-Plan-Code-Commit workflow
+**Orchestration Examples**:
+- Multi-agent implementation orchestrator
+- Lead implementation agent
+- Explore-Plan-Code-Commit workflow
 
 ## Agent Teams Orchestration
 
-The Agent Teams plugin (from `agents/plugins/agent-teams/`) provides production-ready patterns for multi-agent coordination using Claude Code's native Task tool:
+Production-ready patterns for multi-agent coordination using Claude Code's native Task tool:
 
 ### Multi-Reviewer Code Review
 Assign each reviewer a specific quality dimension (security, performance, architecture, testing, accessibility) and run them in parallel. Deduplicate findings using merge rules:
@@ -351,50 +432,66 @@ The cardinal rule: **one owner per file**. When files must be shared, designate 
 - **team-debugger**: Hypothesis investigator that gathers evidence
 - **team-implementer**: Parallel builder respecting file ownership boundaries
 
-Source: `agents/plugins/agent-teams/` (v1.0.2)
+### Marketplace Orchestration Commands
+
+Commands from the agents marketplace for multi-agent coordination:
+- **multi-agent-optimize** (`plugins/agent-orchestration/commands/multi-agent-optimize.md`): Optimize multi-agent workflow performance
+- **team-spawn** (`plugins/agent-teams/commands/team-spawn.md`): Spawn agent teams for parallel work
+- **team-delegate** (`plugins/agent-teams/commands/team-delegate.md`): Delegate tasks across agent teams
+- **prompt-optimize** (`plugins/llm-application-dev/commands/prompt-optimize.md`): Optimize LLM prompts for agent systems
+- **context-manager agent** (`plugins/agent-orchestration/agents/context-manager.md`): Manage context across multi-agent orchestration
+- **conductor-validator** (`plugins/conductor/agents/conductor-validator.md`): Validate conductor workflow definitions
 
 ### 8. Prompt Engineering and Context Engineering
 
 Design effective prompts and manage context for optimal agent performance.
 
-**Agentic Development Workflow (ADW)** (from `proagent-repo GUI/core/skills/tac/adw.md`):
+**Agentic Development Workflow (ADW)**:
 - Structured workflow for agent-assisted development
 - Phases: Explore, Plan, Code, Commit
 - Progressive context building
 
-**Trust Ladder** (from `proagent-repo GUI/core/skills/tac/trust-ladder.md`):
-- Progressive agent autonomy model
+**Trust Ladder** (ProAgent ZTE -- `proagent-repo core/zte/trust_ladder.py`):
+- Progressive agent autonomy model with 5 levels
 - Levels: Observer -> Assistant -> Collaborator -> Delegator -> Autonomous
 - Increase trust as agent demonstrates competence
+- Each level unlocks additional tool permissions and reduces confirmation gates
+- Gastown escalation system provides complementary trust management for multi-agent teams
 
-**Core Four TAC Principles** (from `proagent-repo GUI/core/skills/tac/core-four.md`):
+**Core Four TAC Principles**:
 - Task framing, autonomy calibration, context management, review cadence
 
-**Prompt-Driven Development** (from `ralph-orchestrator/.claude/skills/pdd/SKILL.md`):
+**Prompt-Driven Development**:
 - Treat prompts as first-class engineering artifacts
 - Version control, review, and iterate on prompts
 - Evaluate prompt effectiveness with structured criteria
 
-**Session Handoff** (from `gastown/.claude/skills/handoff/SKILL.md`):
+**Session Handoff**:
 - Context preservation between sessions
 - State serialization and recovery
 - Checkpoint management
+- Setup-ralph skill (`taches-cc-resources skills/setup-ralph/SKILL.md`) for bootstrapping loop context
+
+**Thinking Model Commands** (taches-cc-resources):
+- First-principles reasoning (`commands/consider/first-principles.md`) for structured decomposition before implementation
+- Apply mental models to agent design decisions, architecture tradeoffs, and debugging strategies
+- Use structured thinking before committing to orchestration patterns or agent architectures
 
 ### 9. Agent Evaluation
 
 Test and evaluate agent system effectiveness.
 
-**Evaluation Approaches** (from `ralph-orchestrator/.claude/skills/eval/SKILL.md`):
+**Evaluation Approaches**:
 - Conversational evaluation framework
 - Task-based assessment with clear success criteria
 - Multi-dimensional scoring (accuracy, completeness, efficiency)
 
-**MCP Server Evaluations** (from `awesome-claude-skills/mcp-builder/SKILL.md`):
+**MCP Server Evaluations**:
 - Create 10 evaluation questions per MCP server
 - Requirements: independent, read-only, complex, realistic, verifiable, stable
 - XML output format with `<qa_pair>` elements
 
-**Verification Before Completion** (from `superpowers/skills/verification-before-completion/SKILL.md`):
+**Verification Before Completion**:
 - Evidence-based verification before declaring success
 - Run tests, check outputs, validate against requirements
 - Never rely on assumptions about what was done
@@ -448,6 +545,26 @@ Test and evaluate agent system effectiveness.
 5. Test locally with `/plugin install /path/to/plugin`
 6. Verify all components load and no naming conflicts
 7. Version with semver and distribute via marketplace or Git
+
+### Bootstrap an Autonomous Coding Loop
+
+1. Choose framework: ralph-orchestrator (Rust, multi-backend), casdk-harness (Python, Claude SDK native), Auto-Claude (Python, knowledge graph), or gastown (Go, molecule workflows)
+2. Configure orchestration preset (ralph `presets/feature.yml`) or autonomous mode (casdk `autonomous.py`)
+3. Set up tool registry with required capabilities and permissions
+4. Define exit conditions (test pass, build success, coverage threshold)
+5. Configure trust level (ZTE trust ladder) to control autonomous scope
+6. Set up context persistence (Graphiti knowledge graph for Auto-Claude, session files for casdk)
+7. Add confirmation gates at critical decision points (spec approval, deployment)
+8. Monitor loop execution with logging and checkpoint files
+
+### Run Spec-Driven Development
+
+1. Generate architecture documentation (`/architecture` command pattern from AWOS)
+2. Produce functional specification with acceptance criteria (`/spec` command pattern)
+3. Route through SDLC pipeline stages (ProAgent `core/orchestration/sdlc/pipeline.py`)
+4. Implement features from specs (`/implement` command pattern)
+5. Verify implementation against spec acceptance criteria (`/verify` command pattern)
+6. Use confirmation gates between stages (AWOS `AWOS_SPEC_REFINEMENT` pattern)
 
 ### Build an MCP Server
 
@@ -527,7 +644,7 @@ Test and evaluate agent system effectiveness.
 
 ## AWOS Plugin Architecture Reference
 
-The AWOS workflow plugin (from `casdk-harness/src/harness/plugins/awos_workflow/`) demonstrates production-ready multi-agent plugin design:
+The AWOS workflow plugin demonstrates production-ready multi-agent plugin design:
 
 ### Key Patterns
 - **Shared `lib/` module**: Common utilities (`session.py`, `step_detector.py`) consolidated into a reusable library used by all 8 agents
@@ -550,7 +667,7 @@ The AWOS workflow plugin (from `casdk-harness/src/harness/plugins/awos_workflow/
 
 ## Mandatory Confirmation Pattern
 
-For multi-step autonomous workflows, implement mandatory user confirmation gates to prevent autonomous runaway (from AWOS workflow best practices):
+For multi-step autonomous workflows, implement mandatory user confirmation gates to prevent autonomous runaway:
 
 ### Pattern
 After each significant step in an autonomous workflow:
@@ -592,8 +709,6 @@ Add the Rube MCP server for Composio tool access:
   "url": "https://rube.app/mcp"
 }
 ```
-
-Source: `awesome-claude-skills/composio-sdk/SKILL.md` (28 detailed rule files covering session management, authentication, CRUD patterns, and multi-tenancy)
 
 ## Decision Matrix
 

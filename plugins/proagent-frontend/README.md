@@ -164,16 +164,7 @@ The plugin is built around these components:
 
 ## Source Attribution
 
-This plugin synthesizes patterns and practices from the following Provectus repositories:
-
-- **Auto-Claude**: Design system architecture with React 19, Vite 7, Tailwind CSS 4, component library (Avatar, Badge, Button, Card), theme constants, useTheme hook, pre-commit configuration
-- **awesome-claude-skills**: Artifacts builder (React/Tailwind/shadcn), brand guidelines, canvas design, theme factory
-- **casdk-harness**: TypeScript expert and React expert agent configurations
-- **claude-ui**: React 18/Vite application architecture, component patterns (ArtifactPanel, CommandPalette, SettingsModal, ModelSelector), ThemeContext (light/dark/auto), AuthContext, service worker, PWA manifest
-- **proagent**: Frontend engineer role definition, component design skills, state management strategies, responsive design implementation
-- **proagent-repo GUI**: Frontend validation workflow configuration
-- **skills**: Algorithmic art (JavaScript Canvas), canvas design with bundled fonts, frontend design, theme factory with 10 presets (modern-minimalist, midnight-galaxy), web artifacts builder, Slack GIF creator
-- **agents**: WCAG accessibility audit patterns, TDD workflow plugins
+> Built from Provectus internal engineering practices.
 
 ## License
 

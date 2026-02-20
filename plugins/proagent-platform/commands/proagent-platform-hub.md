@@ -6,63 +6,64 @@ allowed-tools: Read, Grep, Glob
 
 You are a platform engineering catalog navigator. Help the user explore available platform assets.
 
-## Available Platform Assets (127 total, 80 high-reuse)
+## Available Platform Assets
 
-### Skills (14)
-- **connect-apps** (awesome-claude-skills) - Composio-powered app connections for Claude Code
-- **file-organizer** (awesome-claude-skills) - Intelligent file and folder organization
-- **skill-creator** (skills) - Meta-skill for creating new Claude skills
-- **skill-share** (awesome-claude-skills) - Share and discover Claude Skills
-- **template-skill** (awesome-claude-skills) - Standard SKILL.md template
-- **system-design** (proagent) - System design and architecture decisions
-- **cloud-architecture** (proagent) - Cloud architecture patterns
-- **architecture-documentation** (proagent) - Architecture documentation
-- **information-architecture** (proagent) - Information architecture and content organization
-- **maturity-model** (proagent) - Agentic coding maturity model
-- **templating** (proagent) - Templating strategies for reusable patterns
-- **mcp-builder** (skills) - MCP server creation guide
-- **docx/pdf/pptx** (skills) - Document creation and manipulation
+### Skills
+- **connect-apps** - Composio-powered app connections for Claude Code
+- **file-organizer** - Intelligent file and folder organization
+- **skill-creator** - Meta-skill for creating new Claude skills
+- **skill-share** - Share and discover Claude Skills
+- **template-skill** - Standard SKILL.md template
+- **system-design** - System design and architecture decisions
+- **cloud-architecture** - Cloud architecture patterns
+- **architecture-documentation** - Architecture documentation
+- **information-architecture** - Information architecture and content organization
+- **maturity-model** - Agentic coding maturity model
+- **templating** - Templating strategies for reusable patterns
+- **mcp-builder** - MCP server creation guide
+- **docx/pdf/pptx** - Document creation and manipulation
 
-### Commands (5)
-- **skill_create** (proagent) - Create skills via interactive interview
-- **spec_extract** (proagent) - Extract specs from Slack/Google Docs/transcripts
-- **open-source** (taches-cc-resources) - Open source project research
+### Commands
+- **skill_create** - Create skills via interactive interview
+- **spec_extract** - Extract specs from Slack/Google Docs/transcripts
+- **open-source** - Open source project research
 
-### Scripts & Tools (30+)
-- **plugin_manager.py** (casdk-harness) - Plugin discovery and manifest parsing
-- **config.py** (casdk-harness) - Pydantic-based config with env loading
-- **cli.py** (casdk-harness) - Rich CLI formatting
-- **slack.py** (proagent) - Slack integration connector
-- **google_drive.py** (proagent) - Google Drive integration
-- **github.py** (proagent) - GitHub integration
-- **gitlab.py** (proagent) - GitLab integration
-- **discovery.py** (proagent) - Auto-discover skills from external repos
-- **extractor.py** (proagent) - Extract reusable patterns from repos
-- **mcp/client.py** (proagent) - MCP client connector
-- **mcp/manager.py** (proagent) - MCP server lifecycle manager
-- **init_skill.py** (skills) - Skill initialization script
-- **package_skill.py** (skills) - Skill packaging for distribution
-- **setup-agentic-coding.sh** (root-setup) - macOS dev environment setup
+### Scripts & Tools
+- **plugin_manager.py** - Plugin discovery and manifest parsing
+- **config.py** - Pydantic-based config with env loading
+- **cli.py** - Rich CLI formatting
+- **slack.py** - Slack integration connector
+- **google_drive.py** - Google Drive integration
+- **github.py** - GitHub integration
+- **gitlab.py** - GitLab integration
+- **discovery.py** - Auto-discover skills from external repos
+- **extractor.py** - Extract reusable patterns from repos
+- **mcp/client.py** - MCP client connector
+- **mcp/manager.py** - MCP server lifecycle manager
+- **init_skill.py** - Skill initialization script
+- **package_skill.py** - Skill packaging for distribution
+- **setup-agentic-coding.sh** - macOS dev environment setup
 
-### Templates (3)
-- **skill-template.md** (proagent) - Standard skill template
-- **command-template.md** (proagent) - Standard command template
-- **SKILL.md** (skills) - Official skill template from Anthropic
+### Templates
+- **skill-template.md** - Standard skill template
+- **command-template.md** - Standard command template
+- **SKILL.md** - Official skill template from Anthropic
 
-### MCP Servers (1)
-- **gdrive/server.py** (proagent) - Google Drive MCP server
+### MCP Servers
+- **gdrive/server.py** - Google Drive MCP server
 
-### Documentation (12)
-- Ecosystem catalogs (awesome-claude-code, awesome-claude-skills)
+### Documentation
+- Ecosystem catalogs and framework docs
 - AWOS framework documentation
 - ProAgent framework docs
-- Plugin system design (gastown)
-- 72-plugin catalog (agents)
+- Plugin system design
 - Architecture documentation
 - ProAgent specification
 - MCP best practices
 
 ### Integrations
 - GitHub, GitLab, Slack, AWS, GCP
+
+> Built from Provectus internal engineering practices.
 
 To explore a specific asset, ask about it by name or category. Use `$ARGUMENTS` to filter by type (skills, commands, scripts, templates, docs).

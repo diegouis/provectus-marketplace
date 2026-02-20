@@ -1,7 +1,7 @@
 {
   "name": "proagent-devops",
-  "version": "0.2.0",
-  "description": "Provectus DevOps practice plugin for CI/CD pipelines, container orchestration, infrastructure as code, monitoring, incident response, and cloud operations across AWS and GCP.",
+  "version": "0.3.0",
+  "description": "Provectus DevOps practice plugin for CI/CD pipelines, container orchestration, infrastructure as code, monitoring and observability, incident response, cloud cost optimization, secrets management, GitOps workflows, and multi-cloud operations across AWS and GCP.",
   "author": {
     "name": "diegouis"
   }

@@ -27,7 +27,6 @@ For each agent, evaluate:
 - **Model Selection**: Is the model appropriate? (opus for complex reasoning, sonnet for balanced, haiku for simple)
 - **System Prompt Quality**: Does it include Core Responsibilities, Approach, and Constraints sections?
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/agent-definition-creation/SKILL.md`
 
 ### 2. Skills (`skills/*/SKILL.md`, `.claude/skills/*/SKILL.md`)
 
@@ -44,7 +43,6 @@ For each skill, evaluate:
 - **Supporting Files**: Are scripts/, references/, assets/ organized properly?
 - **References**: Do all referenced files actually exist?
 
-Reference: `awesome-claude-skills/skill-creator/SKILL.md`, `casdk-harness/src/harness/plugins/context-engineering/skills/skill-creation/SKILL.md`
 
 ### 3. Commands (`.claude/commands/*.md`, `commands/*.md`)
 
@@ -56,7 +54,6 @@ For each command, evaluate:
 - **Scope**: Is the command appropriately simple (not trying to be an agent)?
 - **Documentation**: Is usage clear from the command content?
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/command-creation/SKILL.md`
 
 ### 4. Hooks (`.claude/settings.json`, `hooks/hooks.json`)
 
@@ -73,7 +70,6 @@ For each hook configuration, evaluate:
 - **Exit Codes**: For PreToolUse hooks, are exit codes correct (0=allow, 2=block)?
 - **Blocking Logic**: Is blocking used only on events that support it?
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/hook-configuration/SKILL.md`
 
 ### 5. Plugins (`.claude-plugin/plugin.json`)
 
@@ -86,7 +82,6 @@ For each plugin, evaluate:
 - **Documentation**: Does README.md include installation and usage instructions?
 - **CLAUDE.md**: Does it provide context for Claude sessions?
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/plugin-development/SKILL.md`
 
 ### 6. MCP Configurations (`.mcp.json`)
 
@@ -96,9 +91,33 @@ For each MCP configuration, evaluate:
 - **Environment Variables**: Are secrets referenced via `${VAR}` (not hardcoded)?
 - **Tool Design**: Are tools workflow-oriented (not raw API wrappers)?
 
-Reference: `awesome-claude-skills/mcp-builder/SKILL.md`
 
-### 7. Orchestration Patterns
+### 7. Autonomous Loop Configurations
+
+If autonomous coding loop configurations exist, evaluate:
+
+- **Framework Selection**: Is the chosen framework (ralph, casdk-harness, Auto-Claude, gastown) appropriate for the project language and requirements?
+- **Exit Conditions**: Are exit conditions defined (test pass, build success, coverage threshold)?
+- **Trust Level**: Is the ZTE trust level appropriate for the team's comfort and the task's risk?
+- **Confirmation Gates**: Are critical decision points gated (spec approval, deployment)?
+- **Context Persistence**: Is context preserved across loop iterations (session files, knowledge graph, checkpoints)?
+- **Preset Configuration**: For ralph-orchestrator, is the orchestration preset (`presets/feature.yml`) properly configured?
+- **Tool Registry**: For Auto-Claude, is the tool registry (`tools_pkg/registry.py`) scoped to needed capabilities?
+- **Multi-Backend**: If using multiple LLM backends, are adapters configured correctly?
+
+
+### 8. Spec-Driven Workflows
+
+If spec-driven development workflows exist, evaluate:
+
+- **Spec Completeness**: Does the functional specification include acceptance criteria?
+- **Pipeline Coverage**: Are all SDLC stages addressed (Requirements, Design, Implementation, Testing, Deployment)?
+- **Confirmation Gates**: Are approval gates configured between critical stages?
+- **Verification**: Does the verify step check each acceptance criterion individually?
+- **Traceability**: Can each implementation artifact be traced back to a spec requirement?
+
+
+### 9. Orchestration Patterns
 
 If multi-agent workflows exist, evaluate:
 
@@ -109,7 +128,6 @@ If multi-agent workflows exist, evaluate:
 - **Token Budget**: Is token usage considered and budgeted?
 - **Progress Tracking**: Is there logging and checkpoint support?
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/patterns/multi-agent-orchestration.md`
 
 ## Output Format
 

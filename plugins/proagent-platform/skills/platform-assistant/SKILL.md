@@ -15,17 +15,23 @@ description: >
   (6) Create reusable template libraries for teams,
   (7) Design platform-as-product strategies,
   (8) Build skill or agent plugins for Claude Code,
-  (9) Set up developer portals or self-service infrastructure.
+  (9) Set up developer portals or self-service infrastructure,
+  (10) Generate documents (PDF, DOCX, PPTX, XLSX) from templates or data,
+  (11) Set up reproducible development environments (Nix, devenv),
+  (12) Orchestrate installation and setup workflows,
+  (13) Organize and manage files across project structures.
 
   Activate when user mentions: platform engineering, developer experience, DX, service catalog,
   golden path, scaffolding, internal tooling, MCP server, plugin system, template library,
   developer portal, self-service, platform team, internal developer platform, IDP, Backstage,
-  developer productivity, paved roads, starter kits, project templates, CLI tools, SDK design.
+  developer productivity, paved roads, starter kits, project templates, CLI tools, SDK design,
+  document generation, PDF, DOCX, PPTX, XLSX, reproducible environments, Nix, devenv,
+  setup orchestration, file organization, README generation, plugin management.
 ---
 
 # Building Developer Platforms & Tooling
 
-Platform engineering creates self-service capabilities that reduce cognitive load and accelerate delivery. This skill covers the full spectrum: from designing golden paths and service catalogs to building MCP servers and plugin systems.
+Platform engineering creates self-service capabilities that reduce cognitive load and accelerate delivery. This skill covers the full spectrum: from designing golden paths and service catalogs to building MCP servers and plugin systems, document generation, reproducible environments, and setup orchestration. Sourced from 107 assets across 13 repositories.
 
 ## Core Capabilities
 
@@ -49,11 +55,15 @@ Design and implement service catalogs that encode organizational best practices 
 
 Create scaffolding systems that generate production-ready project structures.
 
-**Template architecture (from `proagent/core/skills/tac/templating.md`):**
+**Template architecture:**
 - Prompt templates: reusable instruction patterns for common tasks
 - Code templates: standard patterns for API endpoints, models, tests, migrations
 - Workflow templates: stage-based sequences (plan, implement, validate, deploy)
 - Review templates: checklists for consistent quality assessment
+
+**Language-specific scaffolding commands:**
+- Python projects: `agents/plugins/python-development/commands/python-scaffold.md` with packaging skill at `agents/plugins/python-development/skills/python-packaging/SKILL.md`
+- TypeScript projects: `agents/plugins/javascript-typescript/commands/typescript-scaffold.md`
 
 **Scaffolding workflow:**
 1. Identify repetition across teams and projects
@@ -85,7 +95,7 @@ Build Model Context Protocol servers that enable LLM-to-service integration (see
 
 ### 4. Plugin System Architecture
 
-Design and implement plugin systems for extensibility (from `casdk-harness/src/harness/plugin_manager.py`).
+Design and implement plugin systems for extensibility.
 
 **Plugin anatomy:**
 ```
@@ -119,14 +129,14 @@ Evaluate and improve developer workflows, toolchains, and self-service capabilit
 - Automate repetitive setup with scripts (see `root-setup/setup-agentic-coding.sh`)
 - Provide CLI wrappers for complex operations
 - Create development containers with pre-configured environments
-- Build integration connectors for Slack, GitHub, GitLab, Google Drive (from `proagent/core/integrations/`)
+- Build integration connectors for Slack, GitHub, GitLab, Google Drive
 - Implement maturity models to track DX improvements (see `proagent/core/skills/tac/maturity-model.md`)
 
 ### 6. Internal CLI & SDK Design
 
 Build internal command-line tools and SDKs that wrap platform capabilities.
 
-**CLI design patterns (from `casdk-harness/src/harness/cli.py`):**
+**CLI design patterns:**
 - Rich formatting for terminal output
 - Pydantic-based configuration with environment variable loading
 - Command registries with argument substitution
@@ -138,10 +148,54 @@ Build internal command-line tools and SDKs that wrap platform capabilities.
 - Consistent error handling with actionable messages
 - Auto-discovery of extensions and plugins
 
+### 7. Document Generation
+
+Generate professional documents from templates and data using the awesome-claude-skills document generation patterns.
+
+**Supported formats:**
+- **PDF**: Reports, proposals, technical specifications (see `awesome-claude-skills/document-skills/pdf/SKILL.md`)
+- **DOCX**: Word documents for RFCs, design docs, SOWs (see `awesome-claude-skills/document-skills/docx/SKILL.md`)
+- **PPTX**: Presentations for architecture reviews, sprint demos, stakeholder updates (see `awesome-claude-skills/document-skills/pptx/SKILL.md`)
+- **XLSX**: Spreadsheets for capacity planning, cost analysis, inventory tracking (see `awesome-claude-skills/document-skills/xlsx/SKILL.md`)
+
+**Usage patterns:**
+- Generate platform documentation artifacts from structured data
+- Create template-driven reports for DX assessments and tooling audits
+- Produce stakeholder-ready presentations from technical analysis
+
+### 8. Reproducible Environments & Setup Orchestration
+
+Build reproducible development environments and automate installation workflows.
+
+**Nix/devenv patterns** (from ralph-orchestrator and gastown):
+- Declarative environment definitions with Nix flakes
+- Per-project development shells with all dependencies pinned
+- Cross-platform reproducibility (macOS and Linux)
+
+**Setup orchestration** (from awos `src/core/setup-orchestrator.js`):
+- Multi-step installation workflows with dependency resolution
+- Idempotent setup scripts that can be re-run safely
+- Environment validation and health checks post-setup
+
+**Plugin management systems:**
+- casdk-harness `src/harness/plugin_manager.py`: Python-based plugin lifecycle (discovery, loading, initialization, teardown)
+- gastown `internal/cmd/plugin.go`: Go-based plugin management CLI commands
+- agents `docs/plugins.md`: Plugin system documentation and marketplace usage patterns
+
+### 9. File Organization & README Generation
+
+**File organization** (from `awesome-claude-skills/file-organizer/SKILL.md`):
+- Automated project structure organization following convention-based layouts
+- Cross-directory file sorting and categorization
+
+**README generation** (from `awesome-claude-code/scripts/readme/generate_readme.py`):
+- Multi-style README generation from project analysis
+- Automated documentation extraction from code and config files
+
 ## Workflow: Building a New Platform Component
 
 1. **Understand the need**: interview stakeholders, gather concrete usage examples
-2. **Survey existing assets**: search for similar patterns in the catalog (127 platform assets across 19 repos)
+2. **Survey existing assets**: search for similar patterns in the catalog (107 platform assets across 13 repos)
 3. **Design the component**: choose the right abstraction (template, skill, command, MCP server, plugin)
 4. **Implement**: follow the appropriate pattern from this skill
 5. **Validate**: run template validation, DX feedback checks, and user testing
@@ -176,20 +230,6 @@ Add the Rube MCP server to your `.mcp.json`:
   "url": "https://rube.app/mcp"
 }
 ```
-
-Source: `awesome-claude-skills` Composio app automation skills
-
-## Reference Assets
-
-Key Provectus platform assets for deeper guidance:
-- `skills/skill-creator/SKILL.md` - Meta-skill for creating new Claude skills
-- `skills/mcp-builder/SKILL.md` - MCP server development guide with TypeScript/Python patterns
-- `proagent/core/skills/tac/templating.md` - Template strategies for reusable patterns
-- `proagent/core/skills/tac/maturity-model.md` - Agentic coding maturity model
-- `casdk-harness/src/harness/plugin_manager.py` - Plugin discovery and lifecycle management
-- `proagent/core/integrations/` - Slack, GitHub, GitLab, Google Drive connectors
-- `proagent/external/discovery.py` - Auto-discover skills from external repositories
-- `proagent/external/extractor.py` - Extract reusable patterns from repositories
 
 ## Visual Diagramming with Excalidraw
 

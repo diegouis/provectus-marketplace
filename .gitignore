@@ -19,6 +19,8 @@ node_modules/
 # Secrets — never commit tokens or credentials
 *.pem
 *.key
+*.p12
+*.pfx
 credentials.json
 .zip
 .jsont

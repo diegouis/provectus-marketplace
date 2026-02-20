@@ -34,6 +34,9 @@ When no specific target is provided, scan for these files and review all that ar
 | 8 | `*/services/*.py`, `*/services/*.ts` | Business logic review |
 | 9 | `prisma/schema.prisma`, `alembic/versions/*.py` | Schema definition review |
 | 10 | `docker-compose*.yml`, `Dockerfile` | Service infrastructure review |
+| 11 | `*/events/*.py`, `*/events/*.ts` | Event sourcing / CQRS review |
+| 12 | `*/sagas/*.py`, `*/sagas/*.ts` | Saga orchestration review |
+| 13 | `*/mcp/*.py`, `*/mcp/*.ts`, `mcp-server.*` | MCP server review |
 
 ### API Endpoint Review
 
@@ -142,6 +145,50 @@ Check for these issues following patterns from `proagent/roles/backend-engineer/
 - API keys and secrets use secure generation and rotation
 - Security headers set (X-Frame-Options, X-Content-Type-Options, CSP)
 - Logging does not include passwords, tokens, or PII
+
+### CQRS and Event Sourcing Review
+
+Check for these issues following patterns from `agents/plugins/backend-development/skills/cqrs-implementation/SKILL.md` and `agents/plugins/backend-development/skills/saga-orchestration/SKILL.md`:
+
+**Event Store:**
+- Events are immutable and append-only
+- Event schemas include version for evolution
+- Aggregate IDs and sequence numbers present on all events
+- Snapshot strategy implemented for aggregates with many events
+
+**Command Handlers:**
+- Commands validated before processing
+- Idempotency handled (duplicate command detection)
+- Domain events published after successful command execution
+- Aggregate boundaries respected (no cross-aggregate transactions)
+
+**Projections:**
+- Read models are eventually consistent with clear lag monitoring
+- Projection handlers are idempotent (safe to replay)
+- Rebuild mechanism exists for corrupted or new projections
+
+**Saga Orchestration:**
+- Every saga step has a compensating action
+- Saga state is persisted for crash recovery
+- Timeout handling for long-running sagas
+- Dead letter handling for failed compensations
+- No distributed transactions spanning multiple aggregates without saga
+
+### MCP Server Review
+
+Check for these issues following patterns from `taches-cc-resources/skills/create-mcp-servers/SKILL.md`:
+
+**Tool Safety:**
+- Input schemas defined with JSON Schema validation
+- Database tools restricted to read-only queries (no DROP, DELETE, UPDATE without safeguards)
+- External API calls have timeout limits
+- Sensitive data not exposed in tool responses
+
+**Server Configuration:**
+- Transport configured correctly (stdio, SSE, or HTTP)
+- Error responses use structured MCP error format
+- Server capabilities declared accurately in manifest
+- Environment variables used for secrets, not hardcoded
 
 ### Performance Review
 

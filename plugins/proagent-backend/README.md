@@ -8,14 +8,17 @@ Copy the `proagent-backend/` directory into your Claude Code plugins directory o
 
 ## What It Does
 
-This plugin equips Claude with specialized backend engineering knowledge drawn from real Provectus repositories. It covers:
+This plugin equips Claude with specialized backend engineering knowledge drawn from 83 assets across 10 Provectus repositories (`agents`, `Auto-Claude`, `casdk-harness`, `claude-ui`, `gastown`, `proagent-repo`, `provectus-marketplace`, `ralph-orchestrator`, `skills`, `taches-cc-resources`). It covers:
 
-- **API Design** - REST, GraphQL, and gRPC API creation with proper resource modeling, pagination, error handling, and documentation
-- **Database Schema Engineering** - PostgreSQL and MongoDB schema design with normalization, constraints, indexes, migrations, and query optimization
+- **API Design** - REST, GraphQL, and gRPC API creation with proper resource modeling, pagination, error handling, and documentation; Fastify+tRPC type-safe APIs
+- **Database Schema Engineering** - PostgreSQL (deep expertise), MongoDB, SQLite schema design with normalization, constraints, indexes, migrations, and query optimization
 - **Microservices Architecture** - Service boundary definition, inter-service communication, resilience patterns, and event-driven design
+- **CQRS and Event Sourcing** - Command/query separation, event stores, projections, saga orchestration (choreography and orchestration)
 - **Authentication and Authorization** - JWT, OAuth2, RBAC, password hashing, rate limiting, and security hardening
 - **Caching and Queues** - Redis caching, message queue integration, background job processing
 - **Performance Optimization** - N+1 query fixes, index tuning, connection pooling, async I/O, and streaming
+- **MCP Server Development** - Building MCP servers in Python and TypeScript for exposing backend tools to LLM clients
+- **Framework Specialists** - FastAPI, Django, Express, Fastify+tRPC, Go (Gin/Echo/Chi), Rust streaming adapters
 
 ## Commands
 
@@ -27,7 +30,9 @@ This plugin equips Claude with specialized backend engineering knowledge drawn f
 | `/proagent-backend-run build-service` | Create a complete microservice with API, data, and infra layers |
 | `/proagent-backend-run setup-auth` | Add JWT/OAuth2 authentication and RBAC authorization |
 | `/proagent-backend-run optimize-queries` | Profile and optimize database queries and caching |
-| `/proagent-backend-review` | Review backend code for API design, security, performance, and architecture |
+| `/proagent-backend-run implement-cqrs` | Implement CQRS, event sourcing, and saga orchestration |
+| `/proagent-backend-run create-mcp-server` | Build an MCP server in Python or TypeScript |
+| `/proagent-backend-review` | Review backend code for API design, security, performance, CQRS, and MCP servers |
 
 ## Plugin Structure
 
@@ -53,19 +58,7 @@ proagent-backend/
 
 ## Source Repositories
 
-This plugin synthesizes patterns from the following Provectus engineering repositories:
-
-| Repository | Assets Used |
-|-----------|-------------|
-| **proagent** | Backend engineer role with API design, database schema, security hardening, performance optimization, and code review skills |
-| **agents** | Backend architect agent, API design principles plugin with FastAPI patterns and DataLoader |
-| **casdk-harness** | Python/FastAPI expert agent, Node.js and Go expert agents, API development harness |
-| **claude-ui** | Express server with SSE streaming, session-based authentication, SQLite database model |
-| **tac** | SQL injection protection module, NL-to-SQL LLM processor |
-| **skills** | MCP server references for Node.js and Python |
-| **proagent-repo GUI** | Backend validation workflows |
-| **specs** | Developer role implementation specifications |
-| **awesome-claude-skills** | MCP builder guide for API integration servers |
+Built from 10 Provectus internal repositories: `agents`, `Auto-Claude`, `casdk-harness`, `claude-ui`, `gastown`, `proagent-repo`, `provectus-marketplace`, `ralph-orchestrator`, `skills`, `taches-cc-resources`. Total: 83 cataloged assets (50 newly discovered in latest scan). Key external assets include CQRS and saga orchestration patterns from `agents`, MCP server development patterns from `taches-cc-resources` and `casdk-harness`, Fastify+tRPC stack from `ralph-orchestrator`, Express reference implementation from `claude-ui`, and framework specialists from `agents`.
 
 ## Hooks
 
@@ -91,4 +84,4 @@ The plugin includes pre-tool validation hooks that check:
 
 ## Version
 
-0.2.0
+0.3.0

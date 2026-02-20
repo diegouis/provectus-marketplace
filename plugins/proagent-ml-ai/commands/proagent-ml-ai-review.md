@@ -36,6 +36,10 @@ When no specific target is provided, scan for these files and review all that ar
 | 8 | `requirements.txt`, `setup.py`, `pyproject.toml` | Dependency review |
 | 9 | `MLproject`, `**/config*.yaml` | Configuration review |
 | 10 | `**/data/*.py`, `**/dataset*.py` | Data loading and validation review |
+| 11 | `**/meta_prompt*.py`, `**/meta-prompt*.md` | Meta-prompt quality review |
+| 12 | `**/graphiti*.py`, `**/knowledge_graph*.py` | Knowledge graph integration review |
+| 13 | `**/llm_judge*.py`, `**/judge*.py` | LLM judge evaluation review |
+| 14 | `**/pipeline*.yaml`, `**/validation*.yaml` | ML pipeline validation workflow review |
 
 ### Model Architecture Review
 
@@ -158,6 +162,76 @@ Check for these issues:
 - Data versioning is in place (DVC, LakeFS, or manual versioning)
 - Data lineage is documented (source, transformations, filtering criteria)
 - Personally identifiable information (PII) is handled appropriately
+
+### Knowledge Graph Review
+
+Check for these issues:
+
+**Schema Design:**
+- Entity types are well-defined and non-overlapping
+- Relationships capture meaningful domain connections
+- Episode types match the source data formats
+- Graph schema supports the target retrieval use cases
+
+**Data Quality:**
+- Entity resolution handles duplicates and near-duplicates correctly
+- Source attribution is maintained for all knowledge entries
+- Knowledge is up-to-date and versioned
+- Graph connectivity is sufficient (no isolated subgraphs without justification)
+
+**Retrieval Quality:**
+- Search queries return relevant results for target use cases
+- Relevance scoring aligns with human judgment
+- Retrieval latency meets application requirements
+- Hybrid retrieval (graph + vector) is considered where appropriate
+
+### Meta-Prompt Review
+
+Check for these issues:
+
+**Role Clarity:**
+- Role definition is specific and unambiguous
+- Domain knowledge boundaries are clearly stated
+- Behavioral constraints are actionable and testable
+- Output format expectations are well-specified
+
+**Quality:**
+- Few-shot examples are representative and diverse
+- Constraints do not conflict with each other
+- The meta-prompt produces consistent, high-quality outputs
+- Edge cases and failure modes are addressed
+
+### LLM Judge Evaluation Review
+
+Check for these issues:
+
+**Criteria Design:**
+- Evaluation criteria are clearly defined with anchored scoring rubrics
+- Criteria cover all relevant quality dimensions
+- Scoring scales are consistent and unambiguous
+- Reference answers (if used) are high-quality and validated
+
+**Judge Reliability:**
+- Judge model is appropriate for the evaluation task
+- Judge prompt avoids position bias and verbosity bias
+- Inter-rater reliability is assessed (multiple judge runs agree)
+- Edge cases and adversarial inputs are tested
+
+### ML Pipeline Validation Review
+
+Check for these issues:
+
+**Gate Completeness:**
+- All critical stages have validation gates (data, training, evaluation, deployment)
+- Thresholds are appropriate for the problem domain
+- Gate failures produce actionable error messages
+- Manual override process is documented for exceptional cases
+
+**Workflow Integration:**
+- Validation runs automatically in CI/CD pipeline
+- Gate results are logged and traceable
+- Pipeline promotion requires all gates to pass
+- Rollback triggers are defined for post-deployment failures
 
 ## Output Format
 

@@ -1,11 +1,11 @@
 ---
 name: backend-assistant
-description: Building Scalable Backend Services - APIs (REST, GraphQL, gRPC), database schema engineering, microservices architecture, authentication and authorization, message queues, caching strategies, and performance optimization. Use when performing any backend development, API design, database design, or service architecture task.
+description: Building Scalable Backend Services - APIs (REST, GraphQL, gRPC), database schema engineering, microservices architecture, CQRS/event-sourcing, saga orchestration, authentication and authorization, message queues, caching strategies, performance optimization, and MCP server development. Use when performing any backend development, API design, database design, service architecture, or MCP server creation task.
 ---
 
 # Building Scalable Backend Services
 
-Comprehensive backend engineering skill covering the full lifecycle of API design, database schema engineering, microservices architecture, authentication, caching, and performance optimization. Built from production-tested patterns across Provectus engineering teams.
+Comprehensive backend engineering skill covering the full lifecycle of API design, database schema engineering, microservices architecture, CQRS/event-sourcing, saga orchestration, authentication, caching, performance optimization, and MCP server development. Built from 83 production-tested assets across 10 Provectus engineering repositories including `agents`, `casdk-harness`, `claude-ui`, `ralph-orchestrator`, `taches-cc-resources`, and `provectus-marketplace`.
 
 ## When to Use This Skill
 
@@ -17,12 +17,14 @@ Comprehensive backend engineering skill covering the full lifecycle of API desig
 - Implementing caching layers (Redis, Memcached, HTTP caching)
 - Optimizing database queries, fixing N+1 problems, and improving response times
 - Reviewing backend code for security vulnerabilities and performance issues
+- Implementing CQRS with separate read/write models following `agents/plugins/backend-development/skills/cqrs-implementation/SKILL.md`
+- Orchestrating distributed transactions with saga patterns from `agents/plugins/backend-development/skills/saga-orchestration/SKILL.md`
+- Building MCP servers in Python and TypeScript following `taches-cc-resources/skills/create-mcp-servers/SKILL.md`
+- Scaffolding Fastify+tRPC backends based on `ralph-orchestrator/backend/ralph-web-server/package.json`
 
 ## API Design
 
 ### RESTful API Design
-
-Derived from `proagent/roles/backend-engineer/skills/api-design.md` and `agents/plugins/backend-development/skills/api-design-principles/SKILL.md`:
 
 **Resource Modeling:**
 - Resources are nouns (users, orders, products), never verbs
@@ -45,8 +47,6 @@ POST   /api/v1/products/{id}/reviews # Create review for product
 ```
 
 **Pagination Pattern:**
-
-Derived from `agents/plugins/backend-development/skills/api-design-principles/SKILL.md`:
 
 ```python
 from fastapi import FastAPI, Query
@@ -94,8 +94,6 @@ async def list_products(
 
 **Error Response Pattern:**
 
-Derived from `proagent/roles/backend-engineer/skills/api-design.md`:
-
 ```python
 from fastapi import HTTPException, status
 
@@ -133,8 +131,6 @@ async def get_user(user_id: str):
 ```
 
 ### GraphQL API Design
-
-Derived from `proagent/roles/backend-engineer/skills/api-design.md` and `agents/plugins/backend-development/skills/api-design-principles/SKILL.md`:
 
 **Schema-First Design:**
 
@@ -218,8 +214,6 @@ type Error {
 
 **DataLoader for N+1 Prevention:**
 
-Derived from `agents/plugins/backend-development/skills/api-design-principles/SKILL.md`:
-
 ```python
 from aiodataloader import DataLoader
 
@@ -239,8 +233,6 @@ class OrdersByUserLoader(DataLoader):
 ```
 
 ### gRPC Service Design
-
-Derived from `agents/plugins/backend-development/agents/backend-architect.md`:
 
 ```protobuf
 syntax = "proto3";
@@ -295,8 +287,6 @@ message ListOrdersResponse {
 ## Database Schema Engineering
 
 ### Relational Database Design (PostgreSQL)
-
-Derived from `proagent/roles/backend-engineer/skills/database-schema.md`:
 
 **Complete E-Commerce Schema:**
 
@@ -407,8 +397,6 @@ CREATE TRIGGER update_orders_updated_at BEFORE UPDATE ON orders
 
 ### Document Database Design (MongoDB)
 
-Derived from `proagent/roles/backend-engineer/skills/database-schema.md`:
-
 ```javascript
 // Users collection - embedding addresses for read performance
 {
@@ -484,8 +472,6 @@ db.orders.createIndex({ "createdAt": -1 });
 
 ### JWT Authentication with Refresh Tokens
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
-
 ```python
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
@@ -551,8 +537,6 @@ def login(username, password):
 
 ### Role-Based Access Control (RBAC)
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
-
 ```python
 from functools import wraps
 from flask import g, jsonify, request
@@ -591,8 +575,6 @@ def get_all_users():
 
 ### Rate Limiting
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
-
 ```python
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -628,8 +610,6 @@ def ratelimit_handler(e):
 ## Caching Strategies
 
 ### Redis Caching with Invalidation
-
-Derived from `proagent/roles/backend-engineer/skills/performance-optimization.md`:
 
 ```python
 import redis
@@ -683,8 +663,6 @@ def update_product(product_id):
 
 ### Fixing N+1 Query Problems
 
-Derived from `proagent/roles/backend-engineer/skills/performance-optimization.md`:
-
 ```python
 # BEFORE: 1001 queries for 1000 users (~5000ms)
 @app.route('/api/v1/users')
@@ -721,8 +699,6 @@ def get_users_fast():
 
 ### Query Optimization with Indexes
 
-Derived from `proagent/roles/backend-engineer/skills/performance-optimization.md`:
-
 ```sql
 -- BEFORE: Sequential scan, 2500ms
 SELECT * FROM orders
@@ -745,8 +721,6 @@ WHERE status = 'completed';
 ```
 
 ### Async Parallel Requests
-
-Derived from `proagent/roles/backend-engineer/skills/performance-optimization.md`:
 
 ```python
 import asyncio
@@ -778,8 +752,6 @@ async def get_user_dashboard(user_id):
 
 ### Connection Pooling
 
-Derived from `proagent/roles/backend-engineer/skills/performance-optimization.md`:
-
 ```python
 from psycopg2 import pool
 
@@ -810,16 +782,12 @@ def get_user(user_id):
 
 ### Service Boundaries (Domain-Driven Design)
 
-Derived from `agents/plugins/backend-development/agents/backend-architect.md`:
-
 - Define bounded contexts based on business domains (Orders, Users, Payments, Inventory)
 - Each service owns its data store (database-per-service pattern)
 - Services communicate via well-defined API contracts
 - Use asynchronous messaging for cross-service events
 
 ### Resilience Patterns
-
-Derived from `agents/plugins/backend-development/agents/backend-architect.md`:
 
 - **Circuit Breaker**: Detect failing services and stop cascading failures
 - **Retry with Backoff**: Exponential backoff with jitter for transient failures
@@ -879,8 +847,6 @@ def process_order_events():
 
 ### Input Validation and SQL Injection Prevention
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
-
 ```python
 from sqlalchemy import text
 
@@ -896,8 +862,6 @@ users = User.query.filter(User.username.like(f'%{query}%')).all()
 ```
 
 ### Secure File Upload
-
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
 
 ```python
 from werkzeug.utils import secure_filename
@@ -937,8 +901,6 @@ def upload_file():
 
 ### Secrets Management
 
-Derived from `proagent/roles/backend-engineer/skills/security-hardening.md`:
-
 ```python
 import os
 from dotenv import load_dotenv
@@ -960,6 +922,263 @@ try:
 except Exception:
     pass  # Fallback to environment variable
 ```
+
+## CQRS and Event Sourcing
+
+Reference: `agents/plugins/backend-development/skills/cqrs-implementation/SKILL.md`
+
+### Command Query Responsibility Segregation
+
+Separate write (command) and read (query) models for complex domains where read and write patterns differ significantly.
+
+**When to Apply CQRS:**
+- Read and write models have different shapes or scaling requirements
+- Complex business logic on writes but simple reads (or vice versa)
+- Event sourcing is required for audit trails or temporal queries
+- Different consistency requirements for reads vs writes
+
+**Command Side Pattern:**
+
+```python
+from dataclasses import dataclass
+from typing import Protocol
+
+@dataclass
+class CreateOrderCommand:
+    user_id: str
+    items: list[dict]
+    shipping_address: dict
+
+class CommandHandler(Protocol):
+    async def handle(self, command) -> None: ...
+
+class CreateOrderHandler:
+    def __init__(self, event_store, order_repo):
+        self.event_store = event_store
+        self.order_repo = order_repo
+
+    async def handle(self, command: CreateOrderCommand) -> str:
+        order = Order.create(
+            user_id=command.user_id,
+            items=command.items,
+            shipping_address=command.shipping_address,
+        )
+        await self.order_repo.save(order)
+        for event in order.pending_events:
+            await self.event_store.append(event)
+        return order.id
+```
+
+**Query Side Pattern:**
+
+```python
+class OrderReadModel:
+    """Denormalized read model optimized for query performance."""
+    def __init__(self, read_db):
+        self.read_db = read_db
+
+    async def get_user_orders(self, user_id: str, page: int = 1, size: int = 20):
+        return await self.read_db.query(
+            "SELECT * FROM order_projections WHERE user_id = $1 ORDER BY created_at DESC LIMIT $2 OFFSET $3",
+            user_id, size, (page - 1) * size
+        )
+
+class OrderProjection:
+    """Builds read model from domain events."""
+    async def handle_order_created(self, event):
+        await self.read_db.execute(
+            "INSERT INTO order_projections (id, user_id, status, total, item_count, created_at) VALUES ($1, $2, $3, $4, $5, $6)",
+            event.order_id, event.user_id, "pending", event.total, len(event.items), event.timestamp
+        )
+```
+
+### Saga Orchestration
+
+Reference: `agents/plugins/backend-development/skills/saga-orchestration/SKILL.md`
+
+Coordinate distributed transactions across microservices with compensating actions for rollback.
+
+**Orchestration-Based Saga:**
+
+```python
+class OrderSagaOrchestrator:
+    """Central coordinator that drives the saga steps."""
+
+    async def execute(self, order_data: dict):
+        saga_id = str(uuid.uuid4())
+        steps_completed = []
+
+        try:
+            # Step 1: Reserve inventory
+            await self.inventory_service.reserve(order_data["items"])
+            steps_completed.append("inventory_reserved")
+
+            # Step 2: Process payment
+            payment = await self.payment_service.charge(order_data["user_id"], order_data["total"])
+            steps_completed.append("payment_charged")
+
+            # Step 3: Create shipment
+            await self.shipping_service.create_shipment(order_data["shipping_address"])
+            steps_completed.append("shipment_created")
+
+            # Step 4: Confirm order
+            await self.order_service.confirm(order_data["order_id"])
+
+        except Exception as e:
+            logger.error(f"Saga {saga_id} failed at step: {e}")
+            await self._compensate(steps_completed, order_data)
+            raise
+
+    async def _compensate(self, steps_completed: list, order_data: dict):
+        """Execute compensating actions in reverse order."""
+        compensations = {
+            "shipment_created": lambda: self.shipping_service.cancel_shipment(order_data["order_id"]),
+            "payment_charged": lambda: self.payment_service.refund(order_data["user_id"], order_data["total"]),
+            "inventory_reserved": lambda: self.inventory_service.release(order_data["items"]),
+        }
+        for step in reversed(steps_completed):
+            try:
+                await compensations[step]()
+            except Exception as comp_error:
+                logger.critical(f"Compensation failed for {step}: {comp_error}")
+```
+
+**Choreography-Based Saga:**
+
+```python
+# Each service listens for events and reacts independently
+# OrderService publishes OrderCreated -> InventoryService reserves stock
+# InventoryService publishes StockReserved -> PaymentService charges
+# PaymentService publishes PaymentCompleted -> ShippingService ships
+# If any step fails, the failing service publishes a failure event
+# and upstream services react with compensating actions
+```
+
+## MCP Server Development
+
+Reference: `taches-cc-resources/skills/create-mcp-servers/SKILL.md`
+
+Build Model Context Protocol servers that expose tools, resources, and prompts to Claude and other LLM clients.
+
+**Python MCP Server (using mcp SDK):**
+
+```python
+from mcp.server import Server
+from mcp.types import Tool, TextContent
+import mcp.server.stdio
+
+server = Server("my-backend-tools")
+
+@server.list_tools()
+async def list_tools():
+    return [
+        Tool(
+            name="query-database",
+            description="Execute a read-only SQL query against the application database",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "query": {"type": "string", "description": "SQL SELECT query to execute"},
+                },
+                "required": ["query"],
+            },
+        ),
+    ]
+
+@server.call_tool()
+async def call_tool(name: str, arguments: dict):
+    if name == "query-database":
+        if not arguments["query"].strip().upper().startswith("SELECT"):
+            return [TextContent(type="text", text="Error: Only SELECT queries are allowed")]
+        result = await db.fetch(arguments["query"])
+        return [TextContent(type="text", text=str(result))]
+
+async def main():
+    async with mcp.server.stdio.stdio_server() as (read, write):
+        await server.run(read, write, server.create_initialization_options())
+```
+
+**TypeScript MCP Server:**
+
+```typescript
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+
+const server = new Server({ name: "my-backend-tools", version: "1.0.0" }, {
+  capabilities: { tools: {} },
+});
+
+server.setRequestHandler("tools/list", async () => ({
+  tools: [{
+    name: "health-check",
+    description: "Check the health of backend services",
+    inputSchema: { type: "object", properties: { service: { type: "string" } }, required: ["service"] },
+  }],
+}));
+
+server.setRequestHandler("tools/call", async (request) => {
+  if (request.params.name === "health-check") {
+    const response = await fetch(`http://${request.params.arguments.service}/health`);
+    return { content: [{ type: "text", text: JSON.stringify(await response.json()) }] };
+  }
+});
+
+const transport = new StdioServerTransport();
+await server.connect(transport);
+```
+
+## Framework-Specific Patterns
+
+### Fastify + tRPC + SQLite Stack
+
+Reference: `ralph-orchestrator/backend/ralph-web-server/package.json`
+
+Type-safe API layer combining Fastify's performance with tRPC's end-to-end type safety:
+
+```typescript
+import Fastify from "fastify";
+import { fastifyTRPCPlugin } from "@trpc/server/adapters/fastify";
+import { initTRPC } from "@trpc/server";
+import { z } from "zod";
+import Database from "better-sqlite3";
+
+const db = new Database("app.db");
+const t = initTRPC.create();
+
+const appRouter = t.router({
+  getUser: t.procedure.input(z.object({ id: z.string() })).query(({ input }) => {
+    return db.prepare("SELECT * FROM users WHERE id = ?").get(input.id);
+  }),
+  createUser: t.procedure
+    .input(z.object({ name: z.string(), email: z.string().email() }))
+    .mutation(({ input }) => {
+      const stmt = db.prepare("INSERT INTO users (name, email) VALUES (?, ?)");
+      return stmt.run(input.name, input.email);
+    }),
+});
+
+const server = Fastify();
+server.register(fastifyTRPCPlugin, { prefix: "/trpc", trpcOptions: { router: appRouter } });
+await server.listen({ port: 3000 });
+```
+
+### Express Reference Patterns
+
+Reference: `claude-ui/server/index.js`, `claude-ui/server/routes/auth.js`
+
+Production Express patterns from the claude-ui server for authentication routes and middleware composition.
+
+### Go Backend Patterns
+
+Reference: `casdk-harness/src/harness/agents/configs/dev-go-expert.md`
+
+Go-specific backend patterns including Gin/Echo/Chi routing, sqlx for database access, and goroutine-based concurrency for high-throughput services.
+
+### Rust Streaming Adapters
+
+Reference: `ralph-orchestrator/crates/ralph-adapters/src/claude_stream.rs`
+
+Rust-based streaming adapters for Claude API integration, demonstrating async stream processing with tokio for high-performance backend services.
 
 ## Python 3.12+ Best Practices
 
@@ -983,26 +1202,6 @@ When building Python backends, leverage modern Python 3.12+ features:
 - Leverage `Field.db_default` for database-level defaults
 - Use `aiterator()` for async ORM iteration
 - Prefer `async` views with `@sync_to_async` for I/O-bound operations
-
-Source: `agents/plugins/python-development/` (v1.2.1)
-
-## Reference Assets
-
-| Asset | Source | Description |
-|-------|--------|-------------|
-| API Design Skill | `proagent/roles/backend-engineer/skills/api-design.md` | REST/GraphQL API design patterns with examples |
-| Database Schema Skill | `proagent/roles/backend-engineer/skills/database-schema.md` | Relational and NoSQL schema design |
-| Security Hardening Skill | `proagent/roles/backend-engineer/skills/security-hardening.md` | Auth, input validation, encryption, rate limiting |
-| Performance Optimization | `proagent/roles/backend-engineer/skills/performance-optimization.md` | N+1 fixes, caching, connection pooling, async I/O |
-| Code Review Skill | `proagent/roles/backend-engineer/skills/code-review.md` | Security and performance review patterns |
-| API Design Principles | `agents/plugins/backend-development/skills/api-design-principles/SKILL.md` | REST and GraphQL best practices with FastAPI |
-| Backend Architect Agent | `agents/plugins/backend-development/agents/backend-architect.md` | Microservices, event-driven, resilience patterns |
-| Python Expert Agent | `casdk-harness/src/harness/agents/configs/dev-python-expert.md` | Python/FastAPI development patterns |
-| SQL Security Module | `tac/Code/tac-6/app/server/core/sql_security.py` | SQL injection protection |
-| Express Server | `claude-ui/server/index.js` | Express server with SSE streaming |
-| Session Auth | `claude-ui/server/routes/auth.js` | Session-based authentication patterns |
-| MCP Server (Node) | `skills/mcp-builder/reference/node_mcp_server.md` | Node.js MCP server reference |
-| MCP Server (Python) | `skills/mcp-builder/reference/python_mcp_server.md` | Python MCP server reference |
 
 ## Visual Diagramming with Excalidraw
 

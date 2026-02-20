@@ -1,6 +1,6 @@
 # ProAgent Delivery Plugin
 
-This plugin provides comprehensive project delivery management for Claude Code. It was synthesized from 8 source repositories including proagent (project-manager roles), awesome-claude-skills (internal-comms), taches-cc-resources (prioritization frameworks), and awos (product/roadmap commands).
+This plugin provides comprehensive project delivery management for Claude Code.
 
 ## Plugin Structure
 
@@ -10,19 +10,32 @@ proagent-delivery/
 ├── .mcp.json                                   # MCP server configs (Atlassian, Slack, Google Calendar)
 ├── skills/
 │   ├── delivery-assistant/SKILL.md             # Core skill: Managing Project Delivery
-│   └── rom-estimate/                           # ROM estimation skill: effort estimates from project docs
-│       ├── SKILL.md                            # Skill definition with Google Drive MCP support
-│       ├── references/effort-levels.md         # Effort sizing guide (XS/S/M/L/XL)
-│       ├── references/epic-categories.md       # Epic taxonomy with sub-category guidance
-│       └── examples/apex-vendor-platform-rom.csv  # Sample 89-feature ROM output
+│   ├── rom-estimate/                           # ROM estimation skill: effort estimates from project docs
+│   │   ├── SKILL.md                            # Skill definition with Google Drive MCP support
+│   │   ├── references/effort-levels.md         # Effort sizing guide (XS/S/M/L/XL)
+│   │   ├── references/epic-categories.md       # Epic taxonomy with sub-category guidance
+│   │   └── examples/apex-vendor-platform-rom.csv  # Sample 89-feature ROM output
+│   └── sow-generator/                          # SOW generation skill: create delivery-ready SOWs
+│       ├── SKILL.md                            # Domain knowledge, conventions, quality criteria
+│       ├── references/sow-sections.md          # Section-by-section writing guidance (real SOW examples)
+│       ├── references/engagement-models/       # Per-model reference files (lazy-loaded)
+│       │   ├── time-and-materials.md
+│       │   ├── fixed-price.md
+│       │   └── milestone-based.md
+│       ├── references/pricing-guidance.md      # Rate card structure and pricing conventions
+│       └── templates/sow-default.md            # Default SOW scaffold based on real Provectus SOWs
 ├── commands/
 │   ├── proagent-delivery-hub.md                # Command hub: list and route to delivery commands
-│   ├── proagent-delivery-run.md                # Execute: plan-sprint, status-report, risk-assess, milestone-track, retrospective, rom-estimate
-│   └── proagent-delivery-review.md             # Review: sprint-health, delivery-risks, timeline, stakeholder-alignment, estimate-review
+│   ├── proagent-delivery-run.md                # Thin dispatcher: routes to inline modes or modes/ files
+│   ├── proagent-delivery-review.md             # Thin dispatcher: routes to inline modes or modes/ files
+│   └── modes/                                  # Per-mode instruction files (loaded only when invoked)
+│       ├── generate-sow.md                     # Full SOW generation workflow (6 phases)
+│       └── sow-review.md                       # SOW audit against quality criteria
 ├── agents/
-│   └── delivery-specialist.md                  # Delivery specialist subagent for assessments and reports
+│   ├── delivery-specialist.md                  # Delivery specialist subagent for assessments and reports
+│   └── sow-context-extractor.md               # SOW context extraction from Slack + Google Drive
 ├── hooks/
-│   └── hooks.json                              # Status update reminders, milestone checks, sprint boundary notifications
+│   └── hooks.json                              # Status update reminders, milestone checks, sprint boundary notifications, SOW output notifications
 ├── CLAUDE.md                                   # This file
 └── README.md                                   # User-facing documentation
 ```
@@ -34,19 +47,24 @@ Use the `proagent-delivery:delivery-assistant` skill when managing any aspect of
 
 Use the `proagent-delivery:rom-estimate` skill when generating ROM (Rough Order of Magnitude) effort estimates. It analyzes project documents, task lists, or scope descriptions and produces a semicolon-delimited CSV with effort levels, duration ranges, and team specialties. Supports reading project files directly from Google Drive via the Google Drive MCP server.
 
+Use the `proagent-delivery:sow-generator` skill when creating Statements of Work. It reads client context from Slack channels and Google Drive documents, conducts a clarification interview with the Solution Owner, generates a delivery-ready SOW using templates, and outputs to Google Drive. Optionally generates a ROM estimate as an appendix.
+
 ### Commands
 - `/proagent-delivery:proagent-delivery-hub` -- See all available commands and choose the right workflow
-- `/proagent-delivery:proagent-delivery-run <mode>` -- Execute a workflow (plan-sprint, status-report, risk-assess, milestone-track, retrospective, rom-estimate)
-- `/proagent-delivery:proagent-delivery-review <type>` -- Run a delivery health review (sprint-health, delivery-risks, timeline, stakeholder-alignment, estimate-review)
+- `/proagent-delivery:proagent-delivery-run <mode>` -- Execute a workflow (plan-sprint, status-report, risk-assess, milestone-track, retrospective, rom-estimate, generate-sow, standup-notes, create-prd, internal-comms, task-plan)
+- `/proagent-delivery:proagent-delivery-review <type>` -- Run a delivery health review (sprint-health, delivery-risks, timeline, stakeholder-alignment, estimate-review, meeting-insights, comms-quality, sow-review)
 
-### Agent
+### Agents
 The `proagent-delivery:delivery-specialist` agent can be dispatched as a subagent for sprint planning, risk assessments, status report generation, and stakeholder alignment checks. It produces structured reports with findings organized by priority and RAG status.
 
+The `proagent-delivery:sow-context-extractor` agent is dispatched by the SOW generator to read Slack channel history and Google Drive documents. It produces a structured Client Context Brief with requirements, stakeholders, timeline signals, budget signals, and a document inventory.
+
 ### Hooks
-Three hooks support delivery discipline:
+Four hooks support delivery discipline:
 1. **Milestone check:** Before deploy/release commands, validates that milestone acceptance criteria are met and stakeholders have been notified.
 2. **Status update reminder:** After git commits, suggests running a status report to update stakeholders.
 3. **Sprint boundary notification:** After sprint planning or retrospective sessions, suggests follow-up actions (create Jira sprint, schedule ceremonies, share summary).
+4. **SOW output notification:** After writing a SOW file, suggests sharing it with stakeholders via Slack and uploading to the client Google Drive folder.
 
 ### MCP Servers
 
@@ -71,15 +89,26 @@ Key features:
 
 The `estimate-review` review mode audits existing ROM CSVs for completeness, sizing accuracy, and team balance.
 
-## Source Attribution
+## SOW Generation
 
-Key patterns and content were drawn from:
-- **proagent** -- Project-manager role skills (meeting facilitation, risk assessment, status reporting, stakeholder management, spec creation), weekly standup command, project charter template
-- **awesome-claude-skills** -- Internal communications skill (3P updates, newsletters, FAQ responses, general comms)
-- **taches-cc-resources** -- Prioritization frameworks (Eisenhower matrix, Pareto analysis, 5 Whys root cause, SWOT mapping, inversion, first principles), todo management workflows
-- **awos** -- Product definition and roadmap commands, product definition template, roadmap template
-- **proagent-repo GUI** -- KPI framework for measuring agentic coding effectiveness, planning from specifications
-- **ralph-orchestrator** -- Code task listing with status and metadata
-- **skills** -- Third-party update templates
-- **specs** -- Business role implementation patterns
-- **rom-estimate** -- ROM estimation skill with effort sizing guide, epic taxonomy, and sample output
+The `generate-sow` run mode creates delivery-ready Statements of Work from client context gathered via Slack and Google Drive. It follows a 6-phase process: source collection (via sow-context-extractor subagent), context synthesis, clarification interview with the SO, SOW draft generation, review gate, and output to Google Drive.
+
+Key features:
+- Reads client context from Slack channels via Slack MCP and Google Drive documents via Google Drive MCP
+- Dispatches `sow-context-extractor` subagent for isolated data gathering
+- Conducts structured clarification interview with the Solution Owner using `AskUserQuestion`
+- Supports multiple engagement models: T&M, Fixed-Price, Milestone-Based
+- Generates all 8 standard SOW sections with Provectus conventions (Purpose, Organization, Project Overview, Project Scope, Estimated Durations & Team, Payment & Fee Schedule, Project Assumptions, Signatures)
+- Mandatory review gate before output (Approve / Edit / Redo)
+- Outputs directly to Google Drive as a Google Doc
+- Optional ROM estimate as appendix via `--with-rom` flag
+
+The `sow-review` review mode audits existing SOWs for section completeness, scope specificity, pricing alignment, timeline realism, team composition, and risk coverage.
+
+## Design Guidelines
+
+Architecture decisions in this plugin follow `PLUGIN-DESIGN-GUIDELINES.md` at the repository root. Key patterns: thin dispatcher commands, lazy-loaded references, single source of truth between skills and mode files, cite-your-work verification.
+
+## Source Repositories
+
+Built from Provectus internal repositories: `agents`, `awesome-claude-code`, `awesome-claude-skills`, `awos`, `planning-with-files`, `proagent-repo`, `provectus-marketplace`. Key external assets include standup-notes and team collaboration commands from `agents`, PRD creation from `awesome-claude-code`, internal comms skill from `awesome-claude-skills`, and task planning templates from `planning-with-files`.

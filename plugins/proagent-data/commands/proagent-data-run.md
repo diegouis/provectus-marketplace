@@ -194,6 +194,90 @@ Execute comprehensive data quality checks on a dataset or database.
    - Trend charts for volume and quality metrics over time
    - Action items ranked by severity and impact
 
+### `build-dashboard` - Design a KPI Dashboard
+
+Design and generate a KPI dashboard specification for business analytics.
+
+**Steps:**
+1. **Define business objectives:**
+   - Identify the key business questions the dashboard answers
+   - Determine the target audience (executive, operational, analyst)
+   - Establish refresh frequency and data freshness requirements
+2. **Design metric hierarchy:**
+   - Separate leading indicators (pipeline velocity, conversion rates) from lagging indicators (revenue, churn)
+   - Define green/yellow/red thresholds for each KPI
+   - Include period-over-period comparisons (WoW, MoM, YoY)
+3. **Select visualizations:**
+   - Line charts for trends over time
+   - Bar charts for categorical comparisons
+   - Scorecards for top-level KPIs with sparklines
+   - Heatmaps for correlation matrices or time-of-day patterns
+   - Tables with conditional formatting for detailed drill-down
+4. **Generate SQL queries:**
+   - Write the underlying aggregation queries for each metric
+   - Use CTEs and window functions for period comparisons
+   - Optimize for the target data warehouse (PostgreSQL, Snowflake, BigQuery)
+5. **Provide implementation guidance:**
+   - Recommend BI tool (Looker, Metabase, Superset) based on stack
+   - Provide dbt metrics layer definitions if applicable
+   - Include alerting rules for threshold breaches
+
+Reference: `agents/plugins/business-analytics/skills/kpi-dashboard-design/SKILL.md`, `agents/plugins/business-analytics/skills/data-storytelling/SKILL.md`
+
+### `build-bio-pipeline` - Build a Bioinformatics Pipeline
+
+Design and generate a Nextflow pipeline for genomics or life-sciences data processing.
+
+**Steps:**
+1. **Gather requirements:**
+   - Input data type (FASTQ, BAM, VCF, instrument output, CSV)
+   - Analysis type (variant calling, RNA-seq, proteomics, lab instrument data)
+   - Output format (VCF, counts matrix, Allotrope ASM, custom report)
+   - Compute environment (local, HPC/SLURM, AWS Batch, Google Life Sciences)
+2. **Design the pipeline:**
+   - Define Nextflow DSL2 processes with input/output channels
+   - Specify container images (Docker/Singularity) for each process
+   - Configure resource requirements (cpus, memory, time) per process
+   - Enable resume capability for fault tolerance on long-running jobs
+3. **Implement data conversion (if applicable):**
+   - Map vendor-specific instrument fields to Allotrope ontology terms
+   - Validate converted data against Allotrope ASM JSON schemas
+   - Support common instrument types (plate readers, chromatography, spectroscopy)
+4. **Add quality controls:**
+   - Include FastQC or MultiQC reports for sequencing data
+   - Validate output file integrity and expected row/record counts
+   - Generate pipeline execution reports with resource usage
+5. **Provide deployment instructions:**
+   - Nextflow configuration profiles for different compute environments
+   - Container registry setup for reproducibility
+   - Input samplesheet format specification
+
+Reference: `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/nextflow-development/SKILL.md`, `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/instrument-data-to-allotrope/SKILL.md`
+
+### `analytics-infra` - Set Up Analytics Infrastructure
+
+Configure internal analytics tracking and reporting infrastructure.
+
+**Steps:**
+1. **Design event tracking schema:**
+   - Define event types, properties, and user identifiers
+   - Choose tracking approach (server-side, client-side, hybrid)
+   - Plan batching and async submission for performance
+2. **Implement tracking:**
+   - Generate tracker module following `proagent-repo/infrastructure/analytics/tracker.py` patterns
+   - Configure event batching with configurable flush intervals
+   - Add error handling and retry logic for event submission
+3. **Build reporting layer:**
+   - Generate reporter module following `proagent-repo/infrastructure/analytics/reporter.py` patterns
+   - Define aggregation windows (hourly, daily, weekly, monthly)
+   - Configure delivery channels (Slack, email, dashboard)
+4. **Create analytics queries:**
+   - Build reusable SQL query library following `proagent-repo/infrastructure/analytics/queries.py` patterns
+   - Include funnel analysis, cohort retention, and usage trend queries
+   - Optimize queries for the target database
+
+Reference: `proagent-repo/infrastructure/analytics/tracker.py`, `proagent-repo/infrastructure/analytics/reporter.py`, `proagent-repo/infrastructure/analytics/queries.py`
+
 ## Error Handling
 
 If the requested operation is not recognized, display the list of available operations with descriptions and usage examples. If required context is missing (such as the data source or target warehouse), ask the user for the missing information before proceeding.

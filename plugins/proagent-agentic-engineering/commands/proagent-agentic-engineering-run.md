@@ -24,7 +24,6 @@ Create a new Claude Code sub-agent definition.
 5. Save to `.claude/agents/agent-name.md` or plugin `agents/` directory
 6. Test discovery with natural language queries
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/agent-definition-creation/SKILL.md`
 
 ### create-skill
 Create a new Claude Code skill (model-invoked autonomous capability).
@@ -41,7 +40,6 @@ Create a new Claude Code skill (model-invoked autonomous capability).
 6. Add supporting files (scripts/, references/, assets/, examples/)
 7. Test autonomous activation with natural language
 
-Reference: `awesome-claude-skills/skill-creator/SKILL.md`, `casdk-harness/src/harness/plugins/context-engineering/skills/skill-creation/SKILL.md`
 
 ### create-command
 Create a new Claude Code slash command.
@@ -61,7 +59,6 @@ Create a new Claude Code slash command.
 4. Save to `.claude/commands/` or plugin `commands/` directory
 5. Test with various argument combinations
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/command-creation/SKILL.md`
 
 ### create-hook
 Create a Claude Code lifecycle hook for deterministic automation.
@@ -79,7 +76,6 @@ Create a Claude Code lifecycle hook for deterministic automation.
 5. Test security (no credential exposure, safe logging)
 6. Add to `.claude/settings.json` hooks section or plugin `hooks/hooks.json`
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/hook-configuration/SKILL.md`
 
 ### create-mcp
 Create a new MCP (Model Context Protocol) server.
@@ -100,7 +96,6 @@ Create a new MCP (Model Context Protocol) server.
 6. Test with evaluation harness
 7. Create 10 evaluation questions (independent, read-only, complex, verifiable)
 
-Reference: `awesome-claude-skills/mcp-builder/SKILL.md`
 
 ### create-plugin
 Create a complete Claude Code plugin bundling multiple components.
@@ -125,7 +120,6 @@ Create a complete Claude Code plugin bundling multiple components.
 6. Write README.md with installation and usage instructions
 7. Test locally with `/plugin install /path/to/plugin`
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/skills/plugin-development/SKILL.md`
 
 ### orchestrate
 Design and implement a multi-agent orchestration workflow.
@@ -144,7 +138,6 @@ Design and implement a multi-agent orchestration workflow.
 7. Track progress with logging and checkpoints
 8. Budget token usage across agents
 
-Reference: `casdk-harness/src/harness/plugins/context-engineering/patterns/multi-agent-orchestration.md`, `superpowers/skills/subagent-driven-development/SKILL.md`
 
 ### evaluate
 Evaluate an agent system's effectiveness.
@@ -162,7 +155,50 @@ Evaluate an agent system's effectiveness.
 5. Generate evaluation report with scores and recommendations
 6. Iterate on agent design based on findings
 
-Reference: `ralph-orchestrator/.claude/skills/eval/SKILL.md`, `superpowers/skills/verification-before-completion/SKILL.md`
+
+### bootstrap-loop
+Bootstrap an autonomous coding loop using one of the ecosystem frameworks.
+
+**Process**:
+1. Assess project requirements: language, complexity, backend preference
+2. Recommend framework:
+   - **ralph-orchestrator** for Rust projects or multi-backend LLM needs (Claude, Kiro, Gemini, Codex)
+   - **casdk-harness** for Python projects with Claude SDK and plugin lifecycle needs
+   - **Auto-Claude** for projects needing persistent knowledge graph context (Graphiti)
+   - **gastown** for Go projects or molecule-based workflow composition
+3. Configure orchestration preset or autonomous mode settings
+4. Set up tool registry with required capabilities
+5. Define exit conditions (test pass, build success, coverage threshold)
+6. Configure ZTE trust level (Observer through Autonomous) from `proagent-repo core/zte/trust_ladder.py`
+7. Add confirmation gates at critical decision points
+8. Set up context persistence (session files, knowledge graph, or checkpoint files)
+9. Test loop execution with a small, scoped task
+
+
+### spec-driven
+Run a spec-driven development workflow from architecture to verified implementation.
+
+**Process**:
+1. Generate architecture documentation (following AWOS `/architecture` pattern)
+2. Produce functional specification with acceptance criteria (following AWOS `/spec` pattern)
+3. Present spec for user approval (confirmation gate)
+4. Route through implementation stages (following ProAgent SDLC 5-stage pipeline)
+5. Implement features from approved specs (following AWOS `/implement` pattern)
+6. Verify implementation against spec acceptance criteria (following AWOS `/verify` pattern)
+7. Generate verification report with pass/fail status per acceptance criterion
+
+
+### context-plan
+Create a structured planning session using the 3-file planning pattern.
+
+**Process**:
+1. Create plan file with task decomposition and dependencies
+2. Create progress tracker for status monitoring
+3. Create output log for artifact tracking
+4. Set up hooks for automatic progress tracking via file existence detection
+5. Execute plan phases with confirmation gates between major stages
+6. Update progress tracker as tasks complete
+
 
 ---
 

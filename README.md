@@ -1,25 +1,25 @@
 # Provectus Marketplace
 
-Practice-specific plugins for Claude Code and Claude Desktop, built from 843 assets across 17 Provectus repositories.
+Practice-specific plugins for Claude Code and Claude Desktop, built from 867 assets across 16 Provectus repositories.
 
 ## Plugins
 
 | Plugin | Practice | Description |
 |--------|----------|-------------|
-| [proagent-agentic-engineering](plugins/proagent-agentic-engineering) | Agentic Engineering | AI agent systems, MCP servers, multi-agent orchestration, prompt engineering |
-| [proagent-sdlc](plugins/proagent-sdlc) | SDLC | Architecture, code review, testing strategy, release management, git workflows |
-| [proagent-platform](plugins/proagent-platform) | Platform | Service catalogs, golden paths, scaffolding, MCP development, DX optimization |
-| [proagent-devops](plugins/proagent-devops) | DevOps | CI/CD, Docker/Kubernetes, Terraform/IaC, monitoring, incident response |
-| [proagent-qa](plugins/proagent-qa) | QA | Test automation, Playwright/Cypress, regression testing, coverage, accessibility |
-| [proagent-backend](plugins/proagent-backend) | Backend | APIs, databases, microservices, auth, caching, queues, performance |
-| [proagent-frontend](plugins/proagent-frontend) | Frontend | React/Vue/Angular, design systems, WCAG 2.1 AA, responsive design |
-| [proagent-delivery](plugins/proagent-delivery) | Delivery | Sprint planning, milestones, status reports, risk management, retrospectives |
-| [proagent-security](plugins/proagent-security) | Security | Vulnerability scanning, compliance, secrets management, threat modeling, OWASP |
-| [proagent-data](plugins/proagent-data) | Data | ETL/ELT, dbt, Airflow, data warehousing, SQL optimization, data quality |
-| [proagent-ml-ai](plugins/proagent-ml-ai) | ML/AI | Model training, MLOps, experiment tracking, LLM apps, RAG, embeddings |
-| [proagent-hr](plugins/proagent-hr) | HR | Hiring, interviews, onboarding, performance reviews, compensation |
-| [proagent-sales](plugins/proagent-sales) | Sales | Proposals, RFPs, competitive analysis, lead research, pipeline management |
-| [proagent-finance](plugins/proagent-finance) | Finance | Budgeting, invoicing, forecasting, P&L analysis, cost optimization |
+| [proagent-agentic-engineering](plugins/proagent-agentic-engineering) | Agentic Engineering | AI agent systems, MCP servers, multi-agent orchestration, autonomous coding loops, context engineering |
+| [proagent-sdlc](plugins/proagent-sdlc) | SDLC | Architecture, code review, debugging, ADRs, C4 diagrams, release management, PITER framework |
+| [proagent-platform](plugins/proagent-platform) | Platform | Service catalogs, golden paths, scaffolding, document generation, plugin lifecycle, DX |
+| [proagent-devops](plugins/proagent-devops) | DevOps | CI/CD, Docker/Kubernetes, Terraform/IaC, secrets management, GitOps, cloud cost optimization |
+| [proagent-qa](plugins/proagent-qa) | QA | Test automation, TDD, LLM judge evaluation, Playwright, mock/replay backends, coverage |
+| [proagent-backend](plugins/proagent-backend) | Backend | APIs, databases, microservices, CQRS/event sourcing, MCP server development, auth |
+| [proagent-frontend](plugins/proagent-frontend) | Frontend | React/Vue/Angular, design systems, canvas design, WCAG 2.1 AA, theme factory |
+| [proagent-delivery](plugins/proagent-delivery) | Delivery | Sprint planning, standup notes, PRD creation, internal comms, agentic KPIs, ROM estimation |
+| [proagent-security](plugins/proagent-security) | Security | Vulnerability scanning, agent sandboxing, risk classification, threat modeling, OWASP, audit workflows |
+| [proagent-data](plugins/proagent-data) | Data | ETL/ELT, dbt, Airflow, business analytics, bioinformatics pipelines, SQL optimization |
+| [proagent-ml-ai](plugins/proagent-ml-ai) | ML/AI | Model training, knowledge graphs, meta-prompting, LLM judge, RAG, AWS Bedrock |
+| [proagent-hr](plugins/proagent-hr) | HR | Hiring, CV validation, GDPR compliance, resume generation, growth analysis, onboarding |
+| [proagent-sales](plugins/proagent-sales) | Sales | Proposals, sales automation, content marketing, business cases, market opportunity analysis |
+| [proagent-finance](plugins/proagent-finance) | Finance | Budgeting, cloud FinOps, financial projections, Stripe/PCI, budget variance analysis |
 
 ## Installation
 
@@ -38,12 +38,12 @@ Or add plugins to your project's `.claude/settings.json` so they load automatica
   "plugins": {
     "proagent-devops": {
       "source": "file:./provectus-marketplace/plugins/proagent-devops",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "enabled": true
     },
     "proagent-backend": {
       "source": "file:./provectus-marketplace/plugins/proagent-backend",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "enabled": true
     }
   }
@@ -197,8 +197,9 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 | MCP Servers (core) | 5 (Slack, Google Drive, Google Workspace, GitHub, Excalidraw) |
 | MCP Servers (additional) | 4 (GitLab, Atlassian, Playwright, Rube) |
 | MCP Integrations | 31 |
-| Source Assets | 843 |
-| Source Repos | 17 |
+| Source Assets | 867 |
+| Source Repos | 16 |
+| Marketplace Version | 0.3.0 |
 
 ## Project Structure
 

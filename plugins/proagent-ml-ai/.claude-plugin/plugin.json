@@ -1,7 +1,7 @@
 {
   "name": "proagent-ml-ai",
-  "version": "0.2.0",
-  "description": "Provectus ML & AI practice plugin for model training, inference optimization, MLOps pipelines, experiment tracking, prompt engineering, embeddings, vector stores, LLM application development, and RAG systems.",
+  "version": "0.3.0",
+  "description": "Provectus ML & AI practice plugin for model training, inference optimization, MLOps pipelines, experiment tracking, prompt engineering, embeddings, vector stores, LLM application development, RAG systems, knowledge graph integration (Graphiti), meta-prompting frameworks, LLM judge evaluation, and AWS AI services (SageMaker, Bedrock).",
   "author": {
     "name": "diegouis"
   }

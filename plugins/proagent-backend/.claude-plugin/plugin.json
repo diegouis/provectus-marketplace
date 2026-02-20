@@ -1,6 +1,6 @@
 {
   "name": "proagent-backend",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Provectus Backend practice plugin for scalable API design (REST, GraphQL, gRPC), database schema engineering, microservices architecture, authentication and authorization, message queues, caching strategies, and performance optimization.",
   "author": {
     "name": "diegouis"

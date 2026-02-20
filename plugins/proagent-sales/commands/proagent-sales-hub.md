@@ -82,11 +82,3 @@ To get started, tell me what you need help with:
 - "We received an RFP for cloud migration, help me respond" -> `/proagent-sales-run prepare-rfp`
 - "Review my proposal draft for quality and completeness" -> `/proagent-sales-review`
 
-## Source Assets
-
-This plugin is built from production patterns across these Provectus repositories:
-- **awesome-claude-skills** - Lead research assistant and competitive ads extraction skills
-- **agents** - Sales automation agent for email sequences, proposals, and objection handling
-- **taches-cc-resources** - Competitive research and options comparison command frameworks
-- **proagent** - Stakeholder management and communication patterns
-- **skills** - Brand guidelines for consistent proposal styling

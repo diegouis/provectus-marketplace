@@ -43,7 +43,7 @@ Generate a new UI component with full project integration.
        index.ts               - Public re-export
      ```
    - Define TypeScript props interface with JSDoc descriptions for each prop
-   - Implement variant and size props consistent with existing design system components (derived from Auto-Claude/.design-system/src/components/Button.tsx pattern)
+   - Implement variant and size props consistent with existing design system components
    - Add forwardRef support for DOM element access
    - Include default prop values and prop validation
 
@@ -99,7 +99,7 @@ Build a complete UI feature from a description or specification.
    - Use existing design tokens for colors, typography, spacing, shadows
    - Apply consistent component variants (primary, secondary, outline, ghost)
    - Implement theme-aware styles using CSS custom properties or Tailwind dark: variant
-   - Follow brand guidelines for visual identity (derived from awesome-claude-skills/brand-guidelines)
+   - Follow brand guidelines for visual identity
 
 5. **Validate and Report**
    - Run TypeScript compilation: `npx tsc --noEmit`
@@ -121,7 +121,7 @@ Initialize or extend a design system with token-based architecture.
    - Detect inconsistencies in current styling patterns
 
 2. **Define Design Tokens**
-   - Create or extend theme constants file with (derived from Auto-Claude/.design-system/src/theme/constants.ts):
+   - Create or extend theme constants file with:
      - Color palette: primary, secondary, accent, neutral, semantic (success, warning, error, info)
      - Typography scale: font families (heading, body, mono), sizes (xs through 4xl), weights, line heights
      - Spacing scale: 0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24 (in rem units)
@@ -130,7 +130,7 @@ Initialize or extend a design system with token-based architecture.
      - Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1536px)
 
 3. **Implement Theme Management**
-   - Create a theme provider with React Context (derived from Auto-Claude/.design-system/src/theme/useTheme.ts and claude-ui/src/contexts/ThemeContext.jsx):
+   - Create a theme provider with React Context:
      - Support light, dark, and auto (system preference) modes
      - Persist theme selection to localStorage
      - Listen to prefers-color-scheme media query changes
@@ -139,7 +139,7 @@ Initialize or extend a design system with token-based architecture.
    - Configure Tailwind CSS to use custom theme tokens
 
 4. **Build Foundational Components**
-   - Generate core component library (derived from Auto-Claude/.design-system/src/components/):
+   - Generate core component library:
      - **Avatar**: image with fallback initials, sizes (sm, md, lg), status indicator
      - **Badge**: variants (default, success, warning, error), sizes, pill/rounded shapes
      - **Button**: variants (primary, secondary, outline, ghost, destructive), sizes, loading state, icon support
@@ -149,7 +149,7 @@ Initialize or extend a design system with token-based architecture.
    - Each component gets full TypeScript types, tests, and accessibility attributes
 
 5. **Apply Pre-Built Themes** (optional)
-   - Offer theme presets (derived from skills/theme-factory):
+   - Offer theme presets:
      - Modern Minimalist: clean lines, neutral palette, Inter font, generous whitespace
      - Midnight Galaxy: dark palette, accent gradients, space-inspired
      - Custom: user-defined token values
@@ -158,7 +158,7 @@ Initialize or extend a design system with token-based architecture.
 6. **Output**
    - Design system directory with all token files, components, and theme provider
    - Documentation: token reference, component API docs, usage examples
-   - Vite config for the design system preview app (derived from Auto-Claude/.design-system/vite.config.ts)
+   - Vite config for the design system preview app
 
 ---
 
@@ -171,7 +171,7 @@ Run a comprehensive WCAG 2.1 AA accessibility audit.
    - If `target` is a URL, use Playwright MCP to load the page and audit the rendered DOM
    - If no target, scan all component files in the project for accessibility issues
 
-2. **Automated Checks** (derived from agents/plugins/accessibility-compliance/skills/wcag-audit-patterns)
+2. **Automated Checks**
    - **Perceivable (WCAG 1.x)**:
      - Images have meaningful alt text (1.1.1 Non-text Content)
      - Video/audio have captions or transcripts (1.2.x Time-based Media)
@@ -259,7 +259,7 @@ Analyze and optimize frontend performance.
    - Audit images: format (WebP/AVIF recommended), sizing, lazy loading below fold
    - Check font loading strategy: font-display, preload, subsetting
    - Verify CSS delivery: critical CSS inlined, non-critical deferred
-   - Assess caching headers and service worker strategy (derived from claude-ui/public/service-worker.js)
+   - Assess caching headers and service worker strategy
 
 5. **Generate Optimization Plan**
    Return a prioritized improvement plan:

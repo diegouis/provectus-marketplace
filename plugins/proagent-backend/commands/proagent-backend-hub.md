@@ -86,12 +86,4 @@ To get started, tell me what you need help with:
 
 ## Source Assets
 
-This plugin is built from production patterns across these Provectus repositories:
-- **proagent** - Backend engineer role definitions, API design, database schema, security, performance skills
-- **agents** - Backend architect agent, API design principles plugin
-- **casdk-harness** - Python/FastAPI expert agent, API development harness
-- **claude-ui** - Express server with SSE streaming, session auth, SQLite models
-- **tac** - SQL injection protection module, NL-to-SQL processor
-- **skills** - MCP server references for Node.js and Python
-- **proagent-repo GUI** - Backend validation workflows
-- **specs** - Developer role implementation specifications
+> Built from Provectus internal engineering practices.

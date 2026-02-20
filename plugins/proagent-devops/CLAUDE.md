@@ -4,14 +4,17 @@ This plugin provides the DevOps practice context for the Provectus agentic codin
 
 ## Practice Scope
 
-The DevOps practice covers six operational domains:
+The DevOps practice covers nine operational domains:
 
-1. **CI/CD Pipelines** - Automated build, test, security scan, and deployment workflows for GitHub Actions, GitLab CI, and Jenkins
-2. **Container Orchestration** - Docker containerization, Docker Compose service orchestration, and Kubernetes workload management
-3. **Infrastructure as Code** - Terraform modules, Kustomize overlays, and Helm charts for reproducible infrastructure
-4. **Monitoring and Observability** - Prometheus metrics, Grafana dashboards, alerting rules, and distributed tracing
-5. **Incident Response** - Blameless postmortems, incident runbooks, severity classification, and on-call procedures
-6. **Cloud Operations** - AWS (ECS, EKS, Lambda, S3, RDS) and GCP (GKE, Cloud Run, Cloud SQL) resource management
+1. **CI/CD Pipelines** - Automated build, test, security scan, and deployment workflows for GitHub Actions, GitLab CI, and Jenkins; reusable workflow templates and release preparation patterns (from `Auto-Claude/.github/workflows/prepare-release.yml`)
+2. **Container Orchestration** - Docker containerization, Docker Compose service orchestration, and Kubernetes workload management; production-hardened compose patterns (from `casdk-harness/docker-compose.prod.yml`)
+3. **Infrastructure as Code** - Terraform modules and module libraries, Kustomize overlays, Helm chart scaffolding, and Nix flakes for reproducible infrastructure
+4. **Monitoring and Observability** - Prometheus metrics collection and configuration, Grafana dashboards, alerting rules (from `casdk-harness/config/monitoring/alerting.yml`), and distributed tracing
+5. **Incident Response** - Blameless postmortems, incident runbooks, severity classification, on-call procedures, and dedicated incident responder workflows
+6. **Cloud Operations** - AWS (ECS, EKS, Lambda, S3, RDS) and GCP (GKE, Cloud Run, Cloud SQL) resource management with multi-cloud architecture patterns
+7. **Secrets Management** - External secret managers (Vault, AWS Secrets Manager, GCP Secret Manager), secrets rotation, and secret injection patterns
+8. **GitOps Workflows** - ArgoCD and Flux-based continuous reconciliation, environment promotion via pull requests, and drift detection
+9. **Cloud Cost Optimization** - FinOps practices, right-sizing, reserved/spot instance strategies, and cost allocation tagging
 
 ## Key Conventions
 
@@ -34,11 +37,26 @@ When performing DevOps tasks, follow these standards:
 - Every service must expose a /health endpoint
 - Define SLIs and SLOs before setting alert thresholds
 - Use the RED method (Rate, Errors, Duration) for service dashboards
+- Reference `casdk-harness/config/monitoring/alerting.yml` for production alerting rule patterns
+- Use `casdk-harness/src/harness/monitoring.py` as a reference for Prometheus metrics collector implementation
 
 ### Infrastructure as Code
 - Use remote state backends with locking
 - Tag all resources with project, environment, team, and cost-center
 - Separate configuration per environment using workspaces or overlays
+- Reference the Terraform module library patterns from `agents/plugins/cloud-infrastructure/skills/terraform-module-library/`
+
+### Secrets Management
+- Never store secrets in code, config files, or container images
+- Use external secret managers (HashiCorp Vault, AWS Secrets Manager, GCP Secret Manager)
+- Implement secrets rotation policies and audit secret access
+- Reference patterns from `agents/plugins/cicd-automation/skills/secrets-management/`
+
+### Cost Optimization
+- Tag all cloud resources for cost allocation and chargeback
+- Review right-sizing recommendations monthly
+- Use spot/preemptible instances for fault-tolerant workloads
+- Reference cost optimization patterns from `agents/plugins/cloud-infrastructure/skills/cost-optimization/`
 
 ## MCP Integrations
 
@@ -52,7 +70,15 @@ When performing DevOps tasks, follow these standards:
 
 ## Source Repositories
 
-This plugin draws patterns from: proagent, casdk-harness, agents, Auto-Claude, ralph-orchestrator, tac, proagent-repo GUI, and gastown.
+Built from 13 Provectus internal engineering repositories:
+
+- **agents** - Cloud architect, Terraform specialist, Kubernetes architect, and incident responder agent definitions; skills for GitHub Actions templates, secrets management, Terraform module library, cost optimization, Helm chart scaffolding, GitOps workflows, Prometheus configuration, and Grafana dashboards
+- **Auto-Claude** - Release preparation workflow (`.github/workflows/prepare-release.yml`)
+- **casdk-harness** - Docker Compose with Prometheus and Grafana (`docker-compose.yml`), production Docker Compose with security hardening (`docker-compose.prod.yml`), Prometheus alerting rules (`config/monitoring/alerting.yml`), Prometheus metrics collector (`src/harness/monitoring.py`)
+- **proagent-repo** - Multi-service Docker Compose (`docker-compose.yml`), GitHub integration for CI/CD (`core/integrations/github.py`)
+- **ralph-orchestrator** - Dockerfile, CI workflow (`.github/workflows/ci.yml`), Kubernetes deployment guide (`docs/deployment/kubernetes.md`), Docker deployment guide (`docs/deployment/docker.md`)
+- **provectus-marketplace** - DevOps assistant skill, DevOps specialist agent
+- **awos**, **claude-ui**, **gastown**, **superpowers**, **taches-cc-resources**, **awesome-claude-code**, **proagent-repo GUI** - Supporting infrastructure patterns and configurations
 
 ## Plugin Structure
 

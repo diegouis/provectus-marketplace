@@ -41,16 +41,4 @@ To review an existing agent system:
 /proagent-agentic-engineering-review
 ```
 
-## Source Assets
-
-This plugin synthesizes patterns from 19 source repositories with 612 total assets (445 high-reuse), including:
-- **awesome-claude-skills** -- 30+ skills including skill-creator, mcp-builder, template-skill
-- **casdk-harness** -- Context engineering plugin with 5 skills, patterns, and templates
-- **superpowers** -- Subagent-driven development, parallel agents, TDD, brainstorming
-- **taches-cc-resources** -- Agent skill creation, hook creation, slash command creation
-- **ralph-orchestrator** -- Prompt-Driven Development, evaluation framework, code-assist
-- **planning-with-files** -- Manus-style file-based planning with hooks
-- **awos** -- Product-to-implementation pipeline (product, roadmap, architecture, spec, tasks, implement, verify)
-- **proagent-repo GUI** -- TAC principles (ADW, Core Four, Trust Ladder)
-
 If the user provided a topic in $ARGUMENTS, route to the most relevant sub-command or provide detailed guidance on that topic.

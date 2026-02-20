@@ -1,6 +1,6 @@
 # proagent-devops
 
-Provectus DevOps practice plugin for Claude Code. Provides production-tested CI/CD pipelines, container orchestration, infrastructure as code, monitoring, incident response, and cloud operations patterns drawn from actual Provectus engineering repositories.
+Provectus DevOps practice plugin for Claude Code. Provides production-tested CI/CD pipelines, container orchestration, infrastructure as code (Terraform module libraries, Helm chart scaffolding), monitoring and observability (Prometheus, Grafana dashboards), secrets management, GitOps workflows, cloud cost optimization, incident response, and multi-cloud operations patterns drawn from 13 Provectus engineering repositories (89 assets).
 
 ## Installation
 
@@ -58,11 +58,15 @@ View all available DevOps capabilities:
 Execute DevOps operations:
 
 ```
-/proagent-devops-run deploy          # Deploy application to staging or production
-/proagent-devops-run provision       # Provision cloud infrastructure
-/proagent-devops-run monitor         # Set up monitoring and alerting
+/proagent-devops-run deploy           # Deploy application to staging or production
+/proagent-devops-run provision        # Provision cloud infrastructure
+/proagent-devops-run monitor          # Set up monitoring and alerting
 /proagent-devops-run incident-respond # Guide through incident response
 /proagent-devops-run pipeline-create  # Generate CI/CD pipeline configuration
+/proagent-devops-run secrets-setup    # Configure secrets management backend and injection
+/proagent-devops-run cost-review      # Analyze and optimize cloud infrastructure costs
+/proagent-devops-run gitops-setup     # Configure GitOps workflow with ArgoCD or Flux
+/proagent-devops-run helm-scaffold    # Scaffold a production-ready Helm chart
 ```
 
 ### Review Command
@@ -76,10 +80,13 @@ Review infrastructure configurations for best practices, security, and optimizat
 
 The review command checks:
 - Dockerfiles for security and optimization issues
-- Docker Compose files for best practices
+- Docker Compose files for best practices and production hardening
 - CI/CD pipelines for correctness and security
 - Kubernetes manifests for reliability and security
 - Terraform configurations for compliance
+- Helm values files for security and completeness
+- GitOps configurations (ArgoCD, Flux) for sync policies and RBAC
+- Cost and resource tagging compliance
 - Overall security posture across all configurations
 
 ### Using the DevOps Specialist Agent
@@ -101,12 +108,19 @@ Use the devops-assistant skill to create a GitHub Actions pipeline for this Pyth
 ## What This Plugin Provides
 
 ### Patterns and Templates
-- GitHub Actions CI/CD pipeline with test, security scan, build, and deploy stages
+- GitHub Actions CI/CD pipeline with test, security scan, build, and deploy stages; reusable workflow templates
 - GitLab CI pipeline with multi-stage builds and manual production gates
+- Release preparation workflows (from `Auto-Claude`)
 - Multi-stage Dockerfile optimized for size, security, and build performance
-- Docker Compose production configuration with health checks and resource limits
+- Docker Compose production configuration with health checks, resource limits, and security hardening (from `casdk-harness`)
 - Kubernetes Deployment, Service, HPA, and Ingress manifests
-- Prometheus alerting rules for error rate, latency, and resource saturation
+- Helm chart scaffolding with per-environment value overrides
+- Terraform module library with VPC, EKS, RDS, and S3 modules
+- GitOps ArgoCD Application and Flux Kustomization patterns
+- Prometheus scrape configuration and alerting rules (from `casdk-harness`)
+- Grafana dashboard patterns for RED metrics, infrastructure, and cost monitoring
+- Secrets management patterns for AWS, GCP, Vault, and Kubernetes
+- Cloud cost optimization strategies and tagging standards
 - Blameless postmortem document template with 5 Whys analysis
 
 ### Automated Checks
@@ -138,19 +152,10 @@ Note: AWS and GCP operations use their respective CLIs (`aws`, `gcloud`) which s
 
 ## Source Repositories
 
-This plugin is built from production patterns across 8 Provectus repositories with 126 total assets (89 high-reuse). Key sources include:
-
-- **proagent** - DevOps engineer role with CI/CD, Kubernetes, and Docker skill definitions
-- **casdk-harness** - Docker Compose orchestration, Prometheus monitoring, multi-stage Dockerfiles, and infrastructure agent configurations
-- **agents** - CI/CD automation, incident response, and Kubernetes operations plugin collections
-- **Auto-Claude** - Cross-platform CI/CD workflows and pre-commit hook configurations
-- **ralph-orchestrator** - Release management pipelines and version automation
-- **tac** - Git operations automation, GitHub API integration, and trigger systems
-- **proagent-repo GUI** - SDLC deployment orchestration and validation workflows
-- **gastown** - GoReleaser cross-platform build configuration
+Built from 13 Provectus internal engineering repositories: `agents`, `Auto-Claude`, `casdk-harness`, `proagent-repo`, `ralph-orchestrator`, `provectus-marketplace`, `awos`, `claude-ui`, `gastown`, `superpowers`, `taches-cc-resources`, `awesome-claude-code`, `proagent-repo GUI`.
 
 ## Version
 
-- Plugin version: 0.2.0
+- Plugin version: 0.3.0
 - Category: devops
 - Author: Provectus

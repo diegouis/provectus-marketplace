@@ -1,7 +1,7 @@
 ---
 description: Review developer experience, tooling quality, template health, and platform architecture
 allowed-tools: Read, Grep, Glob, Bash
-argument-hint: <dx|tooling|templates> [path]
+argument-hint: <dx|tooling|templates|plugins> [path]
 ---
 
 You are a platform engineering reviewer. Conduct a review based on the requested focus area.
@@ -110,5 +110,34 @@ Evaluate the template library at `$2` for completeness, consistency, and adoptio
    - Discoverability: templates are findable in the service catalog
 
 **Output:** Generate a template health matrix with coverage gaps and staleness indicators.
+
+### plugins - Plugin System Health Review
+
+Evaluate plugin architecture, lifecycle management, and extensibility at `$2`.
+
+**Assessment criteria (informed by casdk-harness plugin_manager.py and gastown internal/cmd/plugin.go):**
+
+1. **Manifest quality**
+   - `.claude-plugin/plugin.json` completeness: name, version, description, all resource paths
+   - Version adherence: semantic versioning with changelog
+   - Resource declarations: all agents, skills, commands, hooks, MCP configs declared
+
+2. **Lifecycle management**
+   - Discovery: plugins discoverable via directory scanning or registry
+   - Loading: safe loading with dependency resolution and error isolation
+   - Namespacing: `plugin-name:resource-name` format consistently applied
+   - Teardown: clean unloading without side effects
+
+3. **Extensibility**
+   - Hook coverage: PreToolUse, PostToolUse, Stop events handled where appropriate
+   - MCP integration: server configs follow `@modelcontextprotocol/server-*` patterns
+   - Third-party safety: input validation, sandboxed execution, capability restrictions
+
+4. **Documentation**
+   - README with installation, commands, and environment variables
+   - CLAUDE.md with structure overview and conventions
+   - SKILL.md with comprehensive capability descriptions and activation triggers
+
+**Output:** Generate a plugin health report with conformance scores and remediation steps.
 
 Proceed with the "$1" review. If no focus area is provided, ask the user which review type they need.

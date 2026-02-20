@@ -4,15 +4,18 @@ This plugin provides the Backend practice context for the Provectus agentic codi
 
 ## Practice Scope
 
-The Backend practice covers seven engineering domains:
+The Backend practice covers ten engineering domains:
 
 1. **API Design** - RESTful endpoint design with resource modeling, pagination, filtering, and error handling; GraphQL schema-first development with DataLoaders and Relay pagination; gRPC service definitions with Protocol Buffers and streaming
-2. **Database Schema Engineering** - Relational schema design (PostgreSQL, MySQL) with normalization, constraints, indexes, and triggers; document schema design (MongoDB, DynamoDB) with embedding strategies; query optimization with EXPLAIN ANALYZE
-3. **Microservices Architecture** - Service boundary definition with DDD, inter-service communication (sync and async), resilience patterns (circuit breaker, retry, timeout, bulkhead), event-driven architectures
-4. **Authentication and Authorization** - JWT with refresh tokens, OAuth2/OIDC, RBAC/ABAC, password hashing, account lockout, MFA, session management
-5. **Message Queues and Async Processing** - RabbitMQ, AWS SQS, Google Pub/Sub, Kafka; dead letter queues, idempotent consumers, background job processing
-6. **Caching Strategies** - Redis/Memcached caching layers, HTTP caching with ETags, cache-aside and write-through patterns, cache invalidation, CDN integration
-7. **Performance Optimization** - N+1 query fixes, index optimization, connection pooling, async I/O, response streaming, load testing
+2. **Database Schema Engineering** - Relational schema design (PostgreSQL, MySQL) with normalization, constraints, indexes, and triggers; document schema design (MongoDB, DynamoDB) with embedding strategies; query optimization with EXPLAIN ANALYZE; dedicated PostgreSQL expertise from `agents/plugins/database-design/skills/postgresql/SKILL.md`
+3. **Microservices Architecture** - Service boundary definition with DDD, inter-service communication (sync and async), resilience patterns (circuit breaker, retry, timeout, bulkhead), event-driven architectures; microservices design patterns from `agents/plugins/backend-development/skills/microservices-patterns/SKILL.md`
+4. **CQRS and Event Sourcing** - Command Query Responsibility Segregation implementation from `agents/plugins/backend-development/skills/cqrs-implementation/SKILL.md`; saga orchestration patterns (choreography and orchestration) from `agents/plugins/backend-development/skills/saga-orchestration/SKILL.md`; event-driven architecture with domain events and projections
+5. **Authentication and Authorization** - JWT with refresh tokens, OAuth2/OIDC, RBAC/ABAC, password hashing, account lockout, MFA, session management; authentication patterns from `casdk-harness/src/harness/skills/api-development/patterns/authentication-patterns.md`
+6. **Message Queues and Async Processing** - RabbitMQ, AWS SQS, Google Pub/Sub, Kafka; dead letter queues, idempotent consumers, background job processing
+7. **Caching Strategies** - Redis/Memcached caching layers, HTTP caching with ETags, cache-aside and write-through patterns, cache invalidation, CDN integration
+8. **Performance Optimization** - N+1 query fixes, index optimization, connection pooling, async I/O, response streaming, load testing
+9. **MCP Server Development** - Building MCP servers in Python and TypeScript from `taches-cc-resources/skills/create-mcp-servers/SKILL.md`; Claude API streaming adapters in Rust from `ralph-orchestrator/crates/ralph-adapters/src/claude_stream.rs`
+10. **Framework-Specific Patterns** - FastAPI specialist patterns from `agents/plugins/api-scaffolding/agents/fastapi-pro.md`; Django specialist from `agents/plugins/api-scaffolding/agents/django-pro.md`; GraphQL architect from `agents/plugins/api-scaffolding/agents/graphql-architect.md`; Express reference implementation from `claude-ui/server/index.js`; Fastify+tRPC+SQLite stack from `ralph-orchestrator/backend/ralph-web-server/package.json`; Go expert patterns from `casdk-harness/src/harness/agents/configs/dev-go-expert.md`
 
 ## Key Conventions
 
@@ -69,7 +72,7 @@ When performing backend development tasks, follow these standards:
 
 ## Source Repositories
 
-This plugin draws patterns from: proagent, agents, casdk-harness, claude-ui, tac, skills, proagent-repo GUI, awesome-claude-skills, and specs.
+Built from 10 Provectus internal repositories: `agents`, `Auto-Claude`, `casdk-harness`, `claude-ui`, `gastown`, `proagent-repo`, `provectus-marketplace`, `ralph-orchestrator`, `skills`, `taches-cc-resources`. Total: 83 cataloged assets (50 newly discovered in latest scan).
 
 ## Plugin Structure
 

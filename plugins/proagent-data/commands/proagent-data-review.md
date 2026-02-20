@@ -36,6 +36,10 @@ When no specific target is provided, scan for these files and review all that ar
 | 8 | `macros/*.sql` | dbt macro review |
 | 9 | `spark/**/*.py`, `jobs/**/*.py` | Spark job review |
 | 10 | `great_expectations/**/*.json` | Data quality expectation review |
+| 11 | `*.nf`, `nextflow.config`, `modules/*.nf` | Nextflow pipeline review |
+| 12 | `*.xlsx`, `**/spreadsheet*.py` | Excel/spreadsheet review |
+| 13 | `**/tracker.py`, `**/reporter.py`, `**/analytics/*.py` | Analytics infrastructure review |
+| 14 | `**/dashboard*.sql`, `**/kpi*.sql` | KPI dashboard query review |
 
 ### Pipeline Review
 
@@ -148,6 +152,43 @@ Check data quality configurations for these issues:
 - Missing SLA definitions for data freshness
 - No data quality dashboard for trend monitoring
 - Quality checks not integrated into pipeline DAGs (running as afterthoughts)
+
+### Nextflow Pipeline Review
+
+Check Nextflow bioinformatics pipelines for these issues:
+
+**Architecture:**
+- Not using DSL2 module syntax for reusable processes
+- Missing container directives (Docker/Singularity) for reproducibility
+- No resource labels (cpus, memory, time) configured per process
+- Missing resume/cache configuration for fault tolerance on long runs
+- No input validation or samplesheet schema checks
+- Missing MultiQC or summary report generation
+
+**Best Practices:**
+- Hardcoded file paths instead of parameterized inputs
+- No nextflow.config profiles for different compute environments (local, HPC, cloud)
+- Missing publishDir directives for output organization
+- No error handling strategy (retry, ignore, terminate) per process
+- Missing pipeline version tagging and changelog
+
+### Business Analytics Review
+
+Check KPI dashboards and analytics queries for these issues:
+
+**Dashboard Design:**
+- Missing metric definitions (what exactly is being measured, how)
+- No time comparison (WoW, MoM, YoY) alongside absolute values
+- Missing threshold definitions (green/yellow/red ranges)
+- Leading and lagging indicators not clearly separated
+- No drill-down capability from summary to detail
+
+**Analytics Infrastructure:**
+- Event tracking without structured schema or validation
+- Missing batching/async for high-volume event submission
+- No aggregation windows defined for reporting queries
+- Missing error handling and retry logic in tracker
+- No monitoring of tracking pipeline health itself
 
 ## Output Format
 

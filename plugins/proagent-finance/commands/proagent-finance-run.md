@@ -1,5 +1,5 @@
 ---
-description: "Execute a financial workflow: create-budget, forecast-revenue, analyze-costs, generate-invoice, or financial-report"
+description: "Execute a financial workflow: create-budget, forecast-revenue, analyze-costs, generate-invoice, financial-report, financial-projections, or cloud-cost-optimization"
 argument-hint: "<mode>"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
@@ -12,7 +12,7 @@ You are the financial operations execution engine for the proagent-finance plugi
 
 ## Mode Detection
 
-Parse the first word or hyphenated phrase of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `create-budget`, `forecast-revenue`, `analyze-costs`, `generate-invoice`, or `financial-report`.
+Parse the first word or hyphenated phrase of `$ARGUMENTS` to determine the mode. If no mode is provided, ask the user to choose: `create-budget`, `forecast-revenue`, `analyze-costs`, `generate-invoice`, `financial-report`, `financial-projections`, or `cloud-cost-optimization`.
 
 ---
 
@@ -155,7 +155,7 @@ Analyze spending patterns, identify savings opportunities, and recommend optimiz
 
 1. **Gather expense data:**
    - Locate expense records: invoices, bank statements, accounting exports, receipt folders
-   - Use the invoice-organizer pattern (from awesome-claude-skills) to scan and extract data from invoice files if needed
+   - Use the invoice-organizer pattern to scan and extract data from invoice files if needed
    - Parse into structured format: date, vendor, amount, category, description
 
 2. **Categorize and aggregate:**
@@ -263,7 +263,7 @@ Create, organize, or reconcile invoices.
      ```
    - Save to `invoices/YYYY-MM-DD Client - Invoice - INV-YYYY-NNNN.md`
 
-3. **Invoice Organization (from awesome-claude-skills/invoice-organizer):**
+3. **Invoice Organization:**
    - Scan the target folder for invoice files (PDF, JPG, PNG, documents)
    - For each file, extract: vendor/company name, invoice number, date, amount, description
    - Rename to standardized format: `YYYY-MM-DD Vendor - Invoice - Description.ext`
@@ -363,3 +363,154 @@ Produce structured financial reports for stakeholders.
    - Save report to `reports/financial-report-YYYY-MM-DD-[type].md`
    - Generate CSV companion file for data-heavy reports
    - Suggest distribution: "Report ready. Share via `/proagent-finance-run` with Gmail integration for email distribution."
+
+---
+
+## Mode: financial-projections
+
+Build forward-looking financial models for startups and growth-stage companies. Based on patterns from the `agents` repo `plugins/startup-business-analyst/commands/financial-projections.md`.
+
+**Announce:** "Starting financial projections. I'll build revenue, expense, and cash flow models with scenario analysis."
+
+### Process
+
+1. **Define scope:**
+   - Ask for the projection horizon: 12, 24, or 36 months
+   - Ask for company stage: pre-revenue, early-revenue, growth, or mature
+   - Determine which models to build: revenue, expenses, cash flow, unit economics, break-even (or all)
+
+2. **Build revenue model:**
+   - For subscription businesses: current MRR, expected new customer acquisition rate, expansion revenue assumptions, churn rate
+   - For project-based businesses: pipeline value, win rate, average deal size, project duration
+   - For marketplace/transaction businesses: GMV growth, take rate, transaction volume
+   - Bottom-up approach: units x price x customers by segment
+   - Top-down validation: TAM x realistic capture rate
+
+3. **Build expense model:**
+   - Headcount plan: current team, planned hires by quarter, fully-loaded cost per role
+   - Infrastructure: current cloud spend, scaling factor per customer/user added
+   - Software/tools: current subscriptions, planned additions as team grows
+   - Marketing: customer acquisition cost (CAC) target x planned new customers
+   - Professional services: legal, accounting, compliance (often step-function with growth milestones)
+   - Office/facilities: current costs, trigger points for expansion
+
+4. **Build cash flow projection:**
+   - Monthly cash inflows (collections, not just revenue recognition)
+   - Monthly cash outflows (actual payment timing, not just expense recognition)
+   - Net monthly burn rate and trend
+   - Cumulative cash position
+   - Runway calculation: months until cash reaches zero at current burn
+   - Fundraising trigger point: when to start fundraising (typically 6-9 months before runway ends)
+
+5. **Unit economics analysis:**
+   - Customer Acquisition Cost (CAC): total sales + marketing spend / new customers acquired
+   - Lifetime Value (LTV): average revenue per customer x average customer lifespan
+   - LTV/CAC ratio: target >3x for healthy businesses
+   - Payback period: months to recover CAC from customer revenue
+   - Project these metrics forward based on scaling assumptions
+
+6. **Break-even analysis:**
+   - Fixed costs: expenses that remain constant regardless of revenue
+   - Variable costs: expenses that scale with revenue or customers
+   - Contribution margin: revenue minus variable costs per unit
+   - Break-even point: fixed costs / contribution margin per unit
+   - Months to break-even at projected growth rate
+
+7. **Sensitivity analysis:**
+   - Test impact of +/- 20% change in: growth rate, churn rate, CAC, average deal size, hiring pace
+   - Identify which variable has the largest impact on cash runway
+   - Build scenario matrix: optimistic, base, conservative for each key variable
+
+8. **Generate projections report:**
+   - Save to `projections/financial-projections-YYYY-MM-DD.md`
+   - Include all models with monthly granularity
+   - Highlight key milestones: break-even date, fundraising trigger, revenue milestones
+   - Document all assumptions in an appendix
+   - Suggest: "Projections ready. Review assumptions with `/proagent-finance-review forecasts` and track actuals with `/proagent-finance-review budget-variance`."
+
+---
+
+## Mode: cloud-cost-optimization
+
+Analyze cloud infrastructure spending and identify optimization opportunities. Based on patterns from the `agents` repo `plugins/cloud-infrastructure/skills/cost-optimization/SKILL.md`.
+
+**Announce:** "Starting cloud cost optimization analysis. I'll review your cloud spending, identify waste, and recommend savings."
+
+### Process
+
+1. **Gather cloud cost data:**
+   - Ask for cloud provider(s): AWS, GCP, Azure, or multi-cloud
+   - Locate cost reports: AWS Cost Explorer exports, GCP Billing exports, Azure Cost Management reports
+   - Look for existing tagging or cost allocation data
+   - If no structured data, ask for recent billing statements or screenshots
+
+2. **Inventory and categorize:**
+   - Map spending by service category: compute, storage, networking, database, ML/AI, analytics, security
+   - Map spending by environment: production, staging, development, sandbox
+   - Map spending by team or project (using tags or cost allocation labels)
+   - Calculate percentage of total for each dimension
+
+3. **Identify optimization opportunities:**
+
+   **Compute optimization:**
+   - Identify instances with <20% average CPU utilization (right-sizing candidates)
+   - Flag instances running 24/7 that could use scheduling (dev/staging environments)
+   - Evaluate reserved instance or savings plan coverage for steady-state workloads
+   - Recommend spot/preemptible instances for fault-tolerant batch workloads
+   - Check for outdated instance families (migrate to latest generation for better price-performance)
+
+   **Storage optimization:**
+   - Identify unattached EBS volumes, stale snapshots, unused S3 buckets
+   - Review storage class distribution: move infrequently accessed data to cheaper tiers
+   - Implement lifecycle policies for automatic tiering and expiration
+   - Check for oversized volumes with low utilization
+
+   **Networking optimization:**
+   - Review data transfer costs between regions and availability zones
+   - Identify NAT gateway costs and evaluate VPC endpoint alternatives
+   - Check for idle load balancers and elastic IPs
+
+   **Database optimization:**
+   - Identify over-provisioned RDS/Cloud SQL instances
+   - Evaluate reserved instance coverage for databases
+   - Check for unused database snapshots and backups beyond retention policy
+
+4. **Cost allocation review:**
+   - Verify tagging coverage: what percentage of resources are properly tagged?
+   - Recommend tagging strategy: team, project, environment, cost-center tags
+   - Build cost allocation report by team and project
+   - Identify shared costs and recommend fair allocation methodology
+
+5. **Generate optimization report:**
+   ```
+   ## Cloud Cost Optimization Report
+
+   ### Spending Overview
+   | Provider | Monthly Spend | MoM Change | Top Service |
+   |----------|--------------|------------|-------------|
+
+   ### By Environment
+   | Environment | Monthly Spend | % of Total | Notes |
+   |-------------|--------------|------------|-------|
+
+   ### Optimization Recommendations
+   | # | Category | Action | Est. Monthly Savings | Effort | Priority |
+   |---|----------|--------|---------------------|--------|----------|
+
+   ### Quick Wins (< 1 week)
+   - [action with savings estimate]
+
+   ### Medium-Term (1-4 weeks)
+   - [action with savings estimate]
+
+   ### Strategic (1-3 months)
+   - [action with savings estimate]
+
+   ### Total Potential Savings: $X/month ($X/year)
+   ### Tagging Coverage: X% -- Target: >95%
+   ```
+
+6. **Save and recommend cadence:**
+   - Save to `reports/cloud-cost-optimization-YYYY-MM-DD.md`
+   - Recommend monthly review cadence
+   - Suggest: "Set a monthly reminder to re-run `/proagent-finance-run cloud-cost-optimization` and track savings with `/proagent-finance-review cost-structures`."
