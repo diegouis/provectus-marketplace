@@ -19,6 +19,7 @@ Practice-specific plugins for Claude Code and Claude Desktop, built from 843 ass
 | [proagent-ml-ai](plugins/proagent-ml-ai) | ML/AI | Model training, MLOps, experiment tracking, LLM apps, RAG, embeddings |
 | [proagent-hr](plugins/proagent-hr) | HR | Hiring, interviews, onboarding, performance reviews, compensation |
 | [proagent-sales](plugins/proagent-sales) | Sales | Proposals, RFPs, competitive analysis, lead research, pipeline management |
+| [proagent-documentation](plugins/proagent-documentation) | Documentation | Repo analysis, doc generation (README/architecture/API/onboarding/runbook), Confluence publishing and sync |
 | [proagent-finance](plugins/proagent-finance) | Finance | Budgeting, invoicing, forecasting, P&L analysis, cost optimization |
 
 ## Installation
@@ -135,8 +136,8 @@ Every plugin ships with a core set of MCP servers. Additional servers are includ
 
 | Server | Package | Plugins |
 |--------|---------|---------|
-| **GitLab** | `@modelcontextprotocol/server-gitlab` | agentic-engineering, sdlc, platform, devops, qa, backend, frontend, security |
-| **Atlassian (Jira/Confluence)** | `@modelcontextprotocol/server-atlassian` | sdlc, qa, delivery |
+| **GitLab** | `@modelcontextprotocol/server-gitlab` | agentic-engineering, sdlc, platform, devops, qa, backend, frontend, security, documentation |
+| **Atlassian (Jira/Confluence)** | `@modelcontextprotocol/server-atlassian` | sdlc, qa, delivery, documentation |
 | **Playwright** | `@playwright/mcp@latest` | agentic-engineering, qa, frontend |
 | **Rube (Composio)** | `https://rube.app/mcp` | agentic-engineering, platform, devops, frontend, delivery, data, hr, sales, finance |
 
@@ -189,14 +190,14 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 
 | Metric | Count |
 |--------|-------|
-| Plugins | 14 |
-| Skills | 15 |
-| Commands | 42 |
-| Agents | 20 |
-| Hooks | 39 |
+| Plugins | 15 |
+| Skills | 16 |
+| Commands | 45 |
+| Agents | 23 |
+| Hooks | 43 |
 | MCP Servers (core) | 5 (Slack, Google Drive, Google Workspace, GitHub, Excalidraw) |
 | MCP Servers (additional) | 4 (GitLab, Atlassian, Playwright, Rube) |
-| MCP Integrations | 31 |
+| MCP Integrations | 37 |
 | Source Assets | 843 |
 | Source Repos | 17 |
 
@@ -219,7 +220,8 @@ provectus-marketplace/
 │   ├── proagent-ml-ai/
 │   ├── proagent-hr/
 │   ├── proagent-sales/
-│   └── proagent-finance/
+│   ├── proagent-finance/
+│   └── proagent-documentation/
 ├── catalog/               # Asset catalog from repo scanning
 └── scan-reports/          # Raw scan reports per repo batch
 ```
