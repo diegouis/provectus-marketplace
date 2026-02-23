@@ -69,6 +69,14 @@ Guides you through:
 5. Running the OAuth authorization flow
 6. Verifying live MCP connectivity
 
+### Review connector configurations
+
+```
+/proagent-connector-setup-review [connector]
+```
+
+Audits existing connector configurations — checks token health, file permissions, storage locations, git safety, and end-to-end connectivity. Provides remediation guidance for any issues found.
+
 ### Overview
 
 ```
@@ -88,6 +96,8 @@ Shows all capabilities, available commands, and quick-start routing.
 | Google Drive reference | `skills/.../references/google-drive-setup.md` | GCP setup, OAuth, troubleshooting |
 | Hub command | `commands/proagent-connector-setup-hub.md` | Capabilities overview |
 | Run command | `commands/proagent-connector-setup-run.md` | Thin dispatcher to mode files |
+| Review command | `commands/proagent-connector-setup-review.md` | Audit configs, token health, remediation |
+| Specialist agent | `agents/connector-setup-specialist.md` | Subagent for MCP credential setup |
 | Slack mode | `commands/modes/setup-slack.md` | 5-step Slack setup workflow |
 | Google Drive mode | `commands/modes/setup-google-drive.md` | 6-step Google Drive setup workflow |
 | Verify mode | `commands/modes/verify-all.md` | Diagnostic status report |

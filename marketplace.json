@@ -271,8 +271,8 @@
       "source_repos": 0,
       "components": {
         "skills": 1,
-        "commands": 2,
-        "agents": 0,
+        "commands": 3,
+        "agents": 1,
         "hooks": 1,
         "mcp_servers": 0
       }
@@ -283,8 +283,8 @@
     "total_assets_cataloged": 867,
     "total_source_repos": 16,
     "total_skills": 19,
-    "total_commands": 48,
-    "total_agents": 23,
+    "total_commands": 49,
+    "total_agents": 24,
     "total_hooks": 45,
     "total_mcp_integrations": 37,
     "practices_covered": [

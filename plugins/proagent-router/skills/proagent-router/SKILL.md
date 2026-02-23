@@ -39,6 +39,7 @@ Use the routing table below to identify the best-matching practice. Match based 
 | **hr** | Hiring, interviews, onboarding, performance reviews, compensation, CV validation, employee development | "screen these CVs", "plan onboarding", "write interview questions", "performance review" |
 | **sales** | Proposals, RFPs, competitive analysis, lead research, pipeline management, quotes | "write a proposal", "respond to this RFP", "research this lead", "competitive analysis" |
 | **finance** | Budgeting, invoicing, forecasting, P&L analysis, cost optimization, financial reporting | "create a budget", "forecast revenue", "analyze P&L", "optimize cloud costs" |
+| **connector-setup** | MCP setup, Slack tokens, Google Drive OAuth, credential configuration, connector setup | "set up Slack", "configure Google Drive", "check my MCP credentials" |
 
 ### Step 3: Handle Ambiguity
 
@@ -59,7 +60,8 @@ I couldn't determine the best practice for your request.
 Could you tell me more about what you're trying to accomplish?
 
 Available practices: agentic-engineering, sdlc, platform, devops, qa,
-backend, frontend, delivery, security, data, ml-ai, aws-ai, hr, sales, finance
+backend, frontend, delivery, security, data, ml-ai, aws-ai, hr, sales, finance,
+connector-setup
 ```
 
 ### Step 4: Dispatch to Specialist
@@ -85,6 +87,7 @@ Once the practice is identified, dispatch using the Task tool with the practice'
 | hr | `proagent-hr:hr-specialist` | Task (subagent_type) |
 | sales | `proagent-sales:sales-specialist` | Task (subagent_type) |
 | finance | `proagent-finance:finance-specialist` | Task (subagent_type) |
+| connector-setup | `proagent-connector-setup:connector-setup-specialist` | Task (subagent_type) |
 
 **Dispatch format:**
 1. Announce the detected practice: "Routing to **[Practice Name]** specialist..."

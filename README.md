@@ -21,6 +21,9 @@ Practice-specific plugins for Claude Code and Claude Desktop, built from 867 ass
 | [proagent-sales](plugins/proagent-sales) | Sales | Proposals, sales automation, content marketing, business cases, market opportunity analysis |
 | [proagent-documentation](plugins/proagent-documentation) | Documentation | Repo analysis, doc generation (README/architecture/API/onboarding/runbook), Confluence publishing and sync |
 | [proagent-finance](plugins/proagent-finance) | Finance | Budgeting, cloud FinOps, financial projections, Stripe/PCI, budget variance analysis |
+| [proagent-router](plugins/proagent-router) | Router | Single `/proagent` command that detects the domain and dispatches to the appropriate practice specialist |
+| [proagent-aws-ai](plugins/proagent-aws-ai) | AWS AI | Amazon Bedrock, AgentCore, AWS AI services, CDK for AI, Knowledge Bases, AWS architecture |
+| [proagent-connector-setup](plugins/proagent-connector-setup) | Setup | Guided MCP credential configuration — Slack token extraction, Google Drive OAuth, connector verification |
 
 ## Installation
 
@@ -190,11 +193,11 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 
 | Metric | Count |
 |--------|-------|
-| Plugins | 15 |
-| Skills | 16 |
-| Commands | 45 |
-| Agents | 23 |
-| Hooks | 43 |
+| Plugins | 17 |
+| Skills | 19 |
+| Commands | 49 |
+| Agents | 24 |
+| Hooks | 45 |
 | MCP Servers (core) | 5 (Slack, Google Drive, Google Workspace, GitHub, Excalidraw) |
 | MCP Servers (additional) | 4 (GitLab, Atlassian, Playwright, Rube) |
 | MCP Integrations | 37 |
@@ -207,8 +210,9 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 ```
 provectus-marketplace/
 ├── marketplace.json       # Marketplace manifest with all plugin metadata
-├── plugins/               # 15 practice plugins
+├── plugins/               # 18 practice plugins
 │   ├── proagent-agentic-engineering/
+│   ├── proagent-aws-ai/
 │   ├── proagent-sdlc/
 │   ├── proagent-platform/
 │   ├── proagent-devops/
@@ -222,7 +226,9 @@ provectus-marketplace/
 │   ├── proagent-hr/
 │   ├── proagent-sales/
 │   ├── proagent-finance/
-│   └── proagent-documentation/
+│   ├── proagent-router/
+│   ├── proagent-documentation/
+│   └── proagent-connector-setup/
 ├── catalog/               # Asset catalog from repo scanning
 └── scan-reports/          # Raw scan reports per repo batch
 ```
