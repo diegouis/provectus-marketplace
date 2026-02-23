@@ -193,11 +193,11 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 
 | Metric | Count |
 |--------|-------|
-| Plugins | 17 |
-| Skills | 19 |
-| Commands | 49 |
-| Agents | 24 |
-| Hooks | 45 |
+| Plugins | 18 |
+| Skills | 20 |
+| Commands | 52 |
+| Agents | 25 |
+| Hooks | 46 |
 | MCP Servers (core) | 5 (Slack, Google Drive, Google Workspace, GitHub, Excalidraw) |
 | MCP Servers (additional) | 4 (GitLab, Atlassian, Playwright, Rube) |
 | MCP Integrations | 37 |

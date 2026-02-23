@@ -276,16 +276,32 @@
         "hooks": 1,
         "mcp_servers": 0
       }
+    },
+    {
+      "name": "proagent-aws-ai",
+      "version": "0.2.0",
+      "category": "aws-ai",
+      "description": "Building AI Solutions on AWS — Bedrock AgentCore agents, MCP server development, Knowledge Bases RAG, generative AI architecture with Well-Architected best practices, CDK infrastructure, and AWS AI service integration",
+      "source": "./plugins/proagent-aws-ai",
+      "assets_count": 0,
+      "source_repos": 0,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 1,
+        "mcp_servers": 5
+      }
     }
   ],
   "statistics": {
-    "total_plugins": 17,
+    "total_plugins": 18,
     "total_assets_cataloged": 867,
     "total_source_repos": 16,
-    "total_skills": 19,
-    "total_commands": 49,
-    "total_agents": 24,
-    "total_hooks": 45,
+    "total_skills": 20,
+    "total_commands": 52,
+    "total_agents": 25,
+    "total_hooks": 46,
     "total_mcp_integrations": 37,
     "practices_covered": [
       "agentic-engineering",
@@ -299,6 +315,7 @@
       "security",
       "data",
       "ml-ai",
+      "aws-ai",
       "hr",
       "sales",
       "finance",

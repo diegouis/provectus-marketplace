@@ -77,7 +77,7 @@
     {
       "name": "proagent-router",
       "source": "./plugins/proagent-router",
-      "description": "Provectus practice router: single /proagent command that detects the domain from user input and dispatches to the appropriate practice specialist across all 15 plugins."
+      "description": "Provectus practice router: single /proagent command that detects the domain from user input and dispatches to the appropriate practice specialist across all 16 practices."
     },
     {
       "name": "proagent-documentation",
@@ -88,6 +88,11 @@
       "name": "proagent-connector-setup",
       "source": "./plugins/proagent-connector-setup",
       "description": "Guided setup wizard for configuring shared MCP server credentials (Slack tokens, Google Drive OAuth). Walks users through token extraction, credential storage, and end-to-end verification."
+    },
+    {
+      "name": "proagent-aws-ai",
+      "source": "./plugins/proagent-aws-ai",
+      "description": "AWS AI solutions: Bedrock AgentCore agents, MCP server development, Knowledge Bases RAG, generative AI architecture with Well-Architected best practices, CDK infrastructure, and AWS AI service integration."
     }
   ]
 }
