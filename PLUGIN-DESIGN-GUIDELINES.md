@@ -250,3 +250,31 @@ Must include:
 - Installation instructions
 - Usage examples for every command mode
 - Component inventory table
+
+---
+
+## 8. New Plugin Registration Checklist
+
+When adding a new plugin to the marketplace, complete ALL of the following:
+
+### Plugin Components
+- [ ] `.claude-plugin/plugin.json` — manifest with name, version, description, author
+- [ ] `.mcp.json` — MCP server configurations (or empty `{}` if none)
+- [ ] `skills/<name>/SKILL.md` — core skill with YAML frontmatter
+- [ ] `commands/<plugin>-hub.md` — capabilities overview (<50 lines)
+- [ ] `commands/<plugin>-run.md` — execution dispatcher
+- [ ] `commands/<plugin>-review.md` — review/audit command
+- [ ] `agents/<practice>-specialist.md` — specialist subagent
+- [ ] `hooks/hooks.json` — lifecycle hooks
+- [ ] `CLAUDE.md` — developer documentation
+- [ ] `README.md` — user-facing documentation
+
+### Marketplace Registration
+- [ ] `marketplace.json` — add plugin entry + update statistics
+- [ ] `.claude-plugin/marketplace.json` — add plugin entry
+- [ ] `README.md` (root) — add to plugins table + update statistics + add to project structure tree
+
+### Router Integration
+- [ ] `proagent-router/skills/proagent-router/SKILL.md` — add to routing table + specialist agents table + available practices list
+- [ ] `proagent-router/commands/proagent.md` — add to Available Practices table
+- [ ] `proagent-router/CLAUDE.md` — add to practices list + update count

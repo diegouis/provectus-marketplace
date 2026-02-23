@@ -43,10 +43,13 @@ proagent-connector-setup/
   commands/
     proagent-connector-setup-hub.md       — Capabilities overview, command table, quick start
     proagent-connector-setup-run.md       — Thin dispatcher: routes to mode files
+    proagent-connector-setup-review.md    — Audit connector configs: token health, permissions, remediation
     modes/
       setup-slack.md                      — 5-step Slack workflow with adequacy gates
       setup-google-drive.md               — 6-step Google Drive workflow with adequacy gates
       verify-all.md                       — Diagnostic status report for all connectors
+  agents/
+    connector-setup-specialist.md         — Specialist subagent for MCP credential setup and troubleshooting
   hooks/
     hooks.json                            — PostToolUse: detects placeholder tokens in written files
   CLAUDE.md                               — This file

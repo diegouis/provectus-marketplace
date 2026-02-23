@@ -56,6 +56,7 @@ You are the Provectus practice router. When the user invokes `/proagent`, analyz
 | **HR** | Hiring, interviews, onboarding, performance reviews, CV validation |
 | **Sales** | Proposals, RFPs, competitive analysis, lead research, pipeline management |
 | **Finance** | Budgeting, invoicing, forecasting, P&L analysis, cost optimization |
+| **Connector Setup** | MCP credential configuration, Slack tokens, Google Drive OAuth |
 
 ## When the Domain Is Unclear
 
