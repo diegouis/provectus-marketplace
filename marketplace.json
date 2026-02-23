@@ -260,16 +260,32 @@
         "hooks": 4,
         "mcp_servers": 6
       }
+    },
+    {
+      "name": "proagent-connector-setup",
+      "version": "0.1.0",
+      "category": "setup",
+      "description": "Guided setup wizard for configuring shared MCP server credentials (Slack tokens, Google Drive OAuth) — token extraction, credential storage, and end-to-end verification",
+      "source": "./plugins/proagent-connector-setup",
+      "assets_count": 0,
+      "source_repos": 0,
+      "components": {
+        "skills": 1,
+        "commands": 2,
+        "agents": 0,
+        "hooks": 1,
+        "mcp_servers": 0
+      }
     }
   ],
   "statistics": {
-    "total_plugins": 16,
+    "total_plugins": 17,
     "total_assets_cataloged": 867,
     "total_source_repos": 16,
-    "total_skills": 18,
-    "total_commands": 46,
+    "total_skills": 19,
+    "total_commands": 48,
     "total_agents": 23,
-    "total_hooks": 44,
+    "total_hooks": 45,
     "total_mcp_integrations": 37,
     "practices_covered": [
       "agentic-engineering",
@@ -287,7 +303,8 @@
       "sales",
       "finance",
       "router",
-      "documentation"
+      "documentation",
+      "setup"
     ]
   },
   "mcp_servers_core": [
