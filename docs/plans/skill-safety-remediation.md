@@ -32,7 +32,7 @@ Full audit and remediation of all plugins for context explosion risks, following
 
 ---
 
-### PR #27 — Agent definition bulk trim (pending merge)
+### PR #27 — Agent definition bulk trim (merged)
 - Replaced inline knowledge sections in 17 agent definitions with delegation pointers to SKILL.md
 - Pattern: `## Technical Knowledge` → list of `→ skills/*/SKILL.md` pointers + `CLAUDE.md`
 - Also removed redundant Identity section and External Skill References table from hr-specialist
@@ -66,32 +66,27 @@ Note: agentic-engineering (140) and platform (93) appear higher because their fr
 
 ---
 
-## Phase 4: Oversized SKILL.md Restructuring (Optional, Larger Effort)
+### PR #28 — SKILL.md restructuring into router + references (pending merge)
+- Split 8 oversized SKILL.md files (558–1229 lines) into thin routers (<80 lines) plus `references/` directories
+- Each router contains: frontmatter, description, "when to use", CONTEXT GUARD, routing table mapping user intent to reference files
+- All code examples and content preserved in reference files — zero knowledge loss
+- 47 reference files created across 8 plugins
 
-**Goal:** Restructure the largest knowledge-base SKILL.md files into a router + reference files architecture.
+**Results by file (before → after):**
 
-These files are too large but don't have executable bash blocks (those were fixed in PR #26). They're pure knowledge bases that load 800–1200 lines of reference material into context on every invocation. The fix is to split them into a thin SKILL.md router (<80 lines) plus reference files loaded at point-of-need.
+| # | Plugin | Before | Router | Ref Files | Saved from context |
+|---|--------|--------|--------|-----------|-------------------|
+| 1 | proagent-backend | 1229 | 39 | 8 (1173 lines) | -1190 |
+| 2 | proagent-data | 1194 | 49 | 7 (1099 lines) | -1145 |
+| 3 | proagent-devops | 894 | 43 | 7 (800 lines) | -851 |
+| 4 | proagent-ml-ai | 791 | 37 | 5 (723 lines) | -754 |
+| 5 | proagent-agentic-engineering | 748 | 56 | 5 (678 lines) | -692 |
+| 6 | proagent-sales | 613 | 39 | 5 (523 lines) | -574 |
+| 7 | proagent-security | 609 | 37 | 6 (540 lines) | -572 |
+| 8 | proagent-delivery | 558 | 45 | 4 (445 lines) | -513 |
+| **Total** | | **6636** | **345** | **47 files (5981 lines)** | **-6291** |
 
-### Files to restructure
-
-| # | File | Lines | Proposed Split |
-|---|------|-------|----------------|
-| 1 | `proagent-backend/skills/backend-assistant/SKILL.md` | 1229 | Router + references/api-patterns.md, references/database-patterns.md, references/auth-patterns.md, references/deployment-patterns.md |
-| 2 | `proagent-data/skills/data-assistant/SKILL.md` | 1194 | Router + references/pipeline-patterns.md, references/dbt-patterns.md, references/sql-optimization.md, references/quality-framework.md, references/spark-patterns.md |
-| 3 | `proagent-devops/skills/devops-assistant/SKILL.md` | 894 | Router + references/cicd-patterns.md, references/k8s-patterns.md, references/iac-patterns.md, references/monitoring-patterns.md |
-| 4 | `proagent-ml-ai/skills/ml-ai-assistant/SKILL.md` | 791 | Router + references/training-patterns.md, references/deployment-patterns.md, references/llm-patterns.md, references/monitoring-patterns.md |
-| 5 | `proagent-agentic-engineering/skills/agentic-engineering-assistant/SKILL.md` | 748 | Router + references/component-architecture.md, references/orchestration-patterns.md, references/prompt-engineering.md |
-| 6 | `proagent-sales/skills/sales-assistant/SKILL.md` | 613 | Router + references/proposal-patterns.md, references/pricing-patterns.md, references/research-patterns.md |
-| 7 | `proagent-security/skills/security-assistant/SKILL.md` | 609 | Router + references/vulnerability-scanning.md, references/compliance-frameworks.md, references/owasp-patterns.md |
-| 8 | `proagent-delivery/skills/delivery-assistant/SKILL.md` | 558 | Router + references/sprint-patterns.md, references/reporting-patterns.md, references/stakeholder-patterns.md |
-
-**Approach per file:**
-1. Create a thin SKILL.md (<80 lines): frontmatter, description, "when to use", routing table mapping user intent to reference files
-2. Move each major section into its own `references/` file
-3. Add CONTEXT GUARD notes at each routing point
-4. Verify the skill still works by invoking it and requesting each topic
-
-**This phase is optional and can be done incrementally — one plugin at a time.**
+"Saved from context" = lines no longer loaded on every skill invocation (before − router). Reference files are loaded on-demand only when matched by the routing table.
 
 ---
 
@@ -103,5 +98,5 @@ These files are too large but don't have executable bash blocks (those were fixe
 | 2a: Add guidelines | Done | #24 | Codified rules for all future plugins |
 | 2b: Fix all hooks | Done | #25 | 53 hook commands hardened, 4 safety gates fixed |
 | 2c: Fix SKILL.md bash blocks | Done | #26 | -98 lines of executable code removed |
-| 3: Agent definition trim | Done | #27 (pending merge) | 17 files trimmed, -1102 lines of duplicated content |
-| 4: SKILL.md restructuring | TODO (optional) | TBD | ~8 files split into router + references |
+| 3: Agent definition trim | Done | #27 | 17 files trimmed, -1102 lines of duplicated content |
+| 4: SKILL.md restructuring | Done | #28 (pending merge) | 8 files split into router + references, -6291 lines from default context |
