@@ -66,7 +66,7 @@ Note: agentic-engineering (140) and platform (93) appear higher because their fr
 
 ---
 
-### PR #28 — SKILL.md restructuring into router + references (pending merge)
+### PR #28 — SKILL.md restructuring into router + references (merged)
 - Split 8 oversized SKILL.md files (558–1229 lines) into thin routers (<80 lines) plus `references/` directories
 - Each router contains: frontmatter, description, "when to use", CONTEXT GUARD, routing table mapping user intent to reference files
 - All code examples and content preserved in reference files — zero knowledge loss
@@ -99,4 +99,4 @@ Note: agentic-engineering (140) and platform (93) appear higher because their fr
 | 2b: Fix all hooks | Done | #25 | 53 hook commands hardened, 4 safety gates fixed |
 | 2c: Fix SKILL.md bash blocks | Done | #26 | -98 lines of executable code removed |
 | 3: Agent definition trim | Done | #27 | 17 files trimmed, -1102 lines of duplicated content |
-| 4: SKILL.md restructuring | Done | #28 (pending merge) | 8 files split into router + references, -6291 lines from default context |
+| 4: SKILL.md restructuring | Done | #28 | 8 files split into router + references, -6291 lines from default context |
