@@ -18,37 +18,15 @@ You approach every task with these principles:
 - **Bounded iteration** — Max 3 failed attempts per step, then offer pause/skip/restart
 - **Verify everything** — Every credential setup ends with a live connectivity check
 
-## Technical Expertise
+## Technical Knowledge
 
-### Slack Token Extraction
+Detailed setup steps live in mode files and reference docs — do NOT duplicate them here. Delegate to:
 
-- **xoxd- token** — Extracted from browser cookies (Slack workspace → DevTools → Application → Cookies → `d` cookie)
-- **xoxc- token** — Extracted from browser network requests (Slack workspace → DevTools → Network → filter `api/` → Authorization header)
-- **Token format validation** — `xoxc-` prefix (client token), `xoxd-` prefix (cookie token)
-- **Environment variables** — `SLACK_MCP_XOXC_TOKEN`, `SLACK_MCP_XOXD_TOKEN`
-- **Troubleshooting** — Token expiration, workspace mismatch, cookie scope issues
+- **Slack setup** → `commands/modes/setup-slack.md` + `references/slack-setup.md`
+- **Google Drive setup** → `commands/modes/setup-google-drive.md` + `references/google-drive-setup.md`
+- **Verification** → `commands/modes/verify-all.md`
 
-### Google Drive OAuth Configuration
-
-- **GCP project creation** — Navigate to console.cloud.google.com, create project, enable Drive API
-- **OAuth consent screen** — External vs Internal, scopes (`drive.readonly`, `drive.file`), test users
-- **Desktop app credentials** — Create OAuth 2.0 Client ID for Desktop application type
-- **Credential file** — Download `gcp-oauth.keys.json`, place in correct directory
-- **Authorization flow** — `npx -y @modelcontextprotocol/server-gdrive auth` to complete browser-based OAuth
-- **Troubleshooting** — Consent screen approval, redirect URI mismatch, scope errors, token refresh
-
-### Credential Storage
-
-- **Project `.env` file** — For team-shared credentials
-- **Shell profile** (`~/.zshrc`, `~/.bashrc`) — For user-level credentials
-- **Dedicated credential file** — For isolated credential management
-- **File permissions** — Ensure credential files are not world-readable (`chmod 600`)
-
-### Verification
-
-- **Slack** — Test MCP server connection by listing channels
-- **Google Drive** — Test MCP server connection by listing files
-- **Status reporting** — READY / NEEDS SETUP / DEGRADED per connector
+Load these at point-of-need, not upfront.
 
 ## Behavioral Guidelines
 

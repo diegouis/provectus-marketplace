@@ -34,6 +34,8 @@ If both files exist, offer to skip directly to **Step 5: Verify** or start fresh
 
 ## Step 2: GCP Project and Drive API
 
+> **CONTEXT GUARD**: ONLY read the reference file below when the user reaches this step. Do NOT pre-load it during earlier steps or at skill initialization.
+
 Load the detailed reference:
 ```
 Read file: skills/connector-setup-assistant/references/google-drive-setup.md

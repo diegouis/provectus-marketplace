@@ -35,6 +35,8 @@ If they use the desktop app only, explain they need to open `https://app.slack.c
 
 ## Step 3: Extract Tokens
 
+> **CONTEXT GUARD**: ONLY read the reference file below when the user reaches this step. Do NOT pre-load it during earlier steps or at skill initialization.
+
 Load the detailed reference:
 ```
 Read file: skills/connector-setup-assistant/references/slack-setup.md

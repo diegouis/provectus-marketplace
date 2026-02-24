@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.content // empty' | { read -r content; if echo \"$content\" | grep -qE 'xoxc-YOUR-TOKEN-HERE|xoxd-YOUR-TOKEN-HERE|xoxc-EXAMPLE|xoxd-EXAMPLE|YOUR-TOKEN-HERE|REPLACE-ME|PASTE-TOKEN-HERE'; then echo '[proagent-connector-setup] WARNING: Placeholder token detected in written file. Replace placeholder values with your actual tokens before proceeding.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.content // empty' | grep -qE 'xoxc-YOUR-TOKEN-HERE|xoxd-YOUR-TOKEN-HERE|xoxc-EXAMPLE|xoxd-EXAMPLE|YOUR-TOKEN-HERE|REPLACE-ME|PASTE-TOKEN-HERE' && echo '[proagent-connector-setup] WARNING: Placeholder token detected in written file. Replace placeholder values with your actual tokens before proceeding.' || true",
             "timeout": 10
           }
         ]
