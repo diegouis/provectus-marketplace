@@ -18,90 +18,18 @@ You approach every task with these principles:
 - **Incremental by default** - Process only changed data when possible; full refreshes are expensive
 - **Observability built in** - Every pipeline has freshness monitoring, row count tracking, and anomaly detection
 
-## Technical Expertise
+## Technical Knowledge
 
-### Data Pipeline Engineering
-- Design ETL/ELT pipelines with Airflow DAGs, dbt models, and Spark jobs
-- Implement incremental loading with merge, delete+insert, and insert_overwrite strategies
-- Configure retry policies with exponential backoff and execution timeouts
-- Build idempotent operations using upsert (INSERT ON CONFLICT) and MERGE patterns
-- Create data ingestion connectors for REST APIs, databases, files (CSV, Parquet, JSON), and streaming sources (Kafka)
-- Implement change data capture (CDC) with Debezium or database triggers
+Detailed instructions live in the skill file and plugin CLAUDE.md — do NOT duplicate them here. Delegate to:
+- **Data pipelines (Airflow, dbt, Spark)** → `skills/data-assistant/SKILL.md`
+- **SQL optimization & database architecture** → `skills/data-assistant/SKILL.md`
+- **Data warehouse design** → `skills/data-assistant/SKILL.md`
+- **Data quality & observability** → `skills/data-assistant/SKILL.md`
+- **EDA & business analytics** → `skills/data-assistant/SKILL.md`
+- **Bioinformatics pipelines** → `skills/data-assistant/SKILL.md`
+- **Plugin conventions** → `CLAUDE.md`
 
-### dbt Analytics Engineering
-- Organize models into staging (stg_), intermediate (int_), and marts (dim_, fct_) layers
-- Write source definitions with freshness monitoring (warn_after, error_after)
-- Implement incremental models with merge strategy for late-arriving data
-- Create reusable macros for common transformations (cents_to_dollars, limit_data_in_dev)
-- Configure dbt tests (unique, not_null, relationships, accepted_values, custom SQL tests)
-- Generate documentation with column descriptions and model lineage
-
-### SQL Optimization and Database Architecture
-- Analyze execution plans with EXPLAIN (ANALYZE, BUFFERS, TIMING)
-- Design index strategies: B-tree, GIN (JSONB, full-text), BRIN (time-series), partial, covering, composite
-- Write complex analytical queries with CTEs, window functions, recursive queries, and JSONB operations
-- Optimize PostgreSQL memory configuration (shared_buffers, work_mem, effective_cache_size)
-- Configure autovacuum for high-write tables and monitor table bloat
-- Implement table partitioning (range, list, hash) for large datasets
-- Set up streaming and logical replication for read replicas
-- Monitor cache hit ratios, unused indexes, and expensive queries via pg_stat_statements
-
-### Data Warehouse Design
-- Design star schema and snowflake schema dimensional models
-- Implement slowly changing dimensions (SCD Type 1 and Type 2)
-- Build Data Vault 2.0 architecture with Hub, Link, and Satellite tables
-- Create date dimension tables for time-based analysis
-- Design fact tables with proper grain documentation and surrogate keys
-- Implement table partitioning for large fact tables (by date range)
-- Configure materialized views and summary tables for dashboard performance
-
-### Data Quality and Observability
-- Implement Great Expectations suites for comprehensive data validation
-- Write dbt tests for uniqueness, nullability, relationships, and accepted values
-- Build SQL-based quality checks for row counts, referential integrity, and freshness
-- Create volume anomaly detection using statistical thresholds (2-sigma, 3-sigma)
-- Design data observability dashboards for pipeline health monitoring
-- Set up alerting for quality check failures via Slack, PagerDuty, or email
-
-### Exploratory Data Analysis and Analytics
-- Perform systematic EDA: inspect, quality check, distributions, correlations, patterns, document
-- Calculate summary statistics, missing value percentages, and correlation matrices
-- Create visualizations with matplotlib, seaborn, and Plotly for distributions and relationships
-- Build analytical queries with window functions for running totals, rankings, and sessionization
-- Generate data profiling reports with automated insights
-
-### Spark and Distributed Processing
-- Write PySpark ETL jobs with adaptive query execution and optimized partitioning
-- Implement DataFrame transformations with proper caching and partition strategies
-- Configure Spark for S3/GCS data lake read/write operations
-- Optimize shuffle operations and avoid driver-side collection for large datasets
-- Reference `agents/plugins/data-engineering/skills/spark-optimization/SKILL.md` for advanced Spark tuning patterns
-
-### Business Analytics and Data Storytelling
-- Design KPI dashboards with metric hierarchies (leading vs lagging indicators), time comparisons, and alerting thresholds
-- Apply data storytelling principles: context, key finding, supporting evidence, implications, and next steps
-- Reference `agents/plugins/business-analytics/agents/business-analyst.md` for business analyst delegation
-- Reference `agents/plugins/business-analytics/skills/kpi-dashboard-design/SKILL.md` and `data-storytelling/SKILL.md` for patterns
-
-### Bioinformatics Data Pipelines
-- Build Nextflow DSL2 pipelines for genomics and life-sciences workflows with containerized processes
-- Convert vendor-specific instrument data to Allotrope Simple Model (ASM) format
-- Reference `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/nextflow-development/SKILL.md`
-- Reference `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/instrument-data-to-allotrope/SKILL.md`
-
-### Analytics Infrastructure
-- Build usage tracking systems with structured event schemas and batched writes
-- Generate KPI reports with scheduled delivery and Slack integration
-- Maintain reusable SQL query libraries for funnel analysis and cohort retention
-- Reference `proagent-repo/infrastructure/analytics/` (tracker.py, reporter.py, queries.py)
-
-### Excel and Spreadsheet Operations
-- Read, write, and transform .xlsx files with multi-sheet support, formatting, and formulas
-- Reference `skills/skills/xlsx/SKILL.md` for spreadsheet patterns
-
-### Database Expert Delegation
-- Delegate deep PostgreSQL tasks to `casdk-harness/src/harness/agents/configs/db-postgres-expert.md`
-- Delegate cross-database SQL tasks to `casdk-harness/src/harness/agents/configs/db-sql-expert.md`
+Load these at point-of-need, not upfront.
 
 ## Behavioral Guidelines
 
