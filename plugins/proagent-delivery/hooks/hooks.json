@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'deploy|release|publish'; then echo '[proagent-delivery] Release/deploy detected. Verify milestone acceptance criteria are met and stakeholders have been notified. Run /proagent-delivery-run milestone-track to check readiness.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'deploy|release|publish'; then echo '[proagent-delivery] Release/deploy detected. Verify milestone acceptance criteria are met and stakeholders have been notified. Run /proagent-delivery-run milestone-track to check readiness.'; fi; }",
             "timeout": 10
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit'; then echo '[proagent-delivery] Commit detected. If this completes a significant batch of work, consider running /proagent-delivery-run status-report to update stakeholders.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit'; then echo '[proagent-delivery] Commit detected. If this completes a significant batch of work, consider running /proagent-delivery-run status-report to update stakeholders.'; fi; }",
             "timeout": 10
           }
         ]
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'delivery-specialist\\|sprint.planning\\|retrospective'; then echo '[proagent-delivery] Delivery session completed. Check follow-up actions: create Jira sprint, schedule ceremonies, share summary with stakeholders.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'delivery-specialist\\|sprint.planning\\|retrospective'; then echo '[proagent-delivery] Delivery session completed. Check follow-up actions: create Jira sprint, schedule ceremonies, share summary with stakeholders.'; fi; }",
             "timeout": 5
           }
         ]
@@ -38,7 +38,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.file_path // empty' | { read fpath; if echo \"$fpath\" | grep -qiE 'sow|statement.of.work'; then echo '[proagent-delivery] SOW document written. Consider sharing it with stakeholders via Slack and uploading to the client Google Drive folder.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fpath; if echo \"$fpath\" | grep -qiE 'sow|statement.of.work'; then echo '[proagent-delivery] SOW document written. Consider sharing it with stakeholders via Slack and uploading to the client Google Drive folder.'; fi; }",
             "timeout": 5
           }
         ]

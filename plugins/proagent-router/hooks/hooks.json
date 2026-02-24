@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.subagent_type // empty' | { read agent; if [ -n \"$agent\" ]; then echo \"[proagent-router] Dispatching to specialist: $agent\"; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.subagent_type // empty' | { read agent; if [ -n \"$agent\" ]; then echo \"[proagent-router] Dispatching to specialist: $agent\"; fi; }",
             "timeout": 10
           }
         ]

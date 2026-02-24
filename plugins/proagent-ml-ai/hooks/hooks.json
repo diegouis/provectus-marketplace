@@ -6,12 +6,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'rm\\s+-rf\\s+models/|rm\\s+-rf\\s+mlruns/|rm\\s+-rf\\s+data/'; then echo '[proagent-ml-ai] Destructive operation on ML artifacts detected. Verify this is intentional.' >&2; exit 2; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'rm\\s+-rf\\s+models/|rm\\s+-rf\\s+mlruns/|rm\\s+-rf\\s+data/'; then echo '[proagent-ml-ai] Destructive operation on ML artifacts detected. Verify this is intentional.' >&2; exit 2; fi; }",
             "timeout": 10
           },
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'python.*train|mlflow run|python.*-m.*train'; then echo '[proagent-ml-ai] Training command detected. Ensure random seeds are set, experiment tracking is configured, and data splits prevent leakage.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'python.*train|mlflow run|python.*-m.*train'; then echo '[proagent-ml-ai] Training command detected. Ensure random seeds are set, experiment tracking is configured, and data splits prevent leakage.'; fi; }",
             "timeout": 10
           }
         ]
@@ -23,7 +23,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'python.*train|mlflow run|python.*evaluate'; then echo '[proagent-ml-ai] Training/evaluation completed. Verify experiment metrics are logged and model artifacts are saved.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qiE 'python.*train|mlflow run|python.*evaluate'; then echo '[proagent-ml-ai] Training/evaluation completed. Verify experiment metrics are logged and model artifacts are saved.'; fi; }",
             "timeout": 10
           }
         ]
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '\\.(py|ipynb)$'; then echo '[proagent-ml-ai] ML code written. Verify random seeds, data leakage prevention, and experiment tracking are included.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '\\.(py|ipynb)$'; then echo '[proagent-ml-ai] ML code written. Verify random seeds, data leakage prevention, and experiment tracking are included.'; fi; }",
             "timeout": 10
           }
         ]
