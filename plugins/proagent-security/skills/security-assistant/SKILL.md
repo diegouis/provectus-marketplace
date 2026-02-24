@@ -126,22 +126,11 @@ updates:
       interval: "weekly"
 ```
 
-Runtime dependency audit commands:
-```bash
-# Node.js
-npm audit --audit-level=high
-npm audit fix
-
-# Python
-pip-audit --strict --desc
-safety check --full-report
-
-# Go
-govulncheck ./...
-
-# Container images
-trivy image --severity HIGH,CRITICAL myregistry.io/myapp:latest
-```
+Runtime dependency audit commands (run at the point of need, not upfront):
+- **Node.js**: `npm audit --audit-level=high`, `npm audit fix`
+- **Python**: `pip-audit --strict --desc`, `safety check --full-report`
+- **Go**: `govulncheck ./...`
+- **Container images**: `trivy image --severity HIGH,CRITICAL <image>`
 
 ### Dynamic Application Security Testing (DAST)
 

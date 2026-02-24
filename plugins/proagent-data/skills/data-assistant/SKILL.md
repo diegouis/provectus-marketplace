@@ -1072,7 +1072,7 @@ customer_metrics.write \
 
 ### KPI Dashboard Design
 
-When designing KPI dashboards, follow these principles from `agents/plugins/business-analytics/skills/kpi-dashboard-design/SKILL.md`:
+When designing KPI dashboards, follow these principles (detailed in `agents/plugins/business-analytics/skills/kpi-dashboard-design/SKILL.md` — load only when working on dashboard tasks):
 
 1. **Define metric hierarchy** - Separate leading indicators (pipeline velocity, conversion rates) from lagging indicators (revenue, churn)
 2. **Choose the right visualization** - Line charts for trends, bar charts for comparisons, scorecards for KPIs, heatmaps for correlations
@@ -1082,7 +1082,7 @@ When designing KPI dashboards, follow these principles from `agents/plugins/busi
 
 ### Data Storytelling
 
-When presenting data insights, follow patterns from `agents/plugins/business-analytics/skills/data-storytelling/SKILL.md`:
+When presenting data insights, follow these patterns (detailed in `agents/plugins/business-analytics/skills/data-storytelling/SKILL.md` — load only when working on storytelling tasks):
 
 1. **Context** - Why does this analysis matter? What question are we answering?
 2. **Key finding** - Lead with the most important insight, supported by data
@@ -1094,7 +1094,7 @@ When presenting data insights, follow patterns from `agents/plugins/business-ana
 
 ### Nextflow Pipeline Development
 
-For genomics and life-sciences pipelines, reference `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/nextflow-development/SKILL.md`:
+For genomics and life-sciences pipelines (detailed in `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/nextflow-development/SKILL.md` — do NOT load unless the user is working on Nextflow pipelines):
 
 - Use Nextflow DSL2 for modular, reusable bioinformatics workflows
 - Define processes with input/output channels for parallel execution
@@ -1104,7 +1104,7 @@ For genomics and life-sciences pipelines, reference `provectus-marketplace/testi
 
 ### Instrument Data to Allotrope Conversion
 
-For lab instrument data standardization, reference `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/instrument-data-to-allotrope/SKILL.md`:
+For lab instrument data standardization (detailed in `provectus-marketplace/testing/knowledge-work-plugins/bio-research/skills/instrument-data-to-allotrope/SKILL.md` — do NOT load unless the user is working on Allotrope conversion):
 
 - Convert vendor-specific instrument output to Allotrope Simple Model (ASM) format
 - Map instrument metadata fields to Allotrope ontology terms
@@ -1113,7 +1113,7 @@ For lab instrument data standardization, reference `provectus-marketplace/testin
 
 ## Analytics Infrastructure
 
-Reference scripts in `proagent-repo/infrastructure/analytics/` for internal analytics patterns:
+Reference scripts in `proagent-repo/infrastructure/analytics/` for internal analytics patterns (do NOT load unless the user is working on analytics infrastructure):
 
 - **tracker.py** - Usage event tracking with structured event schema, batched writes, and async submission
 - **reporter.py** - KPI report generation with scheduled delivery, aggregation windows, and Slack integration
@@ -1121,7 +1121,7 @@ Reference scripts in `proagent-repo/infrastructure/analytics/` for internal anal
 
 ## Excel Spreadsheet Operations
 
-Reference `skills/skills/xlsx/SKILL.md` for Excel file handling:
+Reference `skills/skills/xlsx/SKILL.md` for Excel file handling (do NOT load unless the user is working on spreadsheets):
 
 - Read and parse .xlsx files with multi-sheet support
 - Write structured data to Excel with formatting, formulas, and named ranges
@@ -1130,10 +1130,10 @@ Reference `skills/skills/xlsx/SKILL.md` for Excel file handling:
 
 ## External Subagent References
 
-The following expert subagents from `casdk-harness` can be delegated to for specialized database tasks:
+> **CONTEXT GUARD**: Do NOT read these external agent files unless the user specifically needs deep database expertise beyond what this skill provides.
 
-- **db-postgres-expert** (`casdk-harness/src/harness/agents/configs/db-postgres-expert.md`) - Deep PostgreSQL expertise including advanced indexing, partitioning, replication, vacuum tuning, and pg_stat analysis
-- **db-sql-expert** (`casdk-harness/src/harness/agents/configs/db-sql-expert.md`) - Cross-database SQL expertise for complex query authoring, optimization, and migration between database engines
+- **db-postgres-expert** (`casdk-harness/src/harness/agents/configs/db-postgres-expert.md`) - Deep PostgreSQL expertise
+- **db-sql-expert** (`casdk-harness/src/harness/agents/configs/db-sql-expert.md`) - Cross-database SQL expertise
 
 ## Composio App Automations
 

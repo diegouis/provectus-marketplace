@@ -279,7 +279,8 @@ Before delivering, verify:
 
 ## REFERENCE FILES
 
-For detailed effort level definitions and examples, see:
-- `references/effort-levels.md` -- granular sizing guide with domain-specific examples
-- `references/epic-categories.md` -- epic taxonomy with sub-category guidance
-- `examples/apex-vendor-platform-rom.csv` -- sample 89-feature ROM output
+> **CONTEXT GUARD**: Do NOT read these reference files upfront. Load them only at the specific step where they are needed (effort-levels.md at Step 4, epic-categories.md at Step 2).
+
+- `references/effort-levels.md` -- granular sizing guide with domain-specific examples (load at Step 4: Estimate Effort)
+- `references/epic-categories.md` -- epic taxonomy with sub-category guidance (load at Step 2: Analyze Scope)
+- `examples/apex-vendor-platform-rom.csv` -- sample 89-feature ROM output (load only if the user requests an example)

@@ -20,79 +20,7 @@ Activate when the user mentions:
 
 This plugin uses direct git and API calls (no MCP servers required). Credentials are stored in the plugin's `.env` file.
 
-### Loading Credentials
-Before any GitHub or Confluence operation, source the credentials:
-```bash
-# Find and source the .env file from the plugin directory
-PLUGIN_DIR=$(find / -path "*/proagent-documentation/.env" -type f 2>/dev/null | head -1)
-if [ -n "$PLUGIN_DIR" ]; then
-  source "$PLUGIN_DIR"
-fi
-```
-
-### GitHub Access
-Use `git` CLI with the personal access token for repo operations:
-```bash
-# Clone a repo (use token for private repos)
-git clone --depth 1 "https://${GITHUB_PERSONAL_ACCESS_TOKEN}@github.com/org/repo.git" /tmp/repo-analysis
-
-# Use GitHub REST API for metadata
-curl -s -H "Authorization: token ${GITHUB_PERSONAL_ACCESS_TOKEN}" \
-  "https://api.github.com/repos/org/repo"
-
-# List repo contents via API
-curl -s -H "Authorization: token ${GITHUB_PERSONAL_ACCESS_TOKEN}" \
-  "https://api.github.com/repos/org/repo/contents/src"
-
-# Get file content via API
-curl -s -H "Authorization: token ${GITHUB_PERSONAL_ACCESS_TOKEN}" \
-  "https://api.github.com/repos/org/repo/contents/package.json" | jq -r '.content' | base64 -d
-```
-
-### Confluence Access
-Use the Atlassian REST API directly with basic auth:
-```bash
-# Base URL and auth
-CONFLUENCE_BASE="${ATLASSIAN_SITE_URL}/wiki/api/v2"
-CONFLUENCE_AUTH="-u ${ATLASSIAN_USER_EMAIL}:${ATLASSIAN_API_TOKEN}"
-
-# List spaces
-curl -s $CONFLUENCE_AUTH "${CONFLUENCE_BASE}/spaces?limit=25"
-
-# Get a page by title
-curl -s $CONFLUENCE_AUTH "${CONFLUENCE_BASE}/pages?spaceKey=SPACE&title=Page+Title"
-
-# Create a page
-curl -s $CONFLUENCE_AUTH -X POST "${CONFLUENCE_BASE}/pages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "spaceId": "SPACE_ID",
-    "title": "Page Title",
-    "parentId": "PARENT_ID",
-    "body": {
-      "representation": "storage",
-      "value": "<h1>Content here</h1>"
-    }
-  }'
-
-# Update a page
-curl -s $CONFLUENCE_AUTH -X PUT "${CONFLUENCE_BASE}/pages/PAGE_ID" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "id": "PAGE_ID",
-    "title": "Page Title",
-    "version": {"number": NEW_VERSION},
-    "body": {
-      "representation": "storage",
-      "value": "<h1>Updated content</h1>"
-    }
-  }'
-
-# Add labels to a page (v1 API)
-curl -s $CONFLUENCE_AUTH -X POST "${ATLASSIAN_SITE_URL}/wiki/rest/api/content/PAGE_ID/label" \
-  -H "Content-Type: application/json" \
-  -d '[{"prefix":"global","name":"auto-generated"},{"prefix":"global","name":"auto-docs"}]'
-```
+> **CONTEXT GUARD**: Do NOT source credentials, clone repos, or make API calls until the user has specified what they want to do. The credential loading, GitHub API, and Confluence API patterns are documented in the plugin's CLAUDE.md — refer to them at the point of need, not upfront.
 
 ## Repository Analysis
 
@@ -282,12 +210,8 @@ Key conversions:
 ## Documentation Sync
 
 ### Change Detection
-```bash
-# Compare repo state with last-known Confluence content
-git log --since="<last-sync-date>" --name-only --pretty=format:""
-# Filter for doc-relevant changes
-grep -E '(README|docs/|api/|schema|models|routes|controllers)'
-```
+
+Use `git log --since="<last-sync-date>" --name-only` to detect repo changes since the last Confluence sync. Filter for doc-relevant paths (README, docs/, api/, schema, models, routes, controllers).
 
 ### Sync Workflow
 1. Fetch current Confluence page content via API
