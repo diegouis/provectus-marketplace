@@ -715,19 +715,7 @@ pipeline:
 
 ## LangSmith Agent Debugging
 
-Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio:
-
-```bash
-# Install and configure
-pip install langsmith-fetch
-export LANGSMITH_API_KEY="your_key"
-export LANGSMITH_PROJECT="your_project"
-
-# Fetch and analyze traces
-langsmith-fetch --last 5
-langsmith-fetch --errors-only
-langsmith-fetch --trace-id <id> --verbose
-```
+Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Requires `langsmith-fetch` (`pip install langsmith-fetch`) with `LANGSMITH_API_KEY` and `LANGSMITH_PROJECT` environment variables configured. Key commands: `langsmith-fetch --last 5`, `langsmith-fetch --errors-only`, `langsmith-fetch --trace-id <id> --verbose`.
 
 ## ML Project Structure
 
