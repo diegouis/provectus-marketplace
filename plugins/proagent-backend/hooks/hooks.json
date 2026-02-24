@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'alembic upgrade|prisma migrate|django.*migrate|knex migrate'; then echo '[proagent-backend] Database migration detected. Verify: (1) both upgrade and downgrade exist, (2) no destructive DROP without confirmation, (3) new NOT NULL columns have DEFAULTs.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'alembic upgrade|prisma migrate|django.*migrate|knex migrate'; then echo '[proagent-backend] Database migration detected. Verify: (1) both upgrade and downgrade exist, (2) no destructive DROP without confirmation, (3) new NOT NULL columns have DEFAULTs.'; fi; }",
             "timeout": 10
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qE '(routes|controllers|api|endpoints)/.*\\.(py|ts|js)$'; then echo '[proagent-backend] API endpoint written. Verify: (1) input validation present, (2) error handling with proper status codes, (3) auth middleware applied, (4) parameterized queries only.'; elif echo \"$fp\" | grep -qE '(models|schema|migrations)/.*\\.(py|ts|js|sql|prisma)$'; then echo '[proagent-backend] Schema/model written. Verify: (1) primary keys, (2) foreign key indexes, (3) timestamps, (4) CHECK constraints for business rules.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qE '(routes|controllers|api|endpoints)/.*\\.(py|ts|js)$'; then echo '[proagent-backend] API endpoint written. Verify: (1) input validation present, (2) error handling with proper status codes, (3) auth middleware applied, (4) parameterized queries only.'; elif echo \"$fp\" | grep -qE '(models|schema|migrations)/.*\\.(py|ts|js|sql|prisma)$'; then echo '[proagent-backend] Schema/model written. Verify: (1) primary keys, (2) foreign key indexes, (3) timestamps, (4) CHECK constraints for business rules.'; fi; }",
             "timeout": 10
           }
         ]
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'backend-specialist\\|api.review\\|schema.review'; then echo '[proagent-backend] Backend review completed. Check findings for security and performance issues.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'backend-specialist\\|api.review\\|schema.review'; then echo '[proagent-backend] Backend review completed. Check findings for security and performance issues.'; fi; }",
             "timeout": 5
           }
         ]

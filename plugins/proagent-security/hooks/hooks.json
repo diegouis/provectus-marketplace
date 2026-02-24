@@ -6,12 +6,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit|git add|git push'; then echo '[proagent-security] Git operation detected. Verify no hardcoded secrets (AWS keys, GitHub tokens, private keys, database URLs) are included in staged files. Check .gitignore includes .env, *.pem, *.key, secrets/.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit|git add|git push'; then echo '[proagent-security] Git operation detected. Verify no hardcoded secrets (AWS keys, GitHub tokens, private keys, database URLs) are included in staged files. Check .gitignore includes .env, *.pem, *.key, secrets/.'; fi; }",
             "timeout": 10
           },
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'npm install|pip install|poetry install|go mod download|docker build'; then echo '[proagent-security] Dependency install detected. Consider running dependency vulnerability audit: npm audit --audit-level=high, pip-audit --strict, govulncheck, or trivy image scan.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'npm install|pip install|poetry install|go mod download|docker build'; then echo '[proagent-security] Dependency install detected. Consider running dependency vulnerability audit: npm audit --audit-level=high, pip-audit --strict, govulncheck, or trivy image scan.'; fi; }",
             "timeout": 10
           }
         ]
@@ -23,7 +23,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qE '\\.(env|pem|key|p12|pfx)$'; then echo '[proagent-security] WARNING: Sensitive file written. Verify this file is in .gitignore and will not be committed to version control.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qE '\\.(env|pem|key|p12|pfx)$'; then echo '[proagent-security] WARNING: Sensitive file written. Verify this file is in .gitignore and will not be committed to version control.'; fi; }",
             "timeout": 10
           }
         ]
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'security-specialist\\|vulnerability.scan\\|threat.model\\|compliance.check'; then echo '[proagent-security] Security assessment completed. Review findings by severity (CRITICAL > HIGH > MEDIUM > LOW) and prioritize remediation.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'security-specialist\\|vulnerability.scan\\|threat.model\\|compliance.check'; then echo '[proagent-security] Security assessment completed. Review findings by severity (CRITICAL > HIGH > MEDIUM > LOW) and prioritize remediation.'; fi; }",
             "timeout": 5
           }
         ]

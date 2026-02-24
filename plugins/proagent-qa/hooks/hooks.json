@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit'; then changed=$(git diff --cached --name-only 2>/dev/null | grep -cE '\\.(py|ts|tsx|js|jsx|go)$' || true); tests=$(git diff --cached --name-only 2>/dev/null | grep -cE '(test_|_test\\.|spec\\.|\\.test\\.)' || true); if [ \"$changed\" -gt 0 ] && [ \"$tests\" -eq 0 ]; then echo '[proagent-qa] WARNING: Committing source files without corresponding test files. Consider adding tests.'; fi; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit'; then changed=$(git diff --cached --name-only 2>/dev/null | grep -cE '\\.(py|ts|tsx|js|jsx|go)$' || true); tests=$(git diff --cached --name-only 2>/dev/null | grep -cE '(test_|_test\\.|spec\\.|\\.test\\.)' || true); if [ \"$changed\" -gt 0 ] && [ \"$tests\" -eq 0 ]; then echo '[proagent-qa] WARNING: Committing source files without corresponding test files. Consider adding tests.'; fi; fi; }",
             "timeout": 10
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'pytest|vitest|jest|go test|cargo test'; then echo '[proagent-qa] Test execution completed. Review results for failures and coverage gaps.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'pytest|vitest|jest|go test|cargo test'; then echo '[proagent-qa] Test execution completed. Review results for failures and coverage gaps.'; fi; }",
             "timeout": 5
           }
         ]
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'qa-specialist\\|test.review\\|coverage'; then echo '[proagent-qa] QA review completed. Check findings for blocking quality issues.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'qa-specialist\\|test.review\\|coverage'; then echo '[proagent-qa] QA review completed. Check findings for blocking quality issues.'; fi; }",
             "timeout": 5
           }
         ]

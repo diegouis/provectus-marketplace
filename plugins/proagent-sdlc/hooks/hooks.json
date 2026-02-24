@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -q 'git commit'; then msg=$(echo \"$cmd\" | grep -oP '(?<=-m [\"'\\''\"'\\'''\"])[^\"'\\''\"'\\'']*' | head -1); if [ -n \"$msg\" ] && ! echo \"$msg\" | grep -qE '^(feat|fix|docs|refactor|test|chore|perf|ci|build|style)(\\(.+\\))?!?: .+'; then echo 'BLOCKED: Commit message must follow conventional format: type(scope): description' >&2; echo 'Examples: feat(auth): add OAuth2 login, fix(api): handle null response' >&2; exit 2; fi; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -q 'git commit'; then msg=$(echo \"$cmd\" | sed -nE 's/.*-m [\"'\\''](.*)[\"'\\'']/\\1/p' | head -1); if [ -n \"$msg\" ] && ! echo \"$msg\" | grep -qE '^(feat|fix|docs|refactor|test|chore|perf|ci|build|style)(\\(.+\\))?!?: .+'; then echo 'BLOCKED: Commit message must follow conventional format: type(scope): description' >&2; echo 'Examples: feat(auth): add OAuth2 login, fix(api): handle null response' >&2; exit 2; fi; fi; }",
             "timeout": 10
           }
         ]
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -q 'git push'; then wip_count=$(git log @{upstream}..HEAD --oneline 2>/dev/null | grep -ciE '^[a-f0-9]+ (WIP|fixup!|squash!)' || true); if [ \"$wip_count\" -gt 0 ]; then echo \"BLOCKED: $wip_count WIP/fixup/squash commit(s) found. Squash or reword before pushing.\" >&2; exit 2; fi; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -q 'git push'; then wip_count=$(git log @{upstream}..HEAD --oneline 2>/dev/null | grep -ciE '^[a-f0-9]+ (WIP|fixup!|squash!)' || true); if [ \"$wip_count\" -gt 0 ]; then echo \"BLOCKED: $wip_count WIP/fixup/squash commit(s) found. Squash or reword before pushing.\" >&2; exit 2; fi; fi; }",
             "timeout": 10
           }
         ]
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'sdlc-specialist\\|code.review\\|pr.review'; then echo '[proagent-sdlc] Review completed. Check findings for BLOCKING issues before proceeding.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'sdlc-specialist\\|code.review\\|pr.review'; then echo '[proagent-sdlc] Review completed. Check findings for BLOCKING issues before proceeding.'; fi; }",
             "timeout": 5
           }
         ]

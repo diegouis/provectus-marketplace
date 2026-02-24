@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '(invoice|budget|financial|forecast|pnl|revenue).*\\.(md|csv|xlsx)$'; then echo '[proagent-finance] Financial document written. Verify required fields, currency consistency, and data accuracy.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '(invoice|budget|financial|forecast|pnl|revenue).*\\.(md|csv|xlsx)$'; then echo '[proagent-finance] Financial document written. Verify required fields, currency consistency, and data accuracy.'; fi; }",
             "timeout": 10
           }
         ]

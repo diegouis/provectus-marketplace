@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'kubectl apply|helm (install|upgrade)'; then if echo \"$cmd\" | grep -qvE '\\-\\-dry-run'; then echo '[proagent-devops] WARNING: Applying K8s changes without --dry-run. Consider running with --dry-run=client first.'; fi; fi; if echo \"$cmd\" | grep -qE 'terraform apply'; then if echo \"$cmd\" | grep -qvE '\\-auto-approve'; then echo '[proagent-devops] Terraform apply detected. Ensure terraform plan was reviewed.'; fi; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'kubectl apply|helm (install|upgrade)'; then if echo \"$cmd\" | grep -qvE '\\-\\-dry-run'; then echo '[proagent-devops] WARNING: Applying K8s changes without --dry-run. Consider running with --dry-run=client first.'; fi; fi; if echo \"$cmd\" | grep -qE 'terraform apply'; then if echo \"$cmd\" | grep -qvE '\\-auto-approve'; then echo '[proagent-devops] Terraform apply detected. Ensure terraform plan was reviewed.'; fi; fi; }",
             "timeout": 10
           }
         ]
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'docker-compose up|docker compose up'; then echo '[proagent-devops] Deployment detected. Verify health checks after services start.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'docker-compose up|docker compose up'; then echo '[proagent-devops] Deployment detected. Verify health checks after services start.'; fi; }",
             "timeout": 10
           }
         ]
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'devops-specialist\\|infrastructure.review\\|deploy'; then echo '[proagent-devops] DevOps operation completed. Verify health checks and monitoring.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.prompt // empty' | { read prompt; if echo \"$prompt\" | grep -qi 'devops-specialist\\|infrastructure.review\\|deploy'; then echo '[proagent-devops] DevOps operation completed. Verify health checks and monitoring.'; fi; }",
             "timeout": 5
           }
         ]
