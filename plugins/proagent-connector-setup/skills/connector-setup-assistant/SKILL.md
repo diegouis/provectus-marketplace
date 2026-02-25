@@ -29,7 +29,7 @@ Covers **credential setup only** — not day-to-day use of Slack or Google Drive
 
 | Connector | MCP Package | Required Credentials |
 |-----------|-------------|---------------------|
-| Slack | `slack-mcp-server` | `SLACK_MCP_XOXC_TOKEN`, `SLACK_MCP_XOXD_TOKEN` |
+| Slack | `slack-mcp-server` | `SLACK_MCP_XOXC_TOKEN`, `SLACK_MCP_XOXD_TOKEN` (env vars or `claude_desktop_config.json`) |
 | Google Drive | `@modelcontextprotocol/server-gdrive` | `~/gcp-oauth.keys.json` + OAuth auth cache |
 
 ## Routing

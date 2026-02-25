@@ -22,6 +22,7 @@ The Connector Setup plugin covers two connectors:
 - Adequacy gates: confirm each step before proceeding
 - Bounded iteration: max 3 failed attempts per step, then offer pause/skip/restart
 - Lazy-load references only at the step where they're needed
+- Slack tokens can be stored in `claude_desktop_config.json` (Option D) for native Claude Desktop MCP integration, in addition to env var options (A–C)
 
 ### Architecture
 - Empty `.mcp.json`: this plugin configures credentials, it doesn't consume MCP servers
