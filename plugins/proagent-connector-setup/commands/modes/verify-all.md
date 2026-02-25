@@ -47,6 +47,29 @@ echo "$SLACK_MCP_XOXD_TOKEN" | grep -qE '^xoxd-' && echo "xoxd format: VALID" ||
 grep -rl 'SLACK_MCP_XOXC_TOKEN' ~/.zshrc ~/.bashrc ~/.bash_profile .env ~/.slack-mcp-credentials 2>/dev/null || echo "Token source: not found in common locations"
 ```
 
+#### 1d. Claude Desktop Config
+
+```bash
+# Check if tokens exist in claude_desktop_config.json
+CLAUDE_CONFIG="$HOME/Library/Application Support/Claude/claude_desktop_config.json"
+if [ -f "$CLAUDE_CONFIG" ]; then
+  python3 -c "
+import json
+with open('$CLAUDE_CONFIG') as f:
+    data = json.load(f)
+    slack = data.get('mcpServers', {}).get('slack', {}).get('env', {})
+    xoxc = slack.get('SLACK_MCP_XOXC_TOKEN', '')
+    xoxd = slack.get('SLACK_MCP_XOXD_TOKEN', '')
+    if xoxc and xoxd:
+        print(f'claude_desktop_config.json Slack: CONFIGURED (xoxc: {xoxc[:10]}..., xoxd: {xoxd[:10]}...)')
+    else:
+        print('claude_desktop_config.json Slack: NOT CONFIGURED')
+" 2>/dev/null || echo "claude_desktop_config.json: PARSE ERROR"
+else
+  echo "claude_desktop_config.json: NOT FOUND"
+fi
+```
+
 ### 2. Google Drive Connector Checks
 
 #### 2a. OAuth Credential File
@@ -117,7 +140,7 @@ Tool Availability:
 Determine each connector's status using this logic:
 
 **READY** — All credentials present, format valid, files in place
-- Slack: Both `SLACK_MCP_XOXC_TOKEN` (xoxc- prefix) and `SLACK_MCP_XOXD_TOKEN` (xoxd- prefix) set
+- Slack: Both `SLACK_MCP_XOXC_TOKEN` (xoxc- prefix) and `SLACK_MCP_XOXD_TOKEN` (xoxd- prefix) set as env vars, OR both tokens present in `claude_desktop_config.json` under `mcpServers.slack.env`
 - Google Drive: `~/gcp-oauth.keys.json` present with `"installed"` key AND `~/.gdrive-server/credentials.json` exists
 
 **NEEDS SETUP** — Credentials missing entirely

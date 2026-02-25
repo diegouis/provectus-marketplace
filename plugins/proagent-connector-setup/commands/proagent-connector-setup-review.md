@@ -33,6 +33,7 @@ When no specific connector is provided, scan for all known credential sources:
 | 4 | `~/.gdrive-mcp/` or equivalent token cache | Google Drive token cache |
 | 5 | `.mcp.json` files in plugin directories | MCP server configuration |
 | 6 | Shell profile files (`~/.zshrc`, `~/.bashrc`) | Credential exports |
+| 7 | `claude_desktop_config.json` | Claude Desktop MCP-native token storage |
 
 ### Slack Connector Review
 
@@ -50,6 +51,12 @@ When no specific connector is provided, scan for all known credential sources:
 - [ ] `.env` files containing tokens are in `.gitignore`
 - [ ] Token files have restrictive permissions (not world-readable)
 - [ ] Tokens are not present in shell history
+
+**Claude Desktop Config (`claude_desktop_config.json`):**
+- [ ] If tokens are stored in `claude_desktop_config.json`, the file is not tracked by git
+- [ ] Slack MCP server entry under `mcpServers.slack` has correct structure (command, args, env)
+- [ ] `SLACK_MCP_XOXC_TOKEN` and `SLACK_MCP_XOXD_TOKEN` in env block have correct prefixes
+- [ ] Config file is not world-readable
 
 **Connectivity:**
 - [ ] Slack MCP server starts without error

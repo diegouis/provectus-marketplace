@@ -57,7 +57,7 @@ Tokens that don't match these patterns are likely truncated or from the wrong so
 
 ## Storage Options
 
-The user chooses where to persist their tokens. Present all three options:
+The user chooses where to persist their tokens. Present all four options:
 
 ### Option A: Project `.env` File
 
@@ -98,6 +98,37 @@ echo 'source ~/.slack-mcp-credentials' >> ~/.zshrc
 ```
 
 **Pros**: Isolated, restrictive permissions. **Cons**: Extra file to manage.
+
+### Option D: Claude Desktop Config (MCP-native)
+
+Write tokens directly into `claude_desktop_config.json` so Claude Desktop's Slack MCP server picks them up natively — no environment variables needed.
+
+**macOS path**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows path**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+The Slack MCP server entry should look like:
+
+```json
+{
+  "mcpServers": {
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "slack-mcp-server@latest", "--transport", "stdio"],
+      "env": {
+        "SLACK_MCP_XOXC_TOKEN": "xoxc-YOUR-TOKEN-HERE",
+        "SLACK_MCP_XOXD_TOKEN": "xoxd-YOUR-TOKEN-HERE",
+        "SLACK_MCP_USERS_CACHE": ".users_cache.json",
+        "SLACK_MCP_CHANNELS_CACHE": ".channels_cache_v2.json"
+      }
+    }
+  }
+}
+```
+
+**After editing**: Restart Claude Desktop so it loads the updated tokens. This applies whether you edited the file from Claude Code (CLI) or from Claude Desktop itself (via Cowork mode). Claude Desktop reads this config on launch, so a restart is required for changes to take effect.
+
+**Pros**: Native MCP integration, no env vars to manage, tokens travel with Claude Desktop config.
+**Cons**: Tokens are in a JSON file (ensure it's not tracked by git), scoped to Claude Desktop (Claude Code CLI plugins that reference `${SLACK_MCP_XOXC_TOKEN}` in `.mcp.json` still need env vars unless you also set them).
 
 ## Troubleshooting
 

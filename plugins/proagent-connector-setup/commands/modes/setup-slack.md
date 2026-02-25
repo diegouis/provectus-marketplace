@@ -70,10 +70,13 @@ Present the three storage options from the reference:
 | A | Project `.env` file | This project only |
 | B | Shell profile (`~/.zshrc` or `~/.bashrc`) | All projects |
 | C | Dedicated secrets file (`~/.slack-mcp-credentials`) | All projects, isolated |
+| D | `claude_desktop_config.json` (MCP-native) | Claude Desktop app |
 
 Ask the user which option they prefer.
 
 **Important**: Use the `Write` tool or `Edit` tool to write tokens — NEVER use `echo` with real token values in Bash commands (they'd appear in shell history).
+
+### Options A–C: Environment Variables
 
 After writing:
 1. Source the file or instruct the user to restart their terminal
@@ -83,7 +86,33 @@ After writing:
    ```
    (Only show first 10 characters for confirmation — never echo full tokens)
 
-**Adequacy gate**: Environment variables are set and show correct prefixes.
+### Option D: Claude Desktop Config
+
+Write tokens directly into `claude_desktop_config.json`:
+
+1. Detect OS to determine the config file path:
+   - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+2. Read the existing `claude_desktop_config.json` (if it exists)
+3. If a `slack` entry already exists under `mcpServers`, update its `env` block with the new tokens
+4. If no `slack` entry exists, add one with the standard structure:
+   ```json
+   {
+     "command": "npx",
+     "args": ["-y", "slack-mcp-server@latest", "--transport", "stdio"],
+     "env": {
+       "SLACK_MCP_XOXC_TOKEN": "<user's xoxc token>",
+       "SLACK_MCP_XOXD_TOKEN": "<user's xoxd token>",
+       "SLACK_MCP_USERS_CACHE": ".users_cache.json",
+       "SLACK_MCP_CHANNELS_CACHE": ".channels_cache_v2.json"
+     }
+   }
+   ```
+5. Use `Edit` or `Write` tool — never echo tokens in bash
+6. After writing, instruct user to **restart Claude Desktop** so it loads the updated tokens (this applies whether editing from Claude Code CLI or Claude Desktop Cowork)
+7. Verify by reading back the file and confirming token prefixes (first 10 chars only)
+
+**Adequacy gate**: Credentials are persisted and show correct prefixes (env vars set for A–C, or tokens present in `claude_desktop_config.json` for D).
 
 ## Step 5: Verify Live Connectivity
 
@@ -113,7 +142,7 @@ When verification succeeds, present:
 Slack MCP Setup Complete
 ========================
 Workspace:     [workspace name]
-Token storage: [Option A/B/C — location]
+Token storage: [Option A/B/C/D — location]
 xoxc- token:   [first 10 chars]...  ✓ valid format
 xoxd- token:   [first 10 chars]...  ✓ valid format
 Live test:     ✓ connected successfully
