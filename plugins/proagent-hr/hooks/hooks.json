@@ -18,6 +18,16 @@
             "type": "command",
             "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.content // empty' | { read -r content; if echo \"$content\" | grep -qiE '(\\bage\\b|\\bgender\\b|\\bethnicity\\b|\\brace\\b|\\bdisability\\b|\\breligion\\b|\\bpregnant|\\bmarital)'; then echo '[proagent-hr] WARNING: CV screening output may reference protected characteristics. Review for bias before proceeding.' >&2; fi; }",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE 'prescreening.*questionnaire'; then jq -r '.tool_input.content // empty' | { read -r content; if echo \"$content\" | grep -qiE '(how old|\\bage\\b|date of birth|\\bdob\\b|\\bmarried\\b|\\bchildren\\b|\\bkids\\b|\\breligion\\b|\\bnationality\\b|\\bcitizenship\\b|\\bdisability\\b|\\bhealth\\b|\\bpregnant|family.planning|maiden.name|place.of.birth)'; then echo '[proagent-hr] BLOCKED: Prescreening questionnaire contains potentially illegal questions (age, DOB, marital status, children, religion, nationality, citizenship, disability, health). Remove prohibited questions before proceeding.' >&2; exit 2; fi; }; fi; }",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '(evaluation|interview-eval|hr-eval|technical-eval)'; then jq -r '.tool_input.content // empty' | { read -r content; if echo \"$content\" | grep -qiE '(\\baccent\\b|\\bappearance\\b|\\bpedigree\\b|\\battractiv|\\bdress|looked.like)'; then echo '[proagent-hr] WARNING: Evaluation file may contain bias indicators (accent, appearance, pedigree). Review for bias before proceeding.' >&2; fi; }; fi; }",
+            "timeout": 10
           }
         ]
       }
@@ -39,6 +49,16 @@
           {
             "type": "command",
             "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE 'cv_validation_session\\.json$'; then echo '[proagent-hr] Session state updated.'; fi; }",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE '(evaluation|interview-eval|hr-eval|technical-eval|final-recommendation)'; then jq -r '.tool_input.content // empty' | { read -r content; if echo \"$content\" | grep -qiE '(Candidate [A-Z]|\\b[A-Z][a-z]+ [A-Z][a-z]+\\b.*(score|rating|recommend|advance|decline|reject|hire))'; then echo '[proagent-hr] WARNING: Evaluation or recommendation file may contain candidate names. Verify blind review protocol: use candidate numbers only until final output.'; fi; }; fi; }",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qiE 'candidate_pipeline_session\\.json$'; then echo '[proagent-hr] Candidate pipeline session state updated.'; fi; }",
             "timeout": 10
           }
         ]

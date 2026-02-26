@@ -1,7 +1,9 @@
 ---
 description: >
   Execute HR operations: draft-job-description, plan-interview, create-onboarding,
-  performance-review, compensation-analysis, validate-cvs, generate-resume, or analyze-growth.
+  performance-review, compensation-analysis, validate-cvs, generate-prescreening,
+  score-prescreening, evaluate-hr-interview, evaluate-technical-interview,
+  synthesize-final-recommendation, generate-resume, or analyze-growth.
 argument-hint: "<operation> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
@@ -307,6 +309,247 @@ Validate candidate CVs against a job description using a multi-agent orchestrati
    ```
    - Update after each candidate is fully processed
    - If the session is interrupted, resume from the last completed candidate on restart
+
+---
+
+### Mode: generate-prescreening
+
+Generate prescreening questionnaires and internal scoring rubrics for candidates advancing from CV screening.
+
+1. **Gather Inputs**
+   - Locate the `cv_validation_session.json` from the most recent CV screening batch
+   - Identify candidates advancing to prescreening (Tier 1 and optionally Tier 2 candidates)
+   - Read each advancing candidate's:
+     - Anonymized CV profile
+     - CV screening scorecard (gaps, focus areas, red flags)
+     - The JD rubric used during screening
+   - If `target` is provided, use it as the path to the CV screening output folder
+
+2. **Generate Questionnaires (Parallel Fan-Out)**
+   For each advancing candidate, dispatch the `prescreening-question-generator` agent via the Task tool:
+   - Pass the candidate's anonymized profile, CV scorecard, and JD rubric
+   - The agent produces:
+     - **Candidate-facing questionnaire** (8-12 questions targeting CV gaps + standard questions)
+     - **Internal scoring rubric** (recruiter-only, with behavioral anchors per question)
+   - All candidates for the same role are processed in parallel
+
+3. **Quality Review**
+   After all questionnaires are generated:
+   - Verify no illegal questions were included (age, marital status, children, religion, nationality, citizenship, disability, health)
+   - Verify each questionnaire targets the specific gaps identified in that candidate's CV screening
+   - Present a summary of generated questionnaires to the recruiter:
+     - Number of questionnaires generated
+     - Questions per candidate
+     - Common themes across candidates
+     - Any questions flagged for review
+
+4. **Output and Distribution**
+   - Write questionnaires to individual files: `prescreening/candidate-NNN-questionnaire.md`
+   - Write rubrics to individual files: `prescreening/candidate-NNN-rubric.md` (internal only)
+   - If Gmail MCP is available, draft emails with questionnaire content for each candidate
+   - If Slack MCP is available, notify the hiring channel that prescreening questionnaires are ready
+
+5. **Update Pipeline Session**
+   - Create or update `candidate_pipeline_session.json` with:
+     - Reference to the `cv_validation_session.json`
+     - Per-candidate prescreening stage status: "questionnaire_sent"
+     - File paths for questionnaires and rubrics
+
+---
+
+### Mode: score-prescreening
+
+Score candidate prescreening responses against internal rubrics and produce comparison matrix.
+
+1. **Gather Inputs**
+   - Read `candidate_pipeline_session.json` for the active pipeline
+   - For each candidate with prescreening responses:
+     - Read the candidate's prescreening responses
+     - Read the corresponding internal scoring rubric
+     - Read the original CV screening scorecard for gap tracking
+   - If `target` is provided, use it as the path to the folder containing candidate responses
+
+2. **Score Responses (Parallel Fan-Out)**
+   For each candidate with responses, dispatch the `prescreening-response-scorer` agent via the Task tool:
+   - Pass the candidate's responses, scoring rubric, and CV scorecard
+   - The agent produces:
+     - Per-question scores (1-5) with rationale
+     - Gap resolution tracking (Resolved/Partial/Unresolved)
+     - Consistency flags against CV claims
+     - Overall prescreening score (0-100)
+     - Advance/Hold/Decline recommendation
+   - All candidates are scored in parallel
+
+3. **Produce Comparison Matrix**
+   After all candidates are scored:
+   - Generate a prescreening comparison matrix sorted by overall score
+   - Include gap resolution summary per candidate
+   - Highlight consistency flags that need recruiter attention
+   - Write to `prescreening/prescreening-comparison-matrix.md`
+   - If Google Sheets MCP is available, write to Sheets for team sharing
+
+4. **Recruiter Gate — STOP**
+   Present the comparison matrix and scoring summary to the recruiter:
+   - **STOP and wait for recruiter approval** before advancing candidates
+   - Options:
+     - **[A]pprove**: Advance recommended candidates to interview stage
+     - **[E]dit**: Adjust recommendations for specific candidates
+     - **[R]edo**: Re-score with different rubric parameters
+
+5. **Update Pipeline Session**
+   - Update `candidate_pipeline_session.json` with:
+     - Per-candidate prescreening scores and gap resolution
+     - File paths for scorecards
+     - Recruiter gate approval status
+     - Candidates advancing to interview stage
+
+---
+
+### Mode: evaluate-hr-interview
+
+Evaluate HR interview outcomes with bias scanning and produce evaluation scorecards.
+
+1. **Gather Inputs**
+   - Read `candidate_pipeline_session.json` for the active pipeline
+   - For each candidate with completed HR interviews:
+     - Read interviewer notes, scorecards, or free-form feedback
+     - Read the candidate's prescreening scorecard (for cross-stage coherence)
+     - Read the JD rubric for context
+   - If `target` is provided, use it as the path to the folder containing interview notes
+
+2. **Evaluate Interviews (Parallel Fan-Out)**
+   For each candidate, dispatch the `hr-interview-evaluator` agent via the Task tool:
+   - Pass the interview notes, prescreening scorecard, and JD rubric
+   - The agent performs (in sequence):
+     1. **Bias scan** on interviewer notes — flags protected characteristic references, unanchored culture fit language, demographic-correlated adjectives
+     2. Presents bias flags for review
+     3. **Evaluation scoring** after bias review — scores Communication (20%), Role Motivation (20%), Collaboration (25%), Problem Solving (20%), Culture Alignment (15%)
+     4. **Cross-stage coherence check** against prescreening responses
+
+3. **Bias Review Gate — STOP**
+   Before finalizing evaluations, present all bias flags across candidates:
+   - **STOP and wait for recruiter review** of bias findings
+   - For each flagged item, the recruiter must:
+     - **Acknowledge**: Flag is valid, exclude this evidence from scoring
+     - **Dismiss**: Flag is a false positive with documented reasoning
+     - **Escalate**: Flag requires additional investigation or re-interview
+   - Evaluations are only finalized after all flags are reviewed
+
+4. **HR Reviewer Gate — STOP**
+   After bias review, present finalized HR evaluation scorecards:
+   - **STOP and wait for HR reviewer approval**
+   - Options:
+     - **[A]pprove**: Accept evaluations as-is
+     - **[E]dit**: Modify specific dimension scores with justification
+     - **[R]e-interview**: Request re-interview for specific candidates
+
+5. **Output and Update**
+   - Write evaluation scorecards: `evaluations/candidate-NNN-hr-evaluation.md`
+   - Update `candidate_pipeline_session.json` with HR evaluation scores, bias flag counts, and gate approvals
+   - If Slack MCP is available, notify the hiring channel of HR evaluation completion
+
+---
+
+### Mode: evaluate-technical-interview
+
+Evaluate technical interview outcomes with bias scanning and JD coverage analysis.
+
+1. **Gather Inputs**
+   - Read `candidate_pipeline_session.json` for the active pipeline
+   - For each candidate with completed technical interviews:
+     - Read technical interview notes, coding exercise scores, take-home feedback
+     - Read the JD rubric (must-have requirements for coverage mapping)
+     - Read previous stage scorecards for context
+   - If `target` is provided, use it as the path to the folder containing technical interview materials
+
+2. **Evaluate Interviews (Parallel Fan-Out)**
+   For each candidate, dispatch the `technical-interview-evaluator` agent via the Task tool:
+   - Pass the technical interview materials, JD rubric, and previous scorecards
+   - The agent performs (in sequence):
+     1. **Bias scan** — detects pedigree bias, style bias, familiarity bias, speed bias
+     2. Presents bias flags for review
+     3. **JD coverage mapping** — maps which must-have requirements were tested
+     4. **Evaluation scoring** after bias review — scores Technical Depth (30%), Problem Solving Approach (20%), Code Quality (20%), System Design (20%), Technical Communication (10%)
+
+3. **Coverage Gap Gate — STOP**
+   Present coverage analysis across all candidates:
+   - Identify must-have JD requirements that were NOT tested in any candidate's interview
+   - **STOP and wait for technical reviewer decision**:
+     - **Accept**: Coverage is sufficient, proceed with available data
+     - **Re-interview**: Schedule targeted follow-up for specific untested requirements
+     - **Waive**: Mark specific requirements as waived for this hiring round
+
+4. **Technical Reviewer Gate — STOP**
+   After coverage gap resolution, present finalized technical evaluation scorecards:
+   - **STOP and wait for technical reviewer approval**
+   - Options:
+     - **[A]pprove**: Accept evaluations as-is
+     - **[E]dit**: Modify specific dimension scores with justification
+     - **[R]e-interview**: Request re-interview for specific candidates
+
+5. **Output and Update**
+   - Write evaluation scorecards: `evaluations/candidate-NNN-technical-evaluation.md`
+   - Write coverage map: `evaluations/interview-coverage-map.md`
+   - Update `candidate_pipeline_session.json` with technical evaluation scores, coverage gaps, and gate approvals
+   - If Slack MCP is available, notify the hiring channel of technical evaluation completion
+
+---
+
+### Mode: synthesize-final-recommendation
+
+Synthesize all stage scorecards into final hire/reject recommendations.
+
+1. **Gather Inputs**
+   - Read `candidate_pipeline_session.json` for the active pipeline
+   - For each candidate with completed evaluations, collect:
+     - CV screening scorecard
+     - Prescreening scorecard (if conducted)
+     - HR interview evaluation
+     - Technical interview evaluation
+   - Read the stage weights (default: CV 15%, Prescreening 10%, HR 30%, Technical 45%)
+   - If `target` is provided, use it as the path to the pipeline session file
+
+2. **Synthesize Recommendations (Sequential — for Auditability)**
+   For each candidate, dispatch the `cross-stage-synthesizer` agent via the Task tool **sequentially** (one at a time, not parallel):
+   - Pass all stage scorecards, stage weights, and the JD rubric
+   - The agent performs:
+     1. **Score normalization** and weighted composite calculation
+     2. **Cross-stage consistency analysis** (trending up/down/variable)
+     3. **Legal defensibility checklist** — must pass before recommendation
+     4. **Final recommendation**: Hire—Strong, Hire—Standard, Hire—Conditional, Hold, or Reject
+     5. **Post-decision documentation**: onboarding flags (if hiring) or candidate communication guidance (if rejecting)
+
+3. **Batch Summary**
+   After all candidates are synthesized:
+   - Produce a batch recommendation summary with all candidates ranked
+   - Run disparate impact analysis if demographic data is available (post identity reunion)
+   - Generate pipeline statistics (advancement rates, score distributions, stage-by-stage trends)
+   - Write to `recommendations/final-recommendation-summary.md`
+   - If Google Sheets MCP is available, write final results to Sheets
+
+4. **Hiring Manager Gate — STOP**
+   Present the final recommendation summary:
+   - **STOP and wait for hiring manager approval**
+   - Options:
+     - **[A]pprove All**: Accept all recommendations
+     - **[A]pprove with Changes**: Modify specific candidate decisions with justification
+     - **[R]eview Individual**: Deep-dive into specific candidate's cross-stage data
+
+5. **Post-Approval Actions**
+   After hiring manager approval:
+   - Reunite candidate numbers with names from identity envelopes
+   - If Gmail MCP is available:
+     - Draft offer emails for Hire candidates
+     - Draft decline emails for Reject candidates using the communication guidance
+   - If Slack MCP is available:
+     - Post final hiring decisions to the hiring channel
+     - Notify relevant team leads of incoming hires
+   - If Rube/Composio MCP is available:
+     - Update candidate status in ATS (Greenhouse, Lever, BambooHR)
+   - Update `candidate_pipeline_session.json` with:
+     - Final decisions per candidate
+     - Pipeline status: "completed"
+     - Hiring manager gate approval
 
 ---
 

@@ -1,7 +1,8 @@
 ---
 description: >
   Review HR artifacts: job descriptions, interview process, onboarding plans,
-  team composition, cv-screening results, and compliance-audit.
+  team composition, cv-screening results, prescreening-quality, interview-evaluation-audit,
+  final-recommendation-audit, and compliance-audit.
 argument-hint: "[target]"
 allowed-tools: Read, Glob, Grep, Bash, Task
 ---
@@ -12,7 +13,7 @@ Review and assess HR processes, documents, and organizational health.
 
 ## Variables
 
-mode: $1 (one of: "review job descriptions", "interview process", "onboarding plans", "team composition", "cv-screening", "compliance-audit")
+mode: $1 (one of: "review job descriptions", "interview process", "onboarding plans", "team composition", "cv-screening", "prescreening-quality", "interview-evaluation-audit", "final-recommendation-audit", "compliance-audit")
 target: $2 (optional - specific document, role, team, screening batch, or scope to review)
 
 ## Instructions
@@ -229,6 +230,163 @@ Audit a completed CV screening batch for quality, consistency, and bias.
      - [ ] Consistent weights across all candidates
      - [ ] Must-have gate applied uniformly
      - [ ] All scores have evidence citations
+
+---
+
+### Mode: prescreening-quality
+
+Audit prescreening questionnaires and scoring for legality, consistency, and effectiveness.
+
+1. **Locate Prescreening Materials**
+   - If `target` is provided, use it as the path to the prescreening output folder
+   - Otherwise, read `candidate_pipeline_session.json` and locate associated prescreening files
+   - Identify all questionnaires, scoring rubrics, candidate responses, and scorecards
+
+2. **Legal Compliance Audit**
+   - Scan all questionnaires for prohibited questions:
+     - Age, date of birth, or graduation year used as age proxy
+     - Marital status, children, family planning
+     - Religion, religious practices, or holidays
+     - Nationality, citizenship, or immigration status (beyond legal work authorization)
+     - Disability, health conditions, or medical history
+     - Military service or veteran status
+     - Arrest record or criminal history (unless job-relevant and legally permitted)
+   - Verify salary questions ask about expectations, not history (illegal in many jurisdictions)
+   - Check that all questions are defensible as job-relevant
+
+3. **Scoring Consistency Audit**
+   - Verify the same rubric was applied consistently across all candidates for the same role
+   - Check for score distribution anomalies:
+     - All candidates scored identically on the same question (rubric may be too vague)
+     - Extreme variance on subjective questions (rubric anchors may be unclear)
+   - Verify gap resolution tracking aligns with actual CV screening gaps
+   - Cross-check that recommendations match the stated criteria (Advance/Hold/Decline thresholds)
+
+4. **Effectiveness Assessment**
+   - Evaluate question quality: do questions effectively target CV screening gaps?
+   - Assess rubric quality: are behavioral anchors specific enough for consistent scoring?
+   - Check whether prescreening responses provided useful signal beyond the CV
+   - Identify questions that all candidates answered similarly (low differentiation value)
+
+5. **Report**
+   Provide a prescreening quality assessment:
+   - **Legal Compliance Score** (1-10): Based on absence of prohibited questions
+   - **Scoring Consistency Score** (1-10): Based on rubric adherence and distribution
+   - **Effectiveness Score** (1-10): Based on differentiation value and gap targeting
+   - **Issues Found**: List with severity (Critical/Warning/Suggestion)
+   - **Recommendations**: Improvements for future prescreening rounds
+   - **Compliance Checklist**:
+     - [ ] No prohibited questions (age, marital, religion, nationality, disability, health)
+     - [ ] Salary questions use expectations, not history
+     - [ ] All questions are job-relevant and defensible
+     - [ ] Same rubric applied to all candidates
+     - [ ] Scoring criteria consistent with stated thresholds
+     - [ ] Gap resolution tracking accurate
+
+---
+
+### Mode: interview-evaluation-audit
+
+Audit HR and technical interview evaluations for bias, inter-rater reliability, and coverage.
+
+1. **Locate Evaluation Materials**
+   - If `target` is provided, use it as the path to the evaluation output folder
+   - Otherwise, read `candidate_pipeline_session.json` and locate evaluation files
+   - Identify all HR evaluations, technical evaluations, bias scan reports, and coverage maps
+
+2. **Bias Scan Audit**
+   - Verify bias scans were completed BEFORE evaluation scoring for every candidate
+   - Review the quality of bias detection:
+     - Were legitimate bias instances caught?
+     - Were there false positives that unfairly complicated the process?
+     - Were all critical flags acknowledged by the reviewer with documented decisions?
+   - Check for systematic patterns:
+     - Same interviewer generating repeated bias flags (interviewer training needed)
+     - Same bias type appearing across multiple candidates (structural process issue)
+   - Verify that flagged evidence was excluded from final scoring
+
+3. **Inter-Rater Reliability**
+   - If multiple interviewers scored the same candidate, check for score agreement
+   - Flag dimension scores that differ by more than 2 points between raters
+   - Identify interviewers who systematically score higher or lower than peers (leniency/severity bias)
+   - Check that scoring rationale supports the assigned scores (not just the numbers)
+
+4. **Coverage Audit**
+   - Verify technical interview coverage maps are accurate
+   - Check that untested must-have requirements were flagged as coverage gaps (not candidate deficiencies)
+   - Assess whether coverage gaps were resolved (re-interview, waiver, or acceptance)
+   - Verify that HR evaluations cover all 5 dimensions for every candidate
+
+5. **Report**
+   Provide an evaluation quality assessment:
+   - **Bias Detection Quality** (1-10): Completeness and accuracy of bias scans
+   - **Inter-Rater Reliability** (1-10): Agreement between evaluators
+   - **Coverage Completeness** (1-10): JD requirement coverage across all candidates
+   - **Process Compliance** (1-10): Adherence to evaluation protocols (bias before scoring, gate approvals)
+   - **Issues Found**: List with severity and affected candidates
+   - **Recommendations**: Process improvements, interviewer training needs, coverage gap mitigation
+   - **Compliance Checklist**:
+     - [ ] Bias scans completed before all evaluations
+     - [ ] All critical bias flags reviewed with documented decisions
+     - [ ] Flagged evidence excluded from scoring
+     - [ ] Coverage gaps documented as process gaps
+     - [ ] All evaluation dimensions scored with evidence
+     - [ ] Gate approvals obtained at each stage
+
+---
+
+### Mode: final-recommendation-audit
+
+Audit final hiring recommendations for legal defensibility and disparate impact patterns.
+
+1. **Locate Recommendation Materials**
+   - If `target` is provided, use it as the path to the recommendation output folder
+   - Otherwise, read `candidate_pipeline_session.json` and locate final recommendation files
+   - Identify all individual recommendations, batch summary, and pipeline session data
+
+2. **Legal Defensibility Audit**
+   - Verify each recommendation passed the legal defensibility checklist:
+     - All scores based on job-relevant criteria
+     - No protected characteristic references in any stage
+     - Consistent criteria applied across candidates
+     - Bias flags resolved at each stage
+     - Coverage gaps documented as process issues
+   - Review decline rationale for legal risk:
+     - Could the stated reason be construed as pretext for discrimination?
+     - Is the rationale specific enough to withstand scrutiny?
+     - Are similar candidates treated consistently?
+   - Check that candidate-facing communication guidance avoids disclosing internal deliberation
+
+3. **Disparate Impact Analysis**
+   - After identity reunion, analyze decision distribution:
+     - Compare advancement rates across demographic groups (if data available)
+     - Apply the four-fifths rule: if any group's selection rate is below 80% of the highest group's rate, flag for review
+     - Check score distributions across groups for statistically significant differences
+     - Note: this analysis is informational — disparate impact alone does not indicate discrimination, but warrants review
+   - If demographic data is not available, note the limitation and recommend collection for future rounds
+
+4. **Consistency Audit**
+   - Verify stage weights were applied identically across all candidates
+   - Check that composite scores match the weighted calculation
+   - Verify decision categories align with the stated thresholds
+   - Flag any overrides where the decision doesn't match the composite score (should have documented justification)
+   - Compare candidates at decision boundaries — were borderline calls consistent?
+
+5. **Report**
+   Provide a recommendation quality assessment:
+   - **Legal Defensibility Score** (1-10): Based on defensibility checklist adherence
+   - **Consistency Score** (1-10): Based on uniform application of criteria
+   - **Disparate Impact Risk**: Low/Medium/High with specific findings
+   - **Issues Found**: List with severity and affected candidates
+   - **Recommendations**: Process improvements, additional review needs, documentation gaps
+   - **Compliance Checklist**:
+     - [ ] Legal defensibility checklist passed for all candidates
+     - [ ] Decline rationale is objective and job-relevant
+     - [ ] Stage weights applied consistently
+     - [ ] Decision categories match composite score thresholds
+     - [ ] Overrides documented with justification
+     - [ ] Disparate impact analysis completed (or data limitation noted)
+     - [ ] Candidate communication guidance is legally appropriate
 
 ---
 
