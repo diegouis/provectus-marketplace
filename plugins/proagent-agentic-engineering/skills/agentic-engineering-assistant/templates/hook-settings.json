@@ -1,0 +1,17 @@
+{
+  "_comment": "Hook Registration Template - Add this structure to .claude/settings.json",
+  "hooks": {
+    "<EventName>": [
+      {
+        "matcher": "<pattern>",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/<hook-name>.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

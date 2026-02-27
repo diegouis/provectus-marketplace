@@ -5,7 +5,8 @@ description: >
   with Claude Code. Covers agent design patterns, multi-agent orchestration, skill/command/hook
   creation, MCP server development, prompt engineering, plugin architecture, agent evaluation,
   context engineering, autonomous coding loops, multi-backend orchestration, trust/autonomy
-  frameworks, spec-driven development, and thinking model commands.
+  frameworks, spec-driven development, thinking model commands, and the Workflow Factory for
+  template-driven artifact creation with complexity assessment and inter-artifact contracts.
 
   This skill should be used when the user mentions:
   - Creating agents, skills, commands, hooks, or plugins for Claude Code
@@ -23,6 +24,14 @@ description: >
   - Tool registry, plugin lifecycle, knowledge graph integration
   - Thinking models, first-principles reasoning, mental model commands
   - 3-file planning pattern, context handoff, session persistence
+  - Workflow factory, create workflow, generate artifacts
+  - Complexity assessment (simple, medium, complex)
+  - Design decisions, mandatory design gates
+  - Expert system trio (plan, build, improve), self-improving workflows
+  - Inter-artifact contracts, producer-consumer data passing
+  - Report types (summary, diff, handoff, progress, audit, path-only)
+  - Error handling patterns (gate guard, step fallback, graceful degradation)
+  - Naming conventions, artifact templates, coherence validation
 
   Do NOT use for:
   - General software development without an agentic component (use sdlc or backend/frontend skills)
@@ -50,6 +59,13 @@ This skill covers the full lifecycle of agentic engineering: from designing indi
 | Prompt engineering, context engineering, trust ladder, agent evaluation, thinking models | `references/prompt-engineering.md` |
 | Step-by-step workflows for creating agents, skills, commands, hooks, plugins, MCP servers | `references/workflow-patterns.md` |
 | Quality checklists, AWOS architecture, confirmation patterns, Composio SDK, decision matrix | `references/quality-checklists.md` |
+| Artifact frontmatter schemas, expert systems, agent teams, headless automation | `references/artifacts.md` |
+| Complexity assessment (Simple/Medium/Complex) for artifact depth | `references/complexity.md` |
+| Inter-artifact contracts, producer-consumer data passing | `references/contracts.md` |
+| Error handling patterns (Gate Guard, Step Fallback, Graceful Degradation, Pipeline Abort, Retry) | `references/error-handling.md` |
+| Report type selection (Summary, YAML, Diff, Progress, Handoff, Comparison, Audit, Path-Only) | `references/report-types.md` |
+| File naming, variable naming, placement rules | `references/naming-conventions.md` |
+| Body templates for commands, skills, agents, hooks, expert systems | `templates/` directory |
 
 ## Visual Diagramming with Excalidraw
 

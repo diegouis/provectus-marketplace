@@ -1,4 +1,61 @@
-## Workflow Patterns
+## Composition Patterns
+
+Patterns for wiring artifacts together into larger workflows. Select based on the workflow's orchestration needs.
+
+### Pattern 1: Linear Pipeline
+```
+Input -> Step A -> Step B -> Step C -> Report
+```
+Single command, sequential steps. Use for: builds, plans, focused tasks.
+**Report type:** Summary or Diff.
+
+### Pattern 2: Parallel Fan-Out / Fan-In
+```
+Input -> Spawn N agents (Task tool) -> Collect -> Merge -> Report
+```
+Use for: multi-source research, codebase scanning, documentation scraping.
+**Report type:** Comparison (merge step), then Summary (final).
+
+### Pattern 3: Chained Slash Commands
+```
+/command-a -> output_a -> /command-b output_a -> output_b -> /command-c output_b
+```
+Use for: multi-phase pipelines (scout -> plan -> build).
+**Report types:** Handoff or Path-Only (intermediate steps), Diff or Summary (final step).
+**Requires:** Inter-Artifact Contracts between each pair.
+
+### Pattern 4: Fire-and-Forget Background
+```
+Launch headless agent -> Write progress to file -> Rename on complete/fail
+```
+Use for: long-running autonomous tasks, parallel workstreams.
+**Report type:** Progress.
+
+### Pattern 5: Self-Improving Expert Loop
+```
+Plan -> Build -> Improve (analyze git diff -> update expertise sections)
+```
+Use for: domain expert systems that accumulate knowledge over time.
+**Report types:** Path-Only (plan), Diff (build), Summary (improve).
+**Requires:** Expert System artifact template.
+
+### Pattern 6: Agent Team Orchestration
+```
+Lead decomposes task -> Assigns to teammates -> Teammates self-coordinate -> Lead synthesizes
+```
+Use for: complex multi-file features, competing approaches, review panels.
+**Report type:** Summary (lead's synthesis).
+
+### Pattern 7: Skill + Agent Composition
+```
+Skill defines the capability -> Custom agent executes it -> Hook validates output
+```
+Use for: reusable, safe, domain-specific automation.
+**Report type:** Varies by skill purpose.
+
+---
+
+## Creation Workflows
 
 ### Create a New Agent
 

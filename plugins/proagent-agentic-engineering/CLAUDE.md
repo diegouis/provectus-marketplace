@@ -10,8 +10,9 @@ This plugin provides comprehensive tooling for building, orchestrating, and opti
 
 - **Commands**:
   - `/proagent-agentic-engineering` -- Hub command showing capabilities and routing to sub-commands
-  - `/proagent-agentic-engineering-run` -- Task runner for creating agents, skills, commands, hooks, MCP servers, plugins, orchestrating workflows, and evaluating agents
-  - `/proagent-agentic-engineering-review` -- Review agent systems, skills, prompts, and orchestration patterns for quality
+  - `/proagent-agentic-engineering-run` -- Task runner for creating agents, skills, commands, hooks, MCP servers, plugins, orchestrating workflows, evaluating agents, and creating workflows
+  - `/proagent-agentic-engineering-review` -- Review agent systems, skills, prompts, orchestration patterns, workflow coherence, and expert systems for quality
+  - `/proagent-agentic-engineering-create` -- Workflow Factory: create complete workflow artifacts from high-level descriptions using complexity assessment, design decisions, canonical templates, inter-artifact contracts, and coherence validation
 
 - **Hooks**: PreToolUse validation for agent artifacts, PostToolUse audit logging, and SessionStart context loading. Configured in `hooks/hooks.json`.
 
@@ -30,7 +31,7 @@ This plugin provides comprehensive tooling for building, orchestrating, and opti
 - Agent definitions use YAML frontmatter with `name`, `description` (with `<example>` blocks), optional `tools`, `model`, and `color` fields
 - Skills require YAML frontmatter with `name` and `description` (including trigger terms) in a `SKILL.md` file within a named directory
 - Commands use YAML frontmatter with `description` and `argument-hint`, supporting `$ARGUMENTS`, `$1`/`$2`, `@file`, and `!command`
-- Hooks are JSON configurations in `.claude/settings.json` with event names as keys, matchers for tool filtering, and shell commands that process stdin JSON via `jq`
+- Hooks are JSON configurations with event names as keys, matchers for tool filtering; prefer Python scripts (Graceful Degradation pattern) over shell+jq for complex logic
 - Plugins require `.claude-plugin/plugin.json` with `name`, `version` (semver), and `description`
 - MCP servers should be workflow-oriented (not raw API wrappers) with input validation and actionable error messages
 - Autonomous coding loops follow the explore-plan-code-commit cycle with configurable presets (ralph-orchestrator `presets/feature.yml`, casdk-harness `autonomous.py`)
