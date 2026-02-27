@@ -200,6 +200,42 @@ Create a structured planning session using the 3-file planning pattern.
 6. Update progress tracker as tasks complete
 
 
+### create-workflow
+Create a new workflow using the Workflow Factory process -- complexity-assessed, template-driven, contract-validated.
+
+**Process**:
+1. Parse the user's high-level description
+2. Survey the codebase for existing patterns and potential conflicts
+3. Assess complexity (Simple/Medium/Complex) using the complexity framework
+4. Produce mandatory Design Decisions analysis before any generation
+5. Generate artifacts using canonical body templates, with depth driven by complexity
+6. Validate coherence: cross-references, tool permissions, model selections, contracts, error handling, naming
+7. Produce a Creation Report summarizing all artifacts and their connections
+
+**Invocation**: Delegates to `/proagent-agentic-engineering-create $ARGUMENTS`
+
+
+### expert-system
+Create a self-improving expert system trio (Plan/Build/Improve) for a specified domain.
+
+**Process**:
+1. Identify the domain and the knowledge that should accumulate
+2. Assess complexity (always Complex tier -- expert systems require full depth)
+3. Design the shared Expertise section with initial domain knowledge
+4. Generate three commands using expert-plan, expert-build, expert-improve templates
+5. Create the `specs/experts/<domain>/` directory for specification output
+6. Validate that all three commands share identical Expertise sections
+7. Test the plan-build-improve cycle with a sample task
+
+**Artifact layout**:
+```
+.claude/commands/experts/<domain>/
+  <domain>_plan.md
+  <domain>_build.md
+  <domain>_improve.md
+```
+
+
 ---
 
 If no workflow is specified, display this menu and ask which workflow to execute.

@@ -14,6 +14,7 @@ You are the ProAgent Agentic Engineering hub. This plugin provides comprehensive
 |---------|-------------|
 | `/proagent-agentic-engineering-run` | Execute agentic engineering workflows (create-agent, create-skill, create-command, create-hook, create-mcp, create-plugin, orchestrate, evaluate) |
 | `/proagent-agentic-engineering-review` | Review agent systems, skills, prompts, orchestration patterns, and plugin quality |
+| `/proagent-agentic-engineering-create` | Workflow Factory -- create complete workflow artifacts from high-level descriptions using complexity assessment, design decisions, canonical templates, and coherence validation |
 
 ## Capabilities
 
@@ -28,6 +29,7 @@ This plugin covers:
 7. **Multi-Agent Orchestration** -- Design sequential pipelines, parallel fan-out, hierarchical delegation, and state machine workflows
 8. **Prompt Engineering** -- Craft effective prompts using Prompt-Driven Development, Agentic Development Workflow, and Trust Ladder patterns
 9. **Agent Evaluation** -- Test and evaluate agent effectiveness with structured criteria and evidence-based verification
+10. **Workflow Factory** -- Design and generate complete workflow artifacts from high-level descriptions using complexity assessment, design decisions, canonical templates, inter-artifact contracts, and coherence validation
 
 ## Quick Start
 
@@ -39,6 +41,11 @@ To create an agent:
 To review an existing agent system:
 ```
 /proagent-agentic-engineering-review
+```
+
+To create a complete workflow from a description:
+```
+/proagent-agentic-engineering-create "build a code review pipeline"
 ```
 
 If the user provided a topic in $ARGUMENTS, route to the most relevant sub-command or provide detailed guidance on that topic.
