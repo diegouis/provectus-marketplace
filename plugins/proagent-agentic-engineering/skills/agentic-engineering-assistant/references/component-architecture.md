@@ -254,3 +254,133 @@ Build Model Context Protocol servers to connect Claude to external services.
 - Playwright and Puppeteer MCP servers
 - Playwright MCP for E2E testing
 - Google Drive MCP server
+
+---
+
+## 7. Expert Systems (Plan/Build/Improve Trio)
+
+A pattern combining three commands into a self-improving domain expert. Each command shares an `## Expertise` section that the Improve command updates over time.
+
+**When to use:** Specialized domains where accumulated knowledge matters (hooks, security, testing, infrastructure). When you need a plan -> build -> learn feedback loop.
+
+**Structure:**
+```
+.claude/commands/experts/<domain>/
+  <domain>_plan.md       # Analyzes requirements, creates specifications
+  <domain>_build.md      # Implements from specifications
+  <domain>_improve.md    # Reviews git diffs, updates Expertise sections
+```
+
+**Key rules:**
+- All three commands share identical `## Expertise` sections
+- Only `_improve` modifies the Expertise sections -- `_plan` and `_build` consume them
+- `_plan` outputs a spec file to `specs/experts/<domain>/`
+- `_build` reads that spec file and implements it
+- `_improve` reads git diffs and enriches the Expertise sections
+
+**Templates:** See `templates/expert-plan.md`, `templates/expert-build.md`, `templates/expert-improve.md`
+
+---
+
+## 8. Agent Teams (`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`)
+
+Multi-instance orchestration where a team lead delegates to independent teammates with shared task lists and peer messaging.
+
+**When to use:** Parallel workstreams, competing hypothesis debugging, full-stack features, review panels.
+**When NOT to use:** Sequential tasks. Tasks that fit in a single context window. Token-sensitive environments.
+
+**Enable via settings.json:**
+```json
+{
+  "env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" },
+  "teammateMode": "auto"
+}
+```
+
+**Architecture:**
+- **Team Lead** -- plans, delegates, synthesizes (does NOT implement in delegate mode)
+- **Teammates** -- independent Claude instances with own context windows
+- **Shared Task List** -- pending/in-progress/completed states with dependency chains
+- **Mailbox System** -- direct peer-to-peer messaging
+
+**Delegate Mode:** `Shift+Tab` restricts lead to coordination-only tools.
+
+**Cost consideration:** 3-teammate team for 30 minutes uses ~3-4x single session tokens. Use Sonnet for implementation teammates, Opus for leads.
+
+---
+
+## 9. Headless Automation (`claude -p`)
+
+Non-interactive mode for CI/CD, background agents, and automated pipelines.
+
+**When to use:** Background agents, CI/CD integration, agent-in-agent architectures, automated batch processing.
+
+**Key flags:**
+```bash
+claude -p "prompt"                          # Non-interactive
+  --model opus                              # Model selection
+  --output-format json|text                 # Output format
+  --append-system-prompt "instructions"     # Injected into system prompt
+  --system-prompt-file path/to/file.md      # System prompt from file
+  --allowedTools "Bash,Read"                # Tool restriction
+  --add-dir /path/to/dir                    # Additional context directories
+  --agents '{"name":"x","description":"y"}' # Inline agent definitions
+  --dangerously-skip-permissions            # Bypass all permission prompts
+```
+
+**Key distinction:** `CLAUDE.md` content is injected as a user message. `--append-system-prompt` content is appended to the system prompt itself.
+
+---
+
+## Python Hooks (Alternative to Shell+jq)
+
+For complex hook logic, use Python scripts instead of shell+jq. Python hooks are more maintainable, testable, and support structured error handling.
+
+**When to prefer Python over shell:**
+- Complex validation logic beyond simple field checks
+- Multiple decision branches
+- Structured logging (JSONL audit trails)
+- Cross-platform compatibility
+
+**Template:** See `templates/hook-body.py`
+
+**Pattern:** Graceful Degradation -- hooks should fail open (allow) rather than break Claude:
+```python
+try:
+    result = validate(data)
+except Exception:
+    sys.exit(0)  # Fail open
+```
+
+**Additional hook events** (beyond the commonly used ones):
+- `Setup` -- before session initialization
+- `PostToolUseFailure` -- after a tool fails
+- `SubagentStart` / `SubagentStop` -- subagent lifecycle
+- `TeammateIdle` -- exit code 2 re-engages idle teammates
+- `TaskCompleted` -- exit code 2 prevents completion (quality gates)
+
+**Handler types beyond `command`:**
+```json
+{"type": "prompt", "prompt": "Evaluate if task is complete..."}
+{"type": "agent", "...": "spawns subagent with tools"}
+```
+
+## Skill Invocation Control Matrix
+
+Extended frontmatter fields for skills:
+
+| Field | Purpose |
+|---|---|
+| `context: fork` | Run in isolated subagent with separate context window |
+| `agent: Explore` | Subagent type when context=fork: Explore, Plan, general-purpose |
+| `disable-model-invocation: true` | Only user can invoke (prevents Claude auto-triggering) |
+| `user-invocable: false` | Hidden from / menu; Claude can still auto-load |
+| `hooks` | Skill-scoped lifecycle hooks (PreToolUse, Stop, etc.) |
+| `mode` | Categorizes as a "mode command" for behavioral modification |
+
+| disable-model-invocation | user-invocable | Who can invoke |
+|---|---|---|
+| false (default) | true (default) | Both user and Claude |
+| true | true | User only |
+| false | false | Claude only (background knowledge) |
+| true | false | Neither (disabled) |

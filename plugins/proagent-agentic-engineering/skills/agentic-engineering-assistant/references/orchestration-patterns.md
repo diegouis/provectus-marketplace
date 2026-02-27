@@ -143,3 +143,48 @@ Commands from the agents marketplace for multi-agent coordination:
 - **prompt-optimize** (`plugins/llm-application-dev/commands/prompt-optimize.md`): Optimize LLM prompts for agent systems
 - **context-manager agent** (`plugins/agent-orchestration/agents/context-manager.md`): Manage context across multi-agent orchestration
 - **conductor-validator** (`plugins/conductor/agents/conductor-validator.md`): Validate conductor workflow definitions
+
+---
+
+## Additional Composition Patterns
+
+These patterns from the Workflow Factory complement the orchestration patterns above. They focus on wiring artifacts together with explicit data passing.
+
+### Chained Slash Commands
+```
+/command-a -> output_a -> /command-b output_a -> output_b -> /command-c output_b
+```
+Use for: multi-phase pipelines (scout -> plan -> build).
+**Report types:** Handoff or Path-Only (intermediate steps), Diff or Summary (final step).
+**Requires:** Inter-Artifact Contracts between each pair. See `references/contracts.md`.
+
+### Fire-and-Forget Background
+```
+Launch headless agent -> Write progress to file -> Rename on complete/fail
+```
+Use for: long-running autonomous tasks, parallel workstreams.
+**Report type:** Progress.
+
+### Self-Improving Expert Loop
+```
+Plan -> Build -> Improve (analyze git diff -> update expertise sections)
+```
+Use for: domain expert systems that accumulate knowledge over time.
+**Report types:** Path-Only (plan), Diff (build), Summary (improve).
+**Requires:** Expert System artifact template. See `references/artifacts.md` Section E.
+
+### Skill + Agent Composition
+```
+Skill defines the capability -> Custom agent executes it -> Hook validates output
+```
+Use for: reusable, safe, domain-specific automation.
+**Report type:** Varies by skill purpose.
+
+### Inter-Artifact Contracts for Multi-Artifact Orchestration
+
+When any orchestration pattern chains multiple artifacts, each connection MUST have an explicit contract defining:
+- Exact output format from the producer
+- Exact input variable in the consumer
+- Behavior for empty, malformed, and failed outputs
+
+See `references/contracts.md` for the full contract template and examples.

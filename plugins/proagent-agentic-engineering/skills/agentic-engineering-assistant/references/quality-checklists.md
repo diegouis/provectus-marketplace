@@ -132,3 +132,31 @@ Add the Rube MCP server for Composio tool access:
 | Bundle of related components | **Plugin** |
 | External service integration | **MCP Server** |
 | Complex multi-step task decomposition | **Multi-Agent Orchestration** |
+
+---
+
+## Workflow Coherence Checklist
+
+Use after generating multi-artifact workflows to validate consistency:
+
+- [ ] All cross-references resolve (file paths, variable names, slash command names)
+- [ ] Tool permissions cover what each workflow step needs (no more, no less)
+- [ ] Model selections match the reasoning in Design Decisions
+- [ ] Report types match the Report Type Selection Guide
+- [ ] Contracts are consistent: producer output format = consumer input format
+- [ ] Error handling covers: missing input, empty output, malformed data, timeouts
+- [ ] Hooks don't conflict with existing `.claude/settings.json` entries
+- [ ] Naming follows codebase conventions (kebab-case files, UPPER_SNAKE variables)
+
+## Expert System Checklist
+
+Use when creating or reviewing Expert System trios (Plan/Build/Improve):
+
+- [ ] All three commands present (_plan, _build, _improve)
+- [ ] All three share identical `## Expertise` sections
+- [ ] Only `_improve` modifies Expertise sections; `_plan` and `_build` consume them
+- [ ] `_plan` outputs spec to `specs/experts/<domain>/`
+- [ ] `_build` reads spec path from `$ARGUMENTS` and implements from it
+- [ ] `_improve` reads `git diff` and updates Expertise in both _plan and _build
+- [ ] `## Workflow` sections are never modified by _improve
+- [ ] Report types: _plan uses Path-Only, _build uses Diff, _improve uses Summary
