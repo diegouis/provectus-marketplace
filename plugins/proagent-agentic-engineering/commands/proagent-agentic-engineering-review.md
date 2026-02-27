@@ -129,6 +129,31 @@ If multi-agent workflows exist, evaluate:
 - **Progress Tracking**: Is there logging and checkpoint support?
 
 
+### 10. Workflow Coherence
+
+If multi-artifact workflows exist (chained commands, pipelines, expert systems), evaluate:
+
+- **Complexity Appropriateness**: Is the artifact's depth proportional to its complexity? Simple artifacts should not have 15-step workflows; Complex artifacts should not have 3-step workflows. Refer to the complexity framework (Simple/Medium/Complex).
+- **Design Decisions**: For multi-artifact workflows, do Design Decisions exist? Are they documented (as comment blocks or in `specs/`)?
+- **Contract Completeness**: For chained artifacts, are inter-artifact contracts defined? Do producer output formats match consumer input formats?
+- **Report Type Correctness**: Does each artifact use the appropriate report type from the 8-type taxonomy (Summary, YAML Structured, Diff, Progress, Handoff, Comparison, Audit, Path-Only)?
+- **Error Handling Coverage**: Does each artifact include the minimum error patterns for its tier? (Simple: Gate Guard. Medium: Gate Guard + Step Fallback. Complex: all 5 patterns.)
+- **Template Compliance**: Do artifacts follow the canonical body template structure (Variables, Instructions, Workflow, Error Handling, Report)?
+- **Naming Conventions**: Do files use kebab-case, variables use UPPER_SNAKE_CASE, and files are placed in correct directories?
+
+
+### 11. Expert Systems
+
+If Expert System trios (Plan/Build/Improve) exist, evaluate:
+
+- **Trio Completeness**: Are all three commands present (_plan, _build, _improve)?
+- **Expertise Consistency**: Do all three commands share identical `## Expertise` sections?
+- **Improve Discipline**: Does the _improve command modify ONLY `## Expertise` sections, never `## Workflow`?
+- **Spec Output**: Does _plan output to `specs/experts/<domain>/`?
+- **Report Types**: Does _plan use Path-Only, _build use Diff, _improve use Summary?
+- **Feedback Loop**: Is the improve step configured to read git diffs and extract learnings?
+
+
 ## Output Format
 
 Generate a structured review report:
@@ -167,3 +192,4 @@ Generate a structured review report:
 3. **Quality** -- Follows Anthropic specifications and best practices?
 4. **Completeness** -- All required fields present, supporting files exist?
 5. **Efficiency** -- Token usage, progressive disclosure, appropriate model selection?
+6. **Workflow Discipline** -- Complexity assessment, design decisions, inter-artifact contracts, report types, error handling patterns?
