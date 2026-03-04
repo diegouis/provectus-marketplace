@@ -93,6 +93,11 @@
       "name": "proagent-aws-ai",
       "source": "./plugins/proagent-aws-ai",
       "description": "AWS AI solutions: Bedrock AgentCore agents, MCP server development, Knowledge Bases RAG, generative AI architecture with Well-Architected best practices, CDK infrastructure, and AWS AI service integration."
+    },
+    {
+      "name": "proagent-mobile",
+      "source": "./plugins/proagent-mobile",
+      "description": "Mobile app development with Expo and React Native: UI components, navigation, EAS builds, App Store/Play Store deployment, CI/CD workflows, Tailwind styling, and SDK upgrades."
     }
   ]
 }

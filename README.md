@@ -2,7 +2,7 @@
 
 [![Validate Plugins](https://github.com/diegouis/provectus-marketplace/actions/workflows/validate-plugins.yml/badge.svg)](https://github.com/diegouis/provectus-marketplace/actions/workflows/validate-plugins.yml)
 
-Practice-specific plugins for Claude Code and Claude Desktop, built from 867 assets across 16 Provectus repositories.
+Practice-specific plugins for Claude Code and Claude Desktop, built from 901 assets across 17 repositories.
 
 ## Plugins
 
@@ -26,6 +26,8 @@ Practice-specific plugins for Claude Code and Claude Desktop, built from 867 ass
 | [proagent-router](plugins/proagent-router) | Router | Single `/proagent` command that detects the domain and dispatches to the appropriate practice specialist |
 | [proagent-aws-ai](plugins/proagent-aws-ai) | AWS AI | Amazon Bedrock, AgentCore, AWS AI services, CDK for AI, Knowledge Bases, AWS architecture |
 | [proagent-connector-setup](plugins/proagent-connector-setup) | Setup | Guided MCP credential configuration — Slack token extraction, Google Drive OAuth, connector verification |
+| [proagent-provrag](plugins/proagent-provrag) | ProvRAG | RAG framework scaffolding with @step/@pipeline decorators, LLM abstractions, OpenSearch retrieval, CLI tooling |
+| [proagent-mobile](plugins/proagent-mobile) | Mobile | Expo and React Native: UI, EAS builds, App Store/Play Store deployment, CI/CD, Tailwind, SDK upgrades |
 
 ## Installation
 
@@ -195,16 +197,16 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 
 | Metric | Count |
 |--------|-------|
-| Plugins | 18 |
-| Skills | 20 |
-| Commands | 52 |
-| Agents | 25 |
-| Hooks | 46 |
+| Plugins | 20 |
+| Skills | 22 |
+| Commands | 58 |
+| Agents | 27 |
+| Hooks | 51 |
 | MCP Servers (core) | 5 (Slack, Google Drive, Google Workspace, GitHub, Excalidraw) |
 | MCP Servers (additional) | 4 (GitLab, Atlassian, Playwright, Rube) |
 | MCP Integrations | 37 |
-| Source Assets | 867 |
-| Source Repos | 16 |
+| Source Assets | 901 |
+| Source Repos | 17 |
 | Marketplace Version | 0.3.0 |
 
 ## Project Structure
@@ -212,7 +214,7 @@ Destructive or high-impact operations always pause for user approval. Plugins fo
 ```
 provectus-marketplace/
 ├── marketplace.json       # Marketplace manifest with all plugin metadata
-├── plugins/               # 18 practice plugins
+├── plugins/               # 20 practice plugins
 │   ├── proagent-agentic-engineering/
 │   ├── proagent-aws-ai/
 │   ├── proagent-sdlc/
@@ -230,7 +232,9 @@ provectus-marketplace/
 │   ├── proagent-finance/
 │   ├── proagent-router/
 │   ├── proagent-documentation/
-│   └── proagent-connector-setup/
+│   ├── proagent-connector-setup/
+│   ├── proagent-provrag/
+│   └── proagent-mobile/
 ├── catalog/               # Asset catalog from repo scanning
 └── scan-reports/          # Raw scan reports per repo batch
 ```
