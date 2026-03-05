@@ -1,0 +1,53 @@
+name: Validate Plugins
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate plugin structure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: |
+          if ! command -v jq &> /dev/null; then
+            sudo apt-get update && sudo apt-get install -y jq
+          fi
+
+      - name: Run plugin validation
+        run: bash scripts/validate-plugins.sh
+
+      - name: Check SKILL.md line counts
+        run: |
+          echo "SKILL.md Line Count Report"
+          echo "=========================="
+          echo ""
+          MAX_LINES=80
+          violations=0
+          for skill in plugins/*/skills/*/SKILL.md; do
+            [ -f "$skill" ] || continue
+            lines=$(wc -l < "$skill")
+            plugin=$(echo "$skill" | cut -d'/' -f2)
+            if [ "$lines" -gt "$MAX_LINES" ]; then
+              echo "  WARN  $plugin: $lines lines (exceeds $MAX_LINES)"
+              violations=$((violations + 1))
+            else
+              echo "  OK    $plugin: $lines lines"
+            fi
+          done
+          echo ""
+          if [ "$violations" -gt 0 ]; then
+            echo "WARNING: $violations plugin(s) exceed the $MAX_LINES-line SKILL.md guideline"
+            echo "See PLUGIN-DESIGN-GUIDELINES.md for context efficiency standards"
+          else
+            echo "All SKILL.md files are within the $MAX_LINES-line guideline"
+          fi
