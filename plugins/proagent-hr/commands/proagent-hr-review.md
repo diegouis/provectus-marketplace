@@ -276,7 +276,7 @@ Audit prescreening questionnaires and scoring for legality, consistency, and eff
    - **Issues Found**: List with severity (Critical/Warning/Suggestion)
    - **Recommendations**: Improvements for future prescreening rounds
    - **Compliance Checklist**:
-     - [ ] No prohibited questions (age, marital, religion, nationality, disability, health)
+     - [ ] No prohibited questions (age, marital, religion, nationality, disability, health, military service, arrest/criminal record, salary history)
      - [ ] Salary questions use expectations, not history
      - [ ] All questions are job-relevant and defensible
      - [ ] Same rubric applied to all candidates

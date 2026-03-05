@@ -335,7 +335,7 @@ Generate prescreening questionnaires and internal scoring rubrics for candidates
 
 3. **Quality Review**
    After all questionnaires are generated:
-   - Verify no illegal questions were included (age, marital status, children, religion, nationality, citizenship, disability, health)
+   - Verify no illegal questions were included (age, marital status, children, religion, nationality, citizenship, disability, health, military service, arrest/criminal record, salary history)
    - Verify each questionnaire targets the specific gaps identified in that candidate's CV screening
    - Present a summary of generated questionnaires to the recruiter:
      - Number of questionnaires generated
@@ -471,15 +471,24 @@ Evaluate technical interview outcomes with bias scanning and JD coverage analysi
      3. **JD coverage mapping** — maps which must-have requirements were tested
      4. **Evaluation scoring** after bias review — scores Technical Depth (30%), Problem Solving Approach (20%), Code Quality (20%), System Design (20%), Technical Communication (10%)
 
-3. **Coverage Gap Gate — STOP**
-   Present coverage analysis across all candidates:
+3. **Bias Review Gate — STOP**
+   Before finalizing evaluations, present all bias flags across candidates:
+   - **STOP and wait for technical reviewer review** of bias findings (pedigree, style, familiarity, speed bias)
+   - For each flagged item, the reviewer must:
+     - **Acknowledge**: Flag is valid, exclude this evidence from scoring
+     - **Dismiss**: Flag is a false positive with documented reasoning
+     - **Escalate**: Flag requires additional investigation or re-interview
+   - Evaluations are only finalized after all flags are reviewed
+
+4. **Coverage Gap Gate — STOP**
+   After bias review, present coverage analysis across all candidates:
    - Identify must-have JD requirements that were NOT tested in any candidate's interview
    - **STOP and wait for technical reviewer decision**:
      - **Accept**: Coverage is sufficient, proceed with available data
      - **Re-interview**: Schedule targeted follow-up for specific untested requirements
      - **Waive**: Mark specific requirements as waived for this hiring round
 
-4. **Technical Reviewer Gate — STOP**
+5. **Technical Reviewer Gate — STOP**
    After coverage gap resolution, present finalized technical evaluation scorecards:
    - **STOP and wait for technical reviewer approval**
    - Options:
@@ -487,10 +496,10 @@ Evaluate technical interview outcomes with bias scanning and JD coverage analysi
      - **[E]dit**: Modify specific dimension scores with justification
      - **[R]e-interview**: Request re-interview for specific candidates
 
-5. **Output and Update**
+6. **Output and Update**
    - Write evaluation scorecards: `evaluations/candidate-NNN-technical-evaluation.md`
    - Write coverage map: `evaluations/interview-coverage-map.md`
-   - Update `candidate_pipeline_session.json` with technical evaluation scores, coverage gaps, and gate approvals
+   - Update `candidate_pipeline_session.json` with technical evaluation scores, bias flag counts, coverage gaps, and gate approvals
    - If Slack MCP is available, notify the hiring channel of technical evaluation completion
 
 ---
