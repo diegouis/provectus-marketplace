@@ -1,0 +1,12 @@
+name: Test Slack Webhook
+on: workflow_dispatch
+permissions: {}
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack notification
+        run: |
+          curl --fail-with-body -sS -X POST -H 'Content-Type: application/json' \
+            -d '{"text":"GitHub Actions test from provectus-marketplace"}' \
+            "${{ secrets.SLACK_WEBHOOK_URL }}"
