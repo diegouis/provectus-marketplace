@@ -292,16 +292,32 @@
         "hooks": 1,
         "mcp_servers": 5
       }
+    },
+    {
+      "name": "proagent-provrag",
+      "version": "0.1.0",
+      "category": "provrag",
+      "description": "provrag RAG framework plugin -- scaffold, customize, and operate provrag RAG projects with @step/@pipeline decorators, LLM abstractions, OpenSearch retrieval, and CLI tooling",
+      "source": "./plugins/proagent-provrag",
+      "assets_count": 0,
+      "source_repos": 1,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 2,
+        "mcp_servers": 0
+      }
     }
   ],
   "statistics": {
-    "total_plugins": 18,
+    "total_plugins": 19,
     "total_assets_cataloged": 867,
-    "total_source_repos": 16,
-    "total_skills": 20,
-    "total_commands": 52,
-    "total_agents": 25,
-    "total_hooks": 46,
+    "total_source_repos": 17,
+    "total_skills": 21,
+    "total_commands": 55,
+    "total_agents": 26,
+    "total_hooks": 48,
     "total_mcp_integrations": 37,
     "practices_covered": [
       "agentic-engineering",
@@ -321,7 +337,8 @@
       "finance",
       "router",
       "documentation",
-      "setup"
+      "setup",
+      "provrag"
     ]
   },
   "mcp_servers_core": [
