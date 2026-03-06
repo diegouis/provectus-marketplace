@@ -1,0 +1,73 @@
+name: PR Notifications
+
+on:
+  pull_request:
+    types: [opened, closed, reopened]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  notify-slack:
+    runs-on: ubuntu-latest
+    # Only notify on meaningful review events (approved/changes_requested), not comments
+    if: >
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'pull_request_review' &&
+       github.event.review.state != 'commented')
+    steps:
+      - name: Send Slack notification
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          EVENT="${{ github.event_name }}"
+          ACTION="${{ github.event.action }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          PR_URL="${{ github.event.pull_request.html_url }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          PR_AUTHOR="${{ github.event.pull_request.user.login }}"
+
+          if [ "$EVENT" = "pull_request" ]; then
+            if [ "$ACTION" = "opened" ]; then
+              EMOJI=":pr-open:"
+              TEXT="opened"
+            elif [ "$ACTION" = "reopened" ]; then
+              EMOJI=":pr-open:"
+              TEXT="reopened"
+            elif [ "$ACTION" = "closed" ] && [ "${{ github.event.pull_request.merged }}" = "true" ]; then
+              EMOJI=":pr-merged:"
+              TEXT="merged"
+            elif [ "$ACTION" = "closed" ]; then
+              EMOJI=":pr-closed:"
+              TEXT="closed"
+            fi
+            ACTOR="$PR_AUTHOR"
+          elif [ "$EVENT" = "pull_request_review" ]; then
+            REVIEW_STATE="${{ github.event.review.state }}"
+            ACTOR="${{ github.event.review.user.login }}"
+            if [ "$REVIEW_STATE" = "approved" ]; then
+              EMOJI=":white_check_mark:"
+              TEXT="approved"
+            elif [ "$REVIEW_STATE" = "changes_requested" ]; then
+              EMOJI=":request-changes:"
+              TEXT="requested changes on"
+            fi
+          fi
+
+          PAYLOAD=$(cat <<EOF
+          {
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "${EMOJI} *${ACTOR}* ${TEXT} <${PR_URL}|#${PR_NUMBER} ${PR_TITLE}>"
+                }
+              }
+            ]
+          }
+          EOF
+          )
+
+          curl -s -X POST -H 'Content-Type: application/json' \
+            -d "$PAYLOAD" \
+            "$SLACK_WEBHOOK_URL"
