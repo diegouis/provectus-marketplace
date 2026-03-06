@@ -1,0 +1,56 @@
+name: Release Notify
+
+on:
+  push:
+    tags:
+      - "v*"
+
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to notify for (e.g., v0.5.0). Defaults to latest tag."
+        required: false
+        type: string
+
+jobs:
+  notify-slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine tag range
+        run: |
+          # Use input tag (manual dispatch) or the pushed tag
+          if [ -n "${{ inputs.tag }}" ]; then
+            CURRENT_TAG="${{ inputs.tag }}"
+          else
+            CURRENT_TAG="${GITHUB_REF_NAME}"
+          fi
+
+          # Validate the tag exists
+          if ! git rev-parse "$CURRENT_TAG" >/dev/null 2>&1; then
+            echo "::error::Tag $CURRENT_TAG does not exist"
+            exit 1
+          fi
+
+          PREVIOUS_TAG=$(git tag --sort=-v:refname | grep -v "^${CURRENT_TAG}$" | head -1)
+
+          if [ -z "$PREVIOUS_TAG" ]; then
+            echo "No previous tag found — using first commit"
+            PREVIOUS_TAG=$(git rev-list --max-parents=0 HEAD)
+          fi
+
+          echo "RELEASE_PREVIOUS_TAG=${PREVIOUS_TAG}" >> "$GITHUB_ENV"
+          echo "RELEASE_CURRENT_TAG=${CURRENT_TAG}" >> "$GITHUB_ENV"
+          echo "Tag range: ${PREVIOUS_TAG}..${CURRENT_TAG}"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Send changelog to Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: uv run --python 3.13 scripts/send-changelog-to-slack.py

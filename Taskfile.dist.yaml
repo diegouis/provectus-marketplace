@@ -1,0 +1,17 @@
+version: "3"
+
+tasks:
+  validate:
+    desc: Run plugin validation checks
+    cmds:
+      - bash scripts/validate-plugins.sh
+
+  release:
+    desc: "Interactive release — bumps version, updates marketplace.json, commits, tags, and pushes"
+    cmds:
+      - uv run --python 3.13 scripts/release.py {{.BUMP | default ""}}
+
+  release:dry:
+    desc: "Preview a release without making any changes"
+    cmds:
+      - uv run --python 3.13 scripts/release.py --dry-run {{.BUMP | default ""}}
