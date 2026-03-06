@@ -7,6 +7,6 @@ jobs:
     steps:
       - name: Send Slack notification
         run: |
-          curl -X POST -H 'Content-Type: application/json' \
+          curl --fail-with-body -sS -X POST -H 'Content-Type: application/json' \
             -d '{"text":"GitHub Actions test from provectus-marketplace"}' \
             "${{ secrets.SLACK_WEBHOOK_URL }}"
