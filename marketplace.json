@@ -308,16 +308,32 @@
         "hooks": 2,
         "mcp_servers": 0
       }
+    },
+    {
+      "name": "proagent-mobile",
+      "version": "1.0.0",
+      "category": "mobile",
+      "description": "Mobile App Development with Expo and React Native — UI components, navigation, EAS builds, App Store/Play Store deployment, CI/CD workflows, Tailwind styling, and SDK upgrades",
+      "source": "./plugins/proagent-mobile",
+      "assets_count": 34,
+      "source_repos": 1,
+      "components": {
+        "skills": 1,
+        "commands": 3,
+        "agents": 1,
+        "hooks": 3,
+        "mcp_servers": 0
+      }
     }
   ],
   "statistics": {
-    "total_plugins": 19,
-    "total_assets_cataloged": 867,
+    "total_plugins": 20,
+    "total_assets_cataloged": 901,
     "total_source_repos": 17,
-    "total_skills": 21,
-    "total_commands": 55,
-    "total_agents": 26,
-    "total_hooks": 48,
+    "total_skills": 22,
+    "total_commands": 58,
+    "total_agents": 27,
+    "total_hooks": 51,
     "total_mcp_integrations": 37,
     "practices_covered": [
       "agentic-engineering",
@@ -338,7 +354,8 @@
       "router",
       "documentation",
       "setup",
-      "provrag"
+      "provrag",
+      "mobile"
     ]
   },
   "mcp_servers_core": [
