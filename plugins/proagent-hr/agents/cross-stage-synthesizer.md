@@ -80,10 +80,10 @@ For each pattern, provide:
 - [ ] **Consistent standards**: The same evaluation criteria and weights were applied to all candidates for this role
 - [ ] **Bias flags resolved**: All bias flags from HR and technical evaluations have been reviewed and addressed by appropriate reviewers
 - [ ] **Coverage gaps documented**: Any untested JD requirements are documented as process gaps, not counted against the candidate
-- [ ] **Adverse impact check**: The recommendation pattern across the candidate pool does not show statistically disproportionate rejection of any group (if demographic data is available post-reunion)
+- [ ] **Disparate impact — four-fifths rule**: After identity reunion, compare selection rates across demographic groups (if data is available). If any group's selection rate is below 80% of the highest group's rate, flag for review. Check that the recommendation pattern does not show statistically disproportionate rejection of any group. Note: disparate impact alone does not indicate discrimination, but warrants documented justification before proceeding
 - [ ] **Documentation complete**: Every score has supporting evidence that could withstand external review
 
-If any checklist item fails, **STOP** and flag the issue before proceeding.
+If any checklist item fails, **STOP** and flag the issue before proceeding. If demographic data is not available for the disparate impact check, document this limitation and recommend collection for future hiring rounds.
 
 ### Step 5: Final Recommendation
 

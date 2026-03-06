@@ -94,9 +94,9 @@ The complete candidate evaluation pipeline spans 6 stages with 12 specialized ag
               │
         ⏸ Bias Review Gate + HR Reviewer Gate
               │
-[STAGE 5] evaluate-technical-interview → Coverage Check + Technical Evaluation Scorecards
+[STAGE 5] evaluate-technical-interview → Bias Scan + Coverage Check + Technical Evaluation Scorecards
               │
-        ⏸ Coverage Gap Gate + Technical Reviewer Gate
+        ⏸ Bias Review Gate + Coverage Gap Gate + Technical Reviewer Gate
               │
 [STAGE 6] synthesize-final-recommendation → Final Hire/Reject Decision
               │
@@ -148,7 +148,7 @@ The hooks configuration enforces:
 7. **Blind Review Enforcement**: Verifies no PII in scoring rationale for CV screening artifacts
 8. **GDPR Compliance**: Validates that HR data handling follows GDPR consent management, data subject rights, retention policies, and breach notification procedures (reference: `agents/plugins/hr-legal-compliance/skills/gdpr-data-handling/SKILL.md`)
 9. **Employment Contract Compliance**: Ensures offer letters and employment agreements include required legal sections — at-will language, confidentiality, IP assignment, and jurisdiction-specific provisions (reference: `agents/plugins/hr-legal-compliance/skills/employment-contract-templates/SKILL.md`)
-10. **Prescreening Legality**: Blocks prescreening questionnaires containing prohibited questions (age, DOB, marital status, children, religion, nationality, citizenship, disability, health)
+10. **Prescreening Legality**: Blocks prescreening questionnaires containing prohibited questions (age, DOB, marital status, children, religion, nationality, citizenship, disability, health, military service, arrest/criminal record, salary history)
 11. **Evaluation Bias Detection**: Warns when evaluation files contain bias indicators (accent, appearance, pedigree)
 12. **Evaluation Blind Review**: Warns when evaluation or recommendation files may contain candidate names instead of anonymized IDs
 13. **Pipeline Session State**: Confirms updates to `candidate_pipeline_session.json`
