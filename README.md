@@ -1,5 +1,7 @@
 # Provectus Marketplace
 
+[![Validate Plugins](https://github.com/diegouis/provectus-marketplace/actions/workflows/validate-plugins.yml/badge.svg)](https://github.com/diegouis/provectus-marketplace/actions/workflows/validate-plugins.yml)
+
 Practice-specific plugins for Claude Code and Claude Desktop, built from 867 assets across 16 Provectus repositories.
 
 ## Plugins

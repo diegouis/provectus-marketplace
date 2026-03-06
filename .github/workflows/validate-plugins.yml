@@ -1,0 +1,153 @@
+name: Validate Plugins
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    name: Validate plugin structure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: |
+          if ! command -v jq &> /dev/null; then
+            sudo apt-get update && sudo apt-get install -y jq
+          fi
+
+      - name: Run plugin validation
+        id: validate
+        run: |
+          # Run validation and capture output (strip ANSI colors for the comment)
+          output=$(bash scripts/validate-plugins.sh 2>&1 | sed 's/\x1b\[[0-9;]*m//g') || exit_code=$?
+          echo "$output"
+
+          # Extract summary line
+          pass_count=$(echo "$output" | grep -oP 'PASS: \K[0-9]+' || echo "0")
+          warn_count=$(echo "$output" | grep -oP 'WARN: \K[0-9]+' || echo "0")
+          fail_count=$(echo "$output" | grep -oP 'FAIL: \K[0-9]+' || echo "0")
+
+          # Save to outputs
+          echo "pass_count=$pass_count" >> "$GITHUB_OUTPUT"
+          echo "warn_count=$warn_count" >> "$GITHUB_OUTPUT"
+          echo "fail_count=$fail_count" >> "$GITHUB_OUTPUT"
+
+          # Save full output to file for the comment
+          echo "$output" > /tmp/validation-output.txt
+
+          exit ${exit_code:-0}
+
+      - name: Check SKILL.md line counts
+        id: skill_lines
+        if: always()
+        run: |
+          MAX_LINES=80
+          violations=0
+          report=""
+
+          for skill in plugins/*/skills/*/SKILL.md; do
+            [ -f "$skill" ] || continue
+            lines=$(wc -l < "$skill")
+            plugin=$(echo "$skill" | cut -d'/' -f2)
+            if [ "$lines" -gt "$MAX_LINES" ]; then
+              report="${report}| ${plugin} | ${lines} | :warning: exceeds ${MAX_LINES} |\n"
+              violations=$((violations + 1))
+            else
+              report="${report}| ${plugin} | ${lines} | :white_check_mark: |\n"
+            fi
+          done
+
+          echo "violations=$violations" >> "$GITHUB_OUTPUT"
+
+          # Save report to file
+          echo -e "$report" > /tmp/skill-lines-report.txt
+
+      - name: Comment PR with validation summary
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            const passCount = '${{ steps.validate.outputs.pass_count }}';
+            const warnCount = '${{ steps.validate.outputs.warn_count }}';
+            const failCount = '${{ steps.validate.outputs.fail_count }}';
+            const skillViolations = '${{ steps.skill_lines.outputs.violations }}';
+            const validationResult = '${{ steps.validate.outcome }}';
+
+            const statusEmoji = validationResult === 'success' ? '✅' : '❌';
+            const statusText = validationResult === 'success' ? 'PASSED' : 'FAILED';
+
+            // Read SKILL.md line report
+            let skillReport = '';
+            try {
+              skillReport = fs.readFileSync('/tmp/skill-lines-report.txt', 'utf8').trim();
+            } catch (e) {
+              skillReport = '| (no data) | — | — |';
+            }
+
+            const body = `## ${statusEmoji} Plugin Validation ${statusText}
+
+            ### Structure Validation
+
+            | Check | Count |
+            |-------|-------|
+            | ✅ Pass | ${passCount} |
+            | ⚠️ Warn | ${warnCount} |
+            | ❌ Fail | ${failCount} |
+
+            ### SKILL.md Line Counts
+
+            ${skillViolations > 0
+              ? `⚠️ **${skillViolations} plugin(s)** exceed the 80-line guideline (see [PLUGIN-DESIGN-GUIDELINES.md](PLUGIN-DESIGN-GUIDELINES.md))`
+              : '✅ All SKILL.md files are within the 80-line guideline'}
+
+            <details>
+            <summary>Details (click to expand)</summary>
+
+            | Plugin | Lines | Status |
+            |--------|-------|--------|
+            ${skillReport}
+
+            </details>
+
+            ---
+            <sub>🤖 Posted by <a href="https://github.com/diegouis/provectus-marketplace/actions/workflows/validate-plugins.yml">Validate Plugins</a> workflow</sub>`;
+
+            // Find and update existing comment or create new one
+            const marker = '## ✅ Plugin Validation PASSED';
+            const markerFail = '## ❌ Plugin Validation FAILED';
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const existing = comments.find(c =>
+              c.body.includes(marker) || c.body.includes(markerFail)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body: body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body,
+              });
+            }
