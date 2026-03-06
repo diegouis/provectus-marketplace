@@ -114,7 +114,7 @@ def check_preconditions() -> bool:
     # Clean working tree (CHANGELOG.md is allowed — /release writes it before task release)
     RELEASE_MANAGED = {"CHANGELOG.md", "VERSION", "marketplace.json"}
     status = git("status", "--porcelain")
-    dirty_files = {line.strip().split()[-1] for line in status.splitlines()} if status else set()
+    dirty_files = {line[3:] for line in status.splitlines()} if status else set()
     unmanaged = dirty_files - RELEASE_MANAGED
     if not unmanaged:
         if dirty_files:
