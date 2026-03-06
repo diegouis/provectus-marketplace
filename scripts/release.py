@@ -111,12 +111,18 @@ def check_preconditions() -> bool:
         fail(f"Must be on main (currently on {branch})")
         ok = False
 
-    # Clean working tree
+    # Clean working tree (CHANGELOG.md is allowed — /release writes it before task release)
+    RELEASE_MANAGED = {"CHANGELOG.md", "VERSION", "marketplace.json"}
     status = git("status", "--porcelain")
-    if not status:
-        success("Working tree is clean")
+    dirty_files = {line[3:] for line in status.splitlines()} if status else set()
+    unmanaged = dirty_files - RELEASE_MANAGED
+    if not unmanaged:
+        if dirty_files:
+            success(f"Working tree clean (only release files modified: {', '.join(sorted(dirty_files))})")
+        else:
+            success("Working tree is clean")
     else:
-        fail("Working tree has uncommitted changes — commit or stash first")
+        fail(f"Working tree has uncommitted changes: {', '.join(sorted(unmanaged))}")
         ok = False
 
     # jq available
