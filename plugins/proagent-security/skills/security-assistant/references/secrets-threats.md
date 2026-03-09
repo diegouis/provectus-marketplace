@@ -31,6 +31,48 @@ credentials/
 **/service-account*.json
 ```
 
+### Automated Scanning with security-scan
+
+When the `security-scan` CLI is installed, prefer it over manual regex matching:
+
+```bash
+# Check availability
+which security-scan
+
+# Basic scan with console output
+security-scan scan .
+
+# JSON output for programmatic processing
+security-scan scan . --format json
+
+# Markdown output for reports
+security-scan scan . --format markdown
+
+# Scan only staged files (pre-commit)
+security-scan scan --staged-only
+
+# Use project-specific config
+security-scan -c security-scan.yaml scan .
+
+# Generate baseline to filter known findings
+security-scan baseline .
+```
+
+`security-scan` wraps gitleaks and adds:
+- Custom regex rules configurable via YAML
+- 3-tier severity classification: BLOCKED (pipeline fails), WARNING (needs review), APPROVED (known-safe)
+- Baseline filtering to suppress known/accepted findings
+- VCS commenting (GitHub PR / GitLab MR)
+
+Severity mapping to plugin classification:
+| security-scan | Plugin Severity |
+|---|---|
+| BLOCKED | CRITICAL / HIGH |
+| WARNING | MEDIUM |
+| APPROVED | LOW |
+
+Install: `pip install security-scan` (requires `gitleaks` binary on PATH)
+
 ### Secure Secrets Storage
 
 ```python
