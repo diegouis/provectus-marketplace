@@ -1,6 +1,6 @@
 # Provectus Practice Router Plugin
 
-This plugin provides a single entry point (`/proagent`) that routes user requests to the appropriate Provectus practice specialist. Instead of remembering 17 different plugin commands, users describe what they need and the router handles dispatch.
+This plugin provides a single entry point (`/proagent`) that routes user requests to the appropriate Provectus practice specialist. Instead of remembering 18 different plugin commands, users describe what they need and the router handles dispatch.
 
 ## How It Works
 
@@ -12,7 +12,7 @@ This plugin provides a single entry point (`/proagent`) that routes user request
 
 ## Routing Coverage
 
-The router dispatches across all 17 Provectus practices:
+The router dispatches across all 18 Provectus practices:
 
 - **agentic-engineering** — Agent systems, MCP servers, Claude extensions, plugins
 - **sdlc** — Architecture, code review, releases, git workflows
@@ -31,6 +31,7 @@ The router dispatches across all 17 Provectus practices:
 - **finance** — Budgeting, forecasting, P&L analysis
 - **connector-setup** — MCP credential setup for Slack and Google Drive
 - **mobile** — Expo and React Native: EAS builds, App Store/Play Store deployment, NativeWind, SDK upgrades
+- **provrag** — provrag RAG framework: scaffolding, pipeline customization, OpenSearch, CLI tooling
 
 ## Key Conventions
 
