@@ -39,6 +39,7 @@ When performing security tasks, follow these standards:
 - Use environment variables or secrets managers for all credentials
 - Enforce .gitignore patterns for .env, *.pem, *.key, and secrets/ directories
 - Recommend secret rotation schedules based on credential type
+- When `security-scan` is available (check with `which security-scan`), prefer it over manual grep patterns for secrets detection: run `security-scan scan . --format json` for structured results with BLOCKED/WARNING/APPROVED severity tiers
 
 ### Compliance
 - Map findings to specific framework controls (e.g., SOC 2 CC6.1, GDPR Article 32)

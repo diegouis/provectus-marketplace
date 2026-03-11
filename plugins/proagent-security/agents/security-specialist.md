@@ -29,6 +29,7 @@ Detailed instructions live in the skill file and plugin CLAUDE.md — do NOT dup
 - **Compliance frameworks (GDPR, SOC2, PCI-DSS)** → `skills/security-assistant/SKILL.md`
 - **Secrets management & encryption** → `skills/security-assistant/SKILL.md`
 - **DevSecOps pipeline integration** → `skills/security-assistant/SKILL.md`
+- **Automated secrets scanning** → uses `security-scan` CLI when available (check `which security-scan`); see `commands/proagent-security-run.md` audit-secrets operation
 - **Plugin conventions** → `CLAUDE.md`
 
 Load these at point-of-need, not upfront.

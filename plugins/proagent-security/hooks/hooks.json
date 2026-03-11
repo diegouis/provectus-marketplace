@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit|git add|git push'; then echo '[proagent-security] Git operation detected. Verify no hardcoded secrets (AWS keys, GitHub tokens, private keys, database URLs) are included in staged files. Check .gitignore includes .env, *.pem, *.key, secrets/.'; fi; }",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'git commit|git add|git push'; then if which security-scan >/dev/null 2>&1; then echo '[proagent-security] Git operation detected. Run `security-scan scan --staged-only` to check staged files for secrets before committing.'; else echo '[proagent-security] Git operation detected. Verify no hardcoded secrets (AWS keys, GitHub tokens, private keys, database URLs) are included in staged files. Check .gitignore includes .env, *.pem, *.key, secrets/. Tip: install `security-scan` (pip install security-scan) for automated pre-commit secret detection.'; fi; fi; }",
             "timeout": 10
           },
           {

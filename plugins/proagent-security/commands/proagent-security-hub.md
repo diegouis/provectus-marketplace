@@ -33,6 +33,7 @@ This plugin provides production-tested security automation across eight domains:
 - Audit .env files, Docker configs, CI/CD pipelines for exposed credentials
 - Recommend secrets management solutions (AWS Secrets Manager, HashiCorp Vault, GCP Secret Manager)
 - Generate .gitignore and .secretsignore templates for secret exclusion
+- Automated scanning with `security-scan` CLI when available (gitleaks + custom regex, 3-tier severity, baseline filtering)
 - Implement secret rotation policies and automation
 
 ### 4. Encryption
@@ -75,7 +76,7 @@ This plugin provides production-tested security automation across eight domains:
 | Command | Description |
 |---------|-------------|
 | `/proagent-security-run scan-vulnerabilities` | Run comprehensive vulnerability scan on the codebase |
-| `/proagent-security-run audit-secrets` | Detect hardcoded secrets and credential exposure |
+| `/proagent-security-run audit-secrets` | Detect hardcoded secrets and credential exposure (uses `security-scan` when available) |
 | `/proagent-security-run threat-model` | Generate a threat model for the application |
 | `/proagent-security-run compliance-check` | Validate compliance against a specified framework |
 | `/proagent-security-run encrypt-setup` | Configure encryption for data at rest and in transit |

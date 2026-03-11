@@ -41,6 +41,20 @@ Depending on which operations you use, install the following CLI tools:
 | `govulncheck` | Go vulnerability scanning | `go install golang.org/x/vuln/cmd/govulncheck@latest` |
 | `gh` | GitHub security alerts and APIs | [cli.github.com](https://cli.github.com/) |
 | `glab` | GitLab security reports and APIs | [gitlab.com](https://gitlab.com/gitlab-org/cli) |
+| `security-scan` | Automated secrets detection (audit-secrets) | `pip install security-scan` (also requires `gitleaks` on PATH) |
+
+### Recommended: security-scan
+
+The `security-scan` CLI provides automated secrets detection with 3-tier severity classification (BLOCKED/WARNING/APPROVED), baseline filtering for known findings, and VCS commenting support. When installed, the `audit-secrets` operation and pre-commit hooks will automatically use it for more accurate and comprehensive scanning.
+
+```bash
+# Install security-scan
+pip install security-scan
+
+# Also install gitleaks (required by security-scan)
+# macOS: brew install gitleaks
+# Linux: see https://github.com/gitleaks/gitleaks#installing
+```
 
 ## Usage
 
@@ -155,6 +169,6 @@ Built from 10 Provectus internal repositories: `agents`, `Auto-Claude`, `awos`, 
 
 ## Version
 
-- Plugin version: 0.3.0
+- Plugin version: 0.4.0
 - Category: security
 - Author: Provectus

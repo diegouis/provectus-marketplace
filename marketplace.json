@@ -135,9 +135,9 @@
     },
     {
       "name": "proagent-security",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "category": "security",
-      "description": "Securing Software & Infrastructure \u2014 vulnerability scanning, compliance, secrets management, threat modeling, OWASP, and Zero Trust",
+      "description": "Securing Software & Infrastructure \u2014 vulnerability scanning, compliance, secrets management (with security-scan CLI integration), threat modeling, OWASP, and Zero Trust",
       "source": "./plugins/proagent-security",
       "assets_count": 41,
       "source_repos": 10,
