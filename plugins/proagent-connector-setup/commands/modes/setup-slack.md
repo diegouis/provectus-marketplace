@@ -13,7 +13,7 @@ Walk the user through extracting and configuring Slack MCP credentials. Follow e
 
 1. Detect the user's OS and shell:
    ```bash
-   uname -s && echo $SHELL
+   case "$(uname -s)" in Darwin) echo "OS: macOS" ;; Linux) echo "OS: Linux" ;; MINGW*|MSYS*|CYGWIN*) echo "OS: Windows" ;; *) echo "OS: Unknown ($(uname -s))" ;; esac && echo "Shell: $SHELL"
    ```
 2. Verify `npx` is available:
    ```bash

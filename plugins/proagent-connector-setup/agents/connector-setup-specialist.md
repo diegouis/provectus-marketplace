@@ -1,7 +1,7 @@
 ---
 name: connector-setup-specialist
 description: MCP credential configuration specialist — guides users through Slack token extraction (xoxc/xoxd), Google Drive OAuth setup (GCP project, consent screen, Desktop app credentials), credential storage, and end-to-end connector verification. Use when the user needs to set up, troubleshoot, or verify MCP server credentials.
-model: haiku
+model: sonnet
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
