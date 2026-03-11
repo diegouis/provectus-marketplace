@@ -11,17 +11,14 @@ Walk the user through extracting and configuring Slack MCP credentials. Follow e
 
 ## Step 1: Prerequisites Check
 
-1. Detect the user's OS and shell:
-   ```bash
-   case "$(uname -s)" in Darwin) echo "OS: macOS" ;; Linux) echo "OS: Linux" ;; MINGW*|MSYS*|CYGWIN*) echo "OS: Windows" ;; *) echo "OS: Unknown ($(uname -s))" ;; esac && echo "Shell: $SHELL"
-   ```
+1. **Ask the user** which OS they are on: **macOS**, **Windows**, or **Linux**. Remember their answer — it determines keyboard shortcuts and file paths throughout this flow.
 2. Verify `npx` is available:
    ```bash
    which npx 2>/dev/null && npx --version || echo "npx not found"
    ```
 3. If `npx` is missing, guide installation (`brew install node` on macOS, or https://nodejs.org/) and **stop until resolved**.
 
-**Adequacy gate**: Confirm OS, shell, and npx are detected before continuing.
+**Adequacy gate**: User has confirmed their OS and npx is available.
 
 ## Step 2: Identify Workspace
 

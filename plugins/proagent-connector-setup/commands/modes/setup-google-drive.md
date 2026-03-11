@@ -11,10 +11,7 @@ Walk the user through configuring Google Drive MCP credentials via GCP OAuth. Fo
 
 ## Step 1: Prerequisites Check
 
-1. Detect the user's OS and shell:
-   ```bash
-   case "$(uname -s)" in Darwin) echo "OS: macOS" ;; Linux) echo "OS: Linux" ;; MINGW*|MSYS*|CYGWIN*) echo "OS: Windows" ;; *) echo "OS: Unknown ($(uname -s))" ;; esac && echo "Shell: $SHELL"
-   ```
+1. **Ask the user** which OS they are on: **macOS**, **Windows**, or **Linux**. Remember their answer — it determines file paths throughout this flow.
 2. Verify `npx` is available:
    ```bash
    which npx 2>/dev/null && npx --version || echo "npx not found"

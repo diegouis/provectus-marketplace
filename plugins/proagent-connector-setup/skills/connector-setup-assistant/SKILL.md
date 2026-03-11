@@ -49,7 +49,7 @@ When the user states their intent, route to the appropriate mode file:
 2. **Adequacy gates** — Confirm each step before proceeding (user may need to switch to browser)
 3. **Bounded iteration** — After 3 failed attempts at any step, offer to pause/skip/restart
 4. **Verify before declaring success** — Every setup ends with a live connectivity check
-5. **Detect environment at the start of a flow** — Not upfront when the skill loads, but as the first step of the chosen mode
+5. **Ask the user's OS at the start of a flow** — Ask which OS they are on (macOS, Windows, Linux) as the first step of the chosen mode. Do NOT use `uname` or shell commands to detect OS — always ask the user directly
 
 ## Reference Files (lazy-load only)
 
