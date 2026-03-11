@@ -27,7 +27,7 @@ Walk the user through extracting and configuring Slack MCP credentials. Follow e
 
 Ask the user:
 - Which Slack workspace do they need to connect?
-- Are they currently logged into that workspace in their browser (Chrome or Firefox)?
+- Are they currently logged into that workspace in their browser (Chrome, Firefox, Edge, Safari, or Brave)?
 
 If they use the desktop app only, explain they need to open `https://app.slack.com` in a browser for token extraction.
 
@@ -93,6 +93,7 @@ Write tokens directly into `claude_desktop_config.json`:
 1. Detect OS to determine the config file path:
    - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
    - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+   - **Linux**: `~/.config/Claude/claude_desktop_config.json`
 2. Read the existing `claude_desktop_config.json` (if it exists)
 3. If a `slack` entry already exists under `mcpServers`, update its `env` block with the new tokens
 4. If no `slack` entry exists, add one with the standard structure:

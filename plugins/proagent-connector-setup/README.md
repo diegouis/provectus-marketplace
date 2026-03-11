@@ -29,7 +29,7 @@ ln -s /path/to/provectus-marketplace/plugins/proagent-connector-setup /path/to/y
 | Requirement | Purpose |
 |-------------|---------|
 | Node.js + `npx` | Running MCP servers for verification |
-| Chrome or Firefox | Extracting Slack tokens from browser DevTools |
+| Modern browser (Chrome, Firefox, Edge, Safari, or Brave) | Extracting Slack tokens from browser DevTools |
 | Google account | Creating GCP project and OAuth credentials |
 
 ## Usage

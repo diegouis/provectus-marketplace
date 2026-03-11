@@ -41,7 +41,7 @@ Tell me what you need:
 ## Prerequisites
 
 - **Node.js** with `npx` (required for both connectors)
-- **Chrome or Firefox** (required for Slack token extraction)
+- **A modern browser** — Chrome, Firefox, Edge, Safari, or Brave (required for Slack token extraction)
 - **Google account** (required for Google Drive OAuth)
 
 ## Source Assets

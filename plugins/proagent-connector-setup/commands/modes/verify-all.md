@@ -50,8 +50,12 @@ grep -rl 'SLACK_MCP_XOXC_TOKEN' ~/.zshrc ~/.bashrc ~/.bash_profile .env ~/.slack
 #### 1d. Claude Desktop Config
 
 ```bash
-# Check if tokens exist in claude_desktop_config.json
-CLAUDE_CONFIG="$HOME/Library/Application Support/Claude/claude_desktop_config.json"
+# Check if tokens exist in claude_desktop_config.json (detect OS)
+case "$(uname -s)" in
+  Darwin) CLAUDE_CONFIG="$HOME/Library/Application Support/Claude/claude_desktop_config.json" ;;
+  Linux)  CLAUDE_CONFIG="$HOME/.config/Claude/claude_desktop_config.json" ;;
+  *)      CLAUDE_CONFIG="$APPDATA/Claude/claude_desktop_config.json" ;;
+esac
 if [ -f "$CLAUDE_CONFIG" ]; then
   python3 -c "
 import json

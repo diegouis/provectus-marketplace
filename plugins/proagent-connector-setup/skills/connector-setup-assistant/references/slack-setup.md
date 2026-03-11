@@ -17,15 +17,19 @@ The Slack MCP server requires **both** `xoxc-` and `xoxd-` tokens. These are ext
 
 ### Prerequisites
 
-- You must be logged into your Slack workspace in Chrome or Firefox
+- You must be logged into your Slack workspace in a browser (Chrome, Firefox, Edge, Safari, or Brave)
 - You must have the workspace open in the browser (not the desktop app)
 
 ### Method 1: Extract `xoxd-` Token (Session Cookie)
 
 1. Open your Slack workspace in the browser: `https://app.slack.com/client/YOUR_WORKSPACE`
-2. Open DevTools: `Cmd+Option+I` (macOS) or `Ctrl+Shift+I` (Windows/Linux)
-3. Navigate to **Application** tab (Chrome) or **Storage** tab (Firefox)
-4. In the left sidebar, expand **Cookies** → click on `https://app.slack.com`
+2. Open DevTools:
+   - **Chrome / Edge / Brave / Firefox**: `Cmd+Option+I` (macOS) or `Ctrl+Shift+I` (Windows/Linux) or `F12`
+   - **Safari**: `Cmd+Option+I` (requires enabling Developer menu first: Safari → Settings → Advanced → Show features for web developers)
+3. Navigate to the cookies panel:
+   - **Chrome / Edge / Brave**: **Application** tab → **Cookies** in the left sidebar
+   - **Firefox / Safari**: **Storage** tab → **Cookies** in the left sidebar
+4. Click on `https://app.slack.com` under Cookies
 5. Find the cookie named **`d`**
 6. Copy the cookie **Value** — it starts with `xoxd-`
 
@@ -37,7 +41,10 @@ The Slack MCP server requires **both** `xoxc-` and `xoxd-` tokens. These are ext
 2. In the filter bar, type `api/` to filter for Slack API requests
 3. Perform any action in Slack (send a message, switch channels, etc.) to trigger API calls
 4. Click on any API request (e.g., `conversations.list`, `chat.postMessage`)
-5. In the request details, look at the **Request Body** or **Form Data**
+5. In the request details, look at the request payload:
+   - **Chrome / Edge / Brave**: **Payload** tab (or **Form Data** in older versions)
+   - **Firefox**: **Request** tab → **Form Data**
+   - **Safari**: Select the request → **Request** section at the bottom
 6. Find the `token` field — its value starts with `xoxc-`
 
 > **Alternative**: You can also find `xoxc-` in the **Console** tab by running:
@@ -105,6 +112,7 @@ Write tokens directly into `claude_desktop_config.json` so Claude Desktop's Slac
 
 **macOS path**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows path**: `%APPDATA%\Claude\claude_desktop_config.json`
+**Linux path**: `~/.config/Claude/claude_desktop_config.json`
 
 The Slack MCP server entry should look like:
 
