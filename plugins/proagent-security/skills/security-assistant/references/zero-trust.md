@@ -45,3 +45,46 @@ Access control enforcement:
 - Micro-segmentation for network access
 - Just-in-time and just-enough-access for privileged operations
 - Continuous session validation with re-authentication triggers
+
+### Micro-Segmentation Example
+
+```yaml
+# Kubernetes NetworkPolicy — restrict backend pods to only accept traffic from API gateway
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend-allow-gateway-only
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  policyTypes: ["Ingress"]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: api-gateway
+      ports:
+        - port: 8080
+```
+
+### Just-In-Time Access Pattern
+
+```python
+# Grant temporary elevated access with automatic expiry
+def grant_jit_access(user_id: str, role: str, duration_minutes: int = 30):
+    expiry = datetime.utcnow() + timedelta(minutes=duration_minutes)
+    grant = AccessGrant(user_id=user_id, role=role, expires_at=expiry)
+    db.session.add(grant)
+    audit_log.info("jit_access_granted", user=user_id, role=role, expires=expiry)
+    return grant
+
+# Middleware checks expiry on every request
+def check_jit_access(user_id: str, required_role: str) -> bool:
+    grant = AccessGrant.query.filter_by(
+        user_id=user_id, role=required_role
+    ).first()
+    if not grant or grant.expires_at < datetime.utcnow():
+        return False
+    return True
+```

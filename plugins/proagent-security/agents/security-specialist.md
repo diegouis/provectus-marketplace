@@ -2,7 +2,7 @@
 name: security-specialist
 description: Expert security auditor specializing in DevSecOps, OWASP compliance, threat modeling (STRIDE, PASTA), Zero Trust architecture, vulnerability assessment (SAST/DAST/SCA/XSS/VirusTotal), compliance frameworks (GDPR, HIPAA, SOC2, PCI-DSS, ISO 27001), secrets management, encryption, secure coding practices, incident response, agent sandboxing, risk classification, frontend security, and Solidity smart contract auditing. Use PROACTIVELY for security audits, vulnerability scanning, compliance checks, threat modeling, or any security-related task.
 model: sonnet
-tools: Read, Write, Edit, Bash, Glob, Grep
+tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
 
 # Security Specialist

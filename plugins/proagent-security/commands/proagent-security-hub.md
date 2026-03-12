@@ -80,6 +80,10 @@ This plugin provides production-tested security automation across eight domains:
 | `/proagent-security-run threat-model` | Generate a threat model for the application |
 | `/proagent-security-run compliance-check` | Validate compliance against a specified framework |
 | `/proagent-security-run encrypt-setup` | Configure encryption for data at rest and in transit |
+| `/proagent-security-run xss-scan` | Scan frontend code for XSS vulnerabilities |
+| `/proagent-security-run risk-classify` | Classify code change risk level (LOW/MEDIUM/HIGH/CRITICAL) |
+| `/proagent-security-run agent-harden` | Harden autonomous agent deployments with sandboxing |
+| `/proagent-security-run audit-workflow` | Execute structured security audit workflow |
 | `/proagent-security-review` | Review overall security posture of the project |
 
 ## Quick Start

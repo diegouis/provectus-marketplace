@@ -28,3 +28,31 @@
 - [ ] Access to CDE restricted and logged
 - [ ] Regular vulnerability scanning and penetration testing
 - [ ] Security event monitoring and alerting
+
+### HIPAA Requirements
+
+- [ ] PHI encrypted at rest (AES-256) and in transit (TLS 1.2+)
+- [ ] Role-based access controls limiting PHI access to authorized personnel
+- [ ] Audit logging of all PHI access, modification, and disclosure events
+- [ ] Business Associate Agreements (BAA) with all vendors handling PHI
+- [ ] Workforce security training documented and renewed annually
+- [ ] Breach notification procedures within 60 days of discovery
+- [ ] Contingency plan with data backup, disaster recovery, and emergency mode
+
+### ISO 27001 Controls
+
+- [ ] ISMS scope defined with Statement of Applicability (SoA)
+- [ ] Risk assessment methodology documented with risk treatment plan
+- [ ] Asset inventory with ownership and classification
+- [ ] Access control policy with periodic access reviews
+- [ ] Cryptographic controls policy covering key management lifecycle
+- [ ] Internal audit program with scheduled audits and corrective actions
+- [ ] Management review of ISMS effectiveness at planned intervals
+
+### NIST Cybersecurity Framework
+
+- [ ] **Identify**: Asset inventory, risk assessment, governance policies
+- [ ] **Protect**: Access control, awareness training, data security, maintenance
+- [ ] **Detect**: Anomaly detection, continuous monitoring, detection processes
+- [ ] **Respond**: Response planning, communications, analysis, mitigation
+- [ ] **Recover**: Recovery planning, improvements, communications

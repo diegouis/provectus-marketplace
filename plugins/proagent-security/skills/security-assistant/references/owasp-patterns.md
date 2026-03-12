@@ -83,12 +83,76 @@ Common misconfigurations to check:
 - Debug mode enabled in production
 - Directory listing enabled on web servers
 
-### A06-A10: Additional OWASP Categories
+### A06: Vulnerable and Outdated Components
 
-| Category | Key Mitigation |
-|----------|---------------|
-| A06: Vulnerable Components | Automated dependency scanning with Dependabot/Snyk, regular updates |
-| A07: Auth Failures | MFA, strong password policies, account lockout, session timeout |
-| A08: Software/Data Integrity | Code signing, SBOM generation, SLSA compliance, verified artifacts |
-| A09: Logging Failures | Centralized logging, audit trails, tamper-proof log storage |
-| A10: SSRF | URL allowlists, disable redirects, network segmentation |
+```bash
+# Automated dependency auditing
+npm audit --audit-level=high          # Node.js
+pip-audit --strict --desc             # Python
+govulncheck ./...                     # Go
+trivy image --severity HIGH,CRITICAL  # Container images
+```
+
+- Pin dependency versions in lock files
+- Enable Dependabot or Renovate for automated updates
+- Remove unused dependencies to reduce attack surface
+
+### A07: Identification and Authentication Failures
+
+```python
+# Enforce strong session management
+app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
+```
+
+- Require MFA for privileged operations
+- Implement account lockout after 5 failed attempts
+- Use bcrypt/Argon2 (never MD5/SHA1 for passwords)
+
+### A08: Software and Data Integrity Failures
+
+```yaml
+# Pin GitHub Actions to commit SHA, not tags
+- uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608  # v4.1.1
+```
+
+- Generate SBOM with `syft` or `cyclonedx-cli`
+- Verify package signatures and checksums
+- Use Sigstore/cosign for container image signing
+
+### A09: Security Logging and Monitoring Failures
+
+```python
+# Log security events with structured fields
+logger.warning("auth_failure", extra={
+    "event": "LOGIN_FAILED",
+    "user": username,
+    "ip": request.remote_addr,
+    "reason": "invalid_credentials"
+})
+```
+
+- Centralize logs with SIEM integration
+- Alert on authentication failures, privilege escalation, and anomalous access
+- Retain logs per compliance requirements (SOC 2: 1 year, PCI: 1 year, HIPAA: 6 years)
+
+### A10: Server-Side Request Forgery (SSRF)
+
+```python
+# Validate URLs against allowlist
+ALLOWED_HOSTS = {"api.example.com", "cdn.example.com"}
+
+def fetch_url(url: str):
+    parsed = urlparse(url)
+    if parsed.hostname not in ALLOWED_HOSTS:
+        raise ValueError(f"Host not allowed: {parsed.hostname}")
+    if parsed.scheme not in ("https",):
+        raise ValueError("Only HTTPS allowed")
+    return requests.get(url, allow_redirects=False, timeout=5)
+```
+
+- Block requests to internal/private IP ranges (10.x, 172.16-31.x, 192.168.x, 169.254.x)
+- Disable HTTP redirects on server-side requests
+- Use network segmentation to isolate backend services
