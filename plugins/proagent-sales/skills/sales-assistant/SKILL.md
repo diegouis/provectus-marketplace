@@ -18,6 +18,25 @@ Comprehensive sales skill covering proposals, RFP responses, lead qualification,
 - Crafting outreach sequences and engagement plans
 - Building business cases and market opportunity assessments
 
+## When Invoked Without Clear Intent
+
+**Use `AskUserQuestion`** to present options as a selector widget:
+
+```
+AskUserQuestion(
+  header: "Sales",
+  question: "What sales or business development task do you need help with?",
+  options: [
+    { label: "Proposals & RFPs", description: "Proposals, statements of work, RFP responses, compliance matrices" },
+    { label: "Lead Research", description: "ICP definition, lead scoring, competitive analysis, battle cards" },
+    { label: "Pricing & Pipeline", description: "Pricing models, quote generation, deal pipeline, outreach" },
+    { label: "Content & Automation", description: "Sales automation, content marketing, business cases, market sizing" }
+  ]
+)
+```
+
+If the user selects "Other", offer: Stakeholder Engagement (buying committee mapping, champion coaching).
+
 ## Reference Routing
 
 > **CONTEXT GUARD**: Load reference files only when the user's request matches a specific topic below. Do NOT load all references upfront.

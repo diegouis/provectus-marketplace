@@ -47,24 +47,36 @@ Use the routing table below to identify the best-matching practice. Match based 
 
 **Single domain detected:** Dispatch directly to the specialist.
 
-**Multiple domains detected:** Present the matches and ask the user to confirm:
-```
-I detected multiple relevant practices for your request:
-1. **DevOps** — for the CI/CD pipeline setup
-2. **Backend** — for the API deployment configuration
+**Multiple domains detected:** Use `AskUserQuestion` to let the user pick:
 
-Which practice should I route to? Or should I coordinate across both?
+```
+AskUserQuestion(
+  header: "Practice",
+  question: "I detected multiple relevant practices. Which should I route to?",
+  options: [
+    { label: "<Practice 1>", description: "<why this practice matches>" },
+    { label: "<Practice 2>", description: "<why this practice matches>" },
+    { label: "Coordinate both", description: "I'll dispatch to both practices and combine results" }
+  ]
+)
 ```
 
-**No clear match:** Ask the user to clarify:
-```
-I couldn't determine the best practice for your request.
-Could you tell me more about what you're trying to accomplish?
+**No clear match:** Use `AskUserQuestion` to help the user pick:
 
-Available practices: agentic-engineering, sdlc, platform, devops, qa,
-backend, frontend, delivery, security, data, ml-ai, aws-ai, hr, sales, finance,
-connector-setup, mobile, provrag
 ```
+AskUserQuestion(
+  header: "Practice",
+  question: "I couldn't determine the best practice. What area is closest?",
+  options: [
+    { label: "Engineering", description: "agentic-engineering, sdlc, platform, devops, backend, frontend, qa, mobile" },
+    { label: "Data & AI", description: "data, ml-ai, aws-ai, provrag" },
+    { label: "Business", description: "delivery, sales, finance, hr, security, documentation" },
+    { label: "Setup", description: "connector-setup (MCP credential configuration)" }
+  ]
+)
+```
+
+After the user picks a category, present the specific practices within that category using another `AskUserQuestion`.
 
 ### Step 4: Dispatch to Specialist
 

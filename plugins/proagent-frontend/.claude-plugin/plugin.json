@@ -1,6 +1,6 @@
 {
   "name": "proagent-frontend",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Provectus Frontend Engineering plugin for Claude Code. Provides comprehensive capabilities for building modern web interfaces including React/Vue/Angular/Next.js/React Native component development, design systems, accessibility auditing, responsive design, performance optimization, theming, i18n/localization, and mobile/desktop app patterns (SwiftUI).",
   "author": {
     "name": "diegouis"

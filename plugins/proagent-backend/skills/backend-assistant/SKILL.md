@@ -19,6 +19,25 @@ Comprehensive backend engineering skill covering API design, database schema eng
 - Building MCP servers in Python and TypeScript
 - Scaffolding Fastify+tRPC or FastAPI backends
 
+## When Invoked Without Clear Intent
+
+**Use `AskUserQuestion`** to present options as a selector widget:
+
+```
+AskUserQuestion(
+  header: "Backend",
+  question: "What backend engineering topic do you need help with?",
+  options: [
+    { label: "API Design", description: "REST, GraphQL, gRPC, pagination, error handling" },
+    { label: "Database Engineering", description: "PostgreSQL/MongoDB schemas, indexes, migrations" },
+    { label: "Auth & Security", description: "JWT, OAuth2, RBAC, rate limiting, input validation" },
+    { label: "Microservices", description: "Service boundaries, DDD, circuit breaker, message queues" }
+  ]
+)
+```
+
+If the user selects "Other", present: Caching & Performance, CQRS / Event Sourcing, MCP Server Development, Framework Patterns.
+
 ## Reference Routing
 
 > **CONTEXT GUARD**: Load reference files only when the user's request matches a specific topic below. Do NOT load all references upfront.

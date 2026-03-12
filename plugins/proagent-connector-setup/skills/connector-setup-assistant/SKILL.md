@@ -11,9 +11,23 @@ Guides users through first-time credential configuration for shared MCP servers 
 
 **DO NOT** read reference files, run environment detection commands, or load mode files until the user has told you what they want to do. When invoked:
 
-1. **Greet the user** and present the available options
+1. **Use `AskUserQuestion`** to present the available options as a selector widget
 2. **Wait for their choice** before loading anything
 3. **Only then** load the relevant mode file for their chosen connector
+
+**Always use this exact tool call for the initial greeting:**
+
+```
+AskUserQuestion(
+  header: "Connector",
+  question: "Which connector would you like to set up?",
+  options: [
+    { label: "Set up Slack", description: "Extract and configure Slack tokens (xoxc/xoxd) for the Slack MCP server" },
+    { label: "Set up Google Drive", description: "Configure Google Drive OAuth credentials via a GCP project" },
+    { label: "Verify all connectors", description: "Check the health of your existing connector credentials" }
+  ]
+)
+```
 
 This prevents context explosion from eagerly loading all instructions at once.
 

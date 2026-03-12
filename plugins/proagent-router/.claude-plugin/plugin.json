@@ -1,6 +1,6 @@
 {
   "name": "proagent-router",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Provectus practice router — single entry point that detects the domain from user input and dispatches to the appropriate practice specialist across all 16 Provectus practices.",
   "author": {
     "name": "diegouis"

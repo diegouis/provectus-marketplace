@@ -20,6 +20,25 @@ Comprehensive ML and AI skill covering model training, evaluation, deployment, m
 - Evaluating AI outputs using LLM judge patterns
 - Designing ML pipeline validation workflows
 
+## When Invoked Without Clear Intent
+
+**Use `AskUserQuestion`** to present options as a selector widget:
+
+```
+AskUserQuestion(
+  header: "ML/AI",
+  question: "What ML/AI topic do you need help with?",
+  options: [
+    { label: "Model Training", description: "Scikit-learn, TensorFlow, XGBoost, feature engineering" },
+    { label: "Evaluation & Tracking", description: "Metrics, MLflow, W&B, experiment tracking" },
+    { label: "Model Deployment", description: "FastAPI serving, SageMaker, batch prediction, drift monitoring" },
+    { label: "LLM & RAG", description: "RAG systems, prompt engineering, embeddings, vector stores, LLM judge" }
+  ]
+)
+```
+
+If the user selects "Other", offer: ML Pipeline Validation (project structure, validation gates).
+
 ## Reference Routing
 
 > **CONTEXT GUARD**: Load reference files only when the user's request matches a specific topic below. Do NOT load all references upfront.

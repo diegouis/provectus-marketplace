@@ -1,6 +1,6 @@
 {
   "name": "proagent-finance",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Financial operations management: budgeting, invoicing, revenue forecasting, P&L analysis, cost optimization, cloud FinOps, payment processing (Stripe, PCI compliance), billing, and financial reporting.",
   "author": {
     "name": "diegouis"

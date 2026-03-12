@@ -22,6 +22,21 @@ This plugin uses direct git and API calls (no MCP servers required). Credentials
 
 > **CONTEXT GUARD**: Do NOT source credentials, clone repos, or make API calls until the user has specified what they want to do. The credential loading, GitHub API, and Confluence API patterns are documented in the plugin's CLAUDE.md — refer to them at the point of need, not upfront.
 
+**When invoked without clear intent, use `AskUserQuestion`:**
+
+```
+AskUserQuestion(
+  header: "Docs",
+  question: "What documentation task do you need help with?",
+  options: [
+    { label: "Generate Docs", description: "Generate README, architecture, API, onboarding, or runbook docs from a repo" },
+    { label: "Analyze Repo", description: "Scan a repository to extract structure, tech stack, and API endpoints" },
+    { label: "Publish to Confluence", description: "Create or update Confluence pages from Markdown documentation" },
+    { label: "Sync & Review", description: "Detect stale docs, sync changes, or audit documentation quality" }
+  ]
+)
+```
+
 ## Repository Analysis
 
 ### Workflow

@@ -18,6 +18,23 @@ Comprehensive delivery skill covering sprint planning, milestone tracking, statu
 - Creating PRDs and managing todo backlogs
 - Tracking agentic KPIs and planning tasks
 
+## When Invoked Without Clear Intent
+
+**Use `AskUserQuestion`** to present options as a selector widget:
+
+```
+AskUserQuestion(
+  header: "Delivery",
+  question: "What project delivery task do you need help with?",
+  options: [
+    { label: "Sprint Planning", description: "Sprint planning, milestone tracking, resource allocation, retrospectives" },
+    { label: "Status & Reporting", description: "Status reports, risk management, standup notes, 3P updates" },
+    { label: "Stakeholder Mgmt", description: "Meeting facilitation, agile ceremonies, meeting insights" },
+    { label: "Planning & PRDs", description: "PRD creation, todo management, task planning, AWOS pipeline" }
+  ]
+)
+```
+
 ## Reference Routing
 
 > **CONTEXT GUARD**: Load reference files only when the user's request matches a specific topic below. Do NOT load all references upfront.
