@@ -21,9 +21,8 @@ Comprehensive security skill covering vulnerability scanning, compliance enforce
 
 ## When Invoked Without Clear Intent
 
-**Use `AskUserQuestion`** to present options as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Security",
   question: "What security topic do you need help with?",
@@ -34,7 +33,6 @@ AskUserQuestion(
     { label: "Compliance", description: "GDPR, SOC 2, PCI-DSS, HIPAA compliance checklists" }
   ]
 )
-```
 
 If the user selects "Other", present: Zero Trust / Agent Sandboxing, Encryption / Hardening / Audit Logging.
 

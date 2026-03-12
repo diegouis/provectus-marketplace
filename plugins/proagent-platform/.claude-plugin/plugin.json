@@ -1,6 +1,6 @@
 {
   "name": "proagent-platform",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Platform engineering toolkit for building developer platforms, internal tooling, service catalogs, golden paths, scaffolding systems, MCP servers, and plugin architectures. Covers DX optimization, template libraries, CLI tools, document generation (PDF/DOCX/PPTX/XLSX), reproducible environments, and platform-as-product practices. 107 assets across 13 source repos.",
   "author": {
     "name": "diegouis"

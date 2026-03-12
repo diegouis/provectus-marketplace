@@ -47,9 +47,8 @@ Use the routing table below to identify the best-matching practice. Match based 
 
 **Single domain detected:** Dispatch directly to the specialist.
 
-**Multiple domains detected:** Use `AskUserQuestion` to let the user pick:
+**Multiple domains detected:** You MUST call `AskUserQuestion` to let the user pick — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Practice",
   question: "I detected multiple relevant practices. Which should I route to?",
@@ -59,11 +58,9 @@ AskUserQuestion(
     { label: "Coordinate both", description: "I'll dispatch to both practices and combine results" }
   ]
 )
-```
 
-**No clear match:** Use `AskUserQuestion` to help the user pick:
+**No clear match:** You MUST call `AskUserQuestion` to help the user pick — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Practice",
   question: "I couldn't determine the best practice. What area is closest?",
@@ -74,7 +71,6 @@ AskUserQuestion(
     { label: "Setup", description: "connector-setup (MCP credential configuration)" }
   ]
 )
-```
 
 After the user picks a category, present the specific practices within that category using another `AskUserQuestion`.
 

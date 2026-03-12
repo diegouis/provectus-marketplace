@@ -50,9 +50,8 @@ This skill covers the full lifecycle of agentic engineering: from designing indi
 
 ## When Invoked Without Clear Intent
 
-**Use `AskUserQuestion`** to present options as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Agentic",
   question: "What agentic engineering task do you need help with?",
@@ -63,7 +62,6 @@ AskUserQuestion(
     { label: "Workflow Factory", description: "Template-driven artifact creation with complexity assessment" }
   ]
 )
-```
 
 If the user selects "Other", present: Quality Checklists, Error Handling Patterns, Inter-Artifact Contracts, Report Types.
 

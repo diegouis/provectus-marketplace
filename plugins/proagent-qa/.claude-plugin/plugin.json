@@ -1,6 +1,6 @@
 {
   "name": "proagent-qa",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Quality assurance and test automation plugin for Provectus projects. Provides comprehensive testing workflows including TDD (red/green/refactor), unit, integration, E2E, regression, performance, and accessibility testing with Playwright/Cypress integration, LLM-based test evaluation, mock/replay backends, and validation pyramid enforcement.",
   "author": {
     "name": "diegouis"

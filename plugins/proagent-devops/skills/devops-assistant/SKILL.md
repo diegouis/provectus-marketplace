@@ -22,9 +22,8 @@ Comprehensive DevOps skill covering CI/CD pipelines, containerization, Kubernete
 
 ## When Invoked Without Clear Intent
 
-**Use `AskUserQuestion`** to present options as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "DevOps",
   question: "What infrastructure or deployment topic do you need help with?",
@@ -35,7 +34,6 @@ AskUserQuestion(
     { label: "Monitoring & Observability", description: "Prometheus, Grafana, alerting rules, dashboards" }
   ]
 )
-```
 
 If the user selects "Other", present: GitOps (ArgoCD/Flux), Operations (incident response, secrets, deployment strategies).
 

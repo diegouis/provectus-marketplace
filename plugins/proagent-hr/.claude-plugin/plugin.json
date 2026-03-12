@@ -1,6 +1,6 @@
 {
   "name": "proagent-hr",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Human resources and talent management plugin for Provectus projects. Provides comprehensive HR workflows including job description drafting, interview planning, onboarding coordination, performance reviews, compensation analysis, employee development tracking, CV validation at scale with multi-agent orchestration and blind review, prescreening questionnaire design and scoring, HR and technical interview evaluation with bias detection, cross-stage synthesis for hire/reject decisions, GDPR compliance auditing, employment contract generation, tailored resume generation, and developer growth analysis. Integrates assets from agents/hr-legal-compliance and awesome-claude-skills repos.",
   "author": {
     "name": "diegouis"

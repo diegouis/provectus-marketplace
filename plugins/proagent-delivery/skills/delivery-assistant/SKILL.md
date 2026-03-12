@@ -20,9 +20,8 @@ Comprehensive delivery skill covering sprint planning, milestone tracking, statu
 
 ## When Invoked Without Clear Intent
 
-**Use `AskUserQuestion`** to present options as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Delivery",
   question: "What project delivery task do you need help with?",
@@ -33,7 +32,6 @@ AskUserQuestion(
     { label: "Planning & PRDs", description: "PRD creation, todo management, task planning, AWOS pipeline" }
   ]
 )
-```
 
 ## Reference Routing
 

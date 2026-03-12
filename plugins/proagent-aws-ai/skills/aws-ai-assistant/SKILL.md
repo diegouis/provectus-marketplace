@@ -35,9 +35,8 @@ Comprehensive AWS AI skill covering the full lifecycle of AI solution developmen
 **DO NOT** read reference files, run environment detection commands, or load
 mode files until the user has told you what they want to do.
 
-**When invoked without clear intent, use `AskUserQuestion`:**
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "AWS AI",
   question: "What AWS AI topic would you like help with?",
@@ -48,7 +47,6 @@ AskUserQuestion(
     { label: "AI Architecture", description: "AI architecture design, service and model selection, Well-Architected" }
   ]
 )
-```
 
 If the user selects "Other", offer CDK/IaC infrastructure for AI workloads.
 

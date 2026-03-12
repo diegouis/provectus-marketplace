@@ -35,9 +35,8 @@ Platform engineering creates self-service capabilities that reduce cognitive loa
 
 ## When Invoked Without Clear Intent
 
-**Use `AskUserQuestion`** to present options as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Platform",
   question: "What platform engineering topic do you need help with?",
@@ -48,7 +47,6 @@ AskUserQuestion(
     { label: "Developer Experience", description: "DX assessment, internal tooling, CLI/SDK design" }
   ]
 )
-```
 
 If the user selects "Other", present: Document Generation (PDF/DOCX/PPTX/XLSX), Reproducible Environments (Nix/devenv), File Organization, Service Catalogs.
 

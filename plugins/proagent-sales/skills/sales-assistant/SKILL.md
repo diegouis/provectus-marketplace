@@ -20,9 +20,8 @@ Comprehensive sales skill covering proposals, RFP responses, lead qualification,
 
 ## When Invoked Without Clear Intent
 
-**Use `AskUserQuestion`** to present options as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Sales",
   question: "What sales or business development task do you need help with?",
@@ -33,7 +32,6 @@ AskUserQuestion(
     { label: "Content & Automation", description: "Sales automation, content marketing, business cases, market sizing" }
   ]
 )
-```
 
 If the user selects "Other", offer: Stakeholder Engagement (buying committee mapping, champion coaching).
 

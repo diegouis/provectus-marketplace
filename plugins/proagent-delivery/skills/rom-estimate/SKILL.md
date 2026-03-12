@@ -41,9 +41,8 @@ Parse `$ARGUMENTS` for file paths, glob patterns, Google Drive references, or in
 
 **If inline task list pasted:** Parse directly from argument text (CSV, table, bullet list).
 
-**If nothing provided:** Ask the user:
+**If nothing provided:** You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "ROM Input",
   question: "What should I analyze? Provide file paths, a Google Drive link, paste a task list, or describe the project scope.",
@@ -54,7 +53,6 @@ AskUserQuestion(
     { label: "Describe project", description: "I'll describe the project and you generate features from scratch" }
   ]
 )
-```
 
 **Optional flags:**
 - `--output=<path>`: Custom CSV output path (default: `docs/rom-estimation/{slug}-rom.csv`)
