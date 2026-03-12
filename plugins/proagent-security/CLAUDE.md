@@ -67,12 +67,15 @@ When performing security tasks, follow these standards:
 
 ## MCP Integrations
 
+Security-specific:
+- **GitHub**: Repository management, code scanning alerts, secret scanning, Dependabot, PRs, issues, Actions via `@modelcontextprotocol/server-github`
+- **GitLab**: Project management, vulnerability reports, SAST/DAST pipeline results, dependency scanning, and merge request approvals via `@modelcontextprotocol/server-gitlab`
+- **Excalidraw**: Interactive visual diagramming for threat models, Zero Trust architecture maps, and compliance workflows via `excalidraw/excalidraw-mcp` (remote)
+
+Core convention (included in all 20 marketplace plugins):
 - **Slack**: Team communication — channels, messages, users, threads via `slack-mcp-server`
 - **Google Drive**: File management — Drive files, Docs (Markdown), Sheets (CSV), Slides via `@modelcontextprotocol/server-gdrive`
 - **Google Workspace**: Gmail (list, search, send, draft) and Google Calendar (events, scheduling) via `mcp-gsuite`
-- **GitHub**: Repository management, PRs, issues, Actions via `@modelcontextprotocol/server-github`
-- **Excalidraw**: Interactive visual diagramming — renders Excalidraw canvases directly in chat via natural language via `excalidraw/excalidraw-mcp` (remote)
-- **GitLab**: Project management, vulnerability reports, SAST/DAST pipeline results, dependency scanning, and merge request approvals via `@modelcontextprotocol/server-gitlab`
 
 ## Source Repositories
 
@@ -82,14 +85,46 @@ When performing security tasks, follow these standards:
 
 ```
 proagent-security/
-  .claude-plugin/plugin.json
-  skills/security-assistant/SKILL.md
-  commands/proagent-security-hub.md
-  commands/proagent-security-run.md
-  commands/proagent-security-review.md
-  agents/security-specialist.md
-  hooks/hooks.json
-  .mcp.json
-  CLAUDE.md
-  README.md
+├── .claude-plugin/
+│   └── plugin.json
+├── skills/
+│   └── security-assistant/
+│       ├── SKILL.md
+│       └── references/
+│           ├── compliance-frameworks.md
+│           ├── encryption-hardening.md
+│           ├── owasp-patterns.md
+│           ├── secrets-threats.md
+│           ├── vulnerability-scanning.md
+│           └── zero-trust.md
+├── commands/
+│   ├── proagent-security-hub.md
+│   ├── proagent-security-run.md
+│   ├── proagent-security-review.md
+│   └── modes/
+│       ├── scan-vulnerabilities.md
+│       ├── audit-secrets.md
+│       ├── threat-model.md
+│       ├── compliance-check.md
+│       ├── encrypt-setup.md
+│       ├── xss-scan.md
+│       ├── risk-classify.md
+│       ├── agent-harden.md
+│       ├── audit-workflow.md
+│       ├── review-code-security.md
+│       ├── review-dependencies.md
+│       ├── review-access-control.md
+│       ├── review-container.md
+│       ├── review-cicd.md
+│       ├── review-infrastructure.md
+│       ├── review-frontend.md
+│       ├── review-agent-hardening.md
+│       └── review-smart-contract.md
+├── agents/
+│   └── security-specialist.md
+├── hooks/
+│   └── hooks.json
+├── .mcp.json
+├── CLAUDE.md
+└── README.md
 ```
