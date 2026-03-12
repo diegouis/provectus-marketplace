@@ -29,6 +29,16 @@
         ]
       },
       {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fp; if echo \"$fp\" | grep -qE '\\.(env|pem|key|p12|pfx)$'; then echo '[proagent-security] WARNING: Sensitive file edited. Verify this file is in .gitignore and will not be committed to version control.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      },
+      {
         "matcher": "Task",
         "hooks": [
           {
