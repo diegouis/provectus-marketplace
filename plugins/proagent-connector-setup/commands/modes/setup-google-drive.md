@@ -9,10 +9,17 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 
 Walk the user through configuring Google Drive MCP credentials via GCP OAuth. Follow each step sequentially — confirm completion at each adequacy gate before proceeding.
 
+## MANDATORY FIRST QUESTION — DO NOT SKIP
+
+Before doing ANYTHING else (no credential checks, no npx checks, no file reads), ask the user:
+
+1. **Which OS are you on?** — macOS, Windows, or Linux
+
+Do NOT proceed to Step 1 until the user has answered. Their answer determines file paths throughout this flow.
+
 ## Step 1: Prerequisites Check
 
-1. **Ask the user** which OS they are on: **macOS**, **Windows**, or **Linux**. Remember their answer — it determines file paths throughout this flow.
-2. Verify `npx` is available:
+1. Verify `npx` is available:
    ```bash
    which npx 2>/dev/null && npx --version || echo "npx not found"
    ```

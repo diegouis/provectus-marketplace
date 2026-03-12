@@ -1,6 +1,6 @@
 {
   "name": "proagent-connector-setup",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Guided setup wizard for configuring shared MCP server credentials (Slack tokens, Google Drive OAuth). Walks users through token extraction, credential storage, and end-to-end verification.",
   "author": {
     "name": "diegouis"

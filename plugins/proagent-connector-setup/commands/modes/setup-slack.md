@@ -9,22 +9,40 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 
 Walk the user through extracting and configuring Slack MCP credentials. Follow each step sequentially — confirm completion at each adequacy gate before proceeding.
 
+## MANDATORY FIRST QUESTION — DO NOT SKIP
+
+Before doing ANYTHING else (no credential checks, no npx checks, no file reads), ask the user these two questions and **STOP and WAIT for their answers**:
+
+1. **Which OS are you on?** — macOS, Windows, or Linux
+2. **Which browser will you use?** — Chrome, Firefox, Edge, Safari, or Brave
+
+Do NOT proceed to Step 1 until the user has answered both questions. Their answers determine all keyboard shortcuts and instructions below.
+
+**OS → DevTools shortcut mapping** (use this throughout):
+- **macOS**: `Cmd+Option+I`
+- **Windows/Linux**: `Ctrl+Shift+I`
+- **Safari**: `Cmd+Option+I` (requires enabling Developer menu first: Safari → Settings → Advanced → Show features for web developers)
+
+**Browser → Cookies panel mapping** (use this throughout):
+- **Chrome / Edge / Brave**: Application tab → Cookies
+- **Firefox**: Storage tab → Cookies
+- **Safari**: Storage tab → Cookies
+
 ## Step 1: Prerequisites Check
 
-1. **Ask the user** which OS they are on: **macOS**, **Windows**, or **Linux**. Remember their answer — it determines keyboard shortcuts and file paths throughout this flow.
-2. Verify `npx` is available:
+1. Verify `npx` is available:
    ```bash
    which npx 2>/dev/null && npx --version || echo "npx not found"
    ```
-3. If `npx` is missing, guide installation (`brew install node` on macOS, or https://nodejs.org/) and **stop until resolved**.
+2. If `npx` is missing, guide installation (`brew install node` on macOS, or https://nodejs.org/) and **stop until resolved**.
 
-**Adequacy gate**: User has confirmed their OS and npx is available.
+**Adequacy gate**: npx is available.
 
 ## Step 2: Identify Workspace
 
 Ask the user:
 - Which Slack workspace do they need to connect?
-- Are they currently logged into that workspace in their browser (Chrome, Firefox, Edge, Safari, or Brave)?
+- Are they currently logged into that workspace in the browser they chose above?
 
 If they use the desktop app only, explain they need to open `https://app.slack.com` in a browser for token extraction.
 
@@ -39,12 +57,14 @@ Load the detailed reference:
 Read file: skills/connector-setup-assistant/references/slack-setup.md
 ```
 
-Guide the user through both extractions:
+Guide the user through both extractions. **Use the OS-specific shortcut and browser-specific tab names from the user's answers above — do NOT default to Ctrl+Shift+I or Chrome instructions.**
 
 ### 3a: Extract `xoxd-` Token (Session Cookie)
-1. Walk through Application tab → Cookies → `d` cookie steps from the reference
-2. Ask the user to paste the token
-3. Validate format: must start with `xoxd-` and be 200+ characters
+1. Tell the user to open DevTools using their OS-specific shortcut (from the mapping above)
+2. Direct them to the cookies panel using their browser-specific path (from the mapping above)
+3. Walk through finding the `d` cookie under `https://app.slack.com`
+4. Ask the user to paste the token
+5. Validate format: must start with `xoxd-` and be 200+ characters
 
 ### 3b: Extract `xoxc-` Token (Client Token)
 1. Walk through Network tab → API request → token field steps from the reference
