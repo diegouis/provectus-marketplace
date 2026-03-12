@@ -48,6 +48,25 @@ Comprehensive skill for building, orchestrating, and optimizing AI agent systems
 
 This skill covers the full lifecycle of agentic engineering: from designing individual agents to orchestrating complex multi-agent workflows, building MCP servers, creating plugins, and evaluating agent systems.
 
+## When Invoked Without Clear Intent
+
+**Use `AskUserQuestion`** to present options as a selector widget:
+
+```
+AskUserQuestion(
+  header: "Agentic",
+  question: "What agentic engineering task do you need help with?",
+  options: [
+    { label: "Create Components", description: "Build agents, skills, commands, hooks, plugins, or MCP servers" },
+    { label: "Multi-Agent Orchestration", description: "Agent teams, autonomous loops, context engineering, spec-driven dev" },
+    { label: "Prompt Engineering", description: "Prompt design, trust ladder, agent evaluation, thinking models" },
+    { label: "Workflow Factory", description: "Template-driven artifact creation with complexity assessment" }
+  ]
+)
+```
+
+If the user selects "Other", present: Quality Checklists, Error Handling Patterns, Inter-Artifact Contracts, Report Types.
+
 ## Reference Routing
 
 > **CONTEXT GUARD**: Load reference files only when the user's request matches a specific topic below. Do NOT load all references upfront.

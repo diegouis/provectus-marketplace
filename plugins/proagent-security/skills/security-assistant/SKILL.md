@@ -19,6 +19,25 @@ Comprehensive security skill covering vulnerability scanning, compliance enforce
 - Classifying risk levels for code changes
 - Running security audit workflows
 
+## When Invoked Without Clear Intent
+
+**Use `AskUserQuestion`** to present options as a selector widget:
+
+```
+AskUserQuestion(
+  header: "Security",
+  question: "What security topic do you need help with?",
+  options: [
+    { label: "Vulnerability Scanning", description: "SAST, DAST, CodeQL, Bandit, dependency audit, Trivy" },
+    { label: "Secrets & Threat Modeling", description: "Secrets detection, rotation, STRIDE threat modeling" },
+    { label: "OWASP Top 10", description: "Broken access control, injection, XSS, SSRF, auth failures" },
+    { label: "Compliance", description: "GDPR, SOC 2, PCI-DSS, HIPAA compliance checklists" }
+  ]
+)
+```
+
+If the user selects "Other", present: Zero Trust / Agent Sandboxing, Encryption / Hardening / Audit Logging.
+
 ## Reference Routing
 
 > **CONTEXT GUARD**: Load reference files only when the user's request matches a specific topic below. Do NOT load all references upfront.

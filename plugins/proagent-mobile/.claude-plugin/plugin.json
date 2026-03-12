@@ -1,6 +1,6 @@
 {
   "name": "proagent-mobile",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mobile app development with Expo and React Native: UI components, navigation, EAS builds, App Store/Play Store deployment, CI/CD workflows, Tailwind styling, and SDK upgrades.",
   "author": {
     "name": "cepm"

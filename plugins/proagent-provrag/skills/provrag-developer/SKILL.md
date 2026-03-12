@@ -12,6 +12,23 @@ description: >
 
 Build, customize, and operate RAG applications using provrag -- Provectus's internal RAG accelerator.
 
+## When Invoked Without Clear Intent
+
+**Use `AskUserQuestion`** to present options as a selector widget:
+
+```
+AskUserQuestion(
+  header: "provrag",
+  question: "What provrag task do you need help with?",
+  options: [
+    { label: "Scaffold Project", description: "Create a new provrag project with provrag init" },
+    { label: "Customize Pipelines", description: "Write or modify @step/@pipeline ingestion or RAG pipelines" },
+    { label: "Configure & Operate", description: "Settings, LLM providers, OpenSearch, CLI operations" },
+    { label: "Write Tests", description: "Unit and integration tests for provrag code" }
+  ]
+)
+```
+
 ## When to Use This Skill
 
 - Scaffolding a new provrag project (`provrag init`)

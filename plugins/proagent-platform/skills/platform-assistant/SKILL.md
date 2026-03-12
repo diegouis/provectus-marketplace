@@ -33,6 +33,25 @@ description: >
 
 Platform engineering creates self-service capabilities that reduce cognitive load and accelerate delivery. This skill covers the full spectrum: from designing golden paths and service catalogs to building MCP servers and plugin systems, document generation, reproducible environments, and setup orchestration. Sourced from 107 assets across 13 repositories.
 
+## When Invoked Without Clear Intent
+
+**Use `AskUserQuestion`** to present options as a selector widget:
+
+```
+AskUserQuestion(
+  header: "Platform",
+  question: "What platform engineering topic do you need help with?",
+  options: [
+    { label: "Scaffolding & Templates", description: "Project scaffolding, golden paths, template libraries" },
+    { label: "MCP Server Dev", description: "Build Model Context Protocol servers for LLM-to-service integration" },
+    { label: "Plugin Systems", description: "Plugin architecture, lifecycle management, Claude Code plugins" },
+    { label: "Developer Experience", description: "DX assessment, internal tooling, CLI/SDK design" }
+  ]
+)
+```
+
+If the user selects "Other", present: Document Generation (PDF/DOCX/PPTX/XLSX), Reproducible Environments (Nix/devenv), File Organization, Service Catalogs.
+
 ## Core Capabilities
 
 ### 1. Service Catalog & Golden Paths

@@ -34,6 +34,23 @@ This skill orchestrates the full software development lifecycle from architectur
 **DO NOT** read reference files, run environment detection commands, or load
 mode files until the user has told you what they want to do.
 
+**When invoked without clear intent, use `AskUserQuestion`:**
+
+```
+AskUserQuestion(
+  header: "SDLC",
+  question: "What SDLC phase do you need help with?",
+  options: [
+    { label: "Architecture & ADRs", description: "Architecture design, ADRs, C4 diagrams" },
+    { label: "Code Review", description: "Code review, PR review, multi-agent review" },
+    { label: "Testing Strategy", description: "TDD, test strategy, test quality" },
+    { label: "Release & Versioning", description: "Release planning, changelogs, versioning, git workflows" }
+  ]
+)
+```
+
+If the user selects "Other", present a second selector with: Planning & Tasks, Debugging, SDLC Pipelines (ProAgent/AWOS/PITER/Ralph).
+
 ## Reference Routing
 
 > **CONTEXT GUARD**: Load reference files only when the user's request

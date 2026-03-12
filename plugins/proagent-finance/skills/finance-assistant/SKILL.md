@@ -9,7 +9,22 @@ description: Use when managing financial operations -- budgeting, invoicing, rev
 
 This skill orchestrates financial operations across budgeting, invoicing, forecasting, P&L analysis, revenue tracking, cost optimization, cloud FinOps, payment processing (Stripe integration, PCI compliance), financial projections, billing, and financial reporting. It incorporates patterns from the `agents` repo (cloud-infrastructure cost-optimization, payment-processing stripe-integration and pci-compliance skills, startup-business-analyst financial-projections) and the `awesome-claude-skills` repo (invoice-organizer).
 
-**Announce at start:** "I'm using the proagent-finance:finance-assistant skill to manage this financial operation."
+**When invoked without clear intent, use `AskUserQuestion`:**
+
+```
+AskUserQuestion(
+  header: "Finance",
+  question: "What financial operation do you need help with?",
+  options: [
+    { label: "Budgeting", description: "Create or update budgets with category allocation and variance tracking" },
+    { label: "Revenue Forecasting", description: "Forecast revenue using historical data and growth models" },
+    { label: "P&L Analysis", description: "Profit and loss statements with margin calculations and comparisons" },
+    { label: "Cost Optimization", description: "Spending analysis, vendor consolidation, cloud FinOps" }
+  ]
+)
+```
+
+If the user selects "Other", present: Invoicing, Financial Projections, Budget Variance, Billing & Stripe/PCI, Financial Reporting.
 
 ## When to Use
 

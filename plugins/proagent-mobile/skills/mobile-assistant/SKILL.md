@@ -31,18 +31,37 @@ what they want to do.
 
 ## When Invoked Without Arguments
 
-Greet the user and present available capabilities:
+**Always use `AskUserQuestion`** to present capabilities as a selector widget:
 
-1. **UI Development** — Expo Router components, navigation, animations, native tabs
-2. **EAS Dev Builds** — Development clients for custom native code testing
-3. **Deployment** — App Store, Play Store, TestFlight, web hosting
-4. **Data Fetching** — React Query, SWR, fetch API, offline support
-5. **API Routes** — Server-side routes with Expo Router + EAS Hosting
-6. **CI/CD** — EAS workflow YAML files for automated builds and deployments
-7. **Tailwind Styling** — NativeWind v5 + Tailwind CSS v4 setup
-8. **SDK Upgrades** — Expo SDK version upgrades and migration
-9. **Android Safe Area** — Navigation bar inset handling
-10. **DOM Components** — Web code in a webview via Expo DOM
+```
+AskUserQuestion(
+  header: "Mobile",
+  question: "What mobile development topic would you like help with?",
+  options: [
+    { label: "UI Development", description: "Expo Router components, navigation, animations, native tabs" },
+    { label: "EAS Dev Builds", description: "Development clients for custom native code testing" },
+    { label: "Deployment", description: "App Store, Play Store, TestFlight, web hosting" },
+    { label: "Data Fetching", description: "React Query, SWR, fetch API, offline support" }
+  ]
+)
+```
+
+If the user selects "Other" or their topic is not in the first selector, present a second selector:
+
+```
+AskUserQuestion(
+  header: "Mobile",
+  question: "Which of these topics?",
+  options: [
+    { label: "API Routes", description: "Server-side routes with Expo Router + EAS Hosting" },
+    { label: "CI/CD", description: "EAS workflow YAML files for automated builds and deployments" },
+    { label: "Tailwind Styling", description: "NativeWind v5 + Tailwind CSS v4 setup" },
+    { label: "SDK Upgrades", description: "Expo SDK version upgrades and migration" }
+  ]
+)
+```
+
+If still "Other": offer Android Safe Area and DOM Components.
 
 Wait for the user's choice, then load the relevant reference file.
 

@@ -19,6 +19,25 @@ Comprehensive data engineering skill covering pipeline development, warehouse de
 - Creating KPI dashboards and data storytelling visualizations
 - Building bioinformatics pipelines or analytics infrastructure
 
+## When Invoked Without Clear Intent
+
+**Use `AskUserQuestion`** to present options as a selector widget:
+
+```
+AskUserQuestion(
+  header: "Data",
+  question: "What data engineering topic do you need help with?",
+  options: [
+    { label: "Data Pipelines", description: "ETL/ELT, Airflow DAGs, pipeline stages" },
+    { label: "dbt Models", description: "Staging/intermediate/marts, incremental, macros, testing" },
+    { label: "SQL Optimization", description: "EXPLAIN ANALYZE, indexes, window functions, tuning" },
+    { label: "Data Quality", description: "Great Expectations, dbt tests, freshness, anomaly detection" }
+  ]
+)
+```
+
+If the user selects "Other", present: Schema Design (star schema, warehousing), EDA & Analytics, Domain-Specific (KPI dashboards, bioinformatics, Excel).
+
 ## Reference Routing
 
 > **CONTEXT GUARD**: Load reference files only when the user's request matches a specific topic below. Do NOT load all references upfront.

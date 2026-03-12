@@ -35,6 +35,23 @@ Comprehensive AWS AI skill covering the full lifecycle of AI solution developmen
 **DO NOT** read reference files, run environment detection commands, or load
 mode files until the user has told you what they want to do.
 
+**When invoked without clear intent, use `AskUserQuestion`:**
+
+```
+AskUserQuestion(
+  header: "AWS AI",
+  question: "What AWS AI topic would you like help with?",
+  options: [
+    { label: "Bedrock AgentCore", description: "Build agents with AgentCore, Cedar policies, and evaluations" },
+    { label: "MCP Servers on AWS", description: "Create and deploy Model Context Protocol servers on AWS" },
+    { label: "RAG / Knowledge Bases", description: "RAG systems, Knowledge Bases, chunking, vector storage" },
+    { label: "AI Architecture", description: "AI architecture design, service and model selection, Well-Architected" }
+  ]
+)
+```
+
+If the user selects "Other", offer CDK/IaC infrastructure for AI workloads.
+
 ## Reference Routing
 
 > **CONTEXT GUARD**: Load reference files only when the user's request

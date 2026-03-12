@@ -1,6 +1,6 @@
 {
   "name": "proagent-agentic-engineering",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ProAgent plugin for agentic engineering — building, orchestrating, and optimizing AI agent systems with Claude Code extensions, MCP servers, multi-agent workflows, autonomous coding loops, context engineering, multi-backend orchestration, and the Workflow Factory for template-driven artifact creation with complexity assessment and inter-artifact contracts",
   "author": {
     "name": "diegouis"

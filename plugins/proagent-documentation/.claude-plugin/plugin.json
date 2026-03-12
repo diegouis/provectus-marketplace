@@ -1,6 +1,6 @@
 {
   "name": "proagent-documentation",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Cross-platform repository documentation generation and Confluence publishing — analyze GitHub/GitLab repos, generate docs (README, architecture, API, onboarding, runbooks), and publish/sync Confluence pages.",
   "author": {
     "name": "diegouis"

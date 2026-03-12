@@ -20,6 +20,25 @@ Comprehensive DevOps skill covering CI/CD pipelines, containerization, Kubernete
 - Optimizing cloud costs and implementing FinOps practices
 - Responding to incidents and writing postmortems
 
+## When Invoked Without Clear Intent
+
+**Use `AskUserQuestion`** to present options as a selector widget:
+
+```
+AskUserQuestion(
+  header: "DevOps",
+  question: "What infrastructure or deployment topic do you need help with?",
+  options: [
+    { label: "CI/CD Pipelines", description: "GitHub Actions, GitLab CI, release workflows" },
+    { label: "Containers & Kubernetes", description: "Docker, Compose, K8s, Helm charts, ArgoCD" },
+    { label: "Terraform / IaC", description: "Terraform modules, cloud cost optimization, FinOps" },
+    { label: "Monitoring & Observability", description: "Prometheus, Grafana, alerting rules, dashboards" }
+  ]
+)
+```
+
+If the user selects "Other", present: GitOps (ArgoCD/Flux), Operations (incident response, secrets, deployment strategies).
+
 ## Reference Routing
 
 > **CONTEXT GUARD**: Load reference files only when the user's request matches a specific topic below. Do NOT load all references upfront.
