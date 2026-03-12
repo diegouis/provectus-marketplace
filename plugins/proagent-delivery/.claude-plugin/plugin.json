@@ -1,6 +1,6 @@
 {
   "name": "proagent-delivery",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Project delivery management: sprint planning, milestone tracking, stakeholder updates, status reports, risk assessment, retrospectives, resource allocation, agile/scrum workflows, ROM estimation, SOW generation and review, todo management, standup notes generation, PRD creation, meeting insights analysis, internal communications, agentic KPIs, task planning with phased progress tracking, and Eisenhower matrix prioritization.",
   "author": {
     "name": "diegouis"

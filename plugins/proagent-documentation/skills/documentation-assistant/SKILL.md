@@ -22,9 +22,8 @@ This plugin uses direct git and API calls (no MCP servers required). Credentials
 
 > **CONTEXT GUARD**: Do NOT source credentials, clone repos, or make API calls until the user has specified what they want to do. The credential loading, GitHub API, and Confluence API patterns are documented in the plugin's CLAUDE.md — refer to them at the point of need, not upfront.
 
-**When invoked without clear intent, use `AskUserQuestion`:**
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Docs",
   question: "What documentation task do you need help with?",
@@ -35,7 +34,6 @@ AskUserQuestion(
     { label: "Sync & Review", description: "Detect stale docs, sync changes, or audit documentation quality" }
   ]
 )
-```
 
 ## Repository Analysis
 

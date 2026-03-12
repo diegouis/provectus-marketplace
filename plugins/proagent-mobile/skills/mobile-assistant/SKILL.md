@@ -31,9 +31,8 @@ what they want to do.
 
 ## When Invoked Without Arguments
 
-**Always use `AskUserQuestion`** to present capabilities as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Mobile",
   question: "What mobile development topic would you like help with?",
@@ -44,11 +43,9 @@ AskUserQuestion(
     { label: "Data Fetching", description: "React Query, SWR, fetch API, offline support" }
   ]
 )
-```
 
-If the user selects "Other" or their topic is not in the first selector, present a second selector:
+If the user selects "Other" or their topic is not in the first selector, you MUST call this second selector:
 
-```
 AskUserQuestion(
   header: "Mobile",
   question: "Which of these topics?",
@@ -59,7 +56,6 @@ AskUserQuestion(
     { label: "SDK Upgrades", description: "Expo SDK version upgrades and migration" }
   ]
 )
-```
 
 If still "Other": offer Android Safe Area and DOM Components.
 

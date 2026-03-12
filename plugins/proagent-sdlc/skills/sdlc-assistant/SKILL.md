@@ -34,9 +34,8 @@ This skill orchestrates the full software development lifecycle from architectur
 **DO NOT** read reference files, run environment detection commands, or load
 mode files until the user has told you what they want to do.
 
-**When invoked without clear intent, use `AskUserQuestion`:**
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "SDLC",
   question: "What SDLC phase do you need help with?",
@@ -47,7 +46,6 @@ AskUserQuestion(
     { label: "Release & Versioning", description: "Release planning, changelogs, versioning, git workflows" }
   ]
 )
-```
 
 If the user selects "Other", present a second selector with: Planning & Tasks, Debugging, SDLC Pipelines (ProAgent/AWOS/PITER/Ralph).
 

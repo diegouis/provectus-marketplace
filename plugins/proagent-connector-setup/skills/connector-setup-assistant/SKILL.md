@@ -15,9 +15,8 @@ Guides users through first-time credential configuration for shared MCP servers 
 2. **Wait for their choice** before loading anything
 3. **Only then** load the relevant mode file for their chosen connector
 
-**Always use this exact tool call for the initial greeting:**
+**MANDATORY**: You MUST call this tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Connector",
   question: "Which connector would you like to set up?",
@@ -27,7 +26,6 @@ AskUserQuestion(
     { label: "Verify all connectors", description: "Check the health of your existing connector credentials" }
   ]
 )
-```
 
 This prevents context explosion from eagerly loading all instructions at once.
 

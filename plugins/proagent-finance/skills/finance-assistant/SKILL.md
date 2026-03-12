@@ -9,9 +9,8 @@ description: Use when managing financial operations -- budgeting, invoicing, rev
 
 This skill orchestrates financial operations across budgeting, invoicing, forecasting, P&L analysis, revenue tracking, cost optimization, cloud FinOps, payment processing (Stripe integration, PCI compliance), financial projections, billing, and financial reporting. It incorporates patterns from the `agents` repo (cloud-infrastructure cost-optimization, payment-processing stripe-integration and pci-compliance skills, startup-business-analyst financial-projections) and the `awesome-claude-skills` repo (invoice-organizer).
 
-**When invoked without clear intent, use `AskUserQuestion`:**
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Finance",
   question: "What financial operation do you need help with?",
@@ -22,7 +21,6 @@ AskUserQuestion(
     { label: "Cost Optimization", description: "Spending analysis, vendor consolidation, cloud FinOps" }
   ]
 )
-```
 
 If the user selects "Other", present: Invoicing, Financial Projections, Budget Variance, Billing & Stripe/PCI, Financial Reporting.
 

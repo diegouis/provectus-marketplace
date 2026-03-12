@@ -14,9 +14,8 @@ Build, customize, and operate RAG applications using provrag -- Provectus's inte
 
 ## When Invoked Without Clear Intent
 
-**Use `AskUserQuestion`** to present options as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "provrag",
   question: "What provrag task do you need help with?",
@@ -27,7 +26,6 @@ AskUserQuestion(
     { label: "Write Tests", description: "Unit and integration tests for provrag code" }
   ]
 )
-```
 
 ## When to Use This Skill
 

@@ -21,9 +21,8 @@ Comprehensive data engineering skill covering pipeline development, warehouse de
 
 ## When Invoked Without Clear Intent
 
-**Use `AskUserQuestion`** to present options as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Data",
   question: "What data engineering topic do you need help with?",
@@ -34,7 +33,6 @@ AskUserQuestion(
     { label: "Data Quality", description: "Great Expectations, dbt tests, freshness, anomaly detection" }
   ]
 )
-```
 
 If the user selects "Other", present: Schema Design (star schema, warehousing), EDA & Analytics, Domain-Specific (KPI dashboards, bioinformatics, Excel).
 

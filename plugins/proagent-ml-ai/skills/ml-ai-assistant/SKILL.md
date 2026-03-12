@@ -22,9 +22,8 @@ Comprehensive ML and AI skill covering model training, evaluation, deployment, m
 
 ## When Invoked Without Clear Intent
 
-**Use `AskUserQuestion`** to present options as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "ML/AI",
   question: "What ML/AI topic do you need help with?",
@@ -35,7 +34,6 @@ AskUserQuestion(
     { label: "LLM & RAG", description: "RAG systems, prompt engineering, embeddings, vector stores, LLM judge" }
   ]
 )
-```
 
 If the user selects "Other", offer: ML Pipeline Validation (project structure, validation gates).
 

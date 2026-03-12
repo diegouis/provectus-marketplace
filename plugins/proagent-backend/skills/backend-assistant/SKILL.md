@@ -21,9 +21,8 @@ Comprehensive backend engineering skill covering API design, database schema eng
 
 ## When Invoked Without Clear Intent
 
-**Use `AskUserQuestion`** to present options as a selector widget:
+**MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
-```
 AskUserQuestion(
   header: "Backend",
   question: "What backend engineering topic do you need help with?",
@@ -34,7 +33,6 @@ AskUserQuestion(
     { label: "Microservices", description: "Service boundaries, DDD, circuit breaker, message queues" }
   ]
 )
-```
 
 If the user selects "Other", present: Caching & Performance, CQRS / Event Sourcing, MCP Server Development, Framework Patterns.
 
