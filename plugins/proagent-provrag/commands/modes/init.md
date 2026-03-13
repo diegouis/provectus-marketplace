@@ -13,6 +13,23 @@ which provrag uv task aws glab 2>&1
 
 If any are missing, suggest running the `bootstrap` operation first.
 
+### 1.5. Check for architecture spec
+
+Look for `.provrag-spec.json` in the current directory or parent directory. If found:
+1. Read and parse the spec
+2. Pre-fill parameters from the spec:
+   - **Project name** ← `project.name`
+   - **Description** ← `project.description`
+   - **OpenSearch index** ← `{project.slug}-docs`
+   - **Embedding dimension** ← `embedding.dimension`
+3. Present pre-filled values for confirmation instead of asking from scratch
+4. After scaffolding, suggest next steps based on the spec:
+   - If `data.file_types` includes `"pdf"` → suggest `/proagent-provrag-run customize-ingestion`
+   - If `retrieval.search_type` is `"hybrid"` or `retrieval.reranker` ≠ `"none"` → suggest `/proagent-provrag-run customize-rag`
+   - If `generation.system_prompt` is custom → suggest `/proagent-provrag-run customize-rag`
+
+If no spec is found, proceed to step 2 as normal.
+
 ### 2. Gather project parameters
 
 Ask the user for these parameters, **always presenting the defaults** so they can just confirm:
