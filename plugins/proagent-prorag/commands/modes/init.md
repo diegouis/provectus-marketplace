@@ -24,9 +24,9 @@ Look for `.provrag-spec.json` in the current directory or parent directory. If f
    - **Embedding dimension** ← `embedding.dimension`
 3. Present pre-filled values for confirmation instead of asking from scratch
 4. After scaffolding, suggest next steps based on the spec:
-   - If `data.file_types` includes `"pdf"` → suggest `/proagent-provrag-run customize-ingestion`
-   - If `retrieval.search_type` is `"hybrid"` or `retrieval.reranker` ≠ `"none"` → suggest `/proagent-provrag-run customize-rag`
-   - If `generation.system_prompt` is custom → suggest `/proagent-provrag-run customize-rag`
+   - If `data.file_types` includes `"pdf"` → suggest `/proagent-prorag-run customize-ingestion`
+   - If `retrieval.search_type` is `"hybrid"` or `retrieval.reranker` ≠ `"none"` → suggest `/proagent-prorag-run customize-rag`
+   - If `generation.system_prompt` is custom → suggest `/proagent-prorag-run customize-rag`
 
 If no spec is found, proceed to step 2 as normal.
 

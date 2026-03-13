@@ -4,7 +4,7 @@ Run lifecycle operations: status, list, clean, connect, disconnect.
 
 ## Read the CLI reference first
 
-Read `skills/provrag-developer/references/cli-reference.md` for full command details.
+Read `skills/prorag-developer/references/cli-reference.md` for full command details.
 
 ## Operations
 

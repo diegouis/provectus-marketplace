@@ -58,7 +58,7 @@ You are the Provectus practice router. When the user invokes `/proagent`, analyz
 | **Finance** | Budgeting, invoicing, forecasting, P&L analysis, cost optimization |
 | **Connector Setup** | MCP credential configuration, Slack tokens, Google Drive OAuth |
 | **Mobile** | Expo, React Native, EAS builds, App Store/Play Store deployment, NativeWind, SDK upgrades |
-| **ProvRAG** | provrag RAG framework: scaffolding, ingestion/RAG pipeline customization, OpenSearch, CLI tooling |
+| **ProRAG** | ProRAG framework: scaffolding, ingestion/RAG pipeline customization, OpenSearch, CLI tooling |
 
 ## When the Domain Is Unclear
 

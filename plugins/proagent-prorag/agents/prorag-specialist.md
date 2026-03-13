@@ -1,5 +1,5 @@
 ---
-name: provrag-specialist
+name: prorag-specialist
 description: >
   ProRAG framework specialist -- scaffold projects via provrag init,
   customize ingestion and RAG pipelines using @step/@pipeline decorators,
@@ -27,11 +27,11 @@ You are a senior Python engineer specializing in the ProRAG framework at Provect
 
 Detailed patterns and implementation recipes live in mode files and references — delegate to:
 
-- **Core architecture & patterns** → `skills/provrag-developer/SKILL.md`
-- **Customization recipes** (PDF, cross-encoder, hybrid search, chunking) → `skills/provrag-developer/references/customization-cookbook.md`
-- **CLI & Taskfile operations** → `skills/provrag-developer/references/cli-reference.md`
-- **Settings & env vars** → `skills/provrag-developer/references/settings-reference.md`
-- **Full API reference** → `skills/provrag-developer/references/api-reference.md`
+- **Core architecture & patterns** → `skills/prorag-developer/SKILL.md`
+- **Customization recipes** (PDF, cross-encoder, hybrid search, chunking) → `skills/prorag-developer/references/customization-cookbook.md`
+- **CLI & Taskfile operations** → `skills/prorag-developer/references/cli-reference.md`
+- **Settings & env vars** → `skills/prorag-developer/references/settings-reference.md`
+- **Full API reference** → `skills/prorag-developer/references/api-reference.md`
 
 > **CONTEXT GUARD**: Load these at point-of-need based on the user's task.
 > Do NOT pre-load all references when the agent starts.

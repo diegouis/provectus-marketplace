@@ -1,5 +1,5 @@
 ---
-name: provrag-developer
+name: prorag-developer
 description: >
   Build and customize ProRAG applications -- pipeline composition with @step/@pipeline decorators,
   data models (Document, Chunk, ScoredChunk), LLM protocols (BaseEmbedder, BaseLLM), OpenSearch retrieval,

@@ -6,14 +6,14 @@ argument-hint: "<operation> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
 
-# /proagent-provrag-run - Execute ProRAG Operations
+# /proagent-prorag-run - Execute ProRAG Operations
 
 Parse the operation from the user's input and execute the corresponding workflow.
 
 ## Usage
 
 ```
-/proagent-provrag-run <operation> [options]
+/proagent-prorag-run <operation> [options]
 ```
 
 ## Before Any Operation
@@ -21,7 +21,7 @@ Parse the operation from the user's input and execute the corresponding workflow
 > **CONTEXT GUARD**: ONLY read the files below when you are about to execute
 > the operation. Do NOT pre-load them at command start.
 
-1. Read `skills/provrag-developer/SKILL.md` for core architecture reference
+1. Read `skills/prorag-developer/SKILL.md` for core architecture reference
 2. If the project has a `.venv`, read the installed provrag source for current signatures (see `references/cli-reference.md` for discovery commands)
 
 ## Operations

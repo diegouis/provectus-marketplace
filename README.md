@@ -26,7 +26,7 @@ Practice-specific plugins for Claude Code and Claude Desktop, built from 901 ass
 | [proagent-router](plugins/proagent-router) | Router | Single `/proagent` command that detects the domain and dispatches to the appropriate practice specialist |
 | [proagent-aws-ai](plugins/proagent-aws-ai) | AWS AI | Amazon Bedrock, AgentCore, AWS AI services, CDK for AI, Knowledge Bases, AWS architecture |
 | [proagent-connector-setup](plugins/proagent-connector-setup) | Setup | Guided MCP credential configuration — Slack token extraction, Google Drive OAuth, connector verification |
-| [proagent-provrag](plugins/proagent-provrag) | ProvRAG | RAG framework scaffolding with @step/@pipeline decorators, LLM abstractions, OpenSearch retrieval, CLI tooling |
+| [proagent-prorag](plugins/proagent-prorag) | ProRAG | RAG framework scaffolding with @step/@pipeline decorators, LLM abstractions, OpenSearch retrieval, CLI tooling |
 | [proagent-mobile](plugins/proagent-mobile) | Mobile | Expo and React Native: UI, EAS builds, App Store/Play Store deployment, CI/CD, Tailwind, SDK upgrades |
 
 ## Installation
@@ -234,7 +234,7 @@ provectus-marketplace/
 │   ├── proagent-router/
 │   ├── proagent-documentation/
 │   ├── proagent-connector-setup/
-│   ├── proagent-provrag/
+│   ├── proagent-prorag/
 │   └── proagent-mobile/
 ├── catalog/               # Asset catalog from repo scanning
 └── scan-reports/          # Raw scan reports per repo batch

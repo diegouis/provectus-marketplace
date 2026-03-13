@@ -42,7 +42,7 @@ This plugin gives Claude Code full knowledge of the ProRAG accelerator framework
 - Provider auto-derived from environment unless explicitly set
 
 ### Unified Assistant & Architecture Spec
-- `/proagent-provrag` is the single entry point for new users and new projects
+- `/proagent-prorag` is the single entry point for new users and new projects
 - Conducts a 4-phase architecture interview (Project & Data → Chunking & Embedding → Retrieval & Search → Generation & Operations)
 - Produces `.provrag-spec.json` — a machine-readable spec consumed by `init.md`, `customize-ingestion.md`, and `customize-rag.md` to pre-fill parameters and auto-select recipes
 - For known operations, routes directly to the run dispatcher or specialist agent
@@ -50,19 +50,19 @@ This plugin gives Claude Code full knowledge of the ProRAG accelerator framework
 ## Plugin Structure
 
 ```
-proagent-provrag/
+proagent-prorag/
 ├── .claude-plugin/plugin.json
-├── skills/provrag-developer/
+├── skills/prorag-developer/
 │   ├── SKILL.md                      # Router + core architecture (no bash, ProRAG branding)
 │   └── references/
 │       ├── cli-reference.md          # CLI commands + Taskfile commands
 │       ├── settings-reference.md     # PROVRAG_* env vars
 │       └── customization-cookbook.md  # PDF, cross-encoder, hybrid search recipes
 ├── commands/
-│   ├── proagent-provrag.md           # Unified assistant (interview + routing)
-│   ├── proagent-provrag-hub.md       # Overview + routing
-│   ├── proagent-provrag-run.md       # Execution dispatcher
-│   ├── proagent-provrag-review.md    # Review dispatcher (thin)
+│   ├── proagent-prorag.md           # Unified assistant (interview + routing)
+│   ├── proagent-prorag-hub.md       # Overview + routing
+│   ├── proagent-prorag-run.md       # Execution dispatcher
+│   ├── proagent-prorag-review.md    # Review dispatcher (thin)
 │   └── modes/                        # Operation-specific workflows
 │       ├── architecture-interview.md # 4-phase RAG design interview
 │       ├── bootstrap.md
@@ -74,7 +74,7 @@ proagent-provrag/
 │       ├── serve.md
 │       ├── operate.md
 │       └── review.md               # Review checklists + output format
-├── agents/provrag-specialist.md      # Specialist subagent
+├── agents/prorag-specialist.md      # Specialist subagent
 ├── hooks/hooks.json                  # Safety hooks
 ├── .mcp.json                         # MCP config (empty -- uses CLI tooling)
 ├── CLAUDE.md                         # This file

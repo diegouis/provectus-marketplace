@@ -6,7 +6,7 @@ Check and install all prerequisites for using ProRAG.
 
 ### 1. Read the reference
 
-Read `skills/provrag-developer/references/cli-reference.md` for the full bootstrap details.
+Read `skills/prorag-developer/references/cli-reference.md` for the full bootstrap details.
 
 ### 2. Check each prerequisite
 

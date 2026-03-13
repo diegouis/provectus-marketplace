@@ -4,7 +4,7 @@ Analyze ProRAG project implementations for correctness, best practices, and prod
 
 ## Before Reviewing
 
-1. Read `skills/provrag-developer/SKILL.md` for core architecture reference
+1. Read `skills/prorag-developer/SKILL.md` for core architecture reference
 2. If the project has a `.venv`, read the installed ProRAG source for current signatures (see `references/cli-reference.md` for discovery commands)
 
 ## Review Targets

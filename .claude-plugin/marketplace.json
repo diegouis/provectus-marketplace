@@ -100,8 +100,8 @@
       "description": "Mobile app development with Expo and React Native: UI components, navigation, EAS builds, App Store/Play Store deployment, CI/CD workflows, Tailwind styling, and SDK upgrades."
     },
     {
-      "name": "proagent-provrag",
-      "source": "./plugins/proagent-provrag",
+      "name": "proagent-prorag",
+      "source": "./plugins/proagent-prorag",
       "description": "ProRAG framework: scaffold, customize, and operate ProRAG projects with @step/@pipeline decorators, LLM abstractions, OpenSearch retrieval, and CLI tooling."
     }
   ]

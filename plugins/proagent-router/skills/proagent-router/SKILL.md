@@ -41,7 +41,7 @@ Use the routing table below to identify the best-matching practice. Match based 
 | **finance** | Budgeting, invoicing, forecasting, P&L analysis, cost optimization, financial reporting | "create a budget", "forecast revenue", "analyze P&L", "optimize cloud costs" |
 | **connector-setup** | MCP setup, Slack tokens, Google Drive OAuth, credential configuration, connector setup | "set up Slack", "configure Google Drive", "check my MCP credentials" |
 | **mobile** | Expo, React Native, EAS, mobile app, iOS, Android, dev client, TestFlight, App Store, Play Store, NativeWind, expo-router, native tabs, SDK upgrade, react-native | "build an Expo app", "deploy to App Store", "set up EAS Build", "upgrade Expo SDK", "add NativeWind" |
-| **provrag** | provrag, RAG framework, @step, @pipeline, ingestion pipeline, OpenSearch, provrag init, CodeArtifact, chunking, reranking, hybrid search | "scaffold a provrag project", "customize the ingestion pipeline", "add a reranking step", "run provrag ingestion" |
+| **prorag** | prorag, RAG framework, @step, @pipeline, ingestion pipeline, OpenSearch, provrag init, CodeArtifact, chunking, reranking, hybrid search | "scaffold a ProRAG project", "customize the ingestion pipeline", "add a reranking step", "run provrag ingestion" |
 
 ### Step 3: Handle Ambiguity
 
@@ -66,7 +66,7 @@ AskUserQuestion(
   question: "I couldn't determine the best practice. What area is closest?",
   options: [
     { label: "Engineering", description: "agentic-engineering, sdlc, platform, devops, backend, frontend, qa, mobile" },
-    { label: "Data & AI", description: "data, ml-ai, aws-ai, provrag" },
+    { label: "Data & AI", description: "data, ml-ai, aws-ai, prorag" },
     { label: "Business", description: "delivery, sales, finance, hr, security, documentation" },
     { label: "Setup", description: "connector-setup (MCP credential configuration)" }
   ]
@@ -99,7 +99,7 @@ Once the practice is identified, dispatch using the Task tool with the practice'
 | finance | `proagent-finance:finance-specialist` | Task (subagent_type) |
 | connector-setup | `proagent-connector-setup:connector-setup-specialist` | Task (subagent_type) |
 | mobile | `proagent-mobile:mobile-specialist` | Task (subagent_type) |
-| provrag | `proagent-provrag:provrag-specialist` | Task (subagent_type) |
+| prorag | `proagent-prorag:prorag-specialist` | Task (subagent_type) |
 
 **Dispatch format:**
 1. Announce the detected practice: "Routing to **[Practice Name]** specialist..."
