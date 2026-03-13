@@ -295,7 +295,7 @@
     },
     {
       "name": "proagent-provrag",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "category": "provrag",
       "description": "provrag RAG framework plugin -- scaffold, customize, and operate provrag RAG projects with @step/@pipeline decorators, LLM abstractions, OpenSearch retrieval, and CLI tooling",
       "source": "./plugins/proagent-provrag",

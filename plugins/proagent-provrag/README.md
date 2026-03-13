@@ -75,4 +75,4 @@ When creating new projects, the init workflow launches a background subagent tha
 
 ## Version
 
-0.1.0
+0.2.0
