@@ -37,9 +37,7 @@ Parse the operation from the user's input and execute the corresponding workflow
 | `serve` | Query the deployed API via tunnels | `commands/modes/serve.md` |
 | `operate` | Status, list, clean, connect, disconnect | `commands/modes/operate.md` |
 
-Read the corresponding mode file and follow its workflow.
-
-If the operation is not recognized, display the table above and ask the user which operation they need.
+Read the corresponding mode file and follow its workflow. If the operation is not recognized, display the table above and ask the user which operation they need.
 
 ## Error Handling
 
