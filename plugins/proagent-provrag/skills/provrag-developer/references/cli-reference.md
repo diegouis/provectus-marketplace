@@ -1,8 +1,8 @@
-# provrag CLI Reference
+# ProRAG CLI Reference
 
 ## Installation
 
-provrag is distributed via AWS CodeArtifact (not PyPI):
+ProRAG is distributed via AWS CodeArtifact (not PyPI):
 
 ```bash
 # In a generated project directory:
@@ -20,7 +20,7 @@ CodeArtifact details:
 
 ### provrag init
 
-Scaffold a new provrag project from the Copier template.
+Scaffold a new ProRAG project from the Copier template.
 
 ```bash
 # Interactive (prompts for all fields):
@@ -37,7 +37,7 @@ Flags:
 |------|---------|-------------|
 | `--output-dir <dir>` | `.` | Parent directory for the new project |
 | `--name <name>` | (prompted) | Project name (e.g., "acme-legal-rag") |
-| `--description <desc>` | "RAG application built with provrag" | Short description |
+| `--description <desc>` | "RAG application built with ProRAG" | Short description |
 | `--index <name>` | `{slug}-docs` | Default OpenSearch index name |
 | `--dimension <int>` | `1024` | Embedding vector dimension |
 | `--author <name>` | "Provectus" | Author name |
@@ -139,7 +139,7 @@ Flags:
 | `task format` | Ruff format (`uv run ruff format src/ tests/`) |
 | `task typecheck` | mypy strict (`uv run mypy src/`) |
 | `task check` | Run all checks: lint + typecheck + test |
-| `task upgrade` | Upgrade provrag to latest version |
+| `task upgrade` | Upgrade ProRAG to latest version |
 
 ### Operations
 
@@ -157,7 +157,7 @@ Flags:
 
 #### task connect
 
-Establishes SSM port-forwarding tunnels through the provrag bastion host to VPC services:
+Establishes SSM port-forwarding tunnels through the ProRAG bastion host to VPC services:
 
 | Local Port | Remote Service | Purpose |
 |------------|---------------|---------|
@@ -184,7 +184,7 @@ After connecting:
 
 ## Bootstrap Script
 
-Located at: `scripts/bootstrap.sh` in the provrag repository.
+Located at: `scripts/bootstrap.sh` in the ProRAG repository.
 
 Run before first `provrag init`:
 ```bash
@@ -204,7 +204,7 @@ Checks and optionally installs:
 10. Pulumi (infrastructure-as-code)
 11. glab (GitLab CLI)
 12. glab authentication to `gitlab.provectus.com`
-13. provrag repository clone
+13. ProRAG repository clone
 
 AWS SSO details:
 - Profile: `provectus-demos`

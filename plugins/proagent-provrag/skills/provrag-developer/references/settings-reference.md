@@ -1,4 +1,4 @@
-# provrag Settings Reference
+# ProRAG Settings Reference
 
 All settings use Pydantic v2 BaseSettings with `PROVRAG_` prefix and `__` nested delimiter.
 

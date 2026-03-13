@@ -1,6 +1,6 @@
-# provrag Customization Cookbook
+# ProRAG Customization Cookbook
 
-Concrete recipes for customizing provrag-generated projects. Each recipe shows what to modify, the implementation, dependencies to add, and how to test.
+Concrete recipes for customizing ProRAG-generated projects. Each recipe shows what to modify, the implementation, dependencies to add, and how to test.
 
 ## Recipe: PDF Ingestion
 

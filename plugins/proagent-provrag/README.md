@@ -19,14 +19,14 @@ Components: 1 skill, 4 commands, 10 mode files, 3 reference files, 1 agent, 2 ho
 | `/proagent-provrag` | Unified assistant: architecture interview, routing, debugging |
 | `/proagent-provrag-hub` | Overview and capability guide |
 | `/proagent-provrag-run bootstrap` | Check/install prerequisites |
-| `/proagent-provrag-run init` | Scaffold new provrag project with status monitoring |
+| `/proagent-provrag-run init` | Scaffold new ProRAG project with status monitoring |
 | `/proagent-provrag-run customize-ingestion` | Modify ingestion pipeline (PDF, chunking, etc.) |
 | `/proagent-provrag-run customize-rag` | Modify RAG pipeline (reranking, hybrid search, etc.) |
 | `/proagent-provrag-run add-step` | Add custom pipeline step |
 | `/proagent-provrag-run ingest` | Run ingestion pipeline |
 | `/proagent-provrag-run serve` | Query the deployed API via tunnels |
 | `/proagent-provrag-run operate` | Status, list, clean, connect, disconnect |
-| `/proagent-provrag-review` | Review provrag project quality |
+| `/proagent-provrag-review` | Review ProRAG project quality |
 
 ## Plugin Structure
 
