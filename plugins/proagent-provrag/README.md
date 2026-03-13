@@ -10,12 +10,13 @@ This plugin gives Claude Code full knowledge of provrag -- Provectus's internal 
 - Lifecycle operations (ingest, serve, status, list, clean, connect, disconnect)
 - Pipeline architecture review and quality audits
 
-Components: 1 skill, 3 commands, 8 mode files, 3 reference files, 1 agent, 2 hooks
+Components: 1 skill, 4 commands, 9 mode files, 3 reference files, 1 agent, 2 hooks
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
+| `/proagent-provrag` | Unified assistant: architecture interview, routing, debugging |
 | `/proagent-provrag-hub` | Overview and capability guide |
 | `/proagent-provrag-run bootstrap` | Check/install prerequisites |
 | `/proagent-provrag-run init` | Scaffold new provrag project with status monitoring |
@@ -39,10 +40,11 @@ proagent-provrag/
 │       ├── settings-reference.md
 │       └── customization-cookbook.md
 ├── commands/
+│   ├── proagent-provrag.md
 │   ├── proagent-provrag-hub.md
 │   ├── proagent-provrag-run.md
 │   ├── proagent-provrag-review.md
-│   └── modes/ (8 mode files)
+│   └── modes/ (9 mode files, incl. architecture-interview)
 ├── agents/provrag-specialist.md
 ├── hooks/hooks.json
 ├── .mcp.json

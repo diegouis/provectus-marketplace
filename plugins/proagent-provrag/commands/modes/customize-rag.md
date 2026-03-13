@@ -27,6 +27,18 @@ uv run python -c "import provrag.pipelines.rag; print(provrag.pipelines.rag.__fi
 uv run python -c "import provrag.retrieval.opensearch_client; print(provrag.retrieval.opensearch_client.__file__)"
 ```
 
+### 3.5. Check for architecture spec
+
+Look for `.provrag-spec.json` in the current directory or parent directory. If found:
+1. Read and parse the spec
+2. Auto-select recipes based on spec decisions:
+   - If `retrieval.search_type` == `"hybrid"` → pre-select **hybrid search** recipe
+   - If `retrieval.reranker` is set and ≠ `"none"` → pre-select **cross-encoder reranking** recipe (ms-marco or bge variant)
+   - If `generation.system_prompt` ≠ default → pre-apply **custom system prompt** from the spec
+3. Present the auto-selected recipes and ask user to confirm before applying: "Based on your architecture spec, I'll apply: {list of recipes}. Confirm or choose differently?"
+
+If no spec is found, proceed to step 4 to ask the user.
+
 ### 4. Identify the customization
 
 Ask the user what they need. Common options:

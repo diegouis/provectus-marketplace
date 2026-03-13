@@ -29,6 +29,17 @@ uv run python -c "import provrag.storage.s3; print(provrag.storage.s3.__file__)"
 uv run python -c "import provrag.chunking.text_chunker; print(provrag.chunking.text_chunker.__file__)"
 ```
 
+### 3.5. Check for architecture spec
+
+Look for `.provrag-spec.json` in the current directory or parent directory. If found:
+1. Read and parse the spec
+2. Auto-select recipes based on spec decisions:
+   - If `data.file_types` contains `"pdf"` → pre-select **PDF ingestion** recipe
+   - If `chunking.strategy` ≠ `"recursive-character"` → pre-select matching chunking recipe (sentence, markdown-aware, or token-aware)
+3. Present the auto-selected recipe and ask user to confirm before applying: "Based on your architecture spec, I'll apply the **{recipe}** recipe. Confirm or choose differently?"
+
+If no spec is found, proceed to step 4 to ask the user.
+
 ### 4. Identify the customization
 
 Ask the user what they need. Common options:

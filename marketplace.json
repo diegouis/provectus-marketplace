@@ -303,7 +303,7 @@
       "source_repos": 1,
       "components": {
         "skills": 1,
-        "commands": 3,
+        "commands": 4,
         "agents": 1,
         "hooks": 2,
         "mcp_servers": 0

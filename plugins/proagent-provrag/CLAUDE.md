@@ -41,6 +41,12 @@ This plugin gives Claude Code full knowledge of the provrag RAG accelerator fram
 - Environment: `local` (OpenAI, MinIO) or `aws` (Bedrock, S3, SSM tunnels)
 - Provider auto-derived from environment unless explicitly set
 
+### Unified Assistant & Architecture Spec
+- `/proagent-provrag` is the single entry point for new users and new projects
+- Conducts a 4-phase architecture interview (Project & Data → Chunking & Embedding → Retrieval & Search → Generation & Operations)
+- Produces `.provrag-spec.json` — a machine-readable spec consumed by `init.md`, `customize-ingestion.md`, and `customize-rag.md` to pre-fill parameters and auto-select recipes
+- For known operations, routes directly to the run dispatcher or specialist agent
+
 ## Plugin Structure
 
 ```
@@ -53,10 +59,12 @@ proagent-provrag/
 │       ├── settings-reference.md     # PROVRAG_* env vars
 │       └── customization-cookbook.md  # PDF, cross-encoder, hybrid search recipes
 ├── commands/
+│   ├── proagent-provrag.md           # Unified assistant (interview + routing)
 │   ├── proagent-provrag-hub.md       # Overview + routing
 │   ├── proagent-provrag-run.md       # Execution dispatcher
 │   ├── proagent-provrag-review.md    # Project review
 │   └── modes/                        # Operation-specific workflows
+│       ├── architecture-interview.md # 4-phase RAG design interview
 │       ├── bootstrap.md
 │       ├── init.md
 │       ├── customize-ingestion.md
