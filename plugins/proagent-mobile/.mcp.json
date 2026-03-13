@@ -1,1 +1,46 @@
-{}
+{
+  "mcpServers": {
+    "slack": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "slack-mcp-server@latest",
+        "--transport",
+        "stdio"
+      ],
+      "env": {
+        "SLACK_MCP_XOXC_TOKEN": "${SLACK_MCP_XOXC_TOKEN}",
+        "SLACK_MCP_XOXD_TOKEN": "${SLACK_MCP_XOXD_TOKEN}",
+        "SLACK_MCP_USERS_CACHE": ".users_cache.json",
+        "SLACK_MCP_CHANNELS_CACHE": ".channels_cache_v2.json"
+      }
+    },
+    "google-drive": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gdrive"
+      ]
+    },
+    "google-workspace": {
+      "command": "uvx",
+      "args": [
+        "mcp-gsuite"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "description": "GitHub integration for repository management, PRs, issues, and Actions"
+    },
+    "excalidraw": {
+      "url": "https://mcp.excalidraw.com/mcp"
+    }
+  }
+}

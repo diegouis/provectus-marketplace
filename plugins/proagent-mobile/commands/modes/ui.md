@@ -2,6 +2,11 @@
 
 **Goal:** Build UI components, navigation, animations, and native tabs with Expo Router.
 
+> **Adequacy Gate**: Before proceeding, verify:
+> 1. Project uses Expo Router (check for `expo-router` in package.json)
+> 2. Target platform is identified (iOS, Android, or both)
+> If any check fails, inform the user and collect missing prerequisites before continuing.
+
 **Announce:** "Starting UI development workflow. I'll help you build your Expo Router interface."
 
 > **CONTEXT GUARD**: ONLY read the reference file below now that the user has selected this mode.

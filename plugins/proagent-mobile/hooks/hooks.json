@@ -8,6 +8,11 @@
             "type": "command",
             "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE 'eas (build|submit|deploy)'; then echo '[proagent-mobile] EAS operation detected. Verify: (1) eas whoami is authenticated, (2) expo.version and buildNumber/versionCode are updated in app.json, (3) required credentials are configured.'; fi; }",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.command // empty' | { read cmd; if echo \"$cmd\" | grep -qE '(npx )?expo install' && ! echo \"$cmd\" | grep -q '\\-\\-check'; then echo '[proagent-mobile] expo install detected without --check flag. Run \"npx expo install --check\" first to verify package compatibility with your SDK version.'; fi; }",
+            "timeout": 10
           }
         ]
       }
@@ -20,6 +25,21 @@
             "type": "command",
             "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fpath; if echo \"$fpath\" | grep -qiE 'app\\.json|eas\\.json|app\\.config\\.(js|ts)'; then echo '[proagent-mobile] App config updated. If this is your first EAS build, run \"eas build:configure\" to generate eas.json. Verify your bundle identifier and package name match your store listings.'; fi; }",
             "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fpath; if echo \"$fpath\" | grep -qiE '\\.env|\\.env\\.local|\\.env\\.production|secret|credential|token'; then echo '[proagent-mobile] Sensitive file written. Ensure this file is in .gitignore and never committed. For mobile secrets, use expo-secure-store instead of environment files.'; fi; }",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "which jq >/dev/null 2>&1 || exit 0; jq -r '.tool_input.file_path // empty' | { read fpath; if echo \"$fpath\" | grep -qiE 'package\\.json$'; then echo '[proagent-mobile] package.json edited. Run \"npx expo install --fix\" to ensure dependencies are compatible with your Expo SDK version.'; fi; }",
+            "timeout": 10
           }
         ]
       },
