@@ -1,4 +1,4 @@
-# provrag API Reference
+# ProRAG API Reference
 
 Fallback reference for when the project is not yet set up. **Prefer reading the live installed source** (see SKILL.md "Reading the Live API" section).
 
@@ -481,9 +481,9 @@ Quick reference:
 - `provrag list` -- List OpenSearch indices
 - `provrag clean --index <name> --yes` -- Delete an index
 
-## provrag Installation
+## ProRAG Installation
 
-provrag is distributed via **AWS CodeArtifact**, not PyPI:
+ProRAG is distributed via **AWS CodeArtifact**, not PyPI:
 
 ```bash
 # In a generated project:
