@@ -1,5 +1,5 @@
 {
-  "name": "proagent-provrag",
+  "name": "proagent-prorag",
   "version": "0.2.0",
   "description": "Provectus ProRAG framework plugin -- scaffold, customize, and operate ProRAG projects. Full API reference for @step/@pipeline decorators, data models (Document, Chunk, ScoredChunk), LLM abstractions (BaseEmbedder, BaseLLM), OpenSearch retrieval, S3 storage, Pydantic v2 settings, FastAPI serving, CLI operations, and pipeline customization patterns (PDF ingestion, cross-encoder reranking, hybrid search).",
   "author": {

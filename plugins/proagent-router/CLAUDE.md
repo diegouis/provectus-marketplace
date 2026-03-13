@@ -31,7 +31,7 @@ The router dispatches across all 18 Provectus practices:
 - **finance** — Budgeting, forecasting, P&L analysis
 - **connector-setup** — MCP credential setup for Slack and Google Drive
 - **mobile** — Expo and React Native: EAS builds, App Store/Play Store deployment, NativeWind, SDK upgrades
-- **provrag** — provrag RAG framework: scaffolding, pipeline customization, OpenSearch, CLI tooling
+- **prorag** — ProRAG framework: scaffolding, pipeline customization, OpenSearch, CLI tooling
 
 ## Key Conventions
 

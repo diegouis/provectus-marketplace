@@ -294,11 +294,11 @@
       }
     },
     {
-      "name": "proagent-provrag",
+      "name": "proagent-prorag",
       "version": "0.2.0",
-      "category": "provrag",
+      "category": "prorag",
       "description": "ProRAG framework plugin -- scaffold, customize, and operate ProRAG projects with @step/@pipeline decorators, LLM abstractions, OpenSearch retrieval, and CLI tooling",
-      "source": "./plugins/proagent-provrag",
+      "source": "./plugins/proagent-prorag",
       "assets_count": 0,
       "source_repos": 1,
       "components": {
@@ -354,7 +354,7 @@
       "router",
       "documentation",
       "setup",
-      "provrag",
+      "prorag",
       "mobile"
     ]
   },

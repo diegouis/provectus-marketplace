@@ -6,7 +6,7 @@ Modify the RAG query pipeline for specific requirements.
 
 ### 1. Load the customization cookbook
 
-Read `skills/provrag-developer/references/customization-cookbook.md` for concrete recipes.
+Read `skills/prorag-developer/references/customization-cookbook.md` for concrete recipes.
 
 (The core SKILL.md is already loaded by the run dispatcher.)
 

@@ -170,8 +170,8 @@ Omit conditional fields that don't apply (e.g., `bm25_weight`/`knn_weight` if `s
 
 Report the spec file location, then route to execution:
 
-1. Invoke Skill: `proagent-provrag-run` args: `init` — the init mode will read the spec and pre-fill parameters
+1. Invoke Skill: `proagent-prorag-run` args: `init` — the init mode will read the spec and pre-fill parameters
 2. After init completes, suggest next steps based on the spec:
-   - If `file_types` includes `pdf` → "Run `/proagent-provrag-run customize-ingestion` to add PDF support"
-   - If `search_type: "hybrid"` or `reranker` is set → "Run `/proagent-provrag-run customize-rag` to configure retrieval"
-   - If `system_prompt` is custom → "Run `/proagent-provrag-run customize-rag` to apply your system prompt"
+   - If `file_types` includes `pdf` → "Run `/proagent-prorag-run customize-ingestion` to add PDF support"
+   - If `search_type: "hybrid"` or `reranker` is set → "Run `/proagent-prorag-run customize-rag` to configure retrieval"
+   - If `system_prompt` is custom → "Run `/proagent-prorag-run customize-rag` to apply your system prompt"

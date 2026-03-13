@@ -1,4 +1,4 @@
-# proagent-provrag
+# proagent-prorag
 
 Provectus ProRAG framework plugin for the agentic coding platform. Enables scaffolding, customizing, and operating ProRAG projects.
 
@@ -16,36 +16,36 @@ Components: 1 skill, 4 commands, 10 mode files, 3 reference files, 1 agent, 2 ho
 
 | Command | Description |
 |---------|-------------|
-| `/proagent-provrag` | Unified assistant: architecture interview, routing, debugging |
-| `/proagent-provrag-hub` | Overview and capability guide |
-| `/proagent-provrag-run bootstrap` | Check/install prerequisites |
-| `/proagent-provrag-run init` | Scaffold new ProRAG project with status monitoring |
-| `/proagent-provrag-run customize-ingestion` | Modify ingestion pipeline (PDF, chunking, etc.) |
-| `/proagent-provrag-run customize-rag` | Modify RAG pipeline (reranking, hybrid search, etc.) |
-| `/proagent-provrag-run add-step` | Add custom pipeline step |
-| `/proagent-provrag-run ingest` | Run ingestion pipeline |
-| `/proagent-provrag-run serve` | Query the deployed API via tunnels |
-| `/proagent-provrag-run operate` | Status, list, clean, connect, disconnect |
-| `/proagent-provrag-review` | Review ProRAG project quality |
+| `/proagent-prorag` | Unified assistant: architecture interview, routing, debugging |
+| `/proagent-prorag-hub` | Overview and capability guide |
+| `/proagent-prorag-run bootstrap` | Check/install prerequisites |
+| `/proagent-prorag-run init` | Scaffold new ProRAG project with status monitoring |
+| `/proagent-prorag-run customize-ingestion` | Modify ingestion pipeline (PDF, chunking, etc.) |
+| `/proagent-prorag-run customize-rag` | Modify RAG pipeline (reranking, hybrid search, etc.) |
+| `/proagent-prorag-run add-step` | Add custom pipeline step |
+| `/proagent-prorag-run ingest` | Run ingestion pipeline |
+| `/proagent-prorag-run serve` | Query the deployed API via tunnels |
+| `/proagent-prorag-run operate` | Status, list, clean, connect, disconnect |
+| `/proagent-prorag-review` | Review ProRAG project quality |
 
 ## Plugin Structure
 
 ```
-proagent-provrag/
+proagent-prorag/
 ├── .claude-plugin/plugin.json
-├── skills/provrag-developer/
+├── skills/prorag-developer/
 │   ├── SKILL.md
 │   └── references/
 │       ├── cli-reference.md
 │       ├── settings-reference.md
 │       └── customization-cookbook.md
 ├── commands/
-│   ├── proagent-provrag.md
-│   ├── proagent-provrag-hub.md
-│   ├── proagent-provrag-run.md
-│   ├── proagent-provrag-review.md
+│   ├── proagent-prorag.md
+│   ├── proagent-prorag-hub.md
+│   ├── proagent-prorag-run.md
+│   ├── proagent-prorag-review.md
 │   └── modes/ (10 mode files, incl. architecture-interview, review)
-├── agents/provrag-specialist.md
+├── agents/prorag-specialist.md
 ├── hooks/hooks.json
 ├── .mcp.json
 ├── CLAUDE.md
@@ -59,7 +59,7 @@ proagent-provrag/
 - AWS SSO (`provectus-demos` profile)
 - ProRAG installed from AWS CodeArtifact (`task ca:login && task setup`)
 
-Run `/proagent-provrag-run bootstrap` to verify all prerequisites.
+Run `/proagent-prorag-run bootstrap` to verify all prerequisites.
 
 ## Key Features
 

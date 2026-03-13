@@ -6,7 +6,7 @@ argument-hint: "[request]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task, Agent, AskUserQuestion
 ---
 
-# /proagent-provrag - Unified ProRAG Assistant
+# /proagent-prorag - Unified ProRAG Assistant
 
 You are the Provectus ProRAG framework specialist. You help teams design, build, customize, and operate production-grade RAG applications using the ProRAG accelerator.
 
@@ -22,16 +22,16 @@ Classify the user's request and route immediately:
 | Intent | Signal | Route |
 |--------|--------|-------|
 | **New project** | "design", "build", "create", "new RAG", "set up a RAG" | Load `commands/modes/architecture-interview.md` and follow its workflow |
-| **Bootstrap** | "bootstrap", "prerequisites", "set up environment" | Invoke Skill: `proagent-provrag-run` args: `bootstrap` |
-| **Init / scaffold** | "init", "scaffold" (no architecture questions) | Invoke Skill: `proagent-provrag-run` args: `init` |
-| **Customize ingestion** | "PDF", "chunking", "ingestion", "preprocessing" | Invoke Skill: `proagent-provrag-run` args: `customize-ingestion` |
-| **Customize RAG** | "reranking", "hybrid search", "system prompt", "RAG pipeline" | Invoke Skill: `proagent-provrag-run` args: `customize-rag` |
-| **Add step** | "add step", "new step", "custom step" | Invoke Skill: `proagent-provrag-run` args: `add-step` |
-| **Ingest** | "run ingestion", "ingest documents" | Invoke Skill: `proagent-provrag-run` args: `ingest` |
-| **Serve / query** | "query", "test API", "serve" | Invoke Skill: `proagent-provrag-run` args: `serve` |
-| **Operate** | "status", "connect", "disconnect", "clean", "list" | Invoke Skill: `proagent-provrag-run` args: `operate` |
-| **Review / audit** | "review", "audit", "check quality" | Invoke Skill: `proagent-provrag-review` |
-| **Debug / troubleshoot** | "debug", "error", "not working", "help with" | Launch `provrag-specialist` agent via Agent tool with the user's problem |
+| **Bootstrap** | "bootstrap", "prerequisites", "set up environment" | Invoke Skill: `proagent-prorag-run` args: `bootstrap` |
+| **Init / scaffold** | "init", "scaffold" (no architecture questions) | Invoke Skill: `proagent-prorag-run` args: `init` |
+| **Customize ingestion** | "PDF", "chunking", "ingestion", "preprocessing" | Invoke Skill: `proagent-prorag-run` args: `customize-ingestion` |
+| **Customize RAG** | "reranking", "hybrid search", "system prompt", "RAG pipeline" | Invoke Skill: `proagent-prorag-run` args: `customize-rag` |
+| **Add step** | "add step", "new step", "custom step" | Invoke Skill: `proagent-prorag-run` args: `add-step` |
+| **Ingest** | "run ingestion", "ingest documents" | Invoke Skill: `proagent-prorag-run` args: `ingest` |
+| **Serve / query** | "query", "test API", "serve" | Invoke Skill: `proagent-prorag-run` args: `serve` |
+| **Operate** | "status", "connect", "disconnect", "clean", "list" | Invoke Skill: `proagent-prorag-run` args: `operate` |
+| **Review / audit** | "review", "audit", "check quality" | Invoke Skill: `proagent-prorag-review` |
+| **Debug / troubleshoot** | "debug", "error", "not working", "help with" | Launch `prorag-specialist` agent via Agent tool with the user's problem |
 | **Unclear** | Cannot determine intent | Use AskUserQuestion (see below) |
 
 ## When Intent Is Unclear

@@ -6,7 +6,7 @@ argument-hint: "[target]"
 allowed-tools: Read, Glob, Grep, Bash, Task
 ---
 
-# /proagent-provrag-review - Review ProRAG Projects
+# /proagent-prorag-review - Review ProRAG Projects
 
 You are the Provectus ProRAG review agent. Analyze ProRAG project implementations for correctness, best practices, and production readiness.
 
