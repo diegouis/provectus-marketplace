@@ -1,6 +1,6 @@
 # Mode: Init
 
-Scaffold a new provrag project and monitor its setup progress.
+Scaffold a new ProRAG project and monitor its setup progress.
 
 ## Workflow
 
@@ -35,7 +35,7 @@ If no spec is found, proceed to step 2 as normal.
 Ask the user for these parameters, **always presenting the defaults** so they can just confirm:
 
 - **Project name** (required) -- e.g., "acme-legal-rag"
-- **Description** -- default: "RAG application built with provrag"
+- **Description** -- default: "RAG application built with ProRAG"
 - **OpenSearch index name** -- default: `{slug}-docs` (derived from project name)
 - **Embedding dimension** -- default: `1024` (Titan v2)
 - **GitLab group** -- default: `provectus-internals/MLP-COL/ai-accelerators/provrag-projects` (or `--no-gitlab` to skip)

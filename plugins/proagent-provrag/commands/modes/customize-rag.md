@@ -20,7 +20,7 @@ Read tests/test_pipeline.py
 Read tests/test_steps.py
 ```
 
-### 3. If the project has a .venv, read live provrag API
+### 3. If the project has a .venv, read live ProRAG API
 
 ```bash
 uv run python -c "import provrag.pipelines.rag; print(provrag.pipelines.rag.__file__)"

@@ -1,10 +1,10 @@
 # proagent-provrag
 
-Provectus provrag RAG framework plugin for the agentic coding platform. Enables scaffolding, customizing, and operating provrag RAG projects.
+Provectus ProRAG framework plugin for the agentic coding platform. Enables scaffolding, customizing, and operating ProRAG projects.
 
 ## Overview
 
-This plugin gives Claude Code full knowledge of provrag -- Provectus's internal RAG accelerator. It covers:
+This plugin gives Claude Code full knowledge of ProRAG -- Provectus's internal RAG accelerator. It covers:
 - Project scaffolding via `provrag init` with lifecycle monitoring
 - Pipeline customization (PDF ingestion, cross-encoder reranking, hybrid search, custom chunking)
 - Lifecycle operations (ingest, serve, status, list, clean, connect, disconnect)
@@ -57,14 +57,14 @@ proagent-provrag/
 - Python 3.13 (via mise)
 - uv, go-task, Docker, AWS CLI
 - AWS SSO (`provectus-demos` profile)
-- provrag installed from AWS CodeArtifact (`task ca:login && task setup`)
+- ProRAG installed from AWS CodeArtifact (`task ca:login && task setup`)
 
 Run `/proagent-provrag-run bootstrap` to verify all prerequisites.
 
 ## Key Features
 
 ### Live API Reading
-Instead of hardcoding provrag API signatures, this plugin instructs Claude to read the installed provrag library source directly. This ensures it always uses the latest API even after `task upgrade`.
+Instead of hardcoding ProRAG API signatures, this plugin instructs Claude to read the installed ProRAG library source directly. This ensures it always uses the latest API even after `task upgrade`.
 
 ### Status Monitoring
 When creating new projects, the init workflow launches a background subagent that monitors `provrag status` to track CI/CD progress and report when setup completes.
