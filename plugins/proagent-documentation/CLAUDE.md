@@ -70,11 +70,27 @@ If the user does not provide these parameters, prompt them before publishing. Yo
 ```
 proagent-documentation/
 ├── .claude-plugin/plugin.json
-├── skills/documentation-assistant/SKILL.md
+├── skills/
+│   └── documentation-assistant/
+│       ├── SKILL.md
+│       └── references/
+│           ├── repo-analysis.md
+│           ├── doc-generation.md
+│           ├── confluence-publishing.md
+│           └── doc-sync.md
 ├── commands/
 │   ├── proagent-documentation-hub.md
 │   ├── proagent-documentation-run.md
-│   └── proagent-documentation-review.md
+│   ├── proagent-documentation-review.md
+│   └── modes/
+│       ├── analyze-repo.md
+│       ├── generate-docs.md
+│       ├── publish-confluence.md
+│       ├── sync-docs.md
+│       ├── batch-docs.md
+│       ├── doc-quality.md
+│       ├── confluence-audit.md
+│       └── coverage.md
 ├── agents/
 │   ├── documentation-specialist.md
 │   ├── repo-analyzer.md
