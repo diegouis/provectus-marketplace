@@ -37,11 +37,25 @@ proagent-documentation/
 │   └── plugin.json
 ├── skills/
 │   └── documentation-assistant/
-│       └── SKILL.md
+│       ├── SKILL.md
+│       └── references/
+│           ├── repo-analysis.md
+│           ├── doc-generation.md
+│           ├── confluence-publishing.md
+│           └── doc-sync.md
 ├── commands/
 │   ├── proagent-documentation-hub.md
 │   ├── proagent-documentation-run.md
-│   └── proagent-documentation-review.md
+│   ├── proagent-documentation-review.md
+│   └── modes/
+│       ├── analyze-repo.md
+│       ├── generate-docs.md
+│       ├── publish-confluence.md
+│       ├── sync-docs.md
+│       ├── batch-docs.md
+│       ├── doc-quality.md
+│       ├── confluence-audit.md
+│       └── coverage.md
 ├── agents/
 │   ├── documentation-specialist.md
 │   ├── repo-analyzer.md
@@ -76,7 +90,7 @@ proagent-documentation/
 |--------|---------|---------|
 | GitHub | `@modelcontextprotocol/server-github` | Repository file access, PR scanning, Actions config |
 | GitLab | `@modelcontextprotocol/server-gitlab` | Repository file access, MR scanning, CI pipeline config |
-| Confluence | `@modelcontextprotocol/server-atlassian` | Page creation, update, publishing, label management |
+| Confluence | `@aashari/mcp-server-atlassian-confluence` | Page creation, update, publishing, label management |
 | Slack | `slack-mcp-server@latest` | Notification of doc updates, team collaboration |
 | Google Drive | `@modelcontextprotocol/server-gdrive` | Import/export from Google Docs and Sheets |
 | Google Workspace | `mcp-gsuite` | Calendar integration for doc review scheduling |
@@ -88,7 +102,7 @@ proagent-documentation/
 | `GITHUB_PERSONAL_ACCESS_TOKEN` | Yes | GitHub PAT for repository access |
 | `GITLAB_PERSONAL_ACCESS_TOKEN` | For GitLab repos | GitLab PAT for repository access |
 | `GITLAB_API_URL` | No | GitLab API URL (default: `https://gitlab.com/api/v4`) |
-| `ATLASSIAN_SITE_URL` | For Confluence | Your Atlassian site URL (e.g., `https://yoursite.atlassian.net`) |
+| `ATLASSIAN_SITE_NAME` | For Confluence | Your Atlassian site name (e.g., `yoursite` from yoursite.atlassian.net) |
 | `ATLASSIAN_USER_EMAIL` | For Confluence | Atlassian account email |
 | `ATLASSIAN_API_TOKEN` | For Confluence | Atlassian API token |
 | `SLACK_MCP_XOXC_TOKEN` | For Slack | Slack xoxc token |
@@ -96,4 +110,4 @@ proagent-documentation/
 
 ## Version
 
-0.2.0
+0.2.2
