@@ -2,6 +2,11 @@
 
 **Goal:** Review Expo/React Native code for quality, performance, and best practices.
 
+> **Adequacy Gate**: Before proceeding, verify:
+> 1. Target files or directory is specified
+> 2. Scope is bounded -- if directory contains more than 15 files, ask user to narrow scope or confirm batch processing
+> If any check fails, inform the user and collect missing prerequisites before continuing.
+
 **Announce:** "Starting code quality review. I'll check for common issues, performance patterns, and React Native best practices."
 
 ### Process
@@ -42,3 +47,5 @@
    - Medium: [count]
    - Low: [count]
    ```
+
+> **Bounded Iteration**: If more than 20 issues are found, present a summary table and ask: "Continue with detailed review, or focus on the top 5 critical issues?"

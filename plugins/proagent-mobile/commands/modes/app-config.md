@@ -2,6 +2,11 @@
 
 **Goal:** Review and audit app.json, eas.json, and app.config.js/ts for correctness and completeness.
 
+> **Adequacy Gate**: Before proceeding, verify:
+> 1. `app.json` or `app.config.js/ts` exists in the project root
+> 2. `eas.json` exists if EAS Build is used
+> If any check fails, inform the user and collect missing prerequisites before continuing.
+
 **Announce:** "Starting app configuration review. I'll audit your Expo and EAS configuration files."
 
 ### Process

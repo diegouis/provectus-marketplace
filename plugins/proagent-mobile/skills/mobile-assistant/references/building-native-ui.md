@@ -22,7 +22,7 @@ Consult these resources as needed:
 - ./references/media.md -- Media handling for Expo Router including camera, audio, video, and file saving
 - ./references/storage.md -- Data storage patterns including SQLite, AsyncStorage, and SecureStore
 - ./references/webgpu-three.md -- 3D graphics, games, and GPU-powered visualizations with WebGPU and Three.js
-- ./references/toolbars-and-headers.md -- Customizing stack headers and toolbar with buttons, menus, and search bars in expo-router app. Available only on iOS.
+- ./references/toolbar-and-headers.md -- Customizing stack headers and toolbar with buttons, menus, and search bars in expo-router app. Available only on iOS.
 
 ## Running the App
 
@@ -265,7 +265,7 @@ app/
 
 ```tsx
 // app/_layout.tsx
-import { NativeTabs, Icon, Label } from "expo-router/unstable-native-tabs";
+import { NativeTabs } from "expo-router/unstable-native-tabs";
 import { Theme } from "../components/theme";
 
 export default function Layout() {
@@ -273,8 +273,8 @@ export default function Layout() {
     <Theme>
       <NativeTabs>
         <NativeTabs.Trigger name="(index)">
-          <Icon sf="list.dash" />
-          <Label>Items</Label>
+          <NativeTabs.Trigger.Icon sf="list.dash" />
+          <NativeTabs.Trigger.Label>Items</NativeTabs.Trigger.Label>
         </NativeTabs.Trigger>
         <NativeTabs.Trigger name="(search)" role="search" />
       </NativeTabs>

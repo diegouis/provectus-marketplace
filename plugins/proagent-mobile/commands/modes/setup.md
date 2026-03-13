@@ -2,6 +2,12 @@
 
 **Goal:** Set up a new Expo project or configure tooling in an existing one.
 
+> **Adequacy Gate**: Before proceeding, verify:
+> 1. Node.js 18+ is installed
+> 2. Target directory is empty or user confirms overwrite
+> 3. User has chosen a template (blank, tabs, or custom)
+> If any check fails, inform the user and collect missing prerequisites before continuing.
+
 **Announce:** "Starting project setup. What would you like to configure?"
 
 Ask the user which setup task they need:

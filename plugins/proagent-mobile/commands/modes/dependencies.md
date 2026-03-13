@@ -2,6 +2,12 @@
 
 **Goal:** Audit dependency health — compatibility, outdated packages, and version conflicts.
 
+> **Adequacy Gate**: Before proceeding, verify:
+> 1. `package.json` exists in the project root
+> 2. `node_modules/` exists (dependencies installed)
+> 3. Project uses Expo (check for `expo` in dependencies)
+> If any check fails, inform the user and collect missing prerequisites before continuing.
+
 **Announce:** "Starting dependency health check. I'll audit your package.json and check Expo SDK compatibility."
 
 ### Process

@@ -2,6 +2,12 @@
 
 **Goal:** Set up and run EAS Build to create a development client for testing native code on a device.
 
+> **Adequacy Gate**: Before proceeding, verify:
+> 1. `eas whoami` returns a valid account
+> 2. `app.json` exists with `expo.slug` defined
+> 3. Platform target is specified (ios, android, or both)
+> If any check fails, inform the user and collect missing prerequisites before continuing.
+
 **Announce:** "Starting EAS Build workflow. I'll help you create a development client for iOS or Android."
 
 > **CONTEXT GUARD**: ONLY read the reference file below now that the user has selected this mode.

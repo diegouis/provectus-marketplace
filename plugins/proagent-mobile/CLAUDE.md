@@ -2,6 +2,10 @@
 
 Mobile app development plugin for Expo and React Native. Wraps 10 skills from [expo/skills](https://github.com/expo/skills) (MIT License) with marketplace commands, a specialist agent, and lifecycle hooks.
 
+## Plugin Scope
+
+This plugin covers ten mobile development domains: UI development (components, navigation, animations), EAS builds (dev client, cloud builds), App Store and Play Store deployment (including TestFlight), data fetching (React Query, SWR, offline patterns), API routes (Expo Router + EAS Hosting), CI/CD workflows (EAS workflow YAML), Tailwind/NativeWind styling, SDK upgrades (migration guides, new architecture, React 19), Android safe area handling, and DOM components. All skills wrap reference content from the expo/skills repository.
+
 ## Directory Tree
 
 ```
@@ -74,6 +78,24 @@ proagent-mobile/
 | PostToolUse/Write | `app.json`, `eas.json`, `app.config.*` | Remind to run `eas build:configure` |
 | PostToolUse/Task | `mobile-specialist` dispatch | Remind to test on device before store submission |
 
+## Key Conventions
+
+- **Expo-first**: prefer Expo APIs over bare React Native when an Expo equivalent exists
+- **Device testing**: always test on a physical device before any store submission
+- **Platform handling**: explicitly address iOS vs Android differences in layouts, permissions, and navigation
+- **EAS workflow**: use EAS Build for cloud builds, EAS Submit for store deployment — avoid local `xcodebuild`/`gradle` unless debugging
+- **Version management**: bump `expo.version` + `ios.buildNumber`/`android.versionCode` before each store submission
+- **Safe area**: always wrap root layout in `SafeAreaProvider`; use `useSafeAreaInsets` for custom headers
+- **Tailwind**: use NativeWind v5 with Tailwind CSS v4 — no Babel plugin needed, configure via `metro.config.js`
+
+## MCP Integrations
+
+- **GitHub**: EAS GitHub Actions workflows, PR reviews, release management
+- **Slack**: Build failure notifications, team coordination on release windows
+- **Google Drive**: App Store screenshots, release notes, certification documents
+- **Google Workspace**: Calendar for release scheduling, Gmail for store correspondence
+- **Excalidraw**: App architecture diagrams, navigation flow visualization
+
 ## Attribution
 
-Skills sourced from [expo/skills](https://github.com/expo/skills) (MIT License, © 2025-present 650 Industries, Inc.).
+Skills sourced from [expo/skills](https://github.com/expo/skills) (MIT License, © 2025-present 650 Industries, Inc.). 34 reference files covering 10 topic areas.

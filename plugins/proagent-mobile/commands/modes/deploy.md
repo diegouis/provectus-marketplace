@@ -2,6 +2,12 @@
 
 **Goal:** Deploy the Expo app to App Store, Play Store, TestFlight, or web hosting.
 
+> **Adequacy Gate**: Before proceeding, verify:
+> 1. A successful EAS build exists for the target platform
+> 2. `expo.version` and `buildNumber`/`versionCode` are incremented
+> 3. Store credentials are configured (`eas credentials`)
+> If any check fails, inform the user and collect missing prerequisites before continuing.
+
 **Announce:** "Starting deployment workflow. I'll guide you through submitting your app to the target platform."
 
 > **CONTEXT GUARD**: ONLY read the reference file below now that the user has selected this mode.
