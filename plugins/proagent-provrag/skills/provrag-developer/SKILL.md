@@ -12,6 +12,11 @@ description: >
 
 Build, customize, and operate RAG applications using provrag -- Provectus's internal RAG accelerator.
 
+## CRITICAL: Ask First, Load Later
+
+**DO NOT** read reference files, run environment detection commands, or load
+mode files until the user has told you what they want to do.
+
 ## When Invoked Without Clear Intent
 
 **MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
@@ -27,32 +32,19 @@ AskUserQuestion(
   ]
 )
 
-## When to Use This Skill
+## Routing
 
-- Scaffolding a new provrag project (`provrag init`)
-- Writing or modifying pipeline steps (`@step` decorated functions)
-- Composing pipelines (`@pipeline` decorated functions)
-- Working with provrag data models (Document, Chunk, ScoredChunk)
-- Configuring LLM providers (Bedrock, OpenAI) via factory functions
-- Setting up OpenSearch indices and retrieval (k-NN, hybrid)
-- Customizing ingestion or RAG pipelines
-- Writing tests for provrag code
-- Operating the lifecycle (ingest, serve, status, list, clean, connect, disconnect)
+After the user selects an option, load the corresponding mode file:
 
-## Reading the Live API
-
-**Before writing any provrag code**, read the installed library source to get current signatures:
-
-```
-uv run python -c "import provrag.core.step; print(provrag.core.step.__file__)"
-uv run python -c "import provrag.core.pipeline; print(provrag.core.pipeline.__file__)"
-uv run python -c "import provrag.models.document; print(provrag.models.document.__file__)"
-uv run python -c "import provrag.llm.factory; print(provrag.llm.factory.__file__)"
-uv run python -c "import provrag.retrieval.opensearch_client; print(provrag.retrieval.opensearch_client.__file__)"
-uv run python -c "import provrag.settings; print(provrag.settings.__file__)"
-```
-
-Use the Read tool on those file paths. If the project is not yet set up (no `.venv`), use `references/api-reference.md` as a fallback.
+| User Intent | Mode File |
+|---|---|
+| Scaffold Project | `commands/modes/init.md` |
+| Customize ingestion (PDF, chunking) | `commands/modes/customize-ingestion.md` |
+| Customize RAG (reranking, hybrid, prompts) | `commands/modes/customize-rag.md` |
+| Add a pipeline step | `commands/modes/add-step.md` |
+| Configure & Operate (ingest, serve, status) | `commands/modes/operate.md` |
+| Write Tests | Read `references/api-reference.md` testing patterns section |
+| Bootstrap / prerequisites | `commands/modes/bootstrap.md` |
 
 ## Core Architecture
 
@@ -64,11 +56,16 @@ Use the Read tool on those file paths. If the project is not yet set up (no `.ve
 
 ## Reference Files
 
-Load these **at the point of need**, not at startup:
+> **CONTEXT GUARD**: ONLY read these files when the user reaches a step
+> that requires them. Do NOT pre-load at skill initialization.
 
 | File | Contents |
 |---|---|
-| `references/api-reference.md` | Package imports, decorators, data models, LLM abstractions, OpenSearch client, built-in steps, S3 loader, chunker, FastAPI factory, tracing, settings, generated project structure, testing patterns, code style |
+| `references/api-reference.md` | Package imports, decorators, data models, LLM abstractions, OpenSearch client, built-in steps, S3 loader, chunker, FastAPI factory, tracing, settings, project structure, testing patterns, code style |
 | `references/cli-reference.md` | CLI commands, Taskfile operations, provrag installation, AWS connectivity |
 | `references/settings-reference.md` | PROVRAG_* environment variables and configuration |
 | `references/customization-cookbook.md` | Implementation recipes: PDF ingestion, cross-encoder reranking, hybrid search, custom system prompts |
+
+## Live API Reading
+
+When writing provrag code in a project with `.venv`, mode files will instruct you to read the installed library source for current signatures. See `references/cli-reference.md` for the discovery commands. If no `.venv` exists, use `references/api-reference.md` as fallback.

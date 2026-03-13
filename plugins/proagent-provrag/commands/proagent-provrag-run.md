@@ -18,8 +18,11 @@ Parse the operation from the user's input and execute the corresponding workflow
 
 ## Before Any Operation
 
-1. Read the core skill: `skills/provrag-developer/SKILL.md`
-2. If the project has a `.venv`, read the installed provrag library source for latest API signatures (see "Reading the Live API" in the skill)
+> **CONTEXT GUARD**: ONLY read the files below when you are about to execute
+> the operation. Do NOT pre-load them at command start.
+
+1. Read `skills/provrag-developer/SKILL.md` for core architecture reference
+2. If the project has a `.venv`, read the installed provrag source for current signatures (see `references/cli-reference.md` for discovery commands)
 
 ## Operations
 
@@ -34,9 +37,7 @@ Parse the operation from the user's input and execute the corresponding workflow
 | `serve` | Query the deployed API via tunnels | `commands/modes/serve.md` |
 | `operate` | Status, list, clean, connect, disconnect | `commands/modes/operate.md` |
 
-Read the corresponding mode file and follow its workflow.
-
-If the operation is not recognized, display the table above and ask the user which operation they need.
+Read the corresponding mode file and follow its workflow. If the operation is not recognized, display the table above and ask the user which operation they need.
 
 ## Error Handling
 

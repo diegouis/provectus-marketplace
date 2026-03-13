@@ -10,7 +10,7 @@ This plugin gives Claude Code full knowledge of provrag -- Provectus's internal 
 - Lifecycle operations (ingest, serve, status, list, clean, connect, disconnect)
 - Pipeline architecture review and quality audits
 
-Components: 1 skill, 4 commands, 9 mode files, 3 reference files, 1 agent, 2 hooks
+Components: 1 skill, 4 commands, 10 mode files, 3 reference files, 1 agent, 2 hooks
 
 ## Commands
 
@@ -44,7 +44,7 @@ proagent-provrag/
 │   ├── proagent-provrag-hub.md
 │   ├── proagent-provrag-run.md
 │   ├── proagent-provrag-review.md
-│   └── modes/ (9 mode files, incl. architecture-interview)
+│   └── modes/ (10 mode files, incl. architecture-interview, review)
 ├── agents/provrag-specialist.md
 ├── hooks/hooks.json
 ├── .mcp.json

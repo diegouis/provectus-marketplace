@@ -21,7 +21,7 @@ Classify the user's request and route immediately:
 
 | Intent | Signal | Route |
 |--------|--------|-------|
-| **New project** | "design", "build", "create", "new RAG", "set up a RAG" | Read `commands/modes/architecture-interview.md` and follow its workflow |
+| **New project** | "design", "build", "create", "new RAG", "set up a RAG" | Load `commands/modes/architecture-interview.md` and follow its workflow |
 | **Bootstrap** | "bootstrap", "prerequisites", "set up environment" | Invoke Skill: `proagent-provrag-run` args: `bootstrap` |
 | **Init / scaffold** | "init", "scaffold" (no architecture questions) | Invoke Skill: `proagent-provrag-run` args: `init` |
 | **Customize ingestion** | "PDF", "chunking", "ingestion", "preprocessing" | Invoke Skill: `proagent-provrag-run` args: `customize-ingestion` |
