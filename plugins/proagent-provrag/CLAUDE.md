@@ -53,7 +53,7 @@ This plugin gives Claude Code full knowledge of the provrag RAG accelerator fram
 proagent-provrag/
 ├── .claude-plugin/plugin.json
 ├── skills/provrag-developer/
-│   ├── SKILL.md                      # Core API reference + patterns
+│   ├── SKILL.md                      # Router + core architecture (no bash)
 │   └── references/
 │       ├── cli-reference.md          # CLI commands + Taskfile commands
 │       ├── settings-reference.md     # PROVRAG_* env vars
@@ -62,7 +62,7 @@ proagent-provrag/
 │   ├── proagent-provrag.md           # Unified assistant (interview + routing)
 │   ├── proagent-provrag-hub.md       # Overview + routing
 │   ├── proagent-provrag-run.md       # Execution dispatcher
-│   ├── proagent-provrag-review.md    # Project review
+│   ├── proagent-provrag-review.md    # Review dispatcher (thin)
 │   └── modes/                        # Operation-specific workflows
 │       ├── architecture-interview.md # 4-phase RAG design interview
 │       ├── bootstrap.md
@@ -72,7 +72,8 @@ proagent-provrag/
 │       ├── add-step.md
 │       ├── ingest.md
 │       ├── serve.md
-│       └── operate.md
+│       ├── operate.md
+│       └── review.md               # Review checklists + output format
 ├── agents/provrag-specialist.md      # Specialist subagent
 ├── hooks/hooks.json                  # Safety hooks
 ├── .mcp.json                         # MCP config (empty -- uses CLI tooling)
