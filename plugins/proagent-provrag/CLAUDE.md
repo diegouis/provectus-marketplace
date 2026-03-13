@@ -1,26 +1,26 @@
-# Provectus provrag RAG Framework Plugin
+# Provectus ProRAG Framework Plugin
 
-This plugin gives Claude Code full knowledge of the provrag RAG accelerator framework. It enables scaffolding new provrag projects, customizing ingestion and RAG pipelines, and operating the project lifecycle.
+This plugin gives Claude Code full knowledge of the ProRAG accelerator framework. It enables scaffolding new ProRAG projects, customizing ingestion and RAG pipelines, and operating the project lifecycle.
 
 ## Practice Scope
 
 1. **Bootstrap** -- Verify and install prerequisites (git, Docker, mise, Python 3.13, uv, go-task, AWS CLI, AWS SSO, Pulumi, glab)
 2. **Scaffold** -- Create new projects via `provrag init` with lifecycle monitoring
-3. **Customize Pipelines** -- Modify ingestion (PDF, chunking, preprocessing) and RAG (reranking, hybrid search, system prompts) pipelines
+3. **Customize Pipelines** -- Modify ingestion (PDF, chunking, preprocessing) and RAG (reranking, hybrid search, system prompts)
 4. **Operate** -- Run ingestion, serve API, check status, manage indices, connect/disconnect SSM tunnels to AWS
 5. **Review** -- Audit pipeline architecture, step implementations, settings, and test coverage
 
 ## Key Conventions
 
-### provrag Installation
+### ProRAG Installation
 - Distributed via AWS CodeArtifact, NOT PyPI
 - Run `task ca:login` to authenticate, then `task setup` to install
 - CodeArtifact: domain `provrag`, account `257394491982`, region `us-east-2`
 
 ### Reading Live API
-- After setup, read installed provrag source directly for current signatures
+- After setup, read installed ProRAG source directly for current signatures
 - Use `uv run python -c "import provrag.{module}; print(provrag.{module}.__file__)"` to locate
-- This ensures the plugin stays current with provrag updates
+- This ensures the plugin stays current with ProRAG updates
 
 ### Code Style
 - Python 3.13: `str | None`, `StrEnum`, `from __future__ import annotations`
@@ -53,7 +53,7 @@ This plugin gives Claude Code full knowledge of the provrag RAG accelerator fram
 proagent-provrag/
 ├── .claude-plugin/plugin.json
 ├── skills/provrag-developer/
-│   ├── SKILL.md                      # Router + core architecture (no bash)
+│   ├── SKILL.md                      # Router + core architecture (no bash, ProRAG branding)
 │   └── references/
 │       ├── cli-reference.md          # CLI commands + Taskfile commands
 │       ├── settings-reference.md     # PROVRAG_* env vars

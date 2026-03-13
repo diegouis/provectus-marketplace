@@ -1,6 +1,6 @@
 # Mode: Bootstrap
 
-Check and install all prerequisites for using provrag.
+Check and install all prerequisites for using ProRAG.
 
 ## Workflow
 
@@ -70,7 +70,7 @@ Present a summary table:
 
 ### 7. Alternative: Run bootstrap script
 
-If the user has the provrag repository cloned, offer to run the interactive bootstrap script:
+If the user has the ProRAG repository cloned, offer to run the interactive bootstrap script:
 
 ```bash
 bash ~/Documents/GitLab/provrag/scripts/bootstrap.sh

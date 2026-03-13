@@ -1,12 +1,12 @@
 ---
 description: >
-  Execute provrag operations: bootstrap, init, customize-ingestion, customize-rag,
+  Execute ProRAG operations: bootstrap, init, customize-ingestion, customize-rag,
   add-step, ingest, serve, or operate (status/list/clean/connect/disconnect).
 argument-hint: "<operation> [options]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 ---
 
-# /proagent-provrag-run - Execute provrag Operations
+# /proagent-provrag-run - Execute ProRAG Operations
 
 Parse the operation from the user's input and execute the corresponding workflow.
 

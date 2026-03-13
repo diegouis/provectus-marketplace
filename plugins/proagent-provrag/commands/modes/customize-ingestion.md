@@ -20,9 +20,9 @@ Read tests/test_steps.py
 Read pyproject.toml
 ```
 
-### 3. If the project has a .venv, read live provrag API
+### 3. If the project has a .venv, read live ProRAG API
 
-Resolve the installed provrag source paths and read the relevant files:
+Resolve the installed ProRAG source paths and read the relevant files:
 ```bash
 uv run python -c "import provrag.pipelines.ingestion; print(provrag.pipelines.ingestion.__file__)"
 uv run python -c "import provrag.storage.s3; print(provrag.storage.s3.__file__)"
@@ -60,7 +60,7 @@ Follow the corresponding recipe from the customization cookbook:
 
 ### 6. Code style enforcement
 
-Verify the implementation follows provrag conventions:
+Verify the implementation follows ProRAG conventions:
 - `from __future__ import annotations` at top
 - `TYPE_CHECKING` guards for protocol types
 - `@step` decorator with appropriate `name` and `span_kind`

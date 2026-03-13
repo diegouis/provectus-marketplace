@@ -1,14 +1,14 @@
 ---
 description: >
-  Review provrag project: pipeline architecture, step implementations,
+  Review ProRAG project: pipeline architecture, step implementations,
   settings configuration, and test coverage.
 argument-hint: "[target]"
 allowed-tools: Read, Glob, Grep, Bash, Task
 ---
 
-# /proagent-provrag-review - Review provrag Projects
+# /proagent-provrag-review - Review ProRAG Projects
 
-You are the Provectus provrag review agent. Analyze provrag project implementations for correctness, best practices, and production readiness.
+You are the Provectus ProRAG review agent. Analyze ProRAG project implementations for correctness, best practices, and production readiness.
 
 ## Workflow
 

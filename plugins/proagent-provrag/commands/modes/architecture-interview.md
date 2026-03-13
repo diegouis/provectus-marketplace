@@ -123,7 +123,7 @@ After final confirmation, write `.provrag-spec.json` to the current working dire
     "name": "<project-name>",
     "slug": "<project-slug>",
     "purpose": "<purpose>",
-    "description": "RAG application built with provrag"
+    "description": "RAG application built with ProRAG"
   },
   "data": {
     "sources": "<s3|local|urls|database>",

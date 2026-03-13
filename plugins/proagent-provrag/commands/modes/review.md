@@ -1,11 +1,11 @@
 # Mode: Review
 
-Analyze provrag project implementations for correctness, best practices, and production readiness.
+Analyze ProRAG project implementations for correctness, best practices, and production readiness.
 
 ## Before Reviewing
 
 1. Read `skills/provrag-developer/SKILL.md` for core architecture reference
-2. If the project has a `.venv`, read the installed provrag source for current signatures (see `references/cli-reference.md` for discovery commands)
+2. If the project has a `.venv`, read the installed ProRAG source for current signatures (see `references/cli-reference.md` for discovery commands)
 
 ## Review Targets
 

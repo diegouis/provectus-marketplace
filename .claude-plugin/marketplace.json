@@ -102,7 +102,7 @@
     {
       "name": "proagent-provrag",
       "source": "./plugins/proagent-provrag",
-      "description": "provrag RAG framework: scaffold, customize, and operate provrag projects with @step/@pipeline decorators, LLM abstractions, OpenSearch retrieval, and CLI tooling."
+      "description": "ProRAG framework: scaffold, customize, and operate ProRAG projects with @step/@pipeline decorators, LLM abstractions, OpenSearch retrieval, and CLI tooling."
     }
   ]
 }

@@ -39,7 +39,7 @@ def my_step(input_data: InputType, param: str = "default") -> OutputType:
 
 Rules:
 - `from __future__ import annotations` at file top
-- `TYPE_CHECKING` guard for provrag type imports
+- `TYPE_CHECKING` guard for ProRAG type imports
 - `model_copy(update={...})` for Pydantic model updates, never mutate
 - Single responsibility
 - No side effects outside the step's domain

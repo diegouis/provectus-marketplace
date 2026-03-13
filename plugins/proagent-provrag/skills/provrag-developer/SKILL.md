@@ -1,16 +1,16 @@
 ---
 name: provrag-developer
 description: >
-  Build and customize provrag RAG applications -- pipeline composition with @step/@pipeline decorators,
+  Build and customize ProRAG applications -- pipeline composition with @step/@pipeline decorators,
   data models (Document, Chunk, ScoredChunk), LLM protocols (BaseEmbedder, BaseLLM), OpenSearch retrieval,
   S3 document loading, Pydantic v2 settings, FastAPI serving, and CLI operations.
-  Use when: scaffolding provrag projects, writing custom pipeline steps, modifying ingestion/RAG pipelines,
-  configuring settings, writing tests, or operating the provrag lifecycle.
+  Use when: scaffolding ProRAG projects, writing custom pipeline steps, modifying ingestion/RAG pipelines,
+  configuring settings, writing tests, or operating the ProRAG lifecycle.
 ---
 
-# provrag RAG Framework Developer Skill
+# ProRAG Framework Developer Skill
 
-Build, customize, and operate RAG applications using provrag -- Provectus's internal RAG accelerator.
+Build, customize, and operate RAG applications using ProRAG -- Provectus's internal RAG accelerator.
 
 ## CRITICAL: Ask First, Load Later
 
@@ -22,13 +22,13 @@ mode files until the user has told you what they want to do.
 **MANDATORY**: You MUST call the `AskUserQuestion` tool — do NOT render these options as text:
 
 AskUserQuestion(
-  header: "provrag",
-  question: "What provrag task do you need help with?",
+  header: "ProRAG",
+  question: "What ProRAG task do you need help with?",
   options: [
-    { label: "Scaffold Project", description: "Create a new provrag project with provrag init" },
+    { label: "Scaffold Project", description: "Create a new ProRAG project with provrag init" },
     { label: "Customize Pipelines", description: "Write or modify @step/@pipeline ingestion or RAG pipelines" },
     { label: "Configure & Operate", description: "Settings, LLM providers, OpenSearch, CLI operations" },
-    { label: "Write Tests", description: "Unit and integration tests for provrag code" }
+    { label: "Write Tests", description: "Unit and integration tests for ProRAG code" }
   ]
 )
 
@@ -62,10 +62,10 @@ After the user selects an option, load the corresponding mode file:
 | File | Contents |
 |---|---|
 | `references/api-reference.md` | Package imports, decorators, data models, LLM abstractions, OpenSearch client, built-in steps, S3 loader, chunker, FastAPI factory, tracing, settings, project structure, testing patterns, code style |
-| `references/cli-reference.md` | CLI commands, Taskfile operations, provrag installation, AWS connectivity |
+| `references/cli-reference.md` | CLI commands, Taskfile operations, ProRAG installation, AWS connectivity |
 | `references/settings-reference.md` | PROVRAG_* environment variables and configuration |
 | `references/customization-cookbook.md` | Implementation recipes: PDF ingestion, cross-encoder reranking, hybrid search, custom system prompts |
 
 ## Live API Reading
 
-When writing provrag code in a project with `.venv`, mode files will instruct you to read the installed library source for current signatures. See `references/cli-reference.md` for the discovery commands. If no `.venv` exists, use `references/api-reference.md` as fallback.
+When writing ProRAG code in a project with `.venv`, mode files will instruct you to read the installed library source for current signatures. See `references/cli-reference.md` for the discovery commands. If no `.venv` exists, use `references/api-reference.md` as fallback.
